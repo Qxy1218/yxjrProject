@@ -1,0 +1,31 @@
+public PageModel searchByHql(PageModel pageModel, String hql) {
+	List list = new ArrayList();
+	final int pageNo = pageModel.getPageNo();
+	final int pageSize = pageModel.getPageSize();
+	try { 
+		Session session=this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		list = session.createQuery(hql).setFirstResult((pageNo - 1) * pageSize).setMaxResults(pageSize).list();
+		pageModel.setTotalRecords(this.getTotalRecords(hql));
+		pageModel.setList(list);
+	}catch(Exception e) {
+		e.printStackTrace();
+		throw new AppException("查询异常");
+	}	
+	return pageModel;
+}
+private int getTotalRecords(String hql) {
+	Long totalRecords = 0L;
+	String s1;
+	int i = hql.toLowerCase().indexOf("from");
+	int j = hql.toLowerCase().indexOf("order by");
+	if (j > 0){
+		s1 = (new StringBuilder()).append("select count(*) ").append(hql.substring(i, j)).toString();
+	}else{
+		s1 = (new StringBuilder()).append("select count(*) ").append(hql.substring(i, hql.length())).toString();
+	try {
+		totalRecords = (Long) this.getSession().createQuery(s1).uniqueResult();
+		return totalRecords.intValue();
+	} catch (RuntimeException e) {
+		return -1;
+	}
+}
