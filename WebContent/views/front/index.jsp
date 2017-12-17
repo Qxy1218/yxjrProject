@@ -823,8 +823,8 @@
 		                <ul>
 		                    <!-- 论坛导航栏全部关闭 -->
 		                    <!--<li class="m2-commonTop-btn" style="display: none" id="bbs"><a id="bbslogin" target="_blank">论坛</a></li>-->
-		                    <li class="m2-commonTop-btn"><a href="register.html" target="_blank">注册</a></li>
-		                    <li class="m2-commonTop-btn"><a href="login.html#login_callback=/index" target="_blank" style="border-right:none;">登录</a></li>
+		                    <li class="m2-commonTop-btn"><a href="/Finances/toregirset" target="_blank">注册</a></li>
+		                    <li class="m2-commonTop-btn"><a href="/Finances/tologin" target="_blank" style="border-right:none;">登录</a></li>
 		                    <li class="m2-commonTop-btn"><a href="company_finance.html" id="cfpage" style="border-right:none;width: 50px;">企业理财</a></li>                </ul>
 		            </div>
 		            <div class="m2-commonTop-app" onclick='window.open("appdownload.html")' style="cursor:pointer;">

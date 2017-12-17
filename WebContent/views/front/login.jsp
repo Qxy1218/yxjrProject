@@ -488,7 +488,7 @@
                         <div class="m2-loginArea-rigHead" >
                             <h2>会员登录</h2>
                             <p>
-                                <a href="register.html"><i></i>立即注册</a>
+                                <a href="/Finances/toregirset"><i></i>立即注册</a>
                             </p>
                         </div>
                         <form class="m2-login-form" action="">

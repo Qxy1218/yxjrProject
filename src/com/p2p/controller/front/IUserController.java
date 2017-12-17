@@ -42,9 +42,9 @@ public class IUserController {
 		
 		AddressUtils addressUtils = new AddressUtils();
 		
-		System.out.println("手机号码"+phone);
-		System.out.println("密码是"+pass_word);
-		System.out.println("邀请码是"+yqcode);
+//		System.out.println("手机号码"+phone);
+//		System.out.println("密码是"+pass_word);
+//		System.out.println("邀请码是"+yqcode);
 		
 		/**
 		 * 1：密码加密（MD5）
@@ -61,7 +61,7 @@ public class IUserController {
 		user.setUloginTime(DateUtils.getDateTimeFormat(new Date()));
 		
 		//别人的邀请码
-		if(yqcode.equals("nowrite")) {
+		if(!yqcode.equals("nowrite")) {
 			user.setUinvited(yqcode);
 			System.out.println("有邀请码，给体验券");
 		}
@@ -104,7 +104,7 @@ public class IUserController {
 			map.put("message", "注册失败,请稍后再试");
 		}
 		String aa = mapper.writeValueAsString(map);
-		System.out.println(aa);
+		//System.out.println(aa);
 		return aa;
 	}
 	
