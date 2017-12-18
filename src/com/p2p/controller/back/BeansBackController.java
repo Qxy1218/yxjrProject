@@ -5,8 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.p2p.util.Demo;
-
 /**
  * 开发人:汪栋才
  * 2017-11-13
@@ -21,8 +19,6 @@ public class BeansBackController {
 	 * */
 	@RequestMapping(value="/tologin")
 	public String toBackLogin(HttpServletRequest request){
-		String ip =  Demo.getIpFromRequest(request);
-		System.out.println("ip地址是。。。。。。。。"+ip);
 		return "views/back/login";
 	}
 	

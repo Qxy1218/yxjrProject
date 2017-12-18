@@ -36,7 +36,7 @@ public class EmpServiceImpl implements EmpService{
 
 	@Override
 	public List<Employe> getAllModel() {
-		return null;
+		return empMapper.getAllModel();
 	}
 
 	@Override
