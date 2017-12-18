@@ -466,9 +466,9 @@
     <div class="m2-investBread">
         <div class="m2-investBreadbox">
             <i class="m2-investBreadicon"></i>
-            <span class="m2-invBre-fat"><a href="index.html">首页&nbsp;&gt;</a></span>
-            <span class="m2-invBre-fat"><a href="touzi_licai_chanpin.html">我要投资&nbsp;&gt;</a></span>
-            <a class="m2-invBre-cur" href="touzi_licai_chanpin.html">项目直投</a>
+            <span class="m2-invBre-fat"><a href="/Finances/views/front/index.jsp">首页&nbsp;&gt;</a></span>
+            <span class="m2-invBre-fat"><a href="/Finances/views/front/invest.jsp">我要投资&nbsp;&gt;</a></span>
+            <span class="m2-invBre-fat">项目直投</span>
         </div>
     </div>
     <div class="m2-invTable-con">
