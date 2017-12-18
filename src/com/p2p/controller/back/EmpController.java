@@ -2,6 +2,7 @@ package com.p2p.controller.back;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -42,7 +43,7 @@ public class EmpController {
 	
 	
    @RequestMapping("/loginindex")
-   public String loginindex(@RequestParam String name,@RequestParam String password,HttpServletRequest request){
+   public String loginindex(@RequestParam String name,@RequestParam String password,HttpServletRequest request,HttpSession session){
 	 
 	   UsernamePasswordToken token = new UsernamePasswordToken(name,password);
 	   Subject subject = SecurityUtils.getSubject();
@@ -56,12 +57,12 @@ public class EmpController {
            System.out.println("对用户[" + name + "]进行登录验证..验证通过");  
        }catch(UnknownAccountException uae){  
            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,该账户不存在");  
-           request.setAttribute("message_login", "该账户不存在或已被管理员禁用!");  
-           return "/back/tologin";
+           session.setAttribute("message_login", "该账户不存在或已被管理员禁用!");  
+           return "redirect:/back/tologin";
        }catch(IncorrectCredentialsException ice){  
            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,密码错误"); 
-           request.setAttribute("message_login", "密码不正确!"); 
-           return "/back/tologin";
+           session.setAttribute("message_login", "密码不正确!"); 
+           return "redirect:/back/tologin";
        }catch(LockedAccountException lae){  
            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,账户已锁定");  
            request.setAttribute("message_login", "账户已锁定!");  
@@ -71,9 +72,9 @@ public class EmpController {
        }catch(AuthenticationException ae){  
            //通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景  
            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,堆栈轨迹如下");  
-           ae.printStackTrace();  
-           request.setAttribute("message_login", "账号或密码不正确!");  
-           return "/back/tologin";
+           //ae.printStackTrace();  
+           session.setAttribute("message_login", "账号或密码不正确!");  
+           return "redirect:/back/tologin";
        }  
        //验证是否登录成功  
        if(subject.isAuthenticated()){  
@@ -81,7 +82,7 @@ public class EmpController {
            return "redirect:/back/toindex";
        }else{  
            token.clear();  
-           return "/back/tologin";
+           return "redirect:/back/tologin";
        }  
 
    }

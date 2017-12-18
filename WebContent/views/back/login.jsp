@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 %>  
@@ -44,7 +45,13 @@
                                                    
                         </div>
                     </div>
-                    <h4>${message_login}</h4>
+                    <h4 style="color: red;">${sessionScope.message_login}</h4>
+                    <%
+                    	if(session.getAttribute("message_login")!=null){
+                    		session.removeAttribute("message_login");
+                            
+                    	}
+                    %>
                 </div>
                 <div style="padding:30px;"><input type="submit" class="button button-block bg-main text-big input-big" value="登录"></div>
             </div>
