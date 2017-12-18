@@ -130,7 +130,7 @@
             </li>
 
             <li class="m2-asideListitem">
-                <a class="m2-aside-item" href="usercenter-invitefriends.html">
+                <a class="m2-aside-item" href="/Finances/views/front/inviting.jsp">
                     <i class="m2-asideIcon-invit"></i>
                     <b class="m2-asideIcon-prize"></b>
                     邀请好友

@@ -98,5 +98,11 @@ public class FrontController {
 	public String tofrontransfer() {
 		return "views/front/user/fransfer";
 	}
-	
+	/**
+	 *邀请好友页面的conteroller
+	 * */
+	@RequestMapping(value="/toinviting")
+	public String toinviting() {
+		return "views/front/inviting";
+	}
 }
