@@ -48,11 +48,13 @@
                 -->
                 <!-- 配置登出: 使用 logout 过滤器 -->
 
-                /back/login = anon
+                /back/tologin = anon
+                /back/loginindex = anon
                 /statics/**=anon
-               <!--  /login.jsp = roles[user]
-                /** = authc -->
-                /back/loginindex=anon
+                <!-- 后台访问登入 -->
+                /back/** =user
+                
+                
             </value>
         </property>
     </bean>
