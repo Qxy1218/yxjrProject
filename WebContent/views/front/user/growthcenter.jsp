@@ -160,7 +160,7 @@
 	                        <a class="m2-aside-secLink-item" href="/Finances/views/front/management/interestcoupon.jsp">我的加息券</a>
 	                    </li>
 	                    <li>
-	                        <a class="m2-aside-secLink-item" href="usercenter-rewardcontrol-mycoin.html">我的钱帮币</a>
+	                        <a class="m2-aside-secLink-item" href="/Finances/views/front/management/mycoin.jsp">我的钱帮币</a>
 	                    </li>
 	                </ul>
 	            </li>

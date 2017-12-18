@@ -20,10 +20,10 @@
 	    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/esl.js"></script>
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/jquery.datetimepicker.css" />
 	    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/jquery.datetimepicker.js"></script>
-		<title>我的红包--爱钱帮</title>
+		<title>我的钱帮币--爱钱帮</title>
 	</head>
 	<body>
-		<!-- 右侧边栏start -->
+	<!-- 右侧边栏start -->
 		<div class="m2-commonRight">
 		    <ul class="m2-comRiglist">
 		        <li class="m2-comRigli m2-comRigli-ewm">
@@ -78,11 +78,13 @@
 		            // 判断返回顶部是否显示
 		            visTop(wHei);
 		        });
+		
 		        $('.m2-comRigli-top').click(function () {
 		            $('body,html').animate({scrollTop: 0}, 600);
 		            return false;
 		        });
 		    });
+		
 		    function visTop(high) {
 		
 		        if ($(document).scrollTop() > high + 100) {
@@ -223,198 +225,107 @@
 	        });
 	        // 		});
 	    </script>
-	    <div class="m2-ticketCon">
-	        <div class="m2-ticketHead">
-	            <h3><i class="m2-tickHead-red1"></i>我的红包</h3>
-	        </div>
-	        <div class="m2-recharge-tips" style="margin-bottom:10px;">
-	            <p class="m2-ticPsg-nor">红包使用</p>
-	            <ul style="padding-bottom:18px;">
-	                <li><i class="m2-recharge-tips01"></i><b>投资时根据单笔投资金额选择红包</b></li>
-	                <li><i class="m2-recharge-tips02"></i><b>一次投资可使用一个红包</b></li>
-	                <li><i class="m2-recharge-tips03"></i><b>红包过期后将不能使用</b></li>
-	            </ul>
-	        </div>
-	
-	        <div class="m2-ticketHead">
-	            <h3><i class="m2-tickHead-red2"></i>红包列表</h3>
-	        </div>
-	        <div class="m2-ticSearch">
-	            <ul>
-	                <li class="m2-ticSea-tit">红包状态：</li>
-	                <li class="m2-ticSea-sel m2-ticSea-click" data="1"><span>未使用</span></li>
-	                <li class="m2-ticSea-unsel m2-ticSea-click" data="2"><span>已使用</span></li>
-	                <li class="m2-ticSea-unsel m2-ticSea-click" data="3"><span>已过期</span></li>
-	            </ul>
-	        </div>
-	        <div id="tab1" class="m2-ticSea-sel-content">
-	            <div class="m2-ticResult">
-	                <div class="m2-ticResult_container">
-	
-	                    <div class="m2_ticresult_reword m2_ticresult_unuse">						<div class="packet_title">
-	                        <span>注册奖励</span>
-	                        <span class="packet_where"></span>
+	    <div class="m2-userCentermain">
+	        <div class="m2-userCentercoin-con">
+	            <div id="my_money_con">
+	                <div class="con_title">
+	                    <img src="/Finances/statics/front/statics/usercenter/images/my_coin1.png" class="coin_pic">
+	                    <h4>我的钱帮币</h4>
+	                    <p>越投资，越幸运</p>
+	                    <div class="right">
+	                        <p style="color:#fea812;">余额：20<img src="/Finances/statics/front/statics/usercenter/images/my_coin2.png" style="vertical-align:-4px;"></p>
+	                        <p>2016年10月1日，即将到期钱帮币0个</p>
 	                    </div>
-	                        <div class="packet_introduce_left">
-	                            <span class="number">8</span>
-	                            <span class="unit">元</span>
-	                        </div>
-	                        <div class="packet_introduce_right">
-	                            <div class="packet_introduce_right_con">
-	
-	                                <p>·&nbsp;投资额≥200元可使用</p>
-	                            </div>
-	                            <i></i>
-	                        </div>
-	                        <div class="packet_bottom">
-	                            <span>起效期：2016-09-05</span>
-	                            <span class="packet_endtime">有效期至：2016-09-12 09:29:52</span>
-	                        </div>
-	                    </div>
-	                    <div class="m2_ticresult_reword m2_ticresult_unuse">						<div class="packet_title">
-	                        <span>注册奖励</span>
-	                        <span class="packet_where"></span>
-	                    </div>
-	                        <div class="packet_introduce_left">
-	                            <span class="number">10</span>
-	                            <span class="unit">元</span>
-	                        </div>
-	                        <div class="packet_introduce_right">
-	                            <div class="packet_introduce_right_con">
-	
-	                                <p>·&nbsp;投资额≥1000元可使用</p>
-	                            </div>
-	                            <i></i>
-	                        </div>
-	                        <div class="packet_bottom">
-	                            <span>起效期：2016-09-05</span>
-	                            <span class="packet_endtime">有效期至：2016-10-05 09:29:52</span>
-	                        </div>
-	                    </div>
-	                    <div class="m2_ticresult_reword m2_ticresult_unuse">						<div class="packet_title">
-	                        <span>注册奖励</span>
-	                        <span class="packet_where"></span>
-	                    </div>
-	                        <div class="packet_introduce_left">
-	                            <span class="number">20</span>
-	                            <span class="unit">元</span>
-	                        </div>
-	                        <div class="packet_introduce_right">
-	                            <div class="packet_introduce_right_con">
-	
-	                                <p>·&nbsp;投资额≥5000元可使用</p>
-	                            </div>
-	                            <i></i>
-	                        </div>
-	                        <div class="packet_bottom">
-	                            <span>起效期：2016-09-05</span>
-	                            <span class="packet_endtime">有效期至：2016-10-05 09:29:52</span>
-	                        </div>
-	                    </div>			</div>
-	                <div class="m2-ticTotbottom-red">
-	                    <span><i></i><span id="wsyljkyze">累计可用总额：38元</span></span>
+	                </div>
+	                <div class="coin_middle">
+	                    <h5>如何赚取钱帮币</h5>
+	                    <p class="content">1. 每投资1000元，投资30天，获得1个钱帮币。</p>
+	                    <p class="content">
+	                        2. 每笔投资获得钱帮币计算公式 = 投资金额 / 1000 * (投资天数 / 30) * 1，取计算结果整数部分计入帮主账号。</p>
+	                </div>
+	                <div class="coin_middle">
+	                    <h5>钱帮币有效期规则</h5>
+	                    <p class="content">1. 钱帮币是爱钱帮平台回馈给会员的虚拟货币，不可兑换现金，账户之间不可转让赠与。</p>
+	                    <p class="content">2. 钱帮币有效期6个月，每月到期的钱帮币统一在次月1日24时扣减失效。</p>
+	                    <p class="content">举例说明：</p>
+	                    <p class="content">您在2016年3月12日获得的钱帮币，将在2016年10月1日24时到期扣减。</p>
+	                    <p class="content">您在2016年3月30日获得的钱帮币，将在2016年10月1日24时到期扣减。</p>
+	                    <p class="content">您在2016年4月1日获得的钱帮币，将在2016年11月1日24时到期扣减。</p>
+	                    <p class="content">3. 钱帮币有效期规则从2016年6月1日开始生效；2015年11月30日（含）之前累计的钱帮币在2016年6月1日24时到期。</p>
+	                    <p class="content">4. 为感谢帮主对爱钱帮平台的支持，截至2016年6月1日，您在2015年11月30日（含）之前累计并未
+	                        使用的钱帮币，我们已经按照2016年6月1日的钱帮币兑换奖励金比例（1钱帮币 = 0.01元奖励金），给您折算成等值的奖励金；您可在我的账户 — 奖励管理 — 奖励金流水中查询。
+	                    </p>
+	                    <p class="content">5. 钱帮币有效期规则最终解释权归北京爱钱帮财富科技有限公司所有。</p>
+	                </div>
+	                <div class="coin_bottom">钱帮币记录</div>
+	                <table class="coin_bottom_table">
+	                    <tr>
+	                        <td class="left">时间</td>
+	                        <td class="center">钱帮币</td>
+	                        <td class="center">余额</td>
+	                        <td class="right">描述</td>
+	                    </tr>
+	                    <tr>
+	                        <td class="left">2016-09-05 17:17</td>
+	                        <td class="center">20</td>
+	                        <td class="center">20</td>
+	                        <td class="right">完成风险评测获得20个钱帮币</td>
+	                    </tr>            </table>
+	                <div style="text-align:center;margin-top:24px;">
+	                    <span class="click_more">点击加载更多>></span>
 	                </div>
 	            </div>
-	        </div>
-	        <div id="tab2" class="m2-ticSea-sel-content" style="display:none;">
-	            <div class="m2-ticResult">
-	                <div class="m2-ticResult_container">
-	                </div>
-	                <div class="m2-ticTotbottom-red">
-	                    <span><i></i><span id="ysyljkyze">累计可用总额：0元</span></span>
-	                </div>
-	            </div>
-	        </div>
-	        <div id="tab3" class="m2-ticSea-sel-content" style="display:none;">
-	            <div class="m2-ticResult">
-	                <div class="m2-ticResult_container">
-	                </div>
-	                <div class="m2-ticTotbottom-red">
-	                    <span><i></i><span id="ygqljkstze">累计可用总额：0元</span></span>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="m2-ticMoreadd">
-	            <span>加载更多</span>
 	        </div>
 	    </div>
-	    <script type="text/javascript">
-	        var wsyljze="38";
-	        var ysyljze="0";
-	        var ygqljze="0";
+	    <script>
+	        var count = 1;
+	        var start = 5;
 	
-	        //筛选栏点击
-	        $('.m2-ticSearch ul li').click(function () {
-	            if ($(this).hasClass('m2-ticSea-unsel')) {
-	                $(".m2-ticSea-click").addClass('m2-ticSea-unsel').removeClass('m2-ticSea-sel');
-	                $(this).addClass('m2-ticSea-sel').removeClass('m2-ticSea-unsel');
-	                $(".m2-ticSea-sel-content").hide();
-	                $("#tab"+$(this).attr("data")).show();
+	        $("#my_money_con .click_more").click(function(){
+	            loadMore();
+	        })
+	
+	        $(function(){
+	            checkBtn();
+	            if(count == 0){
+	                var tr = '<tr>';
+	                tr += '<td colspan="4">暂无数据</td></tr>';
+	                $('.coin_bottom_table tbody').append(tr);
 	            }
 	        });
-	
-	        //发送页数的数组
-	        var selectpage=[2,2,2];
-	
-	        $(".m2-ticMoreadd").click(function(){
-	            var type=$(".m2-ticSearch .m2-ticSea-sel").attr("data");
-	            var page=selectpage[Number(type)-1];
-	            var dataStr;
+	        function checkBtn(){
+	            if(start >= count){
+	                $('.click_more').hide();
+	            }
+	        }
+	        function loadMore(){
 	            $.ajax({
-	                url: 'usercenter-rewardcontrol-getRewardNew',
-	                type: 'POST',
-	                data: {
-	                    index: page,
-	                    cate: type,
-	                    type: 1
+	                url:"usercenter-Rewardcontrol-getMyCreditsLogAjax",
+	                type:"POST",
+	                data:{
+	                    start:start
 	                },
 	                success:function(data){
-	                    var obj = eval('(' + data + ')');
-	                    var str="";
-	                    var dataStr="";
-	
-	                    for (var i in obj['list']) {
-	                        var xtwz="";
-	                        if(type==1){
-	                            if(obj['list'][i]['type']==1){
-	                                str="<div class='m2_ticresult_reword m2_ticresult_unuse'>";
-	                            }else if (obj['list'][i]['type']==3){
-	                                str="<div class='m2_ticresult_reword m2_ticresult_unactive'>";
-	                            }
-	                        }else if(type==2){
-	                            str=" <div class='m2_ticresult_reword m2_ticresult_hasused'>";
-	                        }else if(type==3){
-	                            str=" <div class='m2_ticresult_reword m2_ticresult_endtime'>";
-	                        }
-	                        console.log(obj['list'][i]['allow_project_period']);
-	                        if(obj['list'][i]['allow_project_period']==0){
-	
-	                        }else{
-	                            xtwz="·&nbsp;限投"+obj['list'][i]['allow_project_period']+"个月及以上项目";
-	                        }
-	
-	                        dataStr +=str+"<div class='packet_title'><span>"+obj['list'][i]['info']+"</span>"
-	                        +"<span class='packet_where'>"+obj['list'][i]['allow_client_type']+"</span></div><div class='packet_introduce_left'>"
-	                        +"<span class='number'>"+obj['list'][i]['money']+"</span><span class='unit'>元</span></div>"
-	                        +"<div class='packet_introduce_right'><div class='packet_introduce_right_con'><p>"+xtwz+"</p><p>"
-	                        +"·&nbsp;投资额≥"+obj['list'][i]['use_condition']+"元可使用</p></div><i></i></div><div class='packet_bottom'><span>起效期："+obj['list'][i]['date1']+"</span><span class='packet_endtime'>有效期至："+obj['list'][i]['date2']+"</span></div></div>";
-	                    }
-	                    if(type==1){
-	                        wsyljze= Number( wsyljze) +Number(obj['ljkyze']) ;
-	                        $("#wsyljkyze").html("累计可用总额："+wsyljze+"元");
-	                    }else if(type==2){
-	                        ysyljze=Number(ysyljze) +Number( obj['ljkyze']);
-	                        $("#ysyljkyze").html("累计可用总额："+ysyljze+"元");
-	                    }else if(type==3){
-	                        ygqljze=Number(ygqljze)+Number( obj['ljkyze']);
-	                        $("#ygqljkstze").html("累计可用总额："+ygqljze+"元");
-	                    }
-	
-	                    $("#tab"+type).find(".m2-ticResult_container").append(dataStr);
-	                    selectpage[Number(type)-1]++;
+	                    obj = eval('('+data+')');
+	                    start += 5;
+	                    checkBtn();
+	                    insertTr(obj);
 	                }
 	            });
-	        });
+	        }
+	        function insertTr(obj){
+	            if(obj){
+	                for(var i in obj){
+	                    var tr = '<tr>';
+	                    tr += '<td class="left">'+obj[i]['date']+'</td>';
+	                    tr += '<td class="center">'+obj[i]['affect_credits']+'</td>';
+	                    tr += '<td class="center">'+obj[i]['account_credits']+'</td>';
+	                    tr += '<td class="right">'+obj[i]['info']+'</td>';
+	                    tr += '</tr>';
+	                    $('.coin_bottom_table tbody').append(tr);
+	                }
+	            }
+	        }
 	    </script>
 	</body>
 </html>

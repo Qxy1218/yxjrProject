@@ -138,4 +138,12 @@ public class FrontController {
 	public String tointerest() {
 		return "views/front/management/interestcoupon";
 	}
+	
+	/**
+	 *我的钱帮币页面的conteroller
+	 * */
+	@RequestMapping(value="/tomycoin")
+	public String tomycoin() {
+		return "views/front/management/mycoin";
+	}
 }
