@@ -114,4 +114,12 @@ public class FrontController {
 	public String toopen() {
 		return "views/front/openbankid";
 	}
+	
+	/**
+	 *奖励金流水页面的conteroller
+	 * */
+	@RequestMapping(value="/toreward")
+	public String toreward() {
+		return "views/front/management/rewardrecord";
+	}
 }
