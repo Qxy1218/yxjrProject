@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.p2p.mapper.IUserMapper">
 <resultMap type="com.p2p.pojo.User" id="BaseResultMap">
-	<id column="u_id" property="uid"/>
+		  <id column="u_id" property="uid"/>
  		  <result column="u_password" property="upassword"/>
  		  <result column="u_headImg" property="uheadImg"/>
  		  <result column="u_phone" property="uphone"/>
