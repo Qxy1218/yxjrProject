@@ -75,13 +75,13 @@ public class IUserController {
 		user.setUisAccountSum(1);
 		user.setUip(addressUtils.getIP());
 		System.out.println(user.getUip());
-		user.setUvouch("1");
+		user.setUvid("1");
 		user.setUbonus("1");
 		user.setUcredit(3000);
 		user.setUbalance(0.00);
 		user.setUgroup(0);
-		user.setUlevel("0");
-		user.setUintgrad(0.00);
+		user.setUlid("0");
+		user.setVdid(0.00);
 		
 		try {
 			Integer userid = iUserService.addModel(user);
