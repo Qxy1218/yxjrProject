@@ -267,7 +267,6 @@ public class User implements Serializable{
 		this.ulid = ulid;
 	}
 
-
 	public Double getVdid() {
 		return vdid;
 	}
