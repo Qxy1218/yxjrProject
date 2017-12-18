@@ -1,12 +1,8 @@
 package com.p2p.controller.front;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.p2p.pojo.Indexpic;
 import com.p2p.service.back.IndexpicService;
-import com.p2p.util.QRcode;
 /**
  * 开发人:汪栋才
  * 2017-11-13
