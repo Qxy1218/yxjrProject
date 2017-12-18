@@ -30,24 +30,6 @@ public class EmpController {
 	private EmpService empService;
 	
 	
-	/**
-	 * 进入后台登陆界面
-	 * */
-	@RequestMapping(value="/tologin")
-	public String toBackLogin(){
-		return "views/back/login";
-	}
-	
-	/**
-	 * 进入后台主界面
-	 * */
-	@RequestMapping(value="/toindex")
-	public String toBackIndex(){
-		return "views/back/index";
-	}
-	
-	
-	
    @RequestMapping("/loginindex")
    public String loginindex(@RequestParam String name,@RequestParam String password,HttpServletRequest request,HttpSession session){
 	 
