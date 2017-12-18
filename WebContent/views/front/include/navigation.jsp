@@ -27,7 +27,7 @@
                 </li>
                 <li>
                     <i class="m2-frontHeadbox-line"></i>
-                    <a href="aiqianbang_touzilicaigongsi_dashiji.html">
+                    <a href="/Finances/views/front/aboutwe/memorabilia.jsp">
                         <b class="m2-headIcon3"></b>
                         <span>大事记</span>
                     </a>

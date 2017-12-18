@@ -170,4 +170,12 @@ public class FrontController {
 	public String totures() {
 		return "views/front/aboutwe/feartures";
 	}
+	
+	/**
+	 *大事记页面的conteroller
+	 * */
+	@RequestMapping(value="/tobilia")
+	public String tobilia() {
+		return "views/front/aboutwe/memorabilia";
+	}
 }
