@@ -43,7 +43,6 @@ public class User implements Serializable{
 	@TableField("u_ip")
 	private String uip;//ip
 	
-	
 	@TableField("uv_id")
 	private String uvid;//代金券
 	
@@ -52,10 +51,6 @@ public class User implements Serializable{
 	
 	@TableField("u_balance")
 	private Double ubalance;//余额值
-	
-	@TableField("u_group")
-	private Integer  ugroup;//成长值
-	
 
 	@TableField("ul_id")
 	private String  ulid;//成长等级id
@@ -68,7 +63,7 @@ public class User implements Serializable{
 
 	public User(Integer uid, String upassword, String uheadImg, String uphone, String uloginTime, String uinvite,
 			Integer uenable, Integer uisAccountSum, String uip, String uvid, Integer ucredit, Double ubalance,
-			Integer ugroup, String ulid, Double vdid) {
+			String ulid, Double vdid) {
 		super();
 		this.uid = uid;
 		this.upassword = upassword;
@@ -82,7 +77,6 @@ public class User implements Serializable{
 		this.uvid = uvid;
 		this.ucredit = ucredit;
 		this.ubalance = ubalance;
-		this.ugroup = ugroup;
 		this.ulid = ulid;
 		this.vdid = vdid;
 	}
@@ -92,7 +86,7 @@ public class User implements Serializable{
 		return "User [uid=" + uid + ", upassword=" + upassword + ", uheadImg=" + uheadImg + ", uphone=" + uphone
 				+ ", uloginTime=" + uloginTime + ", uinvite=" + uinvite + ", uenable=" + uenable + ", uisAccountSum="
 				+ uisAccountSum + ", uip=" + uip + ", uvid=" + uvid + ", ucredit=" + ucredit + ", ubalance=" + ubalance
-				+ ", ugroup=" + ugroup + ", ulid=" + ulid + ", vdid=" + vdid + "]";
+				+ ", ulid=" + ulid + ", vdid=" + vdid + "]";
 	}
 
 	public Integer getUid() {
@@ -189,14 +183,6 @@ public class User implements Serializable{
 
 	public void setUbalance(Double ubalance) {
 		this.ubalance = ubalance;
-	}
-
-	public Integer getUgroup() {
-		return ugroup;
-	}
-
-	public void setUgroup(Integer ugroup) {
-		this.ugroup = ugroup;
 	}
 
 	public String getUlid() {
