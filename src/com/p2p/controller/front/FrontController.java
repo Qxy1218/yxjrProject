@@ -122,4 +122,12 @@ public class FrontController {
 	public String toreward() {
 		return "views/front/management/rewardrecord";
 	}
+	
+	/**
+	 *我的红包页面的conteroller
+	 * */
+	@RequestMapping(value="/toredpack")
+	public String toredpack() {
+		return "views/front/management/redpacket";
+	}
 }

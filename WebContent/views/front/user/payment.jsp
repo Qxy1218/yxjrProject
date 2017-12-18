@@ -151,7 +151,7 @@
                         <a class="m2-aside-secLink-item" href="/Finances/views/front/management/rewardrecord.jsp">奖励金流水</a>
                     </li>
                     <li>
-                        <a class="m2-aside-secLink-item" href="usercenter-rewardcontrol-redpacket.html">我的红包</a>
+                        <a class="m2-aside-secLink-item" href="/Finances/views/front/management/redpacket.jsp">我的红包</a>
                     </li>
                     <li>
                         <a class="m2-aside-secLink-item" href="usercenter-rewardcontrol-interestcoupon.html">我的加息券</a>
