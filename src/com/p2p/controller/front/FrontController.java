@@ -146,4 +146,12 @@ public class FrontController {
 	public String tomycoin() {
 		return "views/front/management/mycoin";
 	}
+	
+	/**
+	 *站内消息页面的conteroller
+	 * */
+	@RequestMapping(value="/tomsg")
+	public String tomsg() {
+		return "views/front/message/sitmsg";
+	}
 }

@@ -170,7 +170,7 @@
 	                <a class="m2-aside-item m2-aside-toggle" ><i class="m2-asideIcon5"></i>消息管理 </a>
 	                <ul class="m2-aside-secItem" style="display:none">
 	                    <li>
-	                        <a class="m2-aside-secLink-item" href="usercenter-messagecontrol-sitemsg.html">站内消息</a>
+	                        <a class="m2-aside-secLink-item" href="/Finances/views/front/message/sitemsg.jsp">站内消息</a>
 	                    </li>
 	                    <li>
 	                        <a class="m2-aside-secLink-item" href="usercenter-messagecontrol-set_message.html">通知设置</a>
