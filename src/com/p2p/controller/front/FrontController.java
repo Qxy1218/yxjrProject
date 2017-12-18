@@ -154,4 +154,12 @@ public class FrontController {
 	public String tomsg() {
 		return "views/front/message/sitmsg";
 	}
+	
+	/**
+	 *通知设置页面的conteroller
+	 * */
+	@RequestMapping(value="/tosetmsg")
+	public String tosetmsg() {
+		return "views/front/message/setmsg";
+	}
 }

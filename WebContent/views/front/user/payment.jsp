@@ -168,7 +168,7 @@
                         <a class="m2-aside-secLink-item" href="/Finances/views/front/message/sitemsg.jsp">站内消息</a>
                     </li>
                     <li>
-                        <a class="m2-aside-secLink-item" href="usercenter-messagecontrol-set_message.html">通知设置</a>
+                        <a class="m2-aside-secLink-item" href="/Finances/views/front/message/setmsg.jsp">通知设置</a>
                     </li>
                 </ul>
             </li>

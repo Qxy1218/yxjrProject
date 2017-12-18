@@ -20,10 +20,12 @@
 	    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/esl.js"></script>
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/jquery.datetimepicker.css" />
 	    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/jquery.datetimepicker.js"></script>
-		<title>奖励金流水--爱钱帮</title>
+		<title>通知设置--爱钱帮</title>
 	</head>
 	<body>
-	<!-- 右侧边栏start -->
+	<div class="m2-userCentercommon-bg" style='display: none'></div>
+		<div class="m2-userCoin-confirm"  style='display: none'></div>
+		<!-- 右侧边栏start -->
 		<div class="m2-commonRight">
 		    <ul class="m2-comRiglist">
 		        <li class="m2-comRigli m2-comRigli-ewm">
@@ -226,264 +228,146 @@
 		        // 		});
 		    </script>
 		
-		    <style>
-		        .m2-manageResult-item td{
-		            white-space: nowrap;
-		            overflow: hidden;
-		            text-overflow: ellipsis;
-		            max-width: 180px;
-		        }
-		        .m2-manageResult-head th{
-		            white-space: nowrap;
-		        }
-		    </style>
-		    <div class="m2-userPrizerecord-con">
-		        <div class="m2-userPrizerecord-head">
-		            <h3><i></i>我的奖励金记录</h3>
-		            <a href="#" style="display: none;"></a>
+		
+		    <div class="m2-userCentermanage-con">
+		        <div class="m2-user-recharge">
+		            <h3><i class="m2-user-alertset"></i>通知设置</h3>
 		        </div>
-		
-		        <div class="m2-userCentermanage-accNum">
-		            <div class="m2-userCentermanage-accNumlef">
-		                <p class="m2-userCentermanage-accNumtit">
-		                    <span>激活奖励金（元）</span>
-		                    <b class="m2-userCentermanagedraw-moreDetail">
-		                        <u style="top:-10px;line-height:26px;">
-		                            <em style="top:8px" class="m2-draw-arr"></em>
-		                            <em style="top:8px" class="m2-draw-arrBg"></em>
-		                            奖励金激活部分，投资即可使用
-		                        </u>
-		                    </b>
-		                </p>
-		                <p class="m2-userCentermanage-accNum-leave">0.00</p>
-		            </div>
-		            <div class="m2-userCentermanage-accNumrig">
-		                <p class="m2-userCentermanage-accNumtit">
-		                    <span>待激活奖励金（元）</span>
-		                    <b class="m2-userCentermanagedraw-moreDetail">
-		                        <u>
-		                            <em class="m2-draw-arr"></em>
-		                            <em class="m2-draw-arrBg"></em>
-		                            奖励金待激活部分，元老会成员专享，项目结清时即可激活
-		                        </u>
-		                    </b>
-		                </p>
-		                <p class="m2-userCentermanage-accNum-return">0.00</p>
-		            </div>
-		        </div>
-		
-		        <div class="m2-manage-search">
-		            <div class="m2-manage-search-head">
-		                <h3><i></i>奖励金流水记录</h3>
-		            </div>
-		
-		
-		            <div class="m2-manage-search-selector">
-		                <ul class="m2-manageSearchsel-time">
-		                    <li>时间范围：</li>
-		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-sel" data-days='0'>全部</span></li>
-		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-days='7'>最近7天</span></li>
-		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-days='30'>一个月</span></li>
-		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-days='90'>三个月</span></li>
-		                    <li>从<input id="m2-manSeadate-start" type="text"></li>
-		                    <li>到<input id="m2-manSeadate-end" type="text"></li>
-		                </ul>
-		                <ul class="m2-manageSearchsel-type">
-		                    <li>资金类型：</li>
-		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-sel" data-status="3">全部</span></li>
-		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-status="1">未激活</span></li>
-		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-status="2">已激活</span></li>
-		                </ul>
-		
-		                <table class="m2-manageResult" cellpadding="0" cellspacing="0">
-		                    <tr class="m2-manageResult-head">
-		                        <th style="width:120px;">时间</th>
-		                        <th style="width:155px;">资金类型</th>
-		                        <th style="width:135px;">描述</th>
-		                        <th style="width:120px;">金额(元)</th>
-		                        <th style="width:100px;">激活余额(元)</th>
-		                        <th style="width:110px;">待激活余额(元)</th>
+		        <div class="m2-recharge-mainbody">
+		            <div class="m2-user-setbtn">
+		                <script>
+		                    window.confirm = function(){};
+		                    window.prompt  = function(){};
+		                    window.open    = function(){};
+		                    window.print   = function(){};
+		                    // Support hover state for mobile.
+		                    if (false) {
+		                        window.ontouchstart = function(){};
+		                    }
+		                </script>
+		                <table cellpadding="0" cellspacing="1" border="0">
+		                    <tr>
+		                        <th></th>
+		                        <th>站内消息</th>
+		                        <th>邮件通知</th>
+		                        <th>短信通知</th>
 		                    </tr>
-		
-		
-		                    <tr class="m2-manageResult-sum">
-		                        <td colspan="3"></td>
-		                        <td>总计:<span class="m2-manageResult-total" id='sum_reward'>0.00</span></td>
-		                        <td></td>
-		                        <td><span class="m2-manageResult-more">加载更多</span></td>
-		                    </tr>
-		                </table>
+		                    <tr>
+		                        <td>充值成功</td>
+		                        <td>
+		                            <input type="checkbox" id="s1"  checked=""/>
+		                            <label class="slider-v2" for="s1"></label>						</td><td>
+		                        <input type="checkbox" id="s2"  checked=""/>
+		                        <label class="slider-v2" for="s2"></label>						</td><td>
+		                    </td>					</tr><tr>
+		                    <td>投资成功</td>
+		                    <td>
+		                        <input type="checkbox" id="s4"  checked=""/>
+		                        <label class="slider-v2" for="s4"></label>						</td><td>
+		                    <input type="checkbox" id="s5"  checked=""/>
+		                    <label class="slider-v2" for="s5"></label>						</td><td>
+		                </td>					</tr><tr>
+		                    <td>收到本金或利息</td>
+		                    <td>
+		                        <input type="checkbox" id="s7"  checked=""/>
+		                        <label class="slider-v2" for="s7"></label>						</td><td>
+		                    <input type="checkbox" id="s8"  checked=""/>
+		                    <label class="slider-v2" for="s8"></label>						</td><td>
+		                    <input type="checkbox" id="s9"  checked=""/>
+		                    <label class="slider-v2" for="s9"></label>						</td>					</tr><tr>
+		                    <td>收到平台奖励</td>
+		                    <td>
+		                        <input type="checkbox" id="s10"  checked=""/>
+		                        <label class="slider-v2" for="s10"></label>						</td><td>
+		                    <input type="checkbox" id="s11"  checked=""/>
+		                    <label class="slider-v2" for="s11"></label>						</td><td>
+		                </td>					</tr><tr>
+		                    <td>提现成功</td>
+		                    <td>
+		                        <input type="checkbox" id="s13"  checked=""/>
+		                        <label class="slider-v2" for="s13"></label>						</td><td>
+		                    <input type="checkbox" id="s14"  checked=""/>
+		                    <label class="slider-v2" for="s14"></label>						</td><td>
+		                </td>					</tr><tr>
+		                    <td>债权转让成功</td>
+		                    <td>
+		                        <input type="checkbox" id="s16"  checked=""/>
+		                        <label class="slider-v2" for="s16"></label>						</td><td>
+		                    <input type="checkbox" id="s17"  checked=""/>
+		                    <label class="slider-v2" for="s17"></label>						</td><td>
+		                </td>					</tr><tr>
+		                    <td>债权承接成功</td>
+		                    <td>
+		                        <input type="checkbox" id="s19"  checked=""/>
+		                        <label class="slider-v2" for="s19"></label>						</td><td>
+		                    <input type="checkbox" id="s20"  checked=""/>
+		                    <label class="slider-v2" for="s20"></label>						</td><td>
+		                </td>					</tr><tr>
+		                    <td>项目公告</td>
+		                    <td>
+		                        <input type="checkbox" id="s22"  checked=""/>
+		                        <label class="slider-v2" for="s22"></label>						</td><td>
+		                    <input type="checkbox" id="s23"  checked=""/>
+		                    <label class="slider-v2" for="s23"></label>						</td><td>
+		                    <input type="checkbox" id="s24"  checked=""/>
+		                    <label class="slider-v2" for="s24"></label>						</td>					</tr><tr>
+		                    <td>活动公告</td>
+		                    <td>
+		                        <input type="checkbox" id="s25"  checked=""/>
+		                        <label class="slider-v2" for="s25"></label>						</td><td>
+		                    <input type="checkbox" id="s26"  checked=""/>
+		                    <label class="slider-v2" for="s26"></label>						</td><td>
+		                    <input type="checkbox" id="s27"  checked=""/>
+		                    <label class="slider-v2" for="s27"></label>						</td>					</tr><tr>
+		                    <td>其他平台公告</td>
+		                    <td>
+		                        <input type="checkbox" id="s28"  checked=""/>
+		                        <label class="slider-v2" for="s28"></label>						</td><td>
+		                    <input type="checkbox" id="s29"  checked=""/>
+		                    <label class="slider-v2" for="s29"></label>						</td><td>
+		                </td>					</tr>				</table>
+		                <div class="m2-user-setdown">
+		                    <a href="javascript:void(0)">提交修改</a>
+		                </div>
+		            </div>
+		            <div class="m2-recharge-tips">
+		                <h3><i></i>温馨提示：</h3>
+		                <ul>
+		                    <li><i class="m2-recharge-tips01"></i><b>为了您的资金安全，不建议您去掉重要的消息提醒。</b></li>
+		                    <li><i class="m2-recharge-tips02"></i><b>如果您更换了邮箱，手机号，请您及时到 安全设置 页面修改。</b></li>
+		                    <li><i class="m2-recharge-tips03"></i><b>使用过程遇到问题，请联系客服，4006-777-518。</b></li>
+		                </ul>
 		            </div>
 		        </div>
 		    </div>
 		</div>
-		<script type="text/javascript">
-		    var start = 1;
-		    var status = 3;
-		    var time1 = '';
-		    var time2 = '';
-		    var pages = 3;
-		    var days = 0;
+		<script>
+		    if (document.location.search.match(/type=embed/gi)) {
+		        window.parent.postMessage('resize', "*");
+		    }
+		    $(function(){
+		        $('.m2-user-setdown a').click(function(){
+		            p={};
+		            $("input:checkbox").each(function(){
+		                k=$(this).attr('id');
+		                if($(this).attr('checked')=='checked'){
+		                    v=1;}
+		                else{
+		                    v=2;
+		                }
+		                p[k]=v;
+		            });
+		            postData('/Usercenter-Messagecontrol-alter_authority',p,function(d){
+		                if(d.status==1){
+		                    showDialog('修改成功','您已经成功设置了消息提醒');
+		                }
+		                else{
+		                    showDialog('修改失败','对不起，修改失败');
+		                }
+		            });
+		        });
 		
-		    $(document).ready(function(){
-		        //加载初始数据
-		        getRewordRecord();
-		        //加载日历
-		        ucDatepicker('#m2-manSeadate-start','usercenter-rewardcontrol-getRewardLogAjax',getSearchData,processData);
-		        ucDatepicker('#m2-manSeadate-end','usercenter-rewardcontrol-getRewardLogAjax',getSearchData,processData);
-		        //时间过滤按钮
-		        $('.m2-manageSearchsel-time span').click(function(){
-		            $('#m2-manSeadate-start').val('');
-		            $('#m2-manSeadate-end').val('');
-		            time1 = '';
-		            time2 = '';
-		            days = $(this).data('days');
-		            clear();
-		            getRewordRecord();
-		            $('.m2-manageSearchsel-time span.m2-manSealink-sel').addClass('m2-manSealink-unsel');
-		            $('.m2-manageSearchsel-time span.m2-manSealink-sel').removeClass('m2-manSealink-sel');
-		            $(this).removeClass('m2-manSealink-unsel');
-		            $(this).addClass('m2-manSealink-sel');
-		        });
-		        //状态过滤按钮
-		        $('.m2-manageSearchsel-type span').click(function(){
-		            status = $(this).data('status');
-		            clear();
-		            getRewordRecord();
-		            $('.m2-manageSearchsel-type span.m2-manSealink-sel').addClass('m2-manSealink-unsel');
-		            $('.m2-manageSearchsel-type span.m2-manSealink-sel').removeClass('m2-manSealink-sel');
-		            $(this).removeClass('m2-manSealink-unsel');
-		            $(this).addClass('m2-manSealink-sel');
-		        });
-		        //加载更多按钮
-		        $('.m2-manageResult-more').click(function(){
-		            getRewordRecord();
-		        });
 		    });
-		
-		    function getRewordRecord(){
-		
-		        $.ajax({
-		            url:"usercenter-Rewardcontrol-getRewardLogAjax",
-		            type:"POST",
-		            data:{
-		                time1:time1,
-		                time2:time2,
-		                days:days,
-		                status:status,
-		                start:start
-		            },
-		            success:function(data){
-		                processData(data);
-		            }
-		        });
-		    }
-		
-		    function processData(data){
-		        obj = eval('('+data+')');
-		        start++;
-		        pages = obj['pages'];
-		        checkBtn();
-		        showData(obj['data']);
-		    }
-		
-		    function showData(obj){
-		
-		        if(obj){
-		            var sum = Number($('#sum_reward').text());
-		            for(var i in obj){
-		                var tr = '<tr class="m2-manageResult-item">';
-		                tr += '<td>'+obj[i]['date']+'</td>';
-		                tr += '<td>'+obj[i]['type_text']+'</td>';
-		                tr += '<td title="'+obj[i]['info']+'">'+obj[i]['info']+'</td>';
-		                if(obj[i]['affect_money']>=0){
-		                    tr += '<td class="m2-manageResultitem-up">';
-		                }else{
-		                    tr += '<td class="m2-manageResultitem-down">';
-		                }
-		                tr += +obj[i]['affect_money']+'</td>';
-		                tr += '<td>'+obj[i]['reward_money']+'</td>';
-		                tr += '<td>'+(obj[i]['sum_inactive']?obj[i]['sum_inactive']:0)+'</td>';
-		                tr += '</tr>';
-		                $('.m2-manageResult-sum').before(tr);
-		                sum = calPlus(sum,obj[i]['affect_money']);
-		            }
-		            $('#sum_reward').text(sum);
-		            if(sum < 0){
-		                $('#sum_reward').css('color','#E64648');
-		            }else{
-		                $('#sum_reward').css('color','#717171');
-		            }
-		        }
-		        if($('.m2-manageResult-item').size() == 0){
-		            $('.m2-manageResult-sum').before('<tr class="m2-manageResult-item"><td colspan="6">暂无数据</td></tr>');
-		            $('.m2-manageResult-sum').hide();
-		        }
-		    }
-		
-		    function getSearchData(){
-		        clear();
-		        days = 0;
-		        time1 = $('#m2-manSeadate-start').val();
-		        time2 = $('#m2-manSeadate-end').val();
-		        $('.m2-manageSearchsel-time span.m2-manSealink-sel').addClass('m2-manSealink-unsel');
-		        $('.m2-manageSearchsel-time span.m2-manSealink-sel').removeClass('m2-manSealink-sel');
-		        if(!time1 && !time2){
-		            $('.m2-manageSearchsel-time span').eq(0).addClass('m2-manSealink-sel');
-		        }
-		        var data = {
-		            time1:time1,
-		            time2:time2,
-		            days:days,
-		            status:status,
-		            start:start
-		        };
-		        return data;
-		    }
-		
-		    function checkBtn(){
-		        if(start > pages){
-		            $('.m2-manageResult-more').hide();
-		        }
-		    }
-		
-		    function clear(){
-		        start = 1;
-		        $('.m2-manageResult-item').remove();
-		        $('#sum_reward').text('0.00');
-		        $('#sum_reward').css('color','#717171');
-		        $('.m2-manageResult-more').show();
-		    }
-		
-		    function calPlus(num1,num2){
-		        var sq1,sq2,m;
-		        try{sq1=num1.toString().split(".")[1].length;} catch(e){sq1=0;}
-		        try{sq2=num2.toString().split(".")[1].length;} catch(e){sq2=0;}
-		        m=Math.pow(10,Math.max(sq1,sq2));
-		        return Math.round(( num1 * m + num2 * m ) / m * 100)/100;
-		    }
-		
-		    function ucDatepicker(locator,url,datafunc,callback){
-		        $(locator).datetimepicker({
-		            lang:'ch',
-		            timepicker:false,
-		            format:'Y-m-d',
-		            allowBlank:true,
-		            onChangeDateTime:function(){
-		                if(time1 != $('#m2-manSeadate-start').val() || time2 != $('#m2-manSeadate-end').val()){
-		                    $.ajax({
-		                        type: "POST",
-		                        url: url,
-		                        dataType: 'json',
-		                        data:datafunc(),
-		                        success: function(data) {
-		                            callback(data);
-		                        }
-		                    });
-		                }
-		            }
-		        });
-		    };
 		</script>
 	</body>
 </html>
