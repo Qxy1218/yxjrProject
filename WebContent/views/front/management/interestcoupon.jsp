@@ -3,26 +3,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<meta charset="UTF-8">
-	    <!--[if lt IE 9]>
-	    <script src="statics/newcommon/js/html5shiv.js"></script>
-	    <![endif]-->
-	    <meta name="keywords" content="网贷平台,网络借贷，网络赚钱项目,理财产品">
-	    <meta name="description" content="爱钱帮网贷平台为您提供网络赚钱项目；为此相继推出了许多新的理财产品，在为您创造高收益的同时也优化了理财产品模式。网络借贷，就选爱钱帮。">
-	    <meta charset="UTF-8">
-	    <link  rel="Shortcut  Icon"  href="/Finances/statics/other/lco/smalllog.png">
-	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">
-	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-common.css">
-	    <link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
-	    <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/userCenter.css">
-	    <script type="text/javascript" src="/Finances/statics/front/statics/newcommon/js/jquery.min.js"></script>
-	    <script type="text/javascript" src="/Finances/statics/front/statics/newcommon/js/common.js"></script>
-	    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/esl.js"></script>
-	    <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/jquery.datetimepicker.css" />
-	    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/jquery.datetimepicker.js"></script>
-		<title>我的红包--爱钱帮</title>
+		<meta name="keywords" content="网贷平台,网络借贷，网络赚钱项目,理财产品">
+    <meta name="description" content="爱钱帮网贷平台为您提供网络赚钱项目；为此相继推出了许多新的理财产品，在为您创造高收益的同时也优化了理财产品模式。网络借贷，就选爱钱帮。">
+    <meta charset="UTF-8">
+    <link  rel="Shortcut  Icon"  href="/Finances/statics/other/lco/smalllog.png">
+    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">
+    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-common.css">
+    <link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
+    <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/userCenter.css">
+    <script type="text/javascript" src="/Finances/statics/front/statics/newcommon/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/Finances/statics/front/statics/newcommon/js/common.js"></script>
+    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/esl.js"></script>
+    <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/jquery.datetimepicker.css" />
+    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/jquery.datetimepicker.js"></script>
+		<title>我的加息券--爱钱帮</title>
 	</head>
 	<body>
+			<div class="m2-userCentercommon-bg" style="display: none"></div>
+			<div class="m2-addConfirm" style="display: none">
+		    <h3 class="m2-addConfirm-head"><i></i>激活加息券</h3>
+		    <div class="m2-addConfirmain">
+		        <div class="m2-addConfirm-ipt">
+		            <span>加息码：</span>
+		            <input type="text" placeholder="请输入兑换码" id="reward_code">
+		        </div>
+		        <p class="m2-addConfir-psg"></p>
+		        <div class="m2-addConfirbtn">
+		            <span class="m2-addConbtn-act">激活</span>
+		            <span class="m2-addConbtn-can">取消</span>
+		        </div>
+		    </div>
+		</div>
 		<!-- 右侧边栏start -->
 		<div class="m2-commonRight">
 		    <ul class="m2-comRiglist">
@@ -51,26 +62,26 @@
 		                </div>
 		            </div>
 		        </li>
-		        <li class="m2-comRigli m2-comRigli-qq">
-		            <a  target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2522274059&amp;site=qq&amp;menu=yes">
-		                <i class="m2-comRigli-icon"></i>
-		                <span class="m2-comRigli-hov">在线<br>客服</span>
-		            </a>
-		            <!-- <div class="m2-comRighide"></div> -->
-		        </li>
-		        <!--<li class="m2-comRigli m2-comRigli-sug">-->
-		        <!--<i class="m2-comRigli-icon"></i>-->
-		        <!--<span class="m2-comRigli-hov">意见<br>反馈</span>-->
-		        <!-- <div class="m2-comRighide"></div> -->
-		        <!--</li>-->
-		        <li class="m2-comRigli m2-comRigli-top">
-		            <i class="m2-comRigli-icon"></i>
-		            <span class="m2-comRigli-hov">返回<br>顶部</span>
-		            <!-- <div class="m2-comRighide"></div> -->
-		        </li>
-		    </ul>
-		</div>
-		<script type="text/javascript">
+			        <li class="m2-comRigli m2-comRigli-qq">
+			            <a  target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2522274059&amp;site=qq&amp;menu=yes">
+			                <i class="m2-comRigli-icon"></i>
+			                <span class="m2-comRigli-hov">在线<br>客服</span>
+			            </a>
+			            <!-- <div class="m2-comRighide"></div> -->
+			        </li>
+				        <!--<li class="m2-comRigli m2-comRigli-sug">-->
+				        <!--<i class="m2-comRigli-icon"></i>-->
+				        <!--<span class="m2-comRigli-hov">意见<br>反馈</span>-->
+				        <!-- <div class="m2-comRighide"></div> -->
+				        <!--</li>-->
+		        		<li class="m2-comRigli m2-comRigli-top">
+				            <i class="m2-comRigli-icon"></i>
+				            <span class="m2-comRigli-hov">返回<br>顶部</span>
+				            <!-- <div class="m2-comRighide"></div> -->
+				        </li>
+				    </ul>
+				</div>
+				<script type="text/javascript">
 		    $(function () {
 		        var wHei = $(window).height();
 		
@@ -78,11 +89,13 @@
 		            // 判断返回顶部是否显示
 		            visTop(wHei);
 		        });
+		
 		        $('.m2-comRigli-top').click(function () {
 		            $('body,html').animate({scrollTop: 0}, 600);
 		            return false;
 		        });
 		    });
+		
 		    function visTop(high) {
 		
 		        if ($(document).scrollTop() > high + 100) {
@@ -95,7 +108,7 @@
 		<!-- 右侧边栏end -->
 		
 		<!-- 头部start -->
-			<jsp:include page="../include/head.jsp"></jsp:include>
+		<jsp:include page="../include/head.jsp"></jsp:include>
 		<!-- 头部end -->
 		
 		<!-- 内容start -->
@@ -223,195 +236,178 @@
 	        });
 	        // 		});
 	    </script>
-	    <div class="m2-ticketCon">
+	   	<div class="m2-ticketCon">
 	        <div class="m2-ticketHead">
-	            <h3><i class="m2-tickHead-red1"></i>我的红包</h3>
+	            <h3><i class="m2-tickHead-red1"></i>我的加息券</h3>
 	        </div>
 	        <div class="m2-recharge-tips" style="margin-bottom:10px;">
-	            <p class="m2-ticPsg-nor">红包使用</p>
+	            <span class="m2-ticketConfirmbtn">加息券兑换</span>
+	            <p class="m2-ticPsg-nor">加息券使用</p>
 	            <ul style="padding-bottom:18px;">
-	                <li><i class="m2-recharge-tips01"></i><b>投资时根据单笔投资金额选择红包</b></li>
-	                <li><i class="m2-recharge-tips02"></i><b>一次投资可使用一个红包</b></li>
-	                <li><i class="m2-recharge-tips03"></i><b>红包过期后将不能使用</b></li>
+	                <li><i class="m2-recharge-tips01"></i><b>投资时根据单笔投资金额选择加息券</b></li>
+	                <li><i class="m2-recharge-tips02"></i><b>一次投资可使用一个加息券</b></li>
+	                <li><i class="m2-recharge-tips03"></i><b>加息券过期后将不能使用</b></li>
 	            </ul>
 	        </div>
 	
 	        <div class="m2-ticketHead">
-	            <h3><i class="m2-tickHead-red2"></i>红包列表</h3>
+	            <h3><i class="m2-tickHead-red2"></i>加息券列表</h3>
 	        </div>
 	        <div class="m2-ticSearch">
 	            <ul>
-	                <li class="m2-ticSea-tit">红包状态：</li>
-	                <li class="m2-ticSea-sel m2-ticSea-click" data="1"><span>未使用</span></li>
-	                <li class="m2-ticSea-unsel m2-ticSea-click" data="2"><span>已使用</span></li>
-	                <li class="m2-ticSea-unsel m2-ticSea-click" data="3"><span>已过期</span></li>
+	                <li class="m2-ticSea-tit">加息券状态：</li>
+	                <li class="m2-ticSea-sel" onclick="showTab(1)"><span>未使用</span></li>
+	                <li class="m2-ticSea-unsel" onclick="showTab(2)"><span>已使用</span></li>
+	                <li class="m2-ticSea-unsel" onclick="showTab(3)"><span>已过期</span></li>
 	            </ul>
 	        </div>
-	        <div id="tab1" class="m2-ticSea-sel-content">
+	        <div id="tab1">
 	            <div class="m2-ticResult">
-	                <div class="m2-ticResult_container">
+	                <div id="list1"  class="m2-ticResult_container">
 	
-	                    <div class="m2_ticresult_reword m2_ticresult_unuse">						<div class="packet_title">
-	                        <span>注册奖励</span>
-	                        <span class="packet_where"></span>
-	                    </div>
-	                        <div class="packet_introduce_left">
-	                            <span class="number">8</span>
-	                            <span class="unit">元</span>
-	                        </div>
-	                        <div class="packet_introduce_right">
-	                            <div class="packet_introduce_right_con">
-	
-	                                <p>·&nbsp;投资额≥200元可使用</p>
-	                            </div>
-	                            <i></i>
-	                        </div>
-	                        <div class="packet_bottom">
-	                            <span>起效期：2016-09-05</span>
-	                            <span class="packet_endtime">有效期至：2016-09-12 09:29:52</span>
-	                        </div>
-	                    </div>
-	                    <div class="m2_ticresult_reword m2_ticresult_unuse">						<div class="packet_title">
-	                        <span>注册奖励</span>
-	                        <span class="packet_where"></span>
-	                    </div>
-	                        <div class="packet_introduce_left">
-	                            <span class="number">10</span>
-	                            <span class="unit">元</span>
-	                        </div>
-	                        <div class="packet_introduce_right">
-	                            <div class="packet_introduce_right_con">
-	
-	                                <p>·&nbsp;投资额≥1000元可使用</p>
-	                            </div>
-	                            <i></i>
-	                        </div>
-	                        <div class="packet_bottom">
-	                            <span>起效期：2016-09-05</span>
-	                            <span class="packet_endtime">有效期至：2016-10-05 09:29:52</span>
-	                        </div>
-	                    </div>
-	                    <div class="m2_ticresult_reword m2_ticresult_unuse">						<div class="packet_title">
-	                        <span>注册奖励</span>
-	                        <span class="packet_where"></span>
-	                    </div>
-	                        <div class="packet_introduce_left">
-	                            <span class="number">20</span>
-	                            <span class="unit">元</span>
-	                        </div>
-	                        <div class="packet_introduce_right">
-	                            <div class="packet_introduce_right_con">
-	
-	                                <p>·&nbsp;投资额≥5000元可使用</p>
-	                            </div>
-	                            <i></i>
-	                        </div>
-	                        <div class="packet_bottom">
-	                            <span>起效期：2016-09-05</span>
-	                            <span class="packet_endtime">有效期至：2016-10-05 09:29:52</span>
-	                        </div>
-	                    </div>			</div>
-	                <div class="m2-ticTotbottom-red">
-	                    <span><i></i><span id="wsyljkyze">累计可用总额：38元</span></span>
+	                </div>
+	                <div class="m2-ticTotbottom-add">
+	                    <span id="total1"><i></i>累计可用加息卷：0个</span>
 	                </div>
 	            </div>
-	        </div>
-	        <div id="tab2" class="m2-ticSea-sel-content" style="display:none;">
-	            <div class="m2-ticResult">
-	                <div class="m2-ticResult_container">
-	                </div>
-	                <div class="m2-ticTotbottom-red">
-	                    <span><i></i><span id="ysyljkyze">累计可用总额：0元</span></span>
-	                </div>
+	            <div class="m2-ticMoreadd" id="loadmore1">
+	                <span onclick="getMore(1)">加载更多</span>
 	            </div>
 	        </div>
-	        <div id="tab3" class="m2-ticSea-sel-content" style="display:none;">
+	        <div id="tab2" style="display:none;">
 	            <div class="m2-ticResult">
-	                <div class="m2-ticResult_container">
+	                <div id="list2"  class="m2-ticResult_container">
+	
 	                </div>
-	                <div class="m2-ticTotbottom-red">
-	                    <span><i></i><span id="ygqljkstze">累计可用总额：0元</span></span>
+	                <div class="m2-ticTotbottom-add">
+	                    <span id="total2"><i></i>累计已使用加息卷：0个</span>
 	                </div>
 	            </div>
+	            <div class="m2-ticMoreadd" id="loadmore2">
+	                <span onclick="getMore(2)">加载更多</span>
+	            </div>
 	        </div>
-	        <div class="m2-ticMoreadd">
-	            <span>加载更多</span>
+	        <div id="tab3" style="display:none;">
+	            <div class="m2-ticResult">
+	                <div id="list3"  class="m2-ticResult_container">
+	
+	                </div>
+	                <div class="m2-ticTotbottom-add">
+	                    <span id="total3"><i></i>累计已过期加息卷：0个</span>
+	                </div>
+	            </div>
+	            <div class="m2-ticMoreadd" id="loadmore3">
+	                <span onclick="getMore(3)">加载更多</span>
+	            </div>
 	        </div>
 	    </div>
 	    <script type="text/javascript">
-	        var wsyljze="38";
-	        var ysyljze="0";
-	        var ygqljze="0";
-	
-	        //筛选栏点击
+	        //筛选栏点击allow_client_type
 	        $('.m2-ticSearch ul li').click(function () {
 	            if ($(this).hasClass('m2-ticSea-unsel')) {
-	                $(".m2-ticSea-click").addClass('m2-ticSea-unsel').removeClass('m2-ticSea-sel');
 	                $(this).addClass('m2-ticSea-sel').removeClass('m2-ticSea-unsel');
-	                $(".m2-ticSea-sel-content").hide();
-	                $("#tab"+$(this).attr("data")).show();
+	                $(this).siblings('.m2-ticSea-sel').addClass('m2-ticSea-unsel').removeClass('m2-ticSea-sel');
 	            }
 	        });
 	
-	        //发送页数的数组
-	        var selectpage=[2,2,2];
-	
-	        $(".m2-ticMoreadd").click(function(){
-	            var type=$(".m2-ticSearch .m2-ticSea-sel").attr("data");
-	            var page=selectpage[Number(type)-1];
-	            var dataStr;
+	        var index = [0, 1, 1, 1];
+	        var total = [0, 0, 0, 0];
+	        var async = false;
+	        getMore(1);
+	        getMore(2);
+	        getMore(3);
+	        function showTab(index) {
+	            $('#tab1').hide();
+	            $('#tab2').hide();
+	            $('#tab3').hide();
+	            $('#tab' + index).show();
+	        }
+	        function getMore(cate) {
 	            $.ajax({
-	                url: 'usercenter-rewardcontrol-getRewardNew',
+	                url: 'usercenter-rewardcontrol-getReward',
 	                type: 'POST',
+	                async: async,
 	                data: {
-	                    index: page,
-	                    cate: type,
-	                    type: 1
+	                    index: index[cate],
+	                    cate: cate,
+	                    type: 2
 	                },
-	                success:function(data){
+	                complete: function () {
+	                    async = true;
+	                },
+	                success: function (data) {
 	                    var obj = eval('(' + data + ')');
 	                    var str="";
 	                    var dataStr="";
-	
+	                    var qx="";
 	                    for (var i in obj['list']) {
-	                        var xtwz="";
-	                        if(type==1){
-	                            if(obj['list'][i]['type']==1){
-	                                str="<div class='m2_ticresult_reword m2_ticresult_unuse'>";
-	                            }else if (obj['list'][i]['type']==3){
-	                                str="<div class='m2_ticresult_reword m2_ticresult_unactive'>";
-	                            }
-	                        }else if(type==2){
+	                        total[cate]++;
+	                        if (cate == 1) {
+	                            str="<div class='m2_ticresult_reword m2_ticresult_unuse'>";
+	                            $('#total' + cate).html('<i></i>累计可用加息卷：' + total[cate] + '个');
+	                        } else if (cate == 2) {
 	                            str=" <div class='m2_ticresult_reword m2_ticresult_hasused'>";
-	                        }else if(type==3){
+	                            $('#total' + cate).html('<i></i>累计已使用加息卷：' + total[cate] + '个');
+	                        } else if (cate == 3) {
 	                            str=" <div class='m2_ticresult_reword m2_ticresult_endtime'>";
+	                            $('#total' + cate).html('<i></i>累计已过期加息卷：' + total[cate] + '个');
 	                        }
-	                        console.log(obj['list'][i]['allow_project_period']);
-	                        if(obj['list'][i]['allow_project_period']==0){
+	
+	                        if(obj['list'][i]['allow_project_period']==1){
+	                            qx="·&nbsp;限投"+obj['list'][i]['allow_project_period']+"个月项目";
+	                        }else if(obj['list'][i]['allow_project_period']==0){
 	
 	                        }else{
-	                            xtwz="·&nbsp;限投"+obj['list'][i]['allow_project_period']+"个月及以上项目";
+	                            qx="·&nbsp;限投"+obj['list'][i]['allow_project_period']+"个月及以下项目";
 	                        }
 	
 	                        dataStr +=str+"<div class='packet_title'><span>"+obj['list'][i]['info']+"</span>"
 	                        +"<span class='packet_where'>"+obj['list'][i]['allow_client_type']+"</span></div><div class='packet_introduce_left'>"
-	                        +"<span class='number'>"+obj['list'][i]['money']+"</span><span class='unit'>元</span></div>"
-	                        +"<div class='packet_introduce_right'><div class='packet_introduce_right_con'><p>"+xtwz+"</p><p>"
+	                        +"<span class='number'>"+obj['list'][i]['percentage']+"</span><span class='unit'>%</span></div>"
+	                        +"<div class='packet_introduce_right'><div class='packet_introduce_right_con'><p>"+qx+"</p><p>"
 	                        +"·&nbsp;投资额≥"+obj['list'][i]['use_condition']+"元可使用</p></div><i></i></div><div class='packet_bottom'><span>起效期："+obj['list'][i]['date1']+"</span><span class='packet_endtime'>有效期至："+obj['list'][i]['date2']+"</span></div></div>";
-	                    }
-	                    if(type==1){
-	                        wsyljze= Number( wsyljze) +Number(obj['ljkyze']) ;
-	                        $("#wsyljkyze").html("累计可用总额："+wsyljze+"元");
-	                    }else if(type==2){
-	                        ysyljze=Number(ysyljze) +Number( obj['ljkyze']);
-	                        $("#ysyljkyze").html("累计可用总额："+ysyljze+"元");
-	                    }else if(type==3){
-	                        ygqljze=Number(ygqljze)+Number( obj['ljkyze']);
-	                        $("#ygqljkstze").html("累计可用总额："+ygqljze+"元");
-	                    }
 	
-	                    $("#tab"+type).find(".m2-ticResult_container").append(dataStr);
-	                    selectpage[Number(type)-1]++;
+	                    }
+	                    $('#list' + cate).append(dataStr);
+	                    if (obj['totalpage'] <= index[cate]) {
+	                        $('#loadmore' + cate).hide();
+	                    }
+	                    index[cate]++;
+	                }
+	            });
+	        }
+	
+	        //加息券兑换部分
+	        $('.m2-addConfirm-head i,.m2-addConbtn-can').click(function () {
+	            $('.m2-userCentercommon-bg,.m2-addConfirm').hide();
+	        });
+	        $('.m2-ticketConfirmbtn').click(function () {
+	            $('#reward_code').val('');
+	            $('.m2-addConfir-psg').html('');
+	            $('.m2-addConbtn-can').text('取消');
+	            $('.m2-userCentercommon-bg,.m2-addConfirm').show();
+	        });
+	        $('.m2-addConbtn-act').click(function () {
+	            $.ajax({
+	                url: '/usercenter-rewardcontrol-rewardExchange',
+	                data: {
+	                    rewardcode: $('#reward_code').val()
+	                },
+	                success: function (data) {
+	                    var obj = eval('(' + data + ')');
+	                    var msg = '';
+	                    if (obj['status'] == 1) {
+	                        msg = '<i class="m2-addConfir-tur"></i>帮主加息券已激活成功!';
+	                        $('.m2-addConbtn-can').text('关闭');
+	                        index[1] = 1;
+	                        total[1] = 0;
+	                        $('#list1').html('');
+	                        $('#loadmore1').show();
+	                        getMore(1);
+	                    } else {
+	                        msg = '<i class="m2-addConfir-fal"></i>' + obj['msg'];
+	                    }
+	                    $('.m2-addConfir-psg').html(msg);
 	                }
 	            });
 	        });

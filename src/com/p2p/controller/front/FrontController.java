@@ -130,4 +130,12 @@ public class FrontController {
 	public String toredpack() {
 		return "views/front/management/redpacket";
 	}
+	
+	/**
+	 *我的加息券页面的conteroller
+	 * */
+	@RequestMapping(value="/tointerest")
+	public String tointerest() {
+		return "views/front/management/interestcoupon";
+	}
 }
