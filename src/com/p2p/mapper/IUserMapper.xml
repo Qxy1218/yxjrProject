@@ -14,13 +14,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		  <result column="u_enable" property="uenable"/>
  		  <result column="u_isAccountSum" property="uisAccountSum"/>
  		  <result column="u_ip" property="uip"/>
- 		  <result column="u_vouch" property="uvouch"/>
+ 		  <result column="uv_id" property="uvid"/>
  		  <result column="u_bonus" property="ubonus"/>
  		  <result column="u_credit" property="ucredit"/>
  		  <result column="u_balance" property="ubalance"/>
  		  <result column="u_group" property="ugroup"/>
- 		  <result column="u_level" property="ulevel"/>
- 		  <result column="u_intgrad" property="uintgrad"/>
+ 		  <result column="ul_id" property="ulid"/>
+ 		  <result column="vd_id" property="vdid"/>
  		 
 </resultMap>
 	<!-- 增加 -->
