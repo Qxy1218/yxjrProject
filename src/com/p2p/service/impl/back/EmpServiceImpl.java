@@ -24,19 +24,18 @@ public class EmpServiceImpl implements EmpService{
 	private EmpMapper empMapper;
 	
 	@Override
-	public int addUser(Employe user) {
+	public int addModel(Employe model) {
 		
-		return addUser(user);
+		return addModel(model);
 	}
 
 	@Override
-	public Employe getUser(Employe user) {
-		return getUser(user);
+	public Employe getModel(Employe model) {
+		return getModel(model);
 	}
 
 	@Override
-	public List<Employe> getAllUser() {
-		// TODO Auto-generated method stub
+	public List<Employe> getAllModel() {
 		return null;
 	}
 
@@ -47,19 +46,19 @@ public class EmpServiceImpl implements EmpService{
 
 	@Override
 	public int delete(Employe user) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
-	public Employe findUser(Serializable id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public Employe getByemployname(String ename) {
 		return empMapper.getByemployname(ename);
+	}
+
+	@Override
+	public Employe findModel(Serializable id) {
+		return null;
 	}
 
 }
