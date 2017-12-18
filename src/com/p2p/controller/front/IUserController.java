@@ -61,10 +61,10 @@ public class IUserController {
 		user.setUloginTime(DateUtils.getDateTimeFormat(new Date()));
 		
 		//别人的邀请码
-		if(!yqcode.equals("nowrite")) {
-			user.setUinvited(yqcode);
-			System.out.println("有邀请码，给体验券");
-		}
+//		if(!yqcode.equals("nowrite")) {
+//			user.setUinvited(yqcode);
+//			System.out.println("有邀请码，给体验券");
+//		}
 		
 		//自己的邀请码
 		
@@ -76,7 +76,7 @@ public class IUserController {
 		user.setUip(addressUtils.getIP());
 		System.out.println(user.getUip());
 		user.setUvid("1");
-		user.setUbonus("1");
+		//user.setUbonus("1");
 		user.setUcredit(3000);
 		user.setUbalance(0.00);
 		user.setUgroup(0);
