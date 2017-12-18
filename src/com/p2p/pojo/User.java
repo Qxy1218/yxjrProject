@@ -47,8 +47,8 @@ public class User implements Serializable{
 	private String uip;//ip
 	
 	
-	@TableField("u_vouch")
-	private String uvouch;//代金券
+	@TableField("uv_id")
+	private String uvid;//代金券
 	
 	@TableField("u_bonus")
 	private String ubonus;//奖励金
@@ -63,30 +63,20 @@ public class User implements Serializable{
 	private Integer  ugroup;//成长值
 	
 
-	@TableField("u_level")
-	private String  ulevel;//成长等级
+	@TableField("ul_id")
+	private String  ulid;//成长等级id
 	
-	@TableField("u_intgrad")
-	private Double uintgrad;//会员积分
+	@TableField("vd_id")
+	private Double vdid;//会员积分id
 	
 
 	public User() {
 	}
 
 
-	@Override
-	public String toString() {
-		return "User [uid=" + uid + ", upassword=" + upassword + ", uheadImg=" + uheadImg + ", uphone=" + uphone
-				+ ", uloginTime=" + uloginTime + ", uinvited=" + uinvited + ", uinvite=" + uinvite + ", uenable="
-				+ uenable + ", uisAccountSum=" + uisAccountSum + ", uip=" + uip + ", uvouch=" + uvouch + ", ubonus="
-				+ ubonus + ", ucredit=" + ucredit + ", ubalance=" + ubalance + ", ugroup=" + ugroup + ", ulevel="
-				+ ulevel + ", uintgrad=" + uintgrad + "]";
-	}
-
-
 	public User(Integer uid, String upassword, String uheadImg, String uphone, String uloginTime, String uinvited,
-			String uinvite, Integer uenable, Integer uisAccountSum, String uip, String uvouch, String ubonus,
-			Integer ucredit, Double ubalance, Integer ugroup, String ulevel, Double uintgrad) {
+			String uinvite, Integer uenable, Integer uisAccountSum, String uip, String uvid, String ubonus,
+			Integer ucredit, Double ubalance, Integer ugroup, String ulid, Double vdid) {
 		super();
 		this.uid = uid;
 		this.upassword = upassword;
@@ -98,13 +88,23 @@ public class User implements Serializable{
 		this.uenable = uenable;
 		this.uisAccountSum = uisAccountSum;
 		this.uip = uip;
-		this.uvouch = uvouch;
+		this.uvid = uvid;
 		this.ubonus = ubonus;
 		this.ucredit = ucredit;
 		this.ubalance = ubalance;
 		this.ugroup = ugroup;
-		this.ulevel = ulevel;
-		this.uintgrad = uintgrad;
+		this.ulid = ulid;
+		this.vdid = vdid;
+	}
+
+
+	@Override
+	public String toString() {
+		return "User [uid=" + uid + ", upassword=" + upassword + ", uheadImg=" + uheadImg + ", uphone=" + uphone
+				+ ", uloginTime=" + uloginTime + ", uinvited=" + uinvited + ", uinvite=" + uinvite + ", uenable="
+				+ uenable + ", uisAccountSum=" + uisAccountSum + ", uip=" + uip + ", uvid=" + uvid + ", ubonus="
+				+ ubonus + ", ucredit=" + ucredit + ", ubalance=" + ubalance + ", ugroup=" + ugroup + ", ulid=" + ulid
+				+ ", vdid=" + vdid + "]";
 	}
 
 
@@ -208,13 +208,13 @@ public class User implements Serializable{
 	}
 
 
-	public String getUvouch() {
-		return uvouch;
+	public String getUvid() {
+		return uvid;
 	}
 
 
-	public void setUvouch(String uvouch) {
-		this.uvouch = uvouch;
+	public void setUvid(String uvid) {
+		this.uvid = uvid;
 	}
 
 
@@ -258,27 +258,29 @@ public class User implements Serializable{
 	}
 
 
-	public String getUlevel() {
-		return ulevel;
+	public String getUlid() {
+		return ulid;
 	}
 
 
-	public void setUlevel(String ulevel) {
-		this.ulevel = ulevel;
+	public void setUlid(String ulid) {
+		this.ulid = ulid;
 	}
 
 
-	public Double getUintgrad() {
-		return uintgrad;
+	public Double getVdid() {
+		return vdid;
 	}
 
 
-	public void setUintgrad(Double uintgrad) {
-		this.uintgrad = uintgrad;
+	public void setVdid(Double vdid) {
+		this.vdid = vdid;
 	}
 
 
-	
-	
-	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 }
