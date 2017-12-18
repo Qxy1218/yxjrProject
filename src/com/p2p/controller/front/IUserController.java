@@ -79,7 +79,7 @@ public class IUserController {
 		//user.setUbonus("1");
 		user.setUcredit(3000);
 		user.setUbalance(0.00);
-		user.setUgroup(0);
+		
 		user.setUlid("0");
 		user.setVdid(0.00);
 		
