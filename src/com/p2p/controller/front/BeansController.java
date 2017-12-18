@@ -1,7 +1,15 @@
 package com.p2p.controller.front;
 
+import java.util.List;
+
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.p2p.pojo.Indexpic;
+import com.p2p.service.back.IndexpicService;
 /**
  * 开发人:汪栋才
  * 2017-11-13
@@ -10,14 +18,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class BeansController {
 	
+	@Resource(name="indexpicServiceImpl")
+	private IndexpicService indexpicService;
 	/**
 	 * 进入首界面(index.jsp)
 	 * */
 	@RequestMapping(value="/toindex")
-	public String toFrontIndex(){
-		return "views/front/index";
-	}
-	
+	public ModelAndView toFrontIndex(){
+		ModelAndView mo = new ModelAndView();
+		List<Indexpic> lists = indexpicService.getAllModel();
+		mo.addObject("indexpicList", lists);
+		mo.setViewName("views/front/index");
+		return mo;
+	}	
 	/**
 	 * 访问注册界面(register.jsp)
 	 * */

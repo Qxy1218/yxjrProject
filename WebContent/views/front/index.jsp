@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 %>  
@@ -24,7 +25,7 @@
     <script type="text/javascript" src="/Finances//statics/front/statics/newcommon/js/common.js"></script>
 	<script type="text/javascript" src="/Finances/statics/front/statics/home2/js/jquery.knob.js"></script>
 	<script type="text/javascript" src="/Finances/statics/front/statics/home2/js/jquery.SuperSlide.js"></script>
-	
+	<script type="text/javascript" src="/Finances/statics/other/js/do-it.js"></script>
 	<!-- 
 		<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/statics/home2/js/indexhome.js"></script>
 	 -->
@@ -1042,72 +1043,43 @@
         <!-- 登录box end -->
     </div>
     
+      <!-- 轮播图 -->
     <div class="m2-bd">
         <ul id="m2-ul">
-            <li style="background:#249FEA;">
-                <div class="m-width">
-                    <a  href="#" target="_blank"><img src="/Finances/statics/front/uploadData/ad/20160901201933885.png" title="banner-PC" alt="banner-PC"/></a>
-                </div>
-            </li>
-            
-            <li style="background:#4B89DC;">
-	            <div class="m-width">
-	                <a  href="zhuanti_show.html#/market-RiskAppraisal-index" target="_blank"><img src="/Finances/statics/front/uploadData/ad/20160816173110355.png" title="风险评测" alt="风险评测"/></a>
-	            </div>
-        	</li>
-        	
-        	<li style="background:#DC3C3E;">
-            	<div class="m-width">
-                	<a  href="#" target="_blank"><img src="/Finances/statics/front/uploadData/ad/20160808201936672.png" title="新人福利" alt="新人福利"/></a>
-            	</div>
-        	</li>
-        	
-	        <li style="background:#8603ED;">
-	            <div class="m-width">
-	                <a  href="usercenter-invitefriends.html" target="_blank"><img src="/Finances/statics/front/uploadData/ad/2016080820183390.png" title="爱钱帮邀请好友一起赚" alt="爱钱帮邀请好友一起赚"/></a>
-	            </div>
-	        </li>
-	        
-	        <li style="background:#8293FF;">
-	            <div class="m-width">
-	                <a  href="company_finance.html" target="_blank"><img src="/Finances/statics/front/uploadData/ad/20160810194657369.png" title="企业理财" alt="企业理财"/></a>
-	            </div>
-        	</li>
-        	
-	        <li style="background:#EC711E;">
-	            <div class="m-width">
-	                <a  href="#" target="_blank"><img src="/Finances/statics/front/uploadData/ad/20160808200346417.png" title="爱钱帮荣膺中国互联网金融协会首批会员" alt="爱钱帮荣膺中国互联网金融协会首批会员"/></a>
-	            </div>
-	        </li>
-	        
-	        <li style="background:#0685CE;">
-	            <div class="m-width">
-	                <a  href="#" target="_blank"><img src="/Finances/statics/front/uploadData/ad/20160830204157918.png" title="徽商银行直接存管" alt="徽商银行直接存管"/></a>
-	            </div>
-        	</li>
-        	
-	        <li style="background:#62B7F7;">
-	            <div class="m-width">
-	                <a  href="#" target="_blank"><img src="/Finances/statics/front/uploadData/ad/20160808200310378.png" title="盛大资本" alt="盛大资本"/></a>
-	            </div>
-	        </li>        
+	        <c:forEach items="${indexpicList}" var="hi">
+	            <li  style="background-color: white;">
+	                <div class="m-width">
+	                    <a  href="${hi.ipurl}" target="_blank">
+	                    <img src="${hi.ipimage}" title="${hi.ipname}"   alt="${hi.ipname}"/>
+	                   </a>
+	                </div>
+	            </li>
+		    </c:forEach>     
+
+       
 	    </ul>
+	           
     </div>
     
+
+     
     <!-- 自动调整轮转图片的显示大小（宽度） -->
+    <div class="m2-banner-btn">
+        <a style="display:none;" class="m2-prev"  href="javascript:void(0);"></a>
+        <a style="display:none;" class="m2-next" href="javascript:void(0);"></a>
+        <div class="m2-hd"><div class="m2-hdBg"></div><ul></ul></div>
+    </div>
+    
+        <!-- 自动调整轮转图片的显示大小（宽度）-->
     <script type="text/javascript">
         window.onresize=function(){
             var oM2Ul=document.getElementById('m2-ul');
             oM2Ul.style.width=document.documentElement.clientWidth+'px';
         }
+        
+        
     </script>
     
-    <!-- 自动调整轮转图片的显示大小（宽度） -->
-    <div class="m2-banner-btn">
-        <a style="display:none;" class="m2-prev" href="javascript:void(0);"></a>
-        <a style="display:none;" class="m2-next" href="javascript:void(0);"></a>
-        <div class="m2-hd"><div class="m2-hdBg"></div><ul></ul></div>
-    </div>
 </div>
 
 	<!--新用户完成注册-->
