@@ -40,7 +40,7 @@ public class AjaxController {
 
 			User user = new User();
 			user.setUphone(phone);
-			User user2 =  iUserService.getUser(user);
+			User user2 =  iUserService.getModel(user);
 			if(user2!=null){
 				map.put("message","此用户已存在");
 			}

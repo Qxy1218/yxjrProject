@@ -22,17 +22,17 @@ public class IUserServiceImpl implements IUserService{
 	private IUserMapper iUserMapper;
 
 	@Override
-	public int addUser(User user) {
-		return iUserMapper.addUser(user);
+	public int addModel(User user) {
+		return iUserMapper.addModel(user);
 	}
 
 	@Override
-	public User getUser(User user) {
-		return iUserMapper.getUser(user);
+	public User getModel(User user) {
+		return iUserMapper.getModel(user);
 	}
 
 	@Override
-	public List<User> getAllUser() {
+	public List<User> getAllModel() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -50,8 +50,7 @@ public class IUserServiceImpl implements IUserService{
 	}
 
 	@Override
-	public User findUser(Integer id) {
-		// TODO Auto-generated method stub
+	public User findModel(Integer id) {
 		return null;
 	}
 
