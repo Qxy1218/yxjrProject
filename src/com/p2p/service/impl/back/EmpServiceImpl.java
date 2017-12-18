@@ -11,6 +11,11 @@ import org.springframework.stereotype.Service;
 import com.p2p.mapper.EmpMapper;
 import com.p2p.pojo.Employe;
 import com.p2p.service.back.EmpService;
+/**
+ * 操作人:汪栋才
+ * 操作时间:2017-12-18
+ * 后台员工的Service实现类
+ * */
 @Component
 @Service
 public class EmpServiceImpl implements EmpService{

@@ -4,7 +4,9 @@ import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.PostMethod;
-
+/**
+ * 发送短信的真正实现类
+ * */
 public class SendMsg {
 	//用户名
 	private String username;

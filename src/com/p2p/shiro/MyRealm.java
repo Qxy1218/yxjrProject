@@ -18,7 +18,9 @@ import com.p2p.pojo.Employe;
 import com.p2p.service.back.EmpService;
 
 
-
+/**
+ * shiro自定义拦截器
+ * */
 public class MyRealm extends AuthorizingRealm{
 	@Resource(name="empServiceImpl")
 	private EmpService empService;

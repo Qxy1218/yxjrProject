@@ -4,7 +4,11 @@ import java.io.Serializable;
 
 import com.p2p.base.IBaseDao;
 import com.p2p.pojo.Employe;
-
+/**
+ * 操作人:汪栋才
+ * 创建时间:2017-12-28
+ * 操作后台员工的Mapper
+ * */
 public interface EmpMapper extends IBaseDao<Serializable, Employe>{
 	Employe getByemployname(String ename);
 }

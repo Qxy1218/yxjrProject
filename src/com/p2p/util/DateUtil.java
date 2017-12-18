@@ -5,7 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.core.convert.converter.Converter;
-
+/**
+ * 配置时间处理类
+ * */
 public class DateUtil implements Converter<String, Date>{
 	@Override  
 	public Date convert(String stringDate) {
