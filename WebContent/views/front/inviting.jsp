@@ -142,7 +142,7 @@
 		                </a>
 		            </li>
 		            <li class="m2-asideListitem">
-		                <a class="m2-aside-item m2-aside-toggle" href="home-register-openbankid.html"><i class="m2-asideIcon3"></i>徽商资金管理</a>
+		                <a class="m2-aside-item m2-aside-toggle" href="/Finances/views/front/openbankid.jsp"><i class="m2-asideIcon3"></i>徽商资金管理</a>
 		                <ul class="m2-aside-secItem" style="display:none">
 		                <li><a class="m2-aside-secLink-item" href="#">充&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;值</a></li>
 		                <li><a class="m2-aside-secLink-item" href="#">提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现</a></li>
