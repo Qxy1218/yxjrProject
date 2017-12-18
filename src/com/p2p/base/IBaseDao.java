@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface IBaseDao<PK extends Serializable,T> {
-	 int addUser(T user);
-	 T getUser(T user);
-	 List<T> getAllUser();
-	 int update(T user);
-	 int delete(T user);
-	 T findUser(PK id);
+	 int addModel(T model);
+	 T getModel(T model);
+	 List<T> getAllModel();
+	 int update(T model);
+	 int delete(T model);
+	 T findModel(PK id);
 }
