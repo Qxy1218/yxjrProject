@@ -162,4 +162,12 @@ public class FrontController {
 	public String tosetmsg() {
 		return "views/front/message/setmsg";
 	}
+	
+	/**
+	 *业务特色页面的conteroller
+	 * */
+	@RequestMapping(value="/totures")
+	public String totures() {
+		return "views/front/aboutwe/feartures";
+	}
 }

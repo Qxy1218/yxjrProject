@@ -527,82 +527,11 @@
     </div>
     <link rel="stylesheet" href="/Finances/statics/front/statics/home2/css/front.css">
     <script type="text/javascript" src="/Finances/statics/front/statics/home2/js/m2-front.js"></script>
-    <!--头部导航start-->
-    <div class="m2-frontHead">
-        <div class="m2-frontHeadbox">
-            <ul class="m2-frontHeadlist" id='aboutusul' style="width:998px;">
-                <li>
-                    <i class="m2-frontHeadbox-line"></i>
-                    <a href="guanyu_aiqianbang.html">
-                        <b class="m2-headIcon1"></b>
-                        <span>关于我们</span>
-                    </a>
-                </li>
-                <li>
-                    <i class="m2-frontHeadbox-line"></i>
-                    <a href="anquanlicai_yewutese.html">
-                        <b class="m2-headIcon2"></b>
-                        <span>业务特色</span>
-                    </a>
-                </li>
-                <li>
-                    <i class="m2-frontHeadbox-line"></i>
-                    <a href="aiqianbang_touzilicaigongsi_dashiji.html">
-                        <b class="m2-headIcon3"></b>
-                        <span>大事记</span>
-                    </a>
-                </li>
-                <li>
-                    <i class="m2-frontHeadbox-line"></i>
-                    <a href="meitibaodao_aiqianbang_licaiwang.html">
-                        <b class="m2-headIcon4"></b>
-                        <span>媒体报道</span>
-                    </a>
-                </li>
-                <li>
-                    <i class="m2-frontHeadbox-line"></i>
-                    <a href="licai_gonggao.html">
-                        <b class="m2-headIcon5"></b>
-                        <span id="announcementnav">网站公告</span>
-                    </a>
-                </li>
-                <li>
-                    <i class="m2-frontHeadbox-line"></i>
-                    <a href="aiqianbang_touzilicaigongsi_tuanduijieshao.html">
-                        <b class="m2-headIcon6"></b>
-                        <span>管理团队</span>
-                    </a>
-                </li><!--
-            <li>
-                <i class="m2-frontHeadbox-line"></i>
-                <a href="/aiqianbang_licaiwang_zhaopin.html">
-                    <b class="m2-headIcon7"></b>
-                    <span>加入我们</span>
-                </a>
-            </li>
-            --><li style="margin-right:0px">
-                <a href="lianxi_aiqianbang_licaiwang.html">
-                    <b class="m2-headIcon8"></b>
-                    <span>联系我们</span>
-                </a>
-            </li>
-            </ul>
-        </div>
-    </div>
-    <script>
-        var href = window.location.href;
-        var search = window.location.search;
-        $('#aboutusul a').each(function () {
-            if ($(this).prop('href') + search == href) {
-                $(this).children('span').css('color', '#09ABE9');
-            }
-        });
-        $(function(){
-            $('body').css('background-color','#F0F0F0');
-        });
-    </script>
-    <!--头部导航end-->
- 	
+		
+		<!-- 导航Start -->
+ 		<jsp:include page="include/navigation.jsp"></jsp:include>
+ 		<!-- 导航end -->
+ 		
  	<div class="m2-aboutBanner-con"></div>
     <div class="m2-about-con">
         <h1>爱钱帮是谁</h1>
@@ -616,7 +545,7 @@
         </div>
         <h1 style="margin-top:10px;">公司资质</h1>
         <ul class="m2-aboutImglist">
-            <li src="statics/home2/images/guarantee/m2-yyzz.jpg">
+            <li src="/Finances/statics/front/statics/home2/images/guarantee/m2-yyzz.jpg">
                 <i class="m2-aboutImglist-1"></i>
                 <p>营业执照</p>
             </li>
