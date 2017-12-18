@@ -84,14 +84,14 @@ public class IUserController {
 		user.setUintgrad(0.00);
 		
 		try {
-			Integer userid = iUserService.addUser(user);
+			Integer userid = iUserService.addModel(user);
 			System.out.println(userid);
 			//如果注册成功
 			User user2 = new User();
 			user2.setUid(userid);
 			
 			//数据库
-			User user3 =  iUserService.getUser(user2);
+			User user3 =  iUserService.getModel(user2);
 			/**
 			 * 把用户信息存放进session
 			 * */
@@ -134,7 +134,7 @@ public class IUserController {
 			user.setUphone(user_name);
 			user.setUpassword(results.toString());
 			//如果登入成功
-			User user2 =  iUserService.getUser(user);
+			User user2 =  iUserService.getModel(user);
 
 			if(user2!=null) {
 				//证明有值,登入成功
