@@ -24,13 +24,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		 
 </resultMap>
 	<!-- 增加 -->
-	<insert id="addUser" parameterType="com.p2p.pojo.User" useGeneratedKeys="true" keyProperty="uid">
+	<insert id="addModel" parameterType="com.p2p.pojo.User" useGeneratedKeys="true" keyProperty="uid">
  		 insert into user(u_password,u_headImg,u_phone,u_loginTime,u_invited,u_invite,u_enable,u_isAccountSum,u_ip,u_vouch,u_bonus,u_credit,u_balance,u_group,u_level,u_intgrad) 
  		 values(#{upassword},#{uheadImg},#{uphone},#{uloginTime},#{uinvited},#{uinvite},#{uenable},#{uisAccountSum},#{uip},#{uvouch},#{ubonus},#{ucredit},#{ubalance},#{ugroup},#{ulevel},#{uintgrad})
  	</insert>
  	
  
- 	<select id="getUser" parameterType="com.p2p.pojo.User" resultMap="BaseResultMap">
+ 	<select id="getModel" parameterType="com.p2p.pojo.User" resultMap="BaseResultMap">
  		select * from user 
  		 <where>
  		     1=1

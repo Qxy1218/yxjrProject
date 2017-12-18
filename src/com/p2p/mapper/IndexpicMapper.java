@@ -3,12 +3,12 @@ package com.p2p.mapper;
 import java.io.Serializable;
 
 import com.p2p.base.IBaseDao;
-import com.p2p.pojo.Employe;
+import com.p2p.pojo.Indexpic;
 /**
  * 操作人:汪栋才
  * 创建时间:2017-12-28
  * 操作轮播图的Mapper
  * */
-public interface IndexpicMapper extends IBaseDao<Serializable, Employe>{
+public interface IndexpicMapper extends IBaseDao<Serializable, Indexpic>{
 
 }
