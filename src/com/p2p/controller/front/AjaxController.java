@@ -54,6 +54,10 @@ public class AjaxController {
 		}
 		
 		
+		/**
+		 * 注册时检查邀请码是否存在用户
+		 * */
+		
 		//发送验证码
 		@RequestMapping(value="/getregsendphone")
 		@ResponseBody

@@ -42,10 +42,6 @@ public class IUserController {
 		
 		AddressUtils addressUtils = new AddressUtils();
 		
-//		System.out.println("手机号码"+phone);
-//		System.out.println("密码是"+pass_word);
-//		System.out.println("邀请码是"+yqcode);
-		
 		/**
 		 * 1：密码加密（MD5）
 		 * 2：写进数据库
@@ -61,10 +57,10 @@ public class IUserController {
 		user.setUloginTime(DateUtils.getDateTimeFormat(new Date()));
 		
 		//别人的邀请码
-//		if(!yqcode.equals("nowrite")) {
-//			user.setUinvited(yqcode);
-//			System.out.println("有邀请码，给体验券");
-//		}
+		if(!yqcode.equals("nowrite")) {
+			System.out.println("有邀请码，给体验券");
+			
+		}
 		
 		//自己的邀请码
 		
