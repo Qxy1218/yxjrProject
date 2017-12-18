@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	String path = request.getContextPath();
+%> 
 <html>
 <head>
     <meta charset="utf-8">
@@ -11,11 +14,11 @@
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
 	
-	<link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
-    <link href="/Finances/statics/back/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="/Finances/statics/back/static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
-    <link href="/Finances/statics/back/static/css/animate.css" rel="stylesheet">
-    <link href="/Finances/statics/back/static/css/style.css?v=4.1.0" rel="stylesheet">
+	<link rel="Shortcut  Icon" href="${pageContext.request.contextPath}/statics/other/lco/smalllog.png">
+    <link href="${pageContext.request.contextPath}/statics/back/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/statics/back/static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/statics/back/static/css/animate.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/statics/back/static/css/style.css?v=4.1.0" rel="stylesheet">
 </head>
 
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
@@ -28,7 +31,7 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="/Finances/statics/back/static/img/profile_small.jpg" /></span>
+                            <span><img alt="image" class="img-circle" src="${pageContext.request.contextPath}/statics/back/static/img/profile_small.jpg" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold">Beaut-zihan</strong></span>
@@ -68,7 +71,7 @@
                                 <a class="J_menuItem" href="index_v3.jsp">用户列表</a>
                             </li>
                             <li>
-                                <a class="J_menuItem" href="index_v4.jsp">员工列表</a>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/role.jsp">员工列表</a>
                             </li>
                         </ul>
 
