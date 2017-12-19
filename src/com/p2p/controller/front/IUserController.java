@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -13,8 +15,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.p2p.controller.back.UtilController;
 import com.p2p.pojo.User;
 import com.p2p.service.front.IUserService;
 import com.p2p.util.AddressUtils;
@@ -35,7 +39,7 @@ public class IUserController {
 	 * */
 	@RequestMapping("/userRegister")
 	@ResponseBody
-	 public String userRegister(@RequestParam String phone,@RequestParam String pass_word,@RequestParam String yqcode,HttpSession session) throws Exception {
+	 public String userRegister(@RequestParam String phone,@RequestParam String pass_word,@RequestParam String yqcode,HttpSession session,HttpServletRequest request,HttpServletResponse response) throws Exception {
 
 		ObjectMapper mapper = new ObjectMapper(); //转换器  
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -59,6 +63,12 @@ public class IUserController {
 		//别人的邀请码
 		if(!yqcode.equals("nowrite")) {
 			System.out.println("有邀请码，给体验券");
+			/**
+			 * 根据邀请码去查询是哪个邀请的
+			 * 1:被邀请用户增加一些权益(代金券,经验等..)
+			 * 2:邀请码的用户同上
+			 * */
+			user.setOrderinvite(yqcode);
 			
 		}
 		
@@ -67,12 +77,22 @@ public class IUserController {
 		Integer ranks = (int)((Math.random()*9+1)*100000); 
 		user.setUinvite("yxjy"+ranks);
 		
+		
+		/**
+		 * 获取手机号生成URL
+		 * 此controller方法在下面
+		 * */
+		String url = "http://"+addressUtils.getIP()+":8080/Finances/user/toLoginHaveYaoqing?phone="+phone;
+		
+		//设置自己的二维码
+		String qrcode =   UtilController.createQRcode(url, request, response);
+		user.setQrcode(qrcode);
+		
 		user.setUenable(1);
 		user.setUisAccountSum(1);
 		user.setUip(addressUtils.getIP());
 		System.out.println(user.getUip());
 		user.setUvid("1");
-		//user.setUbonus("1");
 		user.setUcredit(3000);
 		user.setUbalance(0.00);
 		
@@ -158,5 +178,21 @@ public class IUserController {
 			return aa;
 	}
 		
+	/**
+	 * 这里是在二维码扫描的时候进入的controller
+	 * 1:最好是自适应模板
+	 * 2:用户用手机扫描的时候进入页面
+	 * 	2.1:页面显示用户的一些
+	 * */	
+	@RequestMapping(value="/toLoginHaveYaoqing")
+	public ModelAndView toLoginHaveYaoqing(String phone) {
+		ModelAndView mo = new ModelAndView();
+		User user = new User();
+		user.setUphone(phone);
+		User user2 =  iUserService.getModel(user);
+		mo.addObject("ortheruser",user2);
+		mo.setViewName("views/front/qrcode");
+		return mo;
+	}	
 	
 }

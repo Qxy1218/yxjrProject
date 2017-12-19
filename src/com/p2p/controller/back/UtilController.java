@@ -33,7 +33,7 @@ public class UtilController {
 	 * */
 	@RequestMapping("/createQRcode")
 	@ResponseBody
-	public static void createQRcode(String url,HttpServletRequest request,HttpServletResponse response) {
+	public static String createQRcode(String url,HttpServletRequest request,HttpServletResponse response) {
 		if(url.length()==0) {
 			url = "https://www.baidu.com";
 		}
@@ -56,10 +56,10 @@ public class UtilController {
 			e.printStackTrace();
 		}
 		/**
-		 * 这里调用公共方法
+		 * 这里返回文件路径
 		 * */
-		UtilController.downLoadFile(contextPath+newFilename+suffix, request, response);
-		
+		String pathss = "/Finances/uploadFile/"+newFilename+suffix;
+		return pathss;
 	}
 	
 	

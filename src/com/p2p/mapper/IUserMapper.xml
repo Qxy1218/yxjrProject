@@ -9,27 +9,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		  <result column="u_headImg" property="uheadImg"/>
  		  <result column="u_phone" property="uphone"/>
  		  <result column="u_loginTime" property="uloginTime"/>
- 		  <result column="u_invited" property="uinvited"/>
+ 		   <result column="order_invite" property="orderinvite"/>
  		  <result column="u_invite" property="uinvite"/>
  		  <result column="u_enable" property="uenable"/>
  		  <result column="u_isAccountSum" property="uisAccountSum"/>
+ 		  <result column="qr_code" property="qrcode"/>
  		  <result column="u_ip" property="uip"/>
  		  <result column="uv_id" property="uvid"/>
- 		  <result column="u_bonus" property="ubonus"/>
  		  <result column="u_credit" property="ucredit"/>
  		  <result column="u_balance" property="ubalance"/>
- 		  <result column="u_group" property="ugroup"/>
  		  <result column="ul_id" property="ulid"/>
  		  <result column="vd_id" property="vdid"/>
  		 
 </resultMap>
+	
+	<sql id="myusersql">
+		u_password,u_headImg,u_phone,u_loginTime,order_invite,u_invite,
+		u_enable,u_isAccountSum,qr_code,u_ip,uv_id,u_credit,u_balance,ul_id,vd_id
+	</sql>
 	<!-- 增加 -->
 	<insert id="addModel" parameterType="com.p2p.pojo.User" useGeneratedKeys="true" keyProperty="uid">
- 		 insert into user(u_password,u_headImg,u_phone,u_loginTime,u_invited,u_invite,u_enable,u_isAccountSum,u_ip,u_vouch,u_bonus,u_credit,u_balance,u_group,u_level,u_intgrad) 
- 		 values(#{upassword},#{uheadImg},#{uphone},#{uloginTime},#{uinvited},#{uinvite},#{uenable},#{uisAccountSum},#{uip},#{uvouch},#{ubonus},#{ucredit},#{ubalance},#{ugroup},#{ulevel},#{uintgrad})
+ 		 insert into user(<include refid="myusersql" />)
+ 		 values(#{upassword},#{uheadImg},#{uphone},#{uloginTime},#{orderinvite},#{uinvite},#{uenable},#{uisAccountSum},#{qrcode},#{uip},#{uvid},#{ucredit},#{ubalance},#{ulid},#{vdid})
  	</insert>
  	
- 
  	<select id="getModel" parameterType="com.p2p.pojo.User" resultMap="BaseResultMap">
  		select * from user 
  		 <where>
@@ -39,18 +42,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		<if test="uheadImg!=null">and u_headImg=#{uheadImg}</if>
 		  		<if test="uphone!=null">and u_phone=#{uphone}</if>
 		  		<if test="uloginTime!=null">and u_loginTime=#{uloginTime}</if>
-		  		<if test="uinvited!=null">and u_invited=#{uinvited}</if>
-		  		<if test="uinvite!=null">and u_invite=#{u_invite}</if>
+		  		<if test="orderinvite!=null">and order_invite=#{orderinvite}</if>
+		  		<if test="uinvite!=null">and u_invite=#{uinvite}</if>
 		  		<if test="uenable!=null">and u_enable=#{uenable}</if>
 		  		<if test="uisAccountSum!=null">and u_isAccountSum=#{uisAccountSum}</if>
+		  		<if test="qrcode!=null">and qr_code=#{qrcode}</if>
 		  		<if test="uip!=null">and u_ip=#{uip}</if>
-		  		<if test="uvouch!=null">and u_vouch=#{uvouch}</if>
-		  		<if test="ubonus!=null">and u_bonus=#{ubonus}</if>
+		  		<if test="uvid!=null">and uv_id=#{uvid}</if>
 		  		<if test="ucredit!=null">and u_credit=#{ucredit}</if>
 		  		<if test="ubalance!=null">and u_balance=#{ubalance}</if>
-		  		<if test="ugroup!=null">and u_group=#{ugroup}</if>
-		  		<if test="ulevel!=null">and u_level=#{ulevel}</if>
-		  		<if test="uintgrad!=null">and u_intgrad=#{uintgrad}</if>
+		  		<if test="ulid!=null">and ul_id=#{ulid}</if>
+		  		<if test="vdid!=null">and vd_id=#{vdid}</if>
  		</where>
  	</select>
 </mapper>

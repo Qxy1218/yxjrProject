@@ -48,6 +48,18 @@ public class BeansController {
 		return "views/front/login";
 	}
 	
+	/**
+	 * 访问登入界面(login.jsp)
+	 * */
+	@RequestMapping(value="/toLoginHaveYQ")
+	public ModelAndView toLoginHaveYQ(String code){
+		ModelAndView mo = new ModelAndView();
+		mo.setViewName("views/front/register");
+		mo.addObject("qycode",code);
+		return mo;
+	}
+	
+	
 	
 	/**
 	 * 进入 会员商城界面(membermall.jsp)

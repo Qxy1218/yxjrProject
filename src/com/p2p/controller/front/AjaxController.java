@@ -54,9 +54,38 @@ public class AjaxController {
 		}
 		
 		
+		
+		
 		/**
 		 * 注册时检查邀请码是否存在用户
 		 * */
+		@RequestMapping(value="/ishaveyqcode")
+		@ResponseBody
+		public String ishaveyqcode(@RequestParam String mycode) throws JsonProcessingException {
+			ObjectMapper mapper = new ObjectMapper(); //转换器  
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			System.out.println(mycode);
+
+			User user = new User();
+			user.setUinvite(mycode);
+			User user2 =  iUserService.getModel(user);
+			if(user2==null){
+				map.put("message","请检测您的邀请码是否正确");
+			}else {
+				map.put("verify_nums",4); 
+			}
+			
+			String aa = mapper.writeValueAsString(map);
+			System.out.println(aa);
+			ModelAndView model = new ModelAndView();
+			model.setViewName("/views/front/register");
+			model.addObject(aa);
+			return aa;
+		}
+
+		
+		
 		
 		//发送验证码
 		@RequestMapping(value="/getregsendphone")

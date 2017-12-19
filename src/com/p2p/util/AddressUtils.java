@@ -209,7 +209,7 @@ public class AddressUtils {
 	
 	public static void main(String[] args) throws UnknownHostException {
 		AddressUtils addressUtils = new AddressUtils();
-		String ip = "119.23.55.22";
+		String ip = "192.168.23.3";
 		String address = "";
 		try {
 			address = addressUtils.getAddresses("ip="+ip, "utf-8");

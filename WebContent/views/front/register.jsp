@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 %>  
@@ -193,7 +194,7 @@
                         <tr>
                             <td><i class="m2-regist-passicon"></i>邀请码</td>
                             <td class="m2-regist-tdInput">
-                                <input  type="text" maxlength="5" class="m2-regist-username" id="yqcode" placeholder="邀请码(选填)"/>
+                                <input  type="text"  value="${qycode}" onblur="getyqcode();" class="m2-regist-username" id="yqcode" placeholder="邀请码(选填)"/>
                                 <span class="m2-regist-errMsg"></span>
                             </td>
                         </tr>
@@ -353,6 +354,28 @@
             }
             $('#re_pass_word').next('.m2-regist-errMsg').html('');
         }
+        
+        function getyqcode(){
+        	var mycode = $("#yqcode").val();
+        	 if (typeof(mycode) == "undefined"){ 
+             	return;
+             }
+        	 if (mycode == ""){ 
+              	return;
+             }
+        	postData("/Finances/front/ishaveyqcode",{"mycode":mycode},function(d){
+             	if(d.message!=' '){
+                     if(d.verify_nums>3){
+                         $('.verify_code_tr').css('display','');
+                     }
+                     $('#yqcode').next('.m2-regist-errMsg').html(d.message);
+                 } 
+             	if(typeof(d.message) == "undefined"){
+                     $('#yqcode').next('.m2-regist-errMsg').html('');
+                 }
+             });
+        }
+        
         function checkphone(){
             if($('#phone').val()==''){
                 $('#phone').next('.m2-regist-errMsg').html('手机号不能为空！');
@@ -383,6 +406,7 @@
             checkpsw();
             recheckpsw();
             checkphone();
+            getyqcode();
             var canSubmit = true;
             var p = makevar(['pass_word','yqcode','phone']);
             var cod = $("#yzm").val();

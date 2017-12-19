@@ -31,6 +31,10 @@ public class User implements Serializable{
 	@TableField("u_loginTime")
 	private String uloginTime;//注册时间
 
+	@TableField("order_invite")
+	private String orderinvite; //别人的邀请码
+	
+	
 	@TableField("u_invite")
 	private String uinvite; //自己邀请码
 	
@@ -39,6 +43,10 @@ public class User implements Serializable{
 	
 	@TableField("u_isAccountSum")
 	private Integer uisAccountSum;//是否领取代金券
+	
+	@TableField("qr_code")
+	private String qrcode;//自己的二维码
+	
 	
 	@TableField("u_ip")
 	private String uip;//ip
@@ -61,32 +69,26 @@ public class User implements Serializable{
 	public User() {
 	}
 
-	public User(Integer uid, String upassword, String uheadImg, String uphone, String uloginTime, String uinvite,
-			Integer uenable, Integer uisAccountSum, String uip, String uvid, Integer ucredit, Double ubalance,
-			String ulid, Double vdid) {
+	public User(Integer uid, String upassword, String uheadImg, String uphone, String uloginTime, String orderinvite,
+			String uinvite, Integer uenable, Integer uisAccountSum, String qrcode, String uip, String uvid,
+			Integer ucredit, Double ubalance, String ulid, Double vdid) {
 		super();
 		this.uid = uid;
 		this.upassword = upassword;
 		this.uheadImg = uheadImg;
 		this.uphone = uphone;
 		this.uloginTime = uloginTime;
+		this.orderinvite = orderinvite;
 		this.uinvite = uinvite;
 		this.uenable = uenable;
 		this.uisAccountSum = uisAccountSum;
+		this.qrcode = qrcode;
 		this.uip = uip;
 		this.uvid = uvid;
 		this.ucredit = ucredit;
 		this.ubalance = ubalance;
 		this.ulid = ulid;
 		this.vdid = vdid;
-	}
-
-	@Override
-	public String toString() {
-		return "User [uid=" + uid + ", upassword=" + upassword + ", uheadImg=" + uheadImg + ", uphone=" + uphone
-				+ ", uloginTime=" + uloginTime + ", uinvite=" + uinvite + ", uenable=" + uenable + ", uisAccountSum="
-				+ uisAccountSum + ", uip=" + uip + ", uvid=" + uvid + ", ucredit=" + ucredit + ", ubalance=" + ubalance
-				+ ", ulid=" + ulid + ", vdid=" + vdid + "]";
 	}
 
 	public Integer getUid() {
@@ -129,6 +131,14 @@ public class User implements Serializable{
 		this.uloginTime = uloginTime;
 	}
 
+	public String getOrderinvite() {
+		return orderinvite;
+	}
+
+	public void setOrderinvite(String orderinvite) {
+		this.orderinvite = orderinvite;
+	}
+
 	public String getUinvite() {
 		return uinvite;
 	}
@@ -151,6 +161,14 @@ public class User implements Serializable{
 
 	public void setUisAccountSum(Integer uisAccountSum) {
 		this.uisAccountSum = uisAccountSum;
+	}
+
+	public String getQrcode() {
+		return qrcode;
+	}
+
+	public void setQrcode(String qrcode) {
+		this.qrcode = qrcode;
 	}
 
 	public String getUip() {
@@ -201,8 +219,5 @@ public class User implements Serializable{
 		this.vdid = vdid;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	
 }
