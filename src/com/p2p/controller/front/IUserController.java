@@ -3,6 +3,7 @@ package com.p2p.controller.front;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,7 @@ import com.p2p.pojo.User;
 import com.p2p.service.front.IUserService;
 import com.p2p.util.AddressUtils;
 import com.p2p.util.DateUtils;
+import com.p2p.util.IpChecker;
 /**
  * 关于前台用户相关操作的controller
  * 2017-11-16
@@ -74,8 +76,8 @@ public class IUserController {
 		
 		//自己的邀请码
 		
-		Integer ranks = (int)((Math.random()*9+1)*100000); 
-		user.setUinvite("yxjy"+ranks);
+		String ranks = IUserController.getUUID();
+		user.setUinvite(ranks);
 		
 		
 		/**
@@ -90,8 +92,16 @@ public class IUserController {
 		
 		user.setUenable(1);
 		user.setUisAccountSum(1);
-		user.setUip(addressUtils.getIP());
-		System.out.println(user.getUip());
+		
+		//设置ip
+		String ip = IpChecker.getIp();
+		user.setUip(ip);
+		
+		//设置自己的常用登入地
+		String  address = addressUtils.getAddresses("ip="+ip, "utf-8");
+		
+		user.setUaddress(address);
+
 		user.setUvid("1");
 		user.setUcredit(3000);
 		user.setUbalance(0.00);
@@ -182,7 +192,7 @@ public class IUserController {
 	 * 这里是在二维码扫描的时候进入的controller
 	 * 1:最好是自适应模板
 	 * 2:用户用手机扫描的时候进入页面
-	 * 	2.1:页面显示用户的一些
+	 * 	2.1:页面显示用户的一些个人信息
 	 * */	
 	@RequestMapping(value="/toLoginHaveYaoqing")
 	public ModelAndView toLoginHaveYaoqing(String phone) {
@@ -195,4 +205,12 @@ public class IUserController {
 		return mo;
 	}	
 	
+	/**
+	 * 取得UUID
+	 * */
+	public static String getUUID(){ 
+		String uuid = UUID.randomUUID().toString(); 
+		//去掉“-”符号 
+		return uuid.replaceAll("-", "");
+	}	
 }

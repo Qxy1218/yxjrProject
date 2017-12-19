@@ -19,6 +19,7 @@ public class User implements Serializable{
 	@TableField("u_id")
 	private Integer uid; //用户id
 	
+	
 	@TableField("u_password")
 	private String upassword; //用户密码
 
@@ -47,6 +48,9 @@ public class User implements Serializable{
 	@TableField("qr_code")
 	private String qrcode;//自己的二维码
 	
+	@TableField("u_address")
+	private String uaddress;//自己常用登入地
+	
 	
 	@TableField("u_ip")
 	private String uip;//ip
@@ -69,9 +73,9 @@ public class User implements Serializable{
 	public User() {
 	}
 
-	public User(Integer uid, String upassword, String uheadImg, String uphone, String uloginTime, String orderinvite,
-			String uinvite, Integer uenable, Integer uisAccountSum, String qrcode, String uip, String uvid,
-			Integer ucredit, Double ubalance, String ulid, Double vdid) {
+	public User(Integer uid,String upassword, String uheadImg, String uphone, String uloginTime,
+			String orderinvite, String uinvite, Integer uenable, Integer uisAccountSum, String qrcode, String uaddress,
+			String uip, String uvid, Integer ucredit, Double ubalance, String ulid, Double vdid) {
 		super();
 		this.uid = uid;
 		this.upassword = upassword;
@@ -83,6 +87,7 @@ public class User implements Serializable{
 		this.uenable = uenable;
 		this.uisAccountSum = uisAccountSum;
 		this.qrcode = qrcode;
+		this.uaddress = uaddress;
 		this.uip = uip;
 		this.uvid = uvid;
 		this.ucredit = ucredit;
@@ -171,6 +176,14 @@ public class User implements Serializable{
 		this.qrcode = qrcode;
 	}
 
+	public String getUaddress() {
+		return uaddress;
+	}
+
+	public void setUaddress(String uaddress) {
+		this.uaddress = uaddress;
+	}
+
 	public String getUip() {
 		return uip;
 	}
@@ -219,5 +232,4 @@ public class User implements Serializable{
 		this.vdid = vdid;
 	}
 
-	
 }

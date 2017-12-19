@@ -14,6 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		  <result column="u_enable" property="uenable"/>
  		  <result column="u_isAccountSum" property="uisAccountSum"/>
  		  <result column="qr_code" property="qrcode"/>
+ 		   <result column="u_address" property="uaddress"/>
  		  <result column="u_ip" property="uip"/>
  		  <result column="uv_id" property="uvid"/>
  		  <result column="u_credit" property="ucredit"/>
@@ -25,12 +26,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<sql id="myusersql">
 		u_password,u_headImg,u_phone,u_loginTime,order_invite,u_invite,
-		u_enable,u_isAccountSum,qr_code,u_ip,uv_id,u_credit,u_balance,ul_id,vd_id
+		u_enable,u_isAccountSum,qr_code,u_address,u_ip,uv_id,u_credit,u_balance,ul_id,vd_id
 	</sql>
 	<!-- 增加 -->
 	<insert id="addModel" parameterType="com.p2p.pojo.User" useGeneratedKeys="true" keyProperty="uid">
  		 insert into user(<include refid="myusersql" />)
- 		 values(#{upassword},#{uheadImg},#{uphone},#{uloginTime},#{orderinvite},#{uinvite},#{uenable},#{uisAccountSum},#{qrcode},#{uip},#{uvid},#{ucredit},#{ubalance},#{ulid},#{vdid})
+ 		 values(#{upassword},#{uheadImg},#{uphone},#{uloginTime},#{orderinvite},#{uinvite},#{uenable},#{uisAccountSum},#{qrcode},#{uaddress},#{uip},#{uvid},#{ucredit},#{ubalance},#{ulid},#{vdid})
  	</insert>
  	
  	<select id="getModel" parameterType="com.p2p.pojo.User" resultMap="BaseResultMap">
@@ -47,6 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		<if test="uenable!=null">and u_enable=#{uenable}</if>
 		  		<if test="uisAccountSum!=null">and u_isAccountSum=#{uisAccountSum}</if>
 		  		<if test="qrcode!=null">and qr_code=#{qrcode}</if>
+		  		<if test="uaddress!=null">and u_address=#{uaddress}</if>
 		  		<if test="uip!=null">and u_ip=#{uip}</if>
 		  		<if test="uvid!=null">and uv_id=#{uvid}</if>
 		  		<if test="ucredit!=null">and u_credit=#{ucredit}</if>
