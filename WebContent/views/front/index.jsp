@@ -882,7 +882,7 @@
                 <li class="m2-commonNav-fir"><a href="/Finances/views/front/index.jsp" id="onepage">首页</a></li>
                 <li class="m2-commonNav-fir"><a href="/Finances/views/front/invest.jsp" id="twopage">我要投资</a></li>
                 <li class="m2-commonNav-fir"><a href="/Finances/views/front/membermall.jsp" id="sevenpage">会员商城</a></li>
-                <li class="m2-commonNav-fir"><a href="usercenter.html" id="threepage">我的账户</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/user/usercenter.jsp" id="threepage">我的账户</a></li>
                 <li class="m2-commonNav-fir"><a href="/Finances/views/front/guarantee.jsp" id="fourpage">安全保障</a></li>
                 <li class="m2-commonNav-fir"><a href="/Finances/views/front/about.jsp" id="fivepage">关于我们</a></li>
                 <!-- <li class="m2-commonNav-fir"><a href="guide.html">新手引导</a></li> -->
