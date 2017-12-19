@@ -178,4 +178,12 @@ public class FrontController {
 	public String tobilia() {
 		return "views/front/aboutwe/memorabilia";
 	}
+	
+	/**
+	 *媒体报道页面的conteroller
+	 * */
+	@RequestMapping(value="/tocover")
+	public String tocover() {
+		return "views/front/aboutwe/coverage";
+	}
 }

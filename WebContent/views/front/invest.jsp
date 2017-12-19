@@ -101,7 +101,7 @@
                     <div class="mo2-indLogcod-lef">
                         <i class="mo2-indLogicon-psw"></i>
                         <input type="text" id="vcodeRight" placeholder="验证码"></div>
-                    <div class="mo2-indLogcod-rig"><img src="Index-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='Index-VerifyCode.png?time='+Math.random();void(0);" alt="点击刷新验证码"></div>
+                    <div class="mo2-indLogcod-rig"><img src="/Finances/statics/front/statics/home2/images/Index-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='Index-VerifyCode.png?time='+Math.random();void(0);" alt="点击刷新验证码"></div>
                 </div>
                 <div class="mo2-indLog-forget"><a href="forget.html">忘记密码?</a></div>
                 <div style="padding-left: 24px;line-height: 30px;color:red;" id="error-hint"></div>

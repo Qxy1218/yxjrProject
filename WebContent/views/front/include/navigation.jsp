@@ -34,7 +34,7 @@
                 </li>
                 <li>
                     <i class="m2-frontHeadbox-line"></i>
-                    <a href="meitibaodao_aiqianbang_licaiwang.html">
+                    <a href="/Finances/views/front/aboutwe/coverage.jsp">
                         <b class="m2-headIcon4"></b>
                         <span>媒体报道</span>
                     </a>
