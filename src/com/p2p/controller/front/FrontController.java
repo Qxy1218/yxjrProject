@@ -186,4 +186,12 @@ public class FrontController {
 	public String tocover() {
 		return "views/front/aboutwe/coverage";
 	}
+	
+	/**
+	 *网页公告页面的conteroller
+	 * */
+	@RequestMapping(value="/tonot")
+	public String tonot() {
+		return "views/front/aboutwe/notice";
+	}
 }

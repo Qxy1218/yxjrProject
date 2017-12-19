@@ -41,7 +41,7 @@
                 </li>
                 <li>
                     <i class="m2-frontHeadbox-line"></i>
-                    <a href="licai_gonggao.html">
+                    <a href="/Finances/views/front/aboutwe/notice.jsp">
                         <b class="m2-headIcon5"></b>
                         <span id="announcementnav">网站公告</span>
                     </a>
