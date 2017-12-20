@@ -61,7 +61,7 @@
                 </a>
             </li>
             --><li style="margin-right:0px">
-                <a href="lianxi_aiqianbang_licaiwang.html">
+                <a href="/Finances/views/front/aboutwe/contact.jsp">
                     <b class="m2-headIcon8"></b>
                     <span>联系我们</span>
                 </a>

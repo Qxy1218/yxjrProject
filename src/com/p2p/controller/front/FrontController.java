@@ -202,4 +202,12 @@ public class FrontController {
 	public String toteam() {
 		return "views/front/aboutwe/team";
 	}
+	
+	/**
+	 *联系我们页面的conteroller
+	 * */
+	@RequestMapping(value="tocon")
+	public String tocon() {
+		return "views/front/aboutwe/contact";
+	}
 }
