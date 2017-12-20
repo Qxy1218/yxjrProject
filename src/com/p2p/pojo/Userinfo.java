@@ -47,19 +47,17 @@ public class Userinfo implements Serializable{
 	@TableField("ui_email")
 	private String uiemail;//邮箱
 	
+	/**
+	 * 二级对象(对应Userinfo用户基本信息基本类)
+	 * */
+	private User user;
+	
 	public Userinfo() {
 		
 	}
 
-	@Override
-	public String toString() {
-		return "Userinfo [uiid=" + uiid + ", uid=" + uid + ", uiname=" + uiname + ", uisex=" + uisex + ", uiidCard="
-				+ uiidCard + ", uibirthday=" + uibirthday + ", peid=" + peid + ", cyid=" + cyid + ", aeid=" + aeid
-				+ ", uidealpwd=" + uidealpwd + ", uiemail=" + uiemail + "]";
-	}
-
 	public Userinfo(Integer uiid, Integer uid, String uiname, String uisex, String uiidCard, String uibirthday,
-			Integer peid, Integer cyid, Integer aeid, String uidealpwd, String uiemail) {
+			Integer peid, Integer cyid, Integer aeid, String uidealpwd, String uiemail, User user) {
 		super();
 		this.uiid = uiid;
 		this.uid = uid;
@@ -72,6 +70,7 @@ public class Userinfo implements Serializable{
 		this.aeid = aeid;
 		this.uidealpwd = uidealpwd;
 		this.uiemail = uiemail;
+		this.user = user;
 	}
 
 	public Integer getUiid() {
@@ -162,8 +161,20 @@ public class Userinfo implements Serializable{
 		this.uiemail = uiemail;
 	}
 
+	public User getUser() {
+		return user;
+	}
 
-	
-	
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@Override
+	public String toString() {
+		return "Userinfo [uiid=" + uiid + ", uid=" + uid + ", uiname=" + uiname + ", uisex=" + uisex + ", uiidCard="
+				+ uiidCard + ", uibirthday=" + uibirthday + ", peid=" + peid + ", cyid=" + cyid + ", aeid=" + aeid
+				+ ", uidealpwd=" + uidealpwd + ", uiemail=" + uiemail + ", user=" + user + "]";
+	}
+
 
 }

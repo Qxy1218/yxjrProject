@@ -22,6 +22,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		  <result column="ul_id" property="ulid"/>
  		  <result column="vd_id" property="vdid"/>
  		 
+ 		 <!-- 一对一对应用户基本信息表 -->
+ 		<association property="userinfo" javaType="com.p2p.pojo.Userinfo">
+ 			<id column="ui_id" property="uiid"/>
+ 			<result column="u_id" property="uid"/>
+ 			<result column="ui_name" property="uiname"/>
+ 			<result column="ui_sex" property="uisex"/>
+ 			<result column="ui_idCard" property="uiidCard"/>
+ 			<result column="ui_birthday" property="uibirthday"/>
+ 			<result column="pe_id" property="peid"/>
+ 			<result column="cy_id" property="cyid"/>
+ 			<result column="ae_id" property="aeid"/>
+ 			<result column="ui_dealpwd" property="uidealpwd"/>
+ 			<result column="ui_email" property="uiemail"/>
+ 		</association>
 </resultMap>
 	
 	<sql id="myusersql">

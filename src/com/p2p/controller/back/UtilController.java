@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -31,8 +29,6 @@ public class UtilController {
 	/**
 	 * 生成二维码并下载
 	 * */
-	@RequestMapping("/createQRcode")
-	@ResponseBody
 	public static String createQRcode(String url,HttpServletRequest request,HttpServletResponse response) {
 		if(url.length()==0) {
 			url = "https://www.baidu.com";
@@ -66,8 +62,6 @@ public class UtilController {
 	/**
 	 * 文件上传
 	 * */
-	@RequestMapping("uploadex")
-	@ResponseBody
 	public static void upload(HttpServletRequest request,String fileName) throws Exception{
 		MultipartHttpServletRequest msr = (MultipartHttpServletRequest)request;
 		

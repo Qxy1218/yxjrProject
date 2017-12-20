@@ -32,7 +32,7 @@ public class AjaxController {
 		//注册界面把电话号码发送过来查询数据库是否存在
 		@RequestMapping(value="/getregpdphishave")
 		@ResponseBody
-		private String RegpdPhishave(@RequestParam String phone) throws JsonProcessingException {
+		public String RegpdPhishave(@RequestParam String phone) throws JsonProcessingException {
 			ObjectMapper mapper = new ObjectMapper(); //转换器  
 			Map<String, Object> map = new HashMap<String, Object>();
 			
@@ -90,7 +90,7 @@ public class AjaxController {
 		//发送验证码
 		@RequestMapping(value="/getregsendphone")
 		@ResponseBody
-		private String RegSendPhone(@RequestParam String phone) throws JsonProcessingException {
+		public String RegSendPhone(@RequestParam String phone) throws JsonProcessingException {
 		
 			ObjectMapper mapper = new ObjectMapper(); //转换器  
 			Map<String, Object> map = new HashMap<String, Object>();

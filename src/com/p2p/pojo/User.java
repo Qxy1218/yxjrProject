@@ -70,12 +70,18 @@ public class User implements Serializable{
 	@TableField("vd_id")
 	private Double vdid;//会员积分id
 
+	
+	/**
+	 * 二级对象(对应Userinfo用户基本信息基本类)
+	 * */
+	private Userinfo userinfo;
+	
 	public User() {
 	}
 
-	public User(Integer uid,String upassword, String uheadImg, String uphone, String uloginTime,
-			String orderinvite, String uinvite, Integer uenable, Integer uisAccountSum, String qrcode, String uaddress,
-			String uip, String uvid, Integer ucredit, Double ubalance, String ulid, Double vdid) {
+	public User(Integer uid, String upassword, String uheadImg, String uphone, String uloginTime, String orderinvite,
+			String uinvite, Integer uenable, Integer uisAccountSum, String qrcode, String uaddress, String uip,
+			String uvid, Integer ucredit, Double ubalance, String ulid, Double vdid, Userinfo userinfo) {
 		super();
 		this.uid = uid;
 		this.upassword = upassword;
@@ -94,6 +100,7 @@ public class User implements Serializable{
 		this.ubalance = ubalance;
 		this.ulid = ulid;
 		this.vdid = vdid;
+		this.userinfo = userinfo;
 	}
 
 	public Integer getUid() {
@@ -232,4 +239,13 @@ public class User implements Serializable{
 		this.vdid = vdid;
 	}
 
+	public Userinfo getUserinfo() {
+		return userinfo;
+	}
+
+	public void setUserinfo(Userinfo userinfo) {
+		this.userinfo = userinfo;
+	}
+
+	
 }

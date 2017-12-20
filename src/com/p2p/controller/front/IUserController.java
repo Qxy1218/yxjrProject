@@ -140,7 +140,7 @@ public class IUserController {
 		 * */
 		@RequestMapping(value="/userLogin")
 		@ResponseBody
-		private String mnlogin(@RequestParam String user_name,@RequestParam String pass_word,HttpSession session) throws Exception {
+		public String mnlogin(@RequestParam String user_name,@RequestParam String pass_word,HttpSession session) throws Exception {
 		
 			ObjectMapper mapper = new ObjectMapper(); //转换器  
 			Map<String, Object> map = new HashMap<String, Object>();
