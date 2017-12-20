@@ -132,7 +132,7 @@
 	                <li class="m2-comRigli m2-comRigli-qq m2-comRigli_new" data="#fixnavbar_three">
 	                    <img src="/Finances/statics/front/statics/home2/images/fixed-r3.png" alt="我的加息券">
 	                    <div></div>            	<div class="toAbs">
-	                    <div><img src="statics/home2/images/fixedl-3_v2.png" alt="我的加息券"></div>
+	                    <div><img src="/Finances/statics/front/statics/home2/images/fixedl-3_v2.png" alt="我的加息券"></div>
 	                    <div></div>
 	                </div>
 	                </li>
@@ -456,12 +456,19 @@
 		<div class="m2-notice-banner"></div>
 			<div class="newListheader-con">
         	<div class="newsListheader">
-		         <ul>
+		         <ul   id="ifremid">
 		                <li class="newsListtab-sel">
-		                <a href="licai_gonggao.html"><span>全部公告</span></a></li><li class="newsListtab-unsel">
-						<a href="/aiqianbang_licaiwang_gonggao/"><span>网站公告</span></a></li><li class="newsListtab-unsel">
-						<a href="/aiqianbang_touzi_licai_chanpin_gonggao/"><span>项目公告</span></a></li><li class="newsListtab-unsel">
-						<a href="/aiqianbang_touzi_licai_chanpin_jieshu_gonggao/"><span>还款公告</span></a></li>
+		             	   	<span>全部公告</span>
+		             	 </li>
+		             	   <li class="newsListtab-unsel">
+								<span>网站公告</span>
+							</li>
+					<li class="newsListtab-unsel">
+						<span>项目公告</span>
+					</li>
+					<li class="newsListtab-unsel">
+						<span>还款公告</span>
+					</li>
 				</ul>
 	        </div>
     	</div>
@@ -469,7 +476,7 @@
         <div class="newListmain">
             <h2 class="m2-noticeMain-tit"><i></i>
                 全部公告        </h2>
-            <ul class="newList-ul">
+            <ul class="newList-ul" id="ul11">
                 <li>
                     <a href="/licai_gonggao-16028.html" target="_blank" title="【还款公告】2016年9月2日爱钱帮投资理财项目还本付息公告">
                         <h3>【还款公告】2016年9月2日爱钱帮投资理财项目还本付息公告</h3> </a>
@@ -610,71 +617,101 @@
                     <p class="newList-itemDet">​各位帮主们：2016年8月11日爱钱帮理财项目还款如下：​​​迎您的支持与建议，如有问题，请联系我们：电话客服：4006777518QQ客服：4006777518微信客服：iqianbanglove微信订阅号：iqianbangcom祝您投资愉快~爱钱帮2016年8月11日</p>
                 </a>
                 <span class="newList-bot"><i></i>2016年08月12日</span>
-            </li>        </ul>
+            </li>        
+            </ul>
+            
+            <ul class="newList-ul" id="ul22">
+                <li>
+                    <a href="/licai_gonggao-16028.html" target="_blank" title="【还款公告】2016年9月2日爱钱帮投资理财项目还本付息公告">
+                        <h3>【哈哈哈公告】2016年9月2日爱钱帮投资理财项目还本付息公告</h3> </a>
+                    <a href="/licai_gonggao-16028.html" target="_blank" title="【还款公告】2016年9月2日爱钱帮投资理财项目还本付息公告">
+                        <p class="newList-itemDet">​各位帮主们：2016年9月2日爱钱帮理财项目还款如下：=​​迎您的支持与建议，如有问题，请联系我们：电话客服：4006777518QQ客服：4006777518微信客服：iqianbanglove微信订阅号：iqianbangcom祝您投资愉快~爱钱帮2016年9月2日</p>
+                    </a>
+                    <span class="newList-bot"><i></i>2016年09月02日</span>
+                </li>
+                
+            </ul>
+            
+                <ul class="newList-ul" id="ul22">
+                <li>
+                    <a href="/licai_gonggao-16028.html" target="_blank" title="【还款公告】2016年9月2日爱钱帮投资理财项目还本付息公告">
+                        <h3>【哈哈哈公告】2016年9月2日爱钱帮投资理财项目还本付息公告</h3> </a>
+                    <a href="/licai_gonggao-16028.html" target="_blank" title="【还款公告】2016年9月2日爱钱帮投资理财项目还本付息公告">
+                        <p class="newList-itemDet">​各位帮主们：2016年9月2日爱钱帮理财项目还款如下：=​​迎您的支持与建议，如有问题，请联系我们：电话客服：4006777518QQ客服：4006777518微信客服：iqianbanglove微信订阅号：iqianbangcom祝您投资愉快~爱钱帮2016年9月2日</p>
+                    </a>
+                    <span class="newList-bot"><i></i>2016年09月02日</span>
+                </li>
+                
+            </ul>
+            
+                <ul class="newList-ul" id="ul33">
+                <li>
+                    <a href="/licai_gonggao-16028.html" target="_blank" title="【还款公告】2016年9月2日爱钱帮投资理财项目还本付息公告">
+                        <h3>【哈哈哈公告】2016年9月2日爱钱帮投资理财项目还本付息公告</h3> </a>
+                    <a href="/licai_gonggao-16028.html" target="_blank" title="【还款公告】2016年9月2日爱钱帮投资理财项目还本付息公告">
+                        <p class="newList-itemDet">​各位帮主们：2016年9月2日爱钱帮理财项目还款如下：=​​迎您的支持与建议，如有问题，请联系我们：电话客服：4006777518QQ客服：4006777518微信客服：iqianbanglove微信订阅号：iqianbangcom祝您投资愉快~爱钱帮2016年9月2日</p>
+                    </a>
+                    <span class="newList-bot"><i></i>2016年09月02日</span>
+                </li>
+                
+            </ul>
+            
+                <ul class="newList-ul" id="ul44">
+                <li>
+                    <a href="/licai_gonggao-16028.html" target="_blank" title="【还款公告】2016年9月2日爱钱帮投资理财项目还本付息公告">
+                        <h3>【哈哈哈公告】2016年9月2日爱钱帮投资理财项目还本付息公告</h3> </a>
+                    <a href="/licai_gonggao-16028.html" target="_blank" title="【还款公告】2016年9月2日爱钱帮投资理财项目还本付息公告">
+                        <p class="newList-itemDet">​各位帮主们：2016年9月2日爱钱帮理财项目还款如下：=​​迎您的支持与建议，如有问题，请联系我们：电话客服：4006777518QQ客服：4006777518微信客服：iqianbanglove微信订阅号：iqianbangcom祝您投资愉快~爱钱帮2016年9月2日</p>
+                    </a>
+                    <span class="newList-bot"><i></i>2016年09月02日</span>
+                </li>
+                
+            </ul>
+            
+            
+            
         </div>
+        
+        
+        
+        
         <div class="m2-newListpage-con">
             <div class="m2-newListpage">
                 <div class="m2-news-pages" style="padding-right:40px;margin:12px auto;"></div>
             </div>
         </div>
         <script>
-	            var channel = 'licai_gonggao';
-	            var page = Number(1); 			//当前页
-	
-	            pager();
-	
-	            function pager() {
-	
-	                var totalpage = Number(31); 	//总页数
-	                var n1 = 3;								//前后保留n1项，均分剩余页码，保留最前最后页
-	                var n2 = 3;								//当前页两旁保留n2项
-	                var pages = '<a onclick="pageclick(\''+channel+'\','+(page-1>0?page-1:1)+')" class="m2-pages-num m2-page-prev">&lt;</a>';
-	
-	                if (totalpage <= 1 || page > totalpage) {
-	                    $('.m2-news-pages').hide();
-	                } else {
-	                    $('.m2-news-pages').show();
-	
-	                    if (page <= n1 + n2 + 1) {
-	                        for (var i = 1; i < page; i++) {
-	                            pages += addonepage(i, false);
-	                        }
-	                    } else {
-	                        for (var i = 0; i < n1; i++) {
-	                            var a = 1 + Math.floor((page-n2-1)*i/n1);
-	                            pages += addonepage(a, false);
-	                        }
-	                        for (var i = page - n2; i < page; i++) {
-	                            pages += addonepage(i, false);
-	                        }
-	                    }
-	                    pages += addonepage(page, true);
-	
-	                    if (totalpage - page <= n1 + n2) {
-	                        for (var i = page + 1; i <= totalpage; i++) {
-	                            pages += addonepage(i, false);
-	                        }
-	                    } else {
-	                        for (var i = page + 1; i <= page + n2; i++) {
-	                            pages += addonepage(i, false);
-	                        }
-	                        for (var i = 1; i <= n1; i++) {
-	                            var b = page + n2 + Math.ceil((totalpage-page-n2)*i/n1);
-	                            pages += addonepage(b, false);
-	                        }
-	                    }
-	                    pages += '<a onclick="pageclick(\''+channel+'\','+(page+1>totalpage?totalpage:page+1)+')" class="m2-pages-num m2-page-next">&gt;</a>';
-	                    $('.m2-news-pages').html(pages);
-	                }
-	            }
-	
-	            function addonepage(index, iscurrent) {
-	                var pageclass = 'm2-page-unsel';
-	                if (iscurrent) {
-	                    pageclass = 'm2-page-sel';
-	                }
-	                return '<a onclick="pageclick(\''+channel+'\','+index+')" class="m2-pages-num ' + pageclass + '">' + index + '</a>';
-	            }
+        $(function () {
+        	   $('#ifremid li').click(function () {
+   	            if ($(this).hasClass('newsListtab-unsel')) {
+   	                $(this).addClass('newsListtab-sel').removeClass('newsListtab-unsel');
+   	                $(this).siblings('.newsListtab-sel').addClass('newsListtab-unsel').removeClass('newsListtab-sel');
+   	            }
+   	        });
+        
+   	        // 新闻列表tab切换下方展示
+   	        $('#ifremid li').click(function () {
+   	            if ($(this).index() == 0) {
+   	                //全部公告
+   	                $('.newList-ul').hide();
+   	                $('#ul11').show();
+   	            } else if ($(this).index() == 1) {
+   	                //网站公告
+   	                $('.newList-ul').hide();
+   	                $('#ul22').show();
+   	            } else if ($(this).index() == 2) {
+   	                //项目公告
+   	                $('.newList-ul').hide();
+   	                $('#ul33').show();
+   	            } else if ($(this).index() == 3) {
+   	                //还款公告
+   	                $('.newList-ul').hide();
+   	                $('#ul44').show();
+   	            } 
+   	        });
+        });
+        
+        
 	        </script>
 	    </div>
 	    <script>
