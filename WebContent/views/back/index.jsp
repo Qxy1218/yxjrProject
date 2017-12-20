@@ -90,7 +90,7 @@
                         </a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="J_menuItem" href="graph_echarts.jsp">轮播图管理</a>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/Indexpic.jsp">轮播图管理</a>
                             </li>
                             <li>
                                 <a class="J_menuItem" href="graph_flot.jsp">联系管理</a>
