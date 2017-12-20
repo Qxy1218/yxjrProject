@@ -91,7 +91,7 @@ public class MailSendUtil {
         //接受消息的人
         message.setReplyTo(InternetAddress.parse(info.getReplayAddress()));
         //消息的发送者
-        message.setFrom(new InternetAddress(p.getProperty("mail.smtp.user"),"奥创教育"));
+        message.setFrom(new InternetAddress(p.getProperty("mail.smtp.user"),"忆信金融"));
         // 创建邮件的接收者地址，并设置到邮件消息中
     	if(info.getToAddress()!=null){
     		  message.setRecipient(Message.RecipientType.TO,new InternetAddress(info.getToAddress()));
