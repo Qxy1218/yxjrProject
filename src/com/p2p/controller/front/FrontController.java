@@ -194,4 +194,12 @@ public class FrontController {
 	public String tonot() {
 		return "views/front/aboutwe/notice";
 	}
+	
+	/**
+	 *管理团队页面的conteroller
+	 * */
+	@RequestMapping(value="/toteam")
+	public String toteam() {
+		return "views/front/aboutwe/team";
+	}
 }

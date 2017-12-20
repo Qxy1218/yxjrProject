@@ -48,7 +48,7 @@
                 </li>
                 <li>
                     <i class="m2-frontHeadbox-line"></i>
-                    <a href="aiqianbang_touzilicaigongsi_tuanduijieshao.html">
+                    <a href="/Finances/views/front/aboutwe/team.jsp">
                         <b class="m2-headIcon6"></b>
                         <span>管理团队</span>
                     </a>

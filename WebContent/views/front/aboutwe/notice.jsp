@@ -123,7 +123,7 @@
 	                    </div>
 	                </li>
 	                <li class="m2-comRigli m2-comRigli-tel m2-comRigli_new" data="#fixnavbar_two">
-	                    <img src="statics/home2/images/fixed-r2.png" alt="我的红包">
+	                    <img src="/Finances/statics/front/statics/home2/images/fixed-r2.png" alt="我的红包">
 	                    <div></div>            	<div class="toAbs">
 	                    <div><img src="/Finances/statics/front/statics/home2/images/fixedl-2_v2.png" alt="我的红包"></div>
 	                    <div></div>
