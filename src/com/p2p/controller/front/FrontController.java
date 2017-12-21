@@ -263,10 +263,24 @@ public class FrontController {
 	}
 	
 	/**
+	 * 账户设置页面的controller
+	 * */
+	@RequestMapping(value="/userverify")
+	public ModelAndView toUserVerify(Model model) {
+		ModelAndView mo = new ModelAndView();
+		
+		model.addAttribute("pageName", "myinfo");
+		
+		mo.setViewName("views/front/user/userverify");
+		return null;
+	}
+	
+	/**
 	 *忘记密码页面的conteroller 
 	 * */
 	@RequestMapping(value="/tocode")
 	public String tocode() {
 		return "views/front/qrcode";
 	}
+
 }
