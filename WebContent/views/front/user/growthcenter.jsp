@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%
+	String path = request.getContextPath();
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<meta name="keywords" content="网贷平台,网络借贷，网络赚钱项目,理财产品">
     	<meta name="description" content="爱钱帮网贷平台为您提供网络赚钱项目；为此相继推出了许多新的理财产品，在为您创造高收益的同时也优化了理财产品模式。网络借贷，就选爱钱帮。">
+		<!--[if lt IE 9]>
+	    	<script src="<%=path%>/statics/front/statics/newcommon/js/html5shiv.js"></script>
+	    <![endif]-->
 		<title>成长值中心--爱钱帮</title>
+		
 		<link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
     	<link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">
     	<link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-common.css">
@@ -20,86 +27,14 @@
 <body>
 	<div class="m2-userCentercommon-bg" style="display:none;"></div>
 	
-	<!-- 右侧边栏start -->
-	<div class="m2-commonRight">
-	    <ul class="m2-comRiglist">
-	        <li class="m2-comRigli m2-comRigli-ewm">
-	            <i class="m2-comRigli-icon"></i>
-	            <span class="m2-comRigli-hov">关注<br>微信</span>
-	            <div class="m2-comRighide m2-comRighide-ewm"><i></i></div>
-	        </li>
-	        <li class="m2-comRigli m2-comRigli-tel">
-	            <i class="m2-comRigli-icon"></i>
-	            <span class="m2-comRigli-hov">联系<br>我们</span>
-	            <div class="m2-comRighide m2-comRighide-tel">
-	                <div class="m2-comRighide-telSpace"></div>
-	                <b class="m2-comRighide-telBorder"></b>
-	                <div class="m2-comRigtel-lef">
-	                    <div class="m2-comRigtel-lefTop">
-	                        <input type="text" placeholder="请输入您的手机号"  id='phonenumber'>
-	                    </div>
-	                    <div class="m2-comRigtel-lefBot">
-	                        <input type="text" placeholder="验证码" id="ivrSecurityCode">
-	                        <img id="ivrSecurityCodeImg" onclick="getCode()" src="/Finances/statics/front/statics/home2/images/Index-VerifyCode.png" alt="验证码" title="点击更新验证码">
-	                    </div>
-	                </div>
-	                <div class="m2-comRigtel-rig">
-	                    <span  onclick='callback()'>免费<br>拨打</span>
-	                </div>
-	            </div>
-	        </li>
-	        <li class="m2-comRigli m2-comRigli-qq">
-	            <a  target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2522274059&amp;site=qq&amp;menu=yes">
-	                <i class="m2-comRigli-icon"></i>
-	                <span class="m2-comRigli-hov">在线<br>客服</span>
-	            </a>
-	            <!-- <div class="m2-comRighide"></div> -->
-	        </li>
-	        <!--<li class="m2-comRigli m2-comRigli-sug">-->
-	        <!--<i class="m2-comRigli-icon"></i>-->
-	        <!--<span class="m2-comRigli-hov">意见<br>反馈</span>-->
-	        <!-- <div class="m2-comRighide"></div> -->
-	        <!--</li>-->
-	        <li class="m2-comRigli m2-comRigli-top">
-	            <i class="m2-comRigli-icon"></i>
-	            <span class="m2-comRigli-hov">返回<br>顶部</span>
-	            <!-- <div class="m2-comRighide"></div> -->
-	        </li>
-	    </ul>
-	</div>
+		<!-- 右侧边栏start -->
+		<jsp:include page="../include/userside.jsp"></jsp:include>
+		<!-- 右侧边栏end -->
 	
-		<script type="text/javascript">
-	    $(function () {
-	        var wHei = $(window).height();
-	
-	        $(document).scroll(function () {
-	            // 判断返回顶部是否显示
-	            visTop(wHei);
-	        });
-	
-	        $('.m2-comRigli-top').click(function () {
-	            $('body,html').animate({scrollTop: 0}, 600);
-	            return false;
-	        });
-	    });
-	
-	    function visTop(high) {
-	
-	        if ($(document).scrollTop() > high + 100) {
-	            $('.m2-comRigli-top').css('visibility', 'visible');
-	        } else {
-	            $('.m2-comRigli-top').css('visibility', 'hidden');
-	        }
-	    }
-	</script>
-	<!-- 右侧边栏end -->
-	
-	<!-- 头部start -->
+		<!-- 头部start -->
 		<jsp:include page="../include/head.jsp"></jsp:include>
-	<!-- 头部end-->
+		<!-- 头部end-->
 	
-		<!-- 内容 -->
-		
 		<!-- 树start -->
 	    <jsp:include page="../include/tree.jsp"></jsp:include>
 	    <!-- 树end -->

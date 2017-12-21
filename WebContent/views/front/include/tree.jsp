@@ -86,7 +86,7 @@
 	                <a class="m2-aside-item m2-aside-toggle" ><i class="m2-asideIcon6"></i>账户管理</a>
 	                <ul class="m2-aside-secItem" style="display:none" id='aaa'>
 	                    <li>
-	                        <a class="m2-aside-secLink-item" href="#">账户设置</a>
+	                        <a class="m2-aside-secLink-item" href="/Finances/userverify">账户设置</a>
 	                    </li>
 	                </ul>
 	            </li>
