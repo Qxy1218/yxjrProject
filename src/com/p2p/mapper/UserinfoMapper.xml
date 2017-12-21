@@ -64,6 +64,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		<if test="uiemail!=null">and ui.ui_email=#{uiemail}</if>
 		  		<!-- 下面多表二级查询user_info表 -->
  				<if test="uid!=null">and u.u_id=#{uid}</if>
+ 				<!-- 关键 -->
+ 				and  u.u_id = ui.u_id;
  		</where>
  	</select>
 </mapper>
