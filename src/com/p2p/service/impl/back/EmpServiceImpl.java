@@ -57,7 +57,7 @@ public class EmpServiceImpl implements EmpService{
 	}
 
 	@Override
-	public Employe findModel(Serializable id) {
+	public Employe findModel(Integer id) {
 		return null;
 	}
 

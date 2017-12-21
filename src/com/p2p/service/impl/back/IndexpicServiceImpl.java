@@ -53,7 +53,7 @@ public class IndexpicServiceImpl implements IndexpicService{
 	}
 
 	@Override
-	public Indexpic findModel(Serializable id) {
+	public Indexpic findModel(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
