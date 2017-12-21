@@ -13,16 +13,19 @@
  <meta name="description" content="爱钱帮可以为您赚钱的网络投资理财平台，为投资理财用户和贷款用户两端提供公平、透明、安全、高效的网贷理财服务，爱钱帮互联网金融中网贷投资理财平台的最好的选择。">
 
  <title>亿信金融_为您赚钱和提供高收益理财产品的理财投资投资理财平台</title>
+ 
+ 	 <script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+ 
     <!--[if lt IE 9]>
     	<script src="/Finances/statics/front/statics/newcommon/js/html5shiv.js"></script>
     <![endif]-->
+    
     
     <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">
     <link rel="stylesheet" href="/Finances/statics/front/statics/home2/css/m2-main.css">
     <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-common.css">
     
-    <script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
-    <script type="text/javascript" src="/Finances//statics/front/statics/newcommon/js/common.js"></script>
+      <script type="text/javascript" src="/Finances//statics/front/statics/newcommon/js/common.js"></script>
 	<script type="text/javascript" src="/Finances/statics/front/statics/home2/js/jquery.knob.js"></script>
 	<script type="text/javascript" src="/Finances/statics/front/statics/home2/js/jquery.SuperSlide.js"></script>
 	<script type="text/javascript" src="/Finances/statics/other/js/do-it.js"></script>
@@ -33,7 +36,20 @@
 	<link rel="stylesheet" href="/Finances/statics/front/statics/home/css/newPage.css" />
 	<link type="text/css" rel="stylesheet" href="/Finances/statics/front/statics/common/tipBox/colorbox-master/css/colorbox.css">
 	
+	<script src="/Finances/statics/front/statics/common/js/common.js"></script>
+
+		<script src="/Finances/statics/front/statics/common/tipBox/common.js"></script>
+		<!--tipBOx-->
+		<script language=JavaScript type="text/javascript" src="/Finances/statics/front/statics/home/js/tab.js"></script>
+		<script type="text/javascript">$(function () {
+		    if ($.browser && $.browser.msie && ($.browser.version == "6.0") && !$.support.style) {
+		        $('#fixed-services').css('display', 'none');
+		    }
+		})
+	</script>
 	
+	<!--公共提示框start-->
+
      <style type="text/css">
         .myloginmask {position:fixed;top: 0;left: 0;right: 0;bottom: 0;background-color: black;display: none;opacity: 0.7;z-index: 800;filter:alpha(opacity=70)}
         .mylogin {position:   fixed;top: 50%;left: 50%;margin-top: -346px;margin-left: -260px;width: 520px;height: 496px;background-image: url("/Finances/statics/front/statics/home2/images/login/login_info.png");background-repeat: no-repeat;z-index: 1000;display: none;}
@@ -51,95 +67,19 @@
             })
         })
     </script>
-    
-     <script type="text/javascript">
-     /**
-     $(function(){
-            $.post("/Finances/views/front/mydatetime.html",{mytime:''},function(t){
-                $("#mytime").html(t);
-            });
-        })
-    */  
-    </script>
-    
-     <script type="text/javascript">
-        function infoDialogClose(){
-            $('.m2-pwdConfirm-close').click(function(){
-                $('.m2-pwdBg').hide();
-                $('.m2-pwdConfirm').hide();
-                $('.m2-pwdConfirm-con').text('');
-                $('#dialog-status').removeClass('m2-pwdConfirm-ture');
-                $('#dialog-status').removeClass('m2-pwdConfirm-false');
-                $(this).unbind();
-            });
-        }
-        function showInfoDialog(text,status,func,callback){
-            $('.m2-pwdConfirm-con').text(text);
-            if(status){
-                $('#dialog-status').addClass('m2-pwdConfirm-ture');
-            }else{
-                $('#dialog-status').addClass('m2-pwdConfirm-false');
-            }
-            $('.m2-pwdBg').show();
-            $('.m2-pwdConfirm').show();
-            if(typeof(callback)=='function'){
-                $('.m2-pwdConfirm-close').click(callback);
-            }
-            infoDialogClose();
-            if(typeof(func)=='function'){
-                func();
-            }
-//			$(".mylogin").show();
-        }
-        function showLoginInfoDialog(text,status,func,callback){
-            $('.m2-pwdConfirm-con').text(text);
-            if(status){
-                $('#dialog-status').addClass('m2-pwdConfirm-ture');
-            }else{
-                $('#dialog-status').addClass('m2-pwdConfirm-false');
-            }
-            $('.m2-pwdBg').show();
-            $('.m2-pwdConfirm').show();
-            if(status){
-                $('.m2-pwdConfirm').hide();
-                $('.m2-pwdConfirm-auto').show();
-            }
-            if(typeof(callback)=='function'){
-                $('.m2-pwdConfirm-close').click(callback);
-            }
-            infoDialogClose();
-            if(typeof(func)=='function'){
-                func();
-            }
-        }
-        function showLoginDialog(text,status){
-            $("#nowcoin").html(text.allcoin);
-            $("#overcoin").html(text.overcoin);
-            $("#user").html(text.userName);
-            $(".mylogin").show();
-            $(".myloginmask").show();
-        }
-        $(".mylogin .closeimg").click(function(){
-            $(".mylogin").hide();
-            $(".myloginmask").hide();
-            window.location.href="/Index";
-        })
-    </script>
+
+     <!--公共提示框end-->
 
 </head>
+
 	<body>
-		<!--公共提示框start-->
-		<div class="m2-pwdBg" style='display:none;z-index:9000'></div>
-	    <div class="m2-pwdConfirm" style='display:none;z-index:9001'>
-	        <i class="m2-pwdConfirm-close"></i>
-	        <i class="m2-pwdConfirm-ture" id='dialog-status'></i>
-	        <div class="m2-pwdConfirm-con"></div>
-	    </div>
+		
+		
 		<div class="myloginmask"></div>
 	    <div class="mylogin">
 	        <div class="closeimg"></div>
 	        <div class="topcontent">
-	            <p><span id="user">${sessionScope.user.uphone}</span>，欢迎回来！</p>
+	            <p><span id="user"></span>，欢迎回来！</p>
 	            <p>钱帮币<span id="nowcoin"></span>个，<span id="mytime"></span>即将到期<span id="overcoin"></span>个</p>
 	        </div>
 	        <div class="bottomcontent">
@@ -147,56 +87,18 @@
 	            <a href="#" style="float:right">钱帮币兑换宝物>></a>
 	        </div>
 	    </div>
-	<!--公共提示框end-->
+	    
+	    <div class="m2-pwdBg" style='display:none;z-index:9000'></div>
+	    <div class="m2-pwdConfirm" style='display:none;z-index:9001'>
+	        <i class="m2-pwdConfirm-close"></i>
+	        <i class="m2-pwdConfirm-ture" id='dialog-status'></i>
+	        <div class="m2-pwdConfirm-con"></div>
+	    </div>
+
 
 	<!-- 右侧上边栏start -->
 	<!-- 首页右侧提示悬浮窗、账户、红包、加息券 -->
-		<script type="text/javascript">
-    		$(function(){
-	        	$('#account,#redbag,#percentage,#message,#m2-commonRight').click(function(){
-		            $('html, body').animate({scrollTop:0}, 'slow');
-		            $("#user_name").focus();
-        		})
-    		})
-    	</script><!-- 首页右侧提示悬浮窗、账户、红包、加息券 -->
-	    
-	    <script>
-		    var flag="";
-		    
-		    //右侧悬浮框
-		    var aLi=$('.m2-comRigli_new');
-    		for(var i=0;i<aLi.length;i++){
-        		(function(index){
-            		aLi[index].onmouseover=function(){
-		                var oDiv=aLi[index].children[2];
-		                var aDiv=oDiv.children;
-                		oDiv.style.display='block';
-                		if(flag==1){
-                    		var iNum=parseInt(aDiv[1].innerHTML);
-                    		if(iNum>=100){
-                        	aDiv[1].innerHTML='···';
-                    		}
-                		}
-            		};
-        		})(i)
-    		}
-    		
-    		for(var i=0;i<aLi.length;i++){
-        		(function(index){
-            		aLi[index].onmouseout=function(){
-                	var oDiv=aLi[index].children[2];
-                	var aDiv=oDiv.children;
-                	oDiv.style.display='none';
-	                	if(flag==1){
-	                    	var iNum=parseInt(aDiv[1].innerHTML);
-	                    	if(iNum>=100){
-	                        aDiv[1].innerHTML='···';
-	                    	}
-	                	}
-            		};
-        		})(i)
-    		}
-		</script>
+		
 		<!-- 12月活动弹窗end -->
 		
 		<!-- 语音弹窗start -->
@@ -223,34 +125,7 @@
 		<div class="m2-loginReg-box" style="display:none;">
 
 		</div>
-		
-		<script type="text/javascript">
-    		$(function(){
-		        // 显示&关闭
-		        $('.mo2-indRegagree b').click(function(){
-            		$.ajax({
-                		type:"POST",
-                		url:"",
-                		success:function(msg){
-	                    	var obj = eval('('+msg+')');
-	                    	var obj = eval(obj);
-	                    	if (obj.status==0){
-	                        	$('.m2-loginReg-box').html('<i class="m2-loginReg-boxClose"></i><h3>协议加载出错</h3>');
-	                    	}else if(obj.status==1){
-	                        	$('.m2-loginReg-box').html(obj.data);
-	                    	}
-                		}
-            		});
-            		$('.m2-loginReg-box,.m2-commonBg').show();
-        		});
-		        /**
-		        
-        		$(document).on('click','.m2-loginReg-boxClose',function(){
-            		$('.m2-loginReg-box,.m2-commonBg').hide();
-        		});
-		        */
-    		});
-		</script>
+
 		<!-- 用户协议弹窗end -->
 		
 		<!-- 弹出层start -->
@@ -307,177 +182,471 @@
     		<p class="m2-transHide-bottom">偿还本金: <span style="color:#ea731e;" id='transfer_money2'>0元</span></p>
 		</div>
 		
-		<script type="text/javascript">
-			$(function () {
-        		//隐藏更多按钮
-        		if ($('.m2-tranHide-det').length < 19) {
-            		$('.m2-tranHidetoggle').hide();
-        		}
-        
-        		//展开收起
-        		$('.m2-tranHidetoggle').click(function () {
-            		if ($(this).hasClass('m2-tranMore')) {
-                		$(this).removeClass('m2-tranMore');
-                		$(this).children('span').html('收&nbsp;&nbsp;&nbsp;起&raquo;');
-                		$('.m2-tranHidelist').css('max-height', 9999);
-            		}else {
-                		$(this).addClass('m2-tranMore');
-                		$(this).children('span').html('显示更多&raquo;');
-                		$('.m2-tranHidelist').css('max-height', 240);
-            		}
-        		});
-        
-        		//点击关闭按钮
-        		$('.m2-tranHide-close,.m2-tranHidenum-btn').click(function () {
-            		$('.m2-tranBg').hide();
-            		$('.m2-tranHide').hide();
-        		});
-    		})
-		</script>
 		<!-- 弹出层end -->
-		 
-		<!-- 右侧边栏 start -->
-		<jsp:include page="include/sidebar.jsp"></jsp:include>
-		<!-- 右侧边栏 end -->
-
-    	<!-- headerStrat -->	
-    	<jsp:include page="include/head.jsp"></jsp:include>
-		<!-- headerEnd -->
 		
+		<!-- 右侧边栏start -->
+		<!-- 右侧登录窗口 -->
+		
+		<!--右侧登录框-->
+		<div class="mo2-indexLoginbox" id="right-fix">
+			<!-- 登录注册start -->
+			<div class="mo2-indLogreg" >				
+				<div class="mo2-indLogtab">
+		        	<ul>
+			            <li class="mo2-logTab-unsel mo2-indTab-reg">
+			                <span>注册</span><b></b>
+			            </li>
+			            <li class="mo2-logTab-sel mo2-indTab-log">
+			                <span>登录</span><b></b>
+			            </li>
+		        	</ul>
+    			</div>
+    			
+    			<!-- 注册start -->
+	    			<div class="mo2-indRegboxRight" style="display:none;">
+	    				<div class="mo2-indLogitem" style="margin-bottom:6px;">
+	                		<i class="mo2-indLogicon-tel"></i><input class="mo2-indIpt-all" id="regTelRight" maxlength="11" type="text" placeholder="输入手机号码"><b class="mo2-indLogwarRight"><em class="mo2-indlogWar-arr"></em><u></u></b>
+	            		</div>
+	            		<div class="mo2-indLogitem" style="margin-bottom:6px;">
+	                		<i class="mo2-indLogicon-psw"></i><input class="mo2-indIpt-all m2-ind-banPsw" id="passRight" type="password" placeholder="6-20位数字与字母组合的密码"><b class="mo2-indLogwarRight"><em class="mo2-indlogWar-arr"></em><u></u></b>
+	            		</div>
+	            		
+	            		<div class="mo2-indLogitem-step1">
+	                		<div class="mo2-indLogreg-step1">
+	                    		<i class="mo2-indLogicon-code"></i><input class="mo2-indIptcod-step1" id="vcodeRight" type="text" placeholder="验证码">
+	                		</div>
+	                		<img class="mo2-indRegcode" src="/Finances/statics/front/statics/home2/images/home-register-VerifyCode.png" onClick="document.getElementById('reverifyCodeRight').src='/Finances/statics/front/statics/home2/images/home-register-VerifyCode.png?time='+Math.random();void(0);" id="reverifyCodeRight"  alt="点击刷新验证码">
+	                		<span class="mo2-indReg-refresh">看不清？换一张</span>
+	                		<b class="mo2-indLogwarRight"><em class="mo2-indlogWar-arr"></em><u></u></b>
+	            		</div>
+	            		
+	            		<div class="mo2-indReg-btn" id="verifyregcode" onclick="verifycodeRight();" style="margin-top:8px;">
+	                		<a class="mo2-indRegbtn-able" href="#">立即注册</a>
+	            		</div>
+	            		
+	            		<div class="mo2-indRegagree">
+	                		<i class="mo2-indReg-sel"></i><span>我已阅读并同意</span><b>《爱钱帮注册服务协议》</b>
+	            		</div>
+	            	</div>
+            	<!-- 注册end -->
+            		
+            	<!-- 注册step2 start -->
+            		<div class="mo2-indRegbox2Right"  style="display:none;" >
+            			<div class="mo2-indReg2-con">
+                			<ul>
+		                      <li><i class="mo2-indRegicon-step1"></i><span>为了确保您手机可用，请填写您收到的手机动态码。</span></li>
+		                      <li><i class="mo2-indRegicon-step2"></i><span>如收不到短信验证码，可点击下面的获取语音验证码。</span></li>
+                			</ul>
+            			</div>
+            			<div class="mo2-indLogitem">
+                			<i class="mo2-indLogicon-code"></i><input class="mo2-indIpt-half" id="codeRight" type="text" placeholder="验证码">
+                			<span class="mo2-indRegtim mo2-regTin-able"><u>60秒后</u><span>获取手机验证码</span></span>
+                			<b class="mo2-indLogwarRight" style="width:200px;"><em class="mo2-indlogWar-arr"></em><u>错误提示信息</u></b>
+            			</div>
+            			<div class="mo2-indRegvoice">
+                			<span class="mo2-indRegvoi-btn mo2-indRegvoi-able"><i></i>获取语音验证码</span>
+            			</div>
+            			<div class="mo2-indReg-btn" onclick="registerRight();" id="verifyregphone"  style="margin-top:8px;">
+                			<a class="mo2-indRegbtn-able"  href="#">立即注册</a>
+            			</div>
+            		</div>
+        		<!-- 注册step2 end -->
+            			
+            	<!-- 登录start -->
+        		 <div class="mo2-indLogboxRight">
+            		<div class="mo2-indLogitem mo2-indLogitem-use" style="margin-bottom:9px;">
+                		<i class="mo2-indLogicon-use"></i><input class="mo2-indIpt-all" type="text" id="user_nameRight" placeholder="用户名/手机号">
+                		<b class="mo2-indLogwar" id="w_username"><em class="mo2-indlogWar-arr"></em><u id="r_usernameRight"></u></b>
+            		</div>
+            		
+            		<div class="mo2-indLogitem mo2-indLogitem-psw" style="margin-bottom:9px;">
+                		<i class="mo2-indLogicon-psw"></i><input class="mo2-indIpt-all m2-ind-banPsw" maxlength="20" id="pass_wordRight" type="password" id="pass_wordRight" placeholder="输入登录密码">
+                		<b class="mo2-indLogwar" id="w_password"><em class="mo2-indlogWar-arr"></em><u id="r_passwordRight"></u></b>
+            		</div>
+            
+            		<div class="mo2-indLog-code" style="display:none;margin-bottom:8px;">
+                		<div class="mo2-indLogcod-lef">
+                    		<i class="mo2-indLogicon-psw"></i>
+                    		<input type="text" id="vcodeRights" placeholder="验证码">
+                    	</div>
+                		<div class="mo2-indLogcod-rig"><img src="/Finances/statics/front/statics/home2/images/Index-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='/Finances/statics/front/statics/home2/images/Index-VerifyCode.png?time='+Math.random();void(0);" alt="点击刷新验证码"></div>
+            		</div>
+            		
+            		<div class="mo2-indLog-forget"><a href="forget.html">忘记密码?</a></div>
+            		<div class="mo2-indReg-btn">
+                		<a class="mo2-indRegbtn-able" onclick="loginRight();">登录</a>
+            		</div>
+        		</div>
+        	   <!-- 登录end -->
+        	  </div>
+    		<!-- 登录注册end -->
+        	</div>
+        	
+        	<!-- 右侧登录窗口 -->
+			<!--add by zml start-->
+			<!--<div id="fixbar" style="width:50px;position:fixed;top:0;right:0px;background:#ff6666;z-index:5;"></div>-->
+        	
+        	<!--右侧悬浮条-->
+        	<div id="fixbar">
+        		 <!-- 右侧边栏顶部 -->
+    			 <!--右侧上边栏start -->
+    			 <div class="m2-commonRight2"  id="m2-commonRight">
+    			 	<ul class="m2-comRiglist myclick">
+            			<li class="m2-comRigli m2-comRigli-ewm m2-comRigli_new" style="border-top:1px solid #fff;" data="#fixnavbar_one"><div></div>
+	                		<img src="/Finances/statics/front/statics/home2/images/fixed-r1.png" alt="我的账户">
+	                		<div class="toAbs">
+	                    		<div><img src="/Finances/statics/front/statics/home2/images/fixedl-1_v2.png" alt="我的账户"></div><div></div>
+	                		</div>
+            			</li>
+            			
+            			<li class="m2-comRigli m2-comRigli-tel m2-comRigli_new" data="#fixnavbar_two">
+                			<img src="/Finances/statics/front/statics/home2/images/fixed-r2.png" alt="我的红包"><div></div>            	
+                				<div class="toAbs">
+                					<div><img src="/Finances/statics/front/statics/home2/images/fixedl-2_v2.png" alt="我的红包"></div><div></div>
+            					</div>
+            			</li>
+            			
+            			<li class="m2-comRigli m2-comRigli-qq m2-comRigli_new" data="#fixnavbar_three">
+                			<img src="/Finances/statics/front/statics/home2/images/fixed-r3.png" alt="我的加息券"><div></div>            	
+                				<div class="toAbs">
+                					<div><img src="/Finances/statics/front/statics/home2/images/fixedl-3_v2.png" alt="我的加息券"></div><div></div>
+            					</div>
+            			</li>
+            			
+            			<li class="m2-comRigli m2-comRigli-sug m2-comRigli_new" data="#fixnavbar_four">
+                			<img src="/Finances/statics/front/statics/home2/images/fixed-r4.png" alt="站内信息">
+                			<div></div>            	
+                			<div class="toAbs">
+                				<div><img src="/Finances/statics/front/statics/home2/images/fixedl-4_v2.png" alt="站内信息"></div>
+                				<div></div>
+            				</div>
+            			</li>
+        			</ul>
+        		 </div>
+        		  
+        		 
+        		 <!-- 右边侧栏顶部右边弹出 -->
+        		 <div class="fixbox_bar">
+        			<div class="fixnavbar" id="fixnavbar_one">
+            			<div class="sumtop">
+                			<div class="top" style="margin: 18px;text-align: center;font-size: 20px;position: relative;"><span style="position: absolute;top: 0;left:-18px">&gt;&gt;</span>我的账户</div>
+                				<div class="bottom">
+                    				<img src="/Finances/statics/front/statics/home2/images/user-head.png" alt="我的账户">
+                    				<div>
+                        				<p id ="right_name_info"></p>
+                        				<button id="right_recharge">充值</button>
+                    				</div>
+                				</div>
+            			</div>
+            			<hr style="margin:0 10px;"/>
+            			<div class="summiddle">
+			                <ul>
+			                    <li style="border-top-left-radius:10px;">
+			                        <p><span id="right_account_money"></span>元</p>
+			                        <span>可用资金</span>
+			                    </li>
+			                    <li style="border-top-right-radius:10px;">
+			                        <p><span id="right_reward_money"></span>元</p>
+			                        <span>可用奖励金</span>
+			                    </li>
+			                </ul>
+			                
+			                <div class="content">
+			                    <p>待收本金：<span id="right_total_capital"></span>元</p>
+			                    <p>待收收益：<span id="right_total_wait_interest"></span>元</p>
+			                </div>
+			                
+                			<p class="lastcontent">资产总计：<span id="right_total_asset"></span>元</p>
+                
+                			<ul style="margin-top:30px;">
+			                    <li style="border-top-left-radius:10px;border-bottom-left-radius:10px;">
+			                        <p><span id="right_today_earn"></span>元</p>
+			                        <span>今日赚取</span>
+			                    </li>
+			                    
+			                    <li style="border-top-right-radius:10px;border-bottom-right-radius:10px;">
+			                        <p><span id="right_total_reward_normal_interest"></span>元</p>
+			                        <span>累计收益</span>
+			                    </li>
+                			</ul>
+            			</div>
+            			<div class="sumbottom" id ="accountCommon_right">查看更多>></div>
+        			</div>
+
+        			<div class="fixnavbar common" id="fixnavbar_two">
+
+        			</div>
+
+			        <div class="fixnavbar common" id="fixnavbar_three">
+			
+			        </div>
+
+			        <div class="fixnavbar" id="fixnavbar_four">
+			
+			        </div>
+    			</div>
+            	
+            	<!-- 右侧边栏底部 -->
+            	<div class="m2-commonRight">
+        			<ul class="m2-comRiglist">
+            			<li class="m2-comRigli m2-comRigli-ewm"  style="border-top:1px solid #fff;">
+                			<i class="m2-comRigli-icon"></i>
+                			<span class="m2-comRigli-hov">关注<br>微信</span>
+                			<div class="m2-comRighide m2-comRighide-ewm"><i></i></div>
+            			</li>
+            			
+            			<li class="m2-comRigli m2-comRigli-tel">
+                			<i class="m2-comRigli-icon"></i>
+                			<span class="m2-comRigli-hov">联系<br>我们</span>
+                			<div class="m2-comRighide m2-comRighide-tel">
+                    			<div class="m2-comRighide-telSpace"></div>
+                    			<b class="m2-comRighide-telBorder"></b>
+                    			<div class="m2-comRigtel-lef">
+                        			<div class="m2-comRigtel-lefTop">
+                            			<input type="text" placeholder="请输入您的手机号"  id='phonenumber'>
+                        			</div>
+                        			<div class="m2-comRigtel-lefBot">
+                            			<input type="text" placeholder="验证码" id="ivrSecurityCode">
+                            				<img id="ivrSecurityCodeImg" onclick="getCode()" src="/Finances/statics/front/statics/home2/images/Index-VerifyCode.png" alt="验证码" title="点击更新验证码">
+                       	 			</div>
+                    			</div>
+                    			
+                    			<div class="m2-comRigtel-rig">
+                        			<span  onclick='callback()'>免费<br>拨打</span>
+                    			</div>
+                			</div>
+            			</li>
+            			
+            			<li class="m2-comRigli m2-comRigli-qq" style="position:relative;">
+                			<div id="BizQQWPA" style="width:50px;height:50px;position:absolute;top:0;left:0;z-index:150;"></div>	                
+                			<i class="m2-comRigli-icon" style="z-index:100;"></i>
+                			<span class="m2-comRigli-hov" style="z-index:100;">在线<br>客服</span>
+            			</li>
+            			
+			            <li class="m2-comRigli m2-comRigli-sug" style="border-bottom: 1px solid #fff;">
+			                <i class="m2-comRigli-icon"></i>
+			                <span class="m2-comRigli-hov"><a href="guide.html" style="color:#fff;">帮助<br>中心</a></span>
+			            </li>
+
+			            <li class="m2-comRigli m2-comRigli-top">
+			                <i class="m2-comRigli-icon"></i>
+			                <span class="m2-comRigli-hov">返回<br>顶部</span>
+			            </li>
+        			</ul>
+    			</div> 
+            </div>
+            
+			<!-- 右侧边栏end -->
+
+    	<!-- headerStart -->
+		<div class="m2-commonTop-con">
+		    <div class="m2-commonTop">
+		        <div class="m2-commonTop-left">
+		            <div class="m2-commonTop-tel"><i></i>4006&nbsp;-&nbsp;777&nbsp;-&nbsp;518</div>
+		            <div class="m2-commonTop-service" style="padding-left:0;"><span style="float:left;">客服：</span>
+		                <div style="float:left;display:inline-block;width:92px;height:22px;padding:6px 0 13px 0;"></div>
+		            </div>
+		            <div class="m2-commonEwm">
+		                <span class="m2-commonEwm-tit">关注我们：</span>
+		                <div class="m2-commonEwmwx">
+		                    <i class="m2-commonEwmicon"></i>
+		                    <div class="m2-commonEwmhid">
+		                        <em class="m2-commonEwmhid-arr"></em>
+		                        <em class="m2-commonEwmhid-arrBg"></em>
+		                        <b></b>
+		                        <span>扫一扫<br>关注爱钱帮订阅号</span>
+		                    </div>
+		                </div>
+		                <div class="m2-commonEwmwb">
+		                    <i class="m2-commonEwmicon" onclick='window.open("http://weibo.com/iqianbang")'></i>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="m2-commonTop-right">
+		            <div class="m2-commonTop-link">
+		                <ul>
+		                    <!-- 论坛导航栏全部关闭 -->
+		                    <!--<li class="m2-commonTop-btn" style="display: none" id="bbs"><a id="bbslogin" target="_blank">论坛</a></li>-->
+		                    <li class="m2-commonTop-btn"><a href="/Finances/toregirset" target="_blank">注册</a></li>
+		                    <li class="m2-commonTop-btn"><a href="/Finances/tologin" target="_blank" style="border-right:none;">登录</a></li>
+		                    <li class="m2-commonTop-btn"><a href="company_finance.html" id="cfpage" style="border-right:none;width: 50px;">企业理财</a></li>                </ul>
+		            </div>
+		            <div class="m2-commonTop-app" onclick='window.open("appdownload.html")' style="cursor:pointer;">
+		                <a href="" class="m2-commonTop-and"></a>
+		                <a href="" class="m2-commonTop-ios"></a>
+		                <span>app下载入口</span>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+
+		
+		<div class="m2-commonNav-con">
+		    <div class="m2-commonNav-box">
+		        <div class="m2-commonLogo">
+		            <a class="m2-comImg-logo" href="index.html">
+		                                <img src="/Finances/statics/front/statics/newcommon/images/log.png" title="亿信金融投资理财平台logo" alt="亿信金融标识">
+		            </a>
+		            <a class="m2-conImg-slogan" href="">
+		                <img src="/Finances/statics/front/statics/newcommon/images/m2-sloganHS.png" title="徽商银行投资理财托管" alt="">
+		            </a>
+		        </div>
+		        <div class="m2-commonNav">
+		             <!--  <li class="m2-commonNav-fir"><a href="http://huifu.iqianbang.com" target="_blank" >汇付版本</a></li>-->
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/index.jsp" id="onepage">首页</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/invest.jsp" id="twopage">我要投资</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/membermall.jsp" id="sevenpage">会员商城</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/user/usercenter.jsp" id="threepage">我的账户</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/guarantee.jsp" id="fourpage">安全保障</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/about.jsp" id="fivepage">关于我们</a></li>
+                <!-- <li class="m2-commonNav-fir"><a href="guide.html">新手引导</a></li> -->
+                <li class="m2-commonNav-fir"><a href="licaiwang_zhuantihuodong.html" id="sixpage">活动专区</a></li>
+		        </div>
+		    </div>
+		</div>
+    	
+    	<style>
+		    .vIVR{display:none}
+		</style>
+
+		<!-- headerEnd -->
+		    		
 		
 		<!-- bannerStart -->
 		<div class="m2-banner-box">
     		<div class="m2-indexLogincon">
         		<!-- 登录box start -->
         		<div class="mo2-indexLoginbox">
-        			<c:if test="${sessionScope.user.uid  != null}">
-		            	<!-- 已登录start -->
-		            	<div class="mo2-indLoged">				
-			            	<div class="mo2-indLoged-tit">
-			            		<span>你好！<span style="color:#f34940;">${sessionScope.user.uphone}</span>，欢迎来到爱钱帮</span>
-			            	</div>
-	               			<div class="mo2-indLog-userHead">
-	                    		<a href="/Finances/views/front/user/usercenter.jsp">
-	                    			<img src="/Finances/statics/front/statics/home2/images/user-head.png" title="欢迎来到爱钱帮投资理财平台" alt="">
-	                    		</a>
-	                		</div>
-	                		
-	                		<div class="mo2-indLogedmain">
-			                    <p class="mo2-indLoged-sma">今日赚取</p>
-			                    <p class="mo2-indLoged-big">&yen;<span>0.00</span></p>
-	                		</div>
-	                		
-			                <div class="mo2-indLog-btn" style="margin-top:18px;">
-			                    <a href="usercenter.html">我的账户<i></i></a>
-			                </div>
-	            		</div>
-	            		<!-- 已登录end -->
-            		</c:if>
+	            	<!-- 已登录start -->
+	            	<div class="mo2-indLoged" style="display: none">				<div class="mo2-indLoged-tit"><span>你好！<span style="color:#f34940;"></span>，欢迎来到爱钱帮</span></div>
+               			<div class="mo2-indLog-userHead">
+                    		<a href="usercenter.html"><img src="/Finances/statics/front/statics/home2/images/user-head.png" title="欢迎来到爱钱帮投资理财平台" alt=""></a>
+                		</div>
+                		
+                		<div class="mo2-indLogedmain">
+		                    <p class="mo2-indLoged-sma">今日赚取</p>
+		                    <p class="mo2-indLoged-big">&yen;<span>0.00</span></p>
+                		</div>
+                		
+		                <div class="mo2-indLog-btn" style="margin-top:18px;">
+		                    <a href="usercenter.html">我的账户<i></i></a>
+		                </div>
+            		</div>
+            	<!-- 已登录end -->
+            	<!-- 登录注册start -->
+            	<div class="mo2-indLogreg" >				
+            		<div class="mo2-indLogtab">
+		                <ul>
+		                    <li class="mo2-logTab-unsel mo2-indTab-reg">
+		                        <span>注册</span><b></b>
+		                    </li>
+		                    <li class="mo2-logTab-sel mo2-indTab-log">
+		                        <span>登录</span><b></b>
+		                    </li>
+		                </ul>
+            		</div>
             		
-            	<c:if test="${sessionScope.user.uid  == null}">
-            		<!-- 登录注册start -->
-	            	<div class="mo2-indLogreg">				
-	            		<div class="mo2-indLogtab">
-			                <ul>
-			                    <li class="mo2-logTab-unsel mo2-indTab-reg">
-			                        <span>注册</span><b></b>
-			                    </li>
-			                    <li class="mo2-logTab-sel mo2-indTab-log">
-			                        <span>登录</span><b></b>
-			                    </li>
-			                </ul>
-	            		</div>
-	            		
-	                <!-- 注册start -->
-	                	<div class="mo2-indRegbox" style="display:none;">
-		                    <div class="mo2-indLogitem" style="margin-bottom:6px;">
-		                        <i class="mo2-indLogicon-tel"></i><input class="mo2-indIpt-all" id="regTel" maxlength="11" type="text" placeholder="输入手机号码"><b class="mo2-indLogwar"><em class="mo2-indlogWar-arr"></em><u></u></b>
-		                    </div>
-		                    
-		                    <div class="mo2-indLogitem" style="margin-bottom:6px;">
-		                        <i class="mo2-indLogicon-psw"></i><input class="mo2-indIpt-all m2-ind-banPsw" id="pass" onkeyup="isNumber()" type="password" placeholder="6-20位数字与字母组合的密码"><b class="mo2-indLogwar"><em class="mo2-indlogWar-arr"></em><u></u></b>
-		                    </div>
-		                    
-		                    <div class="mo2-indLogitem-step1">
-		                        <div class="mo2-indLogreg-step1">
-		                            <i class="mo2-indLogicon-code"></i><input class="mo2-indIptcod-step1" id="vcode" type="text" placeholder="验证码">
-		                        </div>
-		                        <img class="mo2-indRegcode" src="/Finances/statics/front/statics/home2/images/home-register-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='/Finances/statics/front/statics/home2/images/home-register-VerifyCode.png?time='+Math.random();void(0);" id="reverifyCode"  alt="点击刷新验证码">
-		                        <span class="mo2-indReg-refresh">看不清？换一张</span>
-		                        <b class="mo2-indLogwar"><em class="mo2-indlogWar-arr"></em><u></u></b>
-		                    </div>
-		                    
-	                    <div class="mo2-indReg-btn" id="verifyregcode" onclick="verifycode();" style="margin-top:8px;">
-	                        <a class="mo2-indRegbtn-able" href="#">立即注册</a>
+                <!-- 注册start(轮播图注册) -->
+                	<div class="mo2-indRegbox" style="display:none;">
+	                    <div class="mo2-indLogitem" style="margin-bottom:6px;">
+	                        <i class="mo2-indLogicon-tel"></i>
+	                        <input class="mo2-indIpt-all" id="regTel" maxlength="11" type="text" placeholder="输入手机号码">
+	                        <b class="mo2-indLogwar">
+		                        <em class="mo2-indlogWar-arr">
+		                        </em><u></u>
+	                        </b>
 	                    </div>
 	                    
-	                    <div class="mo2-indRegagree">
-	                        <i class="mo2-indReg-sel"></i><span>我已阅读并同意</span><b>《爱钱帮注册服务协议》</b>
-	                    </div>
-	                </div>
-	                <!-- 注册end -->
-	                
-	                
-	                <!-- 注册step2 start -->
-	                <div class="mo2-indRegbox2"  style="display:none;" >
-	                    <div class="mo2-indReg2-con">
-	                        <ul>
-	                            <li><i class="mo2-indRegicon-step1"></i><span>为了确保您手机可用，请填写您收到的手机动态码。</span></li>
-	                            <li><i class="mo2-indRegicon-step2"></i><span>如收不到短信验证码，可点击下面的获取语音验证码。</span></li>
-	                        </ul>
+	                    <div class="mo2-indLogitem" style="margin-bottom:6px;">
+	                        <i class="mo2-indLogicon-psw"></i>
+	                        <input class="mo2-indIpt-all m2-ind-banPsw" id="pass" onkeyup="isNumber()" type="password" placeholder="6-20位数字与字母组合的密码">
+	                        <b class="mo2-indLogwar">
+	                       	 <em class="mo2-indlogWar-arr"></em><u></u>
+	                        </b>
 	                    </div>
 	                    
-	                    <div class="mo2-indLogitem">
-	                        <i class="mo2-indLogicon-code"></i><input class="mo2-indIpt-half" id="code" type="text" placeholder="验证码">
-	                        <span class="mo2-indRegtim mo2-regTin-able"><u>60秒后</u><span>获取手机验证码</span></span>
-	                        <b class="mo2-indLogwar" style="width:200px;"><em class="mo2-indlogWar-arr"></em><u>错误提示信息</u></b>
+	                    <div class="mo2-indLogitem-step1">
+	                        <div class="mo2-indLogreg-step1">
+	                            <i class="mo2-indLogicon-code"></i>
+	                            <input class="mo2-indIptcod-step1" id="vcode" type="text" placeholder="验证码">
+	                        </div>
+	                        	<img class="mo2-indRegcode" src="/Finances/statics/front/statics/home2/images/home-register-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='/Finances/statics/front/statics/home2/images/home-register-VerifyCode.png?time='+Math.random();void(0);" id="reverifyCode"  alt="点击刷新验证码">
+	                        	<span class="mo2-indReg-refresh">看不清？换一张</span>
+	                        <b class="mo2-indLogwar">
+	                        	<em class="mo2-indlogWar-arr"></em><u></u>
+	                        </b>
 	                    </div>
 	                    
-	                    <div class="mo2-indRegvoice">
-	                        <span class="mo2-indRegvoi-btn mo2-indRegvoi-able"><i></i>获取语音验证码</span>
-	                    </div>
-	                    
-	                    <div class="mo2-indReg-btn" onclick="registeraaa();" id="verifyregphone"  style="margin-top:8px;">
-	                        <a class="mo2-indRegbtn-able"  href="#">立即注册</a>
-	                    </div>
-	                </div>
-	                <!-- 注册step2 end -->
-	                
-	                
-	                <!-- 登录start -->
-	                <div class="mo2-indLogbox">
-	                    <div class="mo2-indLogitem mo2-indLogitem-use" style="margin-bottom:9px;">
-	                        <i class="mo2-indLogicon-use"></i><input class="mo2-indIpt-all" type="text" id="user_name" placeholder="用户名/手机号">
-	                        <b class="mo2-indLogwar" id="w_usernameMain"><em class="mo2-indlogWar-arr"></em><u id="r_usernameMain"></u></b>
-	                    </div>
-	                    
-	                    <div class="mo2-indLogitem mo2-indLogitem-psw" style="margin-bottom:9px;">
-	                        <i class="mo2-indLogicon-psw"></i><input class="mo2-indIpt-all m2-ind-banPsw" maxlength="20" id="pass_word" type="password" id="pass_word" placeholder="输入登录密码">
-	                        <b class="mo2-indLogwar" id="w_passwordMain"><em class="mo2-indlogWar-arr"></em><u id="r_passwordMain"></u></b>
-	                    </div>
-	                    
-	                    <div class="mo2-indLog-code" style="display:none;margin-bottom:8px;">
-	                        <div class="mo2-indLogcod-lef">
-	                            <i class="mo2-indLogicon-psw"></i>
-	                            <input type="text" id="vcode" placeholder="验证码"></div>
-	                        <div class="mo2-indLogcod-rig"><img src="/Finances/statics/front/statics/home2/images/Index-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='Index-VerifyCode.png?time='+Math.random();void(0);" alt="点击刷新验证码"></div>
-	                    </div>
-	                    
-	                    <div class="mo2-indLog-forget"><a href="forget.html">忘记密码?</a></div>
-	                    
-	                    <div class="mo2-indReg-btn" style="margin-top: 20px;">
-	                        <a class="mo2-indRegbtn-able" onclick="login();">登录</a>
-	                    </div>
-	                </div>
-	                <!-- 登录end -->
-	            </div>
-            	<!-- 登录注册end -->
-            </c:if>
+                    <div class="mo2-indReg-btn" id="verifyregcode" onclick="verifycode();" style="margin-top:8px;">
+                        <a class="mo2-indRegbtn-able" href="#">立即注册</a>
+                    </div>
+                    
+                    <div class="mo2-indRegagree">
+                        <i class="mo2-indReg-sel"></i><span>我已阅读并同意</span><b>《爱钱帮注册服务协议》</b>
+                    </div>
+                </div>
+                <!-- 注册end -->
+                
+                
+                <!-- 注册step2 start -->
+                <div class="mo2-indRegbox2"  style="display:none;" >
+                    <div class="mo2-indReg2-con">
+                        <ul>
+                            <li><i class="mo2-indRegicon-step1"></i><span>为了确保您手机可用，请填写您收到的手机动态码。</span></li>
+                            <li><i class="mo2-indRegicon-step2"></i><span>如收不到短信验证码，可点击下面的获取语音验证码。</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mo2-indLogitem">
+                        <i class="mo2-indLogicon-code"></i><input class="mo2-indIpt-half" id="code" type="text" placeholder="验证码">
+                        <span class="mo2-indRegtim mo2-regTin-able"><u>60秒后</u><span>获取手机验证码</span></span>
+                        <b class="mo2-indLogwar" style="width:200px;"><em class="mo2-indlogWar-arr"></em><u>错误提示信息</u></b>
+                    </div>
+                    
+                    <div class="mo2-indRegvoice">
+                        <span class="mo2-indRegvoi-btn mo2-indRegvoi-able"><i></i>获取语音验证码</span>
+                    </div>
+                    
+                    <div class="mo2-indReg-btn" onclick="registeraaa();" id="verifyregphone"  style="margin-top:8px;">
+                        <a class="mo2-indRegbtn-able"  href="#">立即注册</a>
+                    </div>
+                </div>
+                <!-- 注册step2 end -->
+                
+                
+                <!-- 登录start -->
+                <div class="mo2-indLogbox">
+                    <div class="mo2-indLogitem mo2-indLogitem-use" style="margin-bottom:9px;">
+                        <i class="mo2-indLogicon-use"></i><input class="mo2-indIpt-all" type="text" id="user_name" placeholder="用户名/手机号">
+                        <b class="mo2-indLogwar" id="w_usernameMain"><em class="mo2-indlogWar-arr"></em><u id="r_usernameMain"></u></b>
+                    </div>
+                    
+                    <div class="mo2-indLogitem mo2-indLogitem-psw" style="margin-bottom:9px;">
+                        <i class="mo2-indLogicon-psw"></i><input class="mo2-indIpt-all m2-ind-banPsw" maxlength="20" id="pass_word" type="password" id="pass_word" placeholder="输入登录密码">
+                        <b class="mo2-indLogwar" id="w_passwordMain"><em class="mo2-indlogWar-arr"></em><u id="r_passwordMain"></u></b>
+                    </div>
+                    
+                    <div class="mo2-indLog-code" style="display:none;margin-bottom:8px;">
+                        <div class="mo2-indLogcod-lef">
+                            <i class="mo2-indLogicon-psw"></i>
+                            <input type="text" id="vcodes" placeholder="验证码"></div>
+                        <div class="mo2-indLogcod-rig"><img src="/Finances/statics/front/statics/home2/images/Index-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='Index-VerifyCode.png?time='+Math.random();void(0);" alt="点击刷新验证码"></div>
+                    </div>
+                    
+                    <div class="mo2-indLog-forget"><a href="forget.html">忘记密码?</a></div>
+                    
+                    <div class="mo2-indReg-btn" style="margin-top: 20px;">
+                        <a class="mo2-indRegbtn-able" onclick="login();">登录</a>
+                    </div>
+                </div>
+                <!-- 登录end -->
+            </div>
+            <!-- 登录注册end -->
         </div>
         <!-- 登录box end -->
     </div>
     
-   	<!-- 轮播图 -->
+      <!-- 轮播图 -->
     <div class="m2-bd">
         <ul id="m2-ul">
 	        <c:forEach items="${indexpicList}" var="hi">
@@ -489,9 +658,14 @@
 	                </div>
 	            </li>
 		    </c:forEach>     
-	    </ul>          
+
+       
+	    </ul>
+	           
     </div>
     
+
+     
     <!-- 自动调整轮转图片的显示大小（宽度） -->
     <div class="m2-banner-btn">
         <a style="display:none;" class="m2-prev"  href="javascript:void(0);"></a>
@@ -499,13 +673,14 @@
         <div class="m2-hd"><div class="m2-hdBg"></div><ul></ul></div>
     </div>
     
-    <!-- 自动调整轮转图片的显示大小（宽度）-->
+        <!-- 自动调整轮转图片的显示大小（宽度）-->
     <script type="text/javascript">
         window.onresize=function(){
             var oM2Ul=document.getElementById('m2-ul');
             oM2Ul.style.width=document.documentElement.clientWidth+'px';
-        } 
+        }
     </script>
+    
 </div>
 
 	<!--新用户完成注册-->
@@ -526,48 +701,9 @@
 	</div>
 	<!--新用户完成注册-->
 
-	<script type="text/javascript">
-	
-	    $(function(){
-	        $("#user_name").focus();
-	        //隐藏弹窗(体验金弹框)
-	        $("#newregister-close").click(function(){
-	            $("#newregister").hide();
-	        });
-	    });
-	   
-	    $(document).ready(function () {
-	        $('.m2-banner-box').mouseenter(function () {
-	            $('.m2-prev,.m2-next').fadeIn(200);
-	        });
-	        $('.m2-banner-box').mouseleave(function () {
-	            $('.m2-prev,.m2-next').fadeOut(200);
-	        })
-	        //焦点图轮播
-	        $(".prev,.next").hover(function () {
-	            $(this).stop(true, false).fadeTo("show", 0.9);
-	        }, function () {
-	            $(this).stop(true, false).fadeTo("show", 0.4);
-	        });
-	        $(".m2-banner-box").slide({
-	            titCell: ".m2-hd ul",
-	            mainCell: ".m2-bd ul",
-	            effect: "fold",
-	            interTime: 3500,
-	            delayTime: 500,
-	            autoPlay: true,
-	            autoPage: true,
-	            trigger: "mouseover"
-	        });
-	    
-	    });
-	  </script>
 	<!-- bannerEnd -->
 	
-	<!-- 猴子图片下线  -->
-	<!--<div class="monkey">
-    		<div class="monkey-bac"></div>
-    	</div>-->
+
 	
 	<div class="m2-indexMain" style="width: 1000px;margin: 0 auto;position:relative;">
     	<div class="mo2-indexStep">
@@ -616,70 +752,7 @@
         	</ul>
     	</div>
     	
-    <!-- 20160419删除
-   <div class="mo2-indProlist">
-        <ul>
-            <li class="indProite">
-              <b class="indProline"></b>
-                <a class="indProite-link"  href="touzi_licai_chanpin.html" target="_blank" style="display:block">
-                    <p class="mo2-indPro-big">爱房贷</p>
-                    <p class="mo2-indPro-sma">短期理财新贵，银行审核</p>
-                </a>
-                <div class="mo2-indProbtn">
-                    <div class="mo2-indProbtn-lef"><a href="touzi_licai_chanpin.html" target="_blank">了解详情</a></div>
-                    <div class="mo2-indProbtn-rig">
-                        <span class="indProbtn-sma">9-</span>
-                        <span class="indProbtn-big">13</span>
-                        <span class="indProbtn-line">%<br>年化</span>
-                    </div>
-                </div>
-            </li>
-            <li class="indProite">
-              <b class="indProline"></b>
-                <a class="indProite-link" href="touzi_licai_chanpin.html" target="_blank" style="display:block">
-                    <p class="mo2-indPro-big">爱车贷</p>
-                    <p class="mo2-indPro-sma">超短期，高收益理财产品</p>
-                </a>
-                <div class="mo2-indProbtn">
-                    <div class="mo2-indProbtn-lef"><a href="touzi_licai_chanpin.html" target="_blank">了解详情</a></div>
-                    <div class="mo2-indProbtn-rig">
-                        <span class="indProbtn-sma">10-</span>
-                        <span class="indProbtn-big">12</span>
-                        <span class="indProbtn-line">%<br>年化</span>
-                    </div>
-                </div>
-            </li>
-            <li class="indProite">
-              <b class="indProline"></b>
-                <a class="indProite-link" href="touzi_licai_chanpin.html" target="_blank" style="display:block">
-                    <p class="mo2-indPro-big">企业直投</p>
-                    <p class="mo2-indPro-sma">长期投资，稳定收益</p>
-                </a>
-                <div class="mo2-indProbtn">
-                    <div class="mo2-indProbtn-lef"><a href="touzi_licai_chanpin.html" target="_blank">了解详情</a></div>
-                    <div class="mo2-indProbtn-rig">
-                        <span class="indProbtn-sma">12-</span>
-                        <span class="indProbtn-big">15</span>
-                        <span class="indProbtn-line">%<br>年化</span>
-                    </div>
-                </div>
-            </li>
-            <li class="indProite" style="border:none;">
-                <a class="indProite-link" href="/yulebang_licai_chanpin.html" target="_blank" style="display:block">
-                    <p class="mo2-indPro-big">娱乐帮</p>
-                    <p class="mo2-indPro-sma">浮动收益，附加权益</p>
-                </a>
-                <div class="mo2-indProbtn">
-                    <div class="mo2-indProbtn-lef"><a href="/yulebang_licai_chanpin.html" target="_blank">了解详情</a></div>
-                    <div class="mo2-indProbtn-rig">
-                        <span class="indProbtn-sma">8-</span>
-                        <span class="indProbtn-big">18.5</span>
-                        <span class="indProbtn-line">%<br>年化</span>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div> -->
+  
     
     <!-- 滚动公告start -->
     <div class="mo2-notice">
@@ -716,35 +789,7 @@
         </div>
     </div>
     
-    <script type="text/javascript">
-        function marquee(height,speed,delay){
-            var scrollT;
-            var pause = false;
-            var ScrollBox = document.getElementById("upRoll1");
-            if(document.getElementById("holder1").offsetHeight <= height) return;
-            var _tmp = ScrollBox.innerHTML.replace('holder1', 'holder')
-            ScrollBox.innerHTML += _tmp;
-            ScrollBox.onmouseover = function(){pause = true}
-            ScrollBox.onmouseout = function(){pause = false}
-            ScrollBox.scrollTop = 0;
-            function start(){
-                scrollT = setInterval(scrolling,speed);
-                if(!pause) ScrollBox.scrollTop += 2;
-            }
-            function scrolling(){
-                if(ScrollBox.scrollTop % height != 0){
-                    ScrollBox.scrollTop += 2;
-                    if(ScrollBox.scrollTop >= ScrollBox.scrollHeight/2) ScrollBox.scrollTop = 0;
-                }
-                else{
-                    clearInterval(scrollT);
-                    setTimeout(start,delay);
-                }
-            }
-            setTimeout(start,delay);
-        }
-        marquee(42,30,3000);
-    </script>
+
     <!-- 滚动公告end -->
     
     
@@ -804,63 +849,6 @@
             </div>
         </div>
 
-        <script type="text/javascript">
-            //倒计时
-            var timeLeftnewuser = 0;
-            var newuserstatus = Number('');
-            function timeDownwbq() {
-                if (timeLeftnewuser < 86400 & timeLeftnewuser > 0) {
-                    var minLeft1 = Number(parseInt(timeLeftnewuser % 3600 / 60 / 10)).toString();//分钟第一位
-                    var minLeft2 = Number(parseInt(timeLeftnewuser % 3600 / 60 % 10)).toString();//分钟数第二位
-                    var secLeft1 = Number(parseInt(timeLeftnewuser % 3600 % 60 / 10)).toString(); //秒第一位
-                    var secLeft2 = Number(parseInt(timeLeftnewuser % 10)).toString();//秒第二位
-                    $('.mo2-wbqDay').hide(); //隐藏天
-                    $('.mo2-wbqSec').show(); //显示秒
-                    $('.mo2-wbqHou').children('i').html(parseInt(timeLeftnewuser / 3600)); //小时
-                    $('.mo2-wbqMin').children('i').html(minLeft1 + minLeft2); //分钟
-                    $('.mo2-wbqSec').children('i').html(secLeft1 + secLeft2); //秒
-                    timeLeftnewuser--;
-                    setTimeout("timeDownwbq()", 1000); //设置1秒以后执行一次本函数
-                }
-                else if (timeLeftnewuser >= 86400) {
-                    var houLeft1 = Number(parseInt(timeLeftnewuser % 86400 / 3600 / 10)).toString();//小时第一位
-                    var houLeft2 = Number(parseInt(timeLeftnewuser % 86400 / 3600 % 10)).toString();//小时数第二位
-                    var minLeft1 = Number(parseInt(timeLeftnewuser % 86400 % 3600 / 60 / 10)).toString();//分钟第一位
-                    var minLeft2 = Number(parseInt(timeLeftnewuser % 86400 % 3600 / 60 % 10)).toString();//分钟数第二位
-                    $('.mo2-wbqDay').show(); //隐藏天
-                    $('.mo2-wbqSec').hide(); //显示秒
-                    $('.mo2-wbqDay').children('i').html(parseInt(timeLeftnewuser / 86400)); //天
-                    $('.mo2-wbqHou').children('i').html(houLeft1 + houLeft2); //小时
-                    $('.mo2-wbqMin').children('i').html(minLeft1 + minLeft2); //分钟
-                    timeLeftnewuser--;
-                    setTimeout("timeDownwbq()", 1000); //设置1秒以后执行一次本函数
-                }
-                else if (timeLeftnewuser == 0) {
-                    $('.mo2-wbqDay').hide(); //隐藏天
-                    $('.mo2-wbqSec').show(); //显示秒
-                    $('.mo2-wbqHou').children('i').html(0); //小时
-                    $('.mo2-wbqMin').children('i').html('00'); //分钟
-                    $('.mo2-wbqSec').children('i').html('00'); //秒
-
-                    $('.mo2-indWbqtim').hide();
-                    $('.mo2-wbqProc').show();
-                    if (newuserstatus == 1) {
-                        $('.mo2-wbqBtn a').html('已满额');
-                        $('.mo2-wbqBtn a').addClass('mo2-btnGery');
-                        $('.mo2-wbqProcess b u').css('color','#ccc');
-                        $('.mo2-wbqProcess b i').css('background-color','#ccc');
-                        $('.mo2-wbqProcess b u em').css('background','url(statics/home2/images/m2-indexIcon.png) no-repeat -288px -30px');
-                    } else {
-                        $('.mo2-wbqBtn a').html('立即投资');
-                        $('.mo2-wbqBtn a').removeClass('mo2-btnGery');
-                    }
-                }
-
-            }
-
-            timeDownwbq();
-
-        </script>
         <!-- 新手项目end -->
         
         
@@ -921,71 +909,6 @@
         </div>
     </div>
     
-    <script type="text/javascript">
-        //倒计时
-        var timeLeftpri = 0;
-        var pristatus = Number('3');
-        function timeDownpri() {
-            if (timeLeftpri < 86400 & timeLeftpri > 0) {
-                var minLeft1 = Number(parseInt(timeLeftpri % 3600 / 60 / 10)).toString();//分钟第一位
-                var minLeft2 = Number(parseInt(timeLeftpri % 3600 / 60 % 10)).toString();//分钟数第二位
-                var secLeft1 = Number(parseInt(timeLeftpri % 3600 % 60 / 10)).toString(); //秒第一位
-                var secLeft2 = Number(parseInt(timeLeftpri % 10)).toString();//秒第二位
-                $('.mo2-priDay').hide(); //隐藏天
-                $('.mo2-priSec').show(); //显示秒
-                $('.mo2-priHou').children('i').html(parseInt(timeLeftpri / 3600)); //小时
-                $('.mo2-priMin').children('i').html(minLeft1 + minLeft2); //分钟
-                $('.mo2-priSec').children('i').html(secLeft1 + secLeft2); //秒
-                timeLeftpri--;
-                setTimeout("timeDownpri()", 1000); //设置1秒以后执行一次本函数
-            }
-            else if (timeLeftpri >= 86400) {
-                var houLeft1 = Number(parseInt(timeLeftpri % 86400 / 3600 / 10)).toString();//小时第一位
-                var houLeft2 = Number(parseInt(timeLeftpri % 86400 / 3600 % 10)).toString();//小时数第二位
-                var minLeft1 = Number(parseInt(timeLeftpri % 86400 % 3600 / 60 / 10)).toString();//分钟第一位
-                var minLeft2 = Number(parseInt(timeLeftpri % 86400 % 3600 / 60 % 10)).toString();//分钟数第二位
-                $('.mo2-priDay').show(); //隐藏天
-                $('.mo2-priSec').hide(); //显示秒
-                $('.mo2-priDay').children('i').html(parseInt(timeLeftpri / 86400)); //天
-                $('.mo2-priHou').children('i').html(houLeft1 + houLeft2); //小时
-                $('.mo2-priMin').children('i').html(minLeft1 + minLeft2); //分钟
-                timeLeftpri--;
-                setTimeout("timeDownpri()", 1000); //设置1秒以后执行一次本函数
-            }
-            else if (timeLeftpri == 0) {
-                $('.mo2-priDay').hide(); //隐藏天
-                $('.mo2-priSec').show(); //显示秒
-                $('.mo2-priHou').children('i').html(0); //小时
-                $('.mo2-priMin').children('i').html('00'); //分钟
-                $('.mo2-priSec').children('i').html('00'); //秒
-
-                $('.mo2-indPritim').hide();
-                $('.mo2-priProc').show();
-                if (pristatus == 2||pristatus == 7||pristatus == 11) {
-                    $('.mo2-priBtn a').html('已满额');
-                    $('.mo2-priBtn a').addClass('mo2-btnGery');
-                    $('.mo2-priProcess b u').css('color','#ccc');
-                    $('.mo2-priProcess b i').css('background-color','#ccc');
-                    $('.mo2-priProcess b u em').css('background','url(statics/home2/images/m2-indexIcon.png) no-repeat -288px -30px');
-                } else {
-                    $('.mo2-priBtn a').html('立即投资');
-                    $('.mo2-priBtn a').removeClass('mo2-btnGery');
-                }
-            }
-
-        }
-
-        timeDownpri();
-
-
-        //活动加息
-        $(".huodongjiaxi").mouseover(function(){
-            $(this).parent().find(".jiaxishow").show();
-        })
-        $(".huodongjiaxi").mouseout(function(){
-            $(this).parent().find(".jiaxishow").hide();
-        })
-    </script>
     <!-- 私人定期end -->
     
     
@@ -1489,48 +1412,7 @@
         </div>
     </div>
     
-    <script type="text/javascript">
-        $(function () {
-            // 爱车贷滑入效果
-            $('.mo2-indCarlist').mouseenter(function () {
-                $(this).children('.mo2-indCartop').children('.mo2-indCartop-rig').children('ul').stop().animate({top: "-36px"}, 250);
-            });
-            $('.mo2-indCarlist').mouseleave(function () {
-                $(this).children('.mo2-indCartop').children('.mo2-indCartop-rig').children('ul').stop().animate({top: "0px"}, 250);
-            });
-        });
-    </script>
-    
-    <script type="text/javascript">
-        $(function () {
-            carListpage();
-        });
-        function carListpage() {
-            var ulLeft = 0;
-            var maxLeft = ($('.mo2-indCarlist').length - 3) * 341;
-            $('.mo2-indCarlist-next').click(function () {
-                if (ulLeft > -maxLeft) {
-                    ulLeft -= 341;
-                    $('.mo2-indCar').animate({left: ulLeft}, 400);
-                }
-            });
 
-            $('.mo2-indCarlist-prev').click(function () {
-                if (ulLeft < 0) {
-                    ulLeft += 341;
-                    $('.mo2-indCar').animate({left: ulLeft}, 400);
-                }
-            });
-        }
-
-        //活动加息
-        $(".huodongjiaxi").mouseover(function(){
-            $(this).parent().find(".jiaxishow").show();
-        })
-        $(".huodongjiaxi").mouseout(function(){
-            $(this).parent().find(".jiaxishow").hide();
-        })
-    </script>
     <!-- 爱车贷end -->
     
     
@@ -1786,49 +1668,10 @@
         </div>
     </div>
     
-    <script type="text/javascript">
-        $(function(){
-            // 爱房贷滑入效果
-            $('.mo2-indHoulist').mouseenter(function(){
-                $(this).children('.mo2-indHoutop').children('.mo2-indHoutop-rig').children('ul').stop().animate({top:"-36px"},250);
-            });
-            $('.mo2-indHoulist').mouseleave(function(){
-                $(this).children('.mo2-indHoutop').children('.mo2-indHoutop-rig').children('ul').stop().animate({top:"0px"},250);
-            });
-        });
-    </script>
+  
     
     
-    <script type="text/javascript">
-        $(function(){
-            houListpage();
-        });
-        function houListpage(){
-            var ulLeft=0;
-            var maxLeft=($('.mo2-indHoulist').length-3)*341;
-            $('.mo2-indHoulist-next').click(function(){
-                if (ulLeft>-maxLeft) {
-                    ulLeft-=341;
-                    $('.mo2-indHou').animate({left:ulLeft},400);
-                }
-            });
-
-            $('.mo2-indHoulist-prev').click(function(){
-                if (ulLeft<0) {
-                    ulLeft+=341;
-                    $('.mo2-indHou').animate({left:ulLeft},400);
-                }
-            });
-        }
-
-        //活动加息
-        $(".huodongjiaxi").mouseover(function(){
-            $(this).parent().find(".jiaxishow").show();
-        })
-        $(".huodongjiaxi").mouseout(function(){
-            $(this).parent().find(".jiaxishow").hide();
-        })
-    </script>
+ 
     <!-- 爱房贷end -->
     
     
@@ -2084,49 +1927,7 @@
           </ul>
         </div>
     </div>
-    
-    <script type="text/javascript">
-        $(function(){
-            // 消费金融滑入效果
-            $('.mo2-indFinlist').mouseenter(function(){
-                $(this).children('.mo2-indFintop').children('.mo2-indFintop-rig').children('ul').stop().animate({top:"-36px"},250);
-            });
-            $('.mo2-indFinlist').mouseleave(function(){
-                $(this).children('.mo2-indFintop').children('.mo2-indFintop-rig').children('ul').stop().animate({top:"0px"},250);
-            });
-        });
-    </script>
-    
-    <script type="text/javascript">
-        $(function(){
-            finListpage();
-        });
-        function finListpage(){
-            var ulLeft=0;
-            var maxLeft=($('.mo2-indFinlist').length-3)*341;
-            $('.mo2-indFinlist-next').click(function(){
-                if (ulLeft>-maxLeft) {
-                    ulLeft-=341;
-                    $('.mo2-indFin').animate({left:ulLeft},400);
-                }
-            });
 
-            $('.mo2-indFinlist-prev').click(function(){
-                if (ulLeft<0) {
-                    ulLeft+=341;
-                    $('.mo2-indFin').animate({left:ulLeft},400);
-                }
-            });
-        }
-
-        //活动加息提示
-        $(".huodongjiaxi").mouseover(function(){
-            $(this).parent().find(".jiaxishow").show();
-        })
-        $(".huodongjiaxi").mouseout(function(){
-            $(this).parent().find(".jiaxishow").hide();
-        })
-    </script>
     <!-- 消费金融end -->
     
     <div class="m2-indexStepbox">
@@ -2136,18 +1937,7 @@
                     <i></i>
                     <b></b>
                     <span>项目直投</span>
-                </li><!--
-                <li class="m2-indexStep-unsel"  >
-                    <i></i>
-                    <b></b>
-                    <span>爱小贷</span>
-                </li>
-                <li class="m2-indexStep-unsel">
-                    <i></i>
-                    <b></b>
-                    <span>海鲜帮</span>
-                </li>
-                --><li class="m2-indexStep-unsel">
+                </li><li class="m2-indexStep-unsel">
                 <i></i>
                 <span>债权转让</span>
             </li>
@@ -2156,77 +1946,10 @@
         
         <div class="m2-indexStepimg-box">
             <ul class="m2-indexStepimg-list">
-                <!--     <li style="display:block;" onclick="window.open('/touzi_licai_chanpin.html')">
-                    <img src="statics/home2/images/m2-invest.jpg" alt="" class="m2-indexStepimg">
-                    <div class="m2-indStep-maskBg"></div>
-                    <div class="m2-indStep-mask">
-                        <span>产品一特点：1.把握朝阳行业，服务优质企业，践行普惠金融。
-                            2.最高15%年化收益自由选，总有适合的那一款。
-                            3.长短搭配更合理，轻松理财赚收益。</span>
-                        <a href="touzi_licai_chanpin.html" target="_blank">更多</a>
-                    </div>
-                </li> -->
-                <!--    <li style="display:none;" onclick="window.open('/aiyouxuan_licai_chanpin.html')">
-                    <img src="statics/home2/images/m2-iyouxuan.jpg" alt="" class="m2-indexStepimg">
-                    <div class="m2-indStep-maskBg"></div>
-                    <div class="m2-indStep-mask">
-                        <span>产品特点：1.深度调研，严格渠道准入，筛选优质合作方。
-                            2.优中选优，精挑优质债权个案。
-                            3.掐头去尾，锁定优质债权中段收益，由初始债权方承诺无限回购。</span>
-                        <a href="/aiyouxuan_licai_chanpin.html" target="_blank">更多</a>
-                    </div>
-                </li> -->
-                <!--                <li style="display:none;" onclick="window.open('/duanqi_licai_chanpin.html')">
-                                    <img src="statics/home2/images/m2-car.jpg" alt="" class="m2-indexStepimg">
-                                    <div class="m2-indStep-maskBg"></div>
-                                    <div class="m2-indStep-mask">
-                                        <span>产品特点：1.汽车质押贷款爱钱帮汽车金融垂直领域的又一新作。
-                                            2.短期更灵活，1至3月期限丰富。
-                                            3.押车押手续，车贷风控高级别。</span>
-                                        <a href="touzi_licai_chanpin.html">更多</a>
-                                    </div>
-                                </li>-->
-                <!--  <li style="display:none;" onclick="window.open('/haixiangbang_licai_chanpin.html')">
-                    <img src="statics/home2/images/m2-seafood.jpg" alt="" class="m2-indexStepimg">
-                    <div class="m2-indStep-maskBg"></div>
-                    <div class="m2-indStep-mask">
-                        <span>产品特点：1.围绕核心企业，深耕海鲜商圈，共拓新发展。
-                            2.小额、短期、周期性。
-                            3.存货质押、动态监管、处置灵活。</span>
-                        <a href="/haixiangbang_licai_chanpin.html" target="_blank">更多</a>
-                    </div>
-                </li> -->
-                <!--   <li style="display:none;" onclick="window.open('/wangshang_licai_chanpin.html')">
-                    <img src="statics/home2/images/m2-transfer.jpg" alt="" class="m2-indexStepimg">
-                    <div class="m2-indStep-maskBg"></div>
-                    <div class="m2-indStep-mask">
-                        <span>产品特点：1.平台债权自由转，临时用钱不用烦。
-                            2.投资三天即可转，资金流动不受限。
-                            3.转多转少皆相宜，收益流动两不误。</span>
-                        <a href="/wangshang_licai_chanpin.html" target="_blank">更多</a>
-                    </div>
-                </li> -->
-                
             </ul>
         </div>
         
-        <!--  <div class="m2-indexStepfoot">
-            <ul>
-              <li style="width:200px;">
-                    <span id="statistics-title"><i class="m2-indexStepfoot-icon"></i>项目直投统计数据</span>
-                </li>
-                <li style="width:200px;">
-                    <span>累计上线<b id="statistics-bnum"></b>个项目</span>
-                </li>
-                <li style="width:290px;">
-                    <span>累计<b id="statistics-pnum"></b>笔投资</span>
-                </li>
-                <li style="width:290px;">
-                    <span>产生<b id="statistics-inum"></b>元收益</span>
-                </li>
-                 
-            </ul>
-        </div>-->
+  
     </div>
 
     <div class="m2-indexItembox">
@@ -5806,25 +5529,7 @@
                 <div class="m2-indItembtn">
                     <a class="m2-indItembtn-ed" href="chanpin.html#-mYlELzlFYaWw8TQ68g.html" target="_blank">还款中</a>
                 </div>
-            </li>                <script>
-                var transfer_id = [];
-                var transfer_left = [];
-                var sale_price = [];
-                var invest_limit = [];
-                var transfer_paylist = [];
-                var transfer_income = [];
-                var transfer_borrowname = [];
-                var transfer_money = [];
-                var transfer_num = [];
-
-                //                    transfer_id[0] = Number("");
-                //                    transfer_left[0] = Number("0");
-                //                    sale_price[0] = Number("");
-                //                    invest_limit[0] = Number("");
-                //                    transfer_paylist[0] = eval('()');
-                //                    transfer_income[0] = Number("");
-                //                    transfer_borrowname[0] = '';
-            </script>
+            </li> 
                 <li class="trans m2-indexItemtra m2-indexItemtra-ing">
                     <h3 class="m2-indexItem-head"><a href="chanpin.html#nY9OLTtDZ!ew8TAz8Q.html" target="_blank" title="娱乐帮-电视剧《惊天岳雷》投资项目-2">娱乐帮-电视剧《惊天岳雷》投资项目-2</a></h3>
                     <div class="m2-indItemprogress">
@@ -5861,19 +5566,7 @@
                     <div class="m2-indTrabtn">
                         <i class="m2-indTrabtn-fin"></i>
                     </div>                    </li>
-                <script>
-                    transfer_id[Number("1")] = Number("12204");
-                    transfer_left[Number("1")] = Number("800");
-                    sale_price[Number("1")] = Number("101.13");
-                    invest_limit[Number("1")] = Number("100");
-
-                    transfer_paylist[Number("1")] = eval('([{"day":351,"interest":12.02,"pay_date":"2017-08-22"}])');
-                    transfer_income[Number("1")] = Number("10.89");
-                    transfer_borrowname[Number("1")] = '娱乐帮-电视剧《惊天岳雷》投资项目-2';
-                    transfer_money[Number("1")] = Number(0);
-                    transfer_num[Number("1")] = Number(0);
-                
-                </script><li class="trans m2-indexItemtra m2-indexItemtra-ing">
+               <li class="trans m2-indexItemtra m2-indexItemtra-ing">
                 <h3 class="m2-indexItem-head"><a href="chanpin.html#ztwbJGxEbqW49zk9.html" target="_blank" title="易安家长租公寓项目20160801-1">易安家长租公寓项目20160801-1</a></h3>
                 <div class="m2-indItemprogress">
                     <span class="m2-indItemprogress-tit" style="margin-right:10px;">承接中：</span>
@@ -5909,19 +5602,7 @@
                 <div class="m2-indTrabtn">
                     <i class="m2-indTrabtn-fin"></i>
                 </div>                    </li>
-                <script>
-                    transfer_id[Number("2")] = Number("12163");
-                    transfer_left[Number("2")] = Number("100");
-                    sale_price[Number("2")] = Number("100.78");
-                    invest_limit[Number("2")] = Number("100");
 
-                    transfer_paylist[Number("2")] = eval('([{"day":27,"interest":0.95,"pay_date":"2016-10-02"},{"day":"31","interest":1.02,"pay_date":"2016-11-02"},{"day":"30","interest":0.99,"pay_date":"2016-12-02"},{"day":"31","interest":1.02,"pay_date":"2017-01-02"},{"day":"31","interest":1.02,"pay_date":"2017-02-02"},{"day":"28","interest":0.92,"pay_date":"2017-03-02"},{"day":"31","interest":1.02,"pay_date":"2017-04-02"},{"day":"30","interest":0.99,"pay_date":"2017-05-02"},{"day":"31","interest":1.02,"pay_date":"2017-06-02"},{"day":"30","interest":0.99,"pay_date":"2017-07-02"},{"day":"31","interest":1.09,"pay_date":"2017-08-02"}])');
-                    transfer_income[Number("2")] = Number("10.25");
-                    transfer_borrowname[Number("2")] = '易安家长租公寓项目20160801-1';
-                    transfer_money[Number("2")] = Number(0);
-                    transfer_num[Number("2")] = Number(0);
-                </script>
-                
                 <li class="trans m2-indexItemtra m2-indexItemtra-ing">
                 <h3 class="m2-indexItem-head"><a href="chanpin.html#kIsbJTkQMqe58TY4.html" target="_blank" title="娱乐帮-电视剧《海上嫁女记》投资项目-1">娱乐帮-电视剧《海上嫁女记》投资项目-1</a></h3>
                 <div class="m2-indItemprogress">
@@ -5957,18 +5638,6 @@
                 <div class="m2-indTrabtn">
                     <i class="m2-indTrabtn-fin"></i>
                 </div>                    </li>
-                <script>
-                    transfer_id[Number("3")] = Number("12175");
-                    transfer_left[Number("3")] = Number("34900");
-                    sale_price[Number("3")] = Number("102.12");
-                    invest_limit[Number("3")] = Number("100");
-
-                    transfer_paylist[Number("3")] = eval('([{"day":296,"interest":10.96,"pay_date":"2017-06-28"}])');
-                    transfer_income[Number("3")] = Number("8.84");
-                    transfer_borrowname[Number("3")] = '娱乐帮-电视剧《海上嫁女记》投资项目-1';
-                    transfer_money[Number("3")] = Number(0);
-                    transfer_num[Number("3")] = Number(0);
-                </script>
                 
                 <li class="trans m2-indexItemtra m2-indexItemtra-ing">
                 <h3 class="m2-indexItem-head"><a href="chanpin.html#n9VEfzhBY!mw8TA88A.html" target="_blank" title="娱乐帮-电视剧《惊天岳雷》投资项目-1">娱乐帮-电视剧《惊天岳雷》投资项目-1</a></h3>
@@ -6006,18 +5675,7 @@
                 <div class="m2-indTrabtn">
                     <i class="m2-indTrabtn-fin"></i>
                 </div>                    </li>
-                <script>
-                    transfer_id[Number("4")] = Number("12203");
-                    transfer_left[Number("4")] = Number("500");
-                    sale_price[Number("4")] = Number("101.6");
-                    invest_limit[Number("4")] = Number("100");
 
-                    transfer_paylist[Number("4")] = eval('([{"day":351,"interest":12.02,"pay_date":"2017-08-22"}])');
-                    transfer_income[Number("4")] = Number("10.42");
-                    transfer_borrowname[Number("4")] = '娱乐帮-电视剧《惊天岳雷》投资项目-1';
-                    transfer_money[Number("4")] = Number(0);
-                    transfer_num[Number("4")] = Number(0);
-                </script>
                 
                 <li class="trans m2-indexItemtra m2-indexItemtra-ing">
                 <h3 class="m2-indexItem-head"><a href="chanpin.html#yttLJD0QZPWw8TQ+9Q.html" target="_blank" title="致胜地产长租公寓项目—装修">致胜地产长租公寓项目—装修</a></h3>
@@ -6055,86 +5713,13 @@
                 <div class="m2-indTrabtn">
                     <i class="m2-indTrabtn-fin"></i>
                 </div>                    </li>
-                <script>
-                    transfer_id[Number("5")] = Number("12219");
-                    transfer_left[Number("5")] = Number("20000");
-                    sale_price[Number("5")] = Number("101.25");
-                    invest_limit[Number("5")] = Number("100");
-
-                    transfer_paylist[Number("5")] = eval('([{"day":26,"interest":0.85,"pay_date":"2016-10-01"},{"day":"31","interest":1.02,"pay_date":"2016-11-01"},{"day":"30","interest":0.99,"pay_date":"2016-12-01"},{"day":"31","interest":1.02,"pay_date":"2017-01-01"},{"day":"31","interest":1.02,"pay_date":"2017-02-01"},{"day":"28","interest":0.92,"pay_date":"2017-03-01"},{"day":"31","interest":1.02,"pay_date":"2017-04-01"},{"day":"30","interest":0.99,"pay_date":"2017-05-01"},{"day":"31","interest":1.02,"pay_date":"2017-06-01"},{"day":"30","interest":0.99,"pay_date":"2017-07-01"},{"day":"31","interest":1.02,"pay_date":"2017-08-01"},{"day":"31","interest":1.02,"pay_date":"2017-09-01"}])');
-                    transfer_income[Number("5")] = Number("10.63");
-                    transfer_borrowname[Number("5")] = '致胜地产长租公寓项目—装修';
-                    transfer_money[Number("5")] = Number(0);
-                    transfer_num[Number("5")] = Number(0);
-                </script>
+             
             </ul>
         </div>
     </div>
 
     <div class="m2-indexRankbox">
-        <!--  <div class="m2-indRanktoa m2-indRankitem">
-            <h3><i></i>投资总额排行榜&nbsp;&nbsp;<span>TOP10</span><a href="/fengyunbang.html" target="_blank">更多&raquo;</a></h3>
-            <ul>
-                <li class="m2-indRanklist-tit">
-                    <span class="m2-indRankmsg-rank">排名</span>
-                    <span class="m2-indRankmsg-user">用户名</span>
-                    <span class="m2-indRankmsg-num">投资金额(元) </span>
-                    <span class="m2-indRankmsg-tim">投资收益</span>
-                </li>
-                <li class="m2-indRanklist-con">
-                        <span class="m2-indRankmsg-rank">1</span>
-                        <span class="m2-indRankmsg-user">yyy****606</span>
-                        <span class="m2-indRankmsg-num">11066950.48</span>
-                        <span class="m2-indRankmsg-tim">560921.23</span> -->
-        <!--                            <a href="guide-ranking" target="_blank">
-                                                            <b class="m2-indRankIocn5"></b>                        </a>
-                        </span>-->
-        <!--               </li><li class="m2-indRanklist-con">
-                        <span class="m2-indRankmsg-rank">2</span>
-                        <span class="m2-indRankmsg-user">zhy****007</span>
-                        <span class="m2-indRankmsg-num">6921283.71</span>
-                        <span class="m2-indRankmsg-tim">636880.19</span> -->
-        <!--                            <a href="guide-ranking" target="_blank">
-                                                            <b class="m2-indRankIocn5"></b>                        </a>
-                        </span>-->
-        <!--               </li><li class="m2-indRanklist-con">
-                        <span class="m2-indRankmsg-rank">3</span>
-                        <span class="m2-indRankmsg-user">bti****oyu</span>
-                        <span class="m2-indRankmsg-num">6780540.59</span>
-                        <span class="m2-indRankmsg-tim">245808.41</span> -->
-        <!--                            <a href="guide-ranking" target="_blank">
-                            <b class="m2-indRankIocn1"></b>
-                                                        </a>
-                        </span>-->
-        <!--               </li>            </ul>
-        </div> -->
-        <!--    <div class="m2-indRanknew m2-indRankitem">
-            <h3><i></i>一周新人王&nbsp;&nbsp;<span>TOP10</span><a href="/fengyunbang.html" target="_blank">更多&raquo;</a></h3>
-            <ul>
-                <li class="m2-indRanklist-tit">
-                    <span class="m2-indRankmsg-rank">排名</span>
-                    <span class="m2-indRankmsg-user">用户名</span>
-                    <span class="m2-indRankmsg-num">投资金额(元) </span>
-                    <span class="m2-indRankmsg-tim">注册时间</span>
-                </li>
-                <li class="m2-indRanklist-con">
-                        <span class="m2-indRankmsg-rank">1</span>
-                        <span class="m2-indRankmsg-user">iqb****881</span>
-                        <span class="m2-indRankmsg-num">200000.00</span>
-                        <span class="m2-indRankmsg-tim">2015-09-09</span>
-                    </li><li class="m2-indRanklist-con">
-                        <span class="m2-indRankmsg-rank">2</span>
-                        <span class="m2-indRankmsg-user">iqb****197</span>
-                        <span class="m2-indRankmsg-num">100000.00</span>
-                        <span class="m2-indRankmsg-tim">2015-09-11</span>
-                    </li><li class="m2-indRanklist-con">
-                        <span class="m2-indRankmsg-rank">3</span>
-                        <span class="m2-indRankmsg-user">iqb****788</span>
-                        <span class="m2-indRankmsg-num">100000.00</span>
-                        <span class="m2-indRankmsg-tim">2015-09-10</span>
-                    </li>            </ul>
-        </div> -->
-    </div>
+        </div>
 
     <div class="m2-indexNewstable">
         <div class="m2-indNewstab">
@@ -6361,721 +5946,15 @@
     </div>
 </div>
 	
-	<script type="text/javascript">
-	//banner切换
-    var ulLeft;
-    $(function () {
-        //项目列表切换
-        $('.m2-indexSteplist li').click(function () {
-            var stepIndex = 0;
-            if ($(this).hasClass('m2-indexStep-unsel')) {
-                stepIndex = $(this).index();
-                $(this).addClass('m2-indexStep-sel').removeClass('m2-indexStep-unsel');
-                $(this).siblings('.m2-indexStep-sel').addClass('m2-indexStep-unsel').removeClass('m2-indexStep-sel');
-                $('.m2-indexStepimg-list li').eq(stepIndex).show();
-                $('.m2-indexStepimg-list li').eq(stepIndex).siblings().hide();
-                if (stepIndex == 0) {
-                    //直投
-                    borrowcate(0);
-                    $('#statistics-title').html('<i class="m2-indexStepfoot-icon"></i>项目直投统计数据');
-                } /*else if (stepIndex == 1) {
-                 //爱小贷
-                 borrowcate(4);
-                 $('.m2-indexItem').hide();
-                 $('.borrow-cate-4').show();
-                 $('#statistics-title').html('<i class="m2-indexStepfoot-icon"></i>爱小贷统计数据');
-                 } else if (stepIndex == 2) {
-                 //海鲜帮
-                 borrowcate(2);
-                 $('.m2-indexItem').hide();
-                 $('.borrow-cate-2').show();
-                 $('#statistics-title').html('<i class="m2-indexStepfoot-icon"></i>海鲜帮统计数据');
-                 }*/ else if (stepIndex == 1) {
-                    //债转
-                    transcate();
-                    $('.m2-indexStepfoot').hide();
-                }
-                ulLeft = 0;
-                $('.m2-indexItemlist').animate({left: ulLeft}, 400);
-            }
-        });
-        //项目分类显示
-        borrowcate(0);
-        function borrowcate(cate) {
-            $('.trans').hide();
-            $('.borrow').show();
-            $('.m2-indexStepfoot').show();
-            if ($('#statistics-' + cate).data('bnum') > 0) {
-                $('#statistics-bnum').text($('#statistics-' + cate).data('bnum'));
-                $('#statistics-pnum').text($('#statistics-' + cate).data('pnum'));
-                $('#statistics-inum').text($('#statistics-' + cate).data('inum'));
-            } else {
-                $('#statistics-bnum').text(0);
-                $('#statistics-pnum').text(0);
-                $('#statistics-inum').text(0);
-            }
-        }
-        //显示债转
-        function transcate() {
-            $('.trans').show();
-            $('.borrow').hide();
-        }
-        //项目列表翻页
-        itemListpage();
-        //视频列表翻页
-        vodListpage();
-        //新闻列表tab切换
-        $('.m2-indNewstablist li').click(function () {
-            if ($(this).hasClass('m2-indNewtab-unsel')) {
-                $(this).addClass('m2-indNewtab-sel').removeClass('m2-indNewtab-unsel');
-                $(this).siblings('.m2-indNewtab-sel').addClass('m2-indNewtab-unsel').removeClass('m2-indNewtab-sel');
-            }
-        });
-        // 新闻列表tab切换下方展示
-        $('.m2-indNewstablist li').click(function () {
-            if ($(this).index() == 0) {
-                //媒体报道
-                $('.newslist').hide();
-                $('#newslist1').show();
-                $('#article-more').prop('href', 'meitibaodao_aiqianbang_licaiwang/');
-            } else if ($(this).index() == 1) {
-                //行业动态
-                $('.newslist').hide();
-                $('#newslist2').show();
-                $('#article-more').prop('href', 'touzi_licaiwang_xinwendongtai/');
-            } else if ($(this).index() == 2) {
-                //网站公告
-                $('.newslist').hide();
-                $('#newslist3').show();
-                $('#article-more').prop('href', 'aiqianbang_licaiwang_gonggao/');
-            } else if ($(this).index() == 3) {
-                //网站公告
-                $('.newslist').hide();
-                $('#newslist4').show();
-                $('#article-more').prop('href', 'aiqianbang_touzi_licai_chanpin_gonggao/');
-            } else if ($(this).index() == 4) {
-                //还款公告
-                $('.newslist').hide();
-                $('#newslist5').show();
-                $('#article-more').prop('href', 'aiqianbang_touzi_licai_chanpin_jieshu_gonggao/');
-            } else if ($(this).index() == 5) {
-                //活动公告=爱钱帮动态
-                $('.newslist').hide();
-                $('#newslist6').show();
-                $('#article-more').prop('href', 'aiqianbang_licaiwang_xinwendongtai/');
-            } else if ($(this).index() == 6) {
-                //活动公告=爱钱帮动态
-                $('.newslist').hide();
-                $('#newslist7').show();
-                $('#article-more').prop('href', 'touzi_licaijianyi/');
-            }
-        });
-        
-        // 视频播放
-        $('.m2-indVodlist li').click(function () {
-            $('.m2-indVoditem').remove();
-            var vedio = $(this).data('vedio');
-            $('.m2-indexVod-con').prepend('<div class="m2-indVoditem"><i></i><video class="m2-indexVideo" data-setup="{}" preload="none" loop="false" controls="controls"><source src="' + vedio + '" type="video/mp4">您的浏览器版本过低,不能播放此视频</video></div>');
-            $('.m2-indexVideo').attr("autoplay", "autoplay");
-            closeVideo();
-        });
-        function closeVideo() {
-            $('.m2-indVoditem i').click(function () {
-                $('.m2-indVoditem').remove();
-            })
-        }
-    });
-    
-    //项目列表翻页
-    function itemListpage() {
-        ulLeft = 0;
-        $('.m2-indexItemlist-next').click(function () {
-            var maxLeft = ($('.m2-indexItemlist li:visible').length - 3) * 341;
-            if (ulLeft > -maxLeft) {
-                ulLeft -= 341;
-                $('.m2-indexItemlist').animate({left: ulLeft}, 400);
-            }
-        });
-        $('.m2-indexItemlist-prev').click(function () {
-            if (ulLeft < 0) {
-                ulLeft += 341;
-                $('.m2-indexItemlist').animate({left: ulLeft}, 400);
-            }
-        });
-    }
 
-    //视频列表翻页
-    function vodListpage() {
-        var ulLeft = 0;
-        var maxLeft = ($('.m2-indVodlist li').length - 4) * 220;
-        $('.m2-indexVodbtn-next').click(function () {
-            if (ulLeft > -maxLeft) {
-                ulLeft -= 220;
-                $('.m2-indVodlist').animate({left: ulLeft}, 300);
-            }
-        });
-        $('.m2-indexVodbtn-prev').click(function () {
-            if (ulLeft < 0) {
-                ulLeft += 220;
-                $('.m2-indVodlist').animate({left: ulLeft}, 300);
-            }
-        });
-    }
-    
-    //圆环进度条
-    $(function () {
-        //加载进度条
-        $(".m2-indKnob").knob();
-        //显示进度条百分比
-        $('.m2-indPercent').each(function () {
-            $(this).html($(this).siblings().children('input').attr('value') + "%");
-        })
-    });
-	</script>
-	
-	
-	<script type="text/javascript">
-	    //倒计时
-	    var timeLeft = Number('0');
-	    function timeDown() {
-	        if (timeLeft < 86400 & timeLeft > 0) {
-	            var minLeft1 = Number(parseInt(timeLeft % 3600 / 60 / 10)).toString(); //分钟第一位
-	            var minLeft2 = Number(parseInt(timeLeft % 3600 / 60 % 10)).toString(); //分钟数第二位
-	            var secLeft1 = Number(parseInt(timeLeft % 3600 % 60 / 10)).toString(); //秒第一位
-	            var secLeft2 = Number(parseInt(timeLeft % 10)).toString(); //秒第二位
-	            $('.m2-invDay').hide(); //隐藏天
-	            $('.m2-invSec').show(); //显示秒
-	            $('.m2-invHou').children('i').html(parseInt(timeLeft / 3600)); //小时
-	            $('.m2-invMin').children('i').html(minLeft1 + minLeft2); //分钟
-	            $('.m2-invSec').children('i').html(secLeft1 + secLeft2); //秒
-	            timeLeft--;
-	            setTimeout("timeDown()", 1000); //设置1秒以后执行一次本函数
-	        }
-	        else if (timeLeft >= 86400) {
-	            var houLeft1 = Number(parseInt(timeLeft % 86400 / 3600 / 10)).toString(); //小时第一位
-	            var houLeft2 = Number(parseInt(timeLeft % 86400 / 3600 % 10)).toString(); //小时数第二位
-	            var minLeft1 = Number(parseInt(timeLeft % 86400 % 3600 / 60 / 10)).toString(); //分钟第一位
-	            var minLeft2 = Number(parseInt(timeLeft % 86400 % 3600 / 60 % 10)).toString(); //分钟数第二位
-	            $('.m2-invDay').show(); //隐藏天
-	            $('.m2-invSec').hide(); //显示秒
-	            $('.m2-invDay').children('i').html(parseInt(timeLeft / 86400)); //天
-	            $('.m2-invHou').children('i').html(houLeft1 + houLeft2); //小时
-	            $('.m2-invMin').children('i').html(minLeft1 + minLeft2); //分钟
-	            timeLeft--;
-	            setTimeout("timeDown()", 1000); //设置1秒以后执行一次本函数
-	        }
-	        else if (timeLeft == 0) {
-	            $('.m2-invDay').hide(); //隐藏天
-	            $('.m2-invSec').show(); //显示秒
-	            $('.m2-invHou').children('i').html(0); //小时
-	            $('.m2-invMin').children('i').html('00'); //分钟
-	            $('.m2-invSec').children('i').html('00'); //秒
-	        }
-	
-	    }
-	
-	    timeDown();
-	</script>
 	
 <form action="/cupdata-transfer-index" style="display: none;" id="transfer_form">
     <input name="tid" id="form_transfer_id">
     <input name="num" id="form_transfer_num">
     <input type="hidden" name="__hash__" value="6666cd76f96956469e7be39d750cc7d9_ee70776ff5a128756690de65b1bc04be" /></form>
 
-	<script>
 
-    var account_money = Number("");
-    var transfer_index = 0;
-    //债转金额改变
-    $('.transfer-money').keyup(function () {
-        transfer_index = $(this).data('index');
-        var money = $(this).val();
-        transferValidation(money);
-    });
-    //计算器债转金额改变
-    $('#transfer_money1').keyup(function () {
-        var money = $(this).val();
-        transferValidation(money);
-    });
-    //全用
-    $('.invest_all').click(function () {
-        transferValidation(account_money, true);
-    });
-    $('.m2-indTrabtn-all').click(function () {
-        transfer_index = $(this).data('index');
-        transferValidation(account_money, true);
-    });
-    //债转金额处理
-    function transferValidation(money, flag) {
-        if (!isNaN(money)) {
-            var im = Number(money);
-            if (transfer_left[transfer_index] > 0 && im > transfer_left[transfer_index]) {
-                im = transfer_left[transfer_index];
-            }
-            if (flag) {
-                im = im < invest_limit[transfer_index] ? invest_limit[transfer_index] : Math.floor(im / invest_limit[transfer_index]) * invest_limit[transfer_index];
-            }
-            transfer_money[transfer_index] = im;
-            transfer_num[transfer_index] = Math.floor(transfer_money[transfer_index] / invest_limit[transfer_index]);
-        }
-        transferSync();
-    }
-    // 债转弹出层
-    $('.trans-cal-icon').click(function () {
-        transfer_index = $(this).data('index');
-        transferSync();
-        $('.m2-tranBg,.m2-tranHide').show();
-        $('.m2-tranHide').css('top', $(document).scrollTop() + 90);
-    });
-    //计算器还款列表
-    function transferPayList() {
-        $('#trans-pay-list').html('');
-        var arr = transfer_paylist[transfer_index];
-        for (var i in arr) {
-            var li = '<li>';
-            li += '<div class="m2-tranHide-det m2-tranHide-day">计息天数:<span>' + arr[i]['day'] + '天</span></div>';
-            li += '<div class="m2-tranHide-det m2-tranHide-tim">支付时间:<span>' + arr[i]['pay_date'] + '</span></div>';
-            li += '<div class="m2-tranHide-det m2-tranHide-num">支付利息:<span class="list-interest" data-interest="' + arr[i]['interest'] + '">' + arr[i]['interest'] + '元</span></div>';
-            li += '</li>';
-            $('#trans-pay-list').append(li);
-        }
-    }
-    //界面同步
-    function transferSync() {
-        transferPayList();
-        $('#transfer_money_' + transfer_index).val(transfer_money[transfer_index]);
-        $('#transfer_money1').val(transfer_money[transfer_index]);
-        $('#transfer_money2').text(transfer_money[transfer_index] + '元');
-        $('#transfer_money3').text(transfer_money[transfer_index] + '元');
-        $('#transfer_limit').text(invest_limit[transfer_index] + '元');
-        $('#trans-borrow-name').html('<span>所选项目：</span>' + transfer_borrowname[transfer_index]);
-        $('#transfer-income').text((Math.round(transfer_income[transfer_index] * transfer_money[transfer_index]) / 100) + '元');
-        $('.list-interest').each(function () {
-            var itm = Math.round(Number($(this).data('interest')) * transfer_money[transfer_index]) / 100;
-            $(this).html(itm + '元');
-        });
-    }
-    //提交债转
-    $('.transfer-submit').click(function () {
-        transfer_index = $(this).data('index');
-        transferValidation(transfer_money[transfer_index], true);
-        $('#form_transfer_num').val(transfer_num[transfer_index]);
-        $('#form_transfer_id').val(transfer_id[transfer_index]);
-        if (transfer_num[transfer_index] * sale_price[transfer_index] < account_money) {
-            confirmDialog('invest');
-        } else {
-            confirmDialog('charge');
-        }
-    });
-    //债转提示
-    function confirmDialog(action) {
-        var content = '<p class="m2-detConfirm-nor">尊敬的用户：</p>';
-        if (action === 'charge') {
-            $('#msgtitle').text('充值确认');
-            content += '<p class="m2-detConfirm-nor">此债权最小承接金额为' + invest_limit[transfer_index] + '元</p>';
-            content += '<p class="m2-detConfirm-nor">您承接金额为<span style="color:#f48a3f;">' + transfer_money[transfer_index] + '</span>元</p>';
-            content += '<p class="m2-detConfirm-nor">债权售价为<span style="color:#f48a3f;">' + transfer_num[transfer_index] * sale_price[transfer_index] + '</span>元</p>';
-            content += '<p class="m2-detConfirm-nor">您的账户金额不足，去充值吗?</p>';
-            $('#msgcontent').html(content);
-            $('#msgbtn1').hide();
-            $('#msgbtn2').hide();
-            $('#msgbtn3').show();
-        } else if (action === 'invest') {
-            $('#msgtitle').text('承接确认');
-            content += '<p class="m2-detConfirm-nor">此债权最小承接金额为' + invest_limit[transfer_index] + '元</p>';
-            content += '<p class="m2-detConfirm-nor">您承接金额为<span style="color:#f48a3f;">' + transfer_money[transfer_index] + '</span>元</p>';
-            content += '<p class="m2-detConfirm-nor">债权售价为<span style="color:#f48a3f;">' + transfer_num[transfer_index] * sale_price[transfer_index] + '</span>元</p>';
-            content += '<p class="m2-detConfirm-nor">您确认承接吗?</p>';
-            $('#msgcontent').html(content);
-            $('#msgbtn1').hide();
-            $('#msgbtn2').show();
-            $('#msgbtn3').hide();
-        }
-        $('.m2-detConfirm,.m2-tranBg').show();
-    }
-    //关闭弹窗
-    $('.m2-detConfirm-close,.m2-detConfirm-btn a').click(function () {
-        $('.m2-detConfirm,.m2-tranBg').hide();
-    });
-</script>
-<script type="text/javascript">
-    $(function(){
-        // 勾选注册用户协议
-        $('#reverifyCode').click();
-        $('.mo2-indRegagree i').click(function(){
-            if ($(this).hasClass('mo2-indReg-sel')) {
-                $(this).addClass('mo2-indReg-unsel').removeClass('mo2-indReg-sel');
-                $('.mo2-indReg-btn a').addClass('mo2-indRegbtn-unable').removeClass('mo2-indRegbtn-able');
-                $('.mo2-indReg-btn a').attr('href','javascript:void(0);')// 禁止注册链接
-            }else if ($(this).hasClass('mo2-indReg-unsel')) {
-                $(this).addClass('mo2-indReg-sel').removeClass('mo2-indReg-unsel');
-                $('.mo2-indReg-btn a').addClass('mo2-indRegbtn-able').removeClass('mo2-indRegbtn-unable');
-                $('.mo2-indReg-btn a').attr('href','javascript:void(0);')// 添加注册链接
-            }
-        });
-
-        // 注册登录tab切换
-        $('.mo2-indLogtab ul li').click(function(){
-            if ($(this).hasClass('mo2-logTab-unsel')) {
-                $(this).addClass('mo2-logTab-sel').removeClass('mo2-logTab-unsel');
-                $(this).siblings('.mo2-logTab-sel').addClass('mo2-logTab-unsel').removeClass('mo2-logTab-sel');
-            }
-        });
-        // 注册登录显示隐藏
-        $('.mo2-indTab-reg').click(function(){
-            $('.mo2-indRegbox').show();
-            $('.mo2-indRegbox2').hide();
-            $('.mo2-indLogbox').hide();
-        });
-        $('.mo2-indTab-log').click(function(){
-            $('.mo2-indRegbox').hide();
-            $('.mo2-indRegbox2').hide();
-            $('.mo2-indLogbox').show();
-        });
-    });
-    // 注册倒计时
-    var regTim =60; //剩余时间
-    function mo2_regTim(){
-        if (regTim>0) {
-            $('.mo2-indRegtim u').html(regTim+'秒后');
-            regTim--;
-            setTimeout("mo2_regTim()", 1000);
-        }
-        else if (regTim<=0) {
-            regTim =60;
-            $('.mo2-indRegvoi-btn').addClass('mo2-indRegvoi-able').removeClass('mo2-indRegvoi-unable');
-            $('.mo2-indRegtim').addClass('mo2-regTin-able').removeClass('mo2-regTin-unable');
-            $('.mo2-indRegtim span').html('重新发送');
-        }
-    }
-
-    // 隐藏登录验证码
-    function hideCode(){
-        $('.mo2-indLog-code').hide();
-        $('.mo2-indRegbox').css('padding','')
-        $('.mo2-indLogitem-use').css('margin-bottom',9);
-        $('.mo2-indLogitem-psw').css('margin-bottom',22);
-        $('.mo2-indRegbox').css('padding','30px 0 0px 0')
-    }
-
-    // 显示登录验证码
-    function showCode(){
-        $('.mo2-indLog-code').show();
-        $('.mo2-indRegbox').css('padding','14px 0 0px 0')
-        $('.mo2-indLogitem-use').css('margin-bottom',6);
-        $('.mo2-indLogitem-psw').css('margin-bottom',6);
-    }
-    //手机号判断
-    var _phone_post = 0;
-    $('#regTel').blur(function(){
-        var reg=/^1\d{10}$/;
-        if($(this).val().length > 0){
-            if (!reg.test($(this).val())){
-                $(this).next(".mo2-indLogwar").children("u").html('手机号格式错误');
-                $(this).next(".mo2-indLogwar").show();
-            }else {
-                var p={"phone":$(this).val(),"zml":"00007"};
-                postData("/Home-Register-ckphone_new",p,function(d){
-                    if(d.message!=' '){
-                        $('#regTel').next(".mo2-indLogwar").children("u").html(d.message);
-                        $('#regTel').next(".mo2-indLogwar").show();
-                    }else{
-                        $('#regTel').next(".mo2-indLogwar").children("u").html('');
-                        $('#regTel').next(".mo2-indLogwar").hide();
-                        _phone_post = 1;
-                    }
-                });
-            }
-        }else{
-            $(this).next(".mo2-indLogwar").children("u").html('');
-            $(this).next(".mo2-indLogwar").hide();
-        }
-    });
-
-    //密码判断
-    var _pass_keyup = 0;
-    $('#pass').blur(function(){
-        var reg = /^[a-zA-Z0-9]*$/g;
-        if ($(this).val().length>0){
-            if ($(this).val().length < 6){
-                $(this).next(".mo2-indLogwar").children("u").html('密码设置有误');
-                $(this).next(".mo2-indLogwar").show();
-            }else if ($(this).val().length > 20){
-                $(this).next(".mo2-indLogwar").children("u").html('密码设置有误');
-                $(this).next(".mo2-indLogwar").show();
-            }else if (!reg.test($(this).val())){
-                $(this).next(".mo2-indLogwar").children("u").html('密码设置有误');
-                $(this).next(".mo2-indLogwar").show();
-            }else {
-                $(this).next(".mo2-indLogwar").children("u").html('');
-                $(this).next(".mo2-indLogwar").hide();
-                _pass_keyup = 1;
-            }
-        }else {
-            $(this).next(".mo2-indLogwar").children("u").html('');
-            $(this).next(".mo2-indLogwar").hide();
-        }
-    });
-    //控制密码长度不能大于20
-    function isNumber(){
-        var codeNumber=$("#pass").val();
-        if((codeNumber.length>20)){
-            $("#pass").val(codeNumber.substring(0,codeNumber.length-1))
-        }
-    }
-
-    $('.mo2-indRegtim').click(function(){
-
-        if ($(this).hasClass('mo2-regTin-able')) {
-            $('.mo2-indRegvoi-btn').addClass('mo2-indRegvoi-unable').removeClass('mo2-indRegvoi-able');
-            $('.mo2-indRegtim').addClass('mo2-regTin-unable').removeClass('mo2-regTin-able');
-            $('.mo2-indRegtim span').html('重新发送');
-            sendmsg("zmlcs");
-        }else {
-            $('#r_code').html('请稍后点击');
-            $('#w_code').show();
-        }
-    });
-
-    //发送短信验证码
-    function sendmsg(zmlcs){
-        if (_phone_post == 1 && _pass_keyup==1){
-            $.ajax({
-                type:"POST",
-                data:{"phone":$('#regTel').val(),"code":$('#vcode').val(),"type":0,"zml":zmlcs},
-                url:"/home-register-sendphone",
-                success:function(msg){
-                    var obj = eval('('+msg+')');
-                    var obj = eval(obj);
-                    if (obj.status == 1){
-                        mo2_regTim();
-                        $("#code").siblings(".mo2-indLogwar").children("u").html("");
-                        $("#code").siblings(".mo2-indLogwar").hide();
-                    }else if(obj.status==2){
-                        $("#code").siblings(".mo2-indLogwar").children("u").html(obj.msg);
-                        $("#code").siblings(".mo2-indLogwar").show();
-                    }else {
-                        $("#code").siblings(".mo2-indLogwar").children("u").html("发送失败");
-                        $("#code").siblings(".mo2-indLogwar").show();
-                    }
-                }
-            });
-        }
-    }
-
-    $('.mo2-indRegvoi-btn').click(function(){
-        if ($(this).hasClass('mo2-indRegvoi-able')) {
-            var reg_phone=/^1\d{10}$/;
-            var _phone = 0;
-            if ($("#regTel").val() == ''){
-                $('#r_phone').html('请填写手机号');
-                $('#w_phone').show();
-            }else if ($('#regTel').val().length != 11 && !reg_phone.test($('#regTel').val())){
-                $('#r_phone').html('手机号格式错误');
-                $('#w_phone').show();
-            }else {
-                var p={"phone":$("#regTel").val(),"zml":"00008"};
-                postData("/Home-Register-ckphone_new",p,function(d){
-                    if(d.status==0){
-                        $('#r_phone').html(d.message);
-                        $('#w_phone').show();
-                    }else if (d.status == 1){
-                        $('#r_phone').html('');
-                        $('#w_phone').hide();
-                        var reg_pass = /^[a-zA-Z0-9]*$/g;
-                        if ($('#pass').val() == ''){
-                            $('#r_pass').html('请填写密码');
-                            $('#w_pass').show();
-                        }else if ($('#pass').val().length < 6 || $('#pass').val().length > 20 || !reg_pass.test($('#pass').val()) ){
-                            $('#r_pass').html('密码设置有误');
-                            $('#w_pass').show();
-                        }else {
-                            $('.m2-login-voice,.m2-commonBg').show();
-                            $('#r_code').html('');
-                            $('#w_code').hide();
-                        }
-                    }
-                });
-            }
-        }else {
-            $('#r_code').html('请稍后点击');
-            $('#w_code').show();
-        }
-    });
-    //发送语音验证码
-    $('.m2-logVoi-sur').click(function(){
-        $.ajax({
-            type:"POST",
-            data:{"phone":$('#regTel').val(),"code":$('#vcode').val(),"type":1,"zml":"hhh"},
-            url:"/home-register-sendphone",
-            success:function(msg){
-                var obj = eval('('+msg+')');
-                var obj = eval(obj);
-                if(obj.status == 1){
-                    $('.mo2-indRegvoi-btn').addClass('mo2-indRegvoi-unable').removeClass('mo2-indRegvoi-able');
-                    $('.mo2-indRegtim').addClass('mo2-regTin-unable').removeClass('mo2-regTin-able');
-                    $('.mo2-indRegtim span').html('重新发送');
-                    mo2_regTim();
-                }else{
-                    $("#code").siblings(".mo2-indLogwar").children("u").html("发送失败!");
-                    $("#code").siblings(".mo2-indLogwar").show();
-                }
-            }
-        });
-    });
-    $('.mo2-indReg-refresh').click(function(){
-        $('#reverifyCode').click();
-    });
-    var _code_blur = 0;
-    $("#code").blur(function(){
-        if ($(this).val().length > 0){
-            if ($(this).val().length != 6){
-                $("#code").siblings(".mo2-indLogwar").children("u").html('验证码错误！');
-                $("#code").siblings(".mo2-indLogwar").show();
-            }else {
-                _code_blur = 1;
-            }
-        }else{
-            $("#code").siblings(".mo2-indLogwar").children("u").html('');
-            $("#code").siblings(".mo2-indLogwar").hide();
-        }
-    });
-
-    function registeraaa(){
-        if ($('.mo2-indReg-btn a').hasClass('mo2-indRegbtn-able')){
-            var canSubmit=true;
-            if($("#code").val().length==0){
-                $("#code").siblings(".mo2-indLogwar").children("u").html("验证码不能为空");
-                $("#code").siblings(".mo2-indLogwar").show();
-                canSubmit = false;
-            }
-
-            if (canSubmit !== true) return false;
-            var p={"phone":$('#regTel').val(),"password":$('#pass').val(),"msgcode":$('#code').val()};
-            postData("/Home-Register-index_register",p,function(msg){
-                if (msg.status == 1){
-                    $("#newregister").show();//显示注册成功领取奖励金页面
-                    //window.location.reload();//先隐藏首页重新加载
-                    setTimeout("window.location.reload();",5000)//设置延时、、
-                }else if (msg.status == 0){
-                    $("#code").siblings(".mo2-indLogwar").children("u").html(msg.message);
-                    $("#code").siblings(".mo2-indLogwar").show();
-                }else if (msg.status == 2){
-                    $("#code").siblings(".mo2-indLogwar").children("u").html(msg.message);
-                    $("#code").siblings(".mo2-indLogwar").show();
-                }
-            });
-        }
-    }
-    function verifycode(){
-        if ($('.mo2-indReg-btn a').hasClass('mo2-indRegbtn-able')){
-            var canSubmit=true;
-            $("#reverifyCode").siblings(".mo2-indLogwar").children("u").html('');
-            if($("#vcode").val().length==0){
-                $("#reverifyCode").siblings(".mo2-indLogwar").children("u").html("验证码不能为空");
-                $("#reverifyCode").siblings(".mo2-indLogwar").show();
-                canSubmit = false;
-            }
-            if($("#regTel").val().length==0){
-                $("#regTel").next(".mo2-indLogwar").children("u").html("手机号不能为空");
-                $("#regTel").next(".mo2-indLogwar").show();
-                canSubmit = false;
-            }
-            if($("#pass").val().length==0){
-                $("#pass").next(".mo2-indLogwar").children("u").html("密码不能为空");
-                $("#pass").next(".mo2-indLogwar").show();
-                canSubmit = false;
-            }
-            $(".mo2-indRegbox .mo2-indLogwar u").each(function(){
-                if($(this).html().length>0){
-                    canSubmit = false;
-                }
-            });
-            if (canSubmit !== true) return false;
-            var p={"vcode":$("#vcode").val()};
-            postData("/Home-Register-ckcode",p,function(d){
-                if(d.message!=" "){
-                    $("#reverifyCode").siblings(".mo2-indLogwar").children("u").html(d.message);
-                    $("#reverifyCode").siblings(".mo2-indLogwar").show();
-                    return false;
-                }else{
-                    $("#reverifyCode").siblings(".mo2-indLogwar").children("u").html('');
-                    $("#reverifyCode").siblings(".mo2-indLogwar").hide();
-                    $('.mo2-indRegbox').css('display','none');
-                    $('.mo2-indRegbox2').css('display','block');
-                }
-
-            });
-        }
-    }
-    function oklinklogin(){
-        window.open('thirdparty-oklink-oauth_getcode');
-    }
-
-    $('#user_name').blur(function(){
-        if ($(this).val().length > 0){
-            if ($(this).val().lenght < 6){
-                $('#r_usernameMain').html('用户名长度错误');
-                $('#w_usernameMain').show();
-            }else{
-                $('#r_usernameMain').html('');
-                $('#w_usernameMain').hide();
-            }
-        }else {
-            $('#r_usernameMain').html('');
-            $('#w_usernameMain').hide();
-        }
-    });
-
-    $('#pass_word').blur(function(){
-        if ($(this).val().length > 0){
-            if ($(this).val().length < 6 || $(this).val().length >20){
-                $('#r_passwordMain').html('密码格式错误');
-                $('#w_passwordMain').show();
-            }
-        }else {
-            $('#r_passwordMain').html('');
-            $('#w_passwordMain').hide();
-        }
-    });
-    function login(){
-        var p = makevar(['user_name','pass_word','vcode']);
-        var canSubmit = true;
-        if($('#user_name').val()==""){
-            $('#r_usernameMain').html('用户名不能为空');
-            $('#w_usernameMain').show();
-        }else if($('#user_name').val().lenght <6){
-            $('#r_usernameMain').html('用户名长度错误');
-            $('#w_usernameMain').show();
-        }else {
-            if ($('#pass_word').val() == ""){
-                $('#r_passwordMain').html('密码不能为空');
-                $('#w_passwordMain').show();
-            }else if ($('#pass_word').val().length < 6 || $('#pass_word').val().length > 20){
-                $('#r_passwordMain').html('密码长度错误');
-                $('#w_passwordMain').show();
-            }else {
-                $('#r_usernameMain').html('');
-                $('#w_usernameMain').hide();
-                $('#r_passwordMain').html('');
-                $('#w_passwordMain').hide();
-                postData("/Home-Login-index_login",p,function(d){
-                    if(d.status==0){
-                        $('#r_usernameMain').html(d.message);
-                        $('#w_usernameMain').show();
-                    }else if(d.status==6){
-//						showLoginDialog(d.mycoin,11);
-                        window.location.reload();
-                    }else if(d.status==1){
-                        window.location.reload();
-                    }else if(d.status==2){
-                        window.location.href = "dashiji_show.html#15319.html";
-                    }
-                });
-            }
-        }
-    }
-</script>
+ 
 <script type="text/javascript">
     //codeShow();
     //显示验证码
@@ -7149,22 +6028,7 @@
     })
 </script>
 <![endif]-->
-	<script>
-	    document.onkeydown=function(event){
-	        var e = event || window.event || arguments.callee.caller.arguments[0];
-	        if(e && e.keyCode==13){
-	            login();
-	        }
-	    };
-	
-	    //活动加息
-	    $(".huodongjiaxi").mouseover(function(){
-	        $(this).parent().find(".jiaxishow").css("display","block");
-	    })
-	    $(".huodongjiaxi").mouseout(function(){
-	        $(this).parent().find(".jiaxishow").hide();
-	    })
-	</script>
+
 	
 	<!-- 底部Strart -->
 	<div id="mainNewfoot">
@@ -7207,35 +6071,11 @@
 	</div>
 	<!--底部[end]-->
 		
-	<script type="text/javascript">
-    //全局变量
-	    var GV = {
-	        DIMAUB: "",
-	        JS_ROOT: "/Finances/statics/front/statics/home/js/",
-	        TOKEN: "6666cd76f96956469e7be39d750cc7d9_ee70776ff5a128756690de65b1bc04be",
-	        THIS_URL: "Index-",
-	        TINVEST_URL: "/invest-shownewinvest.shtml"
-	    };
-	</script>	
 	
-	<script src="/Finances/statics/front/statics/common/js/common.js"></script>
-		<!--
-			<script src="/Finances/statics/front/statics/common/tipBox/layer-v1.5.1/layer/layer.js"></script>
-		  -->
-		<script src="/Finances/statics/front/statics/common/tipBox/common.js"></script>
-		<!--tipBOx-->
-		<script language=JavaScript type="text/javascript" src="/Finances/statics/front/statics/home/js/tab.js"></script>
-		<script type="text/javascript">$(function () {
-		    if ($.browser && $.browser.msie && ($.browser.version == "6.0") && !$.support.style) {
-		        $('#fixed-services').css('display', 'none');
-		    }
-		})
-	</script>
 	
-		
-	<%-- <!-- flootStart -->
-	<jsp:include page="include/floot.jsp"></jsp:include>
-	<!-- flootEnd --> --%>
-			
+	
+		<!-- 现在导入index所有封装的js方法 -->
+		<script type="text/javascript" src="/Finances/statics/front/js/indexall.js"></script>
+		<script type="text/javascript" src="/Finances/statics/front/js/indexlogreg.js"></script>		
 	</body>
 </html>
