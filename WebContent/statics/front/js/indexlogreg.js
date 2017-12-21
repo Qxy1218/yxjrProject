@@ -1,3 +1,24 @@
+$(function(){
+    // 是否存在用户
+    $('#regTelRight').blur(function(){
+    	var phone = $('#regTelRight').val();
+    	if(phone==""){
+    		return
+    	}
+        postData("/Finances/front/getregpdphishave",phone,function(d){
+        	if(d.message!=' '){
+                if(d.verify_nums>3){
+                	$("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html('');
+                }
+                $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html(d.message);
+                $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").show();
+            } 
+        	if(typeof(d.message) == "undefined"){
+        		$("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html('');
+            }
+        });
+    });
+});
 //注册方法
 function verifycodeRight(){
 	var canSubmit=true;
@@ -15,6 +36,9 @@ function verifycodeRight(){
         canSubmit = false;
 	}
 	
+	
+	
+	
     if($("#regTelRight").val().length==0){
         $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html("手机号不能为空");
         $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").show();
@@ -27,14 +51,16 @@ function verifycodeRight(){
         }
     });
 	
-    if (canSubmit !== true) return false;
-		var p={"vcode":$("#vcodeRight").val()};
-		postData("/Home-Register-ckcode",p,function(d){
+    if (canSubmit !== true) {
+    	return false;
+    }
+		var p={"phone":$("#regTelRight").val(),"pass_word":$("#passRight").val(),"yqcode":"nowrite"};
+		postData("/Finances/userRegister",p,function(d){
 			if(d.message!=" "){
                 $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html(d.message);
                 $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").show();
                 return false;
-			}else{
+			}else if(d.status==5){
                 $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html('');
                 $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").hide();
                 $('.mo2-indRegboxRight').css('display','none');
@@ -176,12 +202,13 @@ $('#regTel').blur(function(){
             $(this).next(".mo2-indLogwar").children("u").html('手机号格式错误');
             $(this).next(".mo2-indLogwar").show();
         }else {
-            var p={"phone":$(this).val(),"zml":"00007"};
-            postData("/Home-Register-ckphone_new",p,function(d){
+            var p={"phone":$(this).val()};
+            postData("/Finances/front/getregpdphishave",p,function(d){
                 if(d.message!=' '){
                     $('#regTel').next(".mo2-indLogwar").children("u").html(d.message);
                     $('#regTel').next(".mo2-indLogwar").show();
-                }else{
+                }
+                if(typeof(d.message) == "undefined"){
                     $('#regTel').next(".mo2-indLogwar").children("u").html('');
                     $('#regTel').next(".mo2-indLogwar").hide();
                     _phone_post = 1;
@@ -244,8 +271,8 @@ function sendmsg(zmlcs){
     if (_phone_post == 1 && _pass_keyup==1){
         $.ajax({
             type:"POST",
-            data:{"phone":$('#regTel').val(),"code":$('#vcode').val(),"type":0,"zml":zmlcs},
-            url:"/home-register-sendphone",
+            data:{"phone":$('#regTel').val()},
+            url:"/Finances/front/getregsendphone",
             success:function(msg){
                 var obj = eval('('+msg+')');
                 var obj = eval(obj);
@@ -253,6 +280,7 @@ function sendmsg(zmlcs){
                     mo2_regTim();
                     $("#code").siblings(".mo2-indLogwar").children("u").html("");
                     $("#code").siblings(".mo2-indLogwar").hide();
+                   $("#myyzcode").val(obj.ranks);
                 }else if(obj.status==2){
                     $("#code").siblings(".mo2-indLogwar").children("u").html(obj.msg);
                     $("#code").siblings(".mo2-indLogwar").show();
@@ -330,6 +358,7 @@ $('.mo2-indReg-refresh').click(function(){
 });
 var _code_blur = 0;
 $("#code").blur(function(){
+	//alert("进入");
     if ($(this).val().length > 0){
         if ($(this).val().length != 6){
             $("#code").siblings(".mo2-indLogwar").children("u").html('验证码错误！');
@@ -351,14 +380,26 @@ function registeraaa(){
             $("#code").siblings(".mo2-indLogwar").show();
             canSubmit = false;
         }
-
+        
+        var usercode = $("#code").val();
+    	var mycode = $("#myyzcode").val();
+    	//alert("正确验证码"+mycode);
+    	if(usercode=='' ){
+    		return;
+    	}
+    	if(usercode!=mycode){
+    		alert("验证码输入不相同");
+    		return;
+    	}
+        
         if (canSubmit !== true) return false;
-        var p={"phone":$('#regTel').val(),"password":$('#pass').val(),"msgcode":$('#code').val()};
-        postData("/Home-Register-index_register",p,function(msg){
+        var p={"phone":$("#regTel").val(),"pass_word":$("#pass").val(),"yqcode":"nowrite"};
+        postData("/Finances/user/userRegister",p,function(msg){
             if (msg.status == 1){
                 $("#newregister").show();//显示注册成功领取奖励金页面
-                //window.location.reload();//先隐藏首页重新加载
-                setTimeout("window.location.reload();",5000)//设置延时、、
+                //用户详情显示，注册登入关闭
+                $(".mo2-indLoged").show();
+                $(".mo2-indLogreg").hide();
             }else if (msg.status == 0){
                 $("#code").siblings(".mo2-indLogwar").children("u").html(msg.message);
                 $("#code").siblings(".mo2-indLogwar").show();
@@ -369,6 +410,7 @@ function registeraaa(){
         });
     }
 }
+//轮播图的注册
 function verifycode(){
     if ($('.mo2-indReg-btn a').hasClass('mo2-indRegbtn-able')){
         var canSubmit=true;
@@ -393,21 +435,20 @@ function verifycode(){
                 canSubmit = false;
             }
         });
-        if (canSubmit !== true) return false;
-        var p={"vcode":$("#vcode").val()};
-        postData("/Home-Register-ckcode",p,function(d){
-            if(d.message!=" "){
-                $("#reverifyCode").siblings(".mo2-indLogwar").children("u").html(d.message);
-                $("#reverifyCode").siblings(".mo2-indLogwar").show();
-                return false;
-            }else{
+        if (canSubmit !== true) {
+        	return false;
+        }
+        //这里默认设置,这里只是可以ajax判断图形码是否正确,registeraaa才是真正注册方法
+            if(1==1){
                 $("#reverifyCode").siblings(".mo2-indLogwar").children("u").html('');
                 $("#reverifyCode").siblings(".mo2-indLogwar").hide();
                 $('.mo2-indRegbox').css('display','none');
                 $('.mo2-indRegbox2').css('display','block');
+            }else{
+                $("#reverifyCode").siblings(".mo2-indLogwar").children("u").html(d.message);
+                $("#reverifyCode").siblings(".mo2-indLogwar").show();
+                return false;
             }
-
-        });
     }
 }
 function oklinklogin(){

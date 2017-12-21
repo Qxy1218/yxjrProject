@@ -43,6 +43,8 @@ public class AjaxController {
 			User user2 =  iUserService.getModel(user);
 			if(user2!=null){
 				map.put("message","此用户已存在");
+			}else {
+				map.put("mas","ok");
 			}
 			map.put("verify_nums",4); 
 			String aa = mapper.writeValueAsString(map);

@@ -59,8 +59,12 @@ public class IUserController {
 		 * 3:根据返回id查找user对象
 		 * 4：把user对象放在session中
 		 * */
-		Object result = new SimpleHash("MD5", pass_word, ByteSource.Util.bytes(phone), 10);
-		System.out.println(result.toString());
+		//去空格
+		String pas = pass_word.replace(" ", "");
+		String ph = phone.replace(" ", "");
+		String yq = yqcode.replace(" ", "");
+		
+		Object result = new SimpleHash("MD5", pas, ByteSource.Util.bytes(ph), 10);
 		User user = new User();
 		user.setUpassword(result.toString());
 		user.setUheadImg("/front/images/IMG_2166.JPG");
@@ -75,7 +79,7 @@ public class IUserController {
 			 * 1:被邀请用户增加一些权益(代金券,经验等..)
 			 * 2:邀请码的用户同上
 			 * */
-			user.setOrderinvite(yqcode);
+			user.setOrderinvite(yq);
 			
 		}
 		
@@ -149,7 +153,6 @@ public class IUserController {
 			map.put("message", "注册失败,请稍后再试");
 		}
 		String aa = mapper.writeValueAsString(map);
-		//System.out.println(aa);
 		return aa;
 	}
 	
@@ -164,8 +167,8 @@ public class IUserController {
 			ObjectMapper mapper = new ObjectMapper(); //转换器  
 			Map<String, Object> map = new HashMap<String, Object>();
 			
-			System.out.println("手机号码"+user_name);
-			System.out.println("密码是"+pass_word);
+			String pas = pass_word.replace(" ", "");
+			String ph = user_name.replace(" ", "");
 			
 			/**
 			 * 1：密码加密
@@ -173,10 +176,10 @@ public class IUserController {
 			 * 3:根据返回id查找user对象
 			 * 4：把user对象放在session中
 			 * */
-			Object results = new SimpleHash("MD5", pass_word, ByteSource.Util.bytes(user_name), 10);
+			Object results = new SimpleHash("MD5", pas, ByteSource.Util.bytes(ph), 10);
 			System.out.println(results.toString());
 			User user = new User();
-			user.setUphone(user_name);
+			user.setUphone(ph);
 			user.setUpassword(results.toString());
 			//如果登入成功
 			User user2 =  iUserService.getModel(user);
@@ -206,6 +209,9 @@ public class IUserController {
 
 			return aa;
 	}
+	
+		
+	
 		
 	/**
 	 * 这里是在二维码扫描的时候进入的controller
