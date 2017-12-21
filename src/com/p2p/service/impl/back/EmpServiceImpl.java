@@ -26,12 +26,12 @@ public class EmpServiceImpl implements EmpService{
 	@Override
 	public int addModel(Employe model) {
 		
-		return addModel(model);
+		return empMapper.addModel(model);
 	}
 
 	@Override
 	public Employe getModel(Employe model) {
-		return getModel(model);
+		return empMapper.getModel(model);
 	}
 
 	@Override
@@ -41,15 +41,13 @@ public class EmpServiceImpl implements EmpService{
 
 	@Override
 	public int update(Employe user) {
-		return 0;
+		return empMapper.update(user);
 	}
 
 	@Override
 	public int delete(Employe user) {
-		return 0;
+		return empMapper.delete(user);
 	}
-
-
 
 	@Override
 	public Employe getByemployname(String ename) {
@@ -58,7 +56,7 @@ public class EmpServiceImpl implements EmpService{
 
 	@Override
 	public Employe findModel(Integer id) {
-		return null;
+		return empMapper.findModel(id);
 	}
 
 }
