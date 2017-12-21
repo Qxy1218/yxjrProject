@@ -248,13 +248,26 @@
 //			});
         })
 
-
     </script>
+    
+    <!--首页右侧提示悬浮窗、账户、红包、加息券 user_m_type -->
+   <c:if test="${sessionScope.user.uid  == null}">
+    	<script type="text/javascript">
+	        $(".m2-comRigli").click(function(event){
+	            $('#right-fix').animate({ right: '50px'}, "slow");
+	            event.stopPropagation();
+	        });
+	        $("#right-fix").click(function(event){
+	            event.stopPropagation();
+	        });
+	        $("body").click(function(){
+	            $('#right-fix').animate({ right: '-290px'}, "slow");
+	        });
+	    </script>
+    </c:if>
 	
 	<c:if test="${sessionScope.user.uid  != null}">
-	    <!--首页右侧提示悬浮窗、账户、红包、加息券 user_m_type -->
 	    <script type="text/javascript">
-	    	
 				$(function(){
 					$(".fixbox_bar").click(function(event){
 						event.stopPropagation();
