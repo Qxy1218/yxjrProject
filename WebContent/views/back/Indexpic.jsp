@@ -6,54 +6,48 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<base href="<%=path%>/">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <!-- 引用js文件 -->
+
 <jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
-<script  type="text/javascript">
+<script type="text/javascript" src="/Finances/statics/front/js/jquery.form.js"></script>
+<script  type="text/javascript" >
+
     var rows = null;
     function addRole(){
     	//清空editModel原来填写的内容
-		$("#editRole #rolename").val('');
-		$("#editRole #remark").val('');
+		$("#editRole #ipname").val('');
+		$("#editRole #ipimage").val('');
+		$("#editRole #ipurl").val('');
 		
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
-		$("#btn_submit").attr("onclick","insertRole()");
+		$("#btn_submit").attr("onclick","insertIndexpic()");
 		//显示新增窗口
 		$('#editRole').modal('show');
     }
-  //新增角色
-	function insertRole() {
-		//表单验证
-		//alert(123);
-		if (!validateForm($("#editForm"))) {
-			return;
-		}
+  //新增轮播图
+	function insertIndexpic() {
+		
 		//用来关闭新增窗口***********
 		$("#editRole").modal('hide');
-		var url = "${pageContext.request.contextPath }/back/admin/insertRole";
-		$.post(
-			url,
-			{
-                rolename:$("#editRole #rename").val(),
-                reremark:$("#editRole #reremark").val(),
-                restatus:$("#editRole #restatus").val(),
-			},
-			function(data){
-				//后台返回int类型的数据
-				if(data>0){
-					//新增成功，下面是后台框架的提示
-					parent.layer.alert('新增成功');
-				}else{
-					//新增失败
-					parent.layer.alert('新增失败');
-				}
-				//新增完刷新表格数据
-				$('#tb_role').bootstrapTable('refresh');
-			},
-			"text"
-		);	
-	}
+		  $('#editForm').ajaxForm({  
+		        dataType: 'json',  
+		        success: function(data){
+					//后台返回int类型的数据
+					if(data>0){
+						//新增成功，下面是后台框架的提示
+						parent.layer.alert('修改成功');
+					}else{
+						//新增失败
+						parent.layer.alert('修改失败');
+					}
+					//新增完刷新表格数据
+					$('#tb_role').bootstrapTable('refresh');
+		}
+	})
+  }
 	//修改按钮事件
 	$("#btn_edit").click(function(){
 		//获取当前选中行的信息
@@ -205,6 +199,7 @@ $(function () {
 			},]
 		});
 });
+
 	function queryParams(params) {
 		var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
 			//***这里的参数传到后台，用来进行分页处理*************************
@@ -214,6 +209,28 @@ $(function () {
 		return temp;
 	};
 	
+	
+/* 	function upload(){
+		var option ={
+			type : "POST",
+			url : "importex/uploadex.do",
+			data : {"fileName" : "exfile"},
+			dataType : "JSON",
+			success : function(data) {
+				if(data=="success"){
+					console.info(data);
+					alert("上传成功");
+					//var json = $.parseJSON(data);
+					//$("#img1").attr("src", json.relativePath);
+				}			
+			}			
+		};
+		// ajax表单提交
+		$("#imexform").ajaxSubmit(option);
+	    //$("#uploadForm").resetForm(); // 提交后重置表单
+	}; */
+	
+	</script>
 </script>
 </head>
 <body class="gray-bg">
@@ -245,15 +262,7 @@ $(function () {
 						<table id="tb_role" >
 							
 						</table>
-						<div style="position:relative;bottom:60px;left:200px;width:300px">
-							<ul class="pagination">
-								  <li><a href="#">&laquo;</a></li>
-								  <li><a href="#">1</a></li>
-								  <li><a href="#">1</a></li>
-								  <li><a href="#">1</a></li>
-								  <li><a href="#">&raquo;</a></li>
-							</ul>
-						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -271,40 +280,39 @@ $(function () {
 					</button>
 					<h4 class="modal-title" id="myModalLabel">角色管理</h4>
 				</div>
+			<form id="editForm" action="/Finances/back/admin/insertIndexpic" class="form-horizontal m-t" method="post" enctype="multipart/form-data">  
+				
 				<div class="modal-body">
 					<!-- 新增系别 -->
-					<form id="editForm" class="form-horizontal m-t">
-						<div class="form-group">
+							<div class="form-group">
 							<label for="urlName" class="control-label col-sm-3">轮播图名称</label> 
 							<div class="col-sm-8">
-								<input type="text" name="rename" class="form-control" id="rename">
+								<input type="text" name="ipname" class="form-control" id="ipname">
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="url" class="control-label col-sm-3">说明</label>
+							<label for="url" class="control-label col-sm-3">轮播图代表图路径</label>
 							<div class="col-sm-8">
-								<textarea name="reremark" rows="3" class="form-control" id="reremark"></textarea>
+								<input type="file" name="file" id="ipimage"/>
 	            			</div>
 						</div>
 						<div class="form-group">
-							<label for="url" class="control-label col-sm-3">状态</label>
+							<label for="url" class="control-label col-sm-3">图片链接</label>
 							<div class="col-sm-8">
-								<select name="restatus"  class="form-control" id="restatus">
-									<option value="0">启用</option>
-									<option value="1">禁用</option>
-								</select>
+								<textarea name="ipurl" rows="3" class="form-control" id="ipurl"></textarea>
 	            			</div>
 						</div>
-					</form>
+					
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
 					</button>
-					<button type="button" id="btn_submit" class="btn btn-primary" onclick="insertRole()">
-						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
+					<button type="submit" id="btn_submit" class="btn btn-primary" >
+						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>提交
 					</button>
 				</div>
+				</form>
 			</div>
 		</div>
 	</div>
