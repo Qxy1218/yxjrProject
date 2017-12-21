@@ -5709,7 +5709,6 @@
 	<!--底部[end]-->
 	
 		<!-- 现在导入index所有封装的js方法 -->
-		<script type="text/javascript" src="/Finances/statics/front/js/indexall.js"></script>
-		<script type="text/javascript" src="/Finances/statics/front/js/indexlogreg.js"></script>		
+		<script type="text/javascript" src="/Finances/statics/front/js/indexall.js"></script>		
 	</body>
 </html>
