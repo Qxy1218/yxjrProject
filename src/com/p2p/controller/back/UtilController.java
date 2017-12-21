@@ -54,7 +54,7 @@ public class UtilController {
 		/**
 		 * 这里返回文件路径
 		 * */
-		String pathss = "/Finances/uploadFile/"+newFilename+suffix;
+		String pathss = "/uploadFile/"+newFilename+suffix;
 		return pathss;
 	}
 	
@@ -81,7 +81,7 @@ public class UtilController {
 		String newFilename = df.format(new Date());
 		
 		//拿到全局路径
-		String contextPath = request.getSession().getServletContext().getRealPath("/excel");
+		String contextPath = request.getSession().getServletContext().getRealPath("/uploadFile");
 		
 		//把路径中的包括\\全部换成/
 		contextPath = contextPath.replace("\\","/");

@@ -21,7 +21,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.controller.back.UtilController;
 import com.p2p.pojo.User;
+import com.p2p.pojo.Userinfo;
 import com.p2p.service.front.IUserService;
+import com.p2p.service.front.UserInfoService;
 import com.p2p.util.AddressUtils;
 import com.p2p.util.DateUtils;
 import com.p2p.util.IpChecker;
@@ -35,6 +37,9 @@ import com.p2p.util.IpChecker;
 public class IUserController {
 	@Resource(name="IUserServiceImpl")
 	private IUserService iUserService;
+	
+	@Resource(name="userInfoServiceImpl")
+	private UserInfoService userInfoService;
 	
 	/**
 	 * 用户注册界面的注册方法
@@ -58,7 +63,7 @@ public class IUserController {
 		System.out.println(result.toString());
 		User user = new User();
 		user.setUpassword(result.toString());
-		user.setUheadImg("/Finances/WebContent/front/images/IMG_2166.JPG");
+		user.setUheadImg("/front/images/IMG_2166.JPG");
 		user.setUphone(phone);
 		user.setUloginTime(DateUtils.getDateTimeFormat(new Date()));
 		
@@ -110,14 +115,28 @@ public class IUserController {
 		user.setVdid(0.00);
 		
 		try {
-			Integer userid = iUserService.addModel(user);
-			System.out.println(userid);
+			Integer isadd = iUserService.addModel(user);
+			System.out.println("是否插入 。。。。。"+isadd);
+			
+			/**
+			 * 现在添加二级对象UserInfo对象(用户基本信息)
+			 * */
+			Userinfo userinfo = new Userinfo();
+			userinfo.setUid(user.getUid());
+			userinfo.setUiname(IUserController.getUUID());
+			userinfo.setUisex("保密");
+			userinfo.setUiidCard("");
+			userinfo.setUibirthday(DateUtils.getDateTimeFormat(new Date()));
+			
+			int isadduserinfo =   userInfoService.addModel(userinfo);
+			System.out.println("插入是否成功 。。。。。"+isadduserinfo);
+			
+			
 			//如果注册成功
-			User user2 = new User();
-			user2.setUid(userid);
 			
 			//数据库
-			User user3 =  iUserService.getModel(user2);
+			User user3 =  iUserService.getModel(user);
+			System.out.println(user3.toString());
 			/**
 			 * 把用户信息存放进session
 			 * */

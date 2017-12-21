@@ -43,12 +43,5 @@ public class QRcode {
 		return new MultiFormatReader().decode(new BinaryBitmap(new HybridBinarizer(new BufferedImageLuminanceSource(ImageIO.read(new FileInputStream(filePath))))),decodeMap).getText();
 	}
 	
-	public static void main(String[] args) {
-		
-		
-		
-		
-		
-	}
 	
 }

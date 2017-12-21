@@ -13,7 +13,7 @@ import com.p2p.pojo.Role;
  * 创建时间:2017-12-28
  * 操作轮播图的Mapper
  * */
-public interface IndexpicMapper extends IBaseDao<Serializable, Indexpic>{
+public interface IndexpicMapper extends IBaseDao<Integer, Indexpic>{
 	//实现分页查询
 		List<Indexpic> selectPage(Pagination page,Map<String ,Object> params);
 		

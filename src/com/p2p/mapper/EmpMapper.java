@@ -9,6 +9,6 @@ import com.p2p.pojo.Employe;
  * 创建时间:2017-12-28
  * 操作后台员工的Mapper
  * */
-public interface EmpMapper extends IBaseDao<Serializable, Employe>{
+public interface EmpMapper extends IBaseDao<Integer, Employe>{
 	Employe getByemployname(String ename);
 }
