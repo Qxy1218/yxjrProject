@@ -131,7 +131,6 @@
 	    <error-code>500</error-code>
 	    <location>/statics/errorPage/500.jsp</location>
 	</error-page>
-    
  </web-app> 
   
   
