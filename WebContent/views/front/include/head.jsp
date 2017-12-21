@@ -1,10 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>head</title>
+<script type="text/javascript" >
+	function myinfo(){ 
+		var uid = $("#uid").val();
+		if( uid == null){
+			if(confirm("您还未登录 ! 请先登录")){ 
+				parent.window.location="${pageContext.request.contextPath }/tologin"; 
+				return true; 
+			}
+				return false; 
+			}else if(uid != null){
+				parent.window.location="${pageContext.request.contextPath }/views/front/user/usercenter.jsp"; 
+				return true;
+			}
+		}
+	function logout(){
+		if(confirm("是否退出登录？")){ 
+			parent.window.location="${pageContext.request.contextPath }/logout"; 
+			return true; 
+		}
+			return false; 
+	}
+	</script>
 </head>
 <body>
 	<!-- headerStart -->
@@ -13,8 +36,9 @@
     <div class="m2-commonTop">
         <div class="m2-commonTop-left">
             <div class="m2-commonTop-tel"><i></i>4006&nbsp;-&nbsp;777&nbsp;-&nbsp;518</div>
-            <div class="m2-commonTop-service" style="padding-left:0;"><span style="float:left;">客服：</span>
-                <div style="float:left;display:inline-block;width:92px;height:22px;padding:6px 0 13px 0;"></div>
+            <div class="m2-commonTop-service" style="padding-left:0;">
+            	<span style="float:left;">客服：</span>
+                <div style="float:left;display:inline-block;width:92px;height:22px;padding:6px 0 13px 0;margin-top: -6px">8008860</div>
             </div>
             <div class="m2-commonEwm">
                 <span class="m2-commonEwm-tit">关注我们：</span>
@@ -37,9 +61,29 @@
                 <ul>
                     <!-- 论坛导航栏全部关闭 -->
                     <!--<li class="m2-commonTop-btn" style="display: none" id="bbs"><a id="bbslogin" target="_blank">论坛</a></li>-->
-                    <li class="m2-commonTop-btn"><a href="register.html" target="_blank">注册</a></li>
-                    <li class="m2-commonTop-btn"><a href="login.html#login_callback=/index" target="_blank" style="border-right:none;">登录</a></li>
-                    <li class="m2-commonTop-btn"><a href="company_finance.html" id="cfpage" style="border-right:none;width: 50px;">企业理财</a></li>                </ul>
+                    <li class="m2-commonTop-loged">
+                       	<span class="m2-commonTop-userName">
+                           	<c:if test="${sessionScope.user.uid  != null}">
+								<input id="uid" value="${sessionScope.user.uid}" hidden="true">
+	                       		<p><font color="white" >您好,${sessionScope.user.uphone}</font></p>
+	                       	</c:if>
+	                       	<c:if test="${sessionScope.user.uid  == null}">
+	                       		 <a href="${pageContext.request.contextPath }/tologin" target="_blank" style="border-right:none;">登录</a>
+	                       	</c:if>
+                        </span>
+                    </li>
+                    <li class="m2-commonTop-btn">
+                    	<c:if test="${sessionScope.user.uid  != null}">
+                       		<a onclick="logout();" style="border-right:none;" target="_blank">退出</a>
+                       	</c:if>
+                       	<c:if test="${sessionScope.user.uid  == null}">
+                       		 <a href="${pageContext.request.contextPath }/toregirset" style="border-right:none;" target="_blank">注册</a>
+                       	</c:if>
+                    </li>
+                    <li class="m2-commonTop-btn">
+                    	<a href="company_finance.html" id="cfpage" style="border-right:none;width: 50px;">企业理财</a>
+                    </li> 
+                </ul>
             </div>
             <div class="m2-commonTop-app" onclick='window.open("appdownload.html")' style="cursor:pointer;">
                 <a href="" class="m2-commonTop-and"></a>
@@ -91,16 +135,16 @@
             </a>
         </div>
         <div class="m2-commonNav">
-            <ul class="m2-commonNavul-fir" data_page='onepage'>
+            <ul class="m2-commonNavul-fir" data_page='${pageName }'>
                 <!--  <li class="m2-commonNav-fir"><a href="http://huifu.iqianbang.com" target="_blank" >汇付版本</a></li>-->
-                <li class="m2-commonNav-fir"><a href="/Finances/views/front/index.jsp" id="onepage">首页</a></li>
-                <li class="m2-commonNav-fir"><a href="/Finances/views/front/invest.jsp" id="twopage">我要投资</a></li>
-                <li class="m2-commonNav-fir"><a href="/Finances/views/front/membermall.jsp" id="sevenpage">会员商城</a></li>
-                <li class="m2-commonNav-fir"><a href="/Finances/views/front/user/usercenter.jsp" id="threepage">我的账户</a></li>
-                <li class="m2-commonNav-fir"><a href="/Finances/views/front/guarantee.jsp" id="fourpage">安全保障</a></li>
-                <li class="m2-commonNav-fir"><a href="/Finances/views/front/about.jsp" id="fivepage">关于我们</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/toindex" id="index">首页</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/invest.jsp" id="invset">我要投资</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/membermall.jsp" id="business">会员商城</a></li>
+                <li class="m2-commonNav-fir"><a onclick="myinfo();" id="myinfo">我的账户</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/guarantee.jsp" id="security">安全保障</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/about.jsp" id="about">关于我们</a></li>
                 <!-- <li class="m2-commonNav-fir"><a href="guide.html">新手引导</a></li> -->
-                <li class="m2-commonNav-fir"><a href="/Finances/views/front/activity.jsp" id="sixpage">活动专区</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/activity.jsp" id="activity">活动专区</a></li>
             </ul>
         </div>
     </div>
