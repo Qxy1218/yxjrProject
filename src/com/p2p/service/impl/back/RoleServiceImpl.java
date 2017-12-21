@@ -13,6 +13,11 @@ import com.p2p.pojo.Role;
 import com.p2p.service.back.RoleService;
 import com.p2p.util.PageInfo;
 
+/**
+ * 关于后台角色相关操作的service
+ * 2017-11-18
+ * 操作人:胡孝玉
+ * */
 @Transactional
 @Service
 public class RoleServiceImpl implements RoleService{
@@ -33,12 +38,12 @@ public class RoleServiceImpl implements RoleService{
 	
 
 	@Override
-	public void selectPage(PageInfo pageInfo) {
+	public void selectPage(PageInfo pageInfo,Role role) {
 		//传入一个分页bean pageInfo
 		Page<Role> page = new Page(pageInfo.getNowpage(),pageInfo.getSize());
-		List<Role> list = roleMapper.selectPage(page, pageInfo.getCondition());
+		List<Role> list = roleMapper.selectPage(page, pageInfo.getCondition(),role);
 		pageInfo.setRows(list);
-		pageInfo.setTotal(page.getTotal());
+		pageInfo.setTotal(list.size());
 	}
 
 	@Override

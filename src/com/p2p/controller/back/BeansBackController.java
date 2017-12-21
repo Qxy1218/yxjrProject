@@ -30,4 +30,12 @@ public class BeansBackController {
 		return "views/back/index";
 	}
 	
+	/**
+	 * 进入后台权限页面
+	 * */
+	@RequestMapping(value="/toRole")
+	public String toBackRole(HttpServletRequest request){
+		return "views/back/role";
+	}
+	
 }

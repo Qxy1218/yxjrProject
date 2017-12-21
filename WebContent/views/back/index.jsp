@@ -61,8 +61,8 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li>
-                                <a class="J_menuItem" href="index_v1.jsp" data-index="0">权限管理</a>
+                           <li>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/back/toRole" data-index="0">权限管理</a>
                             </li>
                             <li>
                                 <a class="J_menuItem" href="index_v2.jsp">会员账户管理</a>
