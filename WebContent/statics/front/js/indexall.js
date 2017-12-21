@@ -163,25 +163,6 @@ $(".mylogin .closeimg").click(function(){
         		});
     		})
 
-/*
- * 杂项
- * */
-$(function(){
-		//充值
-		$('#right_recharge').click(function(){
-    		window.location.href="usercenter-capitalcontrol-cupcharge";
-		});
-		//右边侧栏顶部右边弹出
-		$(".fixbox_bar").click(function(event){
-    		event.stopPropagation();
-		});
-		//点击查看更多
-		$('#accountCommon_right').click(function(){
-    		window.location.href="usercenter";
- 		});
-
-
-})
 //右侧悬浮框
 var aLi=$('.m2-comRigli_new');
 for(var i=0;i<aLi.length;i++){
