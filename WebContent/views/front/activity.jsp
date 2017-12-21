@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -27,19 +28,37 @@
     <!-- 头部end -->
     
     <!-- 内容 -->
-	<div class="m2-actCenMain">
-	     <div class="m2-actCen-con">
-	         <h2><i></i>活动中心</h2>
-	         <ul id='activityul'>
-	
-	         </ul>
-	         <div class="m2-actMore" id='loadmore' style='cursor: pointer'>
-	             <i class="m2-actItem-cornerMore"></i>
-	             <i class="m2-actItem-circle"></i>
-	             <span id='loadmoretext' style='color:#0996cc;'>加载更多</span>
-	         </div>
-	     </div>
-	 </div>
+    <title>活动中心--爱钱帮</title>
+    <link rel="stylesheet" href="/Finances/statics/front/statics/home2/css/front.css">
+    <script type="text/javascript" src="/Finances/statics/front/statics/common/js/common.js"></script>
+    <!--头部end-->
+        <div class="m2-actCenMain">
+        <div class="m2-actCen-con">
+            <h2><i></i>活动中心</h2>
+           <table border="1" height="50%" width="70%">
+            <c:forEach items="${listActivityfront }" var="activity">
+            	<tr>
+            		<td>${ activity.attitle}</td>
+            		<td>${ activity.atintgard}</td>
+            		<td>${ activity.atcontent}</td>
+            		<td>${ activity.atimag}</td>
+            		<td>${ activity.atstarttime}</td>
+            		<td>${ activity.atendtime}</td>
+            		<td>${ activity.atstatus }</td>
+            	</tr>
+            	
+            </c:forEach>
+            </table>
+            <ul id='activityul'>
+
+            </ul>
+            <div class="m2-actMore" id='loadmore' style='cursor: pointer'>
+                <i class="m2-actItem-cornerMore"></i>
+                <i class="m2-actItem-circle"></i>
+                <span id='loadmoretext' style='color:#0996cc;'>加载更多</span>
+            </div>
+        </div>
+    </div>
     </body>
     <script>
         var index = 0;
