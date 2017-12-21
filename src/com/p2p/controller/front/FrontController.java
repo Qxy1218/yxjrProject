@@ -96,7 +96,7 @@ public class FrontController {
 	 * */
 	@RequestMapping(value="/totransfer")
 	public String tofrontransfer() {
-		return "views/front/user/fransfer";
+		return "views/front/user/transfer";
 	}
 	
 	/**
@@ -152,7 +152,7 @@ public class FrontController {
 	 * */
 	@RequestMapping(value="/tomsg")
 	public String tomsg() {
-		return "views/front/message/sitmsg";
+		return "views/front/message/sitemsg";
 	}
 	
 	/**
@@ -168,7 +168,7 @@ public class FrontController {
 	 * */
 	@RequestMapping(value="/totures")
 	public String totures() {
-		return "views/front/aboutwe/feartures";
+		return "views/front/aboutwe/features";
 	}
 	
 	/**
@@ -188,7 +188,7 @@ public class FrontController {
 	}
 	
 	/**
-	 *网页公告页面的conteroller
+	 *网站公告页面的conteroller
 	 * */
 	@RequestMapping(value="/tonot")
 	public String tonot() {
@@ -206,8 +206,16 @@ public class FrontController {
 	/**
 	 *联系我们页面的conteroller
 	 * */
-	@RequestMapping(value="tocon")
+	@RequestMapping(value="/tocon")
 	public String tocon() {
 		return "views/front/aboutwe/contact";
+	}
+	
+	/**
+	 *企业理财页面的conteroller 
+	 * */
+	@RequestMapping(value="/tofinan")
+	public String tofinan() {
+		return "views/front/financing";
 	}
 }

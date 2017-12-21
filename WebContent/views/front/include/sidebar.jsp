@@ -235,7 +235,7 @@
                 event.stopPropagation();
             });
             $('#accountCommon_right').click(function(){
-                window.location.href="/Finances/views/front/user/usercenter.jsp";
+                window.location.href="/Finances/tousercenter";
             });
 //			$('#redbagCommon_right').click(function(){
 //				window.location.href="usercenter-rewardcontrol-redpacket.html";

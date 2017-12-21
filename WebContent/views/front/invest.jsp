@@ -466,8 +466,8 @@
     <div class="m2-investBread">
         <div class="m2-investBreadbox">
             <i class="m2-investBreadicon"></i>
-            <span class="m2-invBre-fat"><a href="/Finances/views/front/index.jsp">首页&nbsp;&gt;</a></span>
-            <span class="m2-invBre-fat"><a href="/Finances/views/front/invest.jsp">我要投资&nbsp;&gt;</a></span>
+            <span class="m2-invBre-fat"><a href="/Finances/toindex">首页&nbsp;&gt;</a></span>
+            <span class="m2-invBre-fat"><a href="/Finances/toinvest">我要投资&nbsp;&gt;</a></span>
             <span class="m2-invBre-fat">项目直投</span>
         </div>
     </div>

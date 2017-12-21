@@ -16,7 +16,7 @@
 			}
 				return false; 
 			}else if(uid != null){
-				parent.window.location="${pageContext.request.contextPath }/views/front/user/usercenter.jsp"; 
+				parent.window.location="${pageContext.request.contextPath }/tousercenter"; 
 				return true;
 			}
 		}
@@ -81,7 +81,7 @@
                        	</c:if>
                     </li>
                     <li class="m2-commonTop-btn">
-                    	<a href="company_finance.html" id="cfpage" style="border-right:none;width: 50px;">企业理财</a>
+                    	<a href="/Finances/tofinan" id="cfpage" style="border-right:none;width: 50px;">企业理财</a>
                     </li> 
                 </ul>
             </div>
@@ -127,7 +127,7 @@
 <div class="m2-commonNav-con">
     <div class="m2-commonNav-box">
         <div class="m2-commonLogo">
-            <a class="m2-comImg-logo" href="/Finances/views/front/index.jsp">
+            <a class="m2-comImg-logo" href="/Finances/toindex">
                 <img src="/Finances/statics/front/statics/newcommon/images/log.png" title="亿信金融投资理财平台logo" alt="亿信金融标识">
             </a>
             <a class="m2-conImg-slogan" href="">
@@ -138,13 +138,13 @@
             <ul class="m2-commonNavul-fir" data_page='${pageName }'>
                 <!--  <li class="m2-commonNav-fir"><a href="http://huifu.iqianbang.com" target="_blank" >汇付版本</a></li>-->
                 <li class="m2-commonNav-fir"><a href="/Finances/toindex" id="index">首页</a></li>
-                <li class="m2-commonNav-fir"><a href="/Finances/views/front/invest.jsp" id="invset">我要投资</a></li>
-                <li class="m2-commonNav-fir"><a href="/Finances/views/front/membermall.jsp" id="business">会员商城</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/toinvest" id="invset">我要投资</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/tomembermall" id="business">会员商城</a></li>
                 <li class="m2-commonNav-fir"><a onclick="myinfo();" id="myinfo">我的账户</a></li>
-                <li class="m2-commonNav-fir"><a href="/Finances/views/front/guarantee.jsp" id="security">安全保障</a></li>
-                <li class="m2-commonNav-fir"><a href="/Finances/views/front/about.jsp" id="about">关于我们</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/toguarantee" id="security">安全保障</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/toabout" id="about">关于我们</a></li>
                 <!-- <li class="m2-commonNav-fir"><a href="guide.html">新手引导</a></li> -->
-                <li class="m2-commonNav-fir"><a href="/Finances/views/front/activity.jsp" id="activity">活动专区</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/toactivity" id="activity">活动专区</a></li>
             </ul>
         </div>
     </div>

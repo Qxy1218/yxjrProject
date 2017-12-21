@@ -559,7 +559,7 @@
 	                            <div class="m2-busLitop">
 	                                <h3>汽车金融</h3>
 	                                <p class="m2-busLitop-nor">汽车行业是爱钱帮专注发展的重点领域，随着进口汽贸商抵质押业务、个人车辆抵质押业务的逐步开展，爱钱帮已经逐步建立了汽车金融多产品齐头并进的局面。</p>
-	                                <div class="m2-busLitop-btn"><a href="/Finances/views/front/invest.jsp">项目详情&raquo;</a></div>
+	                                <div class="m2-busLitop-btn"><a href="/Finances/toinvest">项目详情&raquo;</a></div>
 	                            </div>
 	                            <div class="m2-busLibottom m2-busLibottom1">
 	                                <div class="m2-busBotsec" style="margin-bottom:15px;">
@@ -577,7 +577,7 @@
 	                            <div class="m2-busLitop">
 	                                <h3>文创金融</h3>
 	                                <p class="m2-busLitop-nor">爱钱帮是网贷行业内唯一一家专注影视、动漫、游戏等文化创意产业的互联网金融服务平台，独到的行业理解，专业的风控结构，充满乐趣的附加权益。咱也任性起来，玩着把钱挣了！</p>
-	                                <div class="m2-busLitop-btn"><a href="/Finances/views/front/invest.jsp">项目详情&raquo;</a></div>
+	                                <div class="m2-busLitop-btn"><a href="/Finances/toinvest">项目详情&raquo;</a></div>
 	                            </div>
 	                            <div class="m2-busLibottom m2-busLibottom2">
 	                                <div class="m2-busBotsec">
@@ -614,7 +614,7 @@
 	                            <h3>公益普惠</h3>
 	                            <h4 class="m2-busli-h4" style="margin:4px 0 2px 0;">投资一个希望&nbsp;&nbsp;&nbsp;点亮一个梦想</h4>
 	                            <p class="m2-busLitop-nor">奉献爱心，让每一个人都有自由逐梦的权利。爱钱帮携手公益项目，确保每一份爱心用到实处。勿以善小而不为，与其摇摆不定，不如即刻行动！</p>
-	                            <div class="m2-busLitop-btn"><a href="/Finances/views/front/invest.jsp">项目详情&raquo;</a></div>
+	                            <div class="m2-busLitop-btn"><a href="/Finances/toinvest">项目详情&raquo;</a></div>
 	                        </div>
 	                    </div>
 	
@@ -622,7 +622,7 @@
 	                            <div class="m2-busLitop">
 	                                <h3>房产金融</h3>
 	                                <p class="m2-busLitop-nor">“爱房贷”是银行认可的以自有物业为抵押品，或银行已批贷但急需资金的借款人，向投资人申请短期借款，还款来源有三重保证，一是借款人在取得银行贷款后第一时间归还投资人；二是担保公司为该笔借款提供全额保证；三是北京优质房产低折扣率抵押担保，是目前市场上及其安全的房产抵押类理财产品。</p>
-	                                <div class="m2-busLitop-btn"><a href="/Finances/views/front/invest.jsp">项目详情&raquo;</a></div>
+	                                <div class="m2-busLitop-btn"><a href="/Finances/toinvest">项目详情&raquo;</a></div>
 	                            </div>
 	                            <div class="m2-busLibottom m2-busLibottom2" style="width:542px">
 	                                <div class="m2-busBotsec">
@@ -641,7 +641,7 @@
 	                            <div class="m2-busLitop">
 	                                <h3>消费金融</h3>
 	                                <p class="m2-busLitop-nor">“消费金融”是针对在特定消费场景中真实交易的特定人群，解决消费者分期消费及时享受产品及服务的需求，故向投资人申请中长期借款，还款来源有三重保证，一是借款人在特别设计的风控模型中进行严格的审查流程；二是担保公司为该笔借款提供全额保证；三是合作商户进行全面支持，反馈市场产品价格及消费趋势信息，做到特定场景特定项目的精准对焦。</p>
-	                                <div class="m2-busLitop-btn"><a href="/Finances/views/front/invest.jsp">项目详情&raquo;</a></div>
+	                                <div class="m2-busLitop-btn"><a href="/Finances/toinvest">项目详情&raquo;</a></div>
 	                            </div>
 	                            <div class="m2-busLibottom m2-busLibottom2">
 	                                <div class="m2-busBotsec">
