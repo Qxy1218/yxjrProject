@@ -63,52 +63,6 @@ $(".mylogin .closeimg").click(function(){
     window.location.href="/Index";
 })
 //END
-
-/*
- * 首页右侧提示悬浮窗、账户、红包、加息券
- * */
-		    var flag="";
-		    var aNum=$('.num1');
-		    for(var i=0;i<aNum.length;i++){
-		        var iNum=parseInt(aNum[i].innerHTML);
-		        if(iNum>=100){
-		            aNum[i].innerHTML='···';
-		        }
-		    }
-		    
-		    //右侧悬浮框
-		    var aLi=$('.m2-comRigli_new');
-    		for(var i=0;i<aLi.length;i++){
-        		(function(index){
-            		aLi[index].onmouseover=function(){
-		                var oDiv=aLi[index].children[2];
-		                var aDiv=oDiv.children;
-                		oDiv.style.display='block';
-                		if(flag==1){
-                    		var iNum=parseInt(aDiv[1].innerHTML);
-                    		if(iNum>=100){
-                        	aDiv[1].innerHTML='···';
-                    		}
-                		}
-            		};
-        		})(i)
-    		}
-    		
-    		for(var i=0;i<aLi.length;i++){
-        		(function(index){
-            		aLi[index].onmouseout=function(){
-                	var oDiv=aLi[index].children[2];
-                	var aDiv=oDiv.children;
-                	oDiv.style.display='none';
-	                	if(flag==1){
-	                    	var iNum=parseInt(aDiv[1].innerHTML);
-	                    	if(iNum>=100){
-	                        aDiv[1].innerHTML='···';
-	                    	}
-	                	}
-            		};
-        		})(i)
-    		}
     		
 /*
  *用户协议弹框 
@@ -137,86 +91,31 @@ $(".mylogin .closeimg").click(function(){
 /*
  * 弹出层
  */
-			$(function () {
-        		//隐藏更多按钮
-        		if ($('.m2-tranHide-det').length < 19) {
-            		$('.m2-tranHidetoggle').hide();
-        		}
-        
-        		//展开收起
-        		$('.m2-tranHidetoggle').click(function () {
-            		if ($(this).hasClass('m2-tranMore')) {
-                		$(this).removeClass('m2-tranMore');
-                		$(this).children('span').html('收&nbsp;&nbsp;&nbsp;起&raquo;');
-                		$('.m2-tranHidelist').css('max-height', 9999);
-            		}else {
-                		$(this).addClass('m2-tranMore');
-                		$(this).children('span').html('显示更多&raquo;');
-                		$('.m2-tranHidelist').css('max-height', 240);
-            		}
-        		});
-        
-        		//点击关闭按钮
-        		$('.m2-tranHide-close,.m2-tranHidenum-btn').click(function () {
-            		$('.m2-tranBg').hide();
-            		$('.m2-tranHide').hide();
-        		});
-    		})
-
-//右侧悬浮框
-var aLi=$('.m2-comRigli_new');
-for(var i=0;i<aLi.length;i++){
-    (function(index){
-        aLi[index].onmouseover=function(){
-            var oDiv=aLi[index].children[2];
-            var aDiv=oDiv.children;
-            oDiv.style.display='block';
-            if(flag==1){
-                var iNum=parseInt(aDiv[1].innerHTML);
-                if(iNum>=100){
-                    aDiv[1].innerHTML='···';
-                }
-            }
-        };
-    })(i)
-}
-
-for(var i=0;i<aLi.length;i++){
-    (function(index){
-        aLi[index].onmouseout=function(){
-            var oDiv=aLi[index].children[2];
-            var aDiv=oDiv.children;
-            oDiv.style.display='none';
-            if(flag==1){
-                var iNum=parseInt(aDiv[1].innerHTML);
-                if(iNum>=100){
-                    aDiv[1].innerHTML='···';
-                }
-            }
-        };
-    })(i)
-}
 $(function () {
-    var wHei = $(window).height();
+	//隐藏更多按钮
+	if ($('.m2-tranHide-det').length < 19) {
+		$('.m2-tranHidetoggle').hide();
+	}
 
-    $(document).scroll(function () {
-        // 判断返回顶部是否显示
-        visTop(wHei);
-    });
+	//展开收起
+	$('.m2-tranHidetoggle').click(function () {
+		if ($(this).hasClass('m2-tranMore')) {
+    		$(this).removeClass('m2-tranMore');
+    		$(this).children('span').html('收&nbsp;&nbsp;&nbsp;起&raquo;');
+    		$('.m2-tranHidelist').css('max-height', 9999);
+		}else {
+    		$(this).addClass('m2-tranMore');
+    		$(this).children('span').html('显示更多&raquo;');
+    		$('.m2-tranHidelist').css('max-height', 240);
+		}
+	});
 
-    $('.m2-comRigli-top').click(function () {
-        $('body,html').animate({scrollTop: 0}, 600);
-        return false;
-    });
-});
-
-function visTop(high) {
-    if ($(document).scrollTop() > high + 100) {
-        $('.m2-comRigli-top').css('visibility', 'visible');
-    } else {
-        $('.m2-comRigli-top').css('visibility', 'hidden');
-    }
-}
+	//点击关闭按钮
+	$('.m2-tranHide-close,.m2-tranHidenum-btn').click(function () {
+		$('.m2-tranBg').hide();
+		$('.m2-tranHide').hide();
+	});
+})
 
 var page=$(".m2-commonNavul-fir").attr("data_page");
 $("#"+page).parent().css("borderBottom","2px solid #ff6666");
