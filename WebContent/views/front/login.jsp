@@ -176,7 +176,7 @@
                             </div>
                             <div class="m2-login-forget">
                                 <p class="alarmnew" style="font-weight: bolder;text-align: left;position: absolute;color:red;width:200px;height: 24px;line-height: 24px;margin:-4px 0;"></p>
-                                <a href="forget.html" class="m2-loginForget">忘记密码？</a>
+                                <a href="/Finances/toforget" class="m2-loginForget">忘记密码？</a>
                             </div>
                             <input type="hidden" name="__hash__" value="2ed71d5dc3b3d172b09f15e7631d021f_ed4f61a6dca2ed264a7bf9ceb8d3e04b" /></form>
                         <div class="m2-login-submit">

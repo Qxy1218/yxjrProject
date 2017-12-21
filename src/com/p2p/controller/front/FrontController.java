@@ -253,4 +253,12 @@ public class FrontController {
 	public String tohelp() {
 		return "views/front/help";
 	}
+	
+	/**
+	 *忘记密码页面的conteroller 
+	 * */
+	@RequestMapping(value="/toforget")
+	public String toforget() {
+		return "views/front/forget";
+	}
 }
