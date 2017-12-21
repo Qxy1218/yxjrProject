@@ -180,141 +180,139 @@
     	<jsp:include page="include/head.jsp"></jsp:include>
 		<!-- headerEnd -->
 
-		<!-- bannerStart -->
+			<!-- bannerStart -->
 		<div class="m2-banner-box">
     		<div class="m2-indexLogincon">
         		<!-- 登录box start -->
         		<div class="mo2-indexLoginbox">
-	            	<!-- 已登录start -->
-	            	<div class="mo2-indLoged" style="display: none">				<div class="mo2-indLoged-tit"><span>你好！<span style="color:#f34940;"></span>，欢迎来到爱钱帮</span></div>
-               			<div class="mo2-indLog-userHead">
-                    		<a href="usercenter.html"><img src="/Finances/statics/front/statics/home2/images/user-head.png" title="欢迎来到爱钱帮投资理财平台" alt=""></a>
-                		</div>
-                		
-                		<div class="mo2-indLogedmain">
-		                    <p class="mo2-indLoged-sma">今日赚取</p>
-		                    <p class="mo2-indLoged-big">&yen;<span>0.00</span></p>
-                		</div>
-                		
-		                <div class="mo2-indLog-btn" style="margin-top:18px;">
-		                    <a href="usercenter.html">我的账户<i></i></a>
-		                </div>
-            		</div>
-            	<!-- 已登录end -->
-            	<!-- 登录注册start -->
-            	<div class="mo2-indLogreg" >				
-            		<div class="mo2-indLogtab">
-		                <ul>
-		                    <li class="mo2-logTab-unsel mo2-indTab-reg">
-		                        <span>注册</span><b></b>
-		                    </li>
-		                    <li class="mo2-logTab-sel mo2-indTab-log">
-		                        <span>登录</span><b></b>
-		                    </li>
-		                </ul>
-            		</div>
+        			<c:if test="${sessionScope.user.uid  != null}">
+		            	<!-- 已登录start -->
+		            	<div class="mo2-indLoged">				
+			            	<div class="mo2-indLoged-tit">
+			            		<span>你好！<span style="color:#f34940;">${sessionScope.user.uphone}</span>，欢迎来到爱钱帮</span>
+			            	</div>
+	               			<div class="mo2-indLog-userHead">
+	                    		<a href="/Finances/tousercenter">
+	                    			<img src="/Finances/statics/front/statics/home2/images/user-head.png" title="欢迎来到爱钱帮投资理财平台" alt="">
+	                    		</a>
+	                		</div>
+	                		
+	                		<div class="mo2-indLogedmain">
+			                    <p class="mo2-indLoged-sma">今日赚取</p>
+			                    <p class="mo2-indLoged-big">&yen;<span>0.00</span></p>
+	                		</div>
+	                		
+			                <div class="mo2-indLog-btn" style="margin-top:18px;">
+			                    <a href="/Finances/tousercenter">我的账户<i></i></a>
+			                </div>
+	            		</div>
+	            		<!-- 已登录end -->
+            		</c:if>
             		
-                <!-- 注册start(轮播图注册) -->
-                	<div class="mo2-indRegbox" style="display:none;">
-	                    <div class="mo2-indLogitem" style="margin-bottom:6px;">
-	                        <i class="mo2-indLogicon-tel"></i>
-	                        <input class="mo2-indIpt-all" id="regTel" maxlength="11" type="text" placeholder="输入手机号码">
-	                        <b class="mo2-indLogwar">
-		                        <em class="mo2-indlogWar-arr">
-		                        </em><u></u>
-	                        </b>
+            	<c:if test="${sessionScope.user.uid  == null}">
+            		<!-- 登录注册start -->
+	            	<div class="mo2-indLogreg">				
+	            		<div class="mo2-indLogtab">
+			                <ul>
+			                    <li class="mo2-logTab-unsel mo2-indTab-reg">
+			                        <span>注册</span><b></b>
+			                    </li>
+			                    <li class="mo2-logTab-sel mo2-indTab-log">
+			                        <span>登录</span><b></b>
+			                    </li>
+			                </ul>
+	            		</div>
+	            		
+	                <!-- 注册start -->
+	                	<div class="mo2-indRegbox" style="display:none;">
+		                    <div class="mo2-indLogitem" style="margin-bottom:6px;">
+		                        <i class="mo2-indLogicon-tel"></i><input class="mo2-indIpt-all" id="regTel" maxlength="11" type="text" placeholder="输入手机号码"><b class="mo2-indLogwar"><em class="mo2-indlogWar-arr"></em><u></u></b>
+		                    </div>
+		                    
+		                    <div class="mo2-indLogitem" style="margin-bottom:6px;">
+		                        <i class="mo2-indLogicon-psw"></i><input class="mo2-indIpt-all m2-ind-banPsw" id="pass" onkeyup="isNumber()" type="password" placeholder="6-20位数字与字母组合的密码"><b class="mo2-indLogwar"><em class="mo2-indlogWar-arr"></em><u></u></b>
+		                    </div>
+		                    
+		                    <div class="mo2-indLogitem-step1">
+		                        <div class="mo2-indLogreg-step1">
+		                            <i class="mo2-indLogicon-code"></i><input class="mo2-indIptcod-step1" id="vcode" type="text" placeholder="验证码">
+		                        </div>
+		                        <img class="mo2-indRegcode" src="/Finances/statics/front/statics/home2/images/home-register-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='/Finances/statics/front/statics/home2/images/home-register-VerifyCode.png?time='+Math.random();void(0);" id="reverifyCode"  alt="点击刷新验证码">
+		                        <span class="mo2-indReg-refresh">看不清？换一张</span>
+		                        <b class="mo2-indLogwar"><em class="mo2-indlogWar-arr"></em><u></u></b>
+		                    </div>
+		                    
+	                    <div class="mo2-indReg-btn" id="verifyregcode" onclick="verifycode();" style="margin-top:8px;">
+	                        <a class="mo2-indRegbtn-able" href="#">立即注册</a>
 	                    </div>
 	                    
-	                    <div class="mo2-indLogitem" style="margin-bottom:6px;">
-	                        <i class="mo2-indLogicon-psw"></i>
-	                        <input class="mo2-indIpt-all m2-ind-banPsw" id="pass" onkeyup="isNumber()" type="password" placeholder="6-20位数字与字母组合的密码">
-	                        <b class="mo2-indLogwar">
-	                       	 <em class="mo2-indlogWar-arr"></em><u></u>
-	                        </b>
+	                    <div class="mo2-indRegagree">
+	                        <i class="mo2-indReg-sel"></i><span>我已阅读并同意</span><b>《爱钱帮注册服务协议》</b>
+	                    </div>
+	                </div>
+	                <!-- 注册end -->
+	                
+	                
+	                <!-- 注册step2 start -->
+	                <div class="mo2-indRegbox2"  style="display:none;" >
+	                    <div class="mo2-indReg2-con">
+	                        <ul>
+	                            <li><i class="mo2-indRegicon-step1"></i><span>为了确保您手机可用，请填写您收到的手机动态码。</span></li>
+	                            <li><i class="mo2-indRegicon-step2"></i><span>如收不到短信验证码，可点击下面的获取语音验证码。</span></li>
+	                        </ul>
 	                    </div>
 	                    
-	                    <div class="mo2-indLogitem-step1">
-	                        <div class="mo2-indLogreg-step1">
-	                            <i class="mo2-indLogicon-code"></i>
-	                            <input class="mo2-indIptcod-step1" id="vcode" type="text" placeholder="验证码">
-	                        </div>
-	                        	<img class="mo2-indRegcode" src="/Finances/statics/front/statics/home2/images/home-register-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='/Finances/statics/front/statics/home2/images/home-register-VerifyCode.png?time='+Math.random();void(0);" id="reverifyCode"  alt="点击刷新验证码">
-	                        	<span class="mo2-indReg-refresh">看不清？换一张</span>
-	                        <b class="mo2-indLogwar">
-	                        	<em class="mo2-indlogWar-arr"></em><u></u>
-	                        </b>
+	                    <div class="mo2-indLogitem">
+	                        <i class="mo2-indLogicon-code"></i><input class="mo2-indIpt-half" id="code" type="text" placeholder="验证码">
+	                        <span class="mo2-indRegtim mo2-regTin-able"><u>60秒后</u><span>获取手机验证码</span></span>
+	                        <b class="mo2-indLogwar" style="width:200px;"><em class="mo2-indlogWar-arr"></em><u>错误提示信息</u></b>
 	                    </div>
 	                    
-                    <div class="mo2-indReg-btn" id="verifyregcode" onclick="verifycode();" style="margin-top:8px;">
-                        <a class="mo2-indRegbtn-able" href="#">立即注册</a>
-                    </div>
-                    
-                    <div class="mo2-indRegagree">
-                        <i class="mo2-indReg-sel"></i><span>我已阅读并同意</span><b>《爱钱帮注册服务协议》</b>
-                    </div>
-                </div>
-                <!-- 注册end -->
-                
-                
-                <!-- 注册step2 start -->
-                <div class="mo2-indRegbox2"  style="display:none;" >
-                    <div class="mo2-indReg2-con">
-                        <ul>
-                            <li><i class="mo2-indRegicon-step1"></i><span>为了确保您手机可用，请填写您收到的手机动态码。</span></li>
-                            <li><i class="mo2-indRegicon-step2"></i><span>如收不到短信验证码，可点击下面的获取语音验证码。</span></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="mo2-indLogitem">
-                        <i class="mo2-indLogicon-code"></i><input class="mo2-indIpt-half" id="code" type="text" placeholder="验证码">
-                        <span class="mo2-indRegtim mo2-regTin-able"><u>60秒后</u><span>获取手机验证码</span></span>
-                        <b class="mo2-indLogwar" style="width:200px;"><em class="mo2-indlogWar-arr"></em><u>错误提示信息</u></b>
-                    </div>
-                    
-                    <div class="mo2-indRegvoice">
-                        <span class="mo2-indRegvoi-btn mo2-indRegvoi-able"><i></i>获取语音验证码</span>
-                    </div>
-                    
-                    <div class="mo2-indReg-btn" onclick="registeraaa();" id="verifyregphone"  style="margin-top:8px;">
-                        <a class="mo2-indRegbtn-able"  href="#">立即注册</a>
-                    </div>
-                </div>
-                <!-- 注册step2 end -->
-                
-                
-                <!-- 登录start -->
-                <div class="mo2-indLogbox">
-                    <div class="mo2-indLogitem mo2-indLogitem-use" style="margin-bottom:9px;">
-                        <i class="mo2-indLogicon-use"></i><input class="mo2-indIpt-all" type="text" id="user_name" placeholder="用户名/手机号">
-                        <b class="mo2-indLogwar" id="w_usernameMain"><em class="mo2-indlogWar-arr"></em><u id="r_usernameMain"></u></b>
-                    </div>
-                    
-                    <div class="mo2-indLogitem mo2-indLogitem-psw" style="margin-bottom:9px;">
-                        <i class="mo2-indLogicon-psw"></i><input class="mo2-indIpt-all m2-ind-banPsw" maxlength="20" id="pass_word" type="password" id="pass_word" placeholder="输入登录密码">
-                        <b class="mo2-indLogwar" id="w_passwordMain"><em class="mo2-indlogWar-arr"></em><u id="r_passwordMain"></u></b>
-                    </div>
-                    
-                    <div class="mo2-indLog-code" style="display:none;margin-bottom:8px;">
-                        <div class="mo2-indLogcod-lef">
-                            <i class="mo2-indLogicon-psw"></i>
-                            <input type="text" id="vcodes" placeholder="验证码"></div>
-                        <div class="mo2-indLogcod-rig"><img src="/Finances/statics/front/statics/home2/images/Index-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='Index-VerifyCode.png?time='+Math.random();void(0);" alt="点击刷新验证码"></div>
-                    </div>
-                    
-                    <div class="mo2-indLog-forget"><a href="forget.html">忘记密码?</a></div>
-                    
-                    <div class="mo2-indReg-btn" style="margin-top: 20px;">
-                        <a class="mo2-indRegbtn-able" onclick="login();">登录</a>
-                    </div>
-                </div>
-                <!-- 登录end -->
-            </div>
-            <!-- 登录注册end -->
+	                    <div class="mo2-indRegvoice">
+	                        <span class="mo2-indRegvoi-btn mo2-indRegvoi-able"><i></i>获取语音验证码</span>
+	                    </div>
+	                    
+	                    <div class="mo2-indReg-btn" onclick="registeraaa();" id="verifyregphone"  style="margin-top:8px;">
+	                        <a class="mo2-indRegbtn-able"  href="#">立即注册</a>
+	                    </div>
+	                </div>
+	                <!-- 注册step2 end -->
+	                
+	                
+	                <!-- 登录start -->
+	                <div class="mo2-indLogbox">
+	                    <div class="mo2-indLogitem mo2-indLogitem-use" style="margin-bottom:9px;">
+	                        <i class="mo2-indLogicon-use"></i><input class="mo2-indIpt-all" type="text" id="user_name" placeholder="用户名/手机号">
+	                        <b class="mo2-indLogwar" id="w_usernameMain"><em class="mo2-indlogWar-arr"></em><u id="r_usernameMain"></u></b>
+	                    </div>
+	                    
+	                    <div class="mo2-indLogitem mo2-indLogitem-psw" style="margin-bottom:9px;">
+	                        <i class="mo2-indLogicon-psw"></i><input class="mo2-indIpt-all m2-ind-banPsw" maxlength="20" id="pass_word" type="password" id="pass_word" placeholder="输入登录密码">
+	                        <b class="mo2-indLogwar" id="w_passwordMain"><em class="mo2-indlogWar-arr"></em><u id="r_passwordMain"></u></b>
+	                    </div>
+	                    
+	                    <div class="mo2-indLog-code" style="display:none;margin-bottom:8px;">
+	                        <div class="mo2-indLogcod-lef">
+	                            <i class="mo2-indLogicon-psw"></i>
+	                            <input type="text" id="vcode" placeholder="验证码"></div>
+	                        <div class="mo2-indLogcod-rig"><img src="/Finances/statics/front/statics/home2/images/Index-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='Index-VerifyCode.png?time='+Math.random();void(0);" alt="点击刷新验证码"></div>
+	                    </div>
+	                    
+	                    <div class="mo2-indLog-forget"><a href="forget.html">忘记密码?</a></div>
+	                    
+	                    <div class="mo2-indReg-btn" style="margin-top: 20px;">
+	                        <a class="mo2-indRegbtn-able" onclick="login();">登录</a>
+	                    </div>
+	                </div>
+	                <!-- 登录end -->
+	            </div>
+            	<!-- 登录注册end -->
+            </c:if>
         </div>
         <!-- 登录box end -->
     </div>
     
-    <!-- 轮播图 -->
+   	<!-- 轮播图 -->
     <div class="m2-bd">
         <ul id="m2-ul">
 	        <c:forEach items="${indexpicList}" var="hi">
@@ -326,9 +324,9 @@
 	                </div>
 	            </li>
 		    </c:forEach>     
-	    </ul>
+	    </ul>          
     </div>
-     
+    
     <!-- 自动调整轮转图片的显示大小（宽度） -->
     <div class="m2-banner-btn">
         <a style="display:none;" class="m2-prev"  href="javascript:void(0);"></a>
@@ -336,14 +334,13 @@
         <div class="m2-hd"><div class="m2-hdBg"></div><ul></ul></div>
     </div>
     
-        <!-- 自动调整轮转图片的显示大小（宽度）-->
+    <!-- 自动调整轮转图片的显示大小（宽度）-->
     <script type="text/javascript">
         window.onresize=function(){
             var oM2Ul=document.getElementById('m2-ul');
             oM2Ul.style.width=document.documentElement.clientWidth+'px';
-        }
+        } 
     </script>
-    
 </div>
 
 	<!--新用户完成注册-->
@@ -365,9 +362,7 @@
 	<!--新用户完成注册-->
 
 	<!-- bannerEnd -->
-	
 
-	
 	<div class="m2-indexMain" style="width: 1000px;margin: 0 auto;position:relative;">
     	<div class="mo2-indexStep">
         	<ul>
@@ -414,8 +409,6 @@
 	            </li>
         	</ul>
     	</div>
-    	
-  
     
     <!-- 滚动公告start -->
     <div class="mo2-notice">
@@ -446,13 +439,10 @@
             </div>
         </div>
         
-        
         <div class="mo2-notMore">
             <a href="/aiqianbang_licaiwang_gonggao">更多公告</a>
         </div>
     </div>
-    
-
     <!-- 滚动公告end -->
     
     
@@ -511,9 +501,7 @@
                 </div>
             </div>
         </div>
-
         <!-- 新手项目end -->
-        
         
         <!-- 私人定期start -->
         <div class="mo2-indPri">
@@ -571,9 +559,7 @@
             </div>
         </div>
     </div>
-    
     <!-- 私人定期end -->
-    
     
     <!-- 爱车贷start -->
     <div class="mo2-indCar-con">
@@ -1074,10 +1060,7 @@
           </ul>
         </div>
     </div>
-    
-
     <!-- 爱车贷end -->
-    
     
     <!-- 爱房贷start -->
     <div class="mo2-indCar-con">
@@ -1330,13 +1313,7 @@
           </ul>
         </div>
     </div>
-    
-  
-    
-    
- 
     <!-- 爱房贷end -->
-    
     
     <!-- 消费金融start -->
     <div class="mo2-indCar-con">
@@ -1590,7 +1567,6 @@
           </ul>
         </div>
     </div>
-
     <!-- 消费金融end -->
     
     <div class="m2-indexStepbox">
@@ -1611,8 +1587,6 @@
             <ul class="m2-indexStepimg-list">
             </ul>
         </div>
-        
-  
     </div>
 
     <div class="m2-indexItembox">
