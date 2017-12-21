@@ -272,7 +272,7 @@ public class FrontController {
 		model.addAttribute("pageName", "myinfo");
 		
 		mo.setViewName("views/front/user/userverify");
-		return null;
+		return mo;
 	}
 	
 	/**
