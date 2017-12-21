@@ -237,15 +237,6 @@
             $('#accountCommon_right').click(function(){
                 window.location.href="/Finances/tousercenter";
             });
-//			$('#redbagCommon_right').click(function(){
-//				window.location.href="usercenter-rewardcontrol-redpacket.html";
-//			});
-//			$('#percentageCommon_right').click(function(){
-//				window.location.href="usercenter-rewardcontrol-interestcoupon.html";
-//			});
-//			$('#messageCommon_right').click(function(){
-//				window.location.href="usercenter-messagecontrol-sitemsg.html";
-//			});
         })
 
     </script>
@@ -336,100 +327,6 @@
 	    </script>
     </c:if>
     <script>
-        //注册方法
-        function verifycodeRight(){
-            var canSubmit=true;
-            $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html('');
-            if($("#vcodeRight").val().length==0){
-                $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html("验证码不能为空");
-                $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").show();
-                canSubmit = false;
-            }
-            if($("#passRight").val().length==0){
-                $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html("密码不能为空");
-                $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").show();
-                canSubmit = false;
-            }
-            if($("#regTelRight").val().length==0){
-                $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html("手机号不能为空");
-                $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").show();
-                canSubmit = false;
-            }
-
-            $(".mo2-indRegbox .mo2-indLogwarRight u").each(function(){
-                if($(this).html().length>0){
-                    canSubmit = false;
-                }
-            });
-            if (canSubmit !== true) return false;
-            var p={"vcode":$("#vcodeRight").val()};
-            postData("/Home-Register-ckcode",p,function(d){
-                if(d.message!=" "){
-                    $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html(d.message);
-                    $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").show();
-                    return false;
-                }else{
-                    $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html('');
-                    $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").hide();
-                    $('.mo2-indRegboxRight').css('display','none');
-                    $('.mo2-indRegbox2Right').css('display','block');
-                }
-
-            });
-        }
-		//登录方法
-    function loginRight(){
-        var p = makevar(['user_nameRight','pass_wordRight','vcodeRight']);
-        var canSubmit = true;
-        if($('#user_nameRight').val()==""){
-            $('#r_usernameRight').html('用户名不能为空！');
-            $('#w_usernameRight').show();
-        }else if($('#user_nameRight').val().lenght <6){
-            $('#r_usernameRight').html('用户名长度错误！');
-            $('#w_usernameRight').show();
-        }else {
-            if ($('#pass_wordRight').val() == ""){
-                $('#r_passwordRight').html('密码不能为空！');
-                $('#w_passwordRight').show();
-            }else if ($('#pass_wordRight').val().length < 6 || $('#pass_wordRight').val().length > 20){
-                $('#r_passwordRight').html('密码长度错误！');
-                $('#w_passwordRight').show();
-            }else {
-                $('#r_usernameRight').html('');
-                $('#w_usernameRight').hide();
-                $('#r_passwordRight').html('');
-                $('#w_passwordRight').hide();
-                postData("/Home-Login-index_loginRight",p,function(d){
-                    if(d.status==0){
-                        $('#r_usernameRight').html(d.message);
-                        $('#w_usernameRight').show();
-                    }else if(d.status==1){
-                        window.location.reload();
-                    }else if(d.status==2){
-                        window.location.href = "aiqianbang_licaiwang_gonggao-15319.html";
-                    }
-                });
-            }
-        }
-    }
-		// 注册登录tab切换
-    $('.mo2-indLogtab ul li').click(function(){
-        if ($(this).hasClass('mo2-logTab-unsel')) {
-            $(this).addClass('mo2-logTab-sel').removeClass('mo2-logTab-unsel');
-            $(this).siblings('.mo2-logTab-sel').addClass('mo2-logTab-unsel').removeClass('mo2-logTab-sel');
-        }
-    });
-        // 注册登录显示隐藏
-        $('.mo2-indTab-reg').click(function(){
-            $('.mo2-indRegboxRight').show();
-            $('.mo2-indRegbox2Right').hide();
-            $('.mo2-indLogboxRight').hide();
-        });
-        $('.mo2-indTab-log').click(function(){
-            $('.mo2-indRegboxRight').hide();
-            $('.mo2-indRegbox2Right').hide();
-            $('.mo2-indLogboxRight').show();
-        });
 		
         var flag="";
 	    var aNum=$('.num1');
@@ -501,3 +398,6 @@
         }
     </script>
     <!-- 右侧边栏end -->
+    
+    <!-- 导入登录注册所用的js判断 -->
+	<script type="text/javascript" src="/Finances/statics/front/js/indexlogreg.js"></script>
