@@ -261,4 +261,12 @@ public class FrontController {
 	public String toforget() {
 		return "views/front/forget";
 	}
+	
+	/**
+	 *忘记密码页面的conteroller 
+	 * */
+	@RequestMapping(value="/tocode")
+	public String tocode() {
+		return "views/front/qrcode";
+	}
 }
