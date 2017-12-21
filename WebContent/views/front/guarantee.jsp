@@ -283,7 +283,7 @@
                 <li class="m2-comRigli m2-comRigli-sug" style="border-bottom: 1px solid #fff;">
                     <i class="m2-comRigli-icon"></i>
                     <span class="m2-comRigli-hov">
-                    	<a href="guide.html" style="color:#fff;">帮助<br>中心</a>
+                    	<a href="/Finances/tohelp" style="color:#fff;">帮助<br>中心</a>
                     </span>
                 </li>
 

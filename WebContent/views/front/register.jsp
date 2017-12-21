@@ -223,7 +223,7 @@
             <div class="m2-login-right">
                 <h2>注册即送88元</h2>
                 <img src="/Finances/statics/front/statics/home2/images/exper_v2.png" />
-                <p>首次浏览，<br/>了解更多细节请进<a href="guide.html" target="_blank">新手引导>></a></p>
+                <p>首次浏览，<br/>了解更多细节请进<a href="/Finances/tohelp" target="_blank">新手引导>></a></p>
             </div>
         </div>
     </div>

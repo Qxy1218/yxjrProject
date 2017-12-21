@@ -245,4 +245,12 @@ public class FrontController {
 	public String tofinan() {
 		return "views/front/financing";
 	}
+	
+	/**
+	 *帮助中心页面的conteroller 
+	 * */
+	@RequestMapping(value="/tohelp")
+	public String tohelp() {
+		return "views/front/help";
+	}
 }

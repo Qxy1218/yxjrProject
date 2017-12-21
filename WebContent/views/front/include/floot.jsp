@@ -22,10 +22,10 @@
                 <h3>客服电话:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:12px;">投资有风险，请谨慎投资</span></h3>
                 <h3>4006-777-518&nbsp;&nbsp;&nbsp;http://www.iqianbang.com</h3>
                 <ul>
-                    <li><a href="touzi_licai_chanpin.html">我要投资</a></li>
-                    <li><a href="guide.html">帮助中心</a></li>
-                    <li><a href="guanyu_aiqianbang.html">关于我们</a></li>
-                    <li><a href="licai_gonggao.html">新闻公告</a></li>
+                    <li><a href="/Finances/toinvest">我要投资</a></li>
+                    <li><a href="/Finances/tohelp">帮助中心</a></li>
+                    <li><a href="/Finances/toabout">关于我们</a></li>
+                    <li><a href="/Finances/tonot">新闻公告</a></li>
                 </ul>
             </div>
             <div class="mainNewown">
