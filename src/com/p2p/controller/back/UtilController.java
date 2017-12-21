@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -60,9 +61,9 @@ public class UtilController {
 	
 	
 	/**
-	 * 文件上传
+	 * ajax文件上传
 	 * */
-	public static void upload(HttpServletRequest request,String fileName) throws Exception{
+	public static String upload(HttpServletRequest request,String fileName) throws Exception{
 		MultipartHttpServletRequest msr = (MultipartHttpServletRequest)request;
 		
 		//拿到文件对象
@@ -88,6 +89,44 @@ public class UtilController {
 		
 		//上传文件
 		mf.transferTo(new File(contextPath+newFilename+suffix));
+		String path = "/uploadFile/"+newFilename+suffix;
+		return path;
+	} 
+	
+	/**
+	 * 文件上传
+	 * */
+	public static String uploadFrom(HttpServletRequest request,MultipartFile file) throws Exception{
+		
+		//拿到文件名称
+		String exfileName = file.getOriginalFilename(); 
+		
+		//截取文件名称。取从.号开始到后面的所有名称
+		String suffix =exfileName.substring(exfileName.indexOf("."));
+		
+		//利用时间对文件名进行重名
+		SimpleDateFormat df  = new SimpleDateFormat("yyyMMddHHmmssSSS");
+		
+		//新文件名
+		String newFilename = df.format(new Date());
+		
+		//拿到全局路径
+		String contextPath = request.getSession().getServletContext().getRealPath("/uploadFile");
+		
+		//把路径中的包括\\全部换成/
+		contextPath = contextPath.replace("\\","/");
+		
+        File dir = new File(contextPath,newFilename+suffix);          
+        if(!dir.exists()){  
+            dir.mkdirs();  
+        }  
+        //MultipartFile自带的解析方法  
+        file.transferTo(dir);  
+        
+      //上传文件路径
+      	String path = "/uploadFile/"+newFilename+suffix;
+		
+		return path;
 	} 
 	
 	/**

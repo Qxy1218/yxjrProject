@@ -1,14 +1,19 @@
 package com.p2p.controller.back;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.p2p.pojo.Indexpic;
 import com.p2p.service.back.IndexpicService;
 import com.p2p.util.PageInfo;
 
@@ -29,5 +34,14 @@ public class IndexpicController {
 		indexpicService.selectPage(pageInfo);
 		pageInfo.setTotal(count);
 		return pageInfo;
+	}
+	//增加轮播图
+	@RequestMapping(value="insertIndexpic")
+	@ResponseBody
+	public int insertIndexpic(Indexpic indexpic,HttpServletRequest request,MultipartFile file) throws Exception {
+		String filepath = UtilController.uploadFrom(request, file);
+		indexpic.setIpimage(filepath);
+		int count = indexpicService.addModel(indexpic);
+		return count;
 	}
 }
