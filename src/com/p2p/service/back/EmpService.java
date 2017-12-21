@@ -11,6 +11,6 @@ import com.p2p.pojo.Employe;
  * 操作时间:2017-12-18
  * 后台员工的Service
  * */
-public interface EmpService extends IBaseService<Serializable, Employe>{
+public interface EmpService extends IBaseService<Integer, Employe>{
    Employe getByemployname(String  ename);
 }
