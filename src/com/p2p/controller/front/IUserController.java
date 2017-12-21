@@ -193,7 +193,7 @@ public class IUserController {
 				/**
 				 * 把用户信息存放进session
 				 * */
-				session.setAttribute("user",user);
+				session.setAttribute("user",user2);
 				
 			}else {
 				map.put("status",5);

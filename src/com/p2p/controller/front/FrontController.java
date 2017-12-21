@@ -1,7 +1,9 @@
 package com.p2p.controller.front;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 
 /**
@@ -31,40 +33,65 @@ public class FrontController {
 	 * 我要投资页面的conteroller
 	 * */
 	@RequestMapping(value="/toinvest")
-	public String tofroninvest(){
-		return "views/front/invest";
+	public ModelAndView tofroninvest(Model model){
+		ModelAndView mo = new ModelAndView();
+		
+		model.addAttribute("pageName", "invset");
+		
+		mo.setViewName("views/front/invest");
+		return mo;
 	}
 	
 	/**
 	 * 安全保障页面的conteroller
 	 * */
 	@RequestMapping(value="/toguarantee")
-	public String tofronguarantee() {
-		return "views/front/guarantee";
+	public ModelAndView tofronguarantee(Model model) {
+		ModelAndView mo = new ModelAndView();
+		
+		model.addAttribute("pageName", "security");
+		
+		mo.setViewName("views/front/guarantee");
+		return mo;
 	}
 	
 	/**
 	 * 关于我们页面的conteroller
 	 * */
 	@RequestMapping(value="/toabout")
-	public String tofronabout() {
-		return "views/front/about";
+	public ModelAndView tofronabout(Model model) {
+		ModelAndView mo = new ModelAndView();
+		
+		model.addAttribute("pageName", "about");
+		
+		mo.setViewName("views/front/about");
+		return mo;
 	}
 	
 	/**
 	 * 我的账户页面的conteroller
 	 * */
 	@RequestMapping(value="/tousercenter")
-	public String tofronusercenter() {
-		return "views/front/user/usercenter";
+	public ModelAndView tofronusercenter(Model model) {
+		ModelAndView mo = new ModelAndView();
+		
+		model.addAttribute("pageName", "myinfo");
+		
+		mo.setViewName("views/front/user/usercenter");
+		return mo;
 	}
 	
 	/**
 	 * 活动专区页面的conteroller
 	 * */
 	@RequestMapping(value="/toactivity")
-	public String tofronactivity() {
-		return "views/front/activity";
+	public ModelAndView tofronactivity(Model model) {
+		ModelAndView mo = new ModelAndView();
+		
+		model.addAttribute("pageName", "activity");
+		
+		mo.setViewName("views/front/activity");
+		return mo;
 	}
 	
 	/**

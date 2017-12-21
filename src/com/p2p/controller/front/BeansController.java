@@ -3,8 +3,10 @@ package com.p2p.controller.front;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,10 +26,13 @@ public class BeansController {
 	 * 进入首界面(index.jsp)
 	 * */
 	@RequestMapping(value="/toindex")
-	public ModelAndView toFrontIndex(){
+	public ModelAndView toFrontIndex(Model model){
 		ModelAndView mo = new ModelAndView();
 		List<Indexpic> lists = indexpicService.getAllModel();
 		mo.addObject("indexpicList", lists);
+		
+		model.addAttribute("pageName","index");
+		
 		mo.setViewName("views/front/index");
 		return mo;
 	}	
@@ -65,7 +70,20 @@ public class BeansController {
 	 * 进入 会员商城界面(membermall.jsp)
 	 * */
 	@RequestMapping(value="/tomembermall")
-	public String toFrontMember(){
-		return "views/front/membermall";
+	public ModelAndView toFrontMember(Model model){
+		ModelAndView mo = new ModelAndView();
+		
+		model.addAttribute("pageName","business");
+		mo.setViewName("views/front/membermall");
+		return mo;
+	}
+	
+	/**
+	 * 退出前台登录
+	 * */
+	@RequestMapping(value="/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("user");
+		return "redirect:/tologin";
 	}
 }
