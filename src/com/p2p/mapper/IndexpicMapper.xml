@@ -15,9 +15,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select * from indexpic 
  	</select>
  	<!-- 轮播图添加 -->
-	<insert id="addModel" parameterType="com.p2p.pojo.Indexpic" useGeneratedKeys="true" keyProperty="ipid">
- 		 insert into indexpic(ip_id,ip_name,ip_image,ip_url) 
- 		 values(#{ipid},#{ipname},#{ipimage},#{ipurl})
+	<insert id="addModel" useGeneratedKeys="true" keyProperty="ipid">
+ 		 insert into indexpic(ip_name,ip_image,ip_url) 
+ 		 values(#{ipname},#{ipimage},#{ipurl})
  	</insert>
  	<!-- 轮播图删除 -->
  	<delete id="delete" parameterType="com.p2p.pojo.Indexpic">
