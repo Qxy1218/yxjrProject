@@ -33,25 +33,22 @@ public class IUserServiceImpl implements IUserService{
 
 	@Override
 	public List<User> getAllModel() {
-		// TODO Auto-generated method stub
-		return null;
+		return iUserMapper.getAllModel();
 	}
 
 	@Override
 	public int update(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+		return iUserMapper.update(user);
 	}
 
 	@Override
 	public int delete(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+		return iUserMapper.delete(user);
 	}
 
 	@Override
 	public User findModel(Integer id) {
-		return null;
+		return iUserMapper.findModel(id);
 	}
 
 }
