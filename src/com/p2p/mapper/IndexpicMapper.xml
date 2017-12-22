@@ -31,4 +31,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectPage" resultMap="BaseResultMap">
 		select * from indexpic;        
     </select>
+     <!-- 修改角色 -->
+    <update id="update" parameterType="com.p2p.pojo.Indexpic" >
+        UPDATE indexpic SET 
+			ip_name=#{ipname},
+			ip_image=#{ipimage},
+			ip_url =#{ipurl}
+		WHERE ip_id=#{ipid}
+    </update>
 </mapper>
