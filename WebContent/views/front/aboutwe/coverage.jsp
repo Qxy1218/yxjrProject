@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		    <meta name="keywords" content="理财网站,理财平台,网上理财,投资理财平台,投资理财,理财产品">
 		    <meta name="description" content="爱钱帮的理财媒体报道栏目，为您提供权威媒体从理财网站、理财平台、网上理财三个方面报道爱钱帮投资理财机构的资讯，让您对爱钱帮投资理财平台有更深的认识。">
-		    <title>媒体报道丨理财产品_帮助您如何投资理财的个人理财互联网金融理财投资平台-爱钱帮</title>
-		    <!--[if lt IE 9]>
-		    <script src="statics/newcommon/js/html5shiv.js"></script>
+		    <title>媒体报道丨亿信金融</title>
+			<!--[if lt IE 9]>
+		    	<script src="<%=path%>/statics/front/statics/newcommon/js/html5shiv.js"></script>
 		    <![endif]-->
 		    <link  rel="Shortcut  Icon"  href="/Finances/statics/other/lco/smalllog.png">
 		    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">

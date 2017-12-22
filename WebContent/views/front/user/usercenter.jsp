@@ -11,7 +11,7 @@
 		<!--[if lt IE 9]>
 	    	<script src="<%=path%>/statics/front/statics/newcommon/js/html5shiv.js"></script>
 	    <![endif]-->
-		<title>我的账户丨理财产品，为您赚钱短期理财的互联网金融理财投资平台-爱钱帮</title>
+		<title>我的账户 | 亿信金融</title>
 		<link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
 		<link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-common.css">

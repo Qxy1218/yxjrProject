@@ -22,7 +22,7 @@
 	    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/esl.js"></script>
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/jquery.datetimepicker.css" />
 	    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/jquery.datetimepicker.js"></script>
-		<title>投资记录_亿信金融</title>
+		<title>投资记录 | 亿信金融</title>
 	</head>
 	
 <body>

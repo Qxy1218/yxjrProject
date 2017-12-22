@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<meta charset="UTF-8">
 	    <meta name="keywords" content="互联网金融,投资理财平台,投资理财,爱钱帮">
 	    <meta name="description" content="如果你有梦想，有冲劲，有创造力和执行力，请你加入我们；爱钱帮投资理财平台将给你带来一次在互联网金融行业中拼搏实现理想的机会；让我们一起实现梦想。">
-	    <title>管理团队丨关于我们丨理财产品_为您赚钱的互联网金融理财投资平台-爱钱帮 </title>
+	    <title>管理团队丨关于我们丨亿信金融 </title>
 	    <!--[if lt IE 9]>
 	    <script src="statics/newcommon/js/html5shiv.js"></script>
 	    <![endif]-->
