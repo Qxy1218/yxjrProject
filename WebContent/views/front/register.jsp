@@ -26,7 +26,7 @@
    	<link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/statics/home2/css/m2-login.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/statics/newcommon/js/common.js"></script>
 
-<title>亿信金融--注册</title>
+<title> 注册 | 亿信金融</title>
    <style type="text/css">
         .myloginmask {position:fixed;top: 0;left: 0;right: 0;bottom: 0;background-color: black;display: none;opacity: 0.7;z-index: 800;filter:alpha(opacity=70)}
         .mylogin {position:   fixed;top: 50%;left: 50%;margin-top: -346px;margin-left: -260px;width: 520px;height: 496px;background-image: url("/Finances/statics/front/statics/home2/images/login/login_info.png");background-repeat: no-repeat;z-index: 1000;display: none;}

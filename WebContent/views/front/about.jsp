@@ -6,7 +6,7 @@
 		<meta charset="UTF-8">
 		<meta name="keywords" content="互联网金融,投资理财,互联网投资理财">
 	    <meta name="description" content="爱钱帮从事的互联网金融，以资金托管 + 担保 + 独立风控的阳光P2B互联网投资理财新模式，为投资人提供12%—15%的优质投资项目，安全合规并且全面保护用户的资金安全。">
-		<title>关于我们丨理财产品，为您赚钱的互联网金融理财投资平台-爱钱帮</title>
+		<title>关于我们 | 亿信金融</title>
 		<link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/home2/css/m2-main.css">
@@ -243,5 +243,6 @@
         }
     })
     </script>
+  
 </body>
 </html>

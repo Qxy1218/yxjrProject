@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>亿信金融</title>
+		<title>二维码 | 亿信金融</title>
 		<link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">

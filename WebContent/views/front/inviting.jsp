@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 		<head>
 		    <meta charset="UTF-8">
 		    <!--[if lt IE 9]>
-		    <script src="statics/newcommon/js/html5shiv.js"></script>
+		    	<script src="<%=path%>/statics/front/statics/newcommon/js/html5shiv.js"></script>
 		    <![endif]-->
 		    <meta name="keywords" content="网贷平台,网络借贷，网络赚钱项目,理财产品">
 		    <meta name="description" content="爱钱帮网贷平台为您提供网络赚钱项目；为此相继推出了许多新的理财产品，在为您创造高收益的同时也优化了理财产品模式。网络借贷，就选爱钱帮。">
-		    <title>邀请好友--爱钱帮</title>
+		    <title>邀请好友 | 亿信金融 </title>
 		    <meta charset="UTF-8">
 		    <link  rel="Shortcut  Icon"  href="/Finances/statics/other/lco/smalllog.png">
 		    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">

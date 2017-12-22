@@ -1,12 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%
+	String path = request.getContextPath();
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="keywords" content="网贷理财,高收益投资理财项目,如何网上赚钱,理财知识,短期理财,银行理财,北京理财,普惠金融投资理财网">
     <meta name="description" content="爱钱帮是目前网贷理财知名的高收益理财项目平台，有海鲜帮、娱乐帮、汽车帮等高收益理财产品，还有“帮派”项目也接连而出，教您理财知识，如何网上赚钱。">
-	<title>我要投资丨北京理财_银行理财_为您赚钱的互联网金融短期理财投资平台-爱钱帮</title>
+	<title>我要投资丨亿信金融 </title>
+	<!--[if lt IE 9]>
+	   	<script src="<%=path%>/statics/front/statics/newcommon/js/html5shiv.js"></script>
+	<![endif]-->
 	<link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
     <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">
     <link rel="stylesheet" href="/Finances/statics/front/statics/home2/css/m2-main.css">

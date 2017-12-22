@@ -9,11 +9,11 @@
 		<meta charset="UTF-8">
 	    <meta name="keywords" content="高收益理财产品,理财投资,网络投资理财平台,网贷理财,互联网金融,投资理财平台,投资理财,赚钱,小额投资理财,如何投资理财,投资理财知识,投资理财,北京p2p理财">
 	    <meta name="description" content="爱钱帮可以为您赚钱的网络投资理财平台，为投资理财用户和贷款用户两端提供公平、透明、安全、高效的网贷理财服务，爱钱帮互联网金融中网贷投资理财平台的最好的选择。">
-	    <title>亿信金融_为您赚钱和提供高收益理财产品的理财投资投资理财平台</title>
+	    <title>会员商城 |亿信金融</title>
 	    
-	    <!--[if lt IE 9]>
-    	<script src="statics/newcommon/js/html5shiv.js"></script>
-    	<![endif]-->
+		<!--[if lt IE 9]>
+	    	<script src="<%=path%>/statics/front/statics/newcommon/js/html5shiv.js"></script>
+	    <![endif]-->
     	
     	<link rel="shortcut icon" href="/Finances/statics/other/lco/smalllog.png"> 
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">
