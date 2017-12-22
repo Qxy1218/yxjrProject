@@ -36,6 +36,10 @@
 	<script src="/Finances/statics/front/statics/common/js/common.js"></script>
 
 	<script src="/Finances/statics/front/statics/common/tipBox/common.js"></script>
+	
+	<!-- 图形验证码 -->
+	<script src="/Finances/statics/front/js/gVerify.js"></script>
+	
 	<!--tipBOx-->
 	<script language=JavaScript type="text/javascript" src="/Finances/statics/front/statics/home/js/tab.js"></script>
 	<script type="text/javascript">
@@ -226,7 +230,8 @@
 	                <!-- 注册start -->
 	                	<div class="mo2-indRegbox" style="display:none;">
 		                    <div class="mo2-indLogitem" style="margin-bottom:6px;">
-		                        <i class="mo2-indLogicon-tel"></i><input class="mo2-indIpt-all" id="regTel" maxlength="11" type="text" placeholder="输入手机号码"><b class="mo2-indLogwar"><em class="mo2-indlogWar-arr"></em><u></u></b>
+		                        <i class="mo2-indLogicon-tel"></i><input class="mo2-indIpt-all" id="regTel" maxlength="11" type="text" placeholder="输入手机号码">
+		                        <b class="mo2-indLogwar"><em class="mo2-indlogWar-arr"></em><u></u></b>
 		                    </div>
 		                    
 		                    <div class="mo2-indLogitem" style="margin-bottom:6px;">
@@ -237,8 +242,7 @@
 		                        <div class="mo2-indLogreg-step1">
 		                            <i class="mo2-indLogicon-code"></i><input class="mo2-indIptcod-step1" id="vcode" type="text" placeholder="验证码">
 		                        </div>
-		                        <img class="mo2-indRegcode" src="/Finances/statics/front/statics/home2/images/home-register-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='/Finances/statics/front/statics/home2/images/home-register-VerifyCode.png?time='+Math.random();void(0);" id="reverifyCode"  alt="点击刷新验证码">
-		                        <span class="mo2-indReg-refresh">看不清？换一张</span>
+		                        <div class="mo2-indRegcode"  id="reverifyCode" ></div>
 		                        <b class="mo2-indLogwar"><em class="mo2-indlogWar-arr"></em><u></u></b>
 		                    </div>
 		                    
@@ -290,14 +294,14 @@
 	                        <i class="mo2-indLogicon-psw"></i><input class="mo2-indIpt-all m2-ind-banPsw" maxlength="20" id="pass_word" type="password" id="pass_word" placeholder="输入登录密码">
 	                        <b class="mo2-indLogwar" id="w_passwordMain"><em class="mo2-indlogWar-arr"></em><u id="r_passwordMain"></u></b>
 	                    </div>
-	                    
+	                    <!--
 	                    <div class="mo2-indLog-code" style="display:none;margin-bottom:8px;">
 	                        <div class="mo2-indLogcod-lef">
 	                            <i class="mo2-indLogicon-psw"></i>
 	                            <input type="text" id="vcode" placeholder="验证码"></div>
 	                        <div class="mo2-indLogcod-rig"><img src="/Finances/statics/front/statics/home2/images/Index-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='Index-VerifyCode.png?time='+Math.random();void(0);" alt="点击刷新验证码"></div>
 	                    </div>
-	                    
+	                      -->
 	                    <div class="mo2-indLog-forget"><a href="forget.html">忘记密码?</a></div>
 	                    
 	                    <div class="mo2-indReg-btn" style="margin-top: 20px;">

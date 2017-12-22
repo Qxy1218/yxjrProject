@@ -22,17 +22,22 @@
 	            <!-- 注册start -->
         <div class="mo2-indRegboxRight" style="display:none;">
             <div class="mo2-indLogitem" style="margin-bottom:6px;">
-                <i class="mo2-indLogicon-tel"></i><input class="mo2-indIpt-all" id="regTelRight" maxlength="11" type="text" placeholder="输入手机号码"><b class="mo2-indLogwarRight"><em class="mo2-indlogWar-arr"></em><u></u></b>
+                <i class="mo2-indLogicon-tel"></i>
+                <input class="mo2-indIpt-all" id="regTelRight" maxlength="11" type="text" placeholder="输入手机号码">
+                <b class="mo2-indLogwarRight">
+                <em class="mo2-indlogWar-arr">
+                </em><u></u></b>
             </div>
             <div class="mo2-indLogitem" style="margin-bottom:6px;">
-                <i class="mo2-indLogicon-psw"></i><input class="mo2-indIpt-all m2-ind-banPsw" id="passRight" type="password" placeholder="6-20位数字与字母组合的密码"><b class="mo2-indLogwarRight"><em class="mo2-indlogWar-arr"></em><u></u></b>
+                <i class="mo2-indLogicon-psw"></i><input class="mo2-indIpt-all m2-ind-banPsw" id="passRight" type="password" placeholder="6-20位数字与字母组合的密码">
+                <b class="mo2-indLogwarRight"><em class="mo2-indlogWar-arr"></em><u></u></b>
             </div>
             <div class="mo2-indLogitem-step1">
                 <div class="mo2-indLogreg-step1">
                     <i class="mo2-indLogicon-code"></i><input class="mo2-indIptcod-step1" id="vcodeRight" type="text" placeholder="验证码">
                 </div>
-                <img class="mo2-indRegcode" src="home-register-VerifyCode.png" onClick="document.getElementById('reverifyCodeRight').src='home-register-VerifyCode.png?time='+Math.random();void(0);" id="reverifyCodeRight"  alt="点击刷新验证码">
-                <span class="mo2-indReg-refresh">看不清？换一张</span>
+                	<!-- 图形验证码 -->
+                  <div class="mo2-indRegcode"  id="reverifyCodeRight" ></div>
                 <b class="mo2-indLogwarRight"><em class="mo2-indlogWar-arr"></em><u></u></b>
             </div>
             <div class="mo2-indReg-btn" id="verifyregcode" onclick="verifycodeRight();" style="margin-top:8px;">
@@ -59,6 +64,7 @@
             <div class="mo2-indRegvoice">
                 <span class="mo2-indRegvoi-btn mo2-indRegvoi-able"><i></i>获取语音验证码</span>
             </div>
+             <input type="hidden" id="sidbarcode">
             <div class="mo2-indReg-btn" onclick="registerRight();" id="verifyregphone"  style="margin-top:8px;">
                 <a class="mo2-indRegbtn-able"  href="#">立即注册</a>
             </div>
@@ -74,13 +80,16 @@
 	                    <i class="mo2-indLogicon-psw"></i><input class="mo2-indIpt-all m2-ind-banPsw" maxlength="20" id="pass_wordRight" type="password" id="pass_wordRight" placeholder="输入登录密码">
 	                    <b class="mo2-indLogwar" id="w_password"><em class="mo2-indlogWar-arr"></em><u id="r_passwordRight"></u></b>
 	                </div>
+	              <!-- 
 	                <div class="mo2-indLog-code" style="display:none;margin-bottom:8px;">
 	                    <div class="mo2-indLogcod-lef">
 	                        <i class="mo2-indLogicon-psw"></i>
 	                        <input type="text" id="vcodeRight" placeholder="验证码"></div>
 	                    <div class="mo2-indLogcod-rig"><img src="/Finances/statics/front/statics/home2/images/Index-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='Index-VerifyCode.png?time='+Math.random();void(0);" alt="点击刷新验证码"></div>
 	                </div>
+	              -->
 	                <div class="mo2-indLog-forget"><a href="forget.html">忘记密码?</a></div>
+	               
 	                <div class="mo2-indReg-btn">
 	                    <a class="mo2-indRegbtn-able" onclick="loginRight();">登录</a>
 	                </div>
@@ -244,7 +253,16 @@
     <!--首页右侧提示悬浮窗、账户、红包、加息券 user_m_type -->
    <c:if test="${sessionScope.user.uid  == null}">
     	<script type="text/javascript">
+    		
 	        $(".m2-comRigli").click(function(event){
+	        	//如果是主界面则return;
+	        	var a =  $("#myyzcode").val();
+	        	if(typeof(a) != "undefined"){
+	        		return;
+	        	}
+	        	if(a!=null){
+	        		return;
+	        	}
 	            $('#right-fix').animate({ right: '50px'}, "slow");
 	            event.stopPropagation();
 	        });
@@ -398,3 +416,4 @@
         }
     </script>
     <!-- 右侧边栏end -->
+   

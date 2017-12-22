@@ -200,6 +200,7 @@ public class IUserController {
 				
 			}else {
 				map.put("status",5);
+				map.put("status",0);
 				map.put("message","账号密码输入错误或账号不存在");
 				
 			}

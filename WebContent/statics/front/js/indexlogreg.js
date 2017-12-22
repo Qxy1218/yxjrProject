@@ -1,131 +1,5 @@
-$(function(){
-    // 是否存在用户
-    $('#regTelRight').blur(function(){
-    	var phone = $('#regTelRight').val();
-    	if(phone==""){
-    		return
-    	}
-        postData("/Finances/front/getregpdphishave",phone,function(d){
-        	if(d.message!=' '){
-                if(d.verify_nums>3){
-                	$("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html('');
-                }
-                $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html(d.message);
-                $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").show();
-            } 
-        	if(typeof(d.message) == "undefined"){
-        		$("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html('');
-            }
-        });
-    });
-});
-//注册方法
-function verifycodeRight(){
-	var canSubmit=true;
-	$("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html('');
-	
-	if($("#vcodeRight").val().length==0){
-        $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html("验证码不能为空");
-        $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").show();
-        canSubmit = false;
-	}
-	
-	if($("#passRight").val().length==0){
-        $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html("密码不能为空");
-        $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").show();
-        canSubmit = false;
-	}
-	
-	
-	
-	
-    if($("#regTelRight").val().length==0){
-        $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html("手机号不能为空");
-        $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").show();
-        canSubmit = false;
-    }
-
-    $(".mo2-indRegbox .mo2-indLogwarRight u").each(function(){
-        if($(this).html().length>0){
-            canSubmit = false;
-        }
-    });
-	
-    if (canSubmit !== true) {
-    	return false;
-    }
-		var p={"phone":$("#regTelRight").val(),"pass_word":$("#passRight").val(),"yqcode":"nowrite"};
-		postData("/Finances/userRegister",p,function(d){
-			if(d.message!=" "){
-                $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html(d.message);
-                $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").show();
-                return false;
-			}else if(d.status==5){
-                $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").children("u").html('');
-                $("#reverifyCodeRight").siblings(".mo2-indLogwarRight").hide();
-                $('.mo2-indRegboxRight').css('display','none');
-                $('.mo2-indRegbox2Right').css('display','block');
-            }
-
-		});
-	}
-
- //登录方法
-function loginRight(){
-    var p = makevar(['user_nameRight','pass_wordRight','vcodeRight']);
-    var canSubmit = true;
-	if($('#user_nameRight').val()==""){
-        $('#r_usernameRight').html('用户名不能为空！');
-        $('#w_usernameRight').show();
-	}else if($('#user_nameRight').val().lenght <6){
-        $('#r_usernameRight').html('用户名长度错误！');
-        $('#w_usernameRight').show();
-	}else {
-    	if ($('#pass_wordRight').val() == ""){
-            $('#r_passwordRight').html('密码不能为空！');
-    		$('#w_passwordRight').show();
-		}else if ($('#pass_wordRight').val().length < 6 || $('#pass_wordRight').val().length > 20){
-            $('#r_passwordRight').html('密码长度错误！');
-            $('#w_passwordRight').show();
-		}else {
-            $('#r_usernameRight').html('');
-            $('#w_usernameRight').hide();
-            $('#r_passwordRight').html('');
-            $('#w_passwordRight').hide();
-            
-			postData("/Home-Login-index_loginRight",p,function(d){
-    			if(d.status==0){
-                    $('#r_usernameRight').html(d.message);
-                    $('#w_usernameRight').show();
-        		}else if(d.status==1){
-            		window.location.reload();
-        		}else if(d.status==2){
-            		window.location.href = "aiqianbang_licaiwang_gonggao-15319.html";
-        		}
-			});
-		}
-	}
-}	
- 
-// 注册登录tab切换
-$('.mo2-indLogtab ul li').click(function(){
-    if ($(this).hasClass('mo2-logTab-unsel')) {
-        $(this).addClass('mo2-logTab-sel').removeClass('mo2-logTab-unsel');
-        $(this).siblings('.mo2-logTab-sel').addClass('mo2-logTab-unsel').removeClass('mo2-logTab-sel');
-    }
-});
-
-// 注册登录显示隐藏
-$('.mo2-indTab-reg').click(function(){
-    $('.mo2-indRegboxRight').show();
-    $('.mo2-indRegbox2Right').hide();
-    $('.mo2-indLogboxRight').hide();
-});
-$('.mo2-indTab-log').click(function(){
-    $('.mo2-indRegboxRight').hide();
-    $('.mo2-indRegbox2Right').hide();
-    $('.mo2-indLogboxRight').show();
-});
+//图形验证码
+var verifyCode = new GVerify("reverifyCode");
 
 $(function(){
     // 勾选注册用户协议
@@ -252,7 +126,7 @@ function isNumber(){
         $("#pass").val(codeNumber.substring(0,codeNumber.length-1))
     }
 }
-
+//轮播图发送验证码点击事件
 $('.mo2-indRegtim').click(function(){
 
     if ($(this).hasClass('mo2-regTin-able')) {
@@ -292,8 +166,12 @@ function sendmsg(zmlcs){
         });
     }
 }
-
+//轮播图发送语音验证码
 $('.mo2-indRegvoi-btn').click(function(){
+	if(1==1){
+		//现在暂时关闭语音验证码功能
+		return;
+	}
     if ($(this).hasClass('mo2-indRegvoi-able')) {
         var reg_phone=/^1\d{10}$/;
         var _phone = 0;
@@ -332,8 +210,12 @@ $('.mo2-indRegvoi-btn').click(function(){
         $('#w_code').show();
     }
 });
-//发送语音验证码
+//轮播图注册发送语音验证码
 $('.m2-logVoi-sur').click(function(){
+	if(1==1){
+		//现在暂时关闭语音验证码功能
+		return;
+	}
     $.ajax({
         type:"POST",
         data:{"phone":$('#regTel').val(),"code":$('#vcode').val(),"type":1,"zml":"hhh"},
@@ -353,12 +235,13 @@ $('.m2-logVoi-sur').click(function(){
         }
     });
 });
+//图形验证码刷新
 $('.mo2-indReg-refresh').click(function(){
     $('#reverifyCode').click();
 });
+//轮播图判断验证码是否为空
 var _code_blur = 0;
 $("#code").blur(function(){
-	//alert("进入");
     if ($(this).val().length > 0){
         if ($(this).val().length != 6){
             $("#code").siblings(".mo2-indLogwar").children("u").html('验证码错误！');
@@ -372,6 +255,7 @@ $("#code").blur(function(){
     }
 });
 
+//轮播图的真正注册
 function registeraaa(){
     if ($('.mo2-indReg-btn a').hasClass('mo2-indRegbtn-able')){
         var canSubmit=true;
@@ -400,6 +284,7 @@ function registeraaa(){
                 //用户详情显示，注册登入关闭
                 //$(".mo2-indLoged").show();
                 //$(".mo2-indLogreg").hide();
+                window.location.reload();
             }else if (msg.status == 0){
                 $("#code").siblings(".mo2-indLogwar").children("u").html(msg.message);
                 $("#code").siblings(".mo2-indLogwar").show();
@@ -430,6 +315,17 @@ function verifycode(){
             $("#pass").next(".mo2-indLogwar").show();
             canSubmit = false;
         }
+        var cc = $("#vcode").val();
+        if(cc!=''){
+        	var res = verifyCode.validate(cc);
+            if(res){
+            }else{
+            	 $("#reverifyCode").siblings(".mo2-indLogwar").children("u").html("验证码未填写正确");
+                 $("#reverifyCode").siblings(".mo2-indLogwar").show();
+                 canSubmit = false;
+            }
+        }
+        
         $(".mo2-indRegbox .mo2-indLogwar u").each(function(){
             if($(this).html().length>0){
                 canSubmit = false;
@@ -451,10 +347,11 @@ function verifycode(){
             }
     }
 }
+//未找到
 function oklinklogin(){
     window.open('thirdparty-oklink-oauth_getcode');
 }
-
+//轮播图登入
 $('#user_name').blur(function(){
     if ($(this).val().length > 0){
         if ($(this).val().lenght < 6){
@@ -469,7 +366,7 @@ $('#user_name').blur(function(){
         $('#w_usernameMain').hide();
     }
 });
-
+//轮播图密码判断
 $('#pass_word').blur(function(){
     if ($(this).val().length > 0){
         if ($(this).val().length < 6 || $(this).val().length >20){
@@ -481,8 +378,9 @@ $('#pass_word').blur(function(){
         $('#w_passwordMain').hide();
     }
 });
+//轮播图登入
 function login(){
-    var p = makevar(['user_name','pass_word','vcode']);
+    var p = makevar(['user_name','pass_word']);
     var canSubmit = true;
     if($('#user_name').val()==""){
         $('#r_usernameMain').html('用户名不能为空');
@@ -502,7 +400,7 @@ function login(){
             $('#w_usernameMain').hide();
             $('#r_passwordMain').html('');
             $('#w_passwordMain').hide();
-            postData("/Home-Login-index_login",p,function(d){
+            postData("/Finances/user/userLogin",p,function(d){
                 if(d.status==0){
                     $('#r_usernameMain').html(d.message);
                     $('#w_usernameMain').show();
@@ -510,9 +408,10 @@ function login(){
 //					showLoginDialog(d.mycoin,11);
                     window.location.reload();
                 }else if(d.status==1){
+                	//登入成功返回的状态码
                     window.location.reload();
                 }else if(d.status==2){
-                    window.location.href = "dashiji_show.html#15319.html";
+                    //window.location.href = "dashiji_show.html#15319.html";
                 }
             });
         }
