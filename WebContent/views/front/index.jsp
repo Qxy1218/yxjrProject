@@ -319,7 +319,7 @@
 	            <li  style="background-color: white;">
 	                <div class="m-width">
 	                    <a  href="${hi.ipurl}" target="_blank">
-	                    <img src="${hi.ipimage}" title="${hi.ipname}"   alt="${hi.ipname}"/>
+	                    <img src="/Finances${hi.ipimage}" title="${hi.ipname}"   alt="${hi.ipname}"/>
 	                   </a>
 	                </div>
 	            </li>
