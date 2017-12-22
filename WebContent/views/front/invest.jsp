@@ -570,5 +570,8 @@
     <!-- 足部start -->
     <jsp:include page="include/floot.jsp"></jsp:include>
     <!-- 足部end -->
+    
+    <!-- 导入登录注册的判断js-->
+  	<script type="text/javascript" src="/Finances/statics/front/js/indexlogreg.js"></script>
 </body>
 </html>

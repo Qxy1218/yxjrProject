@@ -290,5 +290,8 @@
 		        $('.m2-loginEwm2').toggle();
 		    });
 		</script>
+		
+		<!-- 导入登录注册的判断js-->
+  	<script type="text/javascript" src="/Finances/statics/front/js/indexlogreg.js"></script>
     </body>
 </html>
