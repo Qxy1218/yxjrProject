@@ -18,20 +18,20 @@
     var rows = null;
     function addRole(){
     	//清空editModel原来填写的内容
-		$("#editRole #ipname").val('');
-		$("#editRole #ipimage").val('');
-		$("#editRole #ipurl").val('');
+		$("#editForm #ipname").val('');
+		$("#editForm #ipimage").val('');
+		$("#editForm #ipurl").val('');
 		
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
 		$("#btn_submit").attr("onclick","insertIndexpic()");
 		//显示新增窗口
-		$('#editRole').modal('show');
+		$('#editForm').modal('show');
     }
   //新增轮播图
 	function insertIndexpic() {
 		
 		//用来关闭新增窗口***********
-		$("#editRole").modal('hide');
+		$("#editForm").modal('hide');
 		  $('#editForm').ajaxForm({  
 		        dataType: 'json',  
 		        success: function(data){
@@ -49,8 +49,8 @@
 	})
   }
 	//修改按钮事件
-	$("#btn_edit").click(function(){
-		//获取当前选中行的信息
+    function UpIndex(){
+   	//获取当前选中行的信息
 		var selectList = $('#tb_role').bootstrapTable('getSelections');
 		//判断有没有选中
 		if(selectList.length<=0){
@@ -64,31 +64,26 @@
 		}
 		var athRole = selectList[0];
 		//把选中行的数据放到弹窗的控件中
-		$("#editRole #rename").val(athRole.rename);
-		$("#editRole #reremark").val(athRole.reremark);
-		$("#restatus #restatus").val(athRole.remark);
+		$("#editForm #ipname").val(athRole.ipname);
+		/* $("#editForm #ipimage").val(athRole.ipimage); */
+		$("#editForm #ipurl").val(athRole.ipurl);
 		
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
-		$("#btn_submit").attr("onclick","updateRole("+athRole.reid+")");
+		$("#btn_submit").attr("onclick",updateIndexpic(""+athRole.ipid+""));
 		//显示新增窗口
-		$('#editRole').modal('show');
-    });
-	function updateRole(reid){
-		//表单验证
-		if (!validateForm($("#editForm"))) {
-			return;
-		}
+		$('#editForm').modal('show');
+    }
+	function updateIndexpic(ipid){
 		//用来关闭新增窗口***********
-		$("#editRole").modal('hide');
-		var url = "${pageContext.request.contextPath }/back/admin/"+reid;
+		$("#editForm").modal('hide');
+		var url = "${pageContext.request.contextPath }/back/admin/updateIndexpic";
 		$.post(
 			url,
 			{
-				_method:'PUT',//改成PUT提交
-				reid:reid,
-				rolename:$("#editRole #rename").val(),
-                reremark:$("#editRole #reremark").val(),
-                restatus:$("#editRole #restatus").val(),
+				ipid:ipid,
+				ipname:$("#editForm #ipname").val(),
+				/* ipimage:$("#editForm #ipimage").val(), */
+				ipurl:$("#editForm #ipurl").val(),
 			},
 			function(data){
 				//后台返回int类型的数据
@@ -107,11 +102,11 @@
 	}
 	//删除按钮事件
 	//*************************************************************************按钮事件
-	$('#btn_delete').click(function () {
-		delRole();
-    });
+	function btn_delete(){
+		deleteIndexpic();
+	}
 	//删除
-	function delRole(){
+	function deleteIndexpic(){
 		//获取当前选中行的信息
 		var stuList = $('#tb_role').bootstrapTable('getSelections');
 		var ids = "";
@@ -123,16 +118,17 @@
 		//拼接ids  1,2,3,4  用于批量删除
 		for(var i =0 ;i<stuList.length;i++){
 			if(i!=stuList.length-1){
-				ids = ids +stuList[i].reid+",";
+				ids = ids +stuList[i].ipid+",";
 			}else{
-				ids = ids +stuList[i].reid;
+				ids = ids +stuList[i].ipid;
 			}
 		}
-		var url = "${pageContext.request.contextPath }/back/admin/"+ids;
+		var url = "${pageContext.request.contextPath }/back/admin/deleteIndexpic";
+		
 		$.post(
 			url,
 			{
-				_method:'DELETE',//改成PUT提交
+				ids:ids,
 			},
 			function(data){
 				//后台返回int类型的数据
@@ -149,6 +145,7 @@
 			"text"
 		);	
 	}
+	
 $(function () {
 	 	//激活弹框提示
 		$("[data-toggle='tooltip']").tooltip();
@@ -251,10 +248,10 @@ $(function () {
 							<button id="btn_add" type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#addStudent" onclick="addRole()">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
 							</button>
-							<button id="btn_edit" type="button" class="btn btn-w-m btn-success">
+							<button id="btn_edit" type="button" class="btn btn-w-m btn-success" onclick="UpIndex()">
 								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 							</button>
-							<button id="btn_delete" type="button" class="btn btn-w-m btn-danger">
+							<button id="btn_delete" type="button" class="btn btn-w-m btn-danger" onclick="btn_delete()">
 								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
 							</button>
 						</div>
@@ -269,7 +266,7 @@ $(function () {
 		</div>
 	</div>
 	<!-- 新增弹窗 -->
-	<div class="modal fade" id="editRole" tabindex="-1" role="dialog"
+	<div class="modal fade" id="editForm" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
