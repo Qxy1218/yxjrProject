@@ -12,41 +12,50 @@
 <!-- 引用js文件 -->
 
 <jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
-<script type="text/javascript" src="/Finances/statics/front/js/jquery.form.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery.form.js"></script>
 <script  type="text/javascript" >
 
     var rows = null;
     function addRole(){
     	//清空editModel原来填写的内容
-		$("#editForm #ipname").val('');
-		$("#editForm #ipimage").val('');
-		$("#editForm #ipurl").val('');
+		$("#editForm #ipname").val();
+		$("#editForm #ipimage").val();
+		$("#editForm #ipurl").val();
 		
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
 		$("#btn_submit").attr("onclick","insertIndexpic()");
 		//显示新增窗口
-		$('#editForm').modal('show');
+		$('#editImg').modal('show');
     }
   //新增轮播图
 	function insertIndexpic() {
-		
 		//用来关闭新增窗口***********
-		$("#editForm").modal('hide');
-		  $('#editForm').ajaxForm({  
-		        dataType: 'json',  
-		        success: function(data){
-					//后台返回int类型的数据
+		$("#editImg").modal('hide');
+	  
+		 var form = new FormData(document.getElementById("editForm"));
+	      $.ajax({
+	          url:"${pageContext.request.contextPath}/back/admin/insertIndexpic",
+	          type:"post",
+	          data:form,
+	          processData:false,
+	          contentType:false,
+	          success:function(data){
+	        	//后台返回int类型的数据
 					if(data>0){
 						//新增成功，下面是后台框架的提示
-						parent.layer.alert('修改成功');
+						parent.layer.alert('增加成功');
 					}else{
 						//新增失败
-						parent.layer.alert('修改失败');
+						parent.layer.alert('增加失败');
 					}
 					//新增完刷新表格数据
 					$('#tb_role').bootstrapTable('refresh');
-		}
-	})
+	          },
+	          error:function(e){
+	              alert("错误！！");
+	          }
+	      });        
+
   }
 	//修改按钮事件
     function UpIndex(){
@@ -65,24 +74,24 @@
 		var athRole = selectList[0];
 		//把选中行的数据放到弹窗的控件中
 		$("#editForm #ipname").val(athRole.ipname);
-		/* $("#editForm #ipimage").val(athRole.ipimage); */
+		//$("#editForm #ipimage").val(athRole.ipimage); 
 		$("#editForm #ipurl").val(athRole.ipurl);
 		
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
-		$("#btn_submit").attr("onclick",updateIndexpic(""+athRole.ipid+""));
+		$("#btn_submit").attr("onclick","updateIndexpic("+athRole.ipid+")");
 		//显示新增窗口
-		$('#editForm').modal('show');
+		$('#editImg').modal('show');
     }
 	function updateIndexpic(ipid){
 		//用来关闭新增窗口***********
-		$("#editForm").modal('hide');
+		$("#editImg").modal('hide');
 		var url = "${pageContext.request.contextPath }/back/admin/updateIndexpic";
 		$.post(
 			url,
 			{
 				ipid:ipid,
 				ipname:$("#editForm #ipname").val(),
-				/* ipimage:$("#editForm #ipimage").val(), */
+				ipimage:$("#editForm #ipimage").val(),
 				ipurl:$("#editForm #ipurl").val(),
 			},
 			function(data){
@@ -207,25 +216,7 @@ $(function () {
 	};
 	
 	
-/* 	function upload(){
-		var option ={
-			type : "POST",
-			url : "importex/uploadex.do",
-			data : {"fileName" : "exfile"},
-			dataType : "JSON",
-			success : function(data) {
-				if(data=="success"){
-					console.info(data);
-					alert("上传成功");
-					//var json = $.parseJSON(data);
-					//$("#img1").attr("src", json.relativePath);
-				}			
-			}			
-		};
-		// ajax表单提交
-		$("#imexform").ajaxSubmit(option);
-	    //$("#uploadForm").resetForm(); // 提交后重置表单
-	}; */
+
 	
 	</script>
 </script>
@@ -266,7 +257,7 @@ $(function () {
 		</div>
 	</div>
 	<!-- 新增弹窗 -->
-	<div class="modal fade" id="editForm" tabindex="-1" role="dialog"
+	<div class="modal fade" id="editImg" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -277,9 +268,10 @@ $(function () {
 					</button>
 					<h4 class="modal-title" id="myModalLabel">角色管理</h4>
 				</div>
-			<form id="editForm" action="/Finances/back/admin/insertIndexpic" class="form-horizontal m-t" method="post" enctype="multipart/form-data">  
 				
 				<div class="modal-body">
+					<form id="editForm" action="" class="form-horizontal m-t" method="post" enctype="multipart/form-data">  
+		
 					<!-- 新增系别 -->
 							<div class="form-group">
 							<label for="urlName" class="control-label col-sm-3">轮播图名称</label> 
@@ -299,17 +291,17 @@ $(function () {
 								<textarea name="ipurl" rows="3" class="form-control" id="ipurl"></textarea>
 	            			</div>
 						</div>
-					
+			</form>		
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
 					</button>
-					<button type="submit" id="btn_submit" class="btn btn-primary" >
+					<button type="button" id="btn_submit" class="btn btn-primary" >
 						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>提交
 					</button>
 				</div>
-				</form>
+				
 			</div>
 		</div>
 	</div>
