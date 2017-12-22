@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.p2p.pojo.Indexpic;
+import com.p2p.pojo.Role;
 import com.p2p.service.back.IndexpicService;
 import com.p2p.util.PageInfo;
 
@@ -44,4 +45,26 @@ public class IndexpicController {
 		int count = indexpicService.addModel(indexpic);
 		return count;
 	}
+	//删除
+	@RequestMapping(value="deleteIndexpic")
+	@ResponseBody
+	public  int deleteIndexpic(String ids){ 
+		int count = 0;
+		String[] idStr = ids.split(",");
+		for (int i = 0; i < idStr.length;i++) {
+			String ipid = (String) idStr[i];
+			Indexpic indexpic = new Indexpic();
+			indexpic.setIpid(Integer.valueOf(ipid));;
+			count =indexpicService.delete(indexpic);
+		}
+		return count;
+	}
+	//修改角色信息
+	@RequestMapping(value = "updateIndexpic")
+	@ResponseBody
+	public  int updateIndexpic(Indexpic indexpic){  
+		int count = indexpicService.update(indexpic);
+		return count;
+	}
+	
 }
