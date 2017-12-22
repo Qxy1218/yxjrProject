@@ -398,8 +398,8 @@ function registeraaa(){
             if (msg.status == 1){
                 $("#newregister").show();//显示注册成功领取奖励金页面
                 //用户详情显示，注册登入关闭
-                $(".mo2-indLoged").show();
-                $(".mo2-indLogreg").hide();
+                //$(".mo2-indLoged").show();
+                //$(".mo2-indLogreg").hide();
             }else if (msg.status == 0){
                 $("#code").siblings(".mo2-indLogwar").children("u").html(msg.message);
                 $("#code").siblings(".mo2-indLogwar").show();

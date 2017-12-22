@@ -399,5 +399,5 @@
     </script>
     <!-- 右侧边栏end -->
     
-    <!-- 导入登录注册所用的js判断 -->
-	<script type="text/javascript" src="/Finances/statics/front/js/indexlogreg.js"></script>
+    <!-- 导入登录注册所用的js判断 
+	-->
