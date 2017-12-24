@@ -15,7 +15,7 @@ public class Role implements Serializable{
 	private Integer reid;  //主键id
 	
 	@TableField("pt_id")
-	private Integer ptid;  //权限树id
+	private String ptid;  //权限树id
 	
 	@TableField("re_name")
 	private String rename;  //职位名称
@@ -30,7 +30,7 @@ public class Role implements Serializable{
 		
 	}
 
-	public Role(Integer reid, Integer ptid, String rename, String reremark, Integer restatus) {
+	public Role(Integer reid, String ptid, String rename, String reremark, Integer restatus) {
 		super();
 		this.reid = reid;
 		this.ptid = ptid;
@@ -47,11 +47,11 @@ public class Role implements Serializable{
 		this.reid = reid;
 	}
 
-	public Integer getPtid() {
+	public String getPtid() {
 		return ptid;
 	}
 
-	public void setPtid(Integer ptid) {
+	public void setPtid(String ptid) {
 		this.ptid = ptid;
 	}
 

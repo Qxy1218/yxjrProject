@@ -10,7 +10,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="re_remark" property="reremark"/>  
 		<result column="re_status" property="restatus"/>  
     </resultMap>
-    
+    <resultMap  id="TreeResultMap" type="com.p2p.pojo.Powertree">
+    	<id column="pt_id" property="ptid"/>
+    	<result column="pt_name" property="ptname"/>
+    	<result column="pt_node" property="ptnode"/>
+    	<result column="pt_status" property="ptstatus"/>
+    </resultMap>
     <!-- 查询所有角色 -->
     <select id="selectPage" resultMap="BaseResultMap">
 		select * from role 
@@ -30,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      <!-- 填加角色 -->
     <insert id="addModel" useGeneratedKeys="true" keyProperty="reid">
         insert into role(pt_id,re_name,re_remark,re_status) 
-		   values(1,#{rename},#{reremark},#{restatus})     
+		   values('1',#{rename},#{reremark},#{restatus})     
     </insert>
     
     <!-- 通过角色对象查询 -->
@@ -52,9 +57,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <delete id="delete" parameterType="com.p2p.pojo.Role">
         DELETE FROM role WHERE re_id=#{reid} 
     </delete>
-    
     <!-- 查询角色的总记录数 -->
     <select id="roleCount" resultType="java.lang.Integer">
         select count(*) from role;
     </select>
+    
+     <!-- 根据reid查询权限 -->
+    <select id="selePtidByreid" parameterType="java.lang.Integer" resultType="java.lang.String">
+    	select pt_id from role <where>
+    		re_id=#{reid}
+    	</where>
+    </select>
+    
+      <!-- 查询所有的权限树 -->
+    <select id="selePowerTreeList" resultMap="TreeResultMap">
+    	select * from powertree
+    </select>
+    
+    <!-- 根据ptid得到权限树名 -->
+    <select id="selePtnameByptid" parameterType="java.lang.Integer" resultType="java.lang.String">
+    	select pt_name from powertree <where>
+    		pt_id =#{ptid}
+    	</where>
+    </select>
+    
+    <!-- 修改权限树 -->
+    <update id="updatePowerTree" parameterType="com.p2p.pojo.Role">
+    	 UPDATE role SET 
+			pt_id =#{ptid}
+		<where>
+			re_id=#{reid}
+		</where>
+		
+    </update>
 </mapper>

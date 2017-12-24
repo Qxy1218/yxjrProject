@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.p2p.mapper.RoleMapper;
+import com.p2p.pojo.Powertree;
 import com.p2p.pojo.Role;
 import com.p2p.service.back.RoleService;
 import com.p2p.util.PageInfo;
@@ -70,4 +71,25 @@ public class RoleServiceImpl implements RoleService{
 	public Role findModel(Integer id) {
 		return roleMapper.findModel(id);
 	}
+
+	@Override
+	public String selePtidByreid(Integer reid) {
+		return roleMapper.selePtidByreid(reid);
+	}
+
+	@Override
+	public List<Powertree> selePowerTreeList() {
+		return roleMapper.selePowerTreeList();
+	}
+
+	@Override
+	public String selePtnameByptid(Integer ptid) {
+		return roleMapper.selePtnameByptid(ptid);
+	}
+
+	@Override
+	public int updatePowerTree(Role role) {
+		return roleMapper.updatePowerTree(role);
+	}
+
 }

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.p2p.base.IBaseDao;
+import com.p2p.pojo.Powertree;
 import com.p2p.pojo.Role;
 
 /**
@@ -21,4 +22,17 @@ public interface RoleMapper extends IBaseDao<Integer,Role>{
 	
 	//查询总的记录数
 	abstract Integer roleCount();
+	
+	//根据角色reid得到ptid
+	abstract String selePtidByreid (Integer reid);
+	
+	//查询所有权限树
+	abstract List<Powertree> selePowerTreeList();
+	
+	//根据ptid得到权限树名
+	abstract String selePtnameByptid(Integer ptid);
+	
+	//修改权限树
+	abstract int updatePowerTree(Role role);
+	
 }
