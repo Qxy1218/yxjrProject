@@ -7,7 +7,7 @@
 <link href="${pageContext.request.contextPath}/statics/back/static/css/style.css" rel="stylesheet"> 
 <link href="${pageContext.request.contextPath}/statics/back/static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
   <!-- 全局js -->
-    <script src="${pageContext.request.contextPath}/statics/back/static/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/statics/back/static/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/statics/back/static/js/bootstrap.min.js"></script>
 
     <!-- 自定义js -->
