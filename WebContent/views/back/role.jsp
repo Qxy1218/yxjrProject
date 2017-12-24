@@ -4,13 +4,16 @@
 	String path = request.getContextPath();
 %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
+ <jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<link rel="stylesheet" href="/Finances/statics/back/static/zTreeStyle/css/metro.css">
+<script src="/Finances/statics/back/static/zTreeStyle/js/jquery.ztree.all-3.5.min.js"></script>
+
+<title>角色管理</title>
 <!-- 引用js文件 -->
-<jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
 <script  type="text/javascript">
     var rows = null;
     
@@ -96,7 +99,7 @@
                 restatus:$("#editRole #restatus").val(),
 			},
 			function(data){
-				//后台返回int类型的数据
+				alert(data);
 				if(data>0){
 					//新增成功，下面是后台框架的提示
 					parent.layer.alert('修改成功');
@@ -227,8 +230,13 @@
 				field : 'ptid',
 				title : '角色权限',
 				formatter : function(value, row, index) {
-					//var id = row.id;
+					var reid =row.reid;
+					alert(reid);
+					if(reid==1){
+						return "<a  onclick='rolist("+row.reid+");' data-toggle='modal' data-target='#tb_model'></a>";
+					}else{
 					return "<a  onclick='rolist("+row.reid+");' data-toggle='modal' data-target='#tb_model'><span class='glyphicon glyphicon-new-window'></span>权限设置</a>";
+					}
 				}
 			},]
 		});
@@ -246,8 +254,109 @@
 		};
 		return temp;
 	};
+	
+	//权限弹窗
+	function tb_model(id){
+		$("#tb_model").modal('show');
+		$("#roleid").val(id);
+	}
 	</script>
-</head>
+	<script>
+		var zTree;
+	    var demoIframe;
+	    var setting = {
+   			check:{
+   				  enable: true  //设置是否显示checkbox复选框
+   				  },
+	        data: {
+	            simpleData: {
+	                enable:true,
+	                idKey: "id",
+	                pIdKey: "pId",
+	                rootPId: ""
+	            }
+	        },
+	        callback: {
+	            beforeClick: function(treeId, treeNode) {
+	                var zTree = $.fn.zTree.getZTreeObj("tree");
+	                if (treeNode.isParent) {
+	                    zTree.expandNode(treeNode);
+	                    return false;
+	                } else {
+	                    demoIframe.attr("src",treeNode.file + ".html");
+	                    return true;
+	                }
+	            }
+	        }
+	    };
+	    var saveNode ="";
+	    function save(reid){
+	    	var treeObj = $.fn.zTree.getZTreeObj("tree");
+	    	var nodes = treeObj.getCheckedNodes(true);
+	    	v="";
+	    	for(var i=0;i<nodes.length;i++){
+	    		if(i!=nodes.length-1){
+	    			saveNode = saveNode +nodes[i].id+",";
+				}else{
+					saveNode = saveNode +nodes[i].id;
+				}
+	    	}
+	    	alert(saveNode);
+	    	var url = "${pageContext.request.contextPath}/back/admin/updatePower";
+	    	$.post(
+	    			url,
+	    			{
+	    				nodes:saveNode,
+	    				reid:reid,
+	    			},
+	    			function(data){
+	    				//后台返回int类型的数据
+	    				if(data>0){
+	    					parent.layer.alert('修改权限成功');
+	    				}else{
+	    					parent.layer.alert('修改权限失败');
+	    				}
+	    			},
+	    			"text"
+	    		);	
+	    	//关闭弹窗
+			$("#tb_model").modal('hide');
+	    }
+
+	  //权限窗口
+		 function rolist(reid){
+	        var t = $("#tree");
+	        $("#reid").val(reid);
+	        $.ajax({
+	            type: "post",
+	            url: "${pageContext.request.contextPath}/back/admin/AuthTreeList",
+	            data: "reid="+reid,
+	            dataType: "json",
+	            success: function(data){
+	            	zTree = $.fn.zTree.init($("#tree"), setting, data);
+	                demoIframe = $("#testIframe");
+	                demoIframe.bind("load", loadReady);
+	            },  
+	            error: function(XMLHttpRequest, textStatus, errorThrown) {  
+	                //alert(XMLHttpRequest.status);  
+	                //alert(XMLHttpRequest.readyState);  
+	                //alert(textStatus);  
+	            },  
+	        });  
+	        
+
+	    }
+		 function loadReady() {
+		        var bodyH = demoIframe.contents().find("body").get(0).scrollHeight,
+		                htmlH = demoIframe.contents().find("html").get(0).scrollHeight,
+		                maxH = Math.max(bodyH, htmlH), minH = Math.min(bodyH, htmlH),
+		                h = demoIframe.height() >= maxH ? minH:maxH ;
+		        if (h < 530) h = 530;
+		        demoIframe.height(h);
+		    }
+
+	</script>
+	</head>
 <body class="gray-bg">
    <body style="background-color:#F2F9FD">
 	<div class="panel-body" style="padding-bottom: 0px;">
@@ -344,6 +453,40 @@
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
 					</button>
 					<button type="button" id="btn_submit" class="btn btn-primary" onclick="insertRole()">
+						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+		<!-- 权限弹窗 -->
+	<div class="modal fade" id="tb_model" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">权限设置</h4>
+				</div>
+				<div class="modal-body">
+					<!-- 新增系别 -->
+					<form id="editForm" class="form-horizontal m-t">
+					
+					<!-- 内容div -->
+					<ul id="tree" class="ztree" style="width:560px; overflow:auto;"></ul>
+		           	<input type="text" id="reid" style="display: none" />
+						
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
+					</button>
+					<button type="button" id="btn_sub" class="btn btn-primary" onclick="save(document.getElementById('reid').value)">
 						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
 					</button>
 				</div>
