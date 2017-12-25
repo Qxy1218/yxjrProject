@@ -1,5 +1,8 @@
 package com.p2p.controller.back;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,8 +18,12 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.p2p.pojo.Employe;
 import com.p2p.service.back.EmpService;
+import com.p2p.util.PageInfo;
 
 /**
  * 操作人:汪栋才
@@ -72,7 +79,19 @@ public class EmpController {
            token.clear();  
            return "redirect:/back/tologin";
        }  
-
    }
+   
 
+	@RequestMapping(value="selectEmployeList")
+	@ResponseBody
+	public PageInfo  selectEmployeList(Integer page, Integer rows) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+		PageInfo pageInfo = new PageInfo(page+1,rows);
+		//得到总的页数
+		Integer count = empService.employeCount();
+		Map<String,Object> map = new HashMap<String,Object>();
+		pageInfo.setCondition(map);
+		empService.selectPage(pageInfo);
+		pageInfo.setTotal(count);
+		return pageInfo;
+	}
 }

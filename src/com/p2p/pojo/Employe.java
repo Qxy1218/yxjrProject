@@ -17,7 +17,7 @@ public class Employe implements Serializable{
 	@TableField("e_id")
 	private Integer eid; //主键
 	
-	@TableField("r_eid")
+	@TableField("re_id")
 	private Integer reid; //角色id
 	
 	@TableField("e_enum")

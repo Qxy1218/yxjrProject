@@ -71,7 +71,7 @@
                                 <a class="J_menuItem" href="index_v3.jsp">用户列表</a>
                             </li>
                             <li>
-                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/role.jsp">员工列表</a>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/employe.jsp">员工列表</a>
                             </li>
                         </ul>
 
