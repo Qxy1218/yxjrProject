@@ -93,6 +93,9 @@
                                 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/Indexpic.jsp">轮播图管理</a>
                             </li>
                             <li>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/redmoney.jsp">红包管理</a>
+                            </li>
+                            <li>
                                 <a class="J_menuItem" href="graph_flot.jsp">联系管理</a>
                             </li>
                             <li>
