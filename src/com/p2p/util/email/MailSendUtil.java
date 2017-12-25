@@ -16,11 +16,17 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 public class MailSendUtil {
-    private final static String host = "smtp.qq.com"; //163的服务器
-    private final static String formName = "acgnwang@qq.com";//你的邮箱
-    private final static String password = "vcnepzmbiuakcbdf"; //授权码
-    private final static String replayAddress = "acgnwang@qq.com"; //你的邮箱
+//    private final static String host = "smtp.qq.com"; //163的服务器
+//    private final static String formName = "acgnwang@qq.com";//你的邮箱
+//    private final static String password = "vcnepzmbiuakcbdf"; //授权码
+//    private final static String replayAddress = "acgnwang@qq.com"; //你的邮箱
 
+    private final static String host = "smtp.163.com"; //163的服务器
+    private final static String formName = "httpwmm@163.com";//你的邮箱
+    private final static String password = "a123456"; //授权码
+    private final static String replayAddress = "httpwmm@163.com"; //你的邮箱
+    
+    
     //发送html格式的邮箱
     public static void sendHtmlMail(MailInfo info)throws Exception{
         info.setHost(host);

@@ -15,6 +15,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.pojo.User;
 import com.p2p.service.front.IUserService;
+import com.p2p.util.MessageBenas;
 import com.p2p.util.SendMsgUtil;
 
 /**
@@ -103,15 +104,16 @@ public class AjaxController {
 			 * 这里省略发送
 			 * */
 			SendMsgUtil sUtil = new SendMsgUtil();
-			String msg = "您好,手机注册验证码为"+ranks+"，请尽快填写以完成注册,祝您生活愉快【忆信财富】";
-//			try {
-//				sUtil.Send(phone, msg);
-//			} catch (Exception e) {
-//				//日志打印
-//				map.put("status", 2);
-//				map.put("msg","发送异常");
-//				e.printStackTrace();
-//			}
+			Map<String,Object> orther = new HashMap<String,Object>();
+			orther.put("yzcode",ranks);
+			try {
+				sUtil.Send(phone,MessageBenas.MSG_REGCODE,orther);
+			} catch (Exception e) {
+				//日志打印
+				map.put("status", 2);
+				map.put("msg","发送异常");
+				e.printStackTrace();
+			}
 			map.put("status",1);
 			map.put("ranks", ranks);
 			String aa = mapper.writeValueAsString(map);

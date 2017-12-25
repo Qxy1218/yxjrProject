@@ -10,7 +10,7 @@ public class Demo{
 	//单发
 	public void send(){
         String mail = "acgnwang@qq.com"; //发送对象的邮箱
-        String title = "我有一句话跟你说";
+        String title = "老黑，我有一句话跟你说";
         String html = "<!DOCTYPE html>";
         html += "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">";
         html += "<title>Insert title here</title>";

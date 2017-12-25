@@ -1,9 +1,5 @@
 package com.p2p.util.email;
 
-/**
- * Created by 草帽boy on 2016/12/8.
- */
-
 public class MailInfo {
     //邮箱服务器 如smtp.163.com
     private String host ;

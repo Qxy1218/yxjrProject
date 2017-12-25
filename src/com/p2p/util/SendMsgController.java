@@ -7,13 +7,13 @@ import org.apache.commons.httpclient.methods.PostMethod;
 /**
  * 发送短信的真正实现类
  * */
-public class SendMsg {
+public class SendMsgController {
 	//用户名
 	private String username;
 	private String password;
 	private String method;
 	
-	public SendMsg(String username, String password, String method) {
+	public SendMsgController(String username, String password, String method) {
 		super();
 		this.username = username;
 		this.password = password;
