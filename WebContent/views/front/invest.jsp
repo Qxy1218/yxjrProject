@@ -48,21 +48,22 @@
             <span class="m2-invBre-fat">项目直投</span>
         </div>
     </div>
+    
     <div class="m2-invTable-con">
         <ul class="m2-invTablelist"><!-- 只能显示7个，其余隐藏 -->
-            <li class="m2-invTab-sel"><span onclick="window.location.href='/touzi_licai_chanpin.html'">项目直投</span><i></i></li>
-            <li class="m2-invTab-unsel"><span onclick="window.location.href='/wangshang_licai_chanpin.html'">债权转让</span><i></i></li>
-            <li class="m2-invTab-unsel"><span onclick="window.location.href='/duanqi_licai_chanpin.html'">爱车贷</span><i></i></li>
-            <li class="m2-invTab-unsel"><span onclick="window.location.href='/aifangdai_licai_chanpin.html'">爱房贷</span><i></i></li>
-            <!--		<li class="m2-invTab-unsel"><span onclick="window.location.href='/yulebang_licai_chanpin.html'">娱乐帮</span><i></i></li>-->
-            <li class="m2-invTab-unsel"><span onclick="window.location.href='/consumer_finance_chanpin.html'">消费金融</span><i></i></li>
-            <!--		<li class="m2-invTab-unsel"><span onclick="window.location.href='/haixiangbang_licai_chanpin.html'">海鲜帮</span><i></i></li>-->
-            <li class="m2-invTab-unsel"><span onclick="window.location.href='/aigongyi_licai_chanpin.html'">爱公益</span><i></i></li>
+            <li class="m2-invTab-sel"><span>项目直投</span><i></i></li>
+            <li class="m2-invTab-unsel"><span>债权转让</span><i></i></li>
+            <li class="m2-invTab-unsel"><span>爱车贷</span><i></i></li>
+            <li class="m2-invTab-unsel"><span>爱房贷</span><i></i></li>
+            <li class="m2-invTab-unsel"><span>消费金融</span><i></i></li>
+            <li class="m2-invTab-unsel"><span>爱公益</span><i></i></li>
         </ul>
     </div>
+    
+
+    
     <div class="m2-invSearch">
         <div class="m2-invSearch-con">
-            <!--		<h3>项目筛选</h3>-->
             <i class="m2-invSea-arrUp"></i>
         </div>
         <div class="m2-invSearchbox" style="display: none;">
@@ -81,7 +82,7 @@
                 <li data="61|180" class="m2-invSea-unsel"><span onclick="searchBorrow('leftday','61|180')">61天-180天</span></li>
                 <li data="181|360" class="m2-invSea-unsel"><span onclick="searchBorrow('leftday','181|360')">181天-360天</span></li>
                 <li data="361|3600" class="m2-invSea-unsel"><span onclick="searchBorrow('leftday','361|3600')">其他</span></li>
-            </ul><!--
+            </ul>
 		<ul class="m2-invSea-sum" id="search_borrow_money">
 			<li class="m2-invSea-tit"><span>金&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额</span></li>
 			<li data="0" class="m2-invSea-sel m2-invSea-all"><span onclick="searchBorrow('borrow_money',0)">全部</span></li>
@@ -90,7 +91,7 @@
 			<li data="1000001|2000000" class="m2-invSea-unsel"><span onclick="searchBorrow('borrow_money','1000001|2000000')">100万-200万</span></li>
 			
 		</ul>
-		--><ul class="m2-invSea-pro" id="search_progress">
+		<ul class="m2-invSea-pro" id="search_progress">
             <li class="m2-invSea-tit"><span>进&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度</span></li>
             <li data="0" class="m2-invSea-sel m2-invSea-all"><span onclick="searchBorrow('progress',0)">全部</span></li>
             <li data="0|30" class="m2-invSea-unsel"><span onclick="searchBorrow('progress','0|30')">30%以下</span></li>
@@ -127,7 +128,8 @@
                 <div style="width: 30px;height: 30px;position: absolute;top: 11px;right: 0px;color: #666;font-size: 20px;cursor: pointer;" id="close">X</div>
             </div>
         </div>
-        <div class="m2-invResuleitem-box">
+        
+        <div class="m2-invResuleitem-box" id="resuleite0">
             <ul>
                 <li class="m2-invResuleitem">
                     <div class="m2-invItem-lef">
@@ -389,6 +391,325 @@
             </ul>
         </div>
         
+        
+        
+    <div class="m2-invResuleitem-box" id="resuleite1">
+            <ul>
+                <li class="m2-invResuleitem">
+                    <div class="m2-invItem-lef">
+                        <div class="m2-invItemleft-lef">
+                            <i class="m2-invItem-new"></i>
+                            <img src="/Finances/statics/front/uploadData/UserBorrowData/182015-20160902132425642.jpg" alt="爱车贷-雪佛兰迈锐宝-XAA067" />
+                        </div>
+                        <div class="m2-invItemleft-rig">
+                            <h4>
+                                <i class="m2-invItemIcon-inv"></i>
+                                <a href="chanpin.html#-moxOeTwTZaOw8TY79g.html" target="_blank" title="爱车贷-雪佛兰迈锐宝-XAA067">爱车贷-雪佛兰迈锐宝-XAA06711111111</a>
+                            </h4>
+                            <ul class="m2-invItemleft-list">
+                                <li>
+								<span  class="m2-invItemdet-big huodongjiaxi">
+											8%+1% 										
+										<p style="margin-left:-2px;" class="jiaxishow">活动加息1%	</p>
+								</span>
+                                    <span class="m2-invItemdet-nor">预期年化收益率</span>
+                                    <i class="m2-invItemdet-line"></i>
+                                </li>
+                                <li>
+								<span class="m2-invItemdet-big">
+												26天</span>
+                                    <span class="m2-invItemdet-nor">期限</span>
+                                    <i class="m2-invItemdet-line"></i>
+                                </li>
+                                <li>
+                                    <span class="m2-invItemdet-big">86,200.00</span>
+                                    <span class="m2-invItemdet-nor">融资金额</span>
+                                </li>
+                            </ul>
+                            <div class="m2-invItemprogress">
+							<span class="m2-invItemprogress-tit">正在募集</span>
+                               <b>
+                                    <i style="width:42.11% "></i>
+                                    <u style="left:42.11%">可投：4.99万</u>
+                               </b>
+                                <span class="m2-invItemprogress-per">42.11%</span>
+                            </div>
+                        </div>
+                    </div>
+                	
+                	<div class="m2-invItem-rig">
+                        <div class="m2-invItemrig-main">
+                            <p class="m2-invItemrig-gua">
+                                <span class="m2-invItemrig-guaTit" style="color:#333;">担保措施:</span>
+                                <span class="m2-invItemrig-guaDet" style="color:#ff9900;">车辆质押</span>
+                            </p>
+                            <div class="m2-invItemrig-link">
+                                <a href="chanpin.html#-moxOeTwTZaOw8TY79g.html" class="m2-invItemlink-inv" target="_blank" title="点击立即投资 爱车贷-雪佛兰迈锐宝-XAA067">立即投资</a>	
+                            </div>
+                        </div>
+                        <p class="m2-invItem-det" style="text-indent:20px;">投资万元预期收益：<span>64.10元</span></p>
+                        <p class="m2-invItem-det">投资起点金额：<span style="color:#ff6666;">100元</span></p>
+                     </div>
+                </li>
+                
+            </ul>
+        </div>
+        
+        
+        
+        <div class="m2-invResuleitem-box" id="resuleite2">
+            <ul>
+                <li class="m2-invResuleitem">
+                    <div class="m2-invItem-lef">
+                        <div class="m2-invItemleft-lef">
+                            <i class="m2-invItem-new"></i>
+                            <img src="/Finances/statics/front/uploadData/UserBorrowData/182015-20160902132425642.jpg" alt="爱车贷-雪佛兰迈锐宝-XAA067" />
+                        </div>
+                        <div class="m2-invItemleft-rig">
+                            <h4>
+                                <i class="m2-invItemIcon-inv"></i>
+                                <a href="chanpin.html#-moxOeTwTZaOw8TY79g.html" target="_blank" title="爱车贷-雪佛兰迈锐宝-XAA067">爱车贷-雪佛兰迈锐宝-XAA0672222</a>
+                            </h4>
+                            <ul class="m2-invItemleft-list">
+                                <li>
+								<span  class="m2-invItemdet-big huodongjiaxi">
+											8%+1% 										
+										<p style="margin-left:-2px;" class="jiaxishow">活动加息1%	</p>
+								</span>
+                                    <span class="m2-invItemdet-nor">预期年化收益率</span>
+                                    <i class="m2-invItemdet-line"></i>
+                                </li>
+                                <li>
+								<span class="m2-invItemdet-big">
+												26天</span>
+                                    <span class="m2-invItemdet-nor">期限</span>
+                                    <i class="m2-invItemdet-line"></i>
+                                </li>
+                                <li>
+                                    <span class="m2-invItemdet-big">86,200.00</span>
+                                    <span class="m2-invItemdet-nor">融资金额</span>
+                                </li>
+                            </ul>
+                            <div class="m2-invItemprogress">
+							<span class="m2-invItemprogress-tit">正在募集</span>
+                               <b>
+                                    <i style="width:42.11% "></i>
+                                    <u style="left:42.11%">可投：4.99万</u>
+                               </b>
+                                <span class="m2-invItemprogress-per">42.11%</span>
+                            </div>
+                        </div>
+                    </div>
+                	
+                	<div class="m2-invItem-rig">
+                        <div class="m2-invItemrig-main">
+                            <p class="m2-invItemrig-gua">
+                                <span class="m2-invItemrig-guaTit" style="color:#333;">担保措施:</span>
+                                <span class="m2-invItemrig-guaDet" style="color:#ff9900;">车辆质押</span>
+                            </p>
+                            <div class="m2-invItemrig-link">
+                                <a href="chanpin.html#-moxOeTwTZaOw8TY79g.html" class="m2-invItemlink-inv" target="_blank" title="点击立即投资 爱车贷-雪佛兰迈锐宝-XAA067">立即投资</a>	
+                            </div>
+                        </div>
+                        <p class="m2-invItem-det" style="text-indent:20px;">投资万元预期收益：<span>64.10元</span></p>
+                        <p class="m2-invItem-det">投资起点金额：<span style="color:#ff6666;">100元</span></p>
+                     </div>
+                </li>
+                
+            </ul>
+        </div>
+        
+        
+        
+         <div class="m2-invResuleitem-box" id="resuleite3">
+            <ul>
+                <li class="m2-invResuleitem">
+                    <div class="m2-invItem-lef">
+                        <div class="m2-invItemleft-lef">
+                            <i class="m2-invItem-new"></i>
+                            <img src="/Finances/statics/front/uploadData/UserBorrowData/182015-20160902132425642.jpg" alt="爱车贷-雪佛兰迈锐宝-XAA067" />
+                        </div>
+                        <div class="m2-invItemleft-rig">
+                            <h4>
+                                <i class="m2-invItemIcon-inv"></i>
+                                <a href="chanpin.html#-moxOeTwTZaOw8TY79g.html" target="_blank" title="爱车贷-雪佛兰迈锐宝-XAA067">爱车贷-雪佛兰迈锐宝-XAA0672222</a>
+                            </h4>
+                            <ul class="m2-invItemleft-list">
+                                <li>
+								<span  class="m2-invItemdet-big huodongjiaxi">
+											8%+1% 										
+										<p style="margin-left:-2px;" class="jiaxishow">活动加息1%	</p>
+								</span>
+                                    <span class="m2-invItemdet-nor">预期年化收益率</span>
+                                    <i class="m2-invItemdet-line"></i>
+                                </li>
+                                <li>
+								<span class="m2-invItemdet-big">
+												26天</span>
+                                    <span class="m2-invItemdet-nor">期限</span>
+                                    <i class="m2-invItemdet-line"></i>
+                                </li>
+                                <li>
+                                    <span class="m2-invItemdet-big">86,200.00</span>
+                                    <span class="m2-invItemdet-nor">融资金额</span>
+                                </li>
+                            </ul>
+                            <div class="m2-invItemprogress">
+							<span class="m2-invItemprogress-tit">正在募集</span>
+                               <b>
+                                    <i style="width:42.11% "></i>
+                                    <u style="left:42.11%">可投：4.99万</u>
+                               </b>
+                                <span class="m2-invItemprogress-per">42.11%</span>
+                            </div>
+                        </div>
+                    </div>
+                	
+                	<div class="m2-invItem-rig">
+                        <div class="m2-invItemrig-main">
+                            <p class="m2-invItemrig-gua">
+                                <span class="m2-invItemrig-guaTit" style="color:#333;">担保措施:</span>
+                                <span class="m2-invItemrig-guaDet" style="color:#ff9900;">车辆质押</span>
+                            </p>
+                            <div class="m2-invItemrig-link">
+                                <a href="chanpin.html#-moxOeTwTZaOw8TY79g.html" class="m2-invItemlink-inv" target="_blank" title="点击立即投资 爱车贷-雪佛兰迈锐宝-XAA067">立即投资</a>	
+                            </div>
+                        </div>
+                        <p class="m2-invItem-det" style="text-indent:20px;">投资万元预期收益：<span>64.10元</span></p>
+                        <p class="m2-invItem-det">投资起点金额：<span style="color:#ff6666;">100元</span></p>
+                     </div>
+                </li>
+                
+            </ul>
+        </div>
+        
+        
+         <div class="m2-invResuleitem-box" id="resuleite4">
+            <ul>
+                <li class="m2-invResuleitem">
+                    <div class="m2-invItem-lef">
+                        <div class="m2-invItemleft-lef">
+                            <i class="m2-invItem-new"></i>
+                            <img src="/Finances/statics/front/uploadData/UserBorrowData/182015-20160902132425642.jpg" alt="爱车贷-雪佛兰迈锐宝-XAA067" />
+                        </div>
+                        <div class="m2-invItemleft-rig">
+                            <h4>
+                                <i class="m2-invItemIcon-inv"></i>
+                                <a href="chanpin.html#-moxOeTwTZaOw8TY79g.html" target="_blank" title="爱车贷-雪佛兰迈锐宝-XAA067">爱车贷-雪佛兰迈锐宝-XAA0672222</a>
+                            </h4>
+                            <ul class="m2-invItemleft-list">
+                                <li>
+								<span  class="m2-invItemdet-big huodongjiaxi">
+											8%+1% 										
+										<p style="margin-left:-2px;" class="jiaxishow">活动加息1%	</p>
+								</span>
+                                    <span class="m2-invItemdet-nor">预期年化收益率</span>
+                                    <i class="m2-invItemdet-line"></i>
+                                </li>
+                                <li>
+								<span class="m2-invItemdet-big">
+												26天</span>
+                                    <span class="m2-invItemdet-nor">期限</span>
+                                    <i class="m2-invItemdet-line"></i>
+                                </li>
+                                <li>
+                                    <span class="m2-invItemdet-big">86,200.00</span>
+                                    <span class="m2-invItemdet-nor">融资金额</span>
+                                </li>
+                            </ul>
+                            <div class="m2-invItemprogress">
+							<span class="m2-invItemprogress-tit">正在募集</span>
+                               <b>
+                                    <i style="width:42.11% "></i>
+                                    <u style="left:42.11%">可投：4.99万</u>
+                               </b>
+                                <span class="m2-invItemprogress-per">42.11%</span>
+                            </div>
+                        </div>
+                    </div>
+                	
+                	<div class="m2-invItem-rig">
+                        <div class="m2-invItemrig-main">
+                            <p class="m2-invItemrig-gua">
+                                <span class="m2-invItemrig-guaTit" style="color:#333;">担保措施:</span>
+                                <span class="m2-invItemrig-guaDet" style="color:#ff9900;">车辆质押</span>
+                            </p>
+                            <div class="m2-invItemrig-link">
+                                <a href="chanpin.html#-moxOeTwTZaOw8TY79g.html" class="m2-invItemlink-inv" target="_blank" title="点击立即投资 爱车贷-雪佛兰迈锐宝-XAA067">立即投资</a>	
+                            </div>
+                        </div>
+                        <p class="m2-invItem-det" style="text-indent:20px;">投资万元预期收益：<span>64.10元</span></p>
+                        <p class="m2-invItem-det">投资起点金额：<span style="color:#ff6666;">100元</span></p>
+                     </div>
+                </li>
+                
+            </ul>
+        </div>
+        
+        
+         <div class="m2-invResuleitem-box" id="resuleite5">
+            <ul>
+                <li class="m2-invResuleitem">
+                    <div class="m2-invItem-lef">
+                        <div class="m2-invItemleft-lef">
+                            <i class="m2-invItem-new"></i>
+                            <img src="/Finances/statics/front/uploadData/UserBorrowData/182015-20160902132425642.jpg" alt="爱车贷-雪佛兰迈锐宝-XAA067" />
+                        </div>
+                        <div class="m2-invItemleft-rig">
+                            <h4>
+                                <i class="m2-invItemIcon-inv"></i>
+                                <a href="chanpin.html#-moxOeTwTZaOw8TY79g.html" target="_blank" title="爱车贷-雪佛兰迈锐宝-XAA067">爱车贷-雪佛兰迈锐宝-XAA0672222</a>
+                            </h4>
+                            <ul class="m2-invItemleft-list">
+                                <li>
+								<span  class="m2-invItemdet-big huodongjiaxi">
+											8%+1% 										
+										<p style="margin-left:-2px;" class="jiaxishow">活动加息1%	</p>
+								</span>
+                                    <span class="m2-invItemdet-nor">预期年化收益率</span>
+                                    <i class="m2-invItemdet-line"></i>
+                                </li>
+                                <li>
+								<span class="m2-invItemdet-big">
+												26天</span>
+                                    <span class="m2-invItemdet-nor">期限</span>
+                                    <i class="m2-invItemdet-line"></i>
+                                </li>
+                                <li>
+                                    <span class="m2-invItemdet-big">86,200.00</span>
+                                    <span class="m2-invItemdet-nor">融资金额</span>
+                                </li>
+                            </ul>
+                            <div class="m2-invItemprogress">
+							<span class="m2-invItemprogress-tit">正在募集</span>
+                               <b>
+                                    <i style="width:42.11% "></i>
+                                    <u style="left:42.11%">可投：4.99万</u>
+                               </b>
+                                <span class="m2-invItemprogress-per">42.11%</span>
+                            </div>
+                        </div>
+                    </div>
+                	
+                	<div class="m2-invItem-rig">
+                        <div class="m2-invItemrig-main">
+                            <p class="m2-invItemrig-gua">
+                                <span class="m2-invItemrig-guaTit" style="color:#333;">担保措施:</span>
+                                <span class="m2-invItemrig-guaDet" style="color:#ff9900;">车辆质押</span>
+                            </p>
+                            <div class="m2-invItemrig-link">
+                                <a href="chanpin.html#-moxOeTwTZaOw8TY79g.html" class="m2-invItemlink-inv" target="_blank" title="点击立即投资 爱车贷-雪佛兰迈锐宝-XAA067">立即投资</a>	
+                            </div>
+                        </div>
+                        <p class="m2-invItem-det" style="text-indent:20px;">投资万元预期收益：<span>64.10元</span></p>
+                        <p class="m2-invItem-det">投资起点金额：<span style="color:#ff6666;">100元</span></p>
+                     </div>
+                </li>
+                
+            </ul>
+        </div>
+        
+        
         <div class="m2-newListpage-con" style="padding-top:5px;">
             <div class="m2-newListpage">
                 <div class="m2-news-pages" style="padding-right:40px;margin:12px auto;">
@@ -445,6 +766,37 @@
                     //$('.m2-invSearch-con h3').html($(this).children('span').html()); //改变下方H3的值
                 }
             });
+            
+	        // 新闻列表tab切换下方展示
+	        $('.m2-invTablelist li').click(function () {
+	            if ($(this).index() == 0) {
+	                //媒体报道
+	                $('.m2-invResuleitem-box').hide();
+	                $('#resuleite0').show();
+	            } else if ($(this).index() == 1) {
+	                //行业动态
+	                $('.m2-invResuleitem-box').hide();
+	                $('#resuleite1').show();
+	            } else if ($(this).index() == 2) {
+	                //网站公告
+	                $('.m2-invResuleitem-box').hide();
+	                $('#resuleite2').show();
+	            } else if ($(this).index() == 3) {
+	                //网站公告
+	                $('.m2-invResuleitem-box').hide();
+	                $('#resuleite3').show();
+	            } else if ($(this).index() == 4) {
+	                //还款公告
+	                $('.m2-invResuleitem-box').hide();
+	                $('#resuleite4').show();
+	            } else if ($(this).index() == 5) {
+	                //活动公告=爱钱帮动态
+	                $('.m2-invResuleitem-box').hide();
+	                $('#resuleite5').show();
+	            } 
+	        });
+            
+            
             $('.m2-invTabhide-list li').click(function(){
                 var newCon = $(this).html();
                 var oldCon = $('.m2-invTab-old span').html();
