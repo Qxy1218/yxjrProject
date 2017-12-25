@@ -24,7 +24,7 @@ public class MessageBenas {
 
 	
 	/**
-	 *尊敬的用户您好,您的{*}账号在已充值{**},如对此账单有疑问,请及时联系我们的客服,祝您生活愉快【忆信财富】
+	 *尊敬的用户您好,您的{*}账号在{**}已充值{***}元,如对此账单有疑问,请及时联系我们的客服,祝您生活愉快【忆信财富】
 	 * */
 	public final String MSG_ADDMONEY = "短信充值提示";
 	public final String MAIL_ADDMONEY = "邮箱充值提示";
@@ -52,7 +52,7 @@ public class MessageBenas {
 	public final String ZN_AWARD = "站内平台奖励";
 	
 	/**
-	 * 尊敬的用户您好,您的{*}账号在{**}提现了{***},如不是本人操作,请及时联系我们的客服,祝您生活愉快【忆信财富】
+	 * 尊敬的{**}您好,您在忆信金融提现的金额已受理,金额将在五个工作日内返回您的银行卡账号,没有此操作请不要理会此信息【忆信金融】
 	 * */
 	public final String MSG_DEPOSIT = "短信提现提示";
 	public final String MAIL_DEPOSIT = "邮箱提现提示"; 
