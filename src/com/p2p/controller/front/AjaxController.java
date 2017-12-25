@@ -13,10 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.p2p.controller.back.SendMsgUtil;
 import com.p2p.pojo.User;
+import com.p2p.service.back.MessageUtilService;
+import com.p2p.service.back.SendMsgService;
 import com.p2p.service.front.IUserService;
 import com.p2p.util.MessageBenas;
-import com.p2p.util.SendMsgUtil;
 
 /**
  * 开发人:汪栋才
@@ -30,6 +32,14 @@ public class AjaxController {
 		@Resource(name="IUserServiceImpl")
 		private IUserService iUserService;
 	
+		
+		@Resource(name="sendMsgServiceImpl")
+		private SendMsgService sendmsg;
+		
+		@Resource(name="messageUtilServiceImpl")
+		private MessageUtilService messageUtil;
+		
+		
 		//注册界面把电话号码发送过来查询数据库是否存在
 		@RequestMapping(value="/getregpdphishave")
 		@ResponseBody
@@ -107,7 +117,7 @@ public class AjaxController {
 			Map<String,Object> orther = new HashMap<String,Object>();
 			orther.put("yzcode",ranks);
 			try {
-				sUtil.Send(phone,MessageBenas.MSG_REGCODE,orther);
+				sUtil.Send(phone,MessageBenas.MSG_REGCODE,orther,sendmsg,messageUtil);
 			} catch (Exception e) {
 				//日志打印
 				map.put("status", 2);

@@ -4,10 +4,15 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.p2p.mapper.MessageUtilMapper;
 import com.p2p.pojo.MessageUtil;
 import com.p2p.service.back.MessageUtilService;
 
+@Transactional
+@Service
 public class MessageUtilServiceImpl implements MessageUtilService{
 
 	@Resource

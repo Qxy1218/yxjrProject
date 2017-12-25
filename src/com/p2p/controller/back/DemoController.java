@@ -3,16 +3,26 @@ package com.p2p.controller.back;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.p2p.service.back.MessageUtilService;
+import com.p2p.service.back.SendMsgService;
 import com.p2p.util.MessageBenas;
-import com.p2p.util.SendMsgUtil;
 
 @Controller
 @RequestMapping("demo")
 public class DemoController {
+	
+	@Resource(name="sendMsgServiceImpl")
+	private SendMsgService sendmsg;
+	
+	@Resource(name="messageUtilServiceImpl")
+	private MessageUtilService messageUtil;
+	
 	
 	private  Map<String,Object> map = new HashMap<String,Object>();
 	
@@ -22,7 +32,7 @@ public class DemoController {
 		SendMsgUtil send = new SendMsgUtil();
 		//验证码
 		map.put("yzcode", 12345);
-		send.Send("18296719481",MessageBenas.MSG_REGCODE, map);
+		send.Send("18970786473",MessageBenas.MSG_REGCODE, map,sendmsg,messageUtil);
 		return "ok";
 	}
 	
@@ -32,7 +42,7 @@ public class DemoController {
 		SendMsgUtil send = new SendMsgUtil();
 		//短信登入提示
 		map.put("userphone", "杨吊吊");
-		send.Send("18296719481",MessageBenas.MSG_LOGING, map);
+		send.Send("18296719481",MessageBenas.MSG_LOGING, map,sendmsg,messageUtil);
 		
 		return "ok";
 	}
@@ -45,7 +55,7 @@ public class DemoController {
 		map.put("userphone", "杨吊吊");
 		map.put("money",1200);
 		
-		send.Send("18296719481",MessageBenas.MSG_LOGING, map);
+		send.Send("18296719481",MessageBenas.MSG_LOGING, map,sendmsg,messageUtil);
 		return "ok";
 	}
 	
@@ -58,7 +68,7 @@ public class DemoController {
 		map.put("project","新手借款项目");
 		map.put("money",1200);
 		
-		send.Send("18296719481",MessageBenas.MSG_LOGING, map);
+		send.Send("18296719481",MessageBenas.MSG_LOGING, map,sendmsg,messageUtil);
 		return "ok";
 	}
 	
@@ -73,7 +83,7 @@ public class DemoController {
 		map.put("money",1200);
 		map.put("or", "本金");
 		
-		send.Send("18296719481",MessageBenas.MSG_LOGING, map);
+		send.Send("18296719481",MessageBenas.MSG_LOGING, map,sendmsg,messageUtil);
 		return "ok";
 	}
 	
@@ -86,7 +96,7 @@ public class DemoController {
 		map.put("userphone", "杨吊吊");
 		map.put("money",1200);
 		
-		send.Send("18296719481",MessageBenas.MSG_LOGING, map);
+		send.Send("18296719481",MessageBenas.MSG_LOGING, map,sendmsg,messageUtil);
 		return "";
 	}
 	
@@ -98,7 +108,7 @@ public class DemoController {
 		SendMsgUtil send = new SendMsgUtil();
 		//短信充值提示
 		map.put("project", "首房购物");
-		send.Send("18296719481",MessageBenas.MSG_LOGING, map);
+		send.Send("18296719481",MessageBenas.MSG_LOGING, map,sendmsg,messageUtil);
 		return "ok";
 	}
 	

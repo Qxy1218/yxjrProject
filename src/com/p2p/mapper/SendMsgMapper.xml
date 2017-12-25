@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getAllModel" resultMap="BaseResultMap">
 		select * from send_msg
 	</select>
-	<select id="findUserMsg" resultType="com.p2p.pojo.SendMsg">
+	<select id="findUserMsg" parameterType="java.lang.Integer" resultType="com.p2p.pojo.SendMsg">
 		select * from send_msg where isuser =#{isuser}
 	</select>
 </mapper>

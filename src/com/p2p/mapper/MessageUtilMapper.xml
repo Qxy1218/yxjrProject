@@ -8,11 +8,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 		  <result column="msg_key" property="msgkey"/>
 	 		  <result column="msg_value" property="msgvalue"/>
 	</resultMap>
-	<select id="getModel" parameterType="com.p2p.pojo.MessageUtil" resultType="com.p2p.pojo.MessageUtil">
-		select * from messagebenas m where m.msg_key=#{msg_key}
+	<select id="getModel" parameterType="com.p2p.pojo.MessageUtil" resultMap="BaseResultMap">
+		select * from messagebenas m where m.msg_key=#{msgkey}
 	</select>
 	<insert id="addModel" parameterType="com.p2p.pojo.MessageUtil" useGeneratedKeys="true" keyProperty="id">
-		insert into messagebenas(msg_key,msg_value) values(#{msgkey},#{msg_value})
+		insert into messagebenas(msg_key,msg_value) values(#{msgkey},#{msgvalue})
 	</insert>
 	<delete id="delete" parameterType="com.p2p.pojo.MessageUtil">
 		delete from messagebenas where id = #{id}
