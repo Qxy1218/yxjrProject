@@ -18,6 +18,9 @@ public class Setupnatice implements Serializable{
 	@TableField("u_id")
 	public Integer uid; //用户id
 	
+	@TableField("us_name")
+	public String usname; //用户id
+	
 	@TableField("us_insideStatus")
 	public Integer usinsideStatus; //站内消息(1:开启   2:开启)
 	
@@ -28,16 +31,6 @@ public class Setupnatice implements Serializable{
 	public Integer usmessageStatus; //短信通知(1:开启   2:开启)
 	
 	public Setupnatice() {
-	}
-
-	public Setupnatice(Integer usid, Integer uid, Integer usinsideStatus, Integer usemailStatus,
-			Integer usmessageStatus) {
-		super();
-		this.usid = usid;
-		this.uid = uid;
-		this.usinsideStatus = usinsideStatus;
-		this.usemailStatus = usemailStatus;
-		this.usmessageStatus = usmessageStatus;
 	}
 
 	public Integer getUsid() {
@@ -54,6 +47,14 @@ public class Setupnatice implements Serializable{
 
 	public void setUid(Integer uid) {
 		this.uid = uid;
+	}
+
+	public String getUsname() {
+		return usname;
+	}
+
+	public void setUsname(String usname) {
+		this.usname = usname;
 	}
 
 	public Integer getUsinsideStatus() {
@@ -79,5 +80,18 @@ public class Setupnatice implements Serializable{
 	public void setUsmessageStatus(Integer usmessageStatus) {
 		this.usmessageStatus = usmessageStatus;
 	}
+
+	public Setupnatice(Integer usid, Integer uid, String usname, Integer usinsideStatus, Integer usemailStatus,
+			Integer usmessageStatus) {
+		super();
+		this.usid = usid;
+		this.uid = uid;
+		this.usname = usname;
+		this.usinsideStatus = usinsideStatus;
+		this.usemailStatus = usemailStatus;
+		this.usmessageStatus = usmessageStatus;
+	}
+
+	
 	
 }

@@ -21,9 +21,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.controller.back.UtilController;
+import com.p2p.pojo.Setupnatice;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Userinfo;
 import com.p2p.service.front.IUserService;
+import com.p2p.service.front.SetupnaticeService;
 import com.p2p.service.front.UserInfoService;
 import com.p2p.util.AddressUtils;
 import com.p2p.util.DateUtils;
@@ -41,6 +43,47 @@ public class IUserController {
 	
 	@Resource(name="userInfoServiceImpl")
 	private UserInfoService userInfoService;
+	
+	
+	@Resource(name="setupnaticeServiceImpl")
+	private SetupnaticeService setupnaticeService;
+	
+	
+	/**
+	 * 用户通知设置的方法
+	 * */
+	@RequestMapping("/usersetup")
+	@ResponseBody
+	public Object usersetup(String thisval,String isck,HttpSession session) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		User user = (User)session.getAttribute("user");
+		Integer checked = Integer.parseInt(isck);
+		if(user==null) {
+			//修改失败
+			map.put("status", 2);
+			return map;
+		}
+		String[] array = thisval.split(",");  
+		Setupnatice setupnatice = new Setupnatice();
+		setupnatice.setUid(user.getUid());
+		setupnatice.setUsname(array[0]);
+		//判断选择的是哪一个
+		if(array[1].equals("insinfo")) {
+			setupnatice.setUsinsideStatus(checked);
+		}else if(array[1].equals("eminfo")){
+			setupnatice.setUsemailStatus(checked);
+		}else if(array[1].equals("msginfo")){
+			setupnatice.setUsmessageStatus(checked);
+		}
+		int aa =setupnaticeService.update(setupnatice);
+		if(aa>0) {
+			map.put("status", 1);
+		}else {
+			map.put("status", 2);
+		}
+		
+		return map;
+	}
 	
 	/**
 	 * 用户注册界面的注册方法
@@ -68,7 +111,7 @@ public class IUserController {
 		Object result = new SimpleHash("MD5", pas, ByteSource.Util.bytes("user"), 10);
 		User user = new User();
 		user.setUpassword(result.toString());
-		user.setUheadImg("/front/images/IMG_2166.JPG");
+		user.setUheadImg("/statics/front/images/IMG_2166.JPG");
 		user.setUphone(phone);
 		user.setUloginTime(DateUtils.getDateTimeFormat(new Date()));
 		
