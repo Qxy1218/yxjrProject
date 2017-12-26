@@ -68,4 +68,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  				and  u.u_id = ui.u_id;
  		</where>
  	</select>
+ 	<update id="update" parameterType="com.p2p.pojo.Userinfo">
+ 		update user_info ui
+ 		<trim prefix="set" suffixOverrides=",">
+		  <if test="uidealpwd!=null">ui.ui_dealpwd=#{uidealpwd},</if>
+		  <if test="uiemail!=null">ui.ui_email=#{uiemail},</if>
+		  <if test="uiname!=null">ui.ui_name=#{uiname},</if>
+		  <if test="uipeid!=null">ui.ui_peid=#{uipeid},</if>
+		  <if test="uicyid!=null">ui.ui_cyid=#{uicyid},</if>
+		  <if test="uiaeid!=null">ui.ui_aeid=#{uiaeid},</if>
+ 		</trim>
+ 		<where>
+ 		    ui.ui_id=#{uiid}
+ 		</where>
+ 	</update>
 </mapper>
