@@ -166,14 +166,13 @@
                                 <b id="passwarn"></b>
                             </div>
                             
-                            <div class="m2-login-code"  style="display:none;">
+                            <div class="m2-login-code" >
                                 <div class="m2-loginForm-item" style="display:inline-block;float:left;width:182px;">
                                     <span><i></i></span>
                                     <input type="checkbox">
 											记住我们
                                     <b></b>
                                 </div>
-                                <img src="/Finances/statics/front/statics/home2/images/Index-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='/Finances/statics/front/statics/home2/images/Index-VerifyCode.png?time='+Math.random();void(0);" id="reverifyCode" alt="">
                             </div>
                             <div class="m2-login-forget">
                                 <p class="alarmnew" style="font-weight: bolder;text-align: left;position: absolute;color:red;width:200px;height: 24px;line-height: 24px;margin:-4px 0;"></p>
