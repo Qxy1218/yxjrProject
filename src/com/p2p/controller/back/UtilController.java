@@ -4,18 +4,26 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.p2p.util.QRcode;
 
@@ -129,6 +137,60 @@ public class UtilController {
 		return path;
 	} 
 	
+	
+	/**
+	 * 多文件上传(把所有路径拼接为,)
+	 * */
+	public static String uploadReNames(MultipartFile[] abimage,HttpSession session){
+		String path = session.getServletContext().getRealPath("/uploadFile");
+		//把路径中的包括\\全部换成/
+		path = path.replace("\\","/");
+        List<String> mylist = new ArrayList<String>();
+     for(MultipartFile item:abimage){
+        String fileName = item.getOriginalFilename();
+        String fName = "";  
+        String suffix = "";  
+        if(fileName.indexOf(".")>=0){  
+            int  indexdot =  fileName.indexOf(".");  
+            suffix =  fileName.substring(indexdot);  
+  
+            fName = fileName.substring(0,fileName.lastIndexOf("."));  
+            Date now = new Date();  
+            fName = fName + "_"  +now.getTime();  
+            fName =  fName  + suffix;  
+        }  
+        File targetFile = new File(path, fName);    
+        //往list中添加图片路径
+        mylist.add("/uploadFile/"+fName);
+        if(!targetFile.exists()){    
+            targetFile.mkdirs();    
+        }    
+        //保存    
+        try {    
+        	item.transferTo(targetFile);    
+        } catch (Exception e) {    
+            e.printStackTrace();    
+        }   
+     }
+     if(mylist.size()==0) {
+    	 return null;
+     }else {
+	     StringBuffer result = new StringBuffer();
+	     boolean first = true;
+	      for(String str:mylist) {
+	    	  //第一个不拼接","
+	    	  if(first) {
+	    		  first = false;
+	    	  }else {
+	    		  result.append(",");
+	    	  }
+	    	  result.append(str);
+	      }
+			return result.toString();
+	     }
+     }
+	
+	
 	/**
 	 * 文件下载
 	 * */
@@ -157,5 +219,24 @@ public class UtilController {
            e.printStackTrace();
        }	
 	}
+	/**
+	 * 在线编辑器生成html
+	 * */
+	 public static void makehtml(String content,String filename,HttpServletRequest request){
+			String PAGE_HEAD="<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"><html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"></head><body>";
+			String PAGE_TAIL="</body></html>";
+
+			content = PAGE_HEAD + content + PAGE_TAIL;
+			String savePath = request.getRealPath("/") + filename;
+			File file = new File(savePath);
+			FileOutputStream fos;
+			try {
+				fos = new FileOutputStream(file);
+				fos.write(content.getBytes());
+				fos.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	
 }
