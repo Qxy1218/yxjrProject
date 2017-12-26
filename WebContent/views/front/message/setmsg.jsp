@@ -156,9 +156,6 @@
 			                </tr>
 			      </c:forEach>            
 		           </table>
-		                <div class="m2-user-setdown">
-		                    <a href="javascript:void(0)">提交修改</a>
-		                </div>
 		            </div>
 		            <div class="m2-recharge-tips">
 		                <h3><i></i>温馨提示：</h3>
