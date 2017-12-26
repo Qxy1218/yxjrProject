@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.controller.back.UtilController;
 import com.p2p.pojo.User;
@@ -64,7 +65,7 @@ public class IUserController {
 		String ph = phone.replace(" ", "");
 		String yq = yqcode.replace(" ", "");
 		
-		Object result = new SimpleHash("MD5", pas, ByteSource.Util.bytes(ph), 10);
+		Object result = new SimpleHash("MD5", pas, ByteSource.Util.bytes("user"), 10);
 		User user = new User();
 		user.setUpassword(result.toString());
 		user.setUheadImg("/front/images/IMG_2166.JPG");
@@ -127,7 +128,7 @@ public class IUserController {
 			 * */
 			Userinfo userinfo = new Userinfo();
 			userinfo.setUid(user.getUid());
-			userinfo.setUiname(IUserController.getUUID());
+			userinfo.setUiname("yxjr"+user.getUphone());
 			userinfo.setUisex("保密");
 			userinfo.setUiidCard("");
 			userinfo.setUibirthday(DateUtils.getDateTimeFormat(new Date()));
@@ -176,14 +177,14 @@ public class IUserController {
 			 * 3:根据返回id查找user对象
 			 * 4：把user对象放在session中
 			 * */
-			Object results = new SimpleHash("MD5", pas, ByteSource.Util.bytes(ph), 10);
+			Object results = new SimpleHash("MD5", pas, ByteSource.Util.bytes("user"), 10);
 			System.out.println(results.toString());
 			User user = new User();
 			user.setUphone(ph);
 			user.setUpassword(results.toString());
 			//如果登入成功
 			User user2 =  iUserService.getModel(user);
-
+			
 			if(user2!=null) {
 				//证明有值,登入成功
 				map.put("status",1);
@@ -239,4 +240,54 @@ public class IUserController {
 		//去掉“-”符号 
 		return uuid.replaceAll("-", "");
 	}	
+	
+	/**
+	 * 修改用户信息
+	 * @throws JsonProcessingException 
+	 * */
+	@RequestMapping(value = "updateUser")
+	@ResponseBody
+	public int updateUser(User user){
+		int isUpdate = 0;
+		try {
+			if(user.getUpassword()!=null) {
+				Object results = new SimpleHash("MD5", user.getUpassword(), ByteSource.Util.bytes("user"), 10);
+				user.setUpassword(results.toString());
+			}
+			iUserService.update(user);
+			isUpdate = 1;
+			System.out.println("修改成功");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return isUpdate;
+	}
+	/**
+	 * 判断用户原密码是否正确
+	 * */
+	@RequestMapping(value = "getPwd")
+	@ResponseBody
+	public int surePwd(User user) {
+		int isSure = 0;
+		Object results = new SimpleHash("MD5", user.getUpassword(), ByteSource.Util.bytes("user"), 10);
+		user.setUpassword(results.toString());
+		User users = iUserService.getModel(user);
+		if(users!=null) {
+			isSure = 1;
+		}
+		return isSure;
+	}
+	/**
+	 * 修改用户的基本信息
+	 * */
+	public int updateUserInfo(Userinfo userinfo) {
+		int isUpdate = 0;
+		try {
+			userInfoService.update(userinfo);
+			isUpdate = 1;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return isUpdate;
+	}
 }
