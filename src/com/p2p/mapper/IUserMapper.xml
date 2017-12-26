@@ -76,6 +76,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  				and  u.u_id = ui.u_id;
  		</where>
  	</select>
+ 	<select id="userLoing" parameterType="java.lang.String" resultMap="BaseResultMap">
+ 			select * from user u where u.u_phone=#{username} and u.u_password=#{password};
+ 	</select>
+ 	
+ 	
  	
  	<update id="update" parameterType="com.p2p.pojo.User">
  		update user u

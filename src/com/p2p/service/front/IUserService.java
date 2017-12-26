@@ -8,5 +8,5 @@ import com.p2p.pojo.User;
  * 前台用户的Service
  * */
 public interface IUserService extends IBaseService<Integer, User>{
-
+	User userLoing(String username,String password);
 }

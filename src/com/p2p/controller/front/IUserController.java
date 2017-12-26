@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -205,7 +206,7 @@ public class IUserController {
 		 * */
 		@RequestMapping(value="/userLogin")
 		@ResponseBody
-		public String mnlogin(@RequestParam String user_name,@RequestParam String pass_word,HttpSession session) throws Exception {
+		public String mnlogin(@RequestParam String user_name,@RequestParam String pass_word,String issvae,HttpSession session,HttpServletResponse response) throws Exception {
 		
 			ObjectMapper mapper = new ObjectMapper(); //转换器  
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -221,18 +222,14 @@ public class IUserController {
 			 * */
 			Object results = new SimpleHash("MD5", pas, ByteSource.Util.bytes("user"), 10);
 			System.out.println(results.toString());
-			User user = new User();
-			user.setUphone(ph);
-			user.setUpassword(results.toString());
 			//如果登入成功
-			User user2 =  iUserService.getModel(user);
+			User user =  iUserService.userLoing(ph, results.toString());
 			
-			if(user2!=null) {
+			if(user!=null) {
 				//修改登录时间
-				user2.setUloginTime(DateUtils.getDateTimeFormat(new Date()));
-				iUserService.update(user2);
-				//证明有值,登入成功
-				map.put("status",1);
+				user.setUloginTime(DateUtils.getDateTimeFormat(new Date()));
+				iUserService.update(user);
+				
 				//加密URL
 				String serchName = "http://127.0.0.1:8080/Finances/toindex";
 				serchName = java.net.URLDecoder.decode(serchName,"UTF-8");
@@ -242,8 +239,28 @@ public class IUserController {
 				/**
 				 * 把用户信息存放进session
 				 * */
+				/**
+				 * 现在查询包括user表和user_info表的记录
+				 * */
+				User user2 = iUserService.getModel(user);
 				session.setAttribute("user",user2);
 				
+				/**
+				 * 如果用户选择了保存账号密码
+				 * 保存进cookies
+				 * */
+				if(issvae.equals("1")) {
+					Cookie c1 = new Cookie("yxjruser",user2.getUphone());
+					c1.setMaxAge(5*365*24*60*60);
+					c1.setPath("/");
+					Cookie c2 = new Cookie("yxjrpassword",user2.getUpassword());
+					c2.setMaxAge(5*365*24*60*60);
+					c2.setPath("/");
+					response.addCookie(c1);
+					response.addCookie(c2);
+				}
+				//证明有值,登入成功
+				map.put("status",1);
 			}else {
 				map.put("status",5);
 				map.put("status",0);
@@ -322,6 +339,41 @@ public class IUserController {
 		}
 		return isSure;
 	}
+	
+	/**
+	 * 退出前台登录
+	 * */
+	@RequestMapping(value="/logout")
+	public String logout(HttpSession session,HttpServletResponse response,HttpServletRequest request) {
+		if(session.getAttribute("user")!=null) {
+			session.removeAttribute("user");
+		}
+		/**
+		 * 清空客户端cookies
+		 * */
+		Cookie cookies[] = request.getCookies();  
+	      if (cookies != null){  
+	          for (int i = 0; i < cookies.length; i++)  {  
+	              if (cookies[i].getName().equals("yxjruser"))     {  
+	                  Cookie cookie = new Cookie("yxjruser","");//这边得用"",不能用null  
+	                  cookie.setPath("/");//设置成跟写入cookies一样的  
+	                  cookie.setMaxAge(0);
+	                  response.addCookie(cookie);  
+	              }
+	              if(cookies[i].getName().equals("yxjrpassword")){
+	            	  Cookie cookie = new Cookie("yxjrpassword","");//这边得用"",不能用null  
+	                  cookie.setPath("/");//设置成跟写入cookies一样的  
+	                  cookie.setMaxAge(0);  
+	                  response.addCookie(cookie); 
+	              }
+	          }  
+	      }  
+		
+		return "redirect:/tologin";
+	}
+	
+	
+	
 	/**
 	 * 修改用户的基本信息
 	 * */

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.p2p.mapper.UserinfoMapper;
+import com.p2p.pojo.User;
 import com.p2p.pojo.Userinfo;
 import com.p2p.service.front.UserInfoService;
 
@@ -51,6 +52,5 @@ public class UserInfoServiceImpl implements UserInfoService{
 	public Userinfo findModel(Integer id) {
 		return userinfoMapper.findModel(id);
 	}
-
 	
 }

@@ -22,7 +22,7 @@
 		}
 	function logout(){
 		if(confirm("是否退出登录？")){ 
-			parent.window.location="${pageContext.request.contextPath }/logout"; 
+			parent.window.location="${pageContext.request.contextPath }/user/logout"; 
 			return true; 
 		}
 			return false; 
