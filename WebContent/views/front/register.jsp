@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="shortcut icon" href="/Finances/statics/other/lco/smalllog.png"> 
+<link rel="shortcut icon" href="/Finances/statics/other/lco/6.png"> 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="keywords" content="高收益理财产品,理财投资,网络投资理财平台,网贷理财,互联网金融,投资理财平台,投资理财,赚钱,小额投资理财,如何投资理财,投资理财知识,投资理财,北京p2p理财">

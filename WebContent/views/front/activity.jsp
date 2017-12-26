@@ -7,7 +7,7 @@
     <meta name="keywords" content="最好的理财项目,网贷,互联网金融,网贷平台,网络赚钱项目">
     <meta name="description" content="爱钱帮作为安全合规的网贷平台，积极推动网贷行业规范发展；爱钱帮将继续为中国金融业的创新和发展尽一份力量。网络赚钱项目，最好的理财项目，就在网贷平台爱钱帮。">
     <title>活动专区丨亿信金融 </title>
-    <link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
+    <link rel="Shortcut  Icon" href="/Finances/statics/other/lco/6.png">
     <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">
     <link rel="stylesheet" href="/Finances/statics/front/statics/home2/css/m2-main.css">
     <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-common.css">
