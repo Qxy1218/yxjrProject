@@ -155,7 +155,7 @@ public class IUserController {
 		
 		user.setUaddress(address);
 
-		user.setUvid("1");
+		user.setUregTime(DateUtils.getDateTimeFormat(new Date()));
 		user.setUcredit(3000);
 		user.setUbalance(0.00);
 		
@@ -173,7 +173,6 @@ public class IUserController {
 			userinfo.setUid(user.getUid());
 			userinfo.setUiname("yxjr"+user.getUphone());
 			userinfo.setUisex("保密");
-			userinfo.setUiidCard("");
 			userinfo.setUibirthday(DateUtils.getDateTimeFormat(new Date()));
 			
 			int isadduserinfo =   userInfoService.addModel(userinfo);
@@ -229,6 +228,9 @@ public class IUserController {
 			User user2 =  iUserService.getModel(user);
 			
 			if(user2!=null) {
+				//修改登录时间
+				user2.setUloginTime(DateUtils.getDateTimeFormat(new Date()));
+				iUserService.update(user2);
 				//证明有值,登入成功
 				map.put("status",1);
 				//加密URL
