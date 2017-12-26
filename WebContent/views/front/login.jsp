@@ -165,11 +165,12 @@
                                 <input type="password" id="pass_word" placeholder="密码">
                                 <b id="passwarn"></b>
                             </div>
+                            
                             <div class="m2-login-code"  style="display:none;">
                                 <div class="m2-loginForm-item" style="display:inline-block;float:left;width:182px;">
                                     <span><i></i></span>
-                                    <input type="text" id="vcode" placeholder="验证码">
-
+                                    <input type="checkbox">
+											记住我们
                                     <b></b>
                                 </div>
                                 <img src="/Finances/statics/front/statics/home2/images/Index-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='/Finances/statics/front/statics/home2/images/Index-VerifyCode.png?time='+Math.random();void(0);" id="reverifyCode" alt="">
