@@ -39,10 +39,11 @@
 	  
 		//用来关闭新增窗口***********
 		$("#editForm").modal('hide');
-		var url = "${pageContext.request.contextPath }/back/admin/insertEmploye";
+		var url = "${pageContext.request.contextPath }/back/insertEmp";
 		$.post(
 			url,
-			{
+			{	
+				reid:$("#editForm #reid").val(),
 				eenum:$("#editForm #eenum").val(),
 				esex:$("#editForm #esex").val(),
 				eidcard:$("#editForm #eidcard").val(),
@@ -50,7 +51,6 @@
 				eposition:$("#editForm #eposition").val(),
 				eemail:$("#editForm #eemail").val(),
 				ename:$("#editForm #ename").val(),
-				epassword:$("#editForm #epassword").val(),
 				estatus:$("#editForm #estatus").val(),
 				eretime:$("#editForm #eretime").val(),
 				eremark:$("#editForm #eremark").val(),			
@@ -101,18 +101,19 @@
  		
  		
  		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
- 		$("#btn_submit").attr("onclick","updateEmploye("+athRole.reid+")");
+ 		$("#btn_submit").attr("onclick","updateEmploye("+athRole.eid+")");
  		//显示新增窗口
  		$('#editForm').modal('show');
      }
-	function updateEmploye(reid){
+	function updateEmploye(eid){
 		//用来关闭新增窗口***********
 		$("#editForm").modal('hide');
-		var url = "${pageContext.request.contextPath }/back/admin/updateEmploye";
+		var url = "${pageContext.request.contextPath }/back/updateEmp";
 		$.post(
 			url,
 			{
-				reid:reid,
+				eid:eid,
+				reid:$("#editForm #reid").val(),
 				eenum:$("#editForm #eenum").val(),
 				esex:$("#editForm #esex").val(),
 				eidcard:$("#editForm #eidcard").val(),
@@ -122,8 +123,8 @@
 				ename:$("#editForm #ename").val(),
 				epassword:$("#editForm #epassword").val(),
 				estatus:$("#editForm #estatus").val(),
-				ename:$("#editForm #ename").val(),
-				epassword:$("#editForm #epassword").val(),
+				eretime:$("#editForm #eretime").val(),
+				eremark:$("#editForm #eremark").val(),
 			},
 			function(data){
 				//后台返回int类型的数据
@@ -163,7 +164,7 @@
 				ids = ids +stuList[i].reid;
 			}
 		}
-		var url = "${pageContext.request.contextPath }/back/admin/deleteEmploye";
+		var url = "${pageContext.request.contextPath }/back/deleteEmp";
 		$.post(
 			url,
 			{
@@ -195,7 +196,7 @@
 		 //先销毁表格  
         $('#tb_role').bootstrapTable('destroy');  
 		$('#tb_role').bootstrapTable({
-			url : '${pageContext.request.contextPath}/back/admin/selectEmployeList', //请求后台的URL（*）
+			url : '${pageContext.request.contextPath}/back/selectEmployeList', //请求后台的URL（*）
 			method : 'post', //请求方式（*）
 			contentType: "application/x-www-form-urlencoded",
 			toolbar : '#toolbar', //工具按钮用哪个容器
@@ -225,7 +226,12 @@
 			singleSelect: false,  //设置为单选
 			columns : [ {
 				checkbox : true,
-			}, {
+			},
+			{
+				field : 'eid',
+				title : 'id'
+			},
+			{
 				field : 'reid',
 				title : '角色id'
 			}, {
@@ -295,7 +301,7 @@
 			<div class="col-sm-12">
 				<div class="ibox float-e-margins">
 					<div class="ibox-title">
-						<h5>网站角色信息</h5>
+						<h5>网站员工信息</h5>
 						<div class="ibox-tools">
 							<a class="collapse-link"> <i class="fa fa-chevron-up"></i></a>
 							<!-- <a class="close-link"> <i class="fa fa-times"></i></a> -->
@@ -309,7 +315,16 @@
 		            			</div>
 		            			<label for="operateTime" class="control-label col-sm-1">员工性别</label>
 		            			<div class="col-sm-2">
-	            					<input type="text" name="esex" class="form-control" id="esex">
+		            				<select class="form-control m-b" id="esex" name="esex" style="margin-bottom: 0px;">
+		                        		<option value="">请选择</option>
+		                        		<option value="男">男</option>
+		                        		<option value="女">女</option>
+		                        	</select>
+	            					<!-- <input type="text" name="esex" class="form-control" id="esex"> -->
+	            				</div>
+	            				<label for="operateTime" class="control-label col-sm-1">员工编号</label>
+		            			<div class="col-sm-2">
+	            					<input type="text" name="eenum" class="form-control" id="eenum">
 	            				</div>
 				                <button type="button" id="searchForm" class="btn btn-primary" onclick="searchForm()">搜索</button>
 							</div>
@@ -343,13 +358,13 @@
 						aria-label="Close">
 						<span aria-hidden="true">×</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">角色管理</h4>
+					<h4 class="modal-title" id="myModalLabel">员工管理</h4>
 				</div>
 				<div class="modal-body">
 					<!-- 新增系别 -->
 					<form id="editForm" class="form-horizontal m-t">
 						<div class="form-group">
-							<label for="urlName" class="control-label col-sm-3">角色id</label> 
+							<label for="urlName" class="control-label col-sm-3">员工id</label> 
 							<div class="col-sm-8">
 								<input type="text" name="reid" class="form-control" id="reid">
 							</div>
@@ -363,7 +378,12 @@
 						<div class="form-group">
 							<label for="url" class="control-label col-sm-3">员工性别</label>
 							<div class="col-sm-8">
-								<textarea name="esex" rows="3" class="form-control" id="esex"></textarea>
+								<select class="form-control m-b" id="esex" name="esex" style="margin-bottom: 0px;">
+		                        		<option value="">请选择</option>
+		                        		<option value="男">男</option>
+		                        		<option value="女">女</option>
+		                        </select>
+								<!-- <textarea name="esex" rows="3" class="form-control" id="esex"></textarea> -->
 	            			</div>
 						</div>
 						<div class="form-group">

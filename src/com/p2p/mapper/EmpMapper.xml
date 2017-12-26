@@ -23,23 +23,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select * from employee where e_name=#{ename}
  	</select>
 	<select id="getModel"  resultMap="BaseResultMap">
- 		select * from employe 
+ 		select * from employee 
  	</select>
  	
  	<!-- 员工添加 -->
-	<insert id="addModel" useGeneratedKeys="true" keyProperty="reid">
- 		 insert into employe(e_enum,e_sex,e_idcard,e_phone,e_position,e_email,e_name,e_password,e_status,e_retime,e_remark) 
- 		 values(#{eenum},#{esex},#{eidcard},#{ephone},#{eposition},#{eemail},#{ename},#{epassword},#{estatus},#{eretime},#{eremark})
+	<insert id="addModel" useGeneratedKeys="true" keyProperty="eid">
+ 		 insert into employee(re_id,e_enum,e_sex,e_idcard,e_phone,e_position,e_email,e_name,e_password,e_status,e_retime,e_remark) 
+ 		 values(#{reid},#{eenum},#{esex},#{eidcard},#{ephone},#{eposition},#{eemail},#{ename},#{epassword},#{estatus},#{eretime},#{eremark})
  	</insert>
  	
  	<!-- 员工删除 -->
  	<delete id="delete" parameterType="com.p2p.pojo.Employe">
-		delete from employe where re_id = #{reid};
+		delete from employee where re_id = #{reid};
 	</delete>
 	
-	<!-- 修改角色 -->
+	<!-- 修改员工 -->
     <update id="update" parameterType="com.p2p.pojo.Employe" >
-        UPDATE role SET 
+        UPDATE employee SET 
+			re_id =#{reid},
 			e_enum=#{eenum},
 			e_sex=#{esex},
 			e_idcard=#{eidcard},
@@ -50,17 +51,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			e_password=#{epassword},
 			e_status=#{estatus},
 			e_retime=#{eretime},
-			e_remar=#{eremark}
-		WHERE re_id=#{reid}
+			e_remark=#{eremark}
+		<where>
+			e_id=#{eid}
+		</where>
+		
     </update>
 	
-	<!-- 查询角色的总记录数 -->
+	<!-- 查询员工的总记录数 -->
     <select id="employeCount" resultType="java.lang.Integer">
-        select count(*) from employe;
+        select count(*) from employee;
     </select>
     
-   	<!-- 查询所有角色 -->
+   	<!-- 查询所有员工 -->
     <select id="selectPage" resultMap="BaseResultMap">
-		select * from employe;        
+		select * from employee
+		<where>
+		    1=1
+			<if test="emp.ename != null and emp.ename !='' ">
+			    and e_name like CONCAT(CONCAT('%', #{emp.ename}), '%')
+			</if>
+			<if test="emp.esex != null and emp.esex !=''">
+			     and e_sex like CONCAT(CONCAT('%', #{emp.esex}), '%')
+			</if>
+			<if test="emp.eenum != null and emp.eenum != ''">
+			    and e_enum like CONCAT(CONCAT('%', #{emp.eenum}), '%')
+			</if>
+		</where>       
     </select>
 </mapper>

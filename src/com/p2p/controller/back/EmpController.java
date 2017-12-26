@@ -14,7 +14,9 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,11 +24,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.p2p.pojo.Employe;
+import com.p2p.pojo.Role;
 import com.p2p.service.back.EmpService;
 import com.p2p.util.PageInfo;
 
 /**
- * 操作人:汪栋才
+ * 操作人:汪栋才、杨嘉辉
  * 操作时间:2017-12-18
  * 操作员工的Controller(后台登入登入)
  * */
@@ -81,17 +84,52 @@ public class EmpController {
        }  
    }
    
-
+   	//实现分页查询
 	@RequestMapping(value="selectEmployeList")
 	@ResponseBody
-	public PageInfo  selectEmployeList(Integer page, Integer rows) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+	public PageInfo  selectEmployeList(Integer page, Integer rows,Employe emp) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 		PageInfo pageInfo = new PageInfo(page+1,rows);
+		
 		//得到总的页数
 		Integer count = empService.employeCount();
 		Map<String,Object> map = new HashMap<String,Object>();
 		pageInfo.setCondition(map);
-		empService.selectPage(pageInfo);
+		empService.selectPage(pageInfo,emp);
 		pageInfo.setTotal(count);
 		return pageInfo;
 	}
+	
+	//实现新增
+	@RequestMapping(value="insertEmp")
+	@ResponseBody
+	public int insertRole(Employe emp) {
+		Object result = new SimpleHash("MD5", "123", ByteSource.Util.bytes(emp.getEname()), 10);
+		emp.setEpassword(result.toString());
+		int count = empService.addModel(emp);
+		return count;
+	}
+	
+	//修改角色信息
+	@RequestMapping(value = "updateEmp")
+	@ResponseBody
+	public  int updateRole(Employe emp){  
+		int count = empService.update(emp);
+		return count;
+	}
+	
+	//删除
+	@RequestMapping(value ="deleteEmp")
+	@ResponseBody
+	public  int delEmp(String ids){ 
+		int count = 0;
+		String[] idStr = ids.split(",");
+		for (int i = 0; i < idStr.length;i++) {
+			String reid = (String) idStr[i];
+			Employe emp = new Employe();
+			emp.setReid(Integer.valueOf(reid));
+			count =empService.delete(emp);
+		}
+		return count;
+	}
+	
 }

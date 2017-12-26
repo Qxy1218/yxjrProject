@@ -15,7 +15,7 @@ import com.p2p.service.back.EmpService;
 import com.p2p.util.PageInfo;
 
 /**
- * 操作人:汪栋才
+ * 操作人:汪栋才、杨嘉辉
  * 操作时间:2017-12-18
  * 后台员工的Service实现类
  * */
@@ -63,10 +63,10 @@ public class EmpServiceImpl implements EmpService{
 	}
 	
 	@Override
-	public void selectPage(PageInfo pageInfo) {
+	public void selectPage(PageInfo pageInfo,	Employe emp) {
 		//传入一个分页bean pageInfo
 		Page<Employe> page = new Page(pageInfo.getNowpage(),pageInfo.getSize());
-		List<Employe> list = empMapper.selectPage(page, pageInfo.getCondition());
+		List<Employe> list = empMapper.selectPage(page, pageInfo.getCondition(), emp);
 		pageInfo.setRows(list);
 		pageInfo.setTotal(page.getTotal());
 		
