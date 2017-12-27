@@ -1,7 +1,5 @@
 package com.p2p.service.front;
 
-import java.util.List;
-
 import com.p2p.base.IBaseService;
 import com.p2p.pojo.Setupnatice;
 
@@ -11,5 +9,5 @@ import com.p2p.pojo.Setupnatice;
  * 前台用户通知设置的Service
  * */
 public interface SetupnaticeService  extends IBaseService<Integer, Setupnatice>{
-	List<Setupnatice> getUserSetup(Integer userid);
+	
 }

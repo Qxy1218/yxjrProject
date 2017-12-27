@@ -3,7 +3,6 @@
 <%
 	String path = request.getContextPath();
 %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -14,7 +13,7 @@
 	    <meta name="keywords" content="网贷平台,网络借贷，网络赚钱项目,理财产品">
 	    <meta name="description" content="爱钱帮网贷平台为您提供网络赚钱项目；为此相继推出了许多新的理财产品，在为您创造高收益的同时也优化了理财产品模式。网络借贷，就选爱钱帮。">
 	    <meta charset="UTF-8">
-	    <link  rel="Shortcut  Icon"  href="/Finances/statics/other/lco/6.png">
+	    <link  rel="Shortcut  Icon"  href="/Finances/statics/other/lco/smalllog.png">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-common.css">
 	    <link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
@@ -135,27 +134,83 @@
 		                        <th>邮件通知</th>
 		                        <th>短信通知</th>
 		                    </tr>
-		                    <c:set var="aaaa" value="0"></c:set>
-		      		<c:forEach items="${setupnatice}" var="s">         
 		                    <tr>
-			                        <td id="n${aaaa=aaaa+1}">${s.usname}</td>
-				                    <td>
-				                            <input type="checkbox" value="${s.usname},insinfo" id="s${aaaa=aaaa+1}"  <c:if test="${s.usinsideStatus==1}">checked=""</c:if> />
-				                            <label class="slider-v2" for="s${aaaa}"></label>						
-				                    </td>
-				                    <td>
-				                        <input type="checkbox" value="${s.usname},eminfo" id="s${aaaa=aaaa+1}" <c:if test="${s.usemailStatus==1}">checked=""</c:if>/>
-				                        <label class="slider-v2" for="s${aaaa}"></label>						
-				                    </td>
-				                    <td>
-				                    	<c:if test="${s.usmessageStatus!=null}">
-				                    		  <input type="checkbox" value="${s.usname},msginfo" id="s${aaaa=aaaa+1}"  <c:if test="${s.usmessageStatus==1}">checked=""</c:if> />
-				                     	      <label class="slider-v2" for="s${aaaa}"></label>	
-				                    	</c:if>
-				                    </td>					
-			                </tr>
-			      </c:forEach>            
-		           </table>
+		                        <td>充值成功</td>
+		                        <td>
+		                            <input type="checkbox" id="s1"  checked=""/>
+		                            <label class="slider-v2" for="s1"></label>						</td><td>
+		                        <input type="checkbox" id="s2"  checked=""/>
+		                        <label class="slider-v2" for="s2"></label>						</td><td>
+		                    </td>					</tr><tr>
+		                    <td>投资成功</td>
+		                    <td>
+		                        <input type="checkbox" id="s4"  checked=""/>
+		                        <label class="slider-v2" for="s4"></label>						</td><td>
+		                    <input type="checkbox" id="s5"  checked=""/>
+		                    <label class="slider-v2" for="s5"></label>						</td><td>
+		                </td>					</tr><tr>
+		                    <td>收到本金或利息</td>
+		                    <td>
+		                        <input type="checkbox" id="s7"  checked=""/>
+		                        <label class="slider-v2" for="s7"></label>						</td><td>
+		                    <input type="checkbox" id="s8"  checked=""/>
+		                    <label class="slider-v2" for="s8"></label>						</td><td>
+		                    <input type="checkbox" id="s9"  checked=""/>
+		                    <label class="slider-v2" for="s9"></label>						</td>					</tr><tr>
+		                    <td>收到平台奖励</td>
+		                    <td>
+		                        <input type="checkbox" id="s10"  checked=""/>
+		                        <label class="slider-v2" for="s10"></label>						</td><td>
+		                    <input type="checkbox" id="s11"  checked=""/>
+		                    <label class="slider-v2" for="s11"></label>						</td><td>
+		                </td>					</tr><tr>
+		                    <td>提现成功</td>
+		                    <td>
+		                        <input type="checkbox" id="s13"  checked=""/>
+		                        <label class="slider-v2" for="s13"></label>						</td><td>
+		                    <input type="checkbox" id="s14"  checked=""/>
+		                    <label class="slider-v2" for="s14"></label>						</td><td>
+		                </td>					</tr><tr>
+		                    <td>债权转让成功</td>
+		                    <td>
+		                        <input type="checkbox" id="s16"  checked=""/>
+		                        <label class="slider-v2" for="s16"></label>						</td><td>
+		                    <input type="checkbox" id="s17"  checked=""/>
+		                    <label class="slider-v2" for="s17"></label>						</td><td>
+		                </td>					</tr><tr>
+		                    <td>债权承接成功</td>
+		                    <td>
+		                        <input type="checkbox" id="s19"  checked=""/>
+		                        <label class="slider-v2" for="s19"></label>						</td><td>
+		                    <input type="checkbox" id="s20"  checked=""/>
+		                    <label class="slider-v2" for="s20"></label>						</td><td>
+		                </td>					</tr><tr>
+		                    <td>项目公告</td>
+		                    <td>
+		                        <input type="checkbox" id="s22"  checked=""/>
+		                        <label class="slider-v2" for="s22"></label>						</td><td>
+		                    <input type="checkbox" id="s23"  checked=""/>
+		                    <label class="slider-v2" for="s23"></label>						</td><td>
+		                    <input type="checkbox" id="s24"  checked=""/>
+		                    <label class="slider-v2" for="s24"></label>						</td>					</tr><tr>
+		                    <td>活动公告</td>
+		                    <td>
+		                        <input type="checkbox" id="s25"  checked=""/>
+		                        <label class="slider-v2" for="s25"></label>						</td><td>
+		                    <input type="checkbox" id="s26"  checked=""/>
+		                    <label class="slider-v2" for="s26"></label>						</td><td>
+		                    <input type="checkbox" id="s27"  checked=""/>
+		                    <label class="slider-v2" for="s27"></label>						</td>					</tr><tr>
+		                    <td>其他平台公告</td>
+		                    <td>
+		                        <input type="checkbox" id="s28"  checked=""/>
+		                        <label class="slider-v2" for="s28"></label>						</td><td>
+		                    <input type="checkbox" id="s29"  checked=""/>
+		                    <label class="slider-v2" for="s29"></label>						</td><td>
+		                </td>					</tr>				</table>
+		                <div class="m2-user-setdown">
+		                    <a href="javascript:void(0)">提交修改</a>
+		                </div>
 		            </div>
 		            <div class="m2-recharge-tips">
 		                <h3><i></i>温馨提示：</h3>
@@ -173,18 +228,18 @@
 		        window.parent.postMessage('resize', "*");
 		    }
 		    $(function(){
-		        $('input:checkbox').change(function(){
-						var my =$(this).val();
-						var isck = 0;
-						if($(this).attr("checked")) {
-							//选择
-							isck = 1;
-			            }else{
-			            	//未选择
-			            	isck = 2;
-			            }
-					var p ={'thisval':my,'isck':isck}	
-		            postData('/Finances/user/usersetup',p,function(d){
+		        $('.m2-user-setdown a').click(function(){
+		            p={};
+		            $("input:checkbox").each(function(){
+		                k=$(this).attr('id');
+		                if($(this).attr('checked')=='checked'){
+		                    v=1;}
+		                else{
+		                    v=2;
+		                }
+		                p[k]=v;
+		            });
+		            postData('/Usercenter-Messagecontrol-alter_authority',p,function(d){
 		                if(d.status==1){
 		                    showDialog('修改成功','您已经成功设置了消息提醒');
 		                }

@@ -12,12 +12,11 @@
 	    <script src="statics/home2/js/excanvas.js" type="text/javascript"></script>
 	    <link rel="js/stylesheet" href="iefix.css">
 	    <![endif]-->
-	    <link  rel="Shortcut  Icon"  href="/Finances/statics/other/lco/6.png">
+	    <link  rel="Shortcut  Icon"  href="/Finances/statics/other/lco/smalllog.png">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/home2/css/m2-main.css">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-common.css">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/company_finance/css/company_finance.css">
-	    <link rel="stylesheet" href="/Finances/statics/front/statics/home/css/newPage.css" />
 	    
 	    <script type="text/javascript" src="/Finances/statics/front/statics/home/js/jquery.min.js"></script>
 	    <script type="text/javascript" src="/Finances/statics/front/statics/newcommon/js/common.js"></script>
@@ -556,8 +555,10 @@
 		    }
 		</script>
 		
+		<link rel="stylesheet" href="/Finances/statics/front/statics/home/css/newPage.css" />
+		
 		<!-- 足部start -->
-		<jsp:include page="include/floot.jsp"></jsp:include>
+			<jsp:include page="include/floot.jsp"></jsp:include>
 		<!-- 足部end -->
 	
 	</body>

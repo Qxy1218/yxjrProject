@@ -26,8 +26,8 @@ public class Userinfo implements Serializable{
 	@TableField("ui_sex")
 	private String uisex;//性别
 	
-	@TableField("ic_id")
-	private Integer icid;//身份证id
+	@TableField("ui_idCard")
+	private String uiidCard;//身份证
 	
 	@TableField("ui_birthday")
 	private String uibirthday;//生日日期
@@ -47,9 +47,6 @@ public class Userinfo implements Serializable{
 	@TableField("ui_email")
 	private String uiemail;//邮箱
 	
-	@TableField("ui_emailstatus")
-	private Integer uiemailstatus;//邮箱状态(0未审核  1待审核  2已审核)
-	
 	/**
 	 * 二级对象(对应Userinfo用户基本信息基本类)
 	 * */
@@ -59,21 +56,20 @@ public class Userinfo implements Serializable{
 		
 	}
 
-	public Userinfo(Integer uiid, Integer uid, String uiname, String uisex, Integer icid, String uibirthday,
-			Integer peid, Integer cyid, Integer aeid, String uidealpwd, String uiemail,Integer uiemailstatus, User user) {
+	public Userinfo(Integer uiid, Integer uid, String uiname, String uisex, String uiidCard, String uibirthday,
+			Integer peid, Integer cyid, Integer aeid, String uidealpwd, String uiemail, User user) {
 		super();
 		this.uiid = uiid;
 		this.uid = uid;
 		this.uiname = uiname;
 		this.uisex = uisex;
-		this.icid = icid;
+		this.uiidCard = uiidCard;
 		this.uibirthday = uibirthday;
 		this.peid = peid;
 		this.cyid = cyid;
 		this.aeid = aeid;
 		this.uidealpwd = uidealpwd;
 		this.uiemail = uiemail;
-		this.uiemailstatus = uiemailstatus;
 		this.user = user;
 	}
 
@@ -109,12 +105,12 @@ public class Userinfo implements Serializable{
 		this.uisex = uisex;
 	}
 
-	public Integer getIcid() {
-		return icid;
+	public String getUiidCard() {
+		return uiidCard;
 	}
 
-	public void setIcid(Integer icid) {
-		this.icid = icid;
+	public void setUiidCard(String uiidCard) {
+		this.uiidCard = uiidCard;
 	}
 
 	public String getUibirthday() {
@@ -165,14 +161,6 @@ public class Userinfo implements Serializable{
 		this.uiemail = uiemail;
 	}
 
-	public Integer getUiemailstatus() {
-		return uiemailstatus;
-	}
-
-	public void setUiemailstatus(Integer uiemailstatus) {
-		this.uiemailstatus = uiemailstatus;
-	}
-
 	public User getUser() {
 		return user;
 	}
@@ -183,9 +171,9 @@ public class Userinfo implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Userinfo [uiid=" + uiid + ", uid=" + uid + ", uiname=" + uiname + ", uisex=" + uisex + ", icid="
-				+ icid + ", uibirthday=" + uibirthday + ", peid=" + peid + ", cyid=" + cyid + ", aeid=" + aeid
-				+ ", uidealpwd=" + uidealpwd + ", uiemail=" + uiemail + ", uiemailstatus=" + uiemailstatus + ", user=" + user + "]";
+		return "Userinfo [uiid=" + uiid + ", uid=" + uid + ", uiname=" + uiname + ", uisex=" + uisex + ", uiidCard="
+				+ uiidCard + ", uibirthday=" + uibirthday + ", peid=" + peid + ", cyid=" + cyid + ", aeid=" + aeid
+				+ ", uidealpwd=" + uidealpwd + ", uiemail=" + uiemail + ", user=" + user + "]";
 	}
 
 

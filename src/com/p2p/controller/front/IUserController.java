@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,11 +21,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.controller.back.UtilController;
-import com.p2p.pojo.Setupnatice;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Userinfo;
 import com.p2p.service.front.IUserService;
-import com.p2p.service.front.SetupnaticeService;
 import com.p2p.service.front.UserInfoService;
 import com.p2p.util.AddressUtils;
 import com.p2p.util.DateUtils;
@@ -44,47 +41,6 @@ public class IUserController {
 	
 	@Resource(name="userInfoServiceImpl")
 	private UserInfoService userInfoService;
-	
-	
-	@Resource(name="setupnaticeServiceImpl")
-	private SetupnaticeService setupnaticeService;
-	
-	
-	/**
-	 * 用户通知设置的方法
-	 * */
-	@RequestMapping("/usersetup")
-	@ResponseBody
-	public Object usersetup(String thisval,String isck,HttpSession session) {
-		Map<String,Object> map = new HashMap<String,Object>();
-		User user = (User)session.getAttribute("user");
-		Integer checked = Integer.parseInt(isck);
-		if(user==null) {
-			//修改失败
-			map.put("status", 2);
-			return map;
-		}
-		String[] array = thisval.split(",");  
-		Setupnatice setupnatice = new Setupnatice();
-		setupnatice.setUid(user.getUid());
-		setupnatice.setUsname(array[0]);
-		//判断选择的是哪一个
-		if(array[1].equals("insinfo")) {
-			setupnatice.setUsinsideStatus(checked);
-		}else if(array[1].equals("eminfo")){
-			setupnatice.setUsemailStatus(checked);
-		}else if(array[1].equals("msginfo")){
-			setupnatice.setUsmessageStatus(checked);
-		}
-		int aa =setupnaticeService.update(setupnatice);
-		if(aa>0) {
-			map.put("status", 1);
-		}else {
-			map.put("status", 2);
-		}
-		
-		return map;
-	}
 	
 	/**
 	 * 用户注册界面的注册方法
@@ -112,7 +68,7 @@ public class IUserController {
 		Object result = new SimpleHash("MD5", pas, ByteSource.Util.bytes("user"), 10);
 		User user = new User();
 		user.setUpassword(result.toString());
-		user.setUheadImg("/statics/front/images/IMG_2166.JPG");
+		user.setUheadImg("/front/images/IMG_2166.JPG");
 		user.setUphone(phone);
 		user.setUloginTime(DateUtils.getDateTimeFormat(new Date()));
 		
@@ -156,7 +112,7 @@ public class IUserController {
 		
 		user.setUaddress(address);
 
-		user.setUregTime(DateUtils.getDateTimeFormat(new Date()));
+		user.setUvid("1");
 		user.setUcredit(3000);
 		user.setUbalance(0.00);
 		
@@ -174,6 +130,7 @@ public class IUserController {
 			userinfo.setUid(user.getUid());
 			userinfo.setUiname("yxjr"+user.getUphone());
 			userinfo.setUisex("保密");
+			userinfo.setUiidCard("");
 			userinfo.setUibirthday(DateUtils.getDateTimeFormat(new Date()));
 			
 			int isadduserinfo =   userInfoService.addModel(userinfo);
@@ -206,7 +163,7 @@ public class IUserController {
 		 * */
 		@RequestMapping(value="/userLogin")
 		@ResponseBody
-		public String mnlogin(@RequestParam String user_name,@RequestParam String pass_word,String issvae,HttpSession session,HttpServletResponse response) throws Exception {
+		public String mnlogin(@RequestParam String user_name,@RequestParam String pass_word,HttpSession session) throws Exception {
 		
 			ObjectMapper mapper = new ObjectMapper(); //转换器  
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -222,14 +179,15 @@ public class IUserController {
 			 * */
 			Object results = new SimpleHash("MD5", pas, ByteSource.Util.bytes("user"), 10);
 			System.out.println(results.toString());
+			User user = new User();
+			user.setUphone(ph);
+			user.setUpassword(results.toString());
 			//如果登入成功
-			User user =  iUserService.userLoing(ph, results.toString());
+			User user2 =  iUserService.getModel(user);
 			
-			if(user!=null) {
-				//修改登录时间
-				user.setUloginTime(DateUtils.getDateTimeFormat(new Date()));
-				iUserService.update(user);
-				
+			if(user2!=null) {
+				//证明有值,登入成功
+				map.put("status",1);
 				//加密URL
 				String serchName = "http://127.0.0.1:8080/Finances/toindex";
 				serchName = java.net.URLDecoder.decode(serchName,"UTF-8");
@@ -239,28 +197,8 @@ public class IUserController {
 				/**
 				 * 把用户信息存放进session
 				 * */
-				/**
-				 * 现在查询包括user表和user_info表的记录
-				 * */
-				User user2 = iUserService.getModel(user);
 				session.setAttribute("user",user2);
 				
-				/**
-				 * 如果用户选择了保存账号密码
-				 * 保存进cookies
-				 * */
-				if(issvae.equals("1")) {
-					Cookie c1 = new Cookie("yxjruser",user2.getUphone());
-					c1.setMaxAge(5*365*24*60*60);
-					c1.setPath("/");
-					Cookie c2 = new Cookie("yxjrpassword",user2.getUpassword());
-					c2.setMaxAge(5*365*24*60*60);
-					c2.setPath("/");
-					response.addCookie(c1);
-					response.addCookie(c2);
-				}
-				//证明有值,登入成功
-				map.put("status",1);
 			}else {
 				map.put("status",5);
 				map.put("status",0);
@@ -339,41 +277,6 @@ public class IUserController {
 		}
 		return isSure;
 	}
-	
-	/**
-	 * 退出前台登录
-	 * */
-	@RequestMapping(value="/logout")
-	public String logout(HttpSession session,HttpServletResponse response,HttpServletRequest request) {
-		if(session.getAttribute("user")!=null) {
-			session.removeAttribute("user");
-		}
-		/**
-		 * 清空客户端cookies
-		 * */
-		Cookie cookies[] = request.getCookies();  
-	      if (cookies != null){  
-	          for (int i = 0; i < cookies.length; i++)  {  
-	              if (cookies[i].getName().equals("yxjruser"))     {  
-	                  Cookie cookie = new Cookie("yxjruser","");//这边得用"",不能用null  
-	                  cookie.setPath("/");//设置成跟写入cookies一样的  
-	                  cookie.setMaxAge(0);
-	                  response.addCookie(cookie);  
-	              }
-	              if(cookies[i].getName().equals("yxjrpassword")){
-	            	  Cookie cookie = new Cookie("yxjrpassword","");//这边得用"",不能用null  
-	                  cookie.setPath("/");//设置成跟写入cookies一样的  
-	                  cookie.setMaxAge(0);  
-	                  response.addCookie(cookie); 
-	              }
-	          }  
-	      }  
-		
-		return "redirect:/tologin";
-	}
-	
-	
-	
 	/**
 	 * 修改用户的基本信息
 	 * */

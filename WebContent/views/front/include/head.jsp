@@ -22,7 +22,7 @@
 		}
 	function logout(){
 		if(confirm("是否退出登录？")){ 
-			parent.window.location="${pageContext.request.contextPath }/user/logout"; 
+			parent.window.location="${pageContext.request.contextPath }/logout"; 
 			return true; 
 		}
 			return false; 
@@ -65,7 +65,7 @@
                        	<span class="m2-commonTop-userName">
                            	<c:if test="${sessionScope.user.uid  != null}">
 								<input id="uid" value="${sessionScope.user.uid}" hidden="true">
-	                       		<p><font color="white" >您好,${sessionScope.user.userinfo.uiname}</font></p>
+	                       		<p><font color="white" >您好,${sessionScope.user.uphone}</font></p>
 	                       	</c:if>
 	                       	<c:if test="${sessionScope.user.uid  == null}">
 	                       		 <a href="${pageContext.request.contextPath }/tologin" target="_blank" style="border-right:none;">登录</a>

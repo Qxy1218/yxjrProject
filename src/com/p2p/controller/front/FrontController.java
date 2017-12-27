@@ -1,19 +1,9 @@
 package com.p2p.controller.front;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
-
-import org.apache.shiro.web.session.HttpServletSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.p2p.pojo.Setupnatice;
-import com.p2p.pojo.User;
-import com.p2p.service.front.SetupnaticeService;
 
 
 /**
@@ -23,11 +13,6 @@ import com.p2p.service.front.SetupnaticeService;
  * */
 @Controller
 public class FrontController {
-	
-	@Resource(name="setupnaticeServiceImpl")
-	private SetupnaticeService setupnaticeService;
-	
-	
 	/**
 	 * 头部的conteroller
 	 * */
@@ -201,17 +186,7 @@ public class FrontController {
 	 *通知设置页面的conteroller
 	 * */
 	@RequestMapping(value="/tosetmsg")
-	public String tosetmsg(HttpSession session,Model model) {
-		/**
-		 * 从session获取user对象
-		 * 如果取得的是空则会跳会首界面
-		 * */
-		User user = (User)session.getAttribute("user");
-		if(user==null) {
-			return "redirect:/toindex";
-		}
-		List<Setupnatice> setupnatice2 = setupnaticeService.getUserSetup(user.getUid());
-		model.addAttribute("setupnatice",setupnatice2);
+	public String tosetmsg() {
 		return "views/front/message/setmsg";
 	}
 	

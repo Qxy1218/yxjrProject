@@ -51,9 +51,4 @@ public class IUserServiceImpl implements IUserService{
 		return iUserMapper.findModel(id);
 	}
 
-	@Override
-	public User userLoing(String username, String password) {
-		return iUserMapper.userLoing(username, password);
-	}
-
 }

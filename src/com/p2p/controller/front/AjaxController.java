@@ -117,7 +117,7 @@ public class AjaxController {
 			Map<String,Object> orther = new HashMap<String,Object>();
 			orther.put("yzcode",ranks);
 			try {
-				//sUtil.Send(phone,MessageBenas.MSG_REGCODE,orther,sendmsg,messageUtil);
+				sUtil.Send(phone,MessageBenas.MSG_REGCODE,orther,sendmsg,messageUtil);
 			} catch (Exception e) {
 				//日志打印
 				map.put("status", 2);
