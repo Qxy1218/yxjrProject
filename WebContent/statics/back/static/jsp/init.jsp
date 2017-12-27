@@ -9,7 +9,7 @@
   <!-- 全局js -->
 	<script src="${pageContext.request.contextPath}/statics/back/static/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/statics/back/static/js/bootstrap.min.js"></script>
-
+	<script type="text/javascript" src="${pageContext.request.contextPath}/statics/back/static/js/jquery.form.js"></script>
     <!-- 自定义js -->
     <script src="${pageContext.request.contextPath}/statics/back/static/js/content.js"></script>
 
