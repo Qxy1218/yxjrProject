@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,14 +14,14 @@
     <div class="mainNewfocus" style ="width:740px;">
         <div class="mainNewblog">
             <ul>
-                <li class="joinWb"><span></span><p>官方微博</p></li>
-                <li class="joinWx"><span></span><p>官方微信</p></li>
+               <li class="joinWb"><span style="background: url(/Finances/${contact.cweboimgurl})"></span><p>官方微博</p></li>
+                <li class="joinWx"><span style="background: url(/Finances/${contact.cwechartimgurl})"></span><p>官方微信</p></li>
             </ul>
         </div>
         <div class="mainNewcopy">
             <div class="mainNewserve">
                 <h3>客服电话:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:12px;">投资有风险，请谨慎投资</span></h3>
-                <h3>4006-777-518&nbsp;&nbsp;&nbsp;http://www.iqianbang.com</h3>
+                <h3>${contact.csphone}&nbsp;&nbsp;&nbsp;http://www.iqianbang.com</h3>
                 <ul>
                     <li><a href="/Finances/toinvest">我要投资</a></li>
                     <li><a href="/Finances/tohelp">帮助中心</a></li>
