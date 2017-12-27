@@ -3,6 +3,7 @@
 <%
 	String path = request.getContextPath();
 %>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -491,10 +492,10 @@
 	                    </div>
 	                    <div class="m2-contactOnlinebox">
 	                        <div class="m2-conOnline-tel">
-	                            <i></i>客服热线：<span>4006&nbsp;777&nbsp;518</span>
+	                            <i></i>客服热线：<span>${contact.csphone}</span>
 	                        </div>
 	                        <div class="m2-conOnline-qq">
-	                            <i></i>在线客服：<span style="vertical-align: -4px"></span>
+	                            <i></i>在线客服：<span style="vertical-align: -4px">${contact.cqqnum}</span>
 	                        </div>
 	                    </div>
 	                    <img class="moveb" src="/Finances/statics/front/statics/home2/images/m2-contactRig.png">
@@ -533,6 +534,7 @@
 	            </div>
 	        </div>
 	    </div>
+	    
 	    <div class="m2-contactEmp"></div>
 	    <style>
 	        .vIVR{display:none}
@@ -573,9 +575,10 @@
 	        });
 	    </script>
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/home/css/newPage.css" />
-		
+	    7
 		<!-- 足部start -->
 			<jsp:include page="../include/floot.jsp"></jsp:include>
 		<!-- 足部end -->
+		
 	</body>
 </html>
