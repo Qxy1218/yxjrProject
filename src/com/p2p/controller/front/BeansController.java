@@ -7,8 +7,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.shiro.crypto.hash.SimpleHash;
-import org.apache.shiro.util.ByteSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +16,7 @@ import com.p2p.pojo.Indexpic;
 import com.p2p.pojo.User;
 import com.p2p.service.back.IndexpicService;
 import com.p2p.service.front.IUserService;
+import com.p2p.service.front.SetupnaticeService;
 /**
  * 开发人:汪栋才
  * 2017-11-13
@@ -31,6 +30,7 @@ public class BeansController {
 	
 	@Resource(name="IUserServiceImpl")
 	private IUserService iUserService;
+
 	
 	/**
 	 * 进入首界面(index.jsp)

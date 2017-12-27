@@ -47,5 +47,10 @@ public class SetupnaticeServiceImpl implements SetupnaticeService{
 	public Setupnatice findModel(Integer id) {
 		return setupnaticemapper.findModel(id);
 	}
+
+	@Override
+	public List<Setupnatice> getUserSetup(Integer userid) {
+		return setupnaticemapper.getUserSetup(userid);
+	}
 	
 }

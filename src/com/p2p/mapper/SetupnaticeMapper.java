@@ -1,5 +1,7 @@
 package com.p2p.mapper;
 
+import java.util.List;
+
 import com.p2p.base.IBaseDao;
 import com.p2p.pojo.Setupnatice;
 
@@ -9,5 +11,5 @@ import com.p2p.pojo.Setupnatice;
  * 操作用户通知设置的mapper
  * */
 public interface SetupnaticeMapper  extends IBaseDao<Integer,Setupnatice>{
-	
+	List<Setupnatice> getUserSetup(Integer userid);
 }

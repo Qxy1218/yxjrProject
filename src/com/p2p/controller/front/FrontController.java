@@ -204,7 +204,17 @@ public class FrontController {
 	 *通知设置页面的conteroller
 	 * */
 	@RequestMapping(value="/tosetmsg")
-	public String tosetmsg() {
+	public String tosetmsg(HttpSession session,Model model) {
+		/**
+		 * 从session获取user对象
+		 * 如果取得的是空则会跳会首界面
+		 * */
+		User user = (User)session.getAttribute("user");
+		if(user==null) {
+			return "redirect:/toindex";
+		}
+		List<Setupnatice> setupnatice2 = setupnaticeService.getUserSetup(user.getUid());
+		model.addAttribute("setupnatice",setupnatice2);
 		return "views/front/message/setmsg";
 	}
 	
