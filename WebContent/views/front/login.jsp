@@ -165,10 +165,11 @@
                                 <input type="password" id="pass_word" placeholder="密码">
                                 <b id="passwarn"></b>
                             </div>
- 								 
+ 							 
                             <div class="m2-login-forget">
-                                <p class="alarmnew" style="font-weight: bolder;text-align: left;position: absolute;color:black;width:200px;height: 24px;line-height: 24px;margin:-4px 0;">
-                               		记住密码：<input type="checkbox" id="issvae" checked=""> 
+                            	
+                                <p style="font-weight: bolder;text-align: left;position: absolute;color:black;width:200px;height: 24px;line-height: 24px;margin:-4px 0;">
+                               		 记住密码：<input type="checkbox" id="issvae" checked="">	
                                 </p>
                                 <a href="/Finances/toforget" class="m2-loginForget">忘记密码？</a>
                             </div>
@@ -212,12 +213,15 @@
 	            $(".alarmnew").html("密码不能为空");
 	            return false;
 	        }
-			
-			if($('#issvae').attr("checked")) {
+	    	p.issvae =2;
+	    	alert($('#issvae').is(':checked'));
+			if($('#issvae').is(':checked')) {
 				//选择
+				alert("选中");
 				p.issvae = 1;
             }else{
             	//未选择
+            	alert("未选中");
             	p.issvae = 2;
             }
 			//alert(p.issvae);

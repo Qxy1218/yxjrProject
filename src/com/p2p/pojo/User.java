@@ -29,8 +29,11 @@ public class User implements Serializable{
 	@TableField("u_phone")
 	private String uphone;  //电话号码
 	
+	@TableField("u_regTime")
+	private String uregTime;//注册时间
+	
 	@TableField("u_loginTime")
-	private String uloginTime;//注册时间
+	private String uloginTime;//登录时间
 
 	@TableField("order_invite")
 	private String orderinvite; //别人的邀请码
@@ -55,9 +58,6 @@ public class User implements Serializable{
 	@TableField("u_ip")
 	private String uip;//ip
 	
-	@TableField("uv_id")
-	private String uvid;//代金券
-	
 	@TableField("u_credit")
 	private Integer ucredit;//信用额度
 	
@@ -81,7 +81,7 @@ public class User implements Serializable{
 
 	public User(Integer uid, String upassword, String uheadImg, String uphone, String uloginTime, String orderinvite,
 			String uinvite, Integer uenable, Integer uisAccountSum, String qrcode, String uaddress, String uip,
-			String uvid, Integer ucredit, Double ubalance, String ulid, Double vdid, Userinfo userinfo) {
+			String uregTime, Integer ucredit, Double ubalance, String ulid, Double vdid, Userinfo userinfo) {
 		super();
 		this.uid = uid;
 		this.upassword = upassword;
@@ -95,7 +95,7 @@ public class User implements Serializable{
 		this.qrcode = qrcode;
 		this.uaddress = uaddress;
 		this.uip = uip;
-		this.uvid = uvid;
+		this.uregTime = uregTime;
 		this.ucredit = ucredit;
 		this.ubalance = ubalance;
 		this.ulid = ulid;
@@ -199,12 +199,12 @@ public class User implements Serializable{
 		this.uip = uip;
 	}
 
-	public String getUvid() {
-		return uvid;
+	public String getUregTime() {
+		return uregTime;
 	}
 
-	public void setUvid(String uvid) {
-		this.uvid = uvid;
+	public void setUregTime(String uregTime) {
+		this.uregTime = uregTime;
 	}
 
 	public Integer getUcredit() {

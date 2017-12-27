@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		  <result column="qr_code" property="qrcode"/>
  		   <result column="u_address" property="uaddress"/>
  		  <result column="u_ip" property="uip"/>
- 		  <result column="uv_id" property="uvid"/>
+ 		  <result column="u_regTime" property="uregTime"/>
  		  <result column="u_credit" property="ucredit"/>
  		  <result column="u_balance" property="ubalance"/>
  		  <result column="ul_id" property="ulid"/>
@@ -28,24 +28,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<result column="u_id" property="uid"/>
  			<result column="ui_name" property="uiname"/>
  			<result column="ui_sex" property="uisex"/>
- 			<result column="ui_idCard" property="uiidCard"/>
+ 			<result column="ic_id" property="icid"/>
  			<result column="ui_birthday" property="uibirthday"/>
  			<result column="pe_id" property="peid"/>
  			<result column="cy_id" property="cyid"/>
  			<result column="ae_id" property="aeid"/>
  			<result column="ui_dealpwd" property="uidealpwd"/>
  			<result column="ui_email" property="uiemail"/>
+ 			<result column="ui_emailstatus" property="uiemailstatus"/>
  		</association>
 </resultMap>
 	
 	<sql id="myusersql">
 		u_password,u_headImg,u_phone,u_loginTime,order_invite,u_invite,
-		u_enable,u_isAccountSum,qr_code,u_address,u_ip,uv_id,u_credit,u_balance,ul_id,vd_id
+		u_enable,u_isAccountSum,qr_code,u_address,u_ip,u_regTime,u_credit,u_balance,ul_id,vd_id
 	</sql>
 	<!-- 增加 -->
 	<insert id="addModel" parameterType="com.p2p.pojo.User" useGeneratedKeys="true" keyProperty="uid">
  		 insert into user(<include refid="myusersql" />)
- 		 values(#{upassword},#{uheadImg},#{uphone},#{uloginTime},#{orderinvite},#{uinvite},#{uenable},#{uisAccountSum},#{qrcode},#{uaddress},#{uip},#{uvid},#{ucredit},#{ubalance},#{ulid},#{vdid})
+ 		 values(#{upassword},#{uheadImg},#{uphone},#{uloginTime},#{orderinvite},#{uinvite},#{uenable},#{uisAccountSum},#{qrcode},#{uaddress},#{uip},#{uregTime},#{ucredit},#{ubalance},#{ulid},#{vdid})
  	</insert>
  	
  	<select id="getModel" parameterType="com.p2p.pojo.User" resultMap="BaseResultMap">
@@ -56,6 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		<if test="upassword!=null">and u.u_password=#{upassword}</if>
 		  		<if test="uheadImg!=null">and u.u_headImg=#{uheadImg}</if>
 		  		<if test="uphone!=null">and u.u_phone=#{uphone}</if>
+		  		<if test="uregTime!=null">and u.u_regTime=#{uregTime}</if>
 		  		<if test="uloginTime!=null">and u.u_loginTime=#{uloginTime}</if>
 		  		<if test="orderinvite!=null">and u.order_invite=#{orderinvite}</if>
 		  		<if test="uinvite!=null">and u.u_invite=#{uinvite}</if>
@@ -64,7 +66,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		<if test="qrcode!=null">and u.qr_code=#{qrcode}</if>
 		  		<if test="uaddress!=null">and u.u_address=#{uaddress}</if>
 		  		<if test="uip!=null">and u.u_ip=#{uip}</if>
-		  		<if test="uvid!=null">and u.uv_id=#{uvid}</if>
 		  		<if test="ucredit!=null">and u.u_credit=#{ucredit}</if>
 		  		<if test="ubalance!=null">and u.u_balance=#{ubalance}</if>
 		  		<if test="ulid!=null">and u.ul_id=#{ulid}</if>
@@ -75,6 +76,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  				and  u.u_id = ui.u_id;
  		</where>
  	</select>
+ 	<select id="userLoing" parameterType="java.lang.String" resultMap="BaseResultMap">
+ 			select * from user u where u.u_phone=#{username} and u.u_password=#{password};
+ 	</select>
+ 	
+ 	
  	
  	<update id="update" parameterType="com.p2p.pojo.User">
  		update user u
@@ -82,6 +88,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  <if test="upassword!=null">u.u_password=#{upassword},</if>
 		  <if test="uheadImg!=null">u.u_headImg=#{uheadImg},</if>
 		  <if test="uphone!=null">u.u_phone=#{uphone},</if>
+		  <if test="uloginTime!=null">u.u_loginTime=#{uloginTime},</if>
  		</trim>
  		<where>
  		    u.u_id=#{uid}

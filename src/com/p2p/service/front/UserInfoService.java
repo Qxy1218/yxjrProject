@@ -1,6 +1,9 @@
 package com.p2p.service.front;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.p2p.base.IBaseService;
+import com.p2p.pojo.User;
 import com.p2p.pojo.Userinfo;
 /**
  * 操作人:汪栋才
@@ -8,5 +11,5 @@ import com.p2p.pojo.Userinfo;
  * 前台用户信息的Service
  * */
 public interface UserInfoService extends IBaseService<Integer, Userinfo>{
-
+	
 }
