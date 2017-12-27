@@ -90,4 +90,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 		
     </update>
+    
+     <!-- 根据emp的reid得到Role对象 -->
+    <select id="getByereid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    	select * from role where re_id =#{reid}
+    </select>
 </mapper>

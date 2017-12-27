@@ -4,6 +4,12 @@
 <%
 	String path = request.getContextPath();
 %> 
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
+<%  
+    String empName = (String) session.getAttribute("empName");  
+    pageContext.setAttribute("currentUser", org.apache.shiro.SecurityUtils.getSubject().getPrincipal()  
+            .toString());  
+%>    
 <html>
 <head>
     <meta charset="utf-8">
@@ -35,7 +41,11 @@
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold">Beaut-zihan</strong></span>
-                                <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
+                                <span class="text-muted text-xs block"><%-- ${sessionScope.employee.ename} --%>
+                                	<shiro:user>
+                                		<shiro:principal />
+                                	</shiro:user>
+                                <b class="caret"></b></span>
                                 </span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -48,51 +58,63 @@
                                 <li><a class="J_menuItem" href="mailbox.jsp">信箱</a>
                                 </li>
                                 <li class="divider"></li>
-                                <li><a href="login.jsp">安全退出</a>
+                                <li><a href="${pageContext.request.contextPath}/back/adminlogout">安全退出</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="logo-element">H+</div>
                     </li>
-                    <li>
+                     <shiro:hasPermission name="管理设置">
+                          <li>
                         <a href="#">
                             <i class="fa fa-home"></i>
                             <span class="nav-label">用户管理</span>
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                           <li>
-                                <a class="J_menuItem" href="${pageContext.request.contextPath}/back/toRole" data-index="0">权限管理</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="index_v2.jsp">会员账户管理</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="index_v3.jsp">用户列表</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/employe.jsp">员工列表</a>
-                            </li>
+                        	<shiro:hasPermission name="权限管理">
+                        		<li>
+                               		 <a class="J_menuItem" href="${pageContext.request.contextPath}/back/toRole" data-index="0">权限管理</a>
+                            	</li>
+                        	</shiro:hasPermission>
+                        	<shiro:hasPermission name="会员账户管理">
+                        		<li>
+                                	<a class="J_menuItem" href="index_v2.jsp">会员账户管理</a>
+                            	</li>
+                        	</shiro:hasPermission>
+                        	<shiro:hasPermission name="用户管理">
+                        		 <li>
+                                	<a class="J_menuItem" href="index_v3.jsp">用户列表</a>
+                           		 </li>
+                        	</shiro:hasPermission>
+                        	<shiro:hasPermission name="员工管理">
+                        		<li>
+                               	 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/role.jsp">员工列表</a>
+                            	</li>
+                        	</shiro:hasPermission>
                         </ul>
-
-                    </li>
+                    </li>   	
+                     </shiro:hasPermission>
                     <li>
                         <a class="J_menuItem" href="layouts.jsp">
                         	<i class="fa fa-columns"></i> 
                         	<span class="nav-label">系统维护管理(待定)</span>
                         </a>
                     </li>
-                    <li>
+                    <shiro:hasPermission name="首页管理">
+                    	<li>
                         <a href="#">
                             <i class="fa fa fa-bar-chart-o"></i>
                             <span class="nav-label">首页管理</span>
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li>
-                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/Indexpic.jsp">轮播图管理</a>
-                            </li>
-                            <li>
+                        	<shiro:hasPermission name="轮播图管理">
+                        		<li>
+                               		 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/Indexpic.jsp">轮播图管理</a>
+                            	</li>
+                        	</shiro:hasPermission>
+                        	<li>
 
                                 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/about.jsp">关于我们管理</a>
                             </li>
@@ -100,47 +122,75 @@
 
                                 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/redmoney.jsp">红包管理</a>
                             </li>
-                            <li>
-
-                                <a class="J_menuItem" href="graph_flot.jsp">联系管理</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="graph_morris.jsp">合作机构管理</a>
-                            </li>
+                            <shiro:hasPermission name="联系管理">
+                            	<li>
+                               	 	<a class="J_menuItem" href="graph_flot.jsp">联系管理</a>
+                           		</li>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="合作机构管理">
+                            	<li>
+                                	<a class="J_menuItem" href="graph_morris.jsp">合作机构管理</a>
+                            	</li>
+                            </shiro:hasPermission>
                         </ul>
                     </li>
-
-                    <li>
+                    </shiro:hasPermission>
+                    <shiro:hasPermission name="贷款管理">
+                    	<li>
                         <a href="mailbox.jsp">
 	                        <i class="fa fa-envelope"></i> 
 	                        <span class="nav-label">贷款管理</span>
 	                        <span class="label label-warning pull-right">16</span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="mailbox.jsp">贷款管理与审核</a>
-                            </li>
-                            <li><a class="J_menuItem" href="mail_detail.jsp"> 额度管理与审核</a>
-                            </li>
-                            <li><a class="J_menuItem" href="mail_compose.jsp">还款管理与审核</a>
-                            </li>
+                            <shiro:hasPermission name="贷款管理与审核">
+                            	 <li>
+                            	 	<a class="J_menuItem" href="mailbox.jsp">贷款管理与审核</a>
+                           		 </li>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="额度管理与审核">
+                            	<li>
+                            		<a class="J_menuItem" href="mail_detail.jsp"> 额度管理与审核</a>
+                           		</li>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="还款管理与审核">
+                            	<li>
+                            		<a class="J_menuItem" href="mail_compose.jsp">还款管理与审核</a>
+                            	</li>
+                            </shiro:hasPermission>
                         </ul>
                     </li>
-                    <li>
+                    </shiro:hasPermission>
+                    <shiro:hasPermission name="资金管理">
+                    	<li>
                         <a href="#">
                         	<i class="fa fa-edit"></i> 
                         	<span class="nav-label">资金管理</span>
                         	<span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="form_basic.jsp">后台充值</a>
-                            </li>
-                            <li><a class="J_menuItem" href="form_validate.jsp">充值管理与审核</a>
-                            </li>
-                            <li><a class="J_menuItem" href="form_advanced.jsp">提现管理与审核</a>
-                            </li>
-                            <li><a class="J_menuItem" href="form_wizard.jsp">银行卡管理</a>
-                            </li>
-                            <li>
+                        	<shiro:hasPermission name="后台充值管理">
+                        		<li>	
+                        			<a class="J_menuItem" href="form_basic.jsp">后台充值</a>
+                            	</li>
+                        	</shiro:hasPermission>
+                        	<shiro:hasPermission name="充值管理与审核">
+                        		<li>
+                        			<a class="J_menuItem" href="form_validate.jsp">充值管理与审核</a>
+                            	</li>
+                        	</shiro:hasPermission>
+                            <shiro:hasPermission name="提现管理与审核">
+                            	<li>
+                            		<a class="J_menuItem" href="form_advanced.jsp">提现管理与审核</a>
+                           		</li>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="银行卡管理">
+                            	<li>
+                            		<a class="J_menuItem" href="form_wizard.jsp">银行卡管理</a>
+                            	</li>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="文件上传管理">
+                            	<li>
                                 <a href="#">文件上传 <span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li><a class="J_menuItem" href="form_webuploader.jsp">百度WebUploader</a>
@@ -151,9 +201,11 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="#">编辑器 <span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="编辑器管理">
+                            	<li>
+                                	<a href="#">编辑器 <span class="fa arrow"></span></a>
+                                	<ul class="nav nav-third-level">
                                     <li><a class="J_menuItem" href="form_editors.jsp">富文本编辑器</a>
                                     </li>
                                     <li><a class="J_menuItem" href="form_simditor.jsp">simditor</a>
@@ -163,87 +215,153 @@
                                     <li><a class="J_menuItem" href="code_editor.jsp">代码编辑器</a>
                                     </li>
                                 </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                        	<i class="fa fa-desktop"></i> 
-                        	<span class="nav-label">资金记录管理</span>
-                        	<span class="fa arrow"></span>
-                        </a>
+                            	</li>
+                            </shiro:hasPermission>
+                            </ul>
+                           </li>
+                    	</shiro:hasPermission>
+                    	<shiro:hasPermission name="资金记录管理">
+                    		<li>
+	                        <a href="#">
+	                        	<i class="fa fa-desktop"></i> 
+	                        	<span class="nav-label">资金记录管理</span>
+	                        	<span class="fa arrow"></span>
+	                        </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="contacts.jsp">资金使用明细</a>
-                            </li>
-                            <li><a class="J_menuItem" href="profile.jsp"> 投资记录与排行(待定)</a>
-                            </li>
+                        	<shiro:hasPermission name="资金使用明细管理">
+                        		<li>
+                        			<a class="J_menuItem" href="contacts.jsp">资金使用明细管理</a>
+                            	</li>
+                        	</shiro:hasPermission>
+                        	<shiro:hasPermission name="投资记录与排行管理">
+                        		<li>
+                        			<a class="J_menuItem" href="profile.jsp"></a>
+                            	</li>
+                        	</shiro:hasPermission>
                         </ul>
                     </li>
-                    <li>
+                    	</shiro:hasPermission>
+                    <shiro:hasPermission name="会员管理">
+                    	<li>
                         <a href="#">
                         	<i class="fa fa-desktop"></i> 
                         	<span class="nav-label">会员管理</span>
                         	<span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="contacts.jsp">会员与积分管理</a>
-                            </li>
-                            <li><a class="J_menuItem" href="profile.jsp">资料认证管理与审核</a>
-                            </li>
+                       		<shiro:hasPermission name="会员与积分管理">
+                       			<li>
+                       				<a class="J_menuItem" href="contacts.jsp">会员与积分管理</a>
+                           		</li>	
+                       		</shiro:hasPermission>
+                       		<shiro:hasPermission name="资料认证管理与审核">
+                       			<li>
+                           			<a class="J_menuItem" href="profile.jsp">资料认证管理与审核</a>
+                           		</li>
+                       		</shiro:hasPermission>
                         </ul>
                     </li>
-                    <li>
+                    </shiro:hasPermission>
+                    <shiro:hasPermission name="认证管理">
+                    	 <li>
                         <a href="#">
                         	<i class="fa fa-flask"></i> 
-                        	<span class="nav-label">认证管理</span>
+                        	<span class="nav-label">认证审核管理</span>
                         	<span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="typography.jsp">基本信息审核</a>
-                            </li>
-                            <li><a class="J_menuItem" href="buttons.jsp">资本资料认证</a>
-                            </li>
-                            <li><a class="J_menuItem" href="tabs_panels.jsp">认证资料审核</a>
-                            </li>
-                            <li><a class="J_menuItem" href="notifications.jsp">额度审核</a>
-                            </li>
-                            <li><a class="J_menuItem" href="badges_labels.jsp">会员审核</a>
-                            </li>
+                        	<shiro:hasPermission name="身份认证">
+                        		<li>
+                        			<a class="J_menuItem" href="typography.jsp">身份认证</a>
+                            	</li>
+                        	</shiro:hasPermission>
+                        	<shiro:hasPermission name="邮箱认证">
+                        		<li>
+                        			<a class="J_menuItem" href="typography.jsp">邮箱认证</a>
+                            	</li>
+                        	</shiro:hasPermission>
+                        	<shiro:hasPermission name="资本资料认证">
+                        		<li>
+                        			<a class="J_menuItem" href="typography.jsp">资本资料认证</a>
+                            	</li>
+                        	</shiro:hasPermission>
+                        	<shiro:hasPermission name="用户基本信息审核">
+                        		<li>
+                        			<a class="J_menuItem" href="typography.jsp">用户基本信息审核</a>
+                                </li>
+                        	</shiro:hasPermission>
+                        	<shiro:hasPermission name="认证资料审核">
+                        		<li>
+                        			<a class="J_menuItem" href="tabs_panels.jsp">认证资料审核</a>
+                            	</li>
+                        	</shiro:hasPermission>
+                            <shiro:hasPermission name="额度审核">
+                            	<li>
+                            		<a class="J_menuItem" href="notifications.jsp">额度审核</a>
+                           		</li>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="会员申请审核">
+                            	<li>
+	                            	<a class="J_menuItem" href="badges_labels.jsp">会员申请审核</a>
+                            	</li>
+                            </shiro:hasPermission>
                         </ul>
                     </li>
-                    <li>
+                    </shiro:hasPermission>
+                    <shiro:hasPermission name="统计管理">
+                    	<li>
                         <a href="#">
                         	<i class="fa fa-table"></i> 
                         	<span class="nav-label">统计管理</span>
                         	<span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="table_basic.jsp">登录统计</a>
-                            </li>
-                            <li><a class="J_menuItem" href="table_data_tables.jsp">投资统计</a>
-                            </li>
-                            <li><a class="J_menuItem" href="table_jqgrid.jsp">投标统计</a>
-                            </li>
-                            <li><a class="J_menuItem" href="table_foo_table.jsp">借款统计</a>
-                            </li>
-                            <li><a class="J_menuItem" href="table_bootstrap.jsp">网站统计
-                                <span class="label label-danger pull-right">奖励统计</span></a>
-                            </li>
+                        	<shiro:hasPermission name="登录统计">
+                        		 <li>
+                        		 	<a class="J_menuItem" href="table_basic.jsp">登录统计</a>
+                            	</li>
+                        	</shiro:hasPermission>
+                            <shiro:hasPermission name="投资统计">
+                            	<li>
+                            		<a class="J_menuItem" href="table_data_tables.jsp">投资统计</a>
+                            	</li>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="投标统计">
+                            	<li>
+                            		<a class="J_menuItem" href="table_jqgrid.jsp">投标统计</a>
+                           		</li>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="借款统计">
+                            	<li>
+                            		<a class="J_menuItem" href="table_foo_table.jsp">借款统计</a>
+                            	</li>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="网站统计">
+                            	<li>
+                            		<a class="J_menuItem" href="table_bootstrap.jsp">网站统计
+                                	<span class="label label-danger pull-right">奖励统计</span></a>
+                            	</li>
+                            </shiro:hasPermission>
                         </ul>
                     </li>
-                    <li>
+                    </shiro:hasPermission>
+                    <shiro:hasPermission name="报表分析管理">
+                    	<li>
                         <a href="#">
                         	<i class="fa fa-picture-o"></i> 
                         	<span class="nav-label">报表分析管理</span>
                         	<span class="fa arrow"></span>
                         </a>
                     </li>
-                    <li>
-                        <a class="J_menuItem" href="css_animation.jsp">
-                        	<i class="fa fa-magic"></i> 
-                        	<span class="nav-label">奖励与费用管理</span>
-                        </a>
-                    </li>
+                    </shiro:hasPermission>
+                    <shiro:hasPermission name="奖励与费用管理">
+                    	<li>
+	                        <a class="J_menuItem" href="css_animation.jsp">
+	                        	<i class="fa fa-magic"></i> 
+	                        	<span class="nav-label">奖励与费用管理</span>
+	                        </a>
+                    	</li>
+                    </shiro:hasPermission>
                 </ul>
             </div>
         </nav>
@@ -372,7 +490,7 @@
                         </li>
                     </ul>
                 </div>
-                <a href="login.jsp" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+                <a href="${pageContext.request.contextPath}/back/adminlogout" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i>退出</a>
             </div>
             <div class="row J_mainContent" id="content-main">
                 <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="/Finances/statics/back/static/index_v1.html?v=4.0" frameborder="0" data-id="index_v1.jsp" seamless></iframe>

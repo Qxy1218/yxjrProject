@@ -35,4 +35,7 @@ public interface RoleMapper extends IBaseDao<Integer,Role>{
 	//修改权限树
 	abstract int updatePowerTree(Role role);
 	
+	//根据emp的reid得到Role对象
+	abstract Role getByereid(Integer reid);
+	
 }

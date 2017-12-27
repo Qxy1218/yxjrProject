@@ -92,4 +92,9 @@ public class RoleServiceImpl implements RoleService{
 		return roleMapper.updatePowerTree(role);
 	}
 
+	@Override
+	public Role getByereid(Integer reid) {
+		return roleMapper.getByereid(reid);
+	}
+
 }
