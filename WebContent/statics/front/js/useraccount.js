@@ -274,10 +274,10 @@ function bindphone(){
 					if(data>0){
 						mizhu.confirm('手机号修改成功', '请重新登录账号!', function(flag) {
 							if(flag) {
-								window.location="http://127.0.0.1:8080/Finances/logout";
+								window.location="http://127.0.0.1:8080/Finances/user/logout";
 							}else{
 								mizhu.alert('', '请重新登录账号!','alert_red');
-								window.location="http://127.0.0.1:8080/Finances/logout";
+								window.location="http://127.0.0.1:8080/Finances/user/logout";
 							}
 						});
 					}else{
@@ -433,10 +433,10 @@ function setPassword(){
                 	if(data>0){
 						mizhu.confirm('密码修改成功', '请重新登录账号!', function(flag) {
 							if(flag) {
-								window.location="http://127.0.0.1:8080/Finances/logout";
+								window.location="http://127.0.0.1:8080/Finances/user/logout";
 							}else{
 								mizhu.alert('', '请重新登录账号!','alert_red');
-								window.location="http://127.0.0.1:8080/Finances/logout";
+								window.location="http://127.0.0.1:8080/Finances/user/logout";
 							}
 						});
 					}else{
@@ -471,18 +471,10 @@ function verifyemail(){
 
     $('#verifyemail-btn').click(function(){
         if(flag){
-            $.ajax({
-                url:"/usercenter-Accountcontrol-sendEmail",
-                type:"POST",
-                data:{
-                    uiemail:$('#verifyemail').val(),
-                    uiid:$("#vp-uiid").val()
-                },
-                success:function(data){
-                    obj = eval('('+data+')');
-                    dialog(obj);
-                }
-            });
+        	var uiemail = $('#verifyemail').val();
+        	var uiid = $("#vp-uiid").val();
+        	
+        	window.location="http://127.0.0.1:8080/Finances/user/sendmailcheckuser?uiemail="+uiemail+"&uiid="+uiid;
         }
     });
 }
