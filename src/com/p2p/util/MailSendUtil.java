@@ -1,4 +1,4 @@
-package com.p2p.util.email;
+package com.p2p.util;
 
 import java.util.Date;
 import java.util.Properties;
@@ -16,23 +16,9 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 public class MailSendUtil {
-//    private final static String host = "smtp.qq.com"; //163的服务器
-//    private final static String formName = "acgnwang@qq.com";//你的邮箱
-//    private final static String password = "vcnepzmbiuakcbdf"; //授权码
-//    private final static String replayAddress = "acgnwang@qq.com"; //你的邮箱
 
-    private final static String host = "smtp.163.com"; //163的服务器
-    private final static String formName = "httpwmm@163.com";//你的邮箱
-    private final static String password = "a123456"; //授权码
-    private final static String replayAddress = "httpwmm@163.com"; //你的邮箱
-    
-    
-    //发送html格式的邮箱
+    //发送html格式的邮箱(单发)
     public static void sendHtmlMail(MailInfo info)throws Exception{
-        info.setHost(host);
-        info.setFormName(formName);
-        info.setFormPassword(password);   //QQ邮箱的授权码~不一定是密码
-        info.setReplayAddress(replayAddress);
         //info.set
         Message message = getMessage(info);
         // MiniMultipart类是一个容器类，包含MimeBodyPart类型的对象
@@ -49,10 +35,6 @@ public class MailSendUtil {
     
   //发送html格式的邮箱(群发)
     public static void sendHtmlMailalluser(MailInfo info)throws Exception{
-        info.setHost(host);
-        info.setFormName(formName);
-        info.setFormPassword(password);   //网易邮箱的授权码~不一定是密码
-        info.setReplayAddress(replayAddress);
         Message message = getMessage(info);
        
         // MiniMultipart类是一个容器类，包含MimeBodyPart类型的对象

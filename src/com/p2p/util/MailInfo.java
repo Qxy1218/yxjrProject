@@ -1,4 +1,4 @@
-package com.p2p.util.email;
+package com.p2p.util;
 
 public class MailInfo {
     //邮箱服务器 如smtp.163.com
@@ -20,8 +20,16 @@ public class MailInfo {
     private String subject ;
     //发送内容
     private String content ;
+    
 
-    public String getHost() {
+	public MailInfo(String host, String formName, String formPassword, String replayAddress) {
+		super();
+		this.host = host;
+		this.formName = formName;
+		this.formPassword = formPassword;
+		this.replayAddress = replayAddress;
+	}
+	public String getHost() {
         return host;
     }
     public void setHost(String host) {
