@@ -34,31 +34,32 @@
     <!--头部end-->
         <div class="m2-actCenMain">
         <div class="m2-actCen-con">
+			
             <h2><i></i>活动中心</h2>
-           <table border="1" height="50%" width="70%">
-            <c:forEach items="${listActivityfront }" var="activity">
-            	<tr>
-            		<td>${ activity.attitle}</td>
-            		<td>${ activity.atintgard}</td>
-            		<td>${ activity.atcontent}</td>
-            		<td>${ activity.atimag}</td>
-            		<td>${ activity.atstarttime}</td>
-            		<td>${ activity.atendtime}</td>
-            		<td>${ activity.atstatus }</td>
-            	</tr>
-            	
-            </c:forEach>
-            </table>
             <ul id='activityul'>
-
             </ul>
             <div class="m2-actMore" id='loadmore' style='cursor: pointer'>
                 <i class="m2-actItem-cornerMore"></i>
                 <i class="m2-actItem-circle"></i>
                 <span id='loadmoretext' style='color:#0996cc;'>加载更多</span>
+                
             </div>
         </div>
     </div>
+    <table border="1">
+    <c:forEach items="${listActivity}" var="activity">
+    	<tr>
+    		<td>${activity.atid}</td>
+    		<td>${activity.attitle}</td>
+    		<td>${activity.atintgard}</td>
+    		<td>${activity.atcontent}</td>
+    		<td>${activity.atimag}</td>
+    		<td>${activity.atstarttime}</td>
+    		<td>${activity.atendtime}</td>
+    		<td>${activity.atstatus}</td>
+    	</tr>
+    </c:forEach>
+    </table>
     </body>
     <script>
         var index = 0;
