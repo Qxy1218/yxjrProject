@@ -214,14 +214,14 @@
 	            return false;
 	        }
 	    	p.issvae =2;
-	    	alert($('#issvae').is(':checked'));
+	    	//alert($('#issvae').is(':checked'));
 			if($('#issvae').is(':checked')) {
 				//选择
-				alert("选中");
+				//alert("选中");
 				p.issvae = 1;
             }else{
             	//未选择
-            	alert("未选中");
+            	//alert("未选中");
             	p.issvae = 2;
             }
 			//alert(p.issvae);

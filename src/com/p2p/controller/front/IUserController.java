@@ -412,6 +412,7 @@ public class IUserController {
 		}else {
 			model.addAttribute("isgo",0);
 		}
+		model.addAttribute("pageName", "myinfo");
 		return "views/front/user/email_buffer";
 	}
 	
@@ -431,6 +432,7 @@ public class IUserController {
 		}else {
 			model.addAttribute("isok",2);
 		}
+		model.addAttribute("pageName", "myinfo");
 		return "views/front/user/email_success";
 	}
 	

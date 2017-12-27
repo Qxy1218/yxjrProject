@@ -6,15 +6,36 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>邮箱验证结果</title>
-	<link rel="Shortcut  Icon" href="${pageContext.request.contextPath}/statics/other/lco/smalllog.png">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/front/css/main.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/front/js/jquery-1.11.2.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/front/js/ibanner_full.js"></script>
+	<!--[if lt IE 9]>
+    <script src="statics/newcommon/js/html5shiv.js"></script>
+    <script src="statics/home2/js/excanvas.js" type="text/javascript"></script>
+    <link rel="js/stylesheet" href="iefix.css">
+    <![endif]-->
+    <link rel="Shortcut  Icon" href="${pageContext.request.contextPath}/statics/other/lco/smalllog.png">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/statics/newcommon/css/m2-commonNew.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/statics/home2/css/m2-main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/statics/newcommon/css/m2-common.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/statics/company_finance/css/company_finance.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/css/main.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/statics/home/css/newPage.css" />
+    
+    <script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/statics/home/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/statics/newcommon/js/common.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/ibanner_full.js"></script>
+	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/statics/home2/css/front.css">
+  	<link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/statics/newcommon/css/m2-common.css">
+   	<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/statics/home2/js/m2-front.js"></script>
+</head>
 </head>
 <body>
 	<!-- 头部start -->
 	<jsp:include page="../include/head.jsp"></jsp:include>
 	<!-- 头部end -->
+	
+	<!-- 右侧边栏 start -->
+	<jsp:include page="../include/sidebar.jsp"></jsp:include>
+	<!-- 右侧边栏 end -->
 	<div class="buffer">
     	<div class="main warp-1000">
     	
