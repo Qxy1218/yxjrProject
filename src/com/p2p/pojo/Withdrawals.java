@@ -25,7 +25,7 @@ public class Withdrawals implements Serializable{
 	private Integer uid; //用户id
 	
 	@TableField("w_money")
-	private double w_money; //提现金额
+	private double wmoney; //提现金额
 	
 	@TableField("w_time")
 	private String wtime; //提现时间
@@ -39,20 +39,27 @@ public class Withdrawals implements Serializable{
 	@TableField("w_fee")
 	private double wfee; //手续费
 
-	public Withdrawals(Integer wid, Integer uid, double w_money, String wtime, String wmoneytowhere, Integer wstatus,
-			double wfee) {
-		super();
-		this.wid = wid;
-		this.uid = uid;
-		this.w_money = w_money;
-		this.wtime = wtime;
-		this.wmoneytowhere = wmoneytowhere;
-		this.wstatus = wstatus;
-		this.wfee = wfee;
+	@Override
+	public String toString() {
+		return "Withdrawals [wid=" + wid + ", uid=" + uid + ", wmoney=" + wmoney + ", wtime=" + wtime
+				+ ", wmoneytowhere=" + wmoneytowhere + ", wstatus=" + wstatus + ", wfee=" + wfee + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
 	public Withdrawals() {
 		super();
+	}
+
+	public Withdrawals(Integer wid, Integer uid, double wmoney, String wtime, String wmoneytowhere, Integer wstatus,
+			double wfee) {
+		super();
+		this.wid = wid;
+		this.uid = uid;
+		this.wmoney = wmoney;
+		this.wtime = wtime;
+		this.wmoneytowhere = wmoneytowhere;
+		this.wstatus = wstatus;
+		this.wfee = wfee;
 	}
 
 	public Integer getWid() {
@@ -71,12 +78,12 @@ public class Withdrawals implements Serializable{
 		this.uid = uid;
 	}
 
-	public double getW_money() {
-		return w_money;
+	public double getWmoney() {
+		return wmoney;
 	}
 
-	public void setW_money(double w_money) {
-		this.w_money = w_money;
+	public void setWmoney(double wmoney) {
+		this.wmoney = wmoney;
 	}
 
 	public String getWtime() {
@@ -111,20 +118,5 @@ public class Withdrawals implements Serializable{
 		this.wfee = wfee;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	@Override
-	public String toString() {
-		return "Withdrawals [wid=" + wid + ", uid=" + uid + ", w_money=" + w_money + ", wtime=" + wtime
-				+ ", wmoneytowhere=" + wmoneytowhere + ", wstatus=" + wstatus + ", wfee=" + wfee + ", getWid()="
-				+ getWid() + ", getUid()=" + getUid() + ", getW_money()=" + getW_money() + ", getWtime()=" + getWtime()
-				+ ", getWmoneytowhere()=" + getWmoneytowhere() + ", getWstatus()=" + getWstatus() + ", getWfee()="
-				+ getWfee() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
-	}
-	
-	
 	
 }
