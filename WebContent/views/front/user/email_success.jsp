@@ -5,11 +5,11 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>邮箱验证成功</title>
+	<title>邮箱验证结果</title>
 	<link rel="Shortcut  Icon" href="${pageContext.request.contextPath}/statics/other/lco/smalllog.png">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/css/main.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery-1.11.2.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/ibanner_full.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/front/css/main.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/front/js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/front/js/ibanner_full.js"></script>
 </head>
 <body>
 	<!-- 头部start -->
@@ -17,9 +17,15 @@
 	<!-- 头部end -->
 	<div class="buffer">
     	<div class="main warp-1000">
-    		<h1>恭喜您，绑定邮箱成功</h1>
-            <p>返回个人中心</p>
-            <a href="${pageContext.request.contextPath}/userverify">返回</a>
+    	
+            <c:if test="${isok == 1 }">
+	    		<h1>恭喜您，绑定邮箱成功</h1>
+    		</c:if>
+            <c:if test="${isok == 2 }">
+	    		<h1>很遗憾，绑定邮箱失败</h1>
+    		</c:if>
+    		<p>返回个人中心</p>
+	        <a href="${pageContext.request.contextPath}/userverify">返回</a>
        </div>
     </div>
     <!-- 足部start -->

@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/statics/other/lco/smalllog.png"> 
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/statics/other/lco/6.png"> 
 
 	<meta name="keywords" content="网贷平台,网络借贷，网络赚钱项目,理财产品">
 	<meta name="description" content="爱钱的网贷平台为您提供网络赚钱项目；为此相继推出了许多新的理财产品，在为您创造高收益的同时也优化了理财产品模式。网络借贷，就选爱钱帮。">
@@ -21,7 +21,7 @@
      <script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/statics/home/js/jquery.min.js"></script>
      <script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/statics/newcommon/js/common.js"></script>
    	<link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/statics/home2/css/m2-login.css">
-
+	 <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/userCenter.css">
 	   <style type="text/css">
         .myloginmask {position:fixed;top: 0;left: 0;right: 0;bottom: 0;background-color: black;display: none;opacity: 0.7;z-index: 800;filter:alpha(opacity=70)}
         .mylogin {position:   fixed;top: 50%;left: 50%;margin-top: -346px;margin-left: -260px;width: 520px;height: 496px;background-image: url("/Finances/statics/front/statics/home2/images/login/login_info.png");background-repeat: no-repeat;z-index: 1000;display: none;}
@@ -157,7 +157,7 @@
                         <form class="m2-login-form" action="">
                             <div class="m2-loginForm-item m2-login-username">
                                 <span><i></i></span>
-                                <input type="text" id="user_name" placeholder="用户名/手机号/邮箱">
+                                <input type="text" id="user_name" max="11" placeholder="用户名/手机号/邮箱">
                                 <b id="userwarn"></b>
                             </div>
                             <div class="m2-loginForm-item m2-login-pwd" style="margin:25px 0 0 0;">
@@ -165,15 +165,9 @@
                                 <input type="password" id="pass_word" placeholder="密码">
                                 <b id="passwarn"></b>
                             </div>
-                            <div class="m2-login-code"  style="display:none;">
-                                <div class="m2-loginForm-item" style="display:inline-block;float:left;width:182px;">
-                                    <span><i></i></span>
-                                    <input type="text" id="vcode" placeholder="验证码">
-
-                                    <b></b>
-                                </div>
-                                <img src="/Finances/statics/front/statics/home2/images/Index-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='/Finances/statics/front/statics/home2/images/Index-VerifyCode.png?time='+Math.random();void(0);" id="reverifyCode" alt="">
-                            </div>
+                            	
+                                                                                  记住密码：<input type="checkbox" id="issvae" checked="">	
+ 								 
                             <div class="m2-login-forget">
                                 <p class="alarmnew" style="font-weight: bolder;text-align: left;position: absolute;color:red;width:200px;height: 24px;line-height: 24px;margin:-4px 0;"></p>
                                 <a href="/Finances/toforget" class="m2-loginForget">忘记密码？</a>
@@ -205,7 +199,7 @@
 	</script>
 	<script type="text/javascript">
 	    function login(){
-	        var p = makevar(['user_name','pass_word','vcode']);
+	        var p = makevar(['user_name','pass_word','issvae']);
 	        var canSubmit = true;
 	        $(".alarmnew").html("");
 	        if(typeof p.user_name=="undefined"){
@@ -218,13 +212,15 @@
 	            $(".alarmnew").html("密码不能为空");
 	            return false;
 	        }
-	        if(typeof p.vcode=="undefined"){
-	
-	// 		$(".alarmnew").html('验证码不能为空');
-	//      $(".alarmnew").show();
-	            // showInfoDialog("验证码不能为空",0);
-	//		return false;
-	        }
+			
+			if($('#issvae').attr("checked")) {
+				//选择
+				p.issvae = 1;
+            }else{
+            	//未选择
+            	p.issvae = 2;
+            }
+			//alert(p.issvae);
 	        if(canSubmit!==true) return false;
 	       //用户登入的controller方法
 	        postData("/Finances/user/userLogin",p,function(d){

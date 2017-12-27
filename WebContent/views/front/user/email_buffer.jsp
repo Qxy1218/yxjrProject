@@ -5,11 +5,11 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>弹窗提示</title>
+	<title>提示用户是否去邮箱验证</title>
 	<link rel="Shortcut  Icon" href="${pageContext.request.contextPath}/statics/other/lco/smalllog.png">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/css/main.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery-1.11.2.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/ibanner_full.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/front/css/main.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/front/js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/front/js/ibanner_full.js"></script>
 </head>
 <body>
 	<!-- 头部start -->
@@ -17,12 +17,13 @@
 	<!-- 头部end -->
 	<div class="buffer">
     	<div class="main warp-1000">
-    		<c:if test="${count > 0 }">
+    	
+    		<c:if test="${isgo == 1 }">
 	    		<h1>验证邮箱发送成功</h1>
 	            <p>前往邮箱验证</p>
 	            <a href="http://mail.qq.com">QQ邮箱</a>
     		</c:if>
-            <c:if test="${count == 0 }">
+            <c:if test="${isgo == 0 }">
 	    		<h1>验证邮箱发送失败</h1>
 	            <p>返回个人中心</p>
 	            <a href="${pageContext.request.contextPath}/userverify">返回</a>
