@@ -53,8 +53,7 @@
                                 </li>
                                 <li><a class="J_menuItem" href="profile.jsp">个人资料</a>
                                 </li>
-                                <li><a class="J_menuItem" href="contacts.jsp">联系我们</a>
-                                </li>
+                                
                                 <li><a class="J_menuItem" href="mailbox.jsp">信箱</a>
                                 </li>
                                 <li class="divider"></li>
@@ -72,26 +71,19 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                        	<shiro:hasPermission name="权限管理">
-                        		<li>
-                               		 <a class="J_menuItem" href="${pageContext.request.contextPath}/back/toRole" data-index="0">权限管理</a>
-                            	</li>
-                        	</shiro:hasPermission>
-                        	<shiro:hasPermission name="会员账户管理">
-                        		<li>
-                                	<a class="J_menuItem" href="index_v2.jsp">会员账户管理</a>
-                            	</li>
-                        	</shiro:hasPermission>
-                        	<shiro:hasPermission name="用户管理">
-                        		 <li>
-                                	<a class="J_menuItem" href="index_v3.jsp">用户列表</a>
-                           		 </li>
-                        	</shiro:hasPermission>
-                        	<shiro:hasPermission name="员工管理">
-                        		<li>
-                               	 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/role.jsp">员工列表</a>
-                            	</li>
-                        	</shiro:hasPermission>
+                           <li>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/back/toRole" data-index="0">权限管理</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="index_v2.jsp">会员账户管理</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="index_v3.jsp">用户列表</a>
+                            </li>
+                            <li><a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/contact.jsp">联系我们</a></li>
+                            <li>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/employe.jsp">员工列表</a>
+                            </li>
                         </ul>
                     </li>   	
                      </shiro:hasPermission>
