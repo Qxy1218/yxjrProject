@@ -1,10 +1,20 @@
 package com.p2p.controller.front;
 
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.p2p.pojo.Contact;
+import com.p2p.pojo.Setupnatice;
+import com.p2p.pojo.User;
+import com.p2p.service.back.ContactService;
+import com.p2p.service.front.SetupnaticeService;
 
 /**
  * 开发人:杨嘉辉
@@ -13,6 +23,14 @@ import org.springframework.web.servlet.ModelAndView;
  * */
 @Controller
 public class FrontController {
+	
+	@Resource(name="setupnaticeServiceImpl")
+	private SetupnaticeService setupnaticeService;
+	
+	@Resource(name="contactServiceImpl")
+	private ContactService contactService;
+	
+	
 	/**
 	 * 头部的conteroller
 	 * */
@@ -219,6 +237,7 @@ public class FrontController {
 	 * */
 	@RequestMapping(value="/tonot")
 	public String tonot() {
+		
 		return "views/front/aboutwe/notice";
 	}
 	
@@ -234,8 +253,24 @@ public class FrontController {
 	 *联系我们页面的conteroller
 	 * */
 	@RequestMapping(value="/tocon")
-	public String tocon() {
-		return "views/front/aboutwe/contact";
+	public String tocon(Model model) {
+		Contact contact = new Contact();
+		//查是否是一的结果
+		contact.setCxs(1);
+		contact = contactService.getModel(contact);
+		if(contact!=null) {
+			if(contact.getCwechartimgurl()==null) {
+				return null;
+			}
+			if(contact.getCweboimgurl()==null) {
+				return null;
+			}
+			model.addAttribute("contact",contact);
+			return "views/front/aboutwe/contact";
+		}else {
+			return "views/front/aboutwe/contact";
+		}
+		
 	}
 	
 	/**
