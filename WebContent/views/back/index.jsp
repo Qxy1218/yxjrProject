@@ -124,6 +124,15 @@
                                 	<a class="J_menuItem" href="graph_morris.jsp">合作机构管理</a>
                             	</li>
                             </shiro:hasPermission>
+                            <li>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/activity.jsp">活动专区</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/notice.jsp">公告管理</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/noticeType.jsp">公告类型管理</a>
+                            </li>
                         </ul>
                     </li>
                     </shiro:hasPermission>
@@ -745,6 +754,7 @@
                                     </div>
                                 </a>
                             </li>
+                            
                             <li>
                                 <a href="#">
                                     <div class="small pull-right m-t-xs">9小时以后</div>
