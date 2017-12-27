@@ -34,96 +34,64 @@ public class Notice implements Serializable{
 
 	
 	@TableField("n_type")
-	private String ntype; //公告发布类型
-
-
-	public Notice(Integer nid, String ntitle, String ncontent, String nstype, String ntime, String ntype) {
-		super();
-		this.nid = nid;
-		this.ntitle = ntitle;
-		this.ncontent = ncontent;
-		this.nstype = nstype;
-		this.ntime = ntime;
-		this.ntype = ntype;
-	}
-
-
+	private Integer ntype; //公告发布类型
 	public Notice() {
 		super();
 	}
-
-
-	public Integer getNid() {
-		return nid;
-	}
-
-
-	public void setNid(Integer nid) {
+	public Notice(Integer nid, String ntitle, String ncontent, String nstype, String ntime, Integer ntype) {
+		super();
 		this.nid = nid;
-	}
-
-
-	public String getNtitle() {
-		return ntitle;
-	}
-
-
-	public void setNtitle(String ntitle) {
 		this.ntitle = ntitle;
-	}
-
-
-	public String getNcontent() {
-		return ncontent;
-	}
-
-
-	public void setNcontent(String ncontent) {
 		this.ncontent = ncontent;
-	}
-
-
-	public String getNstype() {
-		return nstype;
-	}
-
-
-	public void setNstype(String nstype) {
 		this.nstype = nstype;
-	}
-
-
-	public String getNtime() {
-		return ntime;
-	}
-
-
-	public void setNtime(String ntime) {
 		this.ntime = ntime;
-	}
-
-
-	public String getNtype() {
-		return ntype;
-	}
-
-
-	public void setNtype(String ntype) {
 		this.ntype = ntype;
 	}
-
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-
 	@Override
 	public String toString() {
 		return "Notice [nid=" + nid + ", ntitle=" + ntitle + ", ncontent=" + ncontent + ", nstype=" + nstype
 				+ ", ntime=" + ntime + ", ntype=" + ntype + "]";
 	}
+	public Integer getNid() {
+		return nid;
+	}
+	public void setNid(Integer nid) {
+		this.nid = nid;
+	}
+	public String getNtitle() {
+		return ntitle;
+	}
+	public void setNtitle(String ntitle) {
+		this.ntitle = ntitle;
+	}
+	public String getNcontent() {
+		return ncontent;
+	}
+	public void setNcontent(String ncontent) {
+		this.ncontent = ncontent;
+	}
+	public String getNstype() {
+		return nstype;
+	}
+	public void setNstype(String nstype) {
+		this.nstype = nstype;
+	}
+	public String getNtime() {
+		return ntime;
+	}
+	public void setNtime(String ntime) {
+		this.ntime = ntime;
+	}
+	public Integer getNtype() {
+		return ntype;
+	}
+	public void setNtype(Integer ntype) {
+		this.ntype = ntype;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
-	
+
 	
 }
