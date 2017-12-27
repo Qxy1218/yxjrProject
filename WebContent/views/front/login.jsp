@@ -165,11 +165,11 @@
                                 <input type="password" id="pass_word" placeholder="密码">
                                 <b id="passwarn"></b>
                             </div>
-                            	
-                                                                                  记住密码：<input type="checkbox" id="issvae" checked="">	
  								 
                             <div class="m2-login-forget">
-                                <p class="alarmnew" style="font-weight: bolder;text-align: left;position: absolute;color:red;width:200px;height: 24px;line-height: 24px;margin:-4px 0;"></p>
+                                <p class="alarmnew" style="font-weight: bolder;text-align: left;position: absolute;color:black;width:200px;height: 24px;line-height: 24px;margin:-4px 0;">
+                               		记住密码：<input type="checkbox" id="issvae" checked=""> 
+                                </p>
                                 <a href="/Finances/toforget" class="m2-loginForget">忘记密码？</a>
                             </div>
                             <input type="hidden" name="__hash__" value="2ed71d5dc3b3d172b09f15e7631d021f_ed4f61a6dca2ed264a7bf9ceb8d3e04b" /></form>
