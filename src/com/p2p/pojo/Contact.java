@@ -22,11 +22,10 @@ public class Contact {
 	private String cqqnum;//qq号
 	@TableField("c_address")
 	private String caddress;//地址
-	public Contact() {
-		super();
-	}
+	@TableField("c_xs")
+	private Integer cxs;//是否前台显示 0 不显示        1显示
 	public Contact(Integer cid, String cephone, String csphone, String cwechartimgurl, String cweboimgurl,
-			String cqqnum, String caddress) {
+			String cqqnum, String caddress, Integer cxs) {
 		super();
 		this.cid = cid;
 		this.cephone = cephone;
@@ -35,13 +34,16 @@ public class Contact {
 		this.cweboimgurl = cweboimgurl;
 		this.cqqnum = cqqnum;
 		this.caddress = caddress;
+		this.cxs = cxs;
+	}
+	public Contact() {
+		super();
 	}
 	@Override
 	public String toString() {
 		return "Contact [cid=" + cid + ", cephone=" + cephone + ", csphone=" + csphone + ", cwechartimgurl="
-				+ cwechartimgurl + ", cweboimgurl=" + cweboimgurl + ", cqqnum=" + cqqnum + ", caddress="
-				+ caddress + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+				+ cwechartimgurl + ", cweboimgurl=" + cweboimgurl + ", cqqnum=" + cqqnum + ", caddress=" + caddress
+				+ ", cxs=" + cxs + "]";
 	}
 	public Integer getCid() {
 		return cid;
@@ -85,6 +87,11 @@ public class Contact {
 	public void setCaddress(String caddress) {
 		this.caddress = caddress;
 	}
-	
+	public Integer getCxs() {
+		return cxs;
+	}
+	public void setCxs(Integer cxs) {
+		this.cxs = cxs;
+	}
 	
 }
