@@ -57,7 +57,7 @@ public class Fabiao implements Serializable{
 	@TableField("f_money")
 	private Double fmoney; //投标金额
 	
-	@TableField("fendmoney")
+	@TableField("f_endmoney")
 	private Double fendmoney; //已投金额
 
 	@TableField("f_endtime")
