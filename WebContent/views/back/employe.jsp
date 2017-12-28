@@ -11,11 +11,14 @@
 <title>Insert title here</title>
 <!-- 引用js文件 -->
 <jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
+<script type="text/javascript" src="/Finances/statics/back/static/js/laydate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery.form.js"></script>
 <script  type="text/javascript">
     var rows = null;
     
     function addRole(){
     	//清空editModel原来填写的内容
+    	$("#editForm #reid").val('');
 		$("#editForm #eenum").val('');
 		$("#editForm #esex").val('');
 		$("#editForm #eidcard").val('');
@@ -23,7 +26,6 @@
 		$("#editForm #eposition").val('');
 		$("#editForm #eemail").val('');
 		$("#editForm #ename").val('');
-		$("#editForm #epassword").val('');
 		$("#editForm #estatus").val('');
 		$("#editForm #eretime").val('');
 		$("#editForm #eremark").val('');
@@ -66,7 +68,7 @@
 					parent.layer.alert('新增失败');
 				}
 				//新增完刷新表格数据
-				$('#tb_role').bootstrapTable('refresh');
+				$('#tb_emp').bootstrapTable('refresh');
 			},
 			"text"
 		);	
@@ -74,7 +76,7 @@
 	//修改按钮事件
      function UpRole(){
     	//获取当前选中行的信息
- 		var selectList = $('#tb_role').bootstrapTable('getSelections');
+ 		var selectList = $('#tb_emp').bootstrapTable('getSelections');
  		//判断有没有选中
  		if(selectList.length<=0){
  			parent.layer.alert('请选择要修改的数据');
@@ -87,17 +89,19 @@
  		}
  		var athRole = selectList[0];
  		//把选中行的数据放到弹窗的控件中
+ 		$("#editForm #reid").val(athRole.reid);
  		$("#editForm #eenum").val(athRole.eenum);
+ 		$("#editForm #epassword").val(athRole.epassword);
  		$("#editForm #esex").val(athRole.esex);
  		$("#editForm #eidcard").val(athRole.eidcard);
  		$("#editForm #ephone").val(athRole.ephone);
  		$("#editForm #eposition").val(athRole.eposition);
  		$("#editForm #eemail").val(athRole.eemail);
  		$("#editForm #ename").val(athRole.ename);
- 		$("#editForm #epassword").val(athRole.epassword);
  		$("#editForm #estatus").val(athRole.estatus);
  		$("#editForm #eretime").val(athRole.eretime);
  		$("#editForm #eremark").val(athRole.eremark);
+ 		
  		
  		
  		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
@@ -105,7 +109,7 @@
  		//显示新增窗口
  		$('#editForm').modal('show');
      }
-	function updateEmploye(eid){
+	function updateEmploye(eid,epassword){
 		//用来关闭新增窗口***********
 		$("#editForm").modal('hide');
 		var url = "${pageContext.request.contextPath }/back/updateEmp";
@@ -113,6 +117,7 @@
 			url,
 			{
 				eid:eid,
+				epassword:$("#editForm #epassword").val(),
 				reid:$("#editForm #reid").val(),
 				eenum:$("#editForm #eenum").val(),
 				esex:$("#editForm #esex").val(),
@@ -121,7 +126,6 @@
 				eposition:$("#editForm #eposition").val(),
 				eemail:$("#editForm #eemail").val(),
 				ename:$("#editForm #ename").val(),
-				epassword:$("#editForm #epassword").val(),
 				estatus:$("#editForm #estatus").val(),
 				eretime:$("#editForm #eretime").val(),
 				eremark:$("#editForm #eremark").val(),
@@ -136,7 +140,7 @@
 					parent.layer.alert('修改失败');
 				}
 				//新增完刷新表格数据
-				$('#tb_role').bootstrapTable('refresh');
+				$('#tb_emp').bootstrapTable('refresh');
 			},
 			"text"
 		);	
@@ -149,7 +153,7 @@
 	//删除
 	function delRole(){
 		//获取当前选中行的信息
-		var stuList = $('#tb_role').bootstrapTable('getSelections');
+		var stuList = $('#tb_emp').bootstrapTable('getSelections');
 		var ids = "";
 		//判断有没有选中
 		if(stuList.length<=0){
@@ -180,7 +184,7 @@
 					parent.layer.alert('删除失败');
 				}
 				//新增完刷新表格数据
-				$('#tb_role').bootstrapTable('refresh');
+				$('#tb_emp').bootstrapTable('refresh');
 			},
 			"text"
 		);	
@@ -188,14 +192,14 @@
 	
 	//条件查询按钮
 	function searchForm(){
-		$('#tb_role').bootstrapTable('refresh');
+		$('#tb_emp').bootstrapTable('refresh');
 	}
 	$(function () {
 	 	//激活弹框提示
 		$("[data-toggle='tooltip']").tooltip();
 		 //先销毁表格  
-        $('#tb_role').bootstrapTable('destroy');  
-		$('#tb_role').bootstrapTable({
+        $('#tb_emp').bootstrapTable('destroy');  
+		$('#tb_emp').bootstrapTable({
 			url : '${pageContext.request.contextPath}/back/selectEmployeList', //请求后台的URL（*）
 			method : 'post', //请求方式（*）
 			contentType: "application/x-www-form-urlencoded",
@@ -209,8 +213,8 @@
 			queryParams : queryParams,//传递参数（*）
 			sidePagination : "server", //分页方式：client客户端分页，server服务端分页（*）
 			pageNumber : 1, //初始化加载第一页，默认第一页
-			pageSize : 10, //每页的记录行数（*）
-			pageList : [ 10, 15, 20, 25 ], //可供选择的每页的行数（*）
+			pageSize : 6, //每页的记录行数（*）
+			pageList : [ 6, 12, 18, 24 ], //可供选择的每页的行数（*）
 			search : true, //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
 			strictSearch : false,
 			searchOnEnterKey :true, //按回车搜索
@@ -228,11 +232,7 @@
 				checkbox : true,
 			},
 			{
-				field : 'eid',
-				title : 'id'
-			},
-			{
-				field : 'reid',
+				field : 'role.rename',
 				title : '角色id'
 			}, {
 				field : 'eenum',
@@ -285,13 +285,47 @@
 			eposition : $("#eposition").val(),
 			eemail : $("#eemail").val(), 
 			ename : $("#ename").val(),
-			epassword : $("#epassword").val(),
 			estatus : $("#estatus").val(), 
 			eretime : $("#eretime").val(),
 			eremark : $("#eremark").val(),
 		};
 		return temp;
 	};
+	</script>
+	<script type="text/javascript">
+		!function(){
+			laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
+			laydate({elem: '#demo'});//绑定元素
+		}();
+
+		//日期范围限制
+		var start = {
+			elem: '#start',
+			format: 'YYYY-MM-DD',
+			min: laydate.now(), //设定最小日期为当前日期
+			max: '2099-06-16', //最大日期
+			istime: true,
+			istoday: false,
+			choose: function(datas){
+				 end.min = datas; //开始日选好后，重置结束日的最小日期
+				 end.start = datas //将结束日的初始值设定为开始日
+			}
+		};
+
+		var end = {
+			elem: '#end',
+			format: 'YYYY-MM-DD',
+			min: laydate.now(),
+			max: '2099-06-16',
+			istime: true,
+			istoday: false,
+			choose: function(datas){
+				start.max = datas; //结束日选好后，充值开始日的最大日期
+			}
+		};
+		laydate(start);
+		laydate(end);
+
 	</script>
 </head>
 <body class="gray-bg">
@@ -340,7 +374,7 @@
 							</button>
 						</div>
 						<!-- table代码就这些，用js构建表格 -->
-						<table id="tb_role" >
+						<table id="tb_emp" >
 							
 						</table>
 					</div>
@@ -364,15 +398,26 @@
 					<!-- 新增系别 -->
 					<form id="editForm" class="form-horizontal m-t">
 						<div class="form-group">
-							<label for="urlName" class="control-label col-sm-3">员工id</label> 
-							<div class="col-sm-8">
-								<input type="text" name="reid" class="form-control" id="reid">
-							</div>
-						</div>
-						<div class="form-group">
 							<label for="url" class="control-label col-sm-3">员工编号</label>
 							<div class="col-sm-8">
-								<textarea name="eenum" rows="3" class="form-control" id="eenum"></textarea>
+								<input type="text" name="eenum" rows="3" class="form-control" id="eenum" />
+	            			</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-8">
+								<input type="hidden" name="epassword" rows="3" class="form-control" id="epassword" />
+	            			</div>
+						</div>
+						<div class="form-group">
+							<label for="url" class="control-label col-sm-3">员工手机号</label>
+							<div class="col-sm-8">
+								<input type="text" name="ephone" rows="3" class="form-control" id="ephone" />
+	            			</div>
+						</div>
+						<div class="form-group">
+							<label for="url" class="control-label col-sm-3">员工姓名</label>
+							<div class="col-sm-8">
+								<input type="text" name="ename" rows="3" class="form-control" id="ename" />
 	            			</div>
 						</div>
 						<div class="form-group">
@@ -389,49 +434,45 @@
 						<div class="form-group">
 							<label for="url" class="control-label col-sm-3">员工身份证号</label>
 							<div class="col-sm-8">
-								<textarea name="eidcard" rows="3" class="form-control" id="eidcard"></textarea>
-	            			</div>
-						</div>
-						<div class="form-group">
-							<label for="url" class="control-label col-sm-3">员工手机号</label>
-							<div class="col-sm-8">
-								<textarea name="ephone" rows="3" class="form-control" id="ephone"></textarea>
+								<input type="text" name="eidcard" rows="3" class="form-control" id="eidcard" />
 	            			</div>
 						</div>
 						<div class="form-group">
 							<label for="url" class="control-label col-sm-3">员工职位</label>
 							<div class="col-sm-8">
-								<textarea name="eposition" rows="3" class="form-control" id="eposition"></textarea>
+								<input type="text" name="eposition" rows="3" class="form-control" id="eposition" />
+	            			</div>
+						</div>
+						<div class="form-group">
+							<label for="url" class="control-label col-sm-3">入职时间</label>
+							<div class="col-sm-8">
+								<input placeholder="请选择日期" name="eretime" id="eretime" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+	            			</div>
+						</div>
+						<div class="form-group">
+							<label for="url" class="control-label col-sm-3">所属角色</label> 
+							<div class="col-sm-8">
+								<select class="form-control m-b" id="reid" name="reid" style="margin-bottom: 0px;">
+		                        	<c:forEach items="${rolelist}" var="role" >
+		                        		<option value="${role.reid}">${role.rename}</option>
+		                        	</c:forEach>
+		                        </select>
 	            			</div>
 						</div>	
 						<div class="form-group">
 							<label for="url" class="control-label col-sm-3">员工邮箱</label>
 							<div class="col-sm-8">
-								<textarea name="eemail" rows="3" class="form-control" id="eemail"></textarea>
+								<input type="text" name="eemail" rows="3" class="form-control" id="eemail" />
 	            			</div>
-						</div>					
-						<div class="form-group">
-							<label for="url" class="control-label col-sm-3">员工姓名</label>
-							<div class="col-sm-8">
-								<textarea name="ename" rows="3" class="form-control" id="ename"></textarea>
-	            			</div>
-						</div>
-						<div class="form-group">
-							<label for="url" class="control-label col-sm-3">员工密码</label>
-							<div class="col-sm-8">
-								<textarea name="epassword" rows="3" class="form-control" id="epassword"></textarea>
-	            			</div>
-						</div>
+						</div>	
 						<div class="form-group">
 							<label for="url" class="control-label col-sm-3">角色状态</label>
 							<div class="col-sm-8">
-								<textarea name="estatus" rows="3" class="form-control" id="estatus"></textarea>
-	            			</div>
-						</div>
-						<div class="form-group">
-							<label for="url" class="control-label col-sm-3">创建时间</label>
-							<div class="col-sm-8">
-								<textarea name="eretime" rows="3" class="form-control" id="eretime"></textarea>
+								<select class="form-control m-b" id="estatus" name="estatus" style="margin-bottom: 0px;">
+		                        		<option value="-1">请选择</option>
+		                        		<option value="0">禁用</option>
+		                        		<option value="1">启用</option>
+		                        </select>
 	            			</div>
 						</div>
 						<div class="form-group">

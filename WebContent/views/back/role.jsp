@@ -230,13 +230,7 @@
 				field : 'ptid',
 				title : '角色权限',
 				formatter : function(value, row, index) {
-					var reid =row.reid;
-					alert(reid);
-					if(reid==1){
-						return "<a  onclick='rolist("+row.reid+");' data-toggle='modal' data-target='#tb_model'></a>";
-					}else{
 					return "<a  onclick='rolist("+row.reid+");' data-toggle='modal' data-target='#tb_model'><span class='glyphicon glyphicon-new-window'></span>权限设置</a>";
-					}
 				}
 			},]
 		});

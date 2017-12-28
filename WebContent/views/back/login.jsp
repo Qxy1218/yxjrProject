@@ -13,8 +13,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 		<title>亿信金融</title>
 		<link href="${pageContext.request.contextPath}/statics/back/assets/css/style.css" rel="stylesheet" type="text/css" />
-		<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/statics/back/assets/js/jquery-1.8.3.min.js"></script> --%>
-		<!-- <title>Insert title here</title> -->
 		<script  type="text/javascript">
 	        function reloadValidateCode(){
 	            $("#validateCodeImg").attr("src","<%=basePath%>/back/validateCode?data=" + new Date() + Math.floor(Math.random()*24));
@@ -43,27 +41,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	       
 	       function empImgcode(){
 	    	   var imgcode =$("#imgcode").val();
-	    	   var url = "${pageContext.request.contextPath}/back/SureCode";
 	        	if(imgcode==null || imgcode==''){
 	        		$("#imgcodeNull").show();
 	        	}else{
-	        		$.post(
-			    			url,
-			    			{
-			    				imgcode:imgcode,
-			    			},
-			    			function(data){
-			    				//后台返回int类型的数据
-			    				if(data<0){
-			    					$("#imgcodeNull").hide();
-			    					$("#imgcodeError").show();
-			    				}else{
-			    					$("#imgcodeNull").hide();
-			    					$("#imgcodeError").hide();
-			    				}
-			    			},
-			    			"text"
-			    		);	
+	        		alert("sdfgh");
+	        		$.ajax({
+	 				    url:'<%=basePath%>/back/SureCode',
+	                    data:{'imgcode':imgcode},
+	 					dataType:'json',
+	 					type:'post',
+	 					success:function(data){
+	 						if(data ==""){
+		    					$("#imgcodeNull").hide();
+		    					$("#imgcodeError").show();
+		    				}else{
+		    					$("#imgcodeNull").hide();
+		    					$("#imgcodeError").hide();
+		    				}
+	                  }
+	 				});
 	        	}
 	       } 
 	       function login(){
