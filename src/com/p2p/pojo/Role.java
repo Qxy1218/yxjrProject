@@ -26,18 +26,24 @@ public class Role implements Serializable{
 	@TableField("re_status")
 	private Integer restatus;  //角色状态
 	
+	//配置一对一
+	private Employe emp;
+	
 	public Role() {
 		
 	}
 
-	public Role(Integer reid, String ptid, String rename, String reremark, Integer restatus) {
+	public Role(Integer reid, String ptid, String rename, String reremark, Integer restatus, Employe emp) {
 		super();
 		this.reid = reid;
 		this.ptid = ptid;
 		this.rename = rename;
 		this.reremark = reremark;
 		this.restatus = restatus;
+		this.emp = emp;
 	}
+
+
 
 	public Integer getReid() {
 		return reid;
@@ -79,11 +85,22 @@ public class Role implements Serializable{
 		this.restatus = restatus;
 	}
 
+	public Employe getEmp() {
+		return emp;
+	}
+
+	public void setEmp(Employe emp) {
+		this.emp = emp;
+	}
+
 	@Override
 	public String toString() {
 		return "Role [reid=" + reid + ", ptid=" + ptid + ", rename=" + rename + ", reremark=" + reremark + ", restatus="
-				+ restatus + "]";
+				+ restatus + ", emp=" + emp + "]";
 	}
+
+	
+	
 	
 	
 }

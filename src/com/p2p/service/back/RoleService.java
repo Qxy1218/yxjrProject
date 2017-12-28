@@ -33,5 +33,8 @@ public interface RoleService extends IBaseService<Integer,Role>{
 	//根据emp的reid得到Role对象
 	abstract Role getByereid(Integer reid);
 	
+	//查询所有的角色
+	abstract List<Role> seleRoleList();
+	
 	
 }

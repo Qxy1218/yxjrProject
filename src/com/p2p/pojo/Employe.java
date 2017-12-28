@@ -52,6 +52,9 @@ public class Employe implements Serializable{
 	
 	@TableField("e_remark")
 	private String eremark; //自我声明
+	
+	private Role role ;
+	
 
 	public Integer getEid() {
 		return eid;
@@ -166,7 +169,7 @@ public class Employe implements Serializable{
 
 	public Employe(Integer eid, Integer reid, String eenum, String esex, String eidcard, String ephone,
 			String eposition, String eemail, String ename, String epassword, String estatus, String eretime,
-			String eremark) {
+			String eremark, Role role) {
 		super();
 		this.eid = eid;
 		this.reid = reid;
@@ -181,15 +184,26 @@ public class Employe implements Serializable{
 		this.estatus = estatus;
 		this.eretime = eretime;
 		this.eremark = eremark;
+		this.role = role;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	@Override
 	public String toString() {
-		return "Employe [eid=" + eid + ", reid=" + reid + ", eenum=" + eenum + ", esex=" + esex + ", eidcard="
-				+ eidcard + ", ephone=" + ephone + ", eposition=" + eposition + ", eemail=" + eemail + ", ename="
-				+ ename + ", epassword=" + epassword + ", estatus=" + estatus + ", eretime=" + eretime + ", eremark="
-				+ eremark + "]";
+		return "Employe [eid=" + eid + ", reid=" + reid + ", eenum=" + eenum + ", esex=" + esex + ", eidcard=" + eidcard
+				+ ", ephone=" + ephone + ", eposition=" + eposition + ", eemail=" + eemail + ", ename=" + ename
+				+ ", epassword=" + epassword + ", estatus=" + estatus + ", eretime=" + eretime + ", eremark=" + eremark
+				+ ", role=" + role + "]";
 	}
+
+	
 	
 	
 

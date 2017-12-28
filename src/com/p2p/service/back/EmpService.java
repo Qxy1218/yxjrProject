@@ -1,7 +1,6 @@
 package com.p2p.service.back;
 
 
-import java.io.Serializable;
 
 import org.apache.ibatis.annotations.Param;
 import com.p2p.base.IBaseService;

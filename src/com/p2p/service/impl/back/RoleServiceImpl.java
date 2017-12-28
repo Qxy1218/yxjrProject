@@ -97,4 +97,9 @@ public class RoleServiceImpl implements RoleService{
 		return roleMapper.getByereid(reid);
 	}
 
+	@Override
+	public List<Role> seleRoleList() {
+		return roleMapper.seleRoleList();
+	}
+
 }

@@ -32,6 +32,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
     </select>
+     <!-- 查询所有的角色 -->
+    <select id="seleRoleList" resultMap="BaseResultMap">
+    	select * from role
+    </select>
      <!-- 填加角色 -->
     <insert id="addModel" useGeneratedKeys="true" keyProperty="reid">
         insert into role(pt_id,re_name,re_remark,re_status) 

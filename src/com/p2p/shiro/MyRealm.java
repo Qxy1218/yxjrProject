@@ -41,7 +41,7 @@ public class MyRealm extends AuthorizingRealm{
 		
 		//根据用户名得到Employee对象
 		Employe emp =empService.getByemployname(empName) ;
-		
+		        
 		//根据角色id去查询所拥有的权限
 		Integer reid = emp.getReid();
 		Role role = roleService.getByereid(reid);
@@ -89,7 +89,7 @@ public class MyRealm extends AuthorizingRealm{
 		
 		
 		Employe employe = empService.getByemployname(username);
-		AuthenticationInfo au = new SimpleAuthenticationInfo(username,employe.getEpassword(), ByteSource.Util.bytes(username),this.getName());
+		AuthenticationInfo au = new SimpleAuthenticationInfo(username,employe.getEpassword(), ByteSource.Util.bytes("admin"),this.getName());
 		
 		return au;
 	}

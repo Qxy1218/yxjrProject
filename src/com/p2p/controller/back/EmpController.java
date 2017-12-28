@@ -28,10 +28,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.druid.util.StringUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.pojo.Employe;
-import com.p2p.pojo.Moneyrecord;
 import com.p2p.service.back.EmpService;
-import com.p2p.service.back.MoneyrecordServiece;
 import com.p2p.util.PageInfo;
 import com.p2p.util.ValidateCodeUtil;
 
@@ -45,6 +45,7 @@ import com.p2p.util.ValidateCodeUtil;
 public class EmpController {
 	@Resource(name="empServiceImpl")
 	private EmpService empService;
+	
 	
 	 @RequestMapping("/loginindex")
 	   public String loginindex(@RequestParam String name,@RequestParam String password,@RequestParam String imgcode,HttpServletRequest request,HttpSession session){
@@ -115,30 +116,32 @@ public class EmpController {
 	   //失去焦点判断验证码是否正确
 	   @RequestMapping(value="SureCode")
 	   @ResponseBody
-	   public int SureCode(String imgcode,HttpSession session) {
-		   int count = 0;
+	   public String SureCode(String imgcode,HttpSession session) throws JsonProcessingException {
+		   ObjectMapper mapper = new ObjectMapper(); //转换器  
+		   Map<String, Object> map = new HashMap<String, Object>();
 		   String code = (String) session.getAttribute("validateCode");
 	       if (StringUtils.isEmpty(imgcode) || !StringUtils.equals(code,imgcode.toLowerCase())) {
-	    	   	count =-1;
+	    	   map.put("message","");
 	       }
 	       else {
-	    	   count = 1;
+	    	   map.put("message","OK");
 	       }
-		   return count;
+	       String JSON = mapper.writeValueAsString(map);
+		   return JSON;
 	   }
    
    	//实现分页查询
 	@RequestMapping(value="selectEmployeList")
 	@ResponseBody
 	public PageInfo  selectEmployeList(Integer page, Integer rows,Employe emp) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-		PageInfo pageInfo = new PageInfo(page+1,rows);
+		Integer pageSize = 0;
 		
 		//得到总的页数
-		Integer count = empService.employeCount();
+		PageInfo pageInfo = new PageInfo(pageSize,rows);
 		Map<String,Object> map = new HashMap<String,Object>();
 		pageInfo.setCondition(map);
 		empService.selectPage(pageInfo,emp);
-		pageInfo.setTotal(count);
+		pageInfo.setTotal(pageInfo.getTotal());
 		return pageInfo;
 	}
 	
@@ -146,7 +149,7 @@ public class EmpController {
 	@RequestMapping(value="insertEmp")
 	@ResponseBody
 	public int insertRole(Employe emp) {
-		Object result = new SimpleHash("MD5", "123", ByteSource.Util.bytes(emp.getEname()), 10);
+		Object result = new SimpleHash("MD5", "123", ByteSource.Util.bytes("admin"), 10);
 		emp.setEpassword(result.toString());
 		int count = empService.addModel(emp);
 		return count;
