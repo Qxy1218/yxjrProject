@@ -34,28 +34,32 @@
 		} */
 		//用来关闭新增窗口***********
 		$("#editRole").modal('hide');
-		var url = "${pageContext.request.contextPath }/back/admin/insertCooorganiz";
-		$.post(
-			url,
-			{
-				coname:$("#editRole #coname").val(),
-				coimgurl:$("#editRole #coimgurl").val(),
-				colinkurl:$("#editRole #colinkurl").val(),
-			},
-			function(data){
-				//后台返回int类型的数据
-				if(data>0){
-					//新增成功，下面是后台框架的提示
-					parent.layer.alert('新增成功');
-				}else{
-					//新增失败
-					parent.layer.alert('新增失败');
-				}
-				//新增完刷新表格数据
-				$('#tb_role').bootstrapTable('refresh');
-			},
-			"text"
-		);	
+		
+		 var form = new FormData(document.getElementById("editForm"));
+	      $.ajax({
+	          url:"${pageContext.request.contextPath }/back/admin/insertCooorganiz",
+	          type:"post",
+	          data:form,
+	          processData:false,
+	          contentType:false,
+	          success:function(data){
+	        	//后台返回int类型的数据
+					if(data>0){
+						//新增成功，下面是后台框架的提示
+						parent.layer.alert('增加成功');
+						
+					}else{
+						//新增失败
+						parent.layer.alert('增加失败');
+					}
+					//新增完刷新表格数据
+					$('#tb_role').bootstrapTable('refresh');
+	          },
+	          error:function(e){
+	              alert("错误！！");
+	          }
+	      });   
+		
 	}
 	//修改按钮事件
      function UpCooorganiz(){
@@ -73,41 +77,45 @@
  		}
  		var athRole = selectList[0];
  		//把选中行的数据放到弹窗的控件中
- 		$("#editRole #coname").val(athRole.coname);
- 		$("#editRole #coimgurl").val(athRole.coimgurl);
- 		$("#editRole #colinkurl").val(athRole.colinkurl);
  		
+ 		$("#editForm #coname").val(athRole.coname);
+ 		$("#editForm #colinkurl").val(athRole.colinkurl);
+ 		$("#editForm #coid").val(athRole.coid);
  		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
- 		$("#btn_submit").attr("onclick","updateCooorganiz("+athRole.coid+")");
+ 		$("#btn_submit").attr("onclick","updateCooorganiz()");
  		//显示新增窗口
  		$('#editRole').modal('show');
      }
-	function updateCooorganiz(coid){
+	function updateCooorganiz(){
 		//用来关闭新增窗口***********
 		$("#editRole").modal('hide');
 		var url = "${pageContext.request.contextPath }/back/admin/updateCooorganiz";
-		$.post(
-			url,
-			{
-				coid:coid,
-				coname:$("#editRole #coname").val(),
-				coimgurl:$("#editRole #coimgurl").val(),
-				colinkurl:$("#editRole #colinkurl").val(),
-			},
-			function(data){
-				//后台返回int类型的数据
-				if(data>0){
-					//新增成功，下面是后台框架的提示
-					parent.layer.alert('修改成功');
-				}else{
-					//新增失败
-					parent.layer.alert('修改失败');
-				}
-				//新增完刷新表格数据
-				$('#tb_role').bootstrapTable('refresh');
-			},
-			"text"
-		);	
+		
+		 var form = new FormData(document.getElementById("editForm"));
+	      $.ajax({
+	          url:"${pageContext.request.contextPath}/back/admin/updateCooorganiz",
+	          type:"post",
+	          data:form,
+	          processData:false,
+	          contentType:false,
+	          success:function(data){
+	        	//后台返回int类型的数据
+					if(data>0){
+						//新增成功，下面是后台框架的提示
+						parent.layer.alert('增加成功');
+						
+					}else{
+						//新增失败
+						parent.layer.alert('增加失败');
+					}
+					//新增完刷新表格数据
+					$('#tb_role').bootstrapTable('refresh');
+	          },
+	          error:function(e){
+	              alert("错误！！");
+	          }
+	      });   
+		
 	}
 	//删除按钮事件
 	//*************************************************************************按钮事件
@@ -280,7 +288,8 @@
 				</div>
 				<div class="modal-body">
 					<!-- 新增系别 -->
-					<form id="editForm" class="form-horizontal m-t">
+					<form id="editForm" class="form-horizontal m-t" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="coid" id="coid">
 						<div class="form-group">
 							<label for="coname" class="control-label col-sm-3">机构名称</label> 
 							<div class="col-sm-8">
@@ -291,6 +300,7 @@
 							<label for="url" class="control-label col-sm-3">机构图片</label>
 							<div class="col-sm-8">
 								<textarea name="coimgurl" rows="3" class="form-control" id="coimgurl"></textarea>
+	            				<input type="file" name="file" id="file">
 	            			</div>
 						</div>
 						<div class="form-group">
@@ -314,7 +324,7 @@
 					<button type="button" class="btn btn-default" data-dismiss="modal">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
 					</button>
-					<button type="button" id="btn_submit" class="btn btn-primary" onclick="insertCooorganiz()">
+					<button type="button" id="btn_submit" class="btn btn-primary" >
 						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
 					</button>
 				</div>

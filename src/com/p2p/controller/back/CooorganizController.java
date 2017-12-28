@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.p2p.pojo.Cooorganiz;
 import com.p2p.service.back.CooorganizService;
@@ -41,7 +43,11 @@ public class CooorganizController {
 	//实现新增
 	@RequestMapping(value="insertCooorganiz")
 	@ResponseBody
-	public int insertCooorganiz(Cooorganiz cooorganiz) {
+	public int insertCooorganiz(Cooorganiz cooorganiz,MultipartFile file,HttpServletRequest request) throws Exception {
+		if(file.getSize()!=0) {
+			String filepath = UtilController.uploadFrom(request,file);
+			cooorganiz.setCoimgurl(filepath);
+		}
 		int count = cooorganizService.addModel(cooorganiz);
 		return count;
 	}
@@ -49,7 +55,11 @@ public class CooorganizController {
 	//修改角色信息
 	@RequestMapping(value = "updateCooorganiz")
 	@ResponseBody
-	public  int updateCooorganiz(Cooorganiz cooorganiz){  
+	public  int updateCooorganiz(Cooorganiz cooorganiz,MultipartFile file,HttpServletRequest request) throws Exception{  
+		if(file.getSize()!=0) {
+			String filepath = UtilController.uploadFrom(request,file);
+			cooorganiz.setCoimgurl(filepath);
+		}
 		int count = cooorganizService.update(cooorganiz);
 		return count;
 	}
