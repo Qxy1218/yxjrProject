@@ -327,5 +327,12 @@ public class FrontController {
 	public String tocode() {
 		return "views/front/qrcode";
 	}
-
+	
+	/**
+	 * 产品详情页面的conteroller
+	 * */
+	@RequestMapping(value="/topro")
+	public String topro() {
+		return "views/front/product";
+	}
 }
