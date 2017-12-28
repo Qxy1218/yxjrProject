@@ -29,12 +29,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		  <result column="f_security" property="fsecurity"/>
  		  <result column="f_procedures" property="fprocedures"/>
  		  <result column="f_repayment" property="frepayment"/>
- 		  
+ 		  <result column="f_strattime" property="fstrattime"/>
 </resultMap>
-	<!-- 发标表查询 -->
- 	<select id="getByfabiao"  parameterType="java.lang.String" resultMap="BaseResultMap">
- 		select * from fabiao where f_id=#{fid}
- 	</select>
 	<select id="getModel" parameterType="com.p2p.pojo.Fabiao" resultMap="BaseResultMap">
  		select * from fabiao 
  		 <where>
@@ -64,13 +60,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		<if test="fsecurity!=null">and f_security=#{fsecurity}</if>
 		  		<if test="fprocedures!=null">and f_procedures=#{fprocedures}</if>
  				<if test="frepayment!=null">and f_repayment=#{frepayment}</if>
+ 				<if test="fstrattime!=null">and f_strattime=#{fstrattime}</if>
  		</where>
  	</select>
  	
  	<!-- 发标添加 -->
 	<insert id="addModel" useGeneratedKeys="true" keyProperty="fid">
- 		 insert into fabiao(f_title,u_id,f_code,f_type,f_part,f_roe,f_increase,f_content,f_situation,f_opinion,f_money,f_endmoney,f_endtime,f_minmoney,f_maxmoney,f_rate,f_image,f_orderimg,f_contract,f_bidstatus,f_status,f_security,f_procedures,f_repayment) 
- 		 values(#{ftitle},#{uid},#{fcode},#{ftype},#{fpart},#{froe},#{fincrease},#{fcontent},#{fsituation},#{fopinion},#{fmoney},#{fendmoney},#{fendtime},#{fminmoney},#{fmaxmoney},#{frate},#{fimage},#{forderimg},#{fcontract},#{fbidstatus},#{fstatus},#{fsecurity},#{fprocedures},#{frepayment})
+ 		 insert into fabiao(f_title,u_id,f_code,f_type,f_part,f_roe,f_increase,f_content,f_situation,f_opinion,f_money,f_endmoney,f_endtime,f_minmoney,f_maxmoney,f_rate,f_image,f_orderimg,f_contract,f_bidstatus,f_status,f_security,f_procedures,f_repayment,f_strattime) 
+ 		 values(#{ftitle},#{uid},#{fcode},#{ftype},#{fpart},#{froe},#{fincrease},#{fcontent},#{fsituation},#{fopinion},#{fmoney},#{fendmoney},#{fendtime},#{fminmoney},#{fmaxmoney},#{frate},#{fimage},#{forderimg},#{fcontract},#{fbidstatus},#{fstatus},#{fsecurity},#{fprocedures},#{frepayment},#{fstrattime})
  	</insert>
  	
  	<!-- 发标删除 -->
@@ -105,9 +102,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			f_procedures=#{fprocedures},
 			f_repayment=#{frepayment},
 			f_status=#{fstatus}
+			f_strattime=#{fstrattime}
 		<where>
 			f_id=#{fid}
 		</where>
 		
     </update>
+    
+    <select id="getAllModel" resultMap="BaseResultMap">
+    	select * from fabiao 
+    </select>
+    
+    
 </mapper>

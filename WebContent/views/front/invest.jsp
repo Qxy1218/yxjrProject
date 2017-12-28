@@ -1,5 +1,10 @@
+<%@page import="com.p2p.util.DateUtils"%>
+<%@page import="com.p2p.pojo.Fabiao"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.*"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -131,6 +136,7 @@
         
         <div class="m2-invResuleitem-box" id="resuleite0">
             <ul>
+            	<c:forEach items="${fabiaolist}" var="fabiaos">
                 <li class="m2-invResuleitem">
                     <div class="m2-invItem-lef">
                         <div class="m2-invItemleft-lef">
@@ -140,20 +146,20 @@
                         <div class="m2-invItemleft-rig">
                             <h4>
                                 <i class="m2-invItemIcon-inv"></i>
-                                <a href="chanpin.html#-moxOeTwTZaOw8TY79g.html" target="_blank" title="爱车贷-雪佛兰迈锐宝-XAA067">爱车贷-雪佛兰迈锐宝-XAA067</a>
+                                <a href="chanpin.html#-moxOeTwTZaOw8TY79g.html" target="_blank" title="${fabiaos.ftitle }">${fabiaos.ftitle }</a>
                             </h4>
                             <ul class="m2-invItemleft-list">
                                 <li>
 								<span  class="m2-invItemdet-big huodongjiaxi">
-											8%+1% 										
-										<p style="margin-left:-2px;" class="jiaxishow">活动加息1%	</p>
+											${fabiaos.froe*100}%+${fabiaos.fincrease*100}% 										
+										<p style="margin-left:-2px;" class="jiaxishow">活动加息${fabiaos.fincrease}%	</p>
 								</span>
                                     <span class="m2-invItemdet-nor">预期年化收益率</span>
                                     <i class="m2-invItemdet-line"></i>
                                 </li>
                                 <li>
 								<span class="m2-invItemdet-big">
-												26天</span>
+												${fabiaos.rematime}天</span>
                                     <span class="m2-invItemdet-nor">期限</span>
                                     <i class="m2-invItemdet-line"></i>
                                 </li>
@@ -184,9 +190,12 @@
                             </div>
                         </div>
                         <p class="m2-invItem-det" style="text-indent:20px;">投资万元预期收益：<span>64.10元</span></p>
-                        <p class="m2-invItem-det">投资起点金额：<span style="color:#ff6666;">100元</span></p>
+                        <p class="m2-invItem-det">投资起点金额：<span style="color:#ff6666;">${fabiaos.fminmoney}元</span></p>
                      </div>
-                </li><li class="m2-invResuleitem">
+                </li>
+                </c:forEach>
+                
+                <li class="m2-invResuleitem">
                 <div class="m2-invItem-lef">
                     <div class="m2-invItemleft-lef">
                         <i class="m2-invItem-hot"></i><img src="/Finances/statics/front/uploadData/UserBorrowData/200528-201609011135068334.jpg" alt="【新手标】爱车贷-丰田普瑞维亚-SX047" />

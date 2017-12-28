@@ -96,6 +96,14 @@ public class Fabiao implements Serializable{
 	@TableField("f_repayment")
 	private String frepayment; //还款方式
 	
+	@TableField("f_strattime")
+	private String fstrattime;  //投标开始时间
+	
+
+	
+	private Integer rematime;  //计算剩余时间
+	
+	
 	public Fabiao() {
 	}
 
@@ -103,7 +111,7 @@ public class Fabiao implements Serializable{
 			Double fincrease, String fcontent, String fsituation, String fopinion, Double fmoney, Double fendmoney,
 			String fendtime, Double fminmoney, Double fmaxmoney, Double frate, String fimage, String forderimg,
 			String fcontract, Integer fbidstatus, Integer fstatus, String fsecurity, String fprocedures,
-			String frepayment) {
+			String frepayment, String fstrattime) {
 		super();
 		this.fid = fid;
 		this.ftitle = ftitle;
@@ -130,7 +138,10 @@ public class Fabiao implements Serializable{
 		this.fsecurity = fsecurity;
 		this.fprocedures = fprocedures;
 		this.frepayment = frepayment;
+		this.fstrattime = fstrattime;
 	}
+
+
 
 	public Integer getFid() {
 		return fid;
@@ -331,5 +342,22 @@ public class Fabiao implements Serializable{
 	public void setFrepayment(String frepayment) {
 		this.frepayment = frepayment;
 	}
+
+	public String getFstrattime() {
+		return fstrattime;
+	}
+
+	public void setFstrattime(String fstrattime) {
+		this.fstrattime = fstrattime;
+	}
+
+	public Integer getRematime() {
+		return rematime;
+	}
+
+	public void setRematime(Integer rematime) {
+		this.rematime = rematime;
+	}
+	
 	
 }
