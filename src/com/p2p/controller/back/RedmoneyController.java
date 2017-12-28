@@ -64,7 +64,7 @@ public class RedmoneyController {
 			for (int i = 0; i < idStr.length;i++) {
 				String rid = (String) idStr[i];
 				Redmoney redmoney = new Redmoney();
-				redmoney.setRid(Integer.valueOf(rid));;
+				redmoney.setRid(Integer.valueOf(rid));
 				count =redmoneyservice.delete(redmoney);
 			}
 			return count;
