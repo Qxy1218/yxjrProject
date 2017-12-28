@@ -170,6 +170,17 @@
                         	<span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
+
+                            <li><a class="J_menuItem" href="form_basic.jsp">后台充值</a>
+                            </li>
+                            <li><a class="J_menuItem" href="form_validate.jsp">充值管理与审核</a>
+                            </li>
+                            <li><a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/withdrawals.jsp">提现管理与审核</a>
+                            </li>
+                            <li><a class="J_menuItem" href="form_wizard.jsp">银行卡管理</a>
+                            </li>
+                            <li>
+
                         	<shiro:hasPermission name="后台充值管理">
                         		<li>	
                         			<a class="J_menuItem" href="form_basic.jsp">后台充值</a>
@@ -192,6 +203,7 @@
                             </shiro:hasPermission>
                             <shiro:hasPermission name="文件上传管理">
                             	<li>
+
                                 <a href="#">文件上传 <span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li><a class="J_menuItem" href="form_webuploader.jsp">百度WebUploader</a>
