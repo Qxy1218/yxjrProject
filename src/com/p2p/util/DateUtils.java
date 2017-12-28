@@ -383,10 +383,10 @@ public class DateUtils {
 	}
 	
 	public static void main(String[] args)  {
-	 String dateStr = "2008-1-1 1:21:28";
-	 String dateStr2 = "2010-1-2 1:21:28";
-	 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	 SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	 String dateStr = "2017-12-25";
+	 String dateStr2 = "2017-12-26";
+	 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	 SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
 	 try{
 		 Date date2 = format.parse(dateStr2);
 		 Date date = format.parse(dateStr);
