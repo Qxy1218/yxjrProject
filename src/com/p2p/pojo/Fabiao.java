@@ -22,62 +22,114 @@ public class Fabiao implements Serializable{
 	private Integer fid; //主键
 	
 	@TableField("f_title")
-	private Integer ftitle; //标名
+	private String ftitle; //标名
 	
 	@TableField("u_id")
 	private Integer uid; //用户id
 	
-	@TableField("f_money")
-	private double fmoney; //投标金额
 	
-	@TableField("f_endmoney")
-	private double fendmoney; //已投金额
+	@TableField("f_code")
+	private String fcode; //商品编号
 	
-	@TableField("f_endtime")
-	private String fendtime; //结束时间
 	
-	@TableField("f_minmoney")
-	private double fminmoney; //最小金额
+	@TableField("f_type")
+	private String ftype; //标种
 	
-	@TableField("f_maxmoney")
-	private double fmaxmoney; //最大金额
+	@TableField("f_part")
+	private String fpart; //标的分类(爱车贷,爱房贷等)
 	
-	@TableField("f_Rate")
-	private String fRate; //收益率
 	
-	@TableField("f_image")
-	private String fimage; //代表图
+	@TableField("f_roe")
+	private Double froe; //年收益率
 	
-	@TableField("f_bidstatus")
-	private Integer fbidstatus; //发标状态
-	
-	@TableField("f_status")
-	private Integer fstatus;//发布状态
+	@TableField("f_increase")
+	private Double fincrease; //活动加息
 	
 	@TableField("f_content")
-	private String fcontent;//发布内容
+	private String fcontent; //产品概要
+	
+	@TableField("f_situation")
+	private String fsituation; //项目情况
+	
+	@TableField("f_opinion")
+	private String fopinion; //爱钱帮独立意见
+	
+	@TableField("f_money")
+	private Double fmoney; //投标金额
+	
+	@TableField("fendmoney")
+	private Double fendmoney; //已投金额
 
-	public Fabiao(Integer fid, Integer ftitle, Integer uid, double fmoney, double fendmoney, String fendtime,
-			double fminmoney, double fmaxmoney, String fRate, String fimage, Integer fbidstatus, Integer fstatus,
-			String fcontent) {
+	@TableField("f_endtime")
+	private String fendtime; //投标截止时间
+	
+	@TableField("f_minmoney")
+	private Double fminmoney; //最小投标金额
+	
+	@TableField("f_maxmoney")
+	private Double fmaxmoney; //最大投标金额
+	
+	@TableField("f_rate")
+	private Double frate; //收益率
+
+	@TableField("f_image")
+	private String fimage; //代表图
+
+	@TableField("f_orderimg")
+	private String forderimg; //其他图片(,分开)
+
+	@TableField("f_contract")
+	private String fcontract; //合同url
+
+	@TableField("f_bidstatus")
+	private Integer fbidstatus; //投标状态 0未满 1已满
+
+	@TableField("f_status")
+	private Integer fstatus; //发布状态 0隐藏(默认) 1发布
+
+	@TableField("f_security")
+	private String fsecurity; //担保措施
+	
+	@TableField("f_procedures")
+	private String fprocedures; //手续(,分开)
+
+	@TableField("f_repayment")
+	private String frepayment; //还款方式
+	
+	public Fabiao() {
+	}
+
+	public Fabiao(Integer fid, String ftitle, Integer uid, String fcode, String ftype, String fpart, Double froe,
+			Double fincrease, String fcontent, String fsituation, String fopinion, Double fmoney, Double fendmoney,
+			String fendtime, Double fminmoney, Double fmaxmoney, Double frate, String fimage, String forderimg,
+			String fcontract, Integer fbidstatus, Integer fstatus, String fsecurity, String fprocedures,
+			String frepayment) {
 		super();
 		this.fid = fid;
 		this.ftitle = ftitle;
 		this.uid = uid;
+		this.fcode = fcode;
+		this.ftype = ftype;
+		this.fpart = fpart;
+		this.froe = froe;
+		this.fincrease = fincrease;
+		this.fcontent = fcontent;
+		this.fsituation = fsituation;
+		this.fopinion = fopinion;
 		this.fmoney = fmoney;
 		this.fendmoney = fendmoney;
 		this.fendtime = fendtime;
 		this.fminmoney = fminmoney;
 		this.fmaxmoney = fmaxmoney;
-		this.fRate = fRate;
+		this.frate = frate;
 		this.fimage = fimage;
+		this.forderimg = forderimg;
+		this.fcontract = fcontract;
 		this.fbidstatus = fbidstatus;
 		this.fstatus = fstatus;
-		this.fcontent = fcontent;
-	}
-
-	public Fabiao() {
-		super();
+		this.fsecurity = fsecurity;
+		this.fprocedures = fprocedures;
+		this.frepayment = frepayment;
 	}
 
 	public Integer getFid() {
@@ -88,11 +140,11 @@ public class Fabiao implements Serializable{
 		this.fid = fid;
 	}
 
-	public Integer getFtitle() {
+	public String getFtitle() {
 		return ftitle;
 	}
 
-	public void setFtitle(Integer ftitle) {
+	public void setFtitle(String ftitle) {
 		this.ftitle = ftitle;
 	}
 
@@ -104,19 +156,83 @@ public class Fabiao implements Serializable{
 		this.uid = uid;
 	}
 
-	public double getFmoney() {
+	public String getFcode() {
+		return fcode;
+	}
+
+	public void setFcode(String fcode) {
+		this.fcode = fcode;
+	}
+
+	public String getFtype() {
+		return ftype;
+	}
+
+	public void setFtype(String ftype) {
+		this.ftype = ftype;
+	}
+
+	public String getFpart() {
+		return fpart;
+	}
+
+	public void setFpart(String fpart) {
+		this.fpart = fpart;
+	}
+
+	public Double getFroe() {
+		return froe;
+	}
+
+	public void setFroe(Double froe) {
+		this.froe = froe;
+	}
+
+	public Double getFincrease() {
+		return fincrease;
+	}
+
+	public void setFincrease(Double fincrease) {
+		this.fincrease = fincrease;
+	}
+
+	public String getFcontent() {
+		return fcontent;
+	}
+
+	public void setFcontent(String fcontent) {
+		this.fcontent = fcontent;
+	}
+
+	public String getFsituation() {
+		return fsituation;
+	}
+
+	public void setFsituation(String fsituation) {
+		this.fsituation = fsituation;
+	}
+
+	public String getFopinion() {
+		return fopinion;
+	}
+
+	public void setFopinion(String fopinion) {
+		this.fopinion = fopinion;
+	}
+
+	public Double getFmoney() {
 		return fmoney;
 	}
 
-	public void setFmoney(double fmoney) {
+	public void setFmoney(Double fmoney) {
 		this.fmoney = fmoney;
 	}
 
-	public double getFendmoney() {
+	public Double getFendmoney() {
 		return fendmoney;
 	}
 
-	public void setFendmoney(double fendmoney) {
+	public void setFendmoney(Double fendmoney) {
 		this.fendmoney = fendmoney;
 	}
 
@@ -128,28 +244,28 @@ public class Fabiao implements Serializable{
 		this.fendtime = fendtime;
 	}
 
-	public double getFminmoney() {
+	public Double getFminmoney() {
 		return fminmoney;
 	}
 
-	public void setFminmoney(double fminmoney) {
+	public void setFminmoney(Double fminmoney) {
 		this.fminmoney = fminmoney;
 	}
 
-	public double getFmaxmoney() {
+	public Double getFmaxmoney() {
 		return fmaxmoney;
 	}
 
-	public void setFmaxmoney(double fmaxmoney) {
+	public void setFmaxmoney(Double fmaxmoney) {
 		this.fmaxmoney = fmaxmoney;
 	}
 
-	public String getfRate() {
-		return fRate;
+	public Double getFrate() {
+		return frate;
 	}
 
-	public void setfRate(String fRate) {
-		this.fRate = fRate;
+	public void setFrate(Double frate) {
+		this.frate = frate;
 	}
 
 	public String getFimage() {
@@ -158,6 +274,22 @@ public class Fabiao implements Serializable{
 
 	public void setFimage(String fimage) {
 		this.fimage = fimage;
+	}
+
+	public String getForderimg() {
+		return forderimg;
+	}
+
+	public void setForderimg(String forderimg) {
+		this.forderimg = forderimg;
+	}
+
+	public String getFcontract() {
+		return fcontract;
+	}
+
+	public void setFcontract(String fcontract) {
+		this.fcontract = fcontract;
 	}
 
 	public Integer getFbidstatus() {
@@ -176,28 +308,28 @@ public class Fabiao implements Serializable{
 		this.fstatus = fstatus;
 	}
 
-	public String getFcontent() {
-		return fcontent;
+	public String getFsecurity() {
+		return fsecurity;
 	}
 
-	public void setFcontent(String fcontent) {
-		this.fcontent = fcontent;
+	public void setFsecurity(String fsecurity) {
+		this.fsecurity = fsecurity;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public String getFprocedures() {
+		return fprocedures;
 	}
 
-	@Override
-	public String toString() {
-		return "Fabiao [fid=" + fid + ", ftitle=" + ftitle + ", uid=" + uid + ", fmoney=" + fmoney + ", fendmoney="
-				+ fendmoney + ", fendtime=" + fendtime + ", fminmoney=" + fminmoney + ", fmaxmoney=" + fmaxmoney
-				+ ", fRate=" + fRate + ", fimage=" + fimage + ", fbidstatus=" + fbidstatus + ", fstatus=" + fstatus
-				+ ", fcontent=" + fcontent + "]";
+	public void setFprocedures(String fprocedures) {
+		this.fprocedures = fprocedures;
 	}
 
+	public String getFrepayment() {
+		return frepayment;
+	}
+
+	public void setFrepayment(String frepayment) {
+		this.frepayment = frepayment;
+	}
 	
-	
-	
-
 }
