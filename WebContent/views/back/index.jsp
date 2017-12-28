@@ -7,8 +7,7 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <%  
     String empName = (String) session.getAttribute("empName");  
-    pageContext.setAttribute("currentUser", org.apache.shiro.SecurityUtils.getSubject().getPrincipal()  
-            .toString());  
+    pageContext.setAttribute("currentUser", org.apache.shiro.SecurityUtils.getSubject().getPrincipal().toString());  
 %>    
 <html>
 <head>
@@ -131,6 +130,7 @@
                                 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/notice.jsp">公告管理</a>
                             </li>
                             <li>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/Cooorganiz.jsp">合作机构</a>
                                 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/noticeType.jsp">公告类型管理</a>
                             </li>
                         </ul>
