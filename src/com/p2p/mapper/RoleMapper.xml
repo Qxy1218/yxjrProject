@@ -50,13 +50,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      
      <!-- 修改角色 -->
     <update id="update" parameterType="com.p2p.pojo.Role" >
-        UPDATE role SET 
-			re_name=#{rename},
-			re_remark=#{reremark},
-			re_status =#{restatus}
-		WHERE re_id=#{reid}
+        UPDATE role 
+        <trim prefix="set" suffixOverrides=",">
+		  <if test="rename!=null">re_name=#{rename},</if>
+		  <if test="reremark!=null">re_remark=#{reremark},</if>
+		  <if test="restatus!=null">re_status =#{restatus},</if>
+ 		</trim>
+        <where>re_id=#{reid}</where>
     </update>
-     
      <!-- 删除角色 -->
     <delete id="delete" parameterType="com.p2p.pojo.Role">
         DELETE FROM role WHERE re_id=#{reid} 
