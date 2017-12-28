@@ -243,7 +243,7 @@
                         <ul class="nav nav-second-level">
                         	<shiro:hasPermission name="资金使用明细管理">
                         		<li>
-                        			<a class="J_menuItem" href="contacts.jsp">资金使用明细管理</a>
+                        			<a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/Moneyrecord.jsp">资金使用明细管理</a>
                             	</li>
                         	</shiro:hasPermission>
                         	<shiro:hasPermission name="投资记录与排行管理">

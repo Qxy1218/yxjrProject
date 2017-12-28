@@ -27,12 +27,12 @@ public class Moneyrecord implements Serializable{
 	private String mrdetail; //资金明细
 	
 	@TableField("mr_wastemoney")
-	private double mrwastemoney; //消费金额
+	private String mrwastemoney; //消费金额
 	
 	@TableField("mr_wasttime")
 	private String mrwasttime; //消费时间
 
-	public Moneyrecord(Integer mrid, Integer uid, String mrdetail, double mrwastemoney, String mrwasttime) {
+	public Moneyrecord(Integer mrid, Integer uid, String mrdetail, String mrwastemoney, String mrwasttime) {
 		super();
 		this.mrid = mrid;
 		this.uid = uid;
@@ -69,11 +69,11 @@ public class Moneyrecord implements Serializable{
 		this.mrdetail = mrdetail;
 	}
 
-	public double getMrwastemoney() {
+	public String getMrwastemoney() {
 		return mrwastemoney;
 	}
 
-	public void setMrwastemoney(double mrwastemoney) {
+	public void setMrwastemoney(String mrwastemoney) {
 		this.mrwastemoney = mrwastemoney;
 	}
 
@@ -85,10 +85,7 @@ public class Moneyrecord implements Serializable{
 		this.mrwasttime = mrwasttime;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
+	
 	@Override
 	public String toString() {
 		return "Moneyrecord [mrid=" + mrid + ", uid=" + uid + ", mrdetail=" + mrdetail + ", mrwastemoney="

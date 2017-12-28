@@ -29,7 +29,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.druid.util.StringUtils;
 import com.p2p.pojo.Employe;
+import com.p2p.pojo.Moneyrecord;
 import com.p2p.service.back.EmpService;
+import com.p2p.service.back.MoneyrecordServiece;
 import com.p2p.util.PageInfo;
 import com.p2p.util.ValidateCodeUtil;
 
@@ -43,7 +45,6 @@ import com.p2p.util.ValidateCodeUtil;
 public class EmpController {
 	@Resource(name="empServiceImpl")
 	private EmpService empService;
-	
 	
 	 @RequestMapping("/loginindex")
 	   public String loginindex(@RequestParam String name,@RequestParam String password,@RequestParam String imgcode,HttpServletRequest request,HttpSession session){
