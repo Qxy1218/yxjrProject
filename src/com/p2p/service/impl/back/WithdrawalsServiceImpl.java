@@ -1,6 +1,6 @@
 package com.p2p.service.impl.back;
 
-import java.io.Serializable;
+
 import java.util.List;
 
 import javax.annotation.Resource;
