@@ -53,6 +53,9 @@ public class Employe implements Serializable{
 	@TableField("e_remark")
 	private String eremark; //自我声明
 	
+	@TableField("e_image")
+	private String eimage; //员工头像
+	
 	private Role role ;
 	
 
@@ -166,10 +169,18 @@ public class Employe implements Serializable{
 	
 	public Employe() {
 	}
+	
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
 
 	public Employe(Integer eid, Integer reid, String eenum, String esex, String eidcard, String ephone,
 			String eposition, String eemail, String ename, String epassword, String estatus, String eretime,
-			String eremark, Role role) {
+			String eremark, String eimage, Role role) {
 		super();
 		this.eid = eid;
 		this.reid = reid;
@@ -184,15 +195,16 @@ public class Employe implements Serializable{
 		this.estatus = estatus;
 		this.eretime = eretime;
 		this.eremark = eremark;
+		this.eimage = eimage;
 		this.role = role;
 	}
 
-	public Role getRole() {
-		return role;
+	public String getEimage() {
+		return eimage;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setEimage(String eimage) {
+		this.eimage = eimage;
 	}
 
 	@Override
@@ -200,8 +212,10 @@ public class Employe implements Serializable{
 		return "Employe [eid=" + eid + ", reid=" + reid + ", eenum=" + eenum + ", esex=" + esex + ", eidcard=" + eidcard
 				+ ", ephone=" + ephone + ", eposition=" + eposition + ", eemail=" + eemail + ", ename=" + ename
 				+ ", epassword=" + epassword + ", estatus=" + estatus + ", eretime=" + eretime + ", eremark=" + eremark
-				+ ", role=" + role + "]";
+				+ ", e_image=" + eimage + ", role=" + role + "]";
 	}
+
+	
 
 	
 	

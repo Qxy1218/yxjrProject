@@ -1,5 +1,8 @@
 package com.p2p.controller.back;
 
+import java.util.List;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +11,9 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.p2p.pojo.Role;
+import com.p2p.service.back.RoleService;
 
 /**
  * 开发人:汪栋才
@@ -18,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/back")
 public class BeansBackController {
 	  
+	@Resource(name="roleServiceImpl")
+	private RoleService roleService;
 	/**
 	 * 进入后台登陆界面
 	 * */
@@ -45,6 +53,16 @@ public class BeansBackController {
 	@RequestMapping(value="/toRole")
 	public String toBackRole(HttpServletRequest request){
 		return "views/back/role";
+	}
+	
+	/**
+	 * 进入员工页面
+	 * */
+	@RequestMapping(value="/toEmploye")
+	public String toBackEmploy(HttpServletRequest request) {
+		List<Role> rolelist = roleService.seleRoleList();
+		request.setAttribute("rolelist", rolelist);
+		return "views/back/employe";
 	}
 	
 }

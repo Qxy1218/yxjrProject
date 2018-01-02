@@ -26,6 +26,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.druid.util.StringUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -148,12 +149,15 @@ public class EmpController {
 	//实现新增
 	@RequestMapping(value="insertEmp")
 	@ResponseBody
-	public int insertRole(Employe emp) {
-		Object result = new SimpleHash("MD5", "123", ByteSource.Util.bytes("admin"), 10);
+	public int insertRole(Employe emp,HttpServletRequest request,MultipartFile file) throws Exception {
+		Object result = new SimpleHash("MD5", "123", ByteSource.Util.bytes("admin"), 1);
+		String filepath = UtilController.uploadFrom(request,file);
+		emp.setEimage(filepath);
 		emp.setEpassword(result.toString());
 		int count = empService.addModel(emp);
 		return count;
 	}
+	
 	
 	//修改角色信息
 	@RequestMapping(value = "updateEmp")
@@ -183,7 +187,7 @@ public class EmpController {
 	   @RequestMapping(value="adminlogout")
 		public String adminLogin(){
 		   Subject EmpSession = SecurityUtils.getSubject();
-		   	EmpSession.logout();
+		   EmpSession.logout();
 		return "redirect:/back/tologin";
 		}
 	

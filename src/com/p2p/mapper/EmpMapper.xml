@@ -17,6 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		  <result column="e_status" property="estatus"/>
  		  <result column="e_retime" property="eretime"/>
  		  <result column="e_remark" property="eremark"/>
+ 		  <result column="e_image" property="eimage"/>
  		  <!--配置一对一 -->
 		  <association property="role" javaType="com.p2p.pojo.Role">
 		  	<id column="re_id" property="reid"/>
@@ -36,8 +37,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	
  	<!-- 员工添加 -->
 	<insert id="addModel" useGeneratedKeys="true" keyProperty="eid">
- 		 insert into employee(re_id,e_enum,e_sex,e_idcard,e_phone,e_position,e_email,e_name,e_password,e_status,e_retime,e_remark) 
- 		 values(#{reid},#{eenum},#{esex},#{eidcard},#{ephone},#{eposition},#{eemail},#{ename},#{epassword},#{estatus},#{eretime},#{eremark})
+ 		 insert into employee(re_id,e_enum,e_sex,e_idcard,e_phone,e_position,e_email,e_name,e_password,e_status,e_retime,e_remark,e_image) 
+ 		 values(#{reid},#{eenum},#{esex},#{eidcard},#{ephone},#{eposition},#{eemail},#{ename},#{epassword},#{estatus},#{eretime},#{eremark},#{eimage})
  	</insert>
  	
  	<!-- 员工删除 -->
@@ -48,18 +49,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 修改员工 -->
     <update id="update" parameterType="com.p2p.pojo.Employe" >
         UPDATE employee SET 
-			re_id =#{reid},
-			e_enum=#{eenum},
-			e_sex=#{esex},
-			e_idcard=#{eidcard},
-			e_phone=#{ephone},
-			e_position=#{eposition},
-			e_email=#{eemail},
-			e_name=#{ename},
-			e_password=#{epassword},
-			e_status=#{estatus},
-			e_retime=#{eretime},
-			e_remark=#{eremark}
+        	<if test="reid!=null">re_id =#{reid},</if>
+			<if test="eenum!=null">e_enum=#{eenum},</if>
+			<if test="esex!=null">e_sex=#{esex},</if>
+			<if test="eidcard!=null">e_idcard=#{eidcard},</if>
+			<if test="ephone!=null">e_phone=#{ephone},</if>
+			<if test="eposition!=null">e_position=#{eposition},</if>
+			<if test="eemail!=null">e_email=#{eemail},</if>
+			<if test="ename!=null">e_name=#{ename},</if>
+			<if test="epassword!=null">e_password=#{epassword},</if>
+			<if test="estatus!=null">e_status=#{estatus},</if>
+			<if test="eretime!=null">e_retime=#{eretime},</if>
+			<if test="eremark!=null">e_remark=#{eremark},</if>
+			<if test="eimage!=null">e_image=#{eimage}</if>
 		<where>
 			e_id=#{eid}
 		</where>
