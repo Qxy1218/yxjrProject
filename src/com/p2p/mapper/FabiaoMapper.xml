@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		  <result column="f_security" property="fsecurity"/>
  		  <result column="f_procedures" property="fprocedures"/>
  		  <result column="f_repayment" property="frepayment"/>
- 		  <result column="f_strattime" property="fstrattime"/>
+ 		  <result column="f_securitymea" property="fsecuritymea"/>
 </resultMap>
 	<select id="getModel" parameterType="com.p2p.pojo.Fabiao" resultMap="BaseResultMap">
  		select * from fabiao 
@@ -57,17 +57,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		<if test="fcontract!=null">and  f_contract=#{fcontract}</if>
 		  		<if test="fbidstatus!=null">and f_bidstatus=#{fbidstatus}</if>
 		  		<if test="fstatus!=null">and f_status=#{fstatus}</if>
+		  		<if test="fsecuritymea!=null">and f_securitymea=#{fsecuritymea}</if>
 		  		<if test="fsecurity!=null">and f_security=#{fsecurity}</if>
 		  		<if test="fprocedures!=null">and f_procedures=#{fprocedures}</if>
  				<if test="frepayment!=null">and f_repayment=#{frepayment}</if>
- 				<if test="fstrattime!=null">and f_strattime=#{fstrattime}</if>
  		</where>
  	</select>
  	
  	<!-- 发标添加 -->
 	<insert id="addModel" useGeneratedKeys="true" keyProperty="fid">
- 		 insert into fabiao(f_title,u_id,f_code,f_type,f_part,f_roe,f_increase,f_content,f_situation,f_opinion,f_money,f_endmoney,f_endtime,f_minmoney,f_maxmoney,f_rate,f_image,f_orderimg,f_contract,f_bidstatus,f_status,f_security,f_procedures,f_repayment,f_strattime) 
- 		 values(#{ftitle},#{uid},#{fcode},#{ftype},#{fpart},#{froe},#{fincrease},#{fcontent},#{fsituation},#{fopinion},#{fmoney},#{fendmoney},#{fendtime},#{fminmoney},#{fmaxmoney},#{frate},#{fimage},#{forderimg},#{fcontract},#{fbidstatus},#{fstatus},#{fsecurity},#{fprocedures},#{frepayment},#{fstrattime})
+ 		 insert into fabiao(f_title,u_id,f_code,f_type,f_part,f_roe,f_increase,f_content,f_situation,f_opinion,f_money,f_endmoney,f_endtime,f_minmoney,f_maxmoney,f_rate,f_image,f_orderimg,f_contract,f_bidstatus,f_status,f_securitymea,f_security,f_procedures,f_repayment) 
+ 		 values(#{ftitle},#{uid},#{fcode},#{ftype},#{fpart},#{froe},#{fincrease},#{fcontent},#{fsituation},#{fopinion},#{fmoney},#{fendmoney},#{fendtime},#{fminmoney},#{fmaxmoney},#{frate},#{fimage},#{forderimg},#{fcontract},#{fcontract},#{fbidstatus},#{fstatus},#{fsecuritymea},#{fsecurity},#{fprocedures},#{frepayment})
  	</insert>
  	
  	<!-- 发标删除 -->
@@ -78,31 +78,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 修改发标 -->
     <update id="update" parameterType="com.p2p.pojo.Fabiao" >
         UPDATE fabiao SET 
-			f_title=#{ftitle},
-			u_id=#{uid},
-			f_code=#{fcode},
-			f_type=#{ftype},
-			f_part=#{fpart},
-			f_roe=#{froe},
-			f_increase=#{fincrease},
-			f_content=#{fcontent},
-			f_situation=#{fsituation},
-			f_opinion=#{fopinion},
-			f_money=#{fmoney},
-			f_endmoney=#{fendmoney},
-			f_endtime=#{fendtime},
-			f_minmoney=#{fminmoney},
-			f_maxmoney=#{fmaxmoney},
-			f_rate=#{frate},
-			f_image=#{fimage},
-			f_orderimg=#{forderimg},
-			f_contract=#{fcontract},
-			f_bidstatus=#{fbidstatus},
-			f_security=#{fsecurity},
-			f_procedures=#{fprocedures},
-			f_repayment=#{frepayment},
-			f_status=#{fstatus}
-			f_strattime=#{fstrattime}
+		<trim prefix="set" suffixOverrides=",">
+				<if test="fid!=null">and f_id=#{fid},</if>
+		  		<if test="ftitle!=null">and f_title=#{ftitle},</if>
+		  		<if test="uid!=null">and u_id=#{uid},</if>
+		  		<if test="fcode!=null">and f_code=#{fcode},</if>
+		  		<if test="ftype!=null">and f_type=#{ftype},</if>
+		  		<if test="fpart!=null">and f_part=#{fpart},</if>
+		  		<if test="froe!=null">and f_roe=#{froe},</if>
+		  		<if test="fincrease!=null">and f_increase=#{fincrease},</if>
+		  		<if test="fcontent!=null">and f_content=#{fcontent},</if>
+		  		<if test="fsituation!=null">and  f_situation=#{fsituation},</if>
+		  		<if test="fopinion!=null">and  f_opinion=#{fopinion},</if>
+		  		<if test="fmoney!=null">and  f_money=#{fmoney},</if>
+		  		<if test="fendmoney!=null">and  f_endmoney=#{fendmoney},</if>
+		  		<if test="fendtime!=null">and f_endtime=#{fendtime},</if>
+		  		<if test="fminmoney!=null">and f_minmoney=#{fminmoney},</if>
+		  		<if test="fmaxmoney!=null">and f_maxmoney=#{fmaxmoney},</if>
+		  		<if test="frate!=null">and f_rate=#{frate},</if>
+		  		<if test="fimage!=null">and  f_image=#{fimage},</if>
+		  		<if test="forderimg!=null">and  f_orderimg=#{forderimg},</if>
+		  		<if test="fcontract!=null">and  f_contract=#{fcontract},</if>
+		  		<if test="fbidstatus!=null">and f_bidstatus=#{fbidstatus},</if>
+		  		<if test="fstatus!=null">and f_status=#{fstatus},</if>
+		  		<if test="fsecuritymea!=null">and f_securitymea=#{fsecuritymea},</if>
+		  		<if test="fsecurity!=null">and f_security=#{fsecurity},</if>
+		  		<if test="fprocedures!=null">and f_procedures=#{fprocedures},</if>
+ 				<if test="frepayment!=null">and f_repayment=#{frepayment},</if>
+ 				<if test="fstrattime!=null">and f_strattime=#{fstrattime},</if>
+ 		</trim>
+			
 		<where>
 			f_id=#{fid}
 		</where>
@@ -110,7 +115,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
     
     <select id="getAllModel" resultMap="BaseResultMap">
-    	select * from fabiao 
+    	<!-- 查已发布的项目 -->
+    	select * from fabiao
+    </select>
+    
+    <select id="selectByType" resultMap="BaseResultMap" parameterType="java.lang.String">
+    	<!-- 
+    		查询可投标和满标
+    		根据f_status做升序排练
+    	 -->
+    	select * from fabiao where 
+    		f_status in(1,2)
+    		<if test="type!=null">and f_part=#{type}</if>
+    	   	order by f_status;
     </select>
     
     

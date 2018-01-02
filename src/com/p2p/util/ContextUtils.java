@@ -4,6 +4,24 @@ import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 public class ContextUtils {
+	
+	/**
+	    * Object 转化成百分比 传如的参数必须是数字类型， 如"0.02" return 2.00%
+
+	    *   百分比位数 参数可自行调整
+	    * @param obj
+	    * @return 返回百分比
+	    */
+	   public static String parsePercent(String obj){
+		    Double  d=Double.parseDouble(obj.toString());
+		    java.text.NumberFormat percentFormat =java.text.NumberFormat.getPercentInstance(); 
+		    percentFormat.setMaximumFractionDigits(2); //最大小数位数
+		    percentFormat.setMaximumIntegerDigits(3);//最大整数位数
+		    percentFormat.setMinimumFractionDigits(2); //最小小数位数
+		    percentFormat.setMinimumIntegerDigits(1);//最小整数位数
+		    return percentFormat.format(d);//自动转换成百分比显示
+	   }
+	
 	public static String dateToStr(Date date){
 		SimpleDateFormat dateformat1=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		String d=dateformat1.format(date);

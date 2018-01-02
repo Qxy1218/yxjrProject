@@ -19,38 +19,37 @@ public class FabiaoServiceImpl implements FabiaoService{
 	
 	@Override
 	public int addModel(Fabiao model) {
-		// TODO Auto-generated method stub
-		return 0;
+		return fabiaomapper.addModel(model);
 	}
 
 	@Override
 	public Fabiao getModel(Fabiao model) {
-		// TODO Auto-generated method stub
-		return null;
+		return fabiaomapper.getModel(model);
 	}
 
 	@Override
 	public List<Fabiao> getAllModel() {
-		// TODO Auto-generated method stub
 		return fabiaomapper.getAllModel();
 	}
 
 	@Override
 	public int update(Fabiao model) {
-		// TODO Auto-generated method stub
-		return 0;
+		return fabiaomapper.update(model);
 	}
 
 	@Override
 	public int delete(Fabiao model) {
-		// TODO Auto-generated method stub
-		return 0;
+		return fabiaomapper.delete(model);
 	}
 
 	@Override
 	public Fabiao findModel(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return fabiaomapper.findModel(id);
+	}
+
+	@Override
+	public List<Fabiao> selectByType(String type) {
+		return fabiaomapper.selectByType(type);
 	}
 
 }

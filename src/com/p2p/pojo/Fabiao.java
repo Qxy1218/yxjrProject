@@ -1,6 +1,7 @@
 package com.p2p.pojo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 
@@ -40,10 +41,10 @@ public class Fabiao implements Serializable{
 	
 	
 	@TableField("f_roe")
-	private Double froe; //年收益率
+	private BigDecimal froe; //年收益率
 	
 	@TableField("f_increase")
-	private Double fincrease; //活动加息
+	private BigDecimal fincrease; //活动加息
 	
 	@TableField("f_content")
 	private String fcontent; //产品概要
@@ -55,22 +56,22 @@ public class Fabiao implements Serializable{
 	private String fopinion; //爱钱帮独立意见
 	
 	@TableField("f_money")
-	private Double fmoney; //投标金额
+	private BigDecimal fmoney; //投标金额
 	
 	@TableField("f_endmoney")
-	private Double fendmoney; //已投金额
+	private BigDecimal fendmoney; //已投金额
 
 	@TableField("f_endtime")
 	private String fendtime; //投标截止时间
 	
 	@TableField("f_minmoney")
-	private Double fminmoney; //最小投标金额
+	private BigDecimal fminmoney; //最小投标金额
 	
 	@TableField("f_maxmoney")
-	private Double fmaxmoney; //最大投标金额
+	private BigDecimal fmaxmoney; //最大投标金额
 	
 	@TableField("f_rate")
-	private Double frate; //收益率
+	private BigDecimal frate; //收益率
 
 	@TableField("f_image")
 	private String fimage; //代表图
@@ -85,10 +86,10 @@ public class Fabiao implements Serializable{
 	private Integer fbidstatus; //投标状态 0未满 1已满
 
 	@TableField("f_status")
-	private Integer fstatus; //发布状态 0隐藏(默认) 1发布
+	private Integer fstatus; //发布状态 0隐藏(默认) 1发布  2满标  3废标 4流标  5废标
 
 	@TableField("f_security")
-	private String fsecurity; //担保措施
+	private String fsecurity; //担保措施(text)
 	
 	@TableField("f_procedures")
 	private String fprocedures; //手续(,分开)
@@ -96,22 +97,28 @@ public class Fabiao implements Serializable{
 	@TableField("f_repayment")
 	private String frepayment; //还款方式
 	
-	@TableField("f_strattime")
-	private String fstrattime;  //投标开始时间
+	@TableField("f_securitymea")
+	private String fsecuritymea; //担保措施(varchar)
 	
-
 	
 	private Integer rematime;  //计算剩余时间
+	
+	private String compnrate;  //完成率
+	
+	
 	
 	
 	public Fabiao() {
 	}
 
-	public Fabiao(Integer fid, String ftitle, Integer uid, String fcode, String ftype, String fpart, Double froe,
-			Double fincrease, String fcontent, String fsituation, String fopinion, Double fmoney, Double fendmoney,
-			String fendtime, Double fminmoney, Double fmaxmoney, Double frate, String fimage, String forderimg,
-			String fcontract, Integer fbidstatus, Integer fstatus, String fsecurity, String fprocedures,
-			String frepayment, String fstrattime) {
+
+
+
+	public Fabiao(Integer fid, String ftitle, Integer uid, String fcode, String ftype, String fpart, BigDecimal froe,
+			BigDecimal fincrease, String fcontent, String fsituation, String fopinion, BigDecimal fmoney,
+			BigDecimal fendmoney, String fendtime, BigDecimal fminmoney, BigDecimal fmaxmoney, BigDecimal frate,
+			String fimage, String forderimg, String fcontract, Integer fbidstatus, Integer fstatus, String fsecurity,
+			String fprocedures, String frepayment, String fsecuritymea, Integer rematime, String compnrate) {
 		super();
 		this.fid = fid;
 		this.ftitle = ftitle;
@@ -138,8 +145,11 @@ public class Fabiao implements Serializable{
 		this.fsecurity = fsecurity;
 		this.fprocedures = fprocedures;
 		this.frepayment = frepayment;
-		this.fstrattime = fstrattime;
+		this.fsecuritymea = fsecuritymea;
+		this.rematime = rematime;
+		this.compnrate = compnrate;
 	}
+
 
 
 
@@ -147,217 +157,395 @@ public class Fabiao implements Serializable{
 		return fid;
 	}
 
+
+
+
 	public void setFid(Integer fid) {
 		this.fid = fid;
 	}
+
+
+
 
 	public String getFtitle() {
 		return ftitle;
 	}
 
+
+
+
 	public void setFtitle(String ftitle) {
 		this.ftitle = ftitle;
 	}
+
+
+
 
 	public Integer getUid() {
 		return uid;
 	}
 
+
+
+
 	public void setUid(Integer uid) {
 		this.uid = uid;
 	}
+
+
+
 
 	public String getFcode() {
 		return fcode;
 	}
 
+
+
+
 	public void setFcode(String fcode) {
 		this.fcode = fcode;
 	}
+
+
+
 
 	public String getFtype() {
 		return ftype;
 	}
 
+
+
+
 	public void setFtype(String ftype) {
 		this.ftype = ftype;
 	}
+
+
+
 
 	public String getFpart() {
 		return fpart;
 	}
 
+
+
+
 	public void setFpart(String fpart) {
 		this.fpart = fpart;
 	}
 
-	public Double getFroe() {
+
+
+
+	public BigDecimal getFroe() {
 		return froe;
 	}
 
-	public void setFroe(Double froe) {
+
+
+
+	public void setFroe(BigDecimal froe) {
 		this.froe = froe;
 	}
 
-	public Double getFincrease() {
+
+
+
+	public BigDecimal getFincrease() {
 		return fincrease;
 	}
 
-	public void setFincrease(Double fincrease) {
+
+
+
+	public void setFincrease(BigDecimal fincrease) {
 		this.fincrease = fincrease;
 	}
+
+
+
 
 	public String getFcontent() {
 		return fcontent;
 	}
 
+
+
+
 	public void setFcontent(String fcontent) {
 		this.fcontent = fcontent;
 	}
+
+
+
 
 	public String getFsituation() {
 		return fsituation;
 	}
 
+
+
+
 	public void setFsituation(String fsituation) {
 		this.fsituation = fsituation;
 	}
+
+
+
 
 	public String getFopinion() {
 		return fopinion;
 	}
 
+
+
+
 	public void setFopinion(String fopinion) {
 		this.fopinion = fopinion;
 	}
 
-	public Double getFmoney() {
+
+
+
+	public BigDecimal getFmoney() {
 		return fmoney;
 	}
 
-	public void setFmoney(Double fmoney) {
+
+
+
+	public void setFmoney(BigDecimal fmoney) {
 		this.fmoney = fmoney;
 	}
 
-	public Double getFendmoney() {
+
+
+
+	public BigDecimal getFendmoney() {
 		return fendmoney;
 	}
 
-	public void setFendmoney(Double fendmoney) {
+
+
+
+	public void setFendmoney(BigDecimal fendmoney) {
 		this.fendmoney = fendmoney;
 	}
+
+
+
 
 	public String getFendtime() {
 		return fendtime;
 	}
 
+
+
+
 	public void setFendtime(String fendtime) {
 		this.fendtime = fendtime;
 	}
 
-	public Double getFminmoney() {
+
+
+
+	public BigDecimal getFminmoney() {
 		return fminmoney;
 	}
 
-	public void setFminmoney(Double fminmoney) {
+
+
+
+	public void setFminmoney(BigDecimal fminmoney) {
 		this.fminmoney = fminmoney;
 	}
 
-	public Double getFmaxmoney() {
+
+
+
+	public BigDecimal getFmaxmoney() {
 		return fmaxmoney;
 	}
 
-	public void setFmaxmoney(Double fmaxmoney) {
+
+
+
+	public void setFmaxmoney(BigDecimal fmaxmoney) {
 		this.fmaxmoney = fmaxmoney;
 	}
 
-	public Double getFrate() {
+
+
+
+	public BigDecimal getFrate() {
 		return frate;
 	}
 
-	public void setFrate(Double frate) {
+
+
+
+	public void setFrate(BigDecimal frate) {
 		this.frate = frate;
 	}
+
+
+
 
 	public String getFimage() {
 		return fimage;
 	}
 
+
+
+
 	public void setFimage(String fimage) {
 		this.fimage = fimage;
 	}
+
+
+
 
 	public String getForderimg() {
 		return forderimg;
 	}
 
+
+
+
 	public void setForderimg(String forderimg) {
 		this.forderimg = forderimg;
 	}
+
+
+
 
 	public String getFcontract() {
 		return fcontract;
 	}
 
+
+
+
 	public void setFcontract(String fcontract) {
 		this.fcontract = fcontract;
 	}
+
+
+
 
 	public Integer getFbidstatus() {
 		return fbidstatus;
 	}
 
+
+
+
 	public void setFbidstatus(Integer fbidstatus) {
 		this.fbidstatus = fbidstatus;
 	}
+
+
+
 
 	public Integer getFstatus() {
 		return fstatus;
 	}
 
+
+
+
 	public void setFstatus(Integer fstatus) {
 		this.fstatus = fstatus;
 	}
+
+
+
 
 	public String getFsecurity() {
 		return fsecurity;
 	}
 
+
+
+
 	public void setFsecurity(String fsecurity) {
 		this.fsecurity = fsecurity;
 	}
+
+
+
 
 	public String getFprocedures() {
 		return fprocedures;
 	}
 
+
+
+
 	public void setFprocedures(String fprocedures) {
 		this.fprocedures = fprocedures;
 	}
+
+
+
 
 	public String getFrepayment() {
 		return frepayment;
 	}
 
+
+
+
 	public void setFrepayment(String frepayment) {
 		this.frepayment = frepayment;
 	}
 
-	public String getFstrattime() {
-		return fstrattime;
+
+
+
+	public String getFsecuritymea() {
+		return fsecuritymea;
 	}
 
-	public void setFstrattime(String fstrattime) {
-		this.fstrattime = fstrattime;
+
+
+
+	public void setFsecuritymea(String fsecuritymea) {
+		this.fsecuritymea = fsecuritymea;
 	}
+
+
+
 
 	public Integer getRematime() {
 		return rematime;
 	}
 
+
+
+
 	public void setRematime(Integer rematime) {
 		this.rematime = rematime;
 	}
+
+
+
+
+	public String getCompnrate() {
+		return compnrate;
+	}
+
+
+
+
+	public void setCompnrate(String compnrate) {
+		this.compnrate = compnrate;
+	}
+
+
+	
+
+
 	
 	
 }

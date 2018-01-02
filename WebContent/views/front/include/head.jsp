@@ -138,7 +138,7 @@
             <ul class="m2-commonNavul-fir" data_page='${pageName }'>
                 <!--  <li class="m2-commonNav-fir"><a href="http://huifu.iqianbang.com" target="_blank" >汇付版本</a></li>-->
                 <li class="m2-commonNav-fir"><a href="/Finances/toindex" id="index">首页</a></li>
-                <li class="m2-commonNav-fir"><a href="/Finances/toinvest" id="invset">我要投资</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/toinvestzt" id="invset">我要投资</a></li>
                 <li class="m2-commonNav-fir"><a href="/Finances/tomembermall" id="business">会员商城</a></li>
                 <li class="m2-commonNav-fir"><a onclick="myinfo();" id="myinfo">我的账户</a></li>
                 <li class="m2-commonNav-fir"><a href="/Finances/toguarantee" id="security">安全保障</a></li>
