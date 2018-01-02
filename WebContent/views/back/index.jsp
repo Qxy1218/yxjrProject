@@ -179,6 +179,8 @@
                             </li>
                             <li><a class="J_menuItem" href="form_wizard.jsp">银行卡管理</a>
                             </li>
+                              <li><a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/userlevel.jsp">成长等级</a>
+                            </li>
                             <li>
 
                         	<shiro:hasPermission name="后台充值管理">
