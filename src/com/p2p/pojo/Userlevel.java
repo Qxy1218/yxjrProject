@@ -12,44 +12,95 @@ public class Userlevel {
 	@TableField("u_id")
 	private Integer uid;
 	
-	@Override
-	public String toString() {
-		return "Userlevel [ulid=" + ulid + ", ulname=" + ulname + ", ullevelValue=" + ullevelValue + ", uid=" + uid
-				+ "]";
-	}
+	
+	private String uiname;
+	
+
+	
+
 	public Userlevel() {
 		super();
 	}
-	public Userlevel(Integer ulid, String ulname, String ullevelValue, Integer uid) {
+
+	
+
+	public Integer getUlid() {
+		return ulid;
+	}
+
+	public void setUlid(Integer ulid) {
+		this.ulid = ulid;
+	}
+
+	public String getUlname() {
+		return ulname;
+	}
+
+	public void setUlname(String ulname) {
+		this.ulname = ulname;
+	}
+
+	public String getUllevelValue() {
+		return ullevelValue;
+	}
+
+	public void setUllevelValue(String ullevelValue) {
+		this.ullevelValue = ullevelValue;
+	}
+
+	public Integer getUid() {
+		return uid;
+	}
+
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
+
+
+
+	public String getUiname() {
+		return uiname;
+	}
+
+
+
+	public void setUiname(String uiname) {
+		this.uiname = uiname;
+	}
+
+
+
+	public Userlevel(Integer ulid, String ulname, String ullevelValue, Integer uid, String uiname) {
 		super();
 		this.ulid = ulid;
 		this.ulname = ulname;
 		this.ullevelValue = ullevelValue;
 		this.uid = uid;
+		this.uiname = uiname;
 	}
-	public Integer getUlid() {
-		return ulid;
+
+
+
+	@Override
+	public String toString() {
+		return "Userlevel [ulid=" + ulid + ", ulname=" + ulname + ", ullevelValue=" + ullevelValue + ", uid=" + uid
+				+ ", uiname=" + uiname + "]";
 	}
-	public void setUlid(Integer ulid) {
-		this.ulid = ulid;
-	}
-	public String getUlname() {
-		return ulname;
-	}
-	public void setUlname(String ulname) {
-		this.ulname = ulname;
-	}
-	public String getUllevelValue() {
-		return ullevelValue;
-	}
-	public void setUllevelValue(String ullevelValue) {
-		this.ullevelValue = ullevelValue;
-	}
-	public Integer getUid() {
-		return uid;
-	}
-	public void setUid(Integer uid) {
-		this.uid = uid;
-	}
+
+
+
+	
+
+
+
+
+
+	
+
+
+
+	
+	
+	
 	
 }

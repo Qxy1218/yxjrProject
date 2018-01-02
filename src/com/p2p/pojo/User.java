@@ -76,17 +76,21 @@ public class User implements Serializable{
 	 * */
 	private Userinfo userinfo;
 	
-	public User() {
-	}
+	/**
+	 *一对一
+	 * */
+	private Userlevel userlevel;
 
-	public User(Integer uid, String upassword, String uheadImg, String uphone, String uloginTime, String orderinvite,
-			String uinvite, Integer uenable, Integer uisAccountSum, String qrcode, String uaddress, String uip,
-			String uregTime, Integer ucredit, Double ubalance, String ulid, Double vdid, Userinfo userinfo) {
+	public User(Integer uid, String upassword, String uheadImg, String uphone, String uregTime, String uloginTime,
+			String orderinvite, String uinvite, Integer uenable, Integer uisAccountSum, String qrcode, String uaddress,
+			String uip, Integer ucredit, Double ubalance, String ulid, Double vdid, Userinfo userinfo,
+			Userlevel userlevel) {
 		super();
 		this.uid = uid;
 		this.upassword = upassword;
 		this.uheadImg = uheadImg;
 		this.uphone = uphone;
+		this.uregTime = uregTime;
 		this.uloginTime = uloginTime;
 		this.orderinvite = orderinvite;
 		this.uinvite = uinvite;
@@ -95,12 +99,25 @@ public class User implements Serializable{
 		this.qrcode = qrcode;
 		this.uaddress = uaddress;
 		this.uip = uip;
-		this.uregTime = uregTime;
 		this.ucredit = ucredit;
 		this.ubalance = ubalance;
 		this.ulid = ulid;
 		this.vdid = vdid;
 		this.userinfo = userinfo;
+		this.userlevel = userlevel;
+	}
+
+	public User() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "User [uid=" + uid + ", upassword=" + upassword + ", uheadImg=" + uheadImg + ", uphone=" + uphone
+				+ ", uregTime=" + uregTime + ", uloginTime=" + uloginTime + ", orderinvite=" + orderinvite
+				+ ", uinvite=" + uinvite + ", uenable=" + uenable + ", uisAccountSum=" + uisAccountSum + ", qrcode="
+				+ qrcode + ", uaddress=" + uaddress + ", uip=" + uip + ", ucredit=" + ucredit + ", ubalance=" + ubalance
+				+ ", ulid=" + ulid + ", vdid=" + vdid + ", userinfo=" + userinfo + ", userlevel=" + userlevel + "]";
 	}
 
 	public Integer getUid() {
@@ -133,6 +150,14 @@ public class User implements Serializable{
 
 	public void setUphone(String uphone) {
 		this.uphone = uphone;
+	}
+
+	public String getUregTime() {
+		return uregTime;
+	}
+
+	public void setUregTime(String uregTime) {
+		this.uregTime = uregTime;
 	}
 
 	public String getUloginTime() {
@@ -199,14 +224,6 @@ public class User implements Serializable{
 		this.uip = uip;
 	}
 
-	public String getUregTime() {
-		return uregTime;
-	}
-
-	public void setUregTime(String uregTime) {
-		this.uregTime = uregTime;
-	}
-
 	public Integer getUcredit() {
 		return ucredit;
 	}
@@ -247,5 +264,14 @@ public class User implements Serializable{
 		this.userinfo = userinfo;
 	}
 
+	public Userlevel getUserlevel() {
+		return userlevel;
+	}
+
+	public void setUserlevel(Userlevel userlevel) {
+		this.userlevel = userlevel;
+	}
+	
+	
 	
 }
