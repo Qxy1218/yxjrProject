@@ -60,7 +60,6 @@
     };
 </script>
 
-<script src="/Finances/statics/other/bootstrap/js/jquery-3.2.1.min.js"></script>
 <script src="/Finances/statics/front/statics/common/js/common.js"></script>
 <!-- 
 <script src="/Finances/statics/front/statics/common/tipBox/layer-v1.5.1/layer/layer.js"></script>
