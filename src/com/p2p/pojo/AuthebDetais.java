@@ -19,19 +19,24 @@ public class AuthebDetais implements Serializable{
 	@TableField("ad_time")
 	private String adtime; //认证详情时间
 	
+	@TableField("ui_id")
+	private Integer uiid; //用户详情uiid
+	
 	public AuthebDetais() {
 	}
 	
-	public AuthebDetais(Integer adid, String adintroduct, String adtime) {
+	public AuthebDetais(Integer adid, String adintroduct, String adtime,Integer uiid) {
 		super();
 		this.adid = adid;
 		this.adintroduct = adintroduct;
 		this.adtime = adtime;
+		this.uiid = uiid;
 	}
 
 	@Override
 	public String toString() {
-		return "AuthebDetais [adid=" + adid + ", adintroduct=" + adintroduct + ", adtime=" + adtime + "]";
+		return "AuthebDetais [adid=" + adid + ", adintroduct=" + adintroduct + ", adtime=" + adtime + ", uiid=" + uiid
+				+ "]";
 	}
 
 	public Integer getAdid() {
@@ -57,8 +62,14 @@ public class AuthebDetais implements Serializable{
 	public void setAdtime(String adtime) {
 		this.adtime = adtime;
 	}
-	
-	
+
+	public Integer getUiid() {
+		return uiid;
+	}
+
+	public void setUiid(Integer uiid) {
+		this.uiid = uiid;
+	}
 	
 
 }
