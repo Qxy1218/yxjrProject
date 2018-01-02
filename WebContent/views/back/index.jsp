@@ -82,6 +82,8 @@
                             <li><a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/contact.jsp">联系我们</a></li>
                             <li>
                                 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/employe.jsp">员工列表</a>
+                            </li><li>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/record.jsp">管理员操作列表</a>
                             </li>
                         </ul>
                     </li>   	
