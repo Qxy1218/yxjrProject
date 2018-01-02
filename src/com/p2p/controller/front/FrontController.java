@@ -335,4 +335,13 @@ public class FrontController {
 	public String topro() {
 		return "views/front/product";
 	}
+	
+	/**
+	 * 体验金页面的conteroller
+	 * */
+	
+	@RequestMapping(value="/togold")
+	public String togold() {
+		return "views/front/expgold";
+	}
 }
