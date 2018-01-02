@@ -11,146 +11,267 @@
 <title>Insert title here</title>
 <!-- 引用js文件 -->
 <jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
-<script type="text/javascript" src="/Finances/statics/back/static/js/laydate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/statics/back/static/js/laydate.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery.form.js"></script>
-<script  type="text/javascript">
+<script src="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<link href="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#editRole')
+        .bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+            	eenum: {
+                    message: '员工编号验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '员工编号不能为空'
+                         },
+     		            stringLength: {
+     		                min: 1,
+     		                max: 9,
+     		                message: '请输入0-9位数字'
+     		            },
+     		            regexp: {
+     		                regexp: /^[0-9]*$/,
+     		                message: '只能输入数字'
+     		            }
+                    }
+                },
+                ephone: {
+                    message: '员工电话验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '员工电话不能为空'
+                         },
+                         stringLength: {
+                             min: 11,
+                             max: 11,
+                             message: '请输入11位手机号码'
+                         },
+                         regexp: {
+                             regexp: /^1[3|5|8]{1}[0-9]{9}$/,
+                             message: '请输入正确的手机号码'
+                         }
+                    }
+                },
+                ename: {
+                    message: '员工姓名验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '员工姓名不能为空'
+                         },
+                         stringLength: {
+                             min: 6,
+                             max: 30,
+                             message: '员工姓名必须大于6，长度小于30个字符。'
+                         },
+                    }
+                },
+                esex: {
+                    message: '员工性别验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '员工性别不能为空,请选择'
+                         }
+                    }
+                },
+                eidcard: {
+                    message: '身份证验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '身份证不能为空'
+                         },
+                         regexp: {
+                             regexp:  /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/,
+                             message: '请输入正确的身份证'
+                         }
+                         
+                    }
+                },
+                eemail: {
+                	message: '员工邮箱验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '员工邮箱不能为空'
+                        },
+                        emailAddress: {
+                            message: '请输入正确的邮件地址如：123@qq.com'
+                        }
+                    }
+                },
+                eposition: {
+                    message: '员工职位验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '员工职位不能为空'
+                         }
+                         
+                    }
+                },
+                eretime: {
+                    message: '员工注册时间验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '员工注册时间不能为空'
+                         }
+                        
+                    }
+                },
+                estatus: {
+                	message: '员工状态验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '员工状态不能为空,请选择'
+                        }
+                    }
+                }
+            }
+        })
+        .on('success.form.bv', function(e) {
+        	
+        	$("#editForm").modal('hide');
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+            var form = new FormData(document.getElementById("editRole"));
+            var eid =$("#editRole #eid").val();
+            var eid =$("#editRole #eid").val();
+            alert(eid); 
+            if(eid==null || eid==""){
+            	$.ajax({
+       	          url:"${pageContext.request.contextPath}/back/insertEmp",
+       	          type:"post",
+       	          data:form,
+       	          processData:false,
+       	          contentType:false,
+       	          success:function(data){
+       	        	//后台返回int类型的数据
+       					if(data>0){
+       						//新增成功，下面是后台框架的提示
+       						parent.layer.alert('增加成功');
+       					}else{
+       						//新增失败
+       						parent.layer.alert('增加失败');
+       					}
+       					$('#tb_emp').bootstrapTable('refresh');
+       	          },
+       	          error:function(e){
+       	        	parent.layer.alert('错误');
+       	          }
+             });
+            	
+            }else{
+            	$("#editForm").modal('hide');
+        		var url = "${pageContext.request.contextPath }/back/updateEmp";
+        		$.post(
+        			url,
+        			{
+        				eid:eid,
+        				reid:$("#editRole #reid").val(),
+        				eenum:$("#editRole #eenum").val(),
+        				esex:$("#editRole #esex").val(),
+        				eidcard:$("#editRole #eidcard").val(),
+        				ephone:$("#editRole #ephone").val(),
+        				eposition:$("#editRole #eposition").val(),
+        				eemail:$("#editRole #eemail").val(),
+        				ename:$("#editRole #ename").val(),
+        				estatus:$("#editRole #estatus").val(),
+        				eretime:$("#editRole #eretime").val(),
+        				eremark:$("#editRole #eremark").val(),
+        				eimage:$("#editRole #eimage").val(),
+        			},
+        			function(data){
+        				//后台返回int类型的数据
+        				if(data>0){
+        					//新增成功，下面是后台框架的提示
+        					parent.layer.alert('修改成功');
+        				}else{
+        					//新增失败
+        					parent.layer.alert('修改失败');
+        				}
+        				//新增完刷新表格数据
+        				$('#tb_emp').bootstrapTable('refresh');
+        			},
+        			"text"
+        		);		
+            } 
+        });
+});
+</script>
+<script  type="text/javascript" >
     var rows = null;
-    
     function addRole(){
     	//清空editModel原来填写的内容
-    	$("#editForm #reid").val('');
-		$("#editForm #eenum").val('');
-		$("#editForm #esex").val('');
-		$("#editForm #eidcard").val('');
-		$("#editForm #ephone").val('');
-		$("#editForm #eposition").val('');
-		$("#editForm #eemail").val('');
-		$("#editForm #ename").val('');
-		$("#editForm #estatus").val('');
-		$("#editForm #eretime").val('');
-		$("#editForm #eremark").val('');
-		
-		
+    	$("#editRole #reid").val('');
+		$("#editRole #eenum").val('');
+		$("#editRole #esex").val('');
+		$("#editRole #eidcard").val('');
+		$("#editRole #ephone").val('');
+		$("#editRole #eposition").val('');
+		$("#editRole #eemail").val('');
+		$("#editRole #ename").val('');
+		$("#editRole #estatus").val('');
+		$("#editRole #eretime").val('');
+		$("#editRole #eremark").val('');
+		$("#editRole #eimage").val('');
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
 		$("#btn_submit").attr("onclick","insertEmploye()");
 		//显示新增窗口
 		$('#editForm').modal('show');
     }
-  //新增员工
-	function insertEmploye() {
-	  
-		//用来关闭新增窗口***********
-		$("#editForm").modal('hide');
-		var url = "${pageContext.request.contextPath }/back/insertEmp";
-		$.post(
-			url,
-			{	
-				reid:$("#editForm #reid").val(),
-				eenum:$("#editForm #eenum").val(),
-				esex:$("#editForm #esex").val(),
-				eidcard:$("#editForm #eidcard").val(),
-				ephone:$("#editForm #ephone").val(),
-				eposition:$("#editForm #eposition").val(),
-				eemail:$("#editForm #eemail").val(),
-				ename:$("#editForm #ename").val(),
-				estatus:$("#editForm #estatus").val(),
-				eretime:$("#editForm #eretime").val(),
-				eremark:$("#editForm #eremark").val(),			
-                
-			},
-			function(data){
-				//后台返回int类型的数据
-				if(data>0){
-					//新增成功，下面是后台框架的提示
-					parent.layer.alert('新增成功');
-				}else{
-					//新增失败
-					parent.layer.alert('新增失败');
-				}
-				//新增完刷新表格数据
-				$('#tb_emp').bootstrapTable('refresh');
-			},
-			"text"
-		);	
-	}
 	//修改按钮事件
-     function UpRole(){
-    	//获取当前选中行的信息
- 		var selectList = $('#tb_emp').bootstrapTable('getSelections');
- 		//判断有没有选中
- 		if(selectList.length<=0){
- 			parent.layer.alert('请选择要修改的数据');
- 			return;
- 		}
- 		//判断有没有选中多个
- 		if(selectList.length>1){
- 			parent.layer.alert('一次只能修改一条数据');
- 			return;
- 		}
- 		var athRole = selectList[0];
- 		//把选中行的数据放到弹窗的控件中
- 		$("#editForm #reid").val(athRole.reid);
- 		$("#editForm #eenum").val(athRole.eenum);
- 		$("#editForm #epassword").val(athRole.epassword);
- 		$("#editForm #esex").val(athRole.esex);
- 		$("#editForm #eidcard").val(athRole.eidcard);
- 		$("#editForm #ephone").val(athRole.ephone);
- 		$("#editForm #eposition").val(athRole.eposition);
- 		$("#editForm #eemail").val(athRole.eemail);
- 		$("#editForm #ename").val(athRole.ename);
- 		$("#editForm #estatus").val(athRole.estatus);
- 		$("#editForm #eretime").val(athRole.eretime);
- 		$("#editForm #eremark").val(athRole.eremark);
- 		
- 		
- 		
- 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
- 		$("#btn_submit").attr("onclick","updateEmploye("+athRole.eid+")");
- 		//显示新增窗口
- 		$('#editForm').modal('show');
-     }
-	function updateEmploye(eid,epassword){
-		//用来关闭新增窗口***********
-		$("#editForm").modal('hide');
-		var url = "${pageContext.request.contextPath }/back/updateEmp";
-		$.post(
-			url,
-			{
-				eid:eid,
-				epassword:$("#editForm #epassword").val(),
-				reid:$("#editForm #reid").val(),
-				eenum:$("#editForm #eenum").val(),
-				esex:$("#editForm #esex").val(),
-				eidcard:$("#editForm #eidcard").val(),
-				ephone:$("#editForm #ephone").val(),
-				eposition:$("#editForm #eposition").val(),
-				eemail:$("#editForm #eemail").val(),
-				ename:$("#editForm #ename").val(),
-				estatus:$("#editForm #estatus").val(),
-				eretime:$("#editForm #eretime").val(),
-				eremark:$("#editForm #eremark").val(),
-			},
-			function(data){
-				//后台返回int类型的数据
-				if(data>0){
-					//新增成功，下面是后台框架的提示
-					parent.layer.alert('修改成功');
-				}else{
-					//新增失败
-					parent.layer.alert('修改失败');
-				}
-				//新增完刷新表格数据
-				$('#tb_emp').bootstrapTable('refresh');
-			},
-			"text"
-		);	
-	}
+    function UpRole(){
+   	//获取当前选中行的信息
+		var selectList = $('#tb_emp').bootstrapTable('getSelections');
+		//判断有没有选中
+		if(selectList.length<=0){
+			parent.layer.alert('请选择要修改的数据');
+			return;
+		}
+		//判断有没有选中多个
+		if(selectList.length>1){
+			parent.layer.alert('一次只能修改一条数据');
+			return;
+		}
+		var athRole = selectList[0];
+		//把选中行的数据放到弹窗的控件中
+		$("#editRole #eid").val(athRole.eid);
+		$("#editRole #reid").val(athRole.reid);
+		$("#editRole #eenum").val(athRole.eenum);
+		$("#editRole #epassword").val(athRole.epassword);
+		$("#editRole #esex").val(athRole.esex);
+		$("#editRole #eidcard").val(athRole.eidcard);
+		$("#editRole #ephone").val(athRole.ephone);
+		$("#editRole #eposition").val(athRole.eposition);
+		$("#editRole #eemail").val(athRole.eemail);
+		$("#editRole #ename").val(athRole.ename);
+		$("#editRole #estatus").val(athRole.estatus);
+		$("#editRole #eretime").val(athRole.eretime);
+		$("#editRole #eremark").val(athRole.eremark);
+		//$("#editRole #eimage").val(athRole.eimage);
+		
+		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
+		$("#btn_submit").attr("onclick","updateEmploye("+athRole.eid+")");
+		//显示新增窗口
+		$('#editForm').modal('show');
+    }
+	
 	//删除按钮事件
 	//*************************************************************************按钮事件
 	function btn_delete(){
 		delRole();
 	}
-	//删除
 	function delRole(){
 		//获取当前选中行的信息
 		var stuList = $('#tb_emp').bootstrapTable('getSelections');
@@ -213,8 +334,8 @@
 			queryParams : queryParams,//传递参数（*）
 			sidePagination : "server", //分页方式：client客户端分页，server服务端分页（*）
 			pageNumber : 1, //初始化加载第一页，默认第一页
-			pageSize : 6, //每页的记录行数（*）
-			pageList : [ 6, 12, 18, 24 ], //可供选择的每页的行数（*）
+			pageSize : 15, //每页的记录行数（*）
+			pageList : [ 15,20, 25, 30 ], //可供选择的每页的行数（*）
 			search : true, //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
 			strictSearch : false,
 			searchOnEnterKey :true, //按回车搜索
@@ -231,37 +352,62 @@
 			columns : [ {
 				checkbox : true,
 			},
-			{
-				field : 'role.rename',
-				title : '角色id'
-			}, {
+			 {
 				field : 'eenum',
 				title : '员工编号'
-			}, {
+			}, 
+			{
+				field : 'eimage',
+				title : '员工头像',
+				align : 'center',
+				formatter : function(value,row,index) {
+					var image = row.eimage;
+					//alert(image);
+					if(image!=null){
+						return "<img src="+row.eimage+" width='35px' height='40px' />"
+					}
+				}
+			},
+			 {
+				field : 'ename',
+				title : '员工姓名'
+			},
+			{
 				field : 'esex',
 				title : '员工性别'
 			},  {
 				field : 'eidcard',
 				title : '员工身份证号',
 				align : 'center',
-			}, {
+			}, 
+			{
 				field : 'ephone',
 				title : '员工手机号'
-			},  {
+			}, 
+			{
+				field : 'role.rename',
+				title : '所属角色'
+			},
+			{
 				field : 'eposition',
 				title : '员工职位'
 			},  {
 				field : 'eemail',
 				title : '员工邮箱'
 			},  {
-				field : 'ename',
-				title : '员工姓名'
-			},  {
-				field : 'epassword',
-				title : '员工密码'
-			},  {
 				field : 'estatus',
-				title : '角色状态'
+				title : '角色状态',
+				align : 'center',
+				formatter : function(value, row, index) {
+					var estatus = row.estatus;
+					if(estatus==1){
+			            return '<i class="fa fa-lock" style="color:red"></i>'
+			        }else if(estatus==0){
+			            return '<i class="fa fa-unlock" style="color:green"></i>'
+			        }else{
+			            return '数据错误'
+			        }
+				}
 			},  {
 				field : 'eretime',
 				title : '创建时间'
@@ -354,6 +500,7 @@
 		                        		<option value="男">男</option>
 		                        		<option value="女">女</option>
 		                        	</select>
+		                        	
 	            					<!-- <input type="text" name="esex" class="form-control" id="esex"> -->
 	            				</div>
 	            				<label for="operateTime" class="control-label col-sm-1">员工编号</label>
@@ -396,8 +543,10 @@
 				</div>
 				<div class="modal-body">
 					<!-- 新增系别 -->
-					<form id="editForm" class="form-horizontal m-t">
-						<div class="form-group">
+					<form id="editRole" class="form-horizontal m-t" method="post" enctype="multipart/form-data">
+						<!-- <form id="editRole" method="post" class="form-horizontal m-t" action="ajaxSubmit.php"> -->
+                		<input type="hidden" name="eid" id="eid" />
+                		<div class="form-group">
 							<label for="url" class="control-label col-sm-3">员工编号</label>
 							<div class="col-sm-8">
 								<input type="text" name="eenum" rows="3" class="form-control" id="eenum" />
@@ -435,6 +584,12 @@
 							<label for="url" class="control-label col-sm-3">员工身份证号</label>
 							<div class="col-sm-8">
 								<input type="text" name="eidcard" rows="3" class="form-control" id="eidcard" />
+	            			</div>
+						</div>
+						<div class="form-group">
+							<label for="url" class="control-label col-sm-3">员工头像</label>
+							<div class="col-sm-8">
+								<input type="file" name="file" id="eimage"/>
 	            			</div>
 						</div>
 						<div class="form-group">
@@ -481,18 +636,21 @@
 								<textarea name="eremark" rows="3" class="form-control" id="eremark"></textarea>
 	            			</div>
 						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
-					</button>
-					<button type="button" id="btn_submit" class="btn btn-primary" onclick="insertRole()">
-						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
-					</button>
+                <div class="form-group">
+                   <div class="modal-footer">
+						<button type="submit" class="btn btn-default" data-dismiss="modal">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
+						</button>
+						 <button type="submit" class="btn btn-primary">
+						 	<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
+						 </button>
+					</div>
+                </div>
+            
+        </div>
+		</form>
 				</div>
 			</div>
 		</div>
-	</div>
 </body>
 </html>
