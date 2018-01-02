@@ -199,7 +199,7 @@
 				field : 'ullevelValue',
 				title : '成长值'
 			}, {
-				field : 'uid',
+				field : 'uiname',
 				title : '用户表id'
 			}]
 		});
