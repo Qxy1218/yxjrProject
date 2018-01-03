@@ -79,5 +79,14 @@ public class BeansBackController {
 		request.setAttribute("uselist", uselist);
 		return "views/back/userlevel";
 	}
+	/**
+	 * 进入红包页面
+	 * */
+	@RequestMapping(value="/toRedmoney")
+	public String toBackRedmoney(HttpServletRequest request) {
+		List<Userinfo> uselist = userlevelService.seleUserlevelList();
+		request.setAttribute("uselist", uselist);
+		return "views/back/redmoney";
+	}
 	
 }
