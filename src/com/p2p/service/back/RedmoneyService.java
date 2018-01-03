@@ -1,10 +1,10 @@
 package com.p2p.service.back;
 
-import org.apache.ibatis.annotations.Param;
+import java.util.List;
 
 import com.p2p.base.IBaseService;
 import com.p2p.pojo.Redmoney;
-import com.p2p.pojo.Role;
+import com.p2p.pojo.Userinfo;
 import com.p2p.util.PageInfo;
 
 public interface RedmoneyService extends IBaseService<Integer,Redmoney>{
@@ -13,4 +13,6 @@ public interface RedmoneyService extends IBaseService<Integer,Redmoney>{
 			
 		//查询总的记录数
 		abstract Integer redmoneyCount();
+		//查询所有的用户
+		abstract List<Userinfo> selectRedmoneyList();
 }

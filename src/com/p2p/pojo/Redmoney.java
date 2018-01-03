@@ -36,12 +36,15 @@ public class Redmoney implements Serializable{
 	
 	@TableField("r_money")
 	private double rmoney; //红包金额
+	
+	private String uiname;
 
 	public Redmoney() {
 
 	}
 
-	public Redmoney(Integer rid, Integer uid, String rimage, String rendtime, String rstardtime, double rmoney) {
+	public Redmoney(Integer rid, Integer uid, String rimage, String rendtime, String rstardtime, double rmoney,
+			String uiname) {
 		super();
 		this.rid = rid;
 		this.uid = uid;
@@ -49,12 +52,7 @@ public class Redmoney implements Serializable{
 		this.rendtime = rendtime;
 		this.rstardtime = rstardtime;
 		this.rmoney = rmoney;
-	}
-
-	@Override
-	public String toString() {
-		return "Redmoney [rid=" + rid + ", uid=" + uid + ", rimage=" + rimage + ", rendtime=" + rendtime
-				+ ", rstardtime=" + rstardtime + ", rmoney=" + rmoney + "]";
+		this.uiname = uiname;
 	}
 
 	public Integer getRid() {
@@ -105,9 +103,14 @@ public class Redmoney implements Serializable{
 		this.rmoney = rmoney;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public String getUiname() {
+		return uiname;
 	}
+
+	public void setUiname(String uiname) {
+		this.uiname = uiname;
+	}
+
 	
 	
 }

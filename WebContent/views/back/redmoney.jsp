@@ -3,6 +3,7 @@
 <%
 	String path = request.getContextPath();
 %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -198,8 +199,8 @@
 			columns : [ {
 				checkbox : true,
 			},{
-				field : 'uid',
-				title : '用户id'
+				field : 'uiname',
+				title : '用户表名字'
 			}, {
 				field : 'rimage',
 				title : '红包表图片介绍'
@@ -315,9 +316,13 @@
 		
 					<!-- 新增系别 -->
 							<div class="form-group">
-							<label for="urlName" class="control-label col-sm-3">用户id</label> 
+							<label for="urlName" class="control-label col-sm-3">用户表名字</label> 
 							<div class="col-sm-8">
-								<input type="text" name="uid" class="form-control" id="uid">
+								<select class="form-control m-b" id="uid" name="uid" style="margin-bottom: 0px;">
+		                        	<c:forEach items="${uselist}" var="userlevel" >
+		                        		<option value="${userlevel.uid}">${userlevel.uiname}</option>
+		                        	</c:forEach>
+		                        </select>
 							</div>
 						</div>
 						<div class="form-group">

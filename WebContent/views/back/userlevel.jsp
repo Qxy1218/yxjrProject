@@ -201,7 +201,7 @@
 				title : '成长值'
 			}, {
 				field : 'uiname',
-				title : '用户表id'
+				title : '用户表名字'
 			}]
 		});
 });

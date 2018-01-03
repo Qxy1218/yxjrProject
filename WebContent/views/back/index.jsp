@@ -260,7 +260,7 @@
                             </li>
                             <li>
 
-                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/redmoney.jsp">红包管理</a>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/back/toRedmoney">红包管理</a>
                             </li>
                             <shiro:hasPermission name="联系管理">
                             	<li>

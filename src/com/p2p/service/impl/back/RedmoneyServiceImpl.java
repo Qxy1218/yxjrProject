@@ -12,6 +12,7 @@ import com.p2p.mapper.RedmoneyMapper;
 import com.p2p.pojo.Indexpic;
 import com.p2p.pojo.Redmoney;
 import com.p2p.pojo.Role;
+import com.p2p.pojo.Userinfo;
 import com.p2p.service.back.RedmoneyService;
 import com.p2p.util.PageInfo;
 
@@ -65,6 +66,12 @@ public class RedmoneyServiceImpl implements RedmoneyService{
 	public Integer redmoneyCount() {
 		// TODO Auto-generated method stub
 		return redmoneymapper.redmoneyCount();
+	}
+
+	@Override
+	public List<Userinfo> selectRedmoneyList() {
+		// TODO Auto-generated method stub
+		return redmoneymapper.seleRedmoneyList();
 	}
 
 
