@@ -13,7 +13,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.p2p.pojo.Role;
+import com.p2p.pojo.Userinfo;
+import com.p2p.pojo.Userlevel;
 import com.p2p.service.back.RoleService;
+import com.p2p.service.back.UserlevelService;
 
 /**
  * 开发人:汪栋才
@@ -26,6 +29,9 @@ public class BeansBackController {
 	  
 	@Resource(name="roleServiceImpl")
 	private RoleService roleService;
+	
+	@Resource(name="userlevelServiceImpl")
+	private UserlevelService userlevelService;
 	/**
 	 * 进入后台登陆界面
 	 * */
@@ -63,6 +69,15 @@ public class BeansBackController {
 		List<Role> rolelist = roleService.seleRoleList();
 		request.setAttribute("rolelist", rolelist);
 		return "views/back/employe";
+	}
+	/**
+	 * 进入成长等级页面
+	 * */
+	@RequestMapping(value="/toUserlevel")
+	public String toBackUserlevel(HttpServletRequest request) {
+		List<Userinfo> uselist = userlevelService.seleUserlevelList();
+		request.setAttribute("uselist", uselist);
+		return "views/back/userlevel";
 	}
 	
 }

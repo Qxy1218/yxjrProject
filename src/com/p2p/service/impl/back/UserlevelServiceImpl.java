@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.p2p.mapper.UserlevelMapper;
+import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Userlevel;
 import com.p2p.service.back.UserlevelService;
 import com.p2p.util.PageInfo;
@@ -16,6 +17,7 @@ import com.p2p.util.PageInfo;
 @Transactional
 @Service
 public class UserlevelServiceImpl implements UserlevelService{
+	
 	@Resource 
 	private UserlevelMapper userlevelmapper;
 	
@@ -70,5 +72,13 @@ public class UserlevelServiceImpl implements UserlevelService{
 		// TODO Auto-generated method stub
 		return userlevelmapper.UserlevelCount();
 	}
+
+	@Override
+	public List<Userinfo> seleUserlevelList() {
+		return userlevelmapper.seleUserlevelList();
+	}
+
+
+	
 
 }

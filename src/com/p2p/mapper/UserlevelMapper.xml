@@ -8,29 +8,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="ul_name" property="ulname"/>  
 		<result column="ul_levelValue" property="ullevelValue"/> 
 		<result column="u_id" property="uid"/> 
-		
-		
-		 <!--配置一对一 -->
-		  <!-- <association property="user" javaType="com.p2p.pojo.User">
-		  	<id column="u_id" property="uid"/>
-			<result column="u_password" property="upassword"/>   
-			<result column="u_headImg" property="uheadImg"/>  
-			<result column="u_phone" property="uphone"/>  
-			<result column="u_regTime" property="uregTime"/> 
-			<result column="u_loginTime" property="uloginTime"/> 
-			<result column="order_invite" property="orderinvite"/> 
-			<result column="u_invite" property="uinvite"/> 
-			<result column="u_enable" property="uenable"/> 
-			<result column="u_isAccountSum" property="uisAccountSum"/>  
-			<result column="qr_code" property="qrcode"/>  
-			<result column="u_address" property="uaddress"/>  
-			<result column="u_ip" property="uip"/>  
-			<result column="u_credit" property="ucredit"/>  
-			<result column="u_balance" property="ubalance"/>  
-			<result column="ul_id" property="ulid"/>  
-			<result column="vd_id" property="vdid"/>  
-		  </association> -->
     </resultMap>
+    <resultMap type="com.p2p.pojo.Userinfo" id="userInfoBaseResultMap">
+		  <id column="ui_id" property="uiid"/>
+ 		  <result column="u_id" property="uid"/>
+ 		  <result column="ui_name" property="uiname"/>
+ 		  <result column="ui_sex" property="uisex"/>
+ 		  <result column="ic_id" property="icid"/>
+ 		   <result column="ui_birthday" property="uibirthday"/>
+ 		  <result column="pe_id" property="peid"/>
+ 		  <result column="cy_id" property="cyid"/>
+ 		  <result column="ae_id" property="aeid"/>
+ 		  <result column="ui_dealpwd" property="uidealpwd"/>
+ 		  <result column="ui_email" property="uiemail"/>
+ 		  <result column="ui_emailstatus" property="uiemailstatus"/>
+ 	</resultMap>
 	 <!-- 查询 -->
 	<select id="getAllModel"  resultMap="BaseResultMap">
  		select ul.ul_id,ul.ul_name,ul.ul_levelValue,ul.u_id,ui.ui_name,u.u_id  from  user_level ul ,user u ,user_info ui 
@@ -67,4 +59,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			u_id =#{uid}
 		WHERE ul_id=#{ulid}
     </update>
+    
+    <!-- 查询 -->
+     <select id="seleUserlevelList" resultMap="userInfoBaseResultMap">
+      	select * from user_info 
+    </select> 
 </mapper>

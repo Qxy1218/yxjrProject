@@ -3,6 +3,7 @@
 <%
 	String path = request.getContextPath();
 %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -302,6 +303,7 @@
 				<div class="modal-body">
 					<form id="editForm" action="" class="form-horizontal m-t" method="post" enctype="multipart/form-data">  
 		
+			
 					<!-- 新增系别 -->
 							<div class="form-group">
 							<label for="urlName" class="control-label col-sm-3">等级名称</label> 
@@ -316,10 +318,13 @@
 	            			</div>
 	            			
 	            			<div class="form-group">
-							<label for="url" class="control-label col-sm-3">用户表id</label>
+							<label for="url" class="control-label col-sm-3">所属角色id</label>
 							<div class="col-sm-8">
-								<input type="text" name="uid" class="form-control" id="uid">
-	            			</div>
+								<select class="form-control m-b" id="uid" name="uid" style="margin-bottom: 0px;">
+		                        	<c:forEach items="${uselist}" var="userlevel" >
+		                        		<option value="${userlevel.uid}">${userlevel.uiname}</option>
+		                        	</c:forEach>
+		                        </select>
 						
 			</form>		
 				</div>

@@ -52,5 +52,6 @@ public class UserInfoServiceImpl implements UserInfoService{
 		return userinfoMapper.findModel(id);
 	}
 
+
 	
 }

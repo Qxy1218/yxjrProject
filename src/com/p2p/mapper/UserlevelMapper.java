@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.p2p.base.IBaseDao;
+import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Userlevel;
 
 
@@ -14,4 +15,8 @@ public interface UserlevelMapper extends IBaseDao<Integer, Userlevel>{
 			
 			//查询总的记录数
 			abstract Integer UserlevelCount();
+			
+			//查询所有的用户
+			abstract List<Userinfo> seleUserlevelList();
+			
 }
