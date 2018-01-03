@@ -21,8 +21,8 @@ public class Userbackcard implements Serializable{
 	@TableField("ub_id")
 	private Integer ubid; //主键
 	
-	@TableField("u_id")
-	private Integer uid; //用户id
+	@TableField("ui_id")
+	private Integer uiid; //用户基本信息id
 	
 	@TableField("ub_backcardnum")
 	private String ubbackcardnum; //银行卡号
@@ -31,20 +31,24 @@ public class Userbackcard implements Serializable{
 	private String ubplaceback; //所属银行
 	
 	@TableField("ub_bindtime")
-	private double ubbindtime; //绑卡时间
+	private String ubbindtime; //绑卡时间
 	
 	@TableField("ub_status")
 	private Integer ubstatus; //状态
+	
+	@TableField("ub_money")
+	private Double ubmoney;  //银行卡余额
 
-	public Userbackcard(Integer ubid, Integer uid, String ubbackcardnum, String ubplaceback, double ubbindtime,
-			Integer ubstatus) {
+	public Userbackcard(Integer ubid, Integer uiid, String ubbackcardnum, String ubplaceback, String ubbindtime,
+			Integer ubstatus,Double ubmoney) {
 		super();
 		this.ubid = ubid;
-		this.uid = uid;
+		this.uiid = uiid;
 		this.ubbackcardnum = ubbackcardnum;
 		this.ubplaceback = ubplaceback;
 		this.ubbindtime = ubbindtime;
 		this.ubstatus = ubstatus;
+		this.ubmoney = ubmoney;
 	}
 
 	public Userbackcard() {
@@ -59,12 +63,28 @@ public class Userbackcard implements Serializable{
 		this.ubid = ubid;
 	}
 
-	public Integer getUid() {
-		return uid;
+	public Integer getUiid() {
+		return uiid;
 	}
 
-	public void setUid(Integer uid) {
-		this.uid = uid;
+	public void setUiid(Integer uiid) {
+		this.uiid = uiid;
+	}
+
+	public String getUbbindtime() {
+		return ubbindtime;
+	}
+
+	public void setUbbindtime(String ubbindtime) {
+		this.ubbindtime = ubbindtime;
+	}
+
+	public Double getUbmoney() {
+		return ubmoney;
+	}
+
+	public void setUbmoney(Double ubmoney) {
+		this.ubmoney = ubmoney;
 	}
 
 	public String getUbbackcardnum() {
@@ -83,14 +103,6 @@ public class Userbackcard implements Serializable{
 		this.ubplaceback = ubplaceback;
 	}
 
-	public double getUbbindtime() {
-		return ubbindtime;
-	}
-
-	public void setUbbindtime(double ubbindtime) {
-		this.ubbindtime = ubbindtime;
-	}
-
 	public Integer getUbstatus() {
 		return ubstatus;
 	}
@@ -105,12 +117,8 @@ public class Userbackcard implements Serializable{
 
 	@Override
 	public String toString() {
-		return "User_backcard [ubid=" + ubid + ", uid=" + uid + ", ubbackcardnum=" + ubbackcardnum + ", ubplaceback="
-				+ ubplaceback + ", ubbindtime=" + ubbindtime + ", ubstatus=" + ubstatus + "]";
+		return "Userbackcard [ubid=" + ubid + ", uiid=" + uiid + ", ubbackcardnum=" + ubbackcardnum + ", ubplaceback="
+				+ ubplaceback + ", ubbindtime=" + ubbindtime + ", ubstatus=" + ubstatus + ", ubmoney=" + ubmoney + "]";
 	}
-	
-	
-	
-	
-	
+
 }

@@ -28,22 +28,35 @@ public class IdCard implements Serializable{
 	@TableField("ic_starttime")
 	private String icstarttime; //认证时间
 	
+	@TableField("ic_number")
+	private String icnumber;  //身份证号
+	
+	@TableField("ui_id")
+	private Integer uiid;  //用户信息id
+	
+	@TableField("ic_name")
+	private String icname;  //用户真实姓名 
+	
 	public IdCard() {
 	}
 	
-	public IdCard(Integer icid, String icfrontUrl, String icbackUrl, Integer icstatus, String icstarttime) {
+	public IdCard(Integer icid, String icfrontUrl, String icbackUrl, Integer icstatus,String icnumber, String icstarttime,Integer uiid,String icname) {
 		super();
 		this.icid = icid;
 		this.icfrontUrl = icfrontUrl;
 		this.icbackUrl = icbackUrl;
 		this.icstatus = icstatus;
 		this.icstarttime = icstarttime;
+		this.icnumber = icnumber;
+		this.uiid = uiid;
+		this.icname = icname;
 	}
 
 	@Override
 	public String toString() {
 		return "IdCard [icid=" + icid + ", icfrontUrl=" + icfrontUrl + ", icbackUrl=" + icbackUrl + ", icstatus="
-				+ icstatus + ", icstarttime=" + icstarttime + "]";
+				+ icstatus + ", icstarttime=" + icstarttime + ", icnumber=" + icnumber + ", uiid=" + uiid + ", icname="
+				+ icname + "]";
 	}
 
 	public Integer getIcid() {
@@ -85,6 +98,29 @@ public class IdCard implements Serializable{
 	public void setIcstarttime(String icstarttime) {
 		this.icstarttime = icstarttime;
 	}
-	
+
+	public String getIcnumber() {
+		return icnumber;
+	}
+
+	public void setIcnumber(String icnumber) {
+		this.icnumber = icnumber;
+	}
+
+	public Integer getUiid() {
+		return uiid;
+	}
+
+	public void setUiid(Integer uiid) {
+		this.uiid = uiid;
+	}
+
+	public String getIcname() {
+		return icname;
+	}
+
+	public void setIcname(String icname) {
+		this.icname = icname;
+	}
 	
 }

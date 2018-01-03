@@ -24,9 +24,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.controller.back.SendMailUtil;
 import com.p2p.controller.back.UtilController;
+import com.p2p.pojo.AuthebDetais;
 import com.p2p.pojo.Setupnatice;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Userinfo;
+import com.p2p.service.back.AuthebDetaisService;
 import com.p2p.service.back.SendMailService;
 import com.p2p.service.front.IUserService;
 import com.p2p.service.front.SetupnaticeService;
@@ -55,6 +57,9 @@ public class IUserController {
 	
 	@Resource(name="sendMailServiceImpl")
 	private SendMailService sendMailService;
+	
+	@Resource(name="authebDetaisServiceImpl")
+	private AuthebDetaisService authebDetaisService;
 	
 	/**
 	 * 用户通知设置的方法
@@ -269,7 +274,7 @@ public class IUserController {
 				map.put("status",1);
 			}else {
 				map.put("status",5);
-				map.put("status",0);
+				//map.put("status",0);
 				map.put("message","账号密码输入错误或账号不存在");
 				
 			}
@@ -315,16 +320,19 @@ public class IUserController {
 	 * */
 	@RequestMapping(value = "updateUser")
 	@ResponseBody
-	public int updateUser(User user){
+	public int updateUser(User user,HttpSession session){
 		int isUpdate = 0;
 		try {
 			if(user.getUpassword()!=null) {
 				Object results = new SimpleHash("MD5", user.getUpassword(), ByteSource.Util.bytes("user"), 10);
 				user.setUpassword(results.toString());
 			}
-			iUserService.update(user);
-			isUpdate = 1;
+			isUpdate = iUserService.update(user);
 			System.out.println("修改成功");
+			
+			//重新加载user中的值
+			User users = iUserService.getModel(user);
+			session.setAttribute("user", users);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -405,6 +413,7 @@ public class IUserController {
 		map.put("userid",userinfo.getUiid());
 		map.put("title", "忆信认证");
 		map.put("email",userinfo.getUiemail());
+		map.put("name",userinfo.getUiname());
 		//调用方法
 		boolean isSuccess = SendMailUtil.send(map,sendMailService);
 		if(isSuccess){
@@ -420,7 +429,7 @@ public class IUserController {
 	 * 邮箱点击验证的controller
 	 * */
 	@RequestMapping(value = "emailcheck")
-	public String emailCheck(Integer id,String email,Model model) {
+	public String emailCheck(Integer id,String email,String name,Model model) {
 		Userinfo userinfo = new Userinfo();
 		userinfo.setUiemail(email);
 		userinfo.setUiid(id);
@@ -428,7 +437,14 @@ public class IUserController {
 		if(isok>0) {
 			model.addAttribute("isok",1);
 			userinfo.setUiemailstatus(1);
-			userInfoService.update(userinfo);
+			int count = userInfoService.update(userinfo);
+			if(count>0) {
+				AuthebDetais authebDetais = new AuthebDetais();
+				authebDetais.setAdintroduct("用户: "+name+",已向邮箱发送消息,需后台管理员审核通过!");
+				authebDetais.setAdtime(DateUtils.getDateTimeFormat(new Date()));
+				authebDetais.setUiid(id);
+				authebDetaisService.addModel(authebDetais);
+			}
 		}else {
 			model.addAttribute("isok",2);
 		}

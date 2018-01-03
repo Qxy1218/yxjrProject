@@ -26,9 +26,6 @@ public class Userinfo implements Serializable{
 	@TableField("ui_sex")
 	private String uisex;//性别
 	
-	@TableField("ic_id")
-	private Integer icid;//身份证id
-	
 	@TableField("ui_birthday")
 	private String uibirthday;//生日日期
 	
@@ -54,19 +51,26 @@ public class Userinfo implements Serializable{
 	 * 二级对象(对应Userinfo用户基本信息基本类)
 	 * */
 	private User user;
+	/**
+	 * 二级对象(对应IdCard身份证类)
+	 * */
+	private IdCard idCard;
+	/**
+	 * 二级对象(对应Userbackcard银行卡表)
+	 * */
+	private Userbackcard userbackcard;
 	
 	public Userinfo() {
 		
 	}
 
-	public Userinfo(Integer uiid, Integer uid, String uiname, String uisex, Integer icid, String uibirthday,
-			Integer peid, Integer cyid, Integer aeid, String uidealpwd, String uiemail,Integer uiemailstatus, User user) {
+	public Userinfo(Integer uiid, Integer uid, String uiname, String uisex, String uibirthday,
+			Integer peid, Integer cyid, Integer aeid, String uidealpwd, String uiemail,Integer uiemailstatus, User user,IdCard idCard,Userbackcard userbackcard) {
 		super();
 		this.uiid = uiid;
 		this.uid = uid;
 		this.uiname = uiname;
 		this.uisex = uisex;
-		this.icid = icid;
 		this.uibirthday = uibirthday;
 		this.peid = peid;
 		this.cyid = cyid;
@@ -75,6 +79,8 @@ public class Userinfo implements Serializable{
 		this.uiemail = uiemail;
 		this.uiemailstatus = uiemailstatus;
 		this.user = user;
+		this.idCard = idCard;
+		this.userbackcard = userbackcard;
 	}
 
 	public Integer getUiid() {
@@ -107,14 +113,6 @@ public class Userinfo implements Serializable{
 
 	public void setUisex(String uisex) {
 		this.uisex = uisex;
-	}
-
-	public Integer getIcid() {
-		return icid;
-	}
-
-	public void setIcid(Integer icid) {
-		this.icid = icid;
 	}
 
 	public String getUibirthday() {
@@ -180,13 +178,29 @@ public class Userinfo implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	public IdCard getIdCard() {
+		return idCard;
+	}
+
+	public void setIdCard(IdCard idCard) {
+		this.idCard = idCard;
+	}
+
+	public Userbackcard getUserbackcard() {
+		return userbackcard;
+	}
+
+	public void setUserbackcard(Userbackcard userbackcard) {
+		this.userbackcard = userbackcard;
+	}
 
 	@Override
 	public String toString() {
-		return "Userinfo [uiid=" + uiid + ", uid=" + uid + ", uiname=" + uiname + ", uisex=" + uisex + ", icid="
-				+ icid + ", uibirthday=" + uibirthday + ", peid=" + peid + ", cyid=" + cyid + ", aeid=" + aeid
-				+ ", uidealpwd=" + uidealpwd + ", uiemail=" + uiemail + ", uiemailstatus=" + uiemailstatus + ", user=" + user + "]";
+		return "Userinfo [uiid=" + uiid + ", uid=" + uid + ", uiname=" + uiname + ", uisex=" + uisex + ", uibirthday="
+				+ uibirthday + ", peid=" + peid + ", cyid=" + cyid + ", aeid=" + aeid + ", uidealpwd=" + uidealpwd
+				+ ", uiemail=" + uiemail + ", uiemailstatus=" + uiemailstatus + ", user=" + user + ", idCard=" + idCard
+				+ ", userbackcard=" + userbackcard + "]";
 	}
-
 
 }

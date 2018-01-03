@@ -1,5 +1,6 @@
 package com.p2p.controller.front;
 
+
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -13,15 +14,18 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.p2p.pojo.Contact;
+import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.Setupnatice;
 import com.p2p.pojo.User;
 import com.p2p.service.back.ContactService;
 import com.p2p.service.front.FabiaoService;
 import com.p2p.service.front.SetupnaticeService;
+import com.p2p.service.front.UserInfoService;
 import com.p2p.util.ContextUtils;
 import com.p2p.util.DateUtils;
 
@@ -43,6 +47,8 @@ public class FrontController {
 	@Resource(name="contactServiceImpl")
 	private ContactService contactService;
 	
+	@Resource(name="userInfoServiceImpl")
+	private UserInfoService userInfoService;
 	
 	/**
 	 * 头部的conteroller
@@ -633,10 +639,16 @@ public class FrontController {
 	 * 账户设置页面的controller
 	 * */
 	@RequestMapping(value="/userverify")
-	public ModelAndView toUserVerify(Model model) {
+	public ModelAndView toUserVerify(@RequestParam Integer uiid,Model model,HttpSession session) {
 		ModelAndView mo = new ModelAndView();
 		
 		model.addAttribute("pageName", "myinfo");
+		
+		//获取用户基本信息
+		Userinfo userinfos = new Userinfo();
+		userinfos.setUiid(uiid);
+		Userinfo userinfo = userInfoService.getModel(userinfos);
+		session.setAttribute("userinfo", userinfo);
 		
 		mo.setViewName("views/front/user/userverify");
 		return mo;
