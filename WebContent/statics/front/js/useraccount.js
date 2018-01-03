@@ -17,7 +17,6 @@ $(function(){
     setPassword();  //修改登录密码
     setAddress();  //添加联系地址
     verifyemail();   //电子邮箱
-    getQuestionnaire();  //微商存管账户
     hsChangePassWord();  //微商交易密码
 
     function getQueryString(name) {
@@ -40,19 +39,32 @@ $(function(){
 });
 
 function setVerifyStatus(){
-    var id_status = 0;
-    var address_status = 0;
-    var email_status = 0;
-    var phone_status = 1;
-    var questionnaire_status = 0;
-    var setword_status=0;
-    var i = Number(id_status)+Number(phone_status)+Number(email_status);
+    var id_status = 0;  //徽商存管账户
+    var address_status = 0;  //联系地址
+    var email_status = 0;  //电子邮箱
+    var phone_status = 0;  //手机号码
+    var setword_status=0;  
+    var name_number=0;  //实名认证
+    
+    if($("#vp-uphone").val()!=null && $("#vp-uphone").val()!=""){
+    	phone_status = 1;
+    }
+    if($("#getemailstatus").val()==2){
+    	email_status = 1;
+    }
+    if($("#icstatus").val()==1){
+    	name_number = 1;
+    }
+    
+    var i = Number(id_status)+Number(phone_status)+Number(email_status)+Number(name_number);
 
     if(i == 1){
         $('#safe_level').text('低');
     }else if (i == 2){
         $('#safe_level').text('中');
-    }else if (i == 3){
+    }else if(i == 3){
+    	$('#safe_level').text('较高');
+    }else if (i == 4){
         $('#safe_level').text('高');
     }else{
         $('#safe_level').text('极低');
@@ -70,6 +82,7 @@ function setVerifyStatus(){
         $('#id_status').html('<b></b>已认证');
         $('#id_status').next('span').find('a').text('查看');
         $('#id_status').next('span').find('a').prop('href','#');
+        
         $('#tid_status').removeClass('m2-userSettingsaut-fal');
         $('#tid_status').addClass('m2-userSettingsaut-tur');
         $('#tid_status').html('<b></b>已认证');
@@ -101,14 +114,13 @@ function setVerifyStatus(){
         $('#address_status').html('<b></b>已添加');
         $('#address_status').next('span').find('a').text('修改');
     }
-    if(questionnaire_status == 1){
-        $('#questionnaire_status').removeClass('m2-userSettingsaut-fal');
-        $('#questionnaire_status').addClass('m2-userSettingsaut-tur');
-        $('#questionnaire_status').html('<b></b>已填写');
-        $('#questionnaire_status').next('span').find('a').text('查看');
-        $('#questionnaire-text').text('因时制宜，期待每一次改变');
-        $('.question_subbtn').hide();
+    if(name_number == 1){
+        $('#name_number').removeClass('m2-userSettingsaut-fal');
+        $('#name_number').addClass('m2-userSettingsaut-tur');
+        $('#name_number').html('<b></b>已认证');
+        $('#name_number').next('span').find('a').text('修改');
     }
+    
     if(getParam('phone')==1){
         $('#phone_status').next('span').find('a').click();
     }
@@ -271,17 +283,16 @@ function bindphone(){
 					uid:$("#vp-uid").val()
 				},
 				success:function(data){
+					var obj = new Array();
 					if(data>0){
-						mizhu.confirm('手机号修改成功', '请重新登录账号!', function(flag) {
-							if(flag) {
-								window.location="http://127.0.0.1:8080/Finances/user/logout";
-							}else{
-								mizhu.alert('', '请重新登录账号!','alert_red');
-								window.location="http://127.0.0.1:8080/Finances/user/logout";
-							}
-						});
+               		 obj['msg']="恭喜你,手机号修改成功!";
+                        obj['status']=1;
+                        dialog(obj);
 					}else{
-				        mizhu.alert('', '对不起信息修改失败','alert_red');
+						obj['msg']="很遗憾,手机号修改失败!";
+	                    obj['status']=0;
+	                    dialog(obj);
+	                    return;
 					}
 			    }
 			});
@@ -430,17 +441,17 @@ function setPassword(){
                 	uid:$("#vp-uid").val()
                 },
                 success:function(data){
+                	var obj = new Array();
                 	if(data>0){
-						mizhu.confirm('密码修改成功', '请重新登录账号!', function(flag) {
-							if(flag) {
-								window.location="http://127.0.0.1:8080/Finances/user/logout";
-							}else{
-								mizhu.alert('', '请重新登录账号!','alert_red');
-								window.location="http://127.0.0.1:8080/Finances/user/logout";
-							}
-						});
+                		 obj['msg']="恭喜你,登录密码修改成功,请重新登录账号!";
+                         obj['status']=1;
+                         dialog(obj);
+                         window.location="http://127.0.0.1:8080/Finances/user/logout";
 					}else{
-				        mizhu.alert('', '对不起信息修改失败','alert_red');
+						obj['msg']="很遗憾,登录密码修改失败";
+	                    obj['status']=0;
+	                    dialog(obj);
+	                    return;
 					}
                 }
             });
@@ -473,67 +484,13 @@ function verifyemail(){
         if(flag){
         	var uiemail = $('#verifyemail').val();
         	var uiid = $("#vp-uiid").val();
+        	var uiname = $("#vp-uiname").val();
         	
-        	window.location="http://127.0.0.1:8080/Finances/user/sendmailcheckuser?uiemail="+uiemail+"&uiid="+uiid;
+        	window.location="http://127.0.0.1:8080/Finances/user/sendmailcheckuser?uiemail="+uiemail+"&uiid="+uiid+"&uiname="+uiname;
         }
     });
 }
         
-//问卷调查
-function getQuestionnaire(){
-
-    $('#questionnaire-btn').click(function(){
-        var anwser = '';
-        var flag = true;
-        $('#questionnaire ul').each(function(){
-            if($(this).find('input:checked').size()==0){
-                flag = false;
-                var obj = {};
-                obj['status'] = 0;
-                obj['msg'] = '您需要填写全部问题才能提交';
-                dialog(obj);
-                return;
-            }
-        });
-        $('#questionnaire li').has('ul').each(function(){
-            $(this).find('input').each(function(){
-                if($(this).prop("checked")){
-                    anwser += $(this).next('label').text().substr(0,1)+':';
-                }
-            });
-            anwser += ',';
-        });
-        if(flag){
-            $.ajax({
-                url:"/usercenter-Accountcontrol-setQuestionnaire",
-                type:"POST",
-                data:{
-                    anwser:anwser
-                },
-                success:function(data){
-                    obj = eval('('+data+')');
-                    dialog(obj);
-                }
-            });
-        }
-    });
-
-    oldanwser = '';
-    anwserobj = oldanwser.split(',');
-    $('#questionnaire li').has('ul').each(function(i){
-        if(anwserobj[i]){
-            var subanwser = anwserobj[i].split(':');
-            $(this).find('input').each(function(){
-                for(var j in subanwser){
-                    if(subanwser[j] == $(this).next('label').text().substr(0,1)){
-                        $(this).prop("checked","checked");
-                    }
-                }
-            });
-        }
-    });
-}
-
 function closeDialog(){
     $('.m2-userCentercommon-confirm').hide();
     $('.m2-userCentercommon-bg').hide();
@@ -567,35 +524,59 @@ function dialog(obj){
 
 //修改用户名
 function changeUserName(){
-
+	var uiid = $("#vp-uiid").val();
+	var icid = $("#vp-icid").val();
     var username = $('#usernametext').val().trim();
-    if(!userNameCheck(username)){
-        return;
-    }
-    $.ajax({
-        url: '/Finances/user/updateUserInfo',
-        data: {
-            uiname: username,
-            uiid:$("#vp-uiid").val()
-        },
-        success: function(data){
-            if(data>0){
-            	mizhu.alert('', '信息修改成功','alert_green');
-            }else{
-            	mizhu.alert('', '对不起信息修改失败','alert_red');
+    var icnumber = $("#icnumbertext").val().trim();
+    
+    if(!userNameCheck(username) || !icNumberCheck(icnumber)){
+    	var obj=new Array();
+        obj['msg']="您需要填写全部信息才能提交";
+        obj['status']=0;
+        dialog(obj);
+    	return;
+    }else{
+        $.ajax({
+            url:"/Finances/idcard/addinfo",
+            type:"POST",
+            dataType: "json",
+            data:{
+                uiid:uiid,
+                icid:icid,
+                icname:username,
+                icnumber:icnumber
+            },
+            success:function(data){
+            	var obj=new Array();
+                if(data == 1){
+                    obj['msg']="恭喜你,实名认证成功";
+                    obj['status']=1;
+                    dialog(obj);
+                }else if(data == 2){
+                    obj['msg']="恭喜你,信息修改成功";
+                    obj['status']=1;
+                    dialog(obj);
+                }else{
+                    obj['msg']="提交信息失败";
+                    obj['status']=0;
+                    dialog(obj);
+                    return;
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 //用户名变化
 $('#usernametext').keyup(function(){
     userNameCheck($(this).val());
 });
-
+//用户名变化
+$('#icnumbertext').keyup(function(){
+	icNumberCheck($(this).val());
+});
 //用户名检查
 function userNameCheck(username){
-
     var patten1 = /^([\u4E00-\u9FA5]|[0-9]|[a-z]|[A-Z]|_)+$/;
     var patten2 = /^([a-z]|[A-Z])|[\u4E00-\u9FA5]/;
     var patten3 = /^.{2,15}$/;
@@ -615,13 +596,33 @@ function userNameCheck(username){
         return true;
     }
 }
-
+//身份证检查
+function icNumberCheck(icnumber){
+	var regu =/(^[0-9]{15}$)|([0-9]{17}([0-9]|X|x)$)/;
+    var re = new RegExp(regu);
+    icnumber.trim();
+    if (!re.test(icnumber)) {
+    	userIcidWarn('身份证号格式输入不正确');
+        return false;
+    }else{
+    	userIcidWarn('');
+        return true;
+    }
+}
 //修改用户名错误
 function userNameWarn(msg){
     if(msg){
         $('#usernamewarn').html('<em></em>'+msg);
     }else{
         $('#usernamewarn').html('');
+    }
+}
+//修改用户名错误
+function userIcidWarn(msg){
+    if(msg){
+        $('#usericidwarn').html('<em></em>'+msg);
+    }else{
+        $('#usericidwarn').html('');
     }
 }
 
@@ -633,10 +634,10 @@ function hsChangePassWord(){
 	    if(t2-t1 > 60*1000 ){
 	        t1 = Date.now();
 	        $.ajax({
-	            url:"/usercenter-Accountcontrol-hs_sendphone",
+	            url:"/Finances/front/getregsendphone",
 	            type:"POST",
 	            data:{
-	            	phone:$('#hsvp-phonenum').val(),
+	            	phone:$('#vp-phonenum').val(),
 	            },
 	            success:function(data){
 	                var obj = eval('('+data+')');

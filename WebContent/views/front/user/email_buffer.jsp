@@ -46,7 +46,7 @@
             <c:if test="${isgo == 0 }">
 	    		<h1>验证邮箱发送失败</h1>
 	            <p>返回个人中心</p>
-	            <a href="${pageContext.request.contextPath}/userverify">返回</a>
+	            <a href="${pageContext.request.contextPath}/userverify?uiid=${sessionScope.userinfo.uiid}">返回</a>
     		</c:if>
        </div>
     </div>

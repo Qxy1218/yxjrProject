@@ -60,6 +60,7 @@
                     <i class="m2-levelIcon-fal"></i>
                     <i class="m2-levelIcon-fal"></i>
                     <i class="m2-levelIcon-fal"></i>
+                    <i class="m2-levelIcon-fal"></i>
                     <b class="m2-wel-levelTip">请通过完善下方信息来提升安全级别</b>
                 </div>
             </div>
@@ -80,6 +81,7 @@
                         <li>
                         	<input type="hidden" id='vp-uid' value="${sessionScope.user.uid }">
                         	<input type="hidden" id='vp-uphone' value="${sessionScope.user.uphone }">
+                        	
                             <span class="m2-userSettingshide-nor"><u>*</u>手机号：</span>
                             <input type="text" placeholder="请输新手机号码" id='vp-phonenum' value="${sessionScope.user.uphone }">
                             <a class="m2-userSettings-telSubmit" href="javascript:void(0)" id='vp-textbtn'>短信验证码</a>
@@ -118,7 +120,8 @@
 						<span class="m2-userSettingsshow-exp">交易密码需跳转徽商交易系统页面输入，适用于投资验证及提现验证
 						</span>
                         <span class="m2-userSettingsaut m2-userSettingsaut-fal"  ><b></b>未开户</span>
-                        <span class="m2-userSettingsshow-link"><a href="<%=path %>/views/front/openbankid.jsp">开户</a></span>					</div>
+                        <span class="m2-userSettingsshow-link"><a href="javascript:void(0)">开户</a></span>					
+                    </div>
                     <ul class="m2-userSettings-setpHide" style="display:none;" id=''>
                         <li>
                             <input type="text" placeholder="请输手机号码" type="text" style="display:none;  readonly="readonly" id='hsvp-phonenum' value="13737301354">
@@ -144,29 +147,19 @@
                 <li class="m2-userCentersettings-step4 m2-userSettings-step">
                     <div class="m2-userSettings-stepShow">
                         <i></i>
+                        <input type="hidden" id='getemailstatus' value="${sessionScope.user.userinfo.uiemailstatus }">
+                        <input type="hidden" id='vp-uiname' value="${sessionScope.user.userinfo.uiname }">
                         <span class="m2-userSettingsshow-tit">电子邮箱</span>
                         <span class="m2-userSettingsshow-exp">获取最新的投资讯息和账户信息变动通知</span>
                         
-                        <c:set var="getemailstatus" value="${sessionScope.user.userinfo.uiemailstatus}"></c:set>
-                        <c:if test="${getemailstatus==0 || getemailstatus==1}">
-                        	<span class="m2-userSettingsaut m2-userSettingsaut-fal" id='email_status'><b></b>未认证</span>
-                        	<span class="m2-userSettingsshow-link"><a href="javascript:void(0)">认证</a></span>
-                        </c:if>
-                        <c:if test="${getemailstatus==2}">
-                        	<span class="m2-userSettingsaut m2-userSettingsaut-tur" id='email_status'><b></b>已认证</span>
-                        	<span class="m2-userSettingsshow-link"><a href="javascript:void(0)">修改</a></span>
-                        </c:if>
+                        <span class="m2-userSettingsaut m2-userSettingsaut-fal" id='email_status'><b></b>未认证</span>
+                        <span class="m2-userSettingsshow-link"><a href="javascript:void(0)">认证</a></span>
                     </div>
                     <ul class="m2-userSettings-setpHide" style="display:none;" id='email_status_2'>
                         <li class="m2-userSettingshide-tit">请填写您的电子邮箱，点击下面的按钮发送激活邮件，登陆您的电子邮箱，完成验证。</li>
                         <li>
                             <span class="m2-userSettingshide-nor"><u>*</u>邮箱：</span>
-                            <c:if test="${getemailstatus==0 || getemailstatus==1}">
-	                        	<input type="text" placeholder="请输入邮箱地址" type="text" id="verifyemail">
-	                        </c:if>
-                            <c:if test="${getemailstatus==2}">
-	                        	<input type="text" placeholder="请输入邮箱地址" type="text" value="${sessionScope.user.userinfo.uiemail}" id="verifyemail">
-	                        </c:if>
+	                        <input type="text" placeholder="请输入邮箱地址" type="text" value="${sessionScope.user.userinfo.uiemail}" id="verifyemail">
                             <span class="m2-userSettingshide-warning"></span>
                         </li>
                         <li class="m2-userSettingshide-btn"><a href="javascript:void(0)" id='verifyemail-btn'>发送验证邮件</a></li>
@@ -244,36 +237,36 @@
                 </li>
                 <li class="m2-userCentersettings-step7 m2-userSettings-step" >
                 	<input type="hidden" id='vp-uiid' value="${sessionScope.user.userinfo.uiid }">
+                	<input type="hidden" id='vp-icid' value="${sessionScope.userinfo.idCard.icid }">
+                	<input type="hidden" id='icstatus' value="${userinfo.idCard.icstatus }">
                     <div class="m2-userSettings-stepShow">
                         <i></i>
-                        <span class="m2-userSettingsshow-tit">用户名修改</span>
-                        <span class="m2-userSettingsshow-exp">你可以通过此功能修改用户名</span>
+                        <span class="m2-userSettingsshow-tit">实名认证</span>
+                        <span class="m2-userSettingsshow-exp">通过此功能对用户进行实名<br/>及身份证认证管理</span>
                         
-                        <c:set var="thisuser" value="yxjr${sessionScope.user.uphone}"></c:set>
-                        <c:set var="myuser" value="${sessionScope.user.userinfo.uiname}"></c:set>
-                        <c:if test="${myuser==thisuser}">
-                        	<span class="m2-userSettingsaut m2-userSettingsaut-fal"><b></b>未修改</span>
-                        </c:if>
-                        <c:if test="${myuser!=thisuser}">
-                        	<span class="m2-userSettingsaut m2-userSettingsaut-tur"><b></b>已修改</span>
-                        </c:if>
-                        
-                        <span class="m2-userSettingsshow-link"><a href="javascript:void(0)">修改</a></span>
+                        <span class="m2-userSettingsaut m2-userSettingsaut-fal" id='name_number'><b></b>未认证</span>
+                        <span class="m2-userSettingsshow-link"><a href="javascript:void(0)">认证</a></span>
                     </div>
                     <ul class="m2-userSettings-setpHide">
                         <li class="m2-userSettingshide-tit">用户名只允许中文、字母、数字、下划线组成，首位只能为字母，且至少需要 2 个字符。</li>
                         <li>
-                            <span class="m2-userSettingshide-nor">用户名：</span>
-                            <input placeholder="请输入用户名" type="text" id='usernametext' value="${sessionScope.user.userinfo.uiname }">
+                            <span class="m2-userSettingshide-nor"><u>*</u>用户名：</span>
+                            <input placeholder="请输入真实姓名" type="text" id='usernametext' value="${sessionScope.userinfo.idCard.icname}">
                             <span class="m2-userSettingshide-warning" id='usernamewarn'></span>
                         </li>
-                        <li class="m2-userSettingshide-btn"><a href="javascript:void(0)" onclick='changeUserName()'>修改</a></li>
+                        <li>
+                        	<span class="m2-userSettingshide-nor"><u>*</u>身份证号：</span>
+                            <input placeholder="请输入身份证号" type="text" id='icnumbertext' value="${sessionScope.userinfo.idCard.icnumber}">
+                            <span class="m2-userSettingshide-warning" id='usericidwarn'></span>
+                        </li>
+                        <li class="m2-userSettingshide-btn"><a href="javascript:void(0)" onclick='changeUserName()'>确定</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
     <script type="text/javascript" src="<%=path %>/statics/front/statics/home2/js/HMZCity.json"></script>
+    <!-- 需要具体实现的js(修改验证的ajax) -->
     <script type="text/javascript" src="<%=path %>/statics/front/js/useraccount.js"></script>
     </body>
 </html>

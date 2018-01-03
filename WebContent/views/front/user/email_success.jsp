@@ -46,7 +46,7 @@
 	    		<h1>很遗憾，绑定邮箱失败</h1>
     		</c:if>
     		<p>返回个人中心</p>
-	        <a href="${pageContext.request.contextPath}/userverify">返回</a>
+	        <a href="${pageContext.request.contextPath}/userverify?uiid=${sessionScope.userinfo.uiid}">返回</a>
        </div>
     </div>
     <!-- 足部start -->

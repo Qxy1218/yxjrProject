@@ -176,6 +176,7 @@
                             <input type="hidden" name="__hash__" value="2ed71d5dc3b3d172b09f15e7631d021f_ed4f61a6dca2ed264a7bf9ceb8d3e04b" /></form>
                         <div class="m2-login-submit">
                             <a href="javascript:;" onclick="login();" class="m2-loginBtn">确认登录</a>
+                            <p class="alarmnew" style="font-weight: bolder;text-align: left;position: absolute;color:red;width:200px;height: 24px;line-height: 24px;margin:-4px 0;"></p>
                         </div>
 
                     </div>
@@ -229,7 +230,7 @@
 	       //用户登入的controller方法
 	        postData("/Finances/user/userLogin",p,function(d){
 	
-	//		  $(".alarmnew").hide();
+				$(".alarmnew").hide();
 	            d.url = decodeURIComponent(d.url);
 	            if(d.status==3){
 	                showInfoDialog(d.message,1);
@@ -250,7 +251,7 @@
 	                },3000);
 	            }else if(d.status==5){
 	                $(".alarmnew").html(d.message);
-	//    $(".alarmnew").show();
+	    			$(".alarmnew").show();
 	                if(d.verify_nums>3){
 	                    $("#reverifyCode").click();
 	                    codeShow();
@@ -258,7 +259,7 @@
 	            }
 	            else{
 	                $(".alarmnew").html(d.message);
-	//    $(".alarmnew").show();
+					$(".alarmnew").show();
 	                if(d.verify_nums>3){
 	                    $("#reverifyCode").click();
 	                    codeShow();
