@@ -83,12 +83,41 @@ public class User implements Serializable{
 	
 	private Redmoney redmoney;
 
+	private Withdrawals withdrawals;
 	
 
 	public User() {
 		super();
 	}
 
+
+	public User(Integer uid, String upassword, String uheadImg, String uphone, String uregTime, String uloginTime,
+			String orderinvite, String uinvite, Integer uenable, Integer uisAccountSum, String qrcode, String uaddress,
+			String uip, Integer ucredit, Double ubalance, String ulid, Double vdid, Userinfo userinfo,
+			Userlevel userlevel, Redmoney redmoney, Withdrawals withdrawals) {
+		super();
+		this.uid = uid;
+		this.upassword = upassword;
+		this.uheadImg = uheadImg;
+		this.uphone = uphone;
+		this.uregTime = uregTime;
+		this.uloginTime = uloginTime;
+		this.orderinvite = orderinvite;
+		this.uinvite = uinvite;
+		this.uenable = uenable;
+		this.uisAccountSum = uisAccountSum;
+		this.qrcode = qrcode;
+		this.uaddress = uaddress;
+		this.uip = uip;
+		this.ucredit = ucredit;
+		this.ubalance = ubalance;
+		this.ulid = ulid;
+		this.vdid = vdid;
+		this.userinfo = userinfo;
+		this.userlevel = userlevel;
+		this.redmoney = redmoney;
+		this.withdrawals = withdrawals;
+	}
 
 
 	@Override
@@ -98,38 +127,8 @@ public class User implements Serializable{
 				+ ", uinvite=" + uinvite + ", uenable=" + uenable + ", uisAccountSum=" + uisAccountSum + ", qrcode="
 				+ qrcode + ", uaddress=" + uaddress + ", uip=" + uip + ", ucredit=" + ucredit + ", ubalance=" + ubalance
 				+ ", ulid=" + ulid + ", vdid=" + vdid + ", userinfo=" + userinfo + ", userlevel=" + userlevel
-				+ ", redmoney=" + redmoney + "]";
+				+ ", redmoney=" + redmoney + ", withdrawals=" + withdrawals + "]";
 	}
-
-
-
-	public User(Integer uid, String upassword, String uheadImg, String uphone, String uregTime, String uloginTime,
-			String orderinvite, String uinvite, Integer uenable, Integer uisAccountSum, String qrcode, String uaddress,
-			String uip, Integer ucredit, Double ubalance, String ulid, Double vdid, Userinfo userinfo,
-			Userlevel userlevel, Redmoney redmoney) {
-		super();
-		this.uid = uid;
-		this.upassword = upassword;
-		this.uheadImg = uheadImg;
-		this.uphone = uphone;
-		this.uregTime = uregTime;
-		this.uloginTime = uloginTime;
-		this.orderinvite = orderinvite;
-		this.uinvite = uinvite;
-		this.uenable = uenable;
-		this.uisAccountSum = uisAccountSum;
-		this.qrcode = qrcode;
-		this.uaddress = uaddress;
-		this.uip = uip;
-		this.ucredit = ucredit;
-		this.ubalance = ubalance;
-		this.ulid = ulid;
-		this.vdid = vdid;
-		this.userinfo = userinfo;
-		this.userlevel = userlevel;
-		this.redmoney = redmoney;
-	}
-
 
 
 	public Integer getUid() {
@@ -137,11 +136,9 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setUid(Integer uid) {
 		this.uid = uid;
 	}
-
 
 
 	public String getUpassword() {
@@ -149,11 +146,9 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setUpassword(String upassword) {
 		this.upassword = upassword;
 	}
-
 
 
 	public String getUheadImg() {
@@ -161,11 +156,9 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setUheadImg(String uheadImg) {
 		this.uheadImg = uheadImg;
 	}
-
 
 
 	public String getUphone() {
@@ -173,11 +166,9 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setUphone(String uphone) {
 		this.uphone = uphone;
 	}
-
 
 
 	public String getUregTime() {
@@ -185,11 +176,9 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setUregTime(String uregTime) {
 		this.uregTime = uregTime;
 	}
-
 
 
 	public String getUloginTime() {
@@ -197,11 +186,9 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setUloginTime(String uloginTime) {
 		this.uloginTime = uloginTime;
 	}
-
 
 
 	public String getOrderinvite() {
@@ -209,11 +196,9 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setOrderinvite(String orderinvite) {
 		this.orderinvite = orderinvite;
 	}
-
 
 
 	public String getUinvite() {
@@ -221,11 +206,9 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setUinvite(String uinvite) {
 		this.uinvite = uinvite;
 	}
-
 
 
 	public Integer getUenable() {
@@ -233,11 +216,9 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setUenable(Integer uenable) {
 		this.uenable = uenable;
 	}
-
 
 
 	public Integer getUisAccountSum() {
@@ -245,11 +226,9 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setUisAccountSum(Integer uisAccountSum) {
 		this.uisAccountSum = uisAccountSum;
 	}
-
 
 
 	public String getQrcode() {
@@ -257,11 +236,9 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setQrcode(String qrcode) {
 		this.qrcode = qrcode;
 	}
-
 
 
 	public String getUaddress() {
@@ -269,11 +246,9 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setUaddress(String uaddress) {
 		this.uaddress = uaddress;
 	}
-
 
 
 	public String getUip() {
@@ -281,11 +256,9 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setUip(String uip) {
 		this.uip = uip;
 	}
-
 
 
 	public Integer getUcredit() {
@@ -293,11 +266,9 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setUcredit(Integer ucredit) {
 		this.ucredit = ucredit;
 	}
-
 
 
 	public Double getUbalance() {
@@ -305,11 +276,9 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setUbalance(Double ubalance) {
 		this.ubalance = ubalance;
 	}
-
 
 
 	public String getUlid() {
@@ -317,11 +286,9 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setUlid(String ulid) {
 		this.ulid = ulid;
 	}
-
 
 
 	public Double getVdid() {
@@ -329,11 +296,9 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setVdid(Double vdid) {
 		this.vdid = vdid;
 	}
-
 
 
 	public Userinfo getUserinfo() {
@@ -341,11 +306,9 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setUserinfo(Userinfo userinfo) {
 		this.userinfo = userinfo;
 	}
-
 
 
 	public Userlevel getUserlevel() {
@@ -353,11 +316,9 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setUserlevel(Userlevel userlevel) {
 		this.userlevel = userlevel;
 	}
-
 
 
 	public Redmoney getRedmoney() {
@@ -365,12 +326,22 @@ public class User implements Serializable{
 	}
 
 
-
 	public void setRedmoney(Redmoney redmoney) {
 		this.redmoney = redmoney;
 	}
 
-	
+
+	public Withdrawals getWithdrawals() {
+		return withdrawals;
+	}
+
+
+	public void setWithdrawals(Withdrawals withdrawals) {
+		this.withdrawals = withdrawals;
+	}
+
+
+
 	
 	
 }

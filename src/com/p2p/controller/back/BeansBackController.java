@@ -88,5 +88,13 @@ public class BeansBackController {
 		request.setAttribute("uselist", uselist);
 		return "views/back/redmoney";
 	}
-	
+	/**
+	 * 进入提现页面
+	 * */
+	@RequestMapping(value="/toWithdrawals")
+	public String toBackWithdrawals(HttpServletRequest request) {
+		List<Userinfo> uselist = userlevelService.seleUserlevelList();
+		request.setAttribute("uselist", uselist);
+		return "views/back/withdrawals";
+	}
 }

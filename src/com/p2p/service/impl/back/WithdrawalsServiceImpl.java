@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.p2p.mapper.WithdrawalsMapper;
-
+import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Withdrawals;
 import com.p2p.service.back.WithdrawalsService;
 import com.p2p.util.PageInfo;
@@ -68,6 +68,12 @@ public class WithdrawalsServiceImpl implements WithdrawalsService{
 	public Integer withdrawalsCount() {
 		// TODO Auto-generated method stub
 		return withdrawalsMapper.withdrawalsCount();
+	}
+
+	@Override
+	public List<Userinfo> seleWithdrawalsList() {
+		// TODO Auto-generated method stub
+		return withdrawalsMapper.seleWithdrawalsList();
 	}
 
 }

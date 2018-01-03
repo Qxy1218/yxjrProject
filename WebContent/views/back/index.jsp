@@ -324,7 +324,7 @@
                             </li>
                             <li><a class="J_menuItem" href="form_validate.jsp">充值管理与审核</a>
                             </li>
-                            <li><a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/withdrawals.jsp">提现管理与审核</a>
+                            <li><a class="J_menuItem" href="${pageContext.request.contextPath}/back/toWithdrawals">提现管理与审核</a>
                             </li>
                             <li><a class="J_menuItem" href="form_wizard.jsp">银行卡管理</a>
                             </li>

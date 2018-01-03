@@ -38,20 +38,18 @@ public class Withdrawals implements Serializable{
 	
 	@TableField("w_fee")
 	private double wfee; //手续费
-
-	@Override
-	public String toString() {
-		return "Withdrawals [wid=" + wid + ", uid=" + uid + ", wmoney=" + wmoney + ", wtime=" + wtime
-				+ ", wmoneytowhere=" + wmoneytowhere + ", wstatus=" + wstatus + ", wfee=" + wfee + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
-	}
+	
+	
+	private String uiname;
+	
 
 	public Withdrawals() {
 		super();
 	}
 
+
 	public Withdrawals(Integer wid, Integer uid, double wmoney, String wtime, String wmoneytowhere, Integer wstatus,
-			double wfee) {
+			double wfee, String uiname) {
 		super();
 		this.wid = wid;
 		this.uid = uid;
@@ -60,63 +58,96 @@ public class Withdrawals implements Serializable{
 		this.wmoneytowhere = wmoneytowhere;
 		this.wstatus = wstatus;
 		this.wfee = wfee;
+		this.uiname = uiname;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Withdrawals [wid=" + wid + ", uid=" + uid + ", wmoney=" + wmoney + ", wtime=" + wtime
+				+ ", wmoneytowhere=" + wmoneytowhere + ", wstatus=" + wstatus + ", wfee=" + wfee + ", uiname=" + uiname
+				+ "]";
+	}
+
 
 	public Integer getWid() {
 		return wid;
 	}
 
+
 	public void setWid(Integer wid) {
 		this.wid = wid;
 	}
+
 
 	public Integer getUid() {
 		return uid;
 	}
 
+
 	public void setUid(Integer uid) {
 		this.uid = uid;
 	}
+
 
 	public double getWmoney() {
 		return wmoney;
 	}
 
+
 	public void setWmoney(double wmoney) {
 		this.wmoney = wmoney;
 	}
+
 
 	public String getWtime() {
 		return wtime;
 	}
 
+
 	public void setWtime(String wtime) {
 		this.wtime = wtime;
 	}
+
 
 	public String getWmoneytowhere() {
 		return wmoneytowhere;
 	}
 
+
 	public void setWmoneytowhere(String wmoneytowhere) {
 		this.wmoneytowhere = wmoneytowhere;
 	}
+
 
 	public Integer getWstatus() {
 		return wstatus;
 	}
 
+
 	public void setWstatus(Integer wstatus) {
 		this.wstatus = wstatus;
 	}
+
 
 	public double getWfee() {
 		return wfee;
 	}
 
+
 	public void setWfee(double wfee) {
 		this.wfee = wfee;
 	}
 
-	
+
+	public String getUiname() {
+		return uiname;
+	}
+
+
+	public void setUiname(String uiname) {
+		this.uiname = uiname;
+	}
+
+
 }
