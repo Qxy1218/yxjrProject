@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.p2p.mapper.FabiaoMapper;
 import com.p2p.pojo.Fabiao;
+import com.p2p.pojo.ProjectSelect;
 import com.p2p.service.front.FabiaoService;
 @Transactional
 @Service
@@ -47,9 +48,12 @@ public class FabiaoServiceImpl implements FabiaoService{
 		return fabiaomapper.findModel(id);
 	}
 
-	@Override
 	public List<Fabiao> selectByType(String type) {
 		return fabiaomapper.selectByType(type);
+	}  
+	
+	public List<Fabiao> selectByLike(ProjectSelect rProjectSelect) {
+		return fabiaomapper.selectByLike(rProjectSelect);
 	}
 
 }

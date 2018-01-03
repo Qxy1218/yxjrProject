@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.p2p.base.IBaseDao;
 import com.p2p.pojo.Fabiao;
+import com.p2p.pojo.ProjectSelect;
 import com.p2p.pojo.Redmoney;
 
 public interface FabiaoMapper extends IBaseDao<Integer, Fabiao>{
@@ -19,4 +20,7 @@ public interface FabiaoMapper extends IBaseDao<Integer, Fabiao>{
 		abstract Integer employeCount();
 		
 		List<Fabiao> selectByType(@Param("type")String type);
+		
+		//条件查询
+		List<Fabiao> selectByLike(ProjectSelect rProjectSelect);
 }

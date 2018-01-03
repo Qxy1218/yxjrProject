@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.p2p.pojo.Contact;
 import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Fabiao;
+import com.p2p.pojo.ProjectSelect;
 import com.p2p.pojo.Setupnatice;
 import com.p2p.pojo.User;
 import com.p2p.service.back.ContactService;
@@ -70,7 +71,7 @@ public class FrontController {
 	 * 我要投资页面的conteroller(项目自投)
 	 * */
 	@RequestMapping(value="/toinvestzt")
-	public String tofroninvest(Model model) throws Exception{
+	public String tofroninvest(Model model,ProjectSelect select) throws Exception{
 		model.addAttribute("pageName", "invset");
 		
 		//取当前时间	

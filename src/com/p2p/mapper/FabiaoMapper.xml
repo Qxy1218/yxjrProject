@@ -130,5 +130,80 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	   	order by f_status;
     </select>
     
+     <select id="selectByLike" resultMap="BaseResultMap" parameterType="com.p2p.pojo.ProjectSelect">
+    	<!-- 
+    		查询可投标和满标
+    		根据f_status做升序排练
+    	 -->
+    select * from fabiao where 
+    <if test="borrow_interest_rate!=null and  borrow_interest_rate == '0|8'.toString()">
+    	f_roe in(0.00,0.09)
+    </if>
+     <if test="borrow_interest_rate!=null and  borrow_interest_rate == '9|9'.toString()">
+    	f_roe = 0.09
+    </if>
+    <if test="borrow_interest_rate!=null and  borrow_interest_rate == '10|10'.toString()">
+    	f_roe = 0.10
+    </if>
+    <if test="borrow_interest_rate!=null and  borrow_interest_rate == '10.1|100'.toString()">
+    	f_roe > 0.10
+    </if>
+    and
+	 <if test="leftday!=null and  leftday == '0|60'.toString()">
+		 <![CDATA[
+			datediff(f_endtime,CURDATE()) <=60
+		]]>
+	</if>
+	 <if test="leftday!=null and  leftday == '61|180'.toString()">
+		<![CDATA[
+		 datediff(f_endtime,CURDATE()) >= 61  and  datediff(f_endtime,CURDATE()) <= 180
+		]]>
+	</if>
+	 <if test="leftday!=null and  leftday == '181|360'.toString()">
+		<![CDATA[
+			datediff(f_endtime,CURDATE()) >= 181 and  datediff(f_endtime,CURDATE()) <= 360
+		]]>
+	</if>
+	 <if test="leftday!=null and  leftday == '361|3600'.toString()">
+		<![CDATA[
+		 	datediff(f_endtime,CURDATE()) >= 361
+		]]>
+	</if>
+	and
+	<if test="progress!=null and  progress == '0|30'.toString()">
+		<![CDATA[
+			 f_roe<=0.30
+		]]>
+	</if>
+	<if test="progress!=null and  progress == '31.01|60'.toString()">
+		<![CDATA[
+			 f_roe>=0.31 and  f_roe<=0.60
+		]]>
+	</if>
+	 <if test="progress!=null and  progress == '61.01|100'.toString()">
+		<![CDATA[
+		  f_roe>=0.61 and  f_roe<=1
+		]]>
+	</if>
+	and
+	<if test="borrow_status!=null and  borrow_status == '2'.toString()">
+		<!-- 正在募集 -->
+		  f_status=1
+	</if>
+	<if test="borrow_status!=null and  borrow_status == '6'.toString()">
+		<!-- 还款中 -->
+		  f_status=2
+	</if>
+    <if test="borrow_status!=null and  borrow_status == '7'.toString()">
+		<!-- 已结清 -->
+		  f_status=3
+	</if>
+	and
+	 <if test="pagetype!=null">
+		<!-- 已结清 -->
+		  f_status=#{pagetype}
+	</if>
+    </select>
+    
     
 </mapper>

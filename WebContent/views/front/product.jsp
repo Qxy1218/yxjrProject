@@ -8,7 +8,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-	    <title>爱车贷-雪佛兰迈锐宝理财投资-爱钱帮2016年投标</title>
+	    <title>${thisfb.ftitle}</title>
 	    <!--[if lt IE 9]>
 	    <script src="statics/newcommon/js/html5shiv.js"></script>
 	    <![endif]-->
@@ -275,7 +275,7 @@
 		    <div class="m2-tranHide-box">
 		        <div class="m2-tranHidetit">
 		            <span>所选项目：</span>
-		            【新手标】爱车贷-雪佛兰迈锐宝-XAA067            </div>
+		            【${thisfb.fpart}】${thisfb.ftitle}            </div>
 		        <div class="m2-tranHiderem">
 		            <span>徽商账户余额：</span>
 		            <span style="color:#ea731e;">0元</span>
@@ -311,21 +311,22 @@
 		    <div class="m2-investBreadbox">
 		        <i class="m2-investBreadicon"></i>
 		        <span class="m2-invBre-fat"><a href="/Finances/toindex">首页&nbsp;&gt;</a></span>
-		        <span class="m2-invBre-fat"><a href="/Finances/toinvest">我要投资&nbsp;&gt;</a></span>
-		        <a class="m2-invBre-cur" >项目详情</a>
+		        <span class="m2-invBre-fat"><a href="/Finances/toinvestzt">我要投资&nbsp;&gt;</a></span>
+		        <span class="m2-invBre-fat" >项目详情</span>
 		    </div>
 		</div>
 		<div class="m2-detialsCon">
 		 <div class="m2-detialsItembox">
 	        <h2>
-	            <span class="m2-detialsItembox-lef">【新手标】爱车贷-雪佛兰迈锐宝-XAA067</span>
-	            <span class="m2-detialsItembox-rig">项目编号：XACD201609067</span>
+	            <span class="m2-detialsItembox-lef">【${thisfb.fpart}】${thisfb.ftitle}</span>
+	            <span class="m2-detialsItembox-rig">项目编号：${thisfb.fcode}</span>
 	        </h2>
 	    </div>
 	    <div class="m2-detialsItem">
 	        <div class="m2-detItemlef">
 	            <div class="m2-detItemlef-img">
-	                <i class="m2-detItemlef-newIcon"></i>                <img  src="/Finances/statics/front/uploadData/UserBorrowData/182015-20160902132425642.jpg" alt="" width='256' height="200">
+	                <i class="m2-detItemlef-newIcon"></i>              
+	                <img  src="${thisfb.fimage}" alt="${thisfb.ftitle}" width='256' height="200">
 	
 	                <p class="m2-detItemlef-imgSha" style="margin-top: 0">
 	                    <script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
@@ -351,34 +352,33 @@
 	                <ul>
 	                    <li style='width: 160px;padding-left: 15px;'>
 	                        <span class="m2-detItempsg-big huodongjiaxi" style="white-space: nowrap;">
-	                            									                               			 8%+1%
+	                            	${thisfb.froe*100}%+${thisfb.fincrease*100}% 	
 	                              	<p style="margin-top:0;margin-left:-2px;" class="jiaxishow">
-	                                    <if condition="$vo['additional_rights_detail'] neq ''">
-	                                        活动加息1%																			</p>
-	                            </if>
+	                                       		 活动加息${thisfb.fincrease*100}% 																		
+	                                   </p>
 	                        </span>
 	                        <span class="m2-detItempsg-nor">预期年化收益率</span>
 	                        <i class="m2-detItemlef-line"></i>
 	                    </li>
 	                    <li style="width:205px;">
-	                        <span class="m2-detItempsg-big">26天(1个月)
+	                        <span class="m2-detItempsg-big">${thisfb.rematime}天
 	                                </span>
 	                        <span class="m2-detItempsg-nor">期限</span>
 	                    </li>
 	                    <li style='width: 160px;padding-left: 15px;'>
-	                        <span class="m2-detItempsg-big">8.62万</span>
+	                        <span class="m2-detItempsg-big">${thisfb.fendmoney div 10000 } 万</span>
 	                        <span class="m2-detItempsg-nor">产品金额</span>
 	                    </li>
 	                    <li>
-	                        <span class="m2-detItempsg-sma">还款日期：2016-10-01</span>
+	                        <span class="m2-detItempsg-sma">还款日期：${thisfb.fendtime}</span>
 	                    </li>
 	                </ul>
 	                <div class="m2-detPro">
 	                    <div class="m2-derProgress">
 	                        <span>                                正在募集
 	                                    ：</span>
-	                        <b><i style="width: 85.26%;"></i></b>
-	                        <span>85.26%</span>
+	                        <b><i style="width: ${thisfb.compnrate};"></i></b>
+	                        <span>${thisfb.compnrate}</span>
 	                    </div>
 	                    <div class="m2-detProdet">
 	                        <span class="m2-detProdet-lef">投资万元预期收益：<span>64.11元</span></span>
@@ -810,8 +810,6 @@
 		 <!-- 实现右侧登入注册功能 -->
 		<script src="/Finances/statics/front/js/sidebarlogreg.js"></script>
 	
-	
-		
 	
 		<!-- 足部start -->
 			<jsp:include page="include/floot.jsp"></jsp:include>

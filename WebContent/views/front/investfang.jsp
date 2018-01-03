@@ -168,7 +168,7 @@
                              <c:if test="${fabiaos.fstatus==2}">
                                <i class="m2-invItemIcon-back"></i>
                              </c:if> 
-                                <a href="/Finances/topro" target="_blank" title="${fabiaos.ftitle}">${fabiaos.ftitle}</a>
+                                <a href="/Finances/toproject?pid=${fabiaos.fid}" target="_blank" title="${fabiaos.ftitle}">${fabiaos.ftitle}</a>
                             </h4>
                             <ul class="m2-invItemleft-list">
                                 <li>
@@ -218,7 +218,7 @@
                             </p>
                             <div class="m2-invItemrig-link">
                             	<c:if test="${fabiaos.fstatus==1}">
-                               		 <a href="/Finances/topro" class="m2-invItemlink-inv" target="_blank" title="${fabiaos.ftitle}">立即投资</a>	
+                               		 <a href="/Finances/toproject?pid=${fabiaos.fid}" class="m2-invItemlink-inv" target="_blank" title="${fabiaos.ftitle}">立即投资</a>	
                             	</c:if>
                             	<c:if test="${fabiaos.fstatus==2}">
                                		 <a href="javascript:void(0)" class="m2-invItemlink-inv"  title="${fabiaos.ftitle}">还款中</a>	

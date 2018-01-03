@@ -104,9 +104,9 @@
             <ul class="m2-invSea-sta" id="search_borrow_status">
                 <li class="m2-invSea-tit"><span>项目状态</span></li>
                 <li data="0" class="m2-invSea-sel m2-invSea-all"><span onclick="searchBorrow('borrow_status','0')">全部</span></li>
-                <li data="2" class="m2-invSea-unsel"><span onclick="searchBorrow('borrow_status','2')">正在募集</span></li>
-                <li data="6" class="m2-invSea-unsel"><span onclick="searchBorrow('borrow_status','6')">还款中</span></li>
-                <li data="7" class="m2-invSea-unsel"><span onclick="searchBorrow('borrow_status','7')">已结清</span></li>
+                <li data="2" class="m2-invSea-unsel"><span onclick="searchBorrow('borrow_status','1')">正在募集</span></li>
+                <li data="6" class="m2-invSea-unsel"><span onclick="searchBorrow('borrow_status','2')">还款中</span></li>
+                <li data="7" class="m2-invSea-unsel"><span onclick="searchBorrow('borrow_status','3')">已结清</span></li>
             </ul>
             <div class="m2-invSeadisply">
                 <span style="margin-left:10px;">筛选条件</span>
@@ -167,7 +167,7 @@
                              <c:if test="${fabiaos.fstatus==2}">
                                <i class="m2-invItemIcon-back"></i>
                              </c:if> 
-                                <a href="/Finances/topro" target="_blank" title="${fabiaos.ftitle}">${fabiaos.ftitle}</a>
+                                <a href="/Finances/toproject?pid=${fabiaos.fid}" target="_blank" title="${fabiaos.ftitle}">${fabiaos.ftitle}</a>
                             </h4>
                             <ul class="m2-invItemleft-list">
                                 <li>
@@ -217,7 +217,7 @@
                            </p>
                            <div class="m2-invItemrig-link">
                            	<c:if test="${fabiaos.fstatus==1}">
-                              		 <a href="/Finances/topro" class="m2-invItemlink-inv" target="_blank" title="${fabiaos.ftitle}">立即投资</a>	
+                              		 <a href="/Finances/toproject?pid=${fabiaos.fid}" class="m2-invItemlink-inv" target="_blank" title="${fabiaos.ftitle}">立即投资</a>	
                            	</c:if>
                            	<c:if test="${fabiaos.fstatus==2}">
                               		 <a href="javascript:void(0)" class="m2-invItemlink-inv"  title="${fabiaos.ftitle}">还款中</a>	
@@ -393,10 +393,20 @@
         }
 
         function getBorrowList(p){
-            p['isAjax']=2;
-            getData("Project-index",function(d){
-                if(d.status==1){
-                    $(".m2-invResult-con").html(d.message);
+            //p['isAjax']=2;
+            //alert(p);
+            /**
+            	borrow_interest_rate 收益率
+            	leftday  时限
+            	borrow_money  金额度
+            	progress 进度
+            	borrow_status 项目情况
+            	
+            */
+            getData("/Finances/toProjectlike",function(d){
+            	if(d.status==1){
+                	
+                    $(".m2-invResult-con").html(thishtml);
                 }
             },p);
         }
