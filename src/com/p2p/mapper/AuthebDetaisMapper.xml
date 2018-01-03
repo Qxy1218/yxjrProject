@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper  namespace="com.p2p.mapper.AuthebDetailsMapper">
+<mapper  namespace="com.p2p.mapper.AuthebDetaisMapper">
 	<resultMap type="com.p2p.pojo.AuthebDetais" id="AuthebDetaisResultMap">
     	<id column="ad_id" property="adid"/>
 		<result column="ad_introduct" property="adintroduct"/>
@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="ui_id" property="uiid"/>
 	</resultMap>
 	<select id="getModel" parameterType="com.p2p.pojo.AuthebDetais" resultMap="AuthebDetaisResultMap">
-		select * from authebDetails ad 
+		select * from authebDetais ad 
 		<where>
  		     1=1
  			    <if test="adid!=null">and ad.ad_id=#{adid}</if>
@@ -20,12 +20,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		</where>
 	</select>
 	<insert id="addModel" parameterType="com.p2p.pojo.AuthebDetais" useGeneratedKeys="true" keyProperty="id">
-		insert into authebDetails(ad_introduct,ad_time,ui_id) values(#{adintroduct},#{adtime},#{uiid})
+		insert into authebDetais(ad_introduct,ad_time,ui_id) values(#{adintroduct},#{adtime},#{uiid})
 	</insert>
 	<delete id="delete" parameterType="com.p2p.pojo.AuthebDetais">
-		delete from authebDetails where ad_id = #{adid}
+		delete from authebDetais where ad_id = #{adid}
 	</delete>
 	<select id="getAllModel" resultMap="AuthebDetaisResultMap">
-		select * from authebDetails
+		select * from authebDetais
 	</select>
 </mapper>
