@@ -10,6 +10,7 @@ import com.p2p.base.IBaseDao;
 import com.p2p.pojo.Indexpic;
 import com.p2p.pojo.Redmoney;
 import com.p2p.pojo.Role;
+import com.p2p.pojo.Userinfo;
 
 public interface RedmoneyMapper extends IBaseDao<Integer, Redmoney>{
 	//实现分页查询
@@ -17,4 +18,6 @@ public interface RedmoneyMapper extends IBaseDao<Integer, Redmoney>{
 			
 			//查询总的记录数
 			abstract Integer redmoneyCount();
+			//查询所有的用户
+			abstract List<Userinfo> seleRedmoneyList();
 }

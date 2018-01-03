@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</resultMap>
 	 <!-- 查询 -->
 	<select id="getAllModel"  resultMap="BaseResultMap">
- 		select ul.ul_id,ul.ul_name,ul.ul_levelValue,ul.u_id,ui.ui_name,u.u_id  from  user_level ul ,user u ,user_info ui 
+ 		select ul.ul_id,ul.ul_name,ul.ul_levelValue,ul.u_id,ui.ui_name as uiname,u.u_id  from  user_level ul ,user u ,user_info ui 
 		<where>
 			 ul.u_id = u.u_id and ui.u_id = u.u_id
 		</where>
