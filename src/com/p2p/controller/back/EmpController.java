@@ -131,6 +131,43 @@ public class EmpController {
 		   return JSON;
 	   }
    
+	   @RequestMapping(value="selePwd")
+	   @ResponseBody
+	   //查询原密码是否相同
+	   private String selePwd(String OldEpassword,String eid ,HttpServletRequest request) throws JsonProcessingException {
+		   ObjectMapper mapper = new ObjectMapper(); //转换器  
+		   Map<String, Object> map = new HashMap<String, Object>();
+		   System.out.println("eid="+eid);
+		   System.out.println("OldEpassword="+OldEpassword);
+		   Employe emp = empService.findModel(Integer.valueOf(eid));
+		   Object result = new SimpleHash("MD5", OldEpassword, ByteSource.Util.bytes("admin"), 1); 
+		   String epassword = emp.getEpassword();
+		   String password = result.toString();
+		   System.out.println("password="+password);
+		   System.out.println("epassword="+epassword);
+		   if(password.equals(epassword)) {
+			   map.put("valid","true");
+		   }
+		   else {
+			   map.put("valid","false");
+		   }
+		   String JSON = mapper.writeValueAsString(map);
+		   return JSON;
+	   }
+	   
+	   //修改用户密码
+	   @RequestMapping(value="updatePwd")
+	   @ResponseBody
+	   private int updatePwd(String epassword,String eid) {
+		   Object result = new SimpleHash("MD5", epassword, ByteSource.Util.bytes("admin"), 1);
+		   Employe emp = new Employe();
+		   emp.setEpassword(result.toString());
+		   emp.setEid(Integer.valueOf(eid));
+		   emp.setEpassword(result.toString());
+		   int count = empService.update(emp);
+		   return count;
+	   }
+	   
    	//实现分页查询
 	@RequestMapping(value="selectEmployeList")
 	@ResponseBody

@@ -15,15 +15,167 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <title>后台首页</title>
-    <!--[if lt IE 9]>
-    <meta http-equiv="refresh" content="0;ie.html" />
-    <![endif]-->
+    <!-- 全局js -->
+    <script src="${pageContext.request.contextPath}/statics/back/static/js/jquery.min.js?v=2.1.4"></script>
+    <script src="${pageContext.request.contextPath}/statics/back/static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="${pageContext.request.contextPath}/statics/back/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="${pageContext.request.contextPath}/statics/back/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="${pageContext.request.contextPath}/statics/back/static/js/plugins/layer/layer.min.js"></script>
+
+    <!-- 自定义js -->
+    <script src="${pageContext.request.contextPath}/statics/back/static/js/hplus.js?v=4.1.0"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/statics/back/static/js/contabs.js"></script>
+
+    <!-- 第三方插件 -->
+    <script src="${pageContext.request.contextPath}/statics/back/static/js/plugins/pace/pace.min.js"></script>
+    
 	
+
 	<link rel="Shortcut  Icon" href="${pageContext.request.contextPath}/statics/other/lco/smalllog.png">
     <link href="${pageContext.request.contextPath}/statics/back/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/statics/back/static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/statics/back/static/css/animate.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/statics/back/static/css/style.css?v=4.1.0" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+	<link href="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery.form.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $('#pwdForm')
+		        .bootstrapValidator({
+		            message: 'This value is not valid',
+		            feedbackIcons: {
+		                valid: 'glyphicon glyphicon-ok',
+		                invalid: 'glyphicon glyphicon-remove',
+		                validating: 'glyphicon glyphicon-refresh'
+		            },
+		            fields: {
+		                 OldEpassword: {
+		                     message:'密码无效',
+		                     validators: {
+		                         notEmpty: {
+		                             message: '密码不能为空'
+		                         },
+		                         stringLength: {
+		                             min: 1,
+		                             max: 30,
+		                             message: '用户名长度必须在6到30之间'
+		                         },
+		                         threshold :  6 , //有6字符以上才发送ajax请求，（input中输入一个字符，插件会向服务器发送一次，设置限制，6字符以上才开始）
+		                         remote: {//ajax验证。server result:{"valid",true or false} 向服务发送当前input name值，获得一个json数据。例表示正确：{"valid",true}  
+		                             url: '${pageContext.request.contextPath}/back/selePwd',//验证地址
+		                             message: '原密码不正确',//提示消息
+		                             delay :  2000,//每输入一个字符，就发ajax请求，服务器压力还是太大，设置2秒发送一次ajax（默认输入一个字符，提交一次，服务器压力太大）
+		                             type: 'POST',//请求方式
+		                             /**自定义提交数据，默认值提交当前input value*/
+		                              data: {
+		                            	  eid:$("#pwdForm #eid").val(),
+		                            	  OldEpassword:$("#pwdForm #OldEpassword").val(),
+		                              }
+		                         },
+		                         regexp: {
+		                             regexp: /^[a-zA-Z0-9_\.]+$/,
+		                             message: '密码只能由字母、数字、点和下划线组成'
+		                         }
+		                     }
+		                 },
+		                 NewEpassword: {
+		                     message:'密码无效',
+		                     validators: {
+		                         notEmpty: {
+		                             message: '密码不能为空'
+		                         },
+		                         stringLength: {
+		                             min: 6,
+		                             max: 30,
+		                             message: '用户名长度必须在6到30之间'
+		                         },
+		                         different: {//不能和用户名相同
+		                             field: 'OldEpassword',
+		                             message: '不能和原密码相同'
+		                         },
+		                         regexp: {
+		                             regexp: /^[a-zA-Z0-9_\.]+$/,
+		                             message: '密码只能由字母、数字、点和下划线组成'
+		                         }
+		                     }
+		                 },
+		                 SureEpassword: {
+		                     message: '密码无效',
+		                     validators: {
+		                         notEmpty: {
+		                             message: '确认密码不能为空'
+		                         },
+		                         stringLength: {
+		                             min: 6,
+		                             max: 30,
+		                             message: '确认密码长度必须在6到30之间'
+		                         },
+		                         identical: {//相同
+		                             field: 'NewEpassword',
+		                             message: '两次密码不一致'
+		                         },
+		                         different: {//不能和用户名相同
+		                             field: 'OldEpassword',
+		                             message: '不能和原密码相同'
+		                         },
+		                         regexp: {//匹配规则
+		                             regexp: /^[a-zA-Z0-9_\.]+$/,
+		                             message: '密码只能由字母、数字、点和下划线组成。'
+		                         }
+		                     }
+		                 },
+		            }
+		        })
+		        .on('success.form.bv', function(e) {
+		        	$("#upPwd").modal('hide');
+		            // Prevent form submission
+		            e.preventDefault();
+					alert("sdfgsdfgh");
+		            // Get the form instance
+		            var $form = $(e.target);
+		
+		            // Get the BootstrapValidator instance
+		            var bv = $form.data('bootstrapValidator');
+		            var eid =$("#pwdForm #eid").val();
+		            var epassword = $("#pwdForm #SureEpassword").val();
+		            alert(eid);
+		            alert(epassword);
+		            if(epassword !="" || epassword !=null && eid !="" || eid!=null){
+		            	var url = "${pageContext.request.contextPath }/back/updatePwd";
+		        		$.post(
+		        			url,
+		        			{
+		        				eid:eid,
+		        				epassword:epassword,
+		        			},
+		        			function(data){
+		        				//后台返回int类型的数据
+		        				if(data>0){
+		        					//新增成功，下面是后台框架的提示
+		        					parent.layer.alert('修改密码成功');
+		        				}else{
+		        					//新增失败
+		        					parent.layer.alert('修改密码失败');
+		        				}
+		        			},
+		        			"text"
+		        		);		
+		              	
+		            }
+		        });
+		});
+</script>
+	<script  type="text/javascript">
+		//修改密码弹窗
+	function upPwdShow(){
+		$("#upPwd #OldEpassword").val('');
+		$("#upPwd #NewEpassword").val('');
+		$("#upPwd #SureEpassword").val('');
+		
+		$("#upPwd").modal('show');
+	}
+	</script>
 </head>
 
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
@@ -36,24 +188,19 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="${pageContext.request.contextPath}/statics/back/static/img/profile_small.jpg" /></span>
+                            <span><img alt="image" class="img-circle" src="${sessionScope.employee.eimage}" width='90px' height='80px'/></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
-                               <span class="block m-t-xs"><strong class="font-bold">Beaut-zihan</strong></span>
-                                <span class="text-muted text-xs block"><%-- ${sessionScope.employee.ename} --%>
+                               <span class="block m-t-xs"><strong class="font-bold">欢迎您:${sessionScope.employee.ename}</strong></span>
+                                <span class="text-muted text-xs block">
                                 	<shiro:user>
-                                		<shiro:principal />
+                                		您的权限为:${sessionScope.employee.role.rename}
                                 	</shiro:user>
                                 <b class="caret"></b></span>
                                 </span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="J_menuItem" href="form_avatar.jsp">修改头像</a>
-                                </li>
-                                <li><a class="J_menuItem" href="profile.jsp">个人资料</a>
-                                </li>
-                                
-                                <li><a class="J_menuItem" href="mailbox.jsp">信箱</a>
+                                <li><a class="J_menuItem"  onclick="upPwdShow()">修改密码</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li><a href="${pageContext.request.contextPath}/back/adminlogout">安全退出</a>
@@ -77,11 +224,11 @@
                                 <a class="J_menuItem" href="index_v2.jsp">会员账户管理</a>
                             </li>
                             <li>
-                                <a class="J_menuItem" href="index_v3.jsp">用户列表</a>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/bootstrap.jsp">用户列表</a>
                             </li>
                             <li><a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/contact.jsp">联系我们</a></li>
                             <li>
-                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/employe.jsp">员工列表</a>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/back/toEmploye">员工列表</a>
                             </li><li>
                                 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/record.jsp">管理员操作列表</a>
                             </li>
@@ -488,7 +635,7 @@
                 </button>
                 <nav class="page-tabs J_menuTabs">
                     <div class="page-tabs-content">
-                        <a href="javascript:;" class="active J_menuTab" data-id="index_v1.jsp">首页</a>
+                        <a href="javascript:;" class="active J_menuTab" data-id="${pageContext.request.contextPath}/views/back/rightindex.jsp">首页</a>
                     </div>
                 </nav>
                 <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
@@ -510,7 +657,7 @@
                 <a href="${pageContext.request.contextPath}/back/adminlogout" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i>退出</a>
             </div>
             <div class="row J_mainContent" id="content-main">
-                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="/Finances/statics/back/static/index_v1.html?v=4.0" frameborder="0" data-id="index_v1.jsp" seamless></iframe>
+                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="${pageContext.request.contextPath}/views/back/rightindex.jsp" frameborder="0" data-id="index_v1.jsp" seamless></iframe>
             </div>
             <div class="footer">
                 <div class="pull-right">&copy; 2014-2015 <a href="http://www.zi-han.net/" target="_blank">zihan's blog</a>
@@ -929,21 +1076,67 @@
         </div>
         <!--mini聊天窗口结束-->
     </div>
-
-    <!-- 全局js -->
-    <script src="/Finances/statics/back/static/js/jquery.min.js?v=2.1.4"></script>
-    <script src="/Finances/statics/back/static/js/bootstrap.min.js?v=3.3.6"></script>
-    <script src="/Finances/statics/back/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="/Finances/statics/back/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="/Finances/statics/back/static/js/plugins/layer/layer.min.js"></script>
-
-    <!-- 自定义js -->
-    <script src="/Finances/statics/back/static/js/hplus.js?v=4.1.0"></script>
-    <script type="text/javascript" src="/Finances/statics/back/static/js/contabs.js"></script>
-
-    <!-- 第三方插件 -->
-    <script src="/Finances/statics/back/static/js/plugins/pace/pace.min.js"></script>
-
+    
+    <!-- 修改密码弹窗 -->
+		<div class="modal fade" id="upPwd" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">密码修改</h4>
+					</div>
+					<div class="modal-body">
+						<!-- 新增系别 -->
+						<form id="pwdForm" class="form-horizontal m-t">
+							<div class="form-group">
+								<label for="urlName" class="control-label col-sm-3">登录名</label>
+								<div class="col-sm-6">
+									<input type="hidden" id="eid" name="eid"
+										value="${sessionScope.employee.eid}"> 
+									<input type="hidden"
+										id="ephone" name="ephone" value="${sessionScope.employee.ephone}">
+									<input name="" class="form-control" id="ename"
+										value="${sessionScope.employee.ename}" disabled="disabled">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="urlName" class="control-label col-sm-3">旧密码</label>
+								<div class="col-sm-6">
+									<input type="password" name="OldEpassword" class="form-control"
+										id="OldEpassword">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="urlName" class="control-label col-sm-3">新密码</label>
+								<div class="col-sm-6">
+									<input type="password" name="NewEpassword" class="form-control"
+										id="NewEpassword">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="urlName" class="control-label col-sm-3">确认密码</label>
+								<div class="col-sm-6">
+									<input type="password" name="SureEpassword" class="form-control"
+										id="SureEpassword">
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-default" data-dismiss="modal">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
+								</button>
+								<button type="submit" id="btn_submit" class="btn btn-primary">
+									<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 </body>
 
 </html>

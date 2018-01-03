@@ -58,7 +58,7 @@ public class Fabiao implements Serializable{
 	@TableField("f_money")
 	private BigDecimal fmoney; //投标金额
 	
-	@TableField("f_endmoney")
+	@TableField("fendmoney")
 	private BigDecimal fendmoney; //已投金额
 
 	@TableField("f_endtime")

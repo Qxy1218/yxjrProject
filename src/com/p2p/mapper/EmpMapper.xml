@@ -29,12 +29,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </resultMap>
 	<!-- 员工表查询 -->
  	<select id="getByemployname"  parameterType="java.lang.String" resultMap="BaseResultMap">
- 		select * from employee where e_name=#{ename}
+ 		 select * from employee e ,role r 
+		<where>
+		    e.re_id = r.re_id and  e_name=#{ename}
+		</where>
  	</select>
 	<select id="getModel"  resultMap="BaseResultMap">
  		select * from employee 
  	</select>
  	
+ 	<!-- 根据id查询对象 -->
+ 	<select id="findModel" resultMap="BaseResultMap">
+ 		select * from employee <where>
+ 			e_id=#{eid}
+ 		</where>;
+ 	</select>
  	<!-- 员工添加 -->
 	<insert id="addModel" useGeneratedKeys="true" keyProperty="eid">
  		 insert into employee(re_id,e_enum,e_sex,e_idcard,e_phone,e_position,e_email,e_name,e_password,e_status,e_retime,e_remark,e_image) 
@@ -48,7 +57,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 修改员工 -->
     <update id="update" parameterType="com.p2p.pojo.Employe" >
-        UPDATE employee SET 
+        UPDATE employee  
+        	<trim prefix="set" suffixOverrides=",">
         	<if test="reid!=null">re_id =#{reid},</if>
 			<if test="eenum!=null">e_enum=#{eenum},</if>
 			<if test="esex!=null">e_sex=#{esex},</if>
@@ -61,7 +71,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="estatus!=null">e_status=#{estatus},</if>
 			<if test="eretime!=null">e_retime=#{eretime},</if>
 			<if test="eremark!=null">e_remark=#{eremark},</if>
-			<if test="eimage!=null">e_image=#{eimage}</if>
+			<if test="eimage!=null">e_image=#{eimage},</if>
+		</trim>
 		<where>
 			e_id=#{eid}
 		</where>
