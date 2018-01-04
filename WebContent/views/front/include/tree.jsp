@@ -47,12 +47,12 @@
 	                </a>
 	            </li>
 	            <li class="m2-asideListitem">
-	                <a class="m2-aside-item m2-aside-toggle" href="/Finances/toopen"><i class="m2-asideIcon3"></i>徽商资金管理</a>            <ul class="m2-aside-secItem" style="display:none">
-	                <li><a class="m2-aside-secLink-item" href="#">充&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;值</a></li>
-	                <li><a class="m2-aside-secLink-item" href="#">提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现</a></li>
-	                <li><a class="m2-aside-secLink-item" href="#">资金流水</a></li>
-	
-	            </ul>
+	                <a class="m2-aside-item m2-aside-toggle" href="/Finances/toopen"><i class="m2-asideIcon3"></i>徽商资金管理</a>         
+	                <ul class="m2-aside-secItem" ><!-- style="display:none" -->
+		                <li><a class="m2-aside-secLink-item" href="/Finances/views/front/user/recharge.jsp">充&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;值</a></li>
+		                <li><a class="m2-aside-secLink-item" href="/Finances/views/front/user/withdrawals.jsp">提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现</a></li>
+		                <li><a class="m2-aside-secLink-item" href="#">资金流水</a></li>
+	            	</ul>
 	            </li>
 	            <li class="m2-asideListitem">
 	                <a class="m2-aside-item m2-aside-toggle" ><i class="m2-asideIcon4"></i>奖励管理</a>
