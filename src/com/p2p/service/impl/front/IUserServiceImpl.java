@@ -56,4 +56,9 @@ public class IUserServiceImpl implements IUserService{
 		return iUserMapper.userLoing(username, password);
 	}
 
+	@Override
+	public User sletUserOinvite(String orderinvite) {
+		return iUserMapper.sletUserOinvite(orderinvite);
+	}
+
 }

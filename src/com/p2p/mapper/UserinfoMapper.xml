@@ -93,7 +93,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  				and  ui.ui_id = ic.ui_id;
  		</where>
  	</select>
- 	
+ 	<select id="seleUserinfoByuid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+ 		select * from user_info ui <where>
+ 			ui.u_id = #{uid}
+ 		</where>
+ 	</select>
  	<update id="update" parameterType="com.p2p.pojo.Userinfo">
  		update user_info ui
  		<trim prefix="set" suffixOverrides=",">
@@ -110,7 +114,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		    ui.ui_id=#{uiid}
  		</where>
  	</update>
- 	
  	<!-- 查询 -->
      <select id="seleUserlevelList" resultMap="BaseResultMap">
       	select * from user_info 

@@ -11,4 +11,6 @@ import com.p2p.pojo.User;
  * */
 public interface IUserMapper extends IBaseDao<Integer, User>{
 	User userLoing(@Param("username")String username,@Param("password")String password);
+	//根据别人邀请码去查询用户
+	abstract User sletUserOinvite(String orderinvite);
 }

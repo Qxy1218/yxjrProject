@@ -13,7 +13,7 @@ public class PowerTreeNode implements Serializable{
 	private String pId;
 	private String  name;
 	private boolean open;//是否默认打开
-	private boolean nocheck;//是否可选
+	private boolean nocheck;//是否可以勾选(true不可以,false可以)
 	private boolean checked;//是否默认选上
 	public String getId() {
 		return id;

@@ -255,15 +255,15 @@ public class DateUtils {
 	}
 
 	/**
-	 * 获取日期后一天
+	 * 获取日期后几天
 	 * 
 	 * @param date
 	 * @return
 	 */
-	public static Date getDayAfter(Date date) {
+	public static Date getDayAfter(Date date,int addday) {
 		gregorianCalendar.setTime(date);
 		int day = gregorianCalendar.get(Calendar.DATE);
-		gregorianCalendar.set(Calendar.DATE, day + 1);
+		gregorianCalendar.set(Calendar.DATE, day + addday);
 		return gregorianCalendar.getTime();
 	}
 

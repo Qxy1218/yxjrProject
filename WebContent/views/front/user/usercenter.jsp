@@ -470,7 +470,7 @@
                 try{sq1=num1.toString().split(".")[1].length;} catch(e){sq1=0;}
                 try{sq2=num2.toString().split(".")[1].length;} catch(e){sq2=0;}
                 m=Math.pow(10,Math.max(sq1,sq2));
-                return Math.round(( num1 * m + num2 * m ) / m * 100)/100;
+               // return Math.round(( num1 * m + num2 * m ) / m * 100)/100;//
             }
 
             function calMinus(num1,num2){

@@ -1,5 +1,6 @@
 package com.p2p.controller.front;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,11 +26,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.controller.back.SendMailUtil;
 import com.p2p.controller.back.UtilController;
 import com.p2p.pojo.AuthebDetais;
+import com.p2p.pojo.Redmoney;
 import com.p2p.pojo.Setupnatice;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Userinfo;
+import com.p2p.pojo.Uservouch;
 import com.p2p.service.back.AuthebDetaisService;
+import com.p2p.service.back.RedmoneyService;
 import com.p2p.service.back.SendMailService;
+import com.p2p.service.back.UservouchService;
 import com.p2p.service.front.IUserService;
 import com.p2p.service.front.SetupnaticeService;
 import com.p2p.service.front.UserInfoService;
@@ -44,9 +49,11 @@ import com.p2p.util.IpChecker;
 @Controller
 @RequestMapping("/user")
 public class IUserController {
+	//用户
 	@Resource(name="IUserServiceImpl")
 	private IUserService iUserService;
 	
+	//用户详情
 	@Resource(name="userInfoServiceImpl")
 	private UserInfoService userInfoService;
 	
@@ -54,12 +61,21 @@ public class IUserController {
 	@Resource(name="setupnaticeServiceImpl")
 	private SetupnaticeService setupnaticeService;
 	
-	
+	//发送email
 	@Resource(name="sendMailServiceImpl")
 	private SendMailService sendMailService;
 	
+	//认证详情
 	@Resource(name="authebDetaisServiceImpl")
 	private AuthebDetaisService authebDetaisService;
+	
+	//红包
+	@Resource(name="redmoneyServiceImpl")
+	private RedmoneyService redmoneyservice;
+	
+	//代金券
+	@Resource(name="uservouchServiceImpl")
+	private UservouchService uservouchService;
 	
 	/**
 	 * 用户通知设置的方法
@@ -186,12 +202,26 @@ public class IUserController {
 			userinfo.setUiname("yxjr"+user.getUphone());
 			userinfo.setUisex("保密");
 			userinfo.setUibirthday(DateUtils.getDateTimeFormat(new Date()));
+			userinfo.setUiemailstatus(0);
 			
 			int isadduserinfo =   userInfoService.addModel(userinfo);
 			System.out.println("插入是否成功 。。。。。"+isadduserinfo);
 			
 			
 			//如果注册成功
+			
+			//用户注册成工，给与新人奖励红包
+			Redmoney redmoney = new Redmoney();
+			redmoney.setRmoney(50.0);
+			redmoney.setRimage("/uploadFile/redmoney/timg.jpg");
+			redmoney.setRstardtime(DateUtils.getDateTimeFormat(new Date()));
+			//获取当前时间的后几天
+			Date date = new Date();  
+			SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+			date = DateUtils.getDayAfter(date, 7);
+			redmoney.setRendtime(formatDate.format(date));
+			redmoney.setUid(user.getUid());
+			redmoneyservice.addModel(redmoney);
 			
 			//数据库
 			User user3 =  iUserService.getModel(user);
@@ -201,6 +231,32 @@ public class IUserController {
 			 * */
 			session.setAttribute("user",user3);
 			map.put("status",1);
+			String orderinvite = user.getOrderinvite();
+			if(orderinvite != null ) {
+				User users = iUserService.sletUserOinvite(orderinvite);
+				Uservouch uservouch = new Uservouch();
+				uservouch.setUid(users.getUid());
+				uservouch.setUvday(30);
+				uservouch.setUvstartDate(DateUtils.getDateTimeFormat(new Date()));
+				//获取当前时间的后几天
+				Date d = new Date();  
+				SimpleDateFormat fDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+				date = DateUtils.getDayAfter(d, 30);
+				uservouch.setUvendDate(fDate.format(d));
+				uservouch.setUvimage("/uploadFile/redmoney/dai.jpg");
+				uservouch.setUvmoney(50.0);
+				int count = uservouchService.addModel(uservouch);
+				if(count>0) {
+					AuthebDetais authebDetais = new AuthebDetais();
+					Userinfo u =userInfoService.seleUserinfoByuid(user.getUid());
+					String uiname = u.getUiname();
+					String uvmoney = Double.toString(uservouch.getUvmoney());
+					authebDetais.setAdintroduct("您的好友"+uiname+"注册了亿信金融平台,恭喜您获取了"+uvmoney+"代金券");
+					authebDetais.setAdtime(DateUtils.getDateTimeFormat(new Date()));
+					authebDetais.setUiid(u.getUiid());
+					authebDetaisService.addModel(authebDetais);
+				}
+			}
 		}catch (Exception e) {
 			//日志
 			e.printStackTrace();

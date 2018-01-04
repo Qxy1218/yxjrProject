@@ -80,7 +80,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			select * from user u where u.u_phone=#{username} and u.u_password=#{password};
  	</select>
  	
- 	
+ 	<!-- 根据别人邀请码去查询用户 -->
+ 	<select id="sletUserOinvite" resultMap="BaseResultMap" parameterType="java.lang.String">
+ 		select * from user u <where> u.u_invite = #{orderinvite}</where>
+ 	</select>
  	
  	<update id="update" parameterType="com.p2p.pojo.User">
  		update user u

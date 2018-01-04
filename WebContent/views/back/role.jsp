@@ -213,11 +213,6 @@
 				align : 'center',
 				formatter : function(value, row, index) {
 					var status = row.restatus;
-					/* if(status==0){
-						return "<span class='label label-primary'>启用</span>";
-					}else{
-						return "<span class='label label-danger'>禁用</span>";
-					} */
 					if(status==1){
 			            return '<i class="fa fa-lock" style="color:red"></i>'
 			        }else if(status==0){
@@ -249,11 +244,6 @@
 		return temp;
 	};
 	
-	//权限弹窗
-	function tb_model(id){
-		$("#tb_model").modal('show');
-		$("#roleid").val(id);
-	}
 	</script>
 	<script>
 		var zTree;
@@ -271,6 +261,7 @@
 	            }
 	        },
 	        callback: {
+	        	//beforeClick 用于捕获单击节点之前的事件回调函数，并且根据返回值确定是否允许单击操作，默认值为null  
 	            beforeClick: function(treeId, treeNode) {
 	                var zTree = $.fn.zTree.getZTreeObj("tree");
 	                if (treeNode.isParent) {
@@ -327,6 +318,7 @@
 	            data: "reid="+reid,
 	            dataType: "json",
 	            success: function(data){
+	            	//$.fn.zTree.init填充树形控件
 	            	zTree = $.fn.zTree.init($("#tree"), setting, data);
 	                demoIframe = $("#testIframe");
 	                demoIframe.bind("load", loadReady);

@@ -52,6 +52,11 @@ public class UserInfoServiceImpl implements UserInfoService{
 		return userinfoMapper.findModel(id);
 	}
 
+	@Override
+	public Userinfo seleUserinfoByuid(Integer uid) {
+		return userinfoMapper.seleUserinfoByuid(uid);
+	}
+
 
 	
 }

@@ -9,4 +9,6 @@ import com.p2p.pojo.User;
  * */
 public interface IUserService extends IBaseService<Integer, User>{
 	User userLoing(String username,String password);
+	//根据别人邀请码去查询用户
+	abstract User sletUserOinvite(String orderinvite);
 }

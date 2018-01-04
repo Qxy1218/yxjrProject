@@ -11,5 +11,7 @@ import com.p2p.pojo.Userinfo;
  * 操作用户基本信息的Mapper
  * */
 public interface UserinfoMapper extends IBaseDao<Integer,Userinfo>{
+	//根据uid去查询userinfo
+	abstract Userinfo seleUserinfoByuid(Integer uid);
 	
 }

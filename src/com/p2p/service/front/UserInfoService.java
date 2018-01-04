@@ -13,5 +13,6 @@ import com.p2p.pojo.Userinfo;
  * 前台用户信息的Service
  * */
 public interface UserInfoService extends IBaseService<Integer, Userinfo>{
-	
+	//根据uid去查询userinfo
+	abstract Userinfo seleUserinfoByuid(Integer uid);
 }
