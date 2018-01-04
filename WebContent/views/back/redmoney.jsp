@@ -15,53 +15,106 @@
 <jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
 <script type="text/javascript" src="/Finances/statics/back/static/js/laydate.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery.form.js"></script>
+<script src="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<link href="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#editForm')
+        .bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+            	rendtime: {
+                    message: '红包结束时间验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '红包结束时间不能为空'
+                         }
+                        
+                    }
+                },
+                rstardtime: {
+                    message: '红包开始时间验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '红包开始时间不能为空'
+                         }
+                        
+                    }
+                },
+                rmoney: {
+                	message: '红包验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '红包金额不能为空,请选择'
+                        }
+                    }
+                }
+            }
+        }).on('success.form.bv', function(e) {
+        	
+        	$("#editForm").modal('hide');
+        	$("#editImg").modal('hide');
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+            var form = new FormData(document.getElementById("editForm"));
+            var rid =$("#editForm #rid").val();
+            var uid =$("#editForm #uid").val();
+            if(rid==null || rid==""){
+            	$.ajax({
+       	          url:"${pageContext.request.contextPath}/back/admin/insertRedmoney",
+       	          type:"post",
+       	          data:form,
+       	          processData:false,
+       	          contentType:false,
+       	          success:function(data){
+       	        	//后台返回int类型的数据
+       					if(data>0){
+       						//新增成功，下面是后台框架的提示
+       						parent.layer.alert('增加成功');
+       					}else{
+       						//新增失败
+       						parent.layer.alert('增加失败');
+       					}
+       					$('#tb_role').bootstrapTable('refresh');
+       	          },
+       	          error:function(e){
+       	        	parent.layer.alert('错误');
+       	          }
+             });
+            	
+            }else{
+            	updateRed(rid,uid);
+            } 
+        });
+});
+</script>
 <script  type="text/javascript" >
-
-
     var rows = null;
     function addRole(){
     	//清空editModel原来填写的内容
-		$("#editForm #uid").val();
-		$("#editForm #rimage").val();
-		$("#editForm #rendtime").val();
-		$("#editForm #rstardtime").val();
-		$("#editForm #rmoney").val();
+    	$("#editForm #rid").val('');
+		$("#editForm #uid").val('');
+		$("#editForm #rimage").val('');
+		$("#editForm #rendtime").val('');
+		$("#editForm #rstardtime").val('');
+		$("#editForm #rmoney").val('');
 		
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
 		$("#btn_submit").attr("onclick","insertRed()");
 		//显示新增窗口
 		$('#editImg').modal('show');
     }
-  //新增轮播图
-	function insertRed() {
-		//用来关闭新增窗口***********
-		$("#editImg").modal('hide');
-	  
-		 var form = new FormData(document.getElementById("editForm"));
-	      $.ajax({
-	          url:"${pageContext.request.contextPath}/back/admin/insertRedmoney",
-	          type:"post",
-	          data:form,
-	          processData:false,
-	          contentType:false,
-	          success:function(data){
-	        	//后台返回int类型的数据
-					if(data>0){
-						//新增成功，下面是后台框架的提示
-						parent.layer.alert('增加成功');
-					}else{
-						//新增失败
-						parent.layer.alert('增加失败');
-					}
-					//新增完刷新表格数据
-					$('#tb_role').bootstrapTable('refresh');
-	          },
-	          error:function(e){
-	              alert("错误！！");
-	          }
-	      });        
-
-  }
 	//修改按钮事件
     function UpRed(){
    	//获取当前选中行的信息
@@ -78,12 +131,12 @@
 		}
 		var athRole = selectList[0];
 		//把选中行的数据放到弹窗的控件中
+		$("#editForm #rid").val(athRole.rid);
 		$("#editForm #uid").val(athRole.uid);
 		$("#editForm #rendtime").val(athRole.rendtime);
 		//$("#editForm #ipimage").val(athRole.ipimage); 
 		$("#editForm #rstardtime").val(athRole.rstardtime);
 		$("#editForm #rmoney").val(athRole.rmoney);
-		
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
 		$("#btn_submit").attr("onclick","updateRed("+athRole.rid+","+athRole.uid+")");
 		//显示新增窗口
@@ -317,6 +370,7 @@
 					<!-- 新增系别 -->
 							<div class="form-group">
 							<label for="urlName" class="control-label col-sm-3">用户表名字</label> 
+							<input type="hidden" name="rid" id="rid" />
 							<div class="col-sm-8">
 								<select class="form-control m-b" id="uid" name="uid" style="margin-bottom: 0px;">
 		                        	<c:forEach items="${uselist}" var="userlevel" >
@@ -352,18 +406,18 @@
 							<div class="col-sm-8">
 								<textarea name="rmoney" rows="3" class="form-control" id="rmoney"></textarea>
 	            			</div>
-						
-			</form>		
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">
+	            	<div class="modal-footer">
+					<button type="submit" class="btn btn-default" data-dismiss="modal">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
 					</button>
-					<button type="button" id="btn_submit" class="btn btn-primary" >
+					<button type="submit" id="btn_submit" class="btn btn-primary" >
 						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>提交
 					</button>
 				</div>
 				
+						
+			</form>		
+				</div>
 			</div>
 		</div>
 	</div>
