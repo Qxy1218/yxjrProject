@@ -156,7 +156,7 @@ public class FrontController {
 	
 	//爱车贷
 	@RequestMapping("toinvestche")
-	public String toACD(Model model) throws Exception{
+	public String toACD(Model model,Integer pageNow) throws Exception{
 		
 		model.addAttribute("pageName", "invset");
 		
@@ -167,8 +167,22 @@ public class FrontController {
 		SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
 		Date date3 = format2.parse(time);
 			
+		//根据标类型获取总数
+		int totalCount =  (int) fabiaoService.getProductsCount("爱车贷");
+		//分页实现
+		Page page ;  
+		List<Fabiao> acd = new ArrayList<Fabiao>();
+		 if (pageNow != null) {  
+	        page = new Page(totalCount,pageNow);  
+	        //现在模拟为两页
+	        page.setPageSize(2);
+	        acd = this.fabiaoService.selectProductsByPage(page.getStartPos(), page.getPageSize(),"爱车贷");  
+	     } else {  
+	        page = new Page(totalCount, 1);  
+	        acd = this.fabiaoService.selectProductsByPage(page.getStartPos(), page.getPageSize(),"爱车贷");  
+	     } 
 		
-		 List<Fabiao> acd =  fabiaoService.selectByType("爱车贷");
+		
 		 List<Fabiao> acds = new ArrayList<Fabiao>(); 
 			for(int i=0;i<acd.size();i++) {
 				Fabiao fabiao = acd.get(i);
@@ -214,12 +228,14 @@ public class FrontController {
 			}
 			//爱车贷
 			model.addAttribute("fabiaolistsafd", acds);
+			//把分页工具类添加进request
+			model.addAttribute("page",page);
 			return "views/front/investche";
 	}
 	
 	//爱房贷
 	@RequestMapping("toinvestfang")
-	public String toFANG(Model model) throws Exception{
+	public String toFANG(Model model,Integer pageNow) throws Exception{
 		model.addAttribute("pageName", "invset");
 		
 		//取当前时间	
@@ -229,8 +245,22 @@ public class FrontController {
 		SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
 		Date date3 = format2.parse(time);
 		
+		//根据标类型获取总数
+		int totalCount =  (int) fabiaoService.getProductsCount("爱房贷");
+		//分页实现
+		Page page ;  
+		List<Fabiao> afd = new ArrayList<Fabiao>();
+		 if (pageNow != null) {  
+	        page = new Page(totalCount,pageNow);  
+	        //现在模拟为两页
+	        page.setPageSize(2);
+	        afd = this.fabiaoService.selectProductsByPage(page.getStartPos(), page.getPageSize(),"爱房贷");  
+	     } else {  
+	        page = new Page(totalCount, 1);  
+	        afd = this.fabiaoService.selectProductsByPage(page.getStartPos(), page.getPageSize(),"爱房贷");  
+	     } 
+		
 		//爱房贷
-		 List<Fabiao> afd =  fabiaoService.selectByType("爱房贷");
 		 List<Fabiao> afds = new ArrayList<Fabiao>(); 
 			for(int i=0;i<afd.size();i++) {
 				Fabiao fabiao = afd.get(i);
@@ -276,12 +306,14 @@ public class FrontController {
 			}
 			//爱房贷
 			model.addAttribute("afds", afds);
+			//把分页工具类添加进request
+			model.addAttribute("page",page);
 			return "views/front/investfang";
 	}
 	
 	//消费金融
 	@RequestMapping("toinvestjj")
-	public String toXF(Model model) throws Exception{
+	public String toXF(Model model,Integer pageNow) throws Exception{
 		model.addAttribute("pageName", "invset");
 		
 		//取当前时间	
@@ -291,7 +323,21 @@ public class FrontController {
 		SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
 		Date date3 = format2.parse(time);
 		
-		 List<Fabiao> xfjj =  fabiaoService.selectByType("消费金融");
+		//根据标类型获取总数
+		int totalCount =  (int) fabiaoService.getProductsCount("消费基金");
+		//分页实现
+		Page page ;  
+		List<Fabiao> xfjj = new ArrayList<Fabiao>();
+		 if (pageNow != null) {  
+	        page = new Page(totalCount,pageNow);  
+	        //现在模拟为两页
+	        page.setPageSize(2);
+	        xfjj = this.fabiaoService.selectProductsByPage(page.getStartPos(), page.getPageSize(),"消费基金");  
+	     } else {  
+	        page = new Page(totalCount, 1);  
+	        xfjj = this.fabiaoService.selectProductsByPage(page.getStartPos(), page.getPageSize(),"消费基金");  
+	     } 
+		
 		 List<Fabiao> xfjjs = new ArrayList<Fabiao>(); 
 			for(int i=0;i<xfjj.size();i++) {
 				Fabiao fabiao = xfjj.get(i);
@@ -337,13 +383,15 @@ public class FrontController {
 			}		
 			//消费金融
 			model.addAttribute("xfjjs", xfjjs);
+			//把分页工具类添加进request
+			model.addAttribute("page",page);
 			return "views/front/investjj";
 	}
 	
 	
 	//爱公益
 	@RequestMapping("toinvestgy")
-	public String toAGY(Model model) throws Exception{
+	public String toAGY(Model model,Integer pageNow) throws Exception{
 		model.addAttribute("pageName", "invset");
 		
 		//取当前时间	
@@ -352,9 +400,22 @@ public class FrontController {
 		String time=format1.format(date);
 		SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
 		Date date3 = format2.parse(time);
-	
 		
-		List<Fabiao> agy =  fabiaoService.selectByType("爱公益");
+		//根据标类型获取总数
+		int totalCount =  (int) fabiaoService.getProductsCount("爱公益");
+		//分页实现
+		Page page ;  
+		List<Fabiao> agy = new ArrayList<Fabiao>();
+		 if (pageNow != null) {  
+	        page = new Page(totalCount,pageNow);  
+	        //现在模拟为两页
+	        page.setPageSize(2);
+	        agy = this.fabiaoService.selectProductsByPage(page.getStartPos(), page.getPageSize(),"爱公益");  
+	     } else {  
+	        page = new Page(totalCount, 1);  
+	        agy = this.fabiaoService.selectProductsByPage(page.getStartPos(), page.getPageSize(),"爱公益");  
+	     } 
+		
 		List<Fabiao> agys = new ArrayList<Fabiao>(); 
 		for(int i=0;i<agy.size();i++) {
 			Fabiao fabiao = agy.get(i);
@@ -400,6 +461,8 @@ public class FrontController {
 		}
 		//爱公益
 		model.addAttribute("agys", agys);
+		//把分页工具类添加进request
+		model.addAttribute("page",page);
 		return "views/front/investgy";
 	}
 	

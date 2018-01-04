@@ -245,13 +245,31 @@
         	 <div class="m2-newListpage-con" style="padding-top:5px;">
 	            <div class="m2-newListpage">
 	                <div class="m2-news-pages" style="padding-right:40px;margin:12px auto;">
-	                    <a href='/touzi_licai_chanpin.html?isAjax=1&type=borrow&page=1' class="m2-pages-num m2-page-prev">&lt;</a>
-	                    <a href='/touzi_licai_chanpin.html?isAjax=1&type=borrow&page=1' class="m2-pages-num m2-page-sel">1</a>
-	                    <a href='/touzi_licai_chanpin.html?isAjax=1&type=borrow&page=2' class="m2-pages-num m2-page-unsel">2</a>
-	                    <a href='/touzi_licai_chanpin.html?isAjax=1&type=borrow&page=3' class="m2-pages-num m2-page-unsel">3</a>
-	                    <a href='/touzi_licai_chanpin.html?isAjax=1&type=borrow&page=4' class="m2-pages-num m2-page-unsel">4</a>
-	                    <a href='/touzi_licai_chanpin.html?isAjax=1&type=borrow&page=5' class="m2-pages-num m2-page-unsel">5</a>
-	                    <a href='/touzi_licai_chanpin.html?isAjax=1&type=borrow&page=2' class="m2-pages-num m2-page-next">&gt;</a>
+	                	<a href='/Finances/toinvestche?pageNow=1' class="m2-pages-num m2-page-prev">&lt;</a>
+		                  			<c:choose>
+									<c:when test="${page.pageNow - 1 > 0}">
+										<a href="/Finances/toinvestche?pageNow=${page.pageNow - 1}" class="m2-pages-num m2-page-sel">${page.pageNow - 1}</a>
+									</c:when>
+									<c:when test="${page.pageNow - 1 <= 0}">
+										 <a href='/Finances/toinvestche?pageNow=1' class="m2-pages-num m2-page-sel">${page.pageNow}</a>
+									</c:when>
+								</c:choose>
+							<c:choose>
+									<c:when test="${page.pageNow + 1 < page.totalPageCount}">
+										<a href="/Finances/toinvestche?pageNow=${page.pageNow + 1}" class="m2-pages-num m2-page-sel">${page.pageNow+1}</a>
+									</c:when>
+									<c:when test="${page.pageNow + 1 >= page.totalPageCount}">
+										<a href="/Finances/toinvestche?pageNow=${page.totalPageCount}" class="m2-pages-num m2-page-sel">${page.totalPageCount}</a>
+									</c:when>
+								</c:choose>
+								<c:choose>
+									<c:when test="${page.totalPageCount==0}">
+										<a href="/Finances/toinvestche?pageNow=${page.pageNow}" class="m2-pages-num m2-page-sel">&lt;</a>
+									</c:when>
+									<c:otherwise>
+										<a href="/Finances/toinvestche?pageNow=${page.totalPageCount}" class="m2-pages-num m2-page-next">&gt;</a>
+									</c:otherwise>
+								</c:choose>
 	                </div>
 	            </div>
        		 </div>
