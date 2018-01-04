@@ -242,32 +242,39 @@
         
         	 <div class="m2-newListpage-con" style="padding-top:5px;">
 	            <div class="m2-newListpage">
-	                <div class="m2-news-pages" style="padding-right:40px;margin:12px auto;">
-	                	<a href='/Finances/toinvestgy?pageNow=1' class="m2-pages-num m2-page-prev">&lt;</a>
-		                  			<c:choose>
-									<c:when test="${page.pageNow - 1 > 0}">
-										<a href="/Finances/toinvestgy?pageNow=${page.pageNow - 1}" class="m2-pages-num m2-page-sel">${page.pageNow - 1}</a>
-									</c:when>
-									<c:when test="${page.pageNow - 1 <= 0}">
-										 <a href='/Finances/toinvestgy?pageNow=1' class="m2-pages-num m2-page-sel">${page.pageNow}</a>
-									</c:when>
-								</c:choose>
-							<c:choose>
-									<c:when test="${page.pageNow + 1 < page.totalPageCount}">
-										<a href="/Finances/toinvestgy?pageNow=${page.pageNow + 1}" class="m2-pages-num m2-page-sel">${page.pageNow+1}</a>
-									</c:when>
-									<c:when test="${page.pageNow + 1 >= page.totalPageCount}">
-										<a href="/Finances/toinvestgy?pageNow=${page.totalPageCount}" class="m2-pages-num m2-page-sel">${page.totalPageCount}</a>
-									</c:when>
-								</c:choose>
-								<c:choose>
-									<c:when test="${page.totalPageCount==0}">
-										<a href="/Finances/toinvestgy?pageNow=${page.pageNow}" class="m2-pages-num m2-page-sel">&lt;</a>
-									</c:when>
-									<c:otherwise>
-										<a href="/Finances/toinvestgy?pageNow=${page.totalPageCount}" class="m2-pages-num m2-page-next">&gt;</a>
-									</c:otherwise>
-								</c:choose>
+	                <div class="m2-news-pages" style="padding-right:40px;margin:12px auto;text-align: center;">
+	               
+	                <c:if test="${fn:length(agys) > 0}">
+		               <a href="javascript:void(0);" onclick="window.location.href='/Finances/toinvestgy?pageNow=1'" class="m2-pages-num m2-page-prev">&lt;</a>					
+						<c:choose>
+							<c:when test="${page.pageNow - 1 > 0}">
+								<a href="javascript:void(0);" onclick="window.location.href='/Finances/toinvestgy?pageNow=${page.pageNow - 1}'"  class="m2-pages-num m2-page-sel"> - </a>
+							</c:when>
+							<c:when test="${page.pageNow - 1 <= 0}">
+								<a href="javascript:void(0);" onclick="window.location.href='/Finances/toinvestgy?pageNow=1'"  class="m2-pages-num m2-page-sel"> - </a>
+							</c:when>
+						</c:choose>
+						<c:choose>
+							<c:when test="${page.totalPageCount==0}">
+								<a href="javascript:void(0);" onclick="window.location.href='/Finances/toinvestgy?pageNow=${page.pageNow}'"   class="m2-pages-num m2-page-sel"> + </a>
+							</c:when>
+							<c:when test="${page.pageNow + 1 < page.totalPageCount}">
+								<a href="javascript:void(0);" onclick="window.location.href='/Finances/toinvestgy?pageNow=${page.pageNow+1}'"  class="m2-pages-num m2-page-sel"> + </a>
+							</c:when>
+							
+							<c:when test="${page.pageNow + 1 >= page.totalPageCount}">
+								<a href="javascript:void(0);" onclick="window.location.href='/Finances/toinvestgy?pageNow=${page.totalPageCount}'"  class="m2-pages-num m2-page-sel"> + </a>
+							</c:when>
+						</c:choose>
+						<c:choose>
+							<c:when test="${page.totalPageCount==0}">
+								<a href="javascript:void(0);" onclick="window.location.href='/Finances/toinvestgy?pageNow=${page.pageNow}'" title="尾页" class="m2-pages-num m2-page-next">&gt;</a>
+							</c:when>
+							<c:otherwise>
+								<a href="javascript:void(0);" onclick="window.location.href='/Finances/toinvestgy?pageNow=${page.totalPageCount}'" title="尾页" class="m2-pages-num m2-page-next">&gt;</a>
+							</c:otherwise>
+						</c:choose>
+				</c:if>		
 	                </div>
 	            </div>
        		 </div>
