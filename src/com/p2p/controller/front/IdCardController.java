@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.p2p.pojo.Bank;
 import com.p2p.pojo.IdCard;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Userbackcard;
 import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Users;
+import com.p2p.service.front.IUserService;
 import com.p2p.service.front.IdCardService;
+import com.p2p.service.front.UserInfoService;
 import com.p2p.service.front.UserbackcardService;
 import com.p2p.util.BankUtil;
 import com.p2p.util.DateUtils;
@@ -39,6 +42,11 @@ public class IdCardController {
 	
 	@Resource(name="userbackcardServiceImpl") 
 	private UserbackcardService userbackcardService;
+	
+	@Resource(name="userInfoServiceImpl")
+	private UserInfoService userInfoService;
+	@Resource(name="IUserServiceImpl")
+	private IUserService iUserService;
 	
 	/**
 	 * 添加(修改)身份证信息
@@ -84,7 +92,7 @@ public class IdCardController {
 	}
 	
 	/**
-	 * 添加银行卡
+	 * 添加银行卡(需要与服务端连接)
 	 * */
 	@RequestMapping("/addbackcard")
 	@ResponseBody
@@ -93,24 +101,51 @@ public class IdCardController {
 		Integer uiid = userback.getUiid();
 		try {
 			if(uiid!=null) {
-				IdCard idCards = new IdCard();
-				idCards.setUiid(uiid);
-				IdCard ic = idCardService.getModel(idCards);
+				//客服端银行卡设值
+				Userbackcard bank = new Userbackcard();
+				bank.setUiid(uiid);
+				bank.setUbbackcardnum(userback.getUbbackcardnum());
+				bank.setUbplaceback(userback.getUbplaceback());
+				bank.setUbbindtime(DateUtils.getDateTimeFormat(new Date()));
+				bank.setUbstatus(1);
+				bank.setUbmoney(100000.00);
 				
+				//获取客服端用户基本信息表、身份证表、用户表中字段信息
+				Userinfo userinfo = new Userinfo();
+				userinfo.setUiid(uiid);
+				Userinfo userinfos = userInfoService.getModel(userinfo);
+				IdCard idcard = userinfos.getIdCard();
+				User user = new User();
+				user.setUid(userinfos.getUid());
+				User us = iUserService.getModel(user);
 				
+				//服务端用户表设值
 				Users users = new Users();
+				users.setSuid(userinfos.getUiid());
+				users.setSuusername(userinfos.getUiname());
+				users.setSuname(idcard.getIcname());
+				users.setSuphone(us.getUphone());
+				users.setSucard(idcard.getIcnumber());
+				users.setSuemail(userinfos.getUiemail());
+				users.setSumoney(bank.getUbmoney());
+				users.setSucredit(us.getUcredit());
 				
+				//向服务端传递对象(url是服务端地址)
+				int usercount = SendServiceUtil.list(users, "192.168.90.47:8080/ServiceP2p/user/add");
 				
-				int counts = SendServiceUtil.list(users, "192.168.90.47/ServiceP2p/user/add");
-				if(counts==1) {
-					Userbackcard back = new Userbackcard();
-					back.setUiid(uiid);
-					back.setUbbackcardnum(userback.getUbbackcardnum());
-					back.setUbplaceback(userback.getUbplaceback());
-					back.setUbbindtime(DateUtils.getDateTimeFormat(new Date()));
-					back.setUbstatus(1);
-					back.setUbmoney(1000.00);
-					addCard = userbackcardService.addModel(back);
+				//服务端银行卡设值
+				Bank banks = new Bank();
+				banks.setBsuid(bank.getUiid());
+				banks.setBcode(bank.getUbbackcardnum());
+				banks.setBtype(bank.getUbplaceback());
+				banks.setBmoney(bank.getUbmoney());
+				banks.setBstate(bank.getUbstatus());
+				
+				int bankcount = SendServiceUtil.list(banks, "192.168.90.47:8080/ServiceP2p/bank/add");
+				
+				//当服务端开通成功后才可以成功开户
+				if(usercount==1 && bankcount==1) {
+					addCard = userbackcardService.addModel(bank);
 					addCard = 1;
 				}
 			}

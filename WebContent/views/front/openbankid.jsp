@@ -194,7 +194,7 @@
 	                            	<input type="hidden" id="placeback"/>
 	                            	<input type="text" class="m2-regist-username" onkeydown="onlyNum();" style="ime-mode:Disabled" id="bankcardid" value="" placeholder="借记卡卡号（必填）"/>
 	                            	<span class="m2-regist-errMsgcard"></span>
-	                            	<span class="m2-regist-errMsgcards" style="color:#33cc00"></span>
+	                            	<span class="m2-regist-errMsgcards" style="color:#33cc00;"></span>
 	                            	<a href="#" target="_blank" style="color:#57b4f8;font-size: 12px;position: absolute;left: 260px;top: 0px">查看支持银行</a>
 	                            </td>
 	                        </tr>
@@ -255,6 +255,7 @@
 	        }
 	        function checkBankCard() {
 	            var bankcard = $('#bankcardid').val();
+	            var pattern = /^([1-9]{1})(\d{14}|\d{18})$/;
 	            if (bankcard == '') {
 	                $('#bankcardid').next('.m2-regist-errMsgcard').html('银行卡不能为空!');
 	                return false;

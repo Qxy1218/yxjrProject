@@ -8,15 +8,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.p2p.pojo.Users;
 
 public class SendServiceUtil {
 	//发送
-	public static int list(Users users,String address) throws Exception {
+	public static int list(Object obj,String address) throws Exception {
 		int count = 0;
 		//StringBuffer sendStr = new StringBuffer();
 		ObjectMapper m = new ObjectMapper();  
-		String sendStr = m.writeValueAsString(users);  
+		String sendStr = m.writeValueAsString(obj);  
 		
 		//sendStr.append("测试数据");
 		BufferedReader reader = null;
@@ -27,7 +26,7 @@ public class SendServiceUtil {
 	        URL uploadServlet = new URL("http://"+address+"");  
 	        HttpURLConnection servletConnection = (HttpURLConnection) uploadServlet.openConnection();  
 	        // 设置连接参数  
-	        servletConnection.setRequestMethod("POST");  
+	        servletConnection.setRequestMethod("GET");  
 	        servletConnection.setDoOutput(true);  
 	        servletConnection.setDoInput(true);  
 	        servletConnection.setAllowUserInteraction(true);  
@@ -50,8 +49,8 @@ public class SendServiceUtil {
 	        
 	        //msg返回的值  1:开通成功,2:开通失败
 	        count = Integer.valueOf(msg);
-	    } catch (java.net.ConnectException e) {  
-	        throw new Exception();  
+	    } catch (Exception e) {  
+	        e.printStackTrace();
 	    } finally {  
 	        if (reader != null) {  
 	           reader.close();  

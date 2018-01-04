@@ -154,6 +154,6 @@ public class SendMsgUtil {
 		}else {
 			return;
 		}
-		smg.send(phone, message);
+		//smg.send(phone, message);
 	}
 }

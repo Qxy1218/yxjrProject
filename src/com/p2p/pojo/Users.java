@@ -3,7 +3,7 @@ package com.p2p.pojo;
 import java.io.Serializable;
 
 /**
- * 服务端虚拟表
+ * 服务端用户虚拟表
  * 
  * @author lxj
  * */
