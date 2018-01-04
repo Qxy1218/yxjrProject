@@ -28,7 +28,6 @@ public class SendMailUtil {
         Map<String,Object> maps = new HashMap<String,Object>();
         maps.put("userid", map.get("userid"));
         maps.put("email", map.get("email"));
-        maps.put("name", map.get("name"));
         StringBuilder msg = SendMailUtil.createEmail(maps);
         info.setContent(msg.toString());
         MailSendUtil sms = new MailSendUtil();
@@ -68,7 +67,6 @@ public class SendMailUtil {
         Map<String,Object> maps = new HashMap<String,Object>();
         maps.put("userid", map.get("userid"));
         maps.put("email", map.get("email"));
-        maps.put("name", map.get("name"));
         StringBuilder msg = SendMailUtil.createEmail(maps);
         info.setContent(msg.toString());
         MailSendUtil sms = new MailSendUtil();
@@ -116,7 +114,7 @@ public class SendMailUtil {
         			+ "<div class='container'>"
         				+ "<h2 class='title'>忆信金融</h2>"
         				+ "<p class='content'>点击验证码"
-        					+ "<a href="+"http://127.0.0.1:8080/Finances/user/emailcheck?id="+map.get("userid")+"&email="+map.get("email")+"&name="+map.get("name")+""+">请点击</a>"
+        					+ "<a href="+"http://127.0.0.1:8080/Finances/user/emailcheck?id="+map.get("userid")+"&email="+map.get("email")+""+">请点击</a>"
         				+ "</p>"
         			+ "</div>"
         		+ "</body>"

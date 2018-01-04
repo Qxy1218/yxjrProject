@@ -146,6 +146,12 @@ public class IdCardController {
 				//当服务端开通成功后才可以成功开户
 				if(usercount==1 && bankcount==1) {
 					addCard = userbackcardService.addModel(bank);
+					
+					Userinfo userinfo1 = new Userinfo();
+					userinfo1.setUiid(uiid);
+					userinfo1.setUiopenstatus(1);
+					userInfoService.update(userinfo1);
+					
 					addCard = 1;
 				}
 			}
@@ -153,5 +159,13 @@ public class IdCardController {
 			e.printStackTrace();
 		}
 		return addCard;
+	}
+	
+	/**
+	 * 开户成功后需跳转的页面
+	 * */
+	@RequestMapping(value="/opensuccess")
+	public String openCustody() {
+		return "views/front/open_success";
 	}
 }

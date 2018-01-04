@@ -469,7 +469,6 @@ public class IUserController {
 		map.put("userid",userinfo.getUiid());
 		map.put("title", "忆信认证");
 		map.put("email",userinfo.getUiemail());
-		map.put("name",userinfo.getUiname());
 		//调用方法
 		boolean isSuccess = SendMailUtil.send(map,sendMailService);
 		if(isSuccess){
@@ -485,22 +484,14 @@ public class IUserController {
 	 * 邮箱点击验证的controller
 	 * */
 	@RequestMapping(value = "emailcheck")
-	public String emailCheck(Integer id,String email,String name,Model model) {
+	public String emailCheck(Integer id,String email,Model model) {
 		Userinfo userinfo = new Userinfo();
 		userinfo.setUiemail(email);
 		userinfo.setUiid(id);
+		userinfo.setUiemailstatus(1);
 		int  isok = userInfoService.update(userinfo);
 		if(isok>0) {
 			model.addAttribute("isok",1);
-			userinfo.setUiemailstatus(1);
-			int count = userInfoService.update(userinfo);
-			if(count>0) {
-				AuthebDetais authebDetais = new AuthebDetais();
-				authebDetais.setAdintroduct("用户: "+name+",已向邮箱发送消息,需后台管理员审核通过!");
-				authebDetais.setAdtime(DateUtils.getDateTimeFormat(new Date()));
-				authebDetais.setUiid(id);
-				authebDetaisService.addModel(authebDetais);
-			}
 		}else {
 			model.addAttribute("isok",2);
 		}
