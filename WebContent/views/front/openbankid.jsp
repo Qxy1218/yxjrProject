@@ -106,7 +106,7 @@
 	        $(".mylogin .closeimg").click(function(){
 	            $(".mylogin").hide();
 	            $(".myloginmask").hide();
-	            window.location.href="/Index";
+	            window.location.href="#";
 	        })
 	    </script>
 	</head>
@@ -194,7 +194,8 @@
 	                            	<input type="hidden" id="placeback"/>
 	                            	<input type="text" class="m2-regist-username" onkeydown="onlyNum();" style="ime-mode:Disabled" id="bankcardid" value="" placeholder="借记卡卡号（必填）"/>
 	                            	<span class="m2-regist-errMsgcard"></span>
-	                            	<span class="m2-regist-errMsgcards" style="color:#33cc00;"></span>
+	                            	<span class="m2-regist-errsMsgcard" style="font-size: 12px;position: absolute;left: 65px;top: 30px"></span>
+	                            	<input type="hidden" id="staticNumber"/>
 	                            	<a href="#" target="_blank" style="color:#57b4f8;font-size: 12px;position: absolute;left: 260px;top: 0px">查看支持银行</a>
 	                            </td>
 	                        </tr>
@@ -205,7 +206,7 @@
 	                    
 	                    <div class="m2-regist-btn m2-regist-quit" >
 	                        <a class="openbank openAble" id="openbank" onclick="">立即开通</a>
-	                        <a class="m2-regist-look" href="/Finances/toinvest" target="_blank">我先看看</a>
+	                        <a class="m2-regist-look" href="/Finances/toinvestzt" target="_blank">我先看看</a>
 	                    </div>
 	
 	                </div>
@@ -257,8 +258,13 @@
 	            var bankcard = $('#bankcardid').val();
 	            var pattern = /^([1-9]{1})(\d{14}|\d{18})$/;
 	            if (bankcard == '') {
+	            	$('.m2-regist-errMsgcard').next('.m2-regist-errsMsgcard').html("");
 	                $('#bankcardid').next('.m2-regist-errMsgcard').html('银行卡不能为空!');
 	                return false;
+	            }else if(!pattern.test(bankcard)){
+	            	$('.m2-regist-errMsgcard').next('.m2-regist-errsMsgcard').html("");
+	            	$('#bankcardid').next('.m2-regist-errMsgcard').html("银行卡号输入有误,请输入正确的银行卡号!");
+                    return false;
 	            }else{
 	            	$.ajax({
                         url: "/Finances/idcard/getCardType",
@@ -270,12 +276,14 @@
                         success: function (data) {
                             if (data.status == 1) {
                             	$('#bankcardid').next('.m2-regist-errMsgcard').html('');
-                            	$('#bankcardid').next('.m2-regist-errMsgcard').html(data.type);
+                            	$('.m2-regist-errMsgcard').next('.m2-regist-errsMsgcard').css('color','#33cc00').html(data.type);
                             	$("#placeback").val(data.type);
+                            	$("#staticNumber").val("1");
             		            return true;
                             } else {
-                                $('#bankcardid').next('.m2-regist-errMsgcard').html("不支持此银行,请查看支持的银行!");
-                                return false;
+                            	$('.m2-regist-errMsgcard').next('.m2-regist-errsMsgcard').css('color','red').html("银行卡号输入有误,请输入正确的银行卡号!");
+                            	$("#staticNumber").val("2");
+                            	return false;
                             }
                         }
                     });
@@ -299,40 +307,39 @@
 	                    btnGrey();
 	                    var ifUserName= checkUserName();
 	                    var ifIdNo = checkIdNo();
+	                    var canSubmit = true;
 	                    
 	                    var uiid = $("#ui_id").val();
 	                    var ubbackcardnum = $("#bankcardid").val();
 	                    var ubplaceback = $("#placeback").val();
 	                    
-	                    //  var ifBankCard=$('#bankcardid').next('.m2-regist-errMsgcard').children('span').html().length==0;
-	                    var canSubmit = true;
-	                    // var p = makevar(['realname', 'bankcardid', 'idcard']);
-	                    // p['uphone'] = ${sessionScope.user.uphone};
 	                    if (($('#realname').val() == '') || ($('#bankcardid').val() == '') || ($('#idcard').val() == '')) {
 	                        showInfoDialog("请将必填信息填写完整!", 0);
 	                        canSubmit = false;
 	                    }
 	
-	                    $(".m2-openbank-card").each(function () {
+	                   $(".m2-openbank-card").each(function () {
 	                        if ($(this).html().length > 0) {
-	                        	 showInfoDialog("请输入正确的必填信息!", 0);
+	                        	showInfoDialog("请输入正确的必填信息!", 0);
 	 	                        canSubmit = false;
 	                        }
 	                    });
-	
-	//            if ($('#bankcardid').next('.m2-regist-errMsgcard').children('span').html().length > 0) {
-	                    if ($('#bankcardid').val() == '') {
-	                        canSubmit = false;
-	                    }
+	                   
+	                   $(".m2-regist-errMsgcard").each(function () {
+	                        if (($(this).html().length > 0) || ($(this).next(".m2-regist-errsMsgcard").next("#staticNumber").val()==2)) {
+	 	                        canSubmit = false;
+	                        }
+	                    });
+	                    
 	                    if (!$("#service").is(":checked")) {
 	                        showInfoDialog("必须先同意服务协议!", 0);
 	                        canSubmit = false;
 	                    }
-	                    if (canSubmit != true){
+	                   	if (canSubmit != true){
 	                    	return false;
-	                    }
-	                    if(ifUserName && ifIdNo){
-	                        $.ajax({
+	                    } 
+	                    if(ifUserName && ifIdNo && canSubmit){
+	                      	$.ajax({
 	                            url: "/Finances/idcard/addbackcard",
 	                            data:{
 	                            	uiid:uiid,
@@ -343,14 +350,13 @@
 	                            dataType: 'json',
 	                            success: function (data) {
 	                                if (data == 1) {
-	                                    alert("开通成功");
+	                                	window.location.href="/Finances/idcard/opensuccess";
 	                                } else {
-	                                    $('#bankcardid').next('.m2-regist-errMsgcard').html("开通失败");
+	                                    $('.m2-regist-errMsgcard').next('.m2-regist-errsMsgcard').css('color','red').html("很遗憾，微商存管账户开户失败");
 	                                }
 	                            }
-	                        });
+	                        }); 
 	                    }
-	
 	                }
 	            });
 	            $('.m2-reg-voice').click(function () {
@@ -421,10 +427,10 @@
 	                    show_flag = false;
 	                }
 	            }
-	            getCardInfo();
+	            //getCardInfo();
 	        });
 	
-	        function getCardInfo() {
+	        /* function getCardInfo() {
 	            if (send_flag) {
 	                card_no = $('#bankcardid').val();
 	                if(!card_no){
@@ -455,7 +461,7 @@
 	                    }
 	                });
 	            }
-	        }
+	        } */
 	    </script>
 	    <script>
 	        $(function(){

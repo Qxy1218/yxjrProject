@@ -17,7 +17,8 @@ $(function(){
     setPassword();  //修改登录密码
     setAddress();  //添加联系地址
     verifyemail();   //电子邮箱
-    hsChangePassWord();  //微商交易密码
+    //hsChangePassWord();  //微商交易密码
+    setDealPassword();  //微商交易密码
 
     function getQueryString(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -43,20 +44,26 @@ function setVerifyStatus(){
     var address_status = 0;  //联系地址
     var email_status = 0;  //电子邮箱
     var phone_status = 0;  //手机号码
+    var dealpwd = 0;  //交易密码
     var setword_status=0;  
     var name_number=0;  //实名认证
     
     if($("#vp-uphone").val()!=null && $("#vp-uphone").val()!=""){
     	phone_status = 1;
     }
-    if($("#getemailstatus").val()==2){
+    if($("#getemailstatus").val()==1){
     	email_status = 1;
     }
     if($("#icstatus").val()==1){
     	name_number = 1;
     }
-    
-    var i = Number(id_status)+Number(phone_status)+Number(email_status)+Number(name_number);
+    if($("#vp-uiopenstatic").val()==1){
+    	id_status = 1;
+    }
+    if($("#dealpwd").val()!=""){
+    	var dealpwd = 1;
+    }
+    var i = Number(id_status)+Number(dealpwd)+Number(email_status)+Number(name_number);
 
     if(i == 1){
         $('#safe_level').text('低');
@@ -82,12 +89,12 @@ function setVerifyStatus(){
         $('#id_status').html('<b></b>已认证');
         $('#id_status').next('span').find('a').text('查看');
         $('#id_status').next('span').find('a').prop('href','#');
-        
-        $('#tid_status').removeClass('m2-userSettingsaut-fal');
-        $('#tid_status').addClass('m2-userSettingsaut-tur');
-        $('#tid_status').html('<b></b>已认证');
-        $('#tid_status').next('span').find('a').text('查看');
-        $('#tid_status').next('span').find('a').prop('href','#');
+    }
+    if(dealpwd == 1){
+        $('#id_dealpwd').removeClass('m2-userSettingsaut-fal');
+        $('#id_dealpwd').addClass('m2-userSettingsaut-tur');
+        $('#id_dealpwd').html('<b></b>已设置');
+        $('#id_dealpwd').next('span').find('a').text('修改');
     }
     if(3 > 0){
         $('#verifyphoneli').show();
@@ -132,6 +139,7 @@ function setVerifyStatus(){
     }
 }
 
+//手机号设置
 function bindphone(){
     var flag = false;
     var t1=0,t2=0;
@@ -204,39 +212,6 @@ function bindphone(){
         	$('#vp-warn').html("<em></em>请输入需要修改的手机号");
         	$('#vp-warn').show();
             flag = false;
-        }
-    });
-    //语言验证码
-    $('#vp-voicebtn').click(function(){
-        t2 = Date.now();
-        if(t2-t1 > 60*1000 && flag){
-            t1 = Date.now();
-            $.ajax({
-                url:"/usercenter-Accountcontrol-sendvoice",
-                type:"POST",
-                data:{
-                	phone:$('#vp-phonenum').val(),
-                    vcode:$('#vp-vpic').val()
-                },
-                success:function(data){
-                    obj = eval('('+data+')');
-                    if(obj.status == 2){
-                        $('#vp-msg').show();
-                        dialog(obj);
-                    }else{
-                        dialog(obj);
-                    }
-                }
-            });
-            if($(this).hasClass('m2-userSettings-telSubmit')){
-                $(this).removeClass('m2-userSettings-telSubmit');
-                $(this).addClass('m2-userSettings-telSubmit-disabled');
-                setTimeout(function(){
-                    $('#vp-voicebtn').removeClass('m2-userSettings-telSubmit-disabled');
-                    $('#vp-voicebtn').addClass('m2-userSettings-telSubmit');
-                    $('#vp-msg').hide();
-                },60000);
-            }
         }
     });
 	//判断短信验证码是否正确
@@ -365,6 +340,7 @@ function setAddress(){
     });
 }
 
+//修改登录密码
 function setPassword(){
     var flag1 = false;
     var flag2 = false;
@@ -459,6 +435,101 @@ function setPassword(){
     });
 }
 
+//修改(添加)交易密码
+function setDealPassword(){
+    var flag1 = true;
+    var flag2 = true;
+    var flag3 = true;
+
+    $('#olddealpwd').keyup(function(){
+        if($('#olddealpwd').val().length > 5 && $('#olddealpwd').val().length < 16){
+            $.ajax({
+                url:"/Finances/user/getDealPwd",
+                type:"POST",
+                data:{
+                	uidealpwd:$('#olddealpwd').val(),
+                	uiid:$("#vp-uiid").val()
+                },
+                success:function(data){
+                    if(data>0){
+                    	$('#olddealpwd').next('span').html('');
+                    	flag1 = true;
+                    }else{
+                    	$('#olddealpwd').next('span').html('<em></em>原密码输入错误。');
+                        flag1 = false;
+                    }
+                }
+            });
+        }else{
+            $('#olddealpwd').next('span').html('<em></em>密码需为6-15常用英文字母或数字。');
+            flag1 = false;
+        }
+    });
+    $('#newdealpwd1').keyup(function(){
+        if($('#newdealpwd1').val().length > 5 && $('#newdealpwd1').val().length < 16){
+            $('#newdealpwd1').next('span').html('');
+            flag2 = true;
+        }else{
+            $('#newdealpwd1').next('span').html('<em></em>密码需为6-15常用英文字母或数字。');
+            flag2 = false;
+        }
+    });
+    $('#newdealpwd2').keyup(function(){
+        if($('#newdealpwd2').val() == $('#newdealpwd1').val()){
+            $('#newdealpwd2').next('span').html('');
+            flag3 = true;
+        }else{
+            $('#newdealpwd2').next('span').html('<em></em>两次输入密码须一致！');
+            flag3 = false;
+        }
+    });
+    //提交修改的新密码
+    $('#setdealpwd-btn').click(function(){
+    	if($('#olddealpwd').val()==''){
+    		$("#olddealpwd").shake(2, 10, 400);
+       		$("#olddealpwd").val("");
+    		$("#olddealpwd").attr('placeholder',"原密码不能为空");
+    		flag1 = false;
+    	}
+    	if($('#newdealpwd1').val()==''){
+    		$("#newdealpwd1").shake(2, 10, 400);
+       		$("#newdealpwd1").val("");
+    		$("#newdealpwd1").attr('placeholder',"新密码不能为空");
+    		flag2 = false;
+    	}
+    	if($('#newdealpwd2').val()==''){
+    		$("#newdealpwd2").shake(2, 10, 400);
+       		$("#newdealpwd2").val("");
+    		$("#newdealpwd2").attr('placeholder',"确认密码不能为空");
+    		flag3 = false;
+    	}
+        if(flag1 && flag2 && flag3){
+            $.ajax({
+                url:"/Finances/user/updateUserInfo",
+                type:"POST",
+                data:{
+                	uidealpwd:$('#newdealpwd2').val(),
+                	uiid:$("#vp-uiid").val()
+                },
+                success:function(data){
+                	var obj = new Array();
+                	if(data>0){
+                		 obj['msg']="恭喜你,交易密码修改成功!";
+                         obj['status']=1;
+                         dialog(obj);
+					}else{
+						obj['msg']="很遗憾,交易密码修改失败!";
+	                    obj['status']=0;
+	                    dialog(obj);
+	                    return;
+					}
+                }
+            });
+        }
+    });
+}
+
+
 //修改及认证邮箱
 function verifyemail(){
     var flag = false;
@@ -484,9 +555,8 @@ function verifyemail(){
         if(flag){
         	var uiemail = $('#verifyemail').val();
         	var uiid = $("#vp-uiid").val();
-        	var uiname = $("#vp-uiname").val();
         	
-        	window.location="http://127.0.0.1:8080/Finances/user/sendmailcheckuser?uiemail="+uiemail+"&uiid="+uiid+"&uiname="+uiname;
+        	window.location="http://127.0.0.1:8080/Finances/user/sendmailcheckuser?uiemail="+uiemail+"&uiid="+uiid;
         }
     });
 }
@@ -680,7 +750,6 @@ function hsChangePassWord(){
 	        dialog(obj);
 	        return;
 	    }else{
-	
 	        $.ajax({
 	            url:"usercenter-Accountcontrol-hs_changePassWord",
 	            type:"POST",

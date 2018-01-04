@@ -85,7 +85,7 @@
                             <span class="m2-userSettingshide-nor"><u>*</u>手机号：</span>
                             <input type="text" placeholder="请输新手机号码" id='vp-phonenum' value="${sessionScope.user.uphone }">
                             <a class="m2-userSettings-telSubmit" href="javascript:void(0)" id='vp-textbtn'>短信验证码</a>
-                            <a class="m2-userSettings-telSubmit" href="javascript:void(0)" id='vp-voicebtn'>语音验证码</a>
+                            <!-- <a class="m2-userSettings-telSubmit" href="javascript:void(0)" id='vp-voicebtn'>语音验证码</a> -->
                             <span class="m2-userSettingshide-warning" style='margin-left: 80px;margin-top: 10px;display: none;' id='vp-warn'><em></em>请输入正确的手机号。</span>
                             <span class="m2-userSettingshide-success m2-userSettingshide-successTel" style='display: none' id='vp-msg'><em></em>验证码已发出,如果您在2分钟之内未收到验证码,请再次获取验证码</span>
                         </li>
@@ -107,6 +107,7 @@
                 <li class="m2-userCentersettings-step2 m2-userSettings-step">
                     <div class="m2-userSettings-stepShow">
                         <i></i>
+                        <input type="hidden" id='vp-uiopenstatic' value="${sessionScope.userinfo.uiopenstatus }">
                         <span class="m2-userSettingsshow-tit m2-userSettingsshow-tit2">徽商存管账户</span>
                         <span class="m2-userSettingsshow-exp">投资合同需要实名签署，实名合同才有法律效应，爱钱帮通过徽商银行完成实名认证</span>
                         <span class="m2-userSettingsaut m2-userSettingsaut-fal"  id='id_status'><b></b>未认证</span>
@@ -114,41 +115,42 @@
                     </div>
                 </li>
                 <li class="m2-userCentersettings-step3 m2-userSettings-step">
+                	<input type="hidden" id='dealpwd' value="${sessionScope.userinfo.uidealpwd }">
                     <div class="m2-userSettings-stepShow">
                         <i></i>
                         <span class="m2-userSettingsshow-tit">徽商交易密码</span>
 						<span class="m2-userSettingsshow-exp">交易密码需跳转徽商交易系统页面输入，适用于投资验证及提现验证
 						</span>
-                        <span class="m2-userSettingsaut m2-userSettingsaut-fal"  ><b></b>未开户</span>
-                        <span class="m2-userSettingsshow-link"><a href="javascript:void(0)">开户</a></span>					
+                        <span class="m2-userSettingsaut m2-userSettingsaut-fal"  id="id_dealpwd"><b></b>未设置</span>
+                        <span class="m2-userSettingsshow-link"><a href="javascript:void(0)">设置</a></span>					
                     </div>
-                    <ul class="m2-userSettings-setpHide" style="display:none;" id=''>
+					<ul class="m2-userSettings-setpHide" style="display:none;">
+						<c:set var="dealpwds" value="${sessionScope.userinfo.uidealpwd }" />
+						<c:if test="${dealpwds != '' }">
+				    		<li>
+	                            <span class="m2-userSettingshide-nor"><u>*</u>原密码：</span>
+	                            <input type="password" placeholder="请输入原密码" type="text" id='olddealpwd'>
+	                            <span class="m2-userSettingshide-warning"></span>
+	                        </li>
+			    		</c:if>
                         <li>
-                            <input type="text" placeholder="请输手机号码" type="text" style="display:none;  readonly="readonly" id='hsvp-phonenum' value="13737301354">
-                            <span class="m2-userSettingshide-nor"><u>*</u>手机验证码：</span>
-                            <input type="text" placeholder="请输手机验证码" type="text"  id='hs_code' >
-                            <a class="m2-userSettings-telSubmit" href="javascript:void(0)" id='hsvp-textbtn'>短信验证码</a>
-                        </li>
-                        <li>
-                            <span class="m2-userSettingshide-nor"><u>*</u>姓名：</span>
-                            <input type="text" placeholder="请输入您的姓名" type="text"  id="hs_name">
+                            <span class="m2-userSettingshide-nor"><u>*</u>新密码：</span>
+                            <input type="password" placeholder="请输入新密码" type="text" id='newdealpwd1'>
                             <span class="m2-userSettingshide-warning"></span>
                         </li>
                         <li>
-                            <span class="m2-userSettingshide-nor"><u>*</u>身份证：</span>
-                            <input type="text" placeholder="请输入您的身份证号码" type="text"  id="hs_idCard">
+                            <span class="m2-userSettingshide-nor"><u>*</u>确认密码：</span>
+                            <input type="password" placeholder="请再次输入新密码" type="text" id='newdealpwd2'>
                             <span class="m2-userSettingshide-warning"></span>
                         </li>
-                        <li class="m2-userSettingshide-btn"><a href="javascript:void(0)" id='hsChange-btn'>下一步</a></li>
+                        <li class="m2-userSettingshide-btn"><a href="javascript:void(0)" id='setdealpwd-btn'>确认</a></li>
                     </ul>
-
                 </li>
 
                 <li class="m2-userCentersettings-step4 m2-userSettings-step">
                     <div class="m2-userSettings-stepShow">
                         <i></i>
                         <input type="hidden" id='getemailstatus' value="${sessionScope.user.userinfo.uiemailstatus }">
-                        <input type="hidden" id='vp-uiname' value="${sessionScope.user.userinfo.uiname }">
                         <span class="m2-userSettingsshow-tit">电子邮箱</span>
                         <span class="m2-userSettingsshow-exp">获取最新的投资讯息和账户信息变动通知</span>
                         
@@ -238,7 +240,7 @@
                 <li class="m2-userCentersettings-step7 m2-userSettings-step" >
                 	<input type="hidden" id='vp-uiid' value="${sessionScope.user.userinfo.uiid }">
                 	<input type="hidden" id='vp-icid' value="${sessionScope.userinfo.idCard.icid }">
-                	<input type="hidden" id='icstatus' value="${userinfo.idCard.icstatus }">
+                	<input type="hidden" id='icstatus' value="${sessionScope.userinfo.idCard.icstatus }">
                     <div class="m2-userSettings-stepShow">
                         <i></i>
                         <span class="m2-userSettingsshow-tit">实名认证</span>
