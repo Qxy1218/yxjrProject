@@ -330,7 +330,7 @@
                             </li>
                               <li><a class="J_menuItem" href="${pageContext.request.contextPath}/back/toUserlevel">成长等级</a>
                             </li>
-                            <li>
+                            
 
                         	<shiro:hasPermission name="后台充值管理">
                         		<li>	
@@ -423,6 +423,9 @@
                            			<a class="J_menuItem" href="profile.jsp">资料认证管理与审核</a>
                            		</li>
                        		</shiro:hasPermission>
+                       		 </li>
+                              <li><a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/vipdetail.jsp">会员明细管理</a>
+                            </li>
                         </ul>
                     </li>
                     </shiro:hasPermission>

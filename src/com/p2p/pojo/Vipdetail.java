@@ -11,6 +11,13 @@ public class Vipdetail {
 	private String vpname;
 	@TableField("u_id")
 	private Integer uid;
+	private String uiname;
+	public String getUiname() {
+		return uiname;
+	}
+	public void setUiname(String uiname) {
+		this.uiname = uiname;
+	}
 	public Vipdetail(Integer vdid, Integer vpvalue, String vpname, Integer uid) {
 		super();
 		this.vdid = vdid;

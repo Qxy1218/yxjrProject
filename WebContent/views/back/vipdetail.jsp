@@ -28,42 +28,28 @@
 		                validating: 'glyphicon glyphicon-refresh'
 		            },
 		            fields: {
-		            	abname: {
-		            		message: '名称验证失败',
+		            	vpvalue: {
+		            		message: '积分值验证失败',
 		                    validators: {
 		                    	 notEmpty: {
-		                             message: '名称不能为空'
-		                         },
-		                         stringLength: {
-		                             min: 6,
-		                             max: 30,
-		                             message: '名称必须大于6，长度小于30个字符。'
+		                             message: '积分值不能为空'
 		                         },
 		                    }
-		                },		           
-		                abimage: {
-		                	message: '图片验证失败',
-		                    validators: {
-		                        notEmpty: {
-		                            message: '图片不能为空'
-		                        },		                    
-		                    }
-		                },
-		       
-		                abintroduce: {
-		                	message: '介绍验证失败',
+		                },		                  
+		                vpname: {
+		                	message: '会员类型验证失败',
 		                    validators: {
 		                    	 notEmpty: {
-		                             message: '介绍不能为空'
+		                             message: '会员类型不能为空'
 		                         }
 		                        
 		                    }
 		                },
-		                abremark: {
-		                	message: '备注失败',
+		                uid: {
+		                	message: '用户id验证失败',
 		                    validators: {
 		                        notEmpty: {
-		                            message: '备注不能为空'
+		                            message: '用户id不能为空'
 		                        }
 		                    }
 		                }
@@ -81,13 +67,13 @@
 		            // Get the BootstrapValidator instance
 		            var bv = $form.data('bootstrapValidator');
 		            var form = new FormData(document.getElementById("editRole"));
-		            var abid =$("#newsform #abid").val();
-		            var abid =$("#newsform #abid").val();
-		            if(abid==null || abid==""){
-		            	insertAbout();
+		            var vdid =$("#newsform #vdid").val();
+		            alert(vdid);
+		            if(vdid==null || vdid==""){
+		            	insertVipdetail();
 		            	
 		            }else{
-		            	updateAbout();
+		            	updateVipdetail();
 		            } 
 		        });
 		});
@@ -97,19 +83,18 @@
 <script  type="text/javascript">
     var rows = null;
     
-    function addAbout(){
+    function addVipdetail(){
     	//清空editModel原来填写的内容
-		$("#aboutform #abname").val(''),
-		//$("#newsform #abimage").val(''),
-		$("#aboutform #abintroduce").val(''),
-		$("#aboutform #abremark").val(''),
+		$("#vipdetailform #vpvalue").val(''),
+		$("#vipdetailform #vpname").val(''),
+		$("#vipdetailform #uid").val(''),
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
 		//$("#isave").attr("onclick","insertAbout()");
 		//显示新增窗口
 		$('#newsform').modal('show');
     }
   //新增角色
-	function insertAbout() {
+	function insertVipdetail() {
 		//表单验证
 		//alert(123);
 		/* if (!validateForm($("#editForm"))) {
@@ -118,11 +103,11 @@
 		//用来关闭新增窗口***********
 		$("#newsform").modal('hide');
 		     
-		     var formobj =  document.getElementById("aboutform");
+		     var formobj =  document.getElementById("vipdetailform");
 				var formdata = new FormData(formobj);
 				
 				$.ajax({
-					url:  "${pageContext.request.contextPath }/back/admin/insertAbout",
+					url:  "${pageContext.request.contextPath }/back/admin/insertVipdetail",
 				    type: 'POST',
 				    cache: false,
 				    data: formdata,
@@ -149,7 +134,7 @@
 		
 	}
 	//修改按钮事件
-     function UpAbout(){
+     function UpVipdetail(){
     	//获取当前选中行的信息
  		var selectList = $('#tb_role').bootstrapTable('getSelections');
  		//判断有没有选中
@@ -164,27 +149,25 @@
  		}
  		var athRole = selectList[0];
  		//把选中行的数据放到弹窗的控件中
- 		$("#aboutform #abid").val(athRole.abid);
- 		$("#aboutform #abname").val(athRole.abname);
- 		alert(athRole.abintroduce);
- 		//$("#aboutform #abimage").val(athRole.abimage);
- 		$("#aboutform #abintroduce").val(athRole.abintroduce);		
- 		$("#aboutform #abremark").val(athRole.abremark);
+ 		$("#vipdetailform #vdid").val(athRole.vdid);
+ 		$("#vipdetailform #vpvalue").val(athRole.vpvalue);
+ 		$("#vipdetailform #vpname").val(athRole.vpname);		
+ 		$("#vipdetailform #uid").val(athRole.uid);
  		
  		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
  		//$("#isave").attr("onclick","updateAbout()");
  		//显示新增窗口
  		$('#newsform').modal('show');
      }
-	function updateAbout(){
+	function updateVipdetail(){
 		//用来关闭新增窗口***********
 		$("#newsform").modal('hide');
 	    
-	     var formobj =  document.getElementById("aboutform");
+	     var formobj =  document.getElementById("vipdetailform");
 			var formdata = new FormData(formobj);
 			
 			$.ajax({
-				url:  "${pageContext.request.contextPath }/back/admin/updateAbout",
+				url:  "${pageContext.request.contextPath }/back/admin/updateVipdetail",
 			    type: 'POST',
 			    cache: false,
 			    data: formdata,
@@ -208,10 +191,10 @@
 	//删除按钮事件
 	//*************************************************************************按钮事件
 	function btn_delete(){
-		deleteabout();
+		deleteVipdetail();
 	}
 	//删除
-	function deleteabout(){
+	function deleteVipdetail(){
 		//获取当前选中行的信息
 		var stuList = $('#tb_role').bootstrapTable('getSelections');
 		var ids = "";
@@ -223,12 +206,12 @@
 		//拼接ids  1,2,3,4  用于批量删除
 		for(var i =0 ;i<stuList.length;i++){
 			if(i!=stuList.length-1){
-				ids = ids +stuList[i].abid+",";
+				ids = ids +stuList[i].vdid+",";
 			}else{
-				ids = ids +stuList[i].abid;
+				ids = ids +stuList[i].vdid;
 			}
 		}
-		var url = "${pageContext.request.contextPath }/back/admin/deleteAbout";
+		var url = "${pageContext.request.contextPath }/back/admin/deleteVipdetail";
 		$.post(
 			url,
 			{
@@ -260,7 +243,7 @@
 		 //先销毁表格  
         $('#tb_role').bootstrapTable('destroy');  
 		$('#tb_role').bootstrapTable({
-			url : '${pageContext.request.contextPath}/back/admin/selectAboutList', //请求后台的URL（*）
+			url : '${pageContext.request.contextPath}/back/admin/selectVipdetailList', //请求后台的URL（*）
 			method : 'post', //请求方式（*）
 			contentType: "application/x-www-form-urlencoded",
 			toolbar : '#toolbar', //工具按钮用哪个容器
@@ -291,20 +274,17 @@
 			columns : [ {
 				checkbox : true,
 			}, {
-				field : 'abid',
+				field : 'vdid',
 				title : '编号'
 			}, {
-				field : 'abname',
-				title : '名称'
+				field : 'vpvalue',
+				title : '积分值'
 			}, {
-				field : 'abimage',
-				title : '图片'
+				field : 'vpname',
+				title : '会员类型'
 			},  {
-				field : 'abintroduce',
-				title : '介绍',				
-			},{
-				field : 'abremark',
-				title : '备注',			
+				field : 'uiname',
+				title : '用户id',				
 			},]
 		});
 		
@@ -315,10 +295,9 @@
 			//***这里的参数传到后台，用来进行分页处理*************************
 			rows: params.limit, //页面大小
 			page: params.offset, //页码
-			abname:$("#newsform #abname").val(),
-			abimage:$("#newsform #abimage").val(),
-			abintroduce:$("#newsform #abintroduce").val(),
-			abremark:$("#newsform #abremark").val(),
+			vpvalue:$("#newsform #vpvalue").val(),
+			vpname:$("#newsform #vpname").val(),
+			uid:$("#newsform #uid").val(),
 		};
 		return temp;
 	};
@@ -339,25 +318,25 @@
 					</div>
 					<div class="ibox-content">
 							<div class="form-group">
-		            			<label for="incomeTypes" class="control-label col-sm-1">名称</label>
+		            			<label for="incomeTypes" class="control-label col-sm-1">类型</label>
 								<div class="col-sm-2">
-									<input type="text" name="abname" class="form-control" id="abname">
+									<input type="text" name="vpname" class="form-control" id="vpname">
 		            			</div>
-		            			<label for="operateTime" class="control-label col-sm-1">介绍</label>
+		            			<label for="operateTime" class="control-label col-sm-1">积分值</label>
 		            			<div class="col-sm-2">
-	            					<input type="text" name="abintroduce" class="form-control" id="abintroduce">
+	            					<input type="text" name="vpvalue" class="form-control" id="vpvalue">
 	            				</div>
-		            			<label for="operateTime" class="control-label col-sm-1">备注</label>
+		            			<label for="operateTime" class="control-label col-sm-1">用户id</label>
 		            			<div class="col-sm-2">
-	            					<input type="text" name="abremark" class="form-control" id="abremark">
+	            					<input type="text" name="uid" class="form-control" id="uid">
 	            				</div>
 				                <button type="button" id="searchForm" class="btn btn-primary" onclick="searchForm()">搜索</button>
 							</div>
 						<div id="toolbar" class="btn-group">
-							<button id="btn_add" type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#addStudent" onclick="addAbout();">
+							<button id="btn_add" type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#addStudent" onclick="addVipdetail();">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
 							</button>
-							<button id="btn_edit" type="button" class="btn btn-w-m btn-success" onclick="UpAbout();">
+							<button id="btn_edit" type="button" class="btn btn-w-m btn-success" onclick="UpVipdetail();">
 								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 							</button>
 							<button id="btn_delete" type="button" class="btn btn-w-m btn-danger" onclick="btn_delete();">
@@ -386,193 +365,31 @@
 					<h4 class="modal-title" id="myModalLabel">角色管理</h4>
 				</div>
 				
-		<form id="aboutform" action="/Finances/back/admin/insertAbout" class="form-horizontal m-t" method="post" enctype="multipart/form-data">  
+		<form id="vipdetailform" action="/Finances/back/admin/insertVipdetail" class="form-horizontal m-t" method="post" enctype="multipart/form-data">  
 				<div class="modal-body">
 				
-					<input type="hidden" name="abid" id="abid">
+					<input type="hidden" name="vpid" id="vpid">
 				
 					<!-- 新增系别 -->				
 						<div class="form-group">
-							<label for="urlName" class="control-label col-sm-3">名称</label> 
+							<label for="urlName" class="control-label col-sm-3">积分值</label> 
 							<div class="col-sm-8">
-								<input type="text" name="abname" class="form-control" id="abname">
+								<input type="text" name="vpvalue" class="form-control" id="vpvalue">
+								<input type="hidden" name="vdid" id="vdid">
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="urlName" class="control-label col-sm-3">图片</label> 
-							<div class="col-sm-8">
-							
-				<!-- 图片上传 -->
-				<link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/0.3.0/weui.css">
-				<script src="https://cdn.bootcss.com/zepto/1.1.6/zepto.min.js"></script>
-				<div class="container">
-				    <div class="weui_cells_title">上传</div>
-				    <div class="weui_cells weui_cells_form">
-				      <div class="weui_cell">
-				        <div class="weui_cell_bd weui_cell_primary">
-				          <div class="weui_uploader">
-				            <div class="weui_uploader_hd weui_cell">
-				              <div class="weui_cell_bd weui_cell_primary">图片上传</div>
-				              <div class="weui_cell_ft js_counter">0/1</div>
-				            </div>
-				            <div class="weui_uploader_bd">
-				              <ul class="weui_uploader_files">
-				                <!-- 预览图插入到这 --> </ul>
-				              <div class="weui_uploader_input_wrp">
-				                <input class="weui_uploader_input js_file" type="file" name="upfile" id="upfile"></div>
-				            </div>
-				          </div>
-				        </div>
-				      </div>
-				    </div>
-				  </div>
-				  <div class="weui_dialog_alert" style="display: none;">
-				    <div class="weui_mask"></div>
-				    <div class="weui_dialog">
-				      <div class="weui_dialog_hd"> <strong class="weui_dialog_title">警告</strong>
-				      </div>
-				      <div class="weui_dialog_bd">弹窗内容，告知当前页面信息等</div>
-				      <div class="weui_dialog_ft">
-				        <a href="javascript:;" class="weui_btn_dialog primary">确定</a>
-				      </div>
-				    </div>
-				  </div>
-				
-				
-				<script>
-				$.weui = {};
-				$.weui.alert = function(options) {
-				    options = $.extend({
-				        title: '警告',
-				        text: '警告内容'
-				    }, options);
-				    var $alert = $('.weui_dialog_alert');
-				    $alert.find('.weui_dialog_title').text(options.title);
-				    $alert.find('.weui_dialog_bd').text(options.text);
-				    $alert.on('touchend click', '.weui_btn_dialog', function() {
-				        $alert.hide();
-				    });
-				    $alert.show();
-				};
-				
-				
-				$(function() {
-				    // 允许上传的图片类型  
-				    var allowTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
-				    // 1024KB，也就是 1MB  
-				    var maxSize = 1024 * 1024;
-				    // 图片最大宽度  
-				    var maxWidth = 300;
-				    // 最大上传图片数量  
-				    var maxCount = 6;
-				    $('.js_file').on('change', function(event) {
-				        var files = event.target.files;
-				
-				
-				        // 如果没有选中文件，直接返回  
-				        if (files.length === 0) {
-				            return;
-				        }
-				
-				
-				        for (var i = 0, len = files.length; i < len; i++) {
-				            var file = files[i];
-				            var reader = new FileReader();
-				
-				
-				            // 如果类型不在允许的类型范围内  
-				            if (allowTypes.indexOf(file.type) === -1) {
-				                $.weui.alert({
-				                    text: '该类型不允许上传'
-				                });
-				                continue;
-				            }
-				
-				
-				            if (file.size > maxSize) {
-				                $.weui.alert({
-				                    text: '图片太大，不允许上传'
-				                });
-				                continue;
-				            }
-				
-				
-				            if ($('.weui_uploader_file').length >= maxCount) {
-				                $.weui.alert({
-				                    text: '最多只能上传' + maxCount + '张图片'
-				                });
-				                return;
-				            }
-				
-				
-				            reader.onload = function(e) {
-				                var img = new Image();
-				                img.onload = function() {
-				                    // 不要超出最大宽度  
-				                    var w = Math.min(maxWidth, img.width);
-				                    // 高度按比例计算  
-				                    var h = img.height * (w / img.width);
-				                    var canvas = document.createElement('canvas');
-				                    var ctx = canvas.getContext('2d');
-				                    // 设置 canvas 的宽度和高度  
-				                    canvas.width = w;
-				                    canvas.height = h;
-				                    ctx.drawImage(img, 0, 0, w, h);
-				                    var base64 = canvas.toDataURL('image/png');
-				
-				
-				                    // 插入到预览区  
-				                    var $preview = $('<li class="weui_uploader_file weui_uploader_status" style="background-image:url(' + base64 + ')"><div class="weui_uploader_status_content">0%</div></li>');
-				                    $('.weui_uploader_files').append($preview);
-				                    var num = $('.weui_uploader_file').length;
-				                    $('.js_counter').text(num + '/' + maxCount);
-				
-				
-				                    // 然后假装在上传，可以post base64格式，也可以构造blob对象上传，也可以用微信JSSDK上传  
-				
-				
-				                    var progress = 0;
-				
-				
-				                    function uploading() {
-				                        $preview.find('.weui_uploader_status_content').text(++progress + '%');
-				                        if (progress < 100) {
-				                            setTimeout(uploading, 30);
-				                        } else {
-				                            // 如果是失败，塞一个失败图标  
-				                            //$preview.find('.weui_uploader_status_content').html('<i class="weui_icon_warn"></i>');  
-				                            $preview.removeClass('weui_uploader_status').find('.weui_uploader_status_content').remove();
-				                        }
-				                    }
-				                    setTimeout(uploading, 30);
-				                };
-				
-				
-				                img.src = e.target.result;
-				            };
-				            reader.readAsDataURL(file);
-				        }
-				    });
-				});
-				</script>
-							
-							
-								
-							
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="urlName" class="control-label col-sm-3">介绍</label> 
+							<label for="urlName" class="control-label col-sm-3">会员类型</label> 
 							<div class="col-sm-8">
 								 
-								 <input type="text" name="abintroduce"  class="form-control" id="abintroduce">
+								 <input type="text" name="vpname"  class="form-control" id="vpname">
 								 
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="urlName" class="control-label col-sm-3">备注</label> 
+							<label for="urlName" class="control-label col-sm-3">用户id</label> 
 							<div class="col-sm-8">
-								<input type="text" name="abremark" class="form-control" id="abremark">
+								<input type="text" name="uid" class="form-control" id="uid">
 							</div>
 						</div>
 				</div>

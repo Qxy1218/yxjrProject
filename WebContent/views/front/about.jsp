@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -19,8 +20,9 @@
     	<script type="text/javascript" src="/Finances/statics/front/statics/home2/js/m2-front.js"></script>
     	<script type="text/javascript" src="/Finances/statics/front/statics/home2/js/jquery.roundabout.js"></script>
         <script type="text/javascript" src="/Finances/statics/front/statics/home2/js/jquery.easing.js"></script>
-        
+       
 	</head>
+	
 <body>
 	<!-- 右侧边栏 start -->
 	<jsp:include page="include/sidebar.jsp"></jsp:include>
@@ -54,9 +56,9 @@
         <h1>爱钱帮是谁</h1>
         <div class="m2-abuoutDet-box">
             <h3><i></i>公司简介</h3>
-            <p>北京爱钱帮财富科技有限公司是一家践行普惠金融的科技金融公司，爱钱帮平台于2014年4月上线运营，上线两个月即获盛大资本的战略投资。管理团队来自清华、北航、上财等知名院校，具有丰富的金融和风险管理经验。2015年7月，爱钱帮与徽商银行首创“银行存管+余额理财”新模式，成为真正实现银行资金存管的平台。2015年10月，爱钱帮联合江西银行推出基于游戏消费场景的消费金融新产品“闪垫侠”，即“游戏白条”。截至2016年4月，平台累计成交额已经超过20亿元，用户数超过35万人。爱钱帮自主研发的业内领先的大数据风控系统实现了线上审批，即刻放款，贷后系统监控，结合线下风控手段，形成了独特的O2O风险管理体系。</p>
+            <p>${about.abintroduce}</p>
             <h3><i></i>公司优势</h3>
-            <p>爱钱帮的业务模式安全合规，受到政府部门和行业协会的高度认可。爱钱帮是央行中国互联网金融协会的首批会员单位，是北京网贷行业协会的首批创始会员，也是中关村网贷联盟的首批创始会员，同时还是中国小额信贷联盟会的理事单位。2014年，爱钱帮荣获“年度最具成长性P2P平台”。同年，爱钱帮全面升级信息安全体系，并通过了ISO27001信息安全管理体系认证。2015年1月，爱钱帮荣获由中国证券市场研究设计中心与和讯网联合主办的“第12届中国财经风云榜2014年最佳品牌营销奖”。2015年，爱钱帮被授予国家高新科技企业称号。</p>
+            <p>${about.abremark}</p>
             <!-- <h3><i></i>公司特色</h3>
             <p>随着公司的快速发展，爱钱帮不断带给P2P行业新的惊喜，海鲜帮、娱乐帮、汽车帮等特色产业“帮派”项目也接连而出，在创造高收益的同时也优化了单一的理财产品模式，不断的进行创新，开始走出自己的特色。</p> -->
         </div>
@@ -92,7 +94,7 @@
  	<div id="m2-aboutSec-list" style="width:1030px;margin-bottom:50px;">
         <h3>企业荣誉</h3>
         <ul>
-            <li><img src="/Finances/statics/front/statics/home2/images/about/prize01_v2.jpg" alt=""></li>
+            <li><img src="/Finances${about.abimage}"></li>
             <li><img src="/Finances/statics/front/statics/home2/images/about/prize04_v2.jpg" alt=""></li>
             <li><img src="/Finances/statics/front/statics/home2/images/about/prize02_v2.jpg" alt=""></li>
             <li><img src="/Finances/statics/front/statics/home2/images/about/prize03_v2.jpg" alt=""></li>
