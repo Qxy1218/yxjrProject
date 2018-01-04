@@ -1,23 +1,30 @@
 package com.p2p.mapper;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.p2p.base.IBaseDao;
 import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.ProjectSelect;
-import com.p2p.pojo.Redmoney;
 
 public interface FabiaoMapper extends IBaseDao<Integer, Fabiao>{
 
-		//实现分页查询
-		List<Redmoney> selectPage(Pagination page,Map<String ,Object> params);
+	/** 
+	 * 使用注解方式传入多个参数，用户产品分页， 根据标类型查询
+	 * @param page 
+	 * @param 标类型 
+	 * @return startPos},#{pageSize}  
+	 */  
+	public List<Fabiao> selectProductsByPage(@Param(value="startPos") Integer startPos,@Param(value="pageSize")Integer  pageSize,@Param(value="fpart")String fpart);  
+		  
+		/** 
+		 * 取得产品数量信息，
+		 * @return 
+		 */  
+		public long getProductsCount(@Param(value="fpart")String fpart);  
 		
-		//查询总的记录数
-		abstract Integer employeCount();
+		
 		
 		List<Fabiao> selectByType(@Param("type")String type);
 		

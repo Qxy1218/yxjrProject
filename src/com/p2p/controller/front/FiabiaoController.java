@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.ProjectSelect;
 import com.p2p.service.front.FabiaoService;
@@ -68,25 +69,15 @@ public class FiabiaoController {
 	
 	@RequestMapping("toProjectlikezt")
 	@ResponseBody
-	public Object toProjectlike(String borrow_interest_rate,String leftday,String borrow_money,String progress,String borrow_status,Model model) throws Exception{
+	public String toProjectlike(ProjectSelect select,Model model) throws Exception{
 		Map<String,Object> map = new HashMap<String,Object>();
-		ProjectSelect select  = new ProjectSelect();
-		select.setBorrow_interest_rate(borrow_interest_rate);
-		select.setLeftday(leftday);
-		select.setBorrow_money(borrow_money);
-		select.setProgress(progress);
-		select.setBorrow_status(borrow_status);
-		
 		model.addAttribute("pageName", "invset");
-		
 		//取当前时间	
 		Date date=new Date();
 		DateFormat format1 =new SimpleDateFormat("yyyy-MM-dd");
 		String time=format1.format(date);
 		SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
 		Date date3 = format2.parse(time);
-		//项目直投
-		select.setPagetype(null);
 		List<Fabiao> fabiaolist = fabiaoService.selectByLike(select);
 		List<Fabiao> fabiaolists = new ArrayList<Fabiao>(); 
 		for(int i=0;i<fabiaolist.size();i++) {
@@ -134,8 +125,9 @@ public class FiabiaoController {
 		 //项目直投
 		map.put("status", 1);
 		map.put("fabiaolist", fabiaolists);
-		
-		return map;
+		ObjectMapper mapper = new ObjectMapper(); //转换器  
+		String result = mapper.writeValueAsString(map);
+		return result;
 	}
 	
 	

@@ -18,17 +18,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.p2p.pojo.Contact;
-import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.ProjectSelect;
 import com.p2p.pojo.Setupnatice;
 import com.p2p.pojo.User;
+import com.p2p.pojo.Userinfo;
 import com.p2p.service.back.ContactService;
 import com.p2p.service.front.FabiaoService;
 import com.p2p.service.front.SetupnaticeService;
 import com.p2p.service.front.UserInfoService;
 import com.p2p.util.ContextUtils;
 import com.p2p.util.DateUtils;
+import com.p2p.util.Page;
 
 /**
  * 开发人:杨嘉辉
@@ -68,10 +69,10 @@ public class FrontController {
 	}
 	
 	/**
-	 * 我要投资页面的conteroller(项目自投)
+	 * 我要投资页面的conteroller(项目直投)
 	 * */
 	@RequestMapping(value="/toinvestzt")
-	public String tofroninvest(Model model,ProjectSelect select) throws Exception{
+	public String tofroninvest(Model model,ProjectSelect select,Integer pageNow) throws Exception{
 		model.addAttribute("pageName", "invset");
 		
 		//取当前时间	
@@ -80,10 +81,22 @@ public class FrontController {
 		String time=format1.format(date);
 		SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
 		Date date3 = format2.parse(time);
+		//根据标类型获取总数
+		int totalCount =  (int) fabiaoService.getProductsCount(null);
+		//分页实现
+		Page page ;  
+		List<Fabiao> fabiaolist = new ArrayList<Fabiao>();
+		 if (pageNow != null) {  
+	        page = new Page(totalCount,pageNow);  
+	        //现在模拟为两页
+	        page.setPageSize(2);
+	        fabiaolist = this.fabiaoService.selectProductsByPage(page.getStartPos(), page.getPageSize(),null);  
+	     } else {  
+	        page = new Page(totalCount, 1);  
+	        fabiaolist = this.fabiaoService.selectProductsByPage(page.getStartPos(), page.getPageSize(),null);  
+	     }  
 		
 		
-		//项目直投
-		List<Fabiao> fabiaolist = fabiaoService.selectByType(null);
 		List<Fabiao> fabiaolists = new ArrayList<Fabiao>(); 
 		for(int i=0;i<fabiaolist.size();i++) {
 			Fabiao fabiao = fabiaolist.get(i);
@@ -130,7 +143,8 @@ public class FrontController {
 
 		 //项目直投
 		model.addAttribute("fabiaolist", fabiaolists);
-		
+		//把分页工具类添加进request
+		model.addAttribute("page",page);
 		return "views/front/investzt";
 	}
 	

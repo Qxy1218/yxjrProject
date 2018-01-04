@@ -135,75 +135,102 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     		查询可投标和满标
     		根据f_status做升序排练
     	 -->
-    select * from fabiao where 
+    select * from fabiao where 1=1
+    
     <if test="borrow_interest_rate!=null and  borrow_interest_rate == '0|8'.toString()">
-    	f_roe in(0.00,0.09)
+    	and f_roe in(0.00,0.08)
     </if>
      <if test="borrow_interest_rate!=null and  borrow_interest_rate == '9|9'.toString()">
-    	f_roe = 0.09
+    	and f_roe = 0.09
     </if>
     <if test="borrow_interest_rate!=null and  borrow_interest_rate == '10|10'.toString()">
-    	f_roe = 0.10
+    	and f_roe = 0.10
     </if>
     <if test="borrow_interest_rate!=null and  borrow_interest_rate == '10.1|100'.toString()">
-    	f_roe > 0.10
+    	and f_roe > 0.10
     </if>
-    and
+    
 	 <if test="leftday!=null and  leftday == '0|60'.toString()">
 		 <![CDATA[
-			datediff(f_endtime,CURDATE()) <=60
+			and datediff(f_endtime,CURDATE()) <=60
 		]]>
 	</if>
 	 <if test="leftday!=null and  leftday == '61|180'.toString()">
 		<![CDATA[
-		 datediff(f_endtime,CURDATE()) >= 61  and  datediff(f_endtime,CURDATE()) <= 180
+		 	and datediff(f_endtime,CURDATE()) >= 61  and  datediff(f_endtime,CURDATE()) <= 180
 		]]>
 	</if>
 	 <if test="leftday!=null and  leftday == '181|360'.toString()">
 		<![CDATA[
-			datediff(f_endtime,CURDATE()) >= 181 and  datediff(f_endtime,CURDATE()) <= 360
+			and datediff(f_endtime,CURDATE()) >= 181 and  datediff(f_endtime,CURDATE()) <= 360
 		]]>
 	</if>
 	 <if test="leftday!=null and  leftday == '361|3600'.toString()">
 		<![CDATA[
-		 	datediff(f_endtime,CURDATE()) >= 361
+		 	and datediff(f_endtime,CURDATE()) >= 361
 		]]>
 	</if>
-	and
+	
+	 <if test="borrow_money!=null and  borrow_money == '0|500000'.toString()">
+   		<![CDATA[
+		  and  f_money<=500000
+		]]>
+    </if>
+     <if test="borrow_money!=null and  borrow_money == '500001|1000000'.toString()">
+   		<![CDATA[
+		  and  f_money>=500001 and  f_money<=1000000
+		]]>
+    </if>
+     <if test="borrow_money!=null and  borrow_money == '1000001|2000000'.toString()">
+   		<![CDATA[
+		  and f_money>=1000001 and  f_money<=2000000
+		]]>
+    </if>
+	
+
 	<if test="progress!=null and  progress == '0|30'.toString()">
 		<![CDATA[
-			 f_roe<=0.30
+			and  f_endmoney/f_money <=0.30
 		]]>
 	</if>
-	<if test="progress!=null and  progress == '31.01|60'.toString()">
+	<if test="progress!=null and  progress == '31|60'.toString()">
 		<![CDATA[
-			 f_roe>=0.31 and  f_roe<=0.60
+			and  f_endmoney/f_money >=0.31 and  f_endmoney/f_money <=0.60
 		]]>
 	</if>
-	 <if test="progress!=null and  progress == '61.01|100'.toString()">
+	 <if test="progress!=null and  progress == '61|100'.toString()">
 		<![CDATA[
-		  f_roe>=0.61 and  f_roe<=1
+		 	and f_endmoney/f_money >=0.61 and  f_endmoney/f_money <=1
 		]]>
 	</if>
-	and
+	
+
 	<if test="borrow_status!=null and  borrow_status == '2'.toString()">
 		<!-- 正在募集 -->
-		  f_status=1
+		  and f_status=1
 	</if>
 	<if test="borrow_status!=null and  borrow_status == '6'.toString()">
 		<!-- 还款中 -->
-		  f_status=2
+		  and f_status=2
 	</if>
     <if test="borrow_status!=null and  borrow_status == '7'.toString()">
 		<!-- 已结清 -->
-		  f_status=3
+		  and f_status=3
 	</if>
-	and
-	 <if test="pagetype!=null">
-		<!-- 已结清 -->
-		  f_status=#{pagetype}
+	 <if test="pagetype!=null and pagetype!=''">
+		<!-- 是什么标 -->
+		and  f_part=#{pagetype}
 	</if>
     </select>
-    
+    <select id="selectProductsByPage" resultMap="BaseResultMap">
+    	 select * from fabiao where 
+    		f_status not in(4,5)
+    		<if test="fpart!=null">and f_part=#{fpart}</if>
+    	   	order by f_status limit #{startPos},#{pageSize}
+    </select>
+    <select id="getProductsCount" resultType="long">
+    	 SELECT COUNT(*) FROM fabiao where 1=1 
+    	 <if test="fpart!=null">and f_part=#{fpart}</if>
+    </select>
     
 </mapper>

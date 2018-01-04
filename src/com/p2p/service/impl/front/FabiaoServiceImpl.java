@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,6 +55,22 @@ public class FabiaoServiceImpl implements FabiaoService{
 	
 	public List<Fabiao> selectByLike(ProjectSelect rProjectSelect) {
 		return fabiaomapper.selectByLike(rProjectSelect);
+	}
+
+	@Override
+	public List<Fabiao> getAreasById(String cityid) {
+		return null;
+	}
+
+	
+	@Override
+	public long getProductsCount(@Param(value="fpart")String fpart){
+		return fabiaomapper.getProductsCount(fpart);
+	}
+
+	@Override
+	public List<Fabiao> selectProductsByPage(Integer startPos, Integer pageSize, String fpart) {
+		return fabiaomapper.selectProductsByPage(startPos, pageSize, fpart);
 	}
 
 }

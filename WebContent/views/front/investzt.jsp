@@ -97,8 +97,8 @@
             <li class="m2-invSea-tit"><span>进&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度</span></li>
             <li data="0" class="m2-invSea-sel m2-invSea-all"><span onclick="searchBorrow('progress',0)">全部</span></li>
             <li data="0|30" class="m2-invSea-unsel"><span onclick="searchBorrow('progress','0|30')">30%以下</span></li>
-            <li data="31.01|60" class="m2-invSea-unsel"><span onclick="searchBorrow('progress','30.01|60')">30%-60%</span></li>
-            <li  data="61.01|100" class="m2-invSea-unsel"><span onclick="searchBorrow('progress','60.01|100')">60%-100%</span></li>
+            <li data="31|60" class="m2-invSea-unsel"><span onclick="searchBorrow('progress','31|60')">30%-60%</span></li>
+            <li data="61|100" class="m2-invSea-unsel"><span onclick="searchBorrow('progress','61|100')">60%-100%</span></li>
 
         </ul>
             <ul class="m2-invSea-sta" id="search_borrow_status">
@@ -240,13 +240,31 @@
          <div class="m2-newListpage-con" style="padding-top:5px;">
 		            <div class="m2-newListpage">
 		                <div class="m2-news-pages" style="padding-right:40px;margin:12px auto;">
-		                    <a href='/touzi_licai_chanpin.html?isAjax=1&type=borrow&page=1' class="m2-pages-num m2-page-prev">&lt;</a>
-		                    <a href='/touzi_licai_chanpin.html?isAjax=1&type=borrow&page=1' class="m2-pages-num m2-page-sel">1</a>
-		                    <a href='/touzi_licai_chanpin.html?isAjax=1&type=borrow&page=2' class="m2-pages-num m2-page-unsel">2</a>
-		                    <a href='/touzi_licai_chanpin.html?isAjax=1&type=borrow&page=3' class="m2-pages-num m2-page-unsel">3</a>
-		                    <a href='/touzi_licai_chanpin.html?isAjax=1&type=borrow&page=4' class="m2-pages-num m2-page-unsel">4</a>
-		                    <a href='/touzi_licai_chanpin.html?isAjax=1&type=borrow&page=5' class="m2-pages-num m2-page-unsel">5</a>
-		                    <a href='/touzi_licai_chanpin.html?isAjax=1&type=borrow&page=2' class="m2-pages-num m2-page-next">&gt;</a>
+		                  			<a href='/Finances/toinvestzt?pageNow=1' class="m2-pages-num m2-page-prev">&lt;</a>
+		                  			<c:choose>
+									<c:when test="${page.pageNow - 1 > 0}">
+										<a href="/Finances/toinvestzt?pageNow=${page.pageNow - 1}" class="m2-pages-num m2-page-sel">${page.pageNow - 1}</a>
+									</c:when>
+									<c:when test="${page.pageNow - 1 <= 0}">
+										 <a href='/Finances/toinvestzt?pageNow=1' class="m2-pages-num m2-page-sel">${page.pageNow}</a>
+									</c:when>
+								</c:choose>
+							<c:choose>
+									<c:when test="${page.pageNow + 1 < page.totalPageCount}">
+										<a href="/Finances/toinvestzt?pageNow=${page.pageNow + 1}" class="m2-pages-num m2-page-sel">${page.pageNow+1}</a>
+									</c:when>
+									<c:when test="${page.pageNow + 1 >= page.totalPageCount}">
+										<a href="/Finances/toinvestzt?pageNow=${page.totalPageCount}" class="m2-pages-num m2-page-sel">${page.totalPageCount}</a>
+									</c:when>
+								</c:choose>
+								<c:choose>
+									<c:when test="${page.totalPageCount==0}">
+										<a href="/Finances/toinvestzt?pageNow=${page.pageNow}" class="m2-pages-num m2-page-sel">&lt;</a>
+									</c:when>
+									<c:otherwise>
+										<a href="/Finances/toinvestzt?pageNow=${page.totalPageCount}" class="m2-pages-num m2-page-next">&gt;</a>
+									</c:otherwise>
+								</c:choose>
 		                </div>
 		            </div>
        	</div>
@@ -275,17 +293,7 @@
     </div>
     
     <script type="text/javascript">
-        //分页
-        $(document).on('click','.m2-news-pages a',function(){
-            $.ajax({
-                type: "GET",
-                url: $(this).attr('href'),
-                success: function(d) {
-                    $(".m2-invResult-con").html(d);
-                }
-            });
-            return false;
-        })
+       
         $(function(){
             
             $('.m2-invTabhide-list li').click(function(){
@@ -387,6 +395,7 @@
     </script>
     <script type="text/javascript">
         function searchBorrow(stype,value){
+        	
             $("#search_"+stype+" li[data='"+value+"']").addClass("aprhover").siblings('li').removeClass('aprhover');
             var p=getCurrentFilter();
             getBorrowList(p);
@@ -403,14 +412,91 @@
             	borrow_status 项目情况
             	
             */
-            getData("/Finances/toProjectlike",function(d){
-            	if(d.status==1){
-                	
-                    $(".m2-invResult-con").html(thishtml);
-                }
-            },p);
+            $.get("/Finances/toProjectlikezt",p,function(d){
+            	var dataObj = eval("("+d+")");
+            	if(dataObj.status==1){
+                	var htmls = pingjie(dataObj.fabiaolist);
+                	//alert(htmls);
+                	 $("#resuleite0 ul").remove();
+                	 $("#resuleite0").html(htmls);
+            	}
+            });
         }
-
+		
+        function pingjie(list){
+        	var cc = ''
+        	     cc +='<ul>'   
+        	if(list.length==0){
+        		cc += '<center><img src="/Finances/statics/front/images/nodata.png"><h1>没有数据</h1></center> ';
+        	}
+        	 $.each(list,function(i,item){  
+        		 cc +='<li class="m2-invResuleitem"><div class="m2-invItem-lef"><div class="m2-invItemleft-lef">'
+        		 if(item.ftype=="新手标"){
+        			cc +='<i class="m2-invItem-new"></i>'
+        		 }else{
+        			cc +='<i class="m2-invItem-hot"></i>'
+        		 }
+        		 cc += '<img src="/Finances/'+item.fimage+'" alt="'+item.ftitle+'" />'
+        		 cc +='</div><div class="m2-invItemleft-rig"> <h4>'
+        		 if(item.fstatus==1){
+        			 cc +='<i class="m2-invItemIcon-inv"></i>'
+        		 }else{
+        			 cc +='<i class="m2-invItemIcon-back"></i>'
+        		 }
+        		 cc +='<a href="'+item.fid+'" target="_blank" title="'+item.ftitle+'">'+item.ftitle+'</a></h4>'
+        		 cc +=' <ul class="m2-invItemleft-list"><li><span  class="m2-invItemdet-big huodongjiaxi">'
+        		 cc += ''+item.froe*100+'%+'+item.fincrease+'%'
+        		 cc += '<p style="margin-left:-2px;" class="jiaxishow">活动加息'+item.fincrease*100+'%	</p>'	
+                 cc +='</span><span class="m2-invItemdet-nor">预期年化收益率</span> <i class="m2-invItemdet-line"></i></li><li><span class="m2-invItemdet-big">'
+        		 cc +=''+item.rematime+'天</span>'
+        		 cc +='<span class="m2-invItemdet-nor">期限</span><i class="m2-invItemdet-line"></i> </li><li>'
+        		 cc +=' <span class="m2-invItemdet-big">'+item.fmoney+'</span><span class="m2-invItemdet-nor">融资金额</span></li></ul>'
+        		 cc += '<div class="m2-invItemprogress"><span class="m2-invItemprogress-tit">'
+        		 if(item.fstatus==1){
+        			cc += '正在募集</span><b>'
+        		 }
+        		 if(item.fstatus==2){
+        			cc += '还款中</span><b>'
+        		 }
+        		 if(item.fstatus==3){
+        			cc += '已结清</span><b>'
+        		 }
+        	
+        		 cc +='<i style="width:'+item.compnrate+'"></i>'
+        		 if(item.fstatus==1){
+        			 var count = (item.fmoney-item.fendmoney)/10000
+        			cc +='<u style="left:'+item.compnrate+'">可投：'+count +'万</u>'
+        		 }
+        		 cc +=' </b><span class="m2-invItemprogress-per">'+item.compnrate+'</span> </div></div></div>'
+        		 cc +='<div class="m2-invItem-rig"> <div class="m2-invItemrig-main"><p class="m2-invItemrig-gua">'
+        		 cc +='<span class="m2-invItemrig-guaTit" style="color:#333;">担保措施:</span>'
+        		 cc +='  <span class="m2-invItemrig-guaDet" style="color:#ff9900;">'+item.fsecuritymea+'</span></p>'
+        		 cc +='<div class="m2-invItemrig-link">'
+        		 if(item.fstatus==1){
+        			cc += ' <a href="/Finances/toproject?pid='+item.fid+'" class="m2-invItemlink-inv" target="_blank" title="'+item.ftitle+'">立即投资</a>	'
+        		 }
+        		 if(item.fstatus==2){
+        			cc += '<a href="javascript:void(0)" class="m2-invItemlink-inv"  title="'+item.ftitle+'">还款中</a>'
+        		 }
+        		 if(item.fstatus==3){
+        			cc += '<a href="javascript:void(0)" class="m2-invItemlink-inv"  title="'+item.ftitle+'">已结清</a>'
+        		 }
+        		 cc+='</div></div>'
+        		if(item.fstatus==1){
+        			cc += '<p class="m2-invItem-det" style="text-indent:20px;">投资万元预期收益：<span>64.10元</span></p>'
+        			cc += '	<p class="m2-invItem-det">投资起点金额：<span style="color:#ff6666;">'+item.fminmoney+'元</span></p>'
+        		 }
+        		 if(item.fstatus==2){
+        			cc += '<div class="m2-invItem-rigBg"></div>    '
+        		 }
+        		 cc +='</div></li>'  
+        		});  
+             cc +='</ul>'  
+             return cc;
+        	}                        										
+        
+        
+        
         function getCurrentFilter(){
             var p={ };
             p['progress'] = $("#search_progress li.aprhover").attr('data');
@@ -418,6 +504,8 @@
             p['borrow_money'] = $("#search_borrow_money li.aprhover").attr('data');
             p['borrow_status'] = $("#search_borrow_status li.aprhover").attr('data');
             p['leftday'] = $("#search_leftday li.aprhover").attr('data');
+           //设置当前标的类型
+            p['pagetype'] = "";            
             return p;
         }
     </script>
