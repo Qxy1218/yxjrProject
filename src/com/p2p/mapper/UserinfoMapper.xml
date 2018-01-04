@@ -59,7 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </resultMap>
 	
 	<sql id="myusersql">
-		u_id,ui_name,ui_sex,ic_id,ui_birthday,pe_id,
+		u_id,ui_name,ui_sex,ui_birthday,pe_id,cy_id,
 		ae_id,ui_dealpwd,ui_email,ui_emailstatus
 	</sql>
 	<!-- 增加 -->
