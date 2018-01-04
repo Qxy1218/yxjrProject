@@ -15,7 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		  <result column="ui_dealpwd" property="uidealpwd"/>
  		  <result column="ui_email" property="uiemail"/>
  		  <result column="ui_emailstatus" property="uiemailstatus"/>
- 		<!-- 一对一对应用户基本信息表 -->
+ 		  <result column="ui_openstatus" property="uiopenstatus"/>
+ 		<!-- 一对一对应用户表 -->
  		<association property="user" javaType="com.p2p.pojo.User">
  		  <id column="u_id" property="uid"/>
  		  <result column="u_password" property="upassword"/>
@@ -60,12 +61,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<sql id="myusersql">
 		u_id,ui_name,ui_sex,ui_birthday,pe_id,cy_id,
-		ae_id,ui_dealpwd,ui_email,ui_emailstatus
+		ae_id,ui_dealpwd,ui_email,ui_emailstatus,ui_openstatus
 	</sql>
 	<!-- 增加 -->
 	<insert id="addModel" parameterType="com.p2p.pojo.Userinfo" useGeneratedKeys="true" keyProperty="uiid">
  		 insert into user_info(<include refid="myusersql" />)
- 		 values(#{uid},#{uiname},#{uisex},#{uibirthday},#{peid},#{cyid},#{aeid},#{uidealpwd},#{uiemail},#{uiemailstatus})
+ 		 values(#{uid},#{uiname},#{uisex},#{uibirthday},#{peid},#{cyid},#{aeid},#{uidealpwd},#{uiemail},#{uiemailstatus},#{uiopenstatus})
  	</insert>
  	
  	<select id="getModel" parameterType="com.p2p.pojo.Userinfo" resultMap="BaseResultMap">
@@ -83,6 +84,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		<if test="uidealpwd!=null">and ui.ui_dealpwd=#{uidealpwd}</if>
 		  		<if test="uiemail!=null">and ui.ui_email=#{uiemail}</if>
 		  		<if test="uiemailstatus!=null">and ui.ui_emailstatus=#{uiemailstatus}</if>
+		  		<if test="uiopenstatus!=null">and ui.ui_openstatus=#{uiopenstatus}</if>
  				<!-- 身份证idCard表 -->
  				<if test="uiid!=null">and ic.ui_id = #{uiid}</if>
  				<!-- 银行卡idCard表 -->
@@ -102,6 +104,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  <if test="cyid!=null">ui.cy_id=#{cyid},</if>
 		  <if test="aeid!=null">ui.ae_id=#{aeid},</if>
 		  <if test="uiemailstatus!=null">ui.ui_emailstatus=#{uiemailstatus},</if>
+		  <if test="uiopenstatus!=null">ui.ui_openstatus=#{uiopenstatus},</if>
  		</trim>
  		<where>
  		    ui.ui_id=#{uiid}
