@@ -165,7 +165,7 @@
     <div class="m2-regist-main">
         <div class="m2-regist-center">
             <div class="m2-regist-logo" style="height:46px">
-                <a href='/'><img src="/Finances/statics/front/statics/home2/images/new-logo.png"></a>
+                <img src="/Finances/statics/front/statics/newcommon/images/logr.png">
             </div>
             <div class="m2-regist-left">
                 <ul>

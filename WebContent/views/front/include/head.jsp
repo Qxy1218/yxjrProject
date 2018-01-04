@@ -128,7 +128,7 @@
     <div class="m2-commonNav-box">
         <div class="m2-commonLogo">
             <a class="m2-comImg-logo" href="/Finances/toindex">
-                <img src="/Finances/statics/front/statics/newcommon/images/log.png" title="亿信金融投资理财平台logo" alt="亿信金融标识">
+                <img src="/Finances/statics/front/statics/newcommon/images/logs.png" title="亿信金融投资理财平台logo" alt="亿信金融标识">
             </a>
             <a class="m2-conImg-slogan" href="">
                 <img src="/Finances/statics/front/statics/newcommon/images/m2-sloganHS.png" title="徽商银行投资理财托管" alt="">
