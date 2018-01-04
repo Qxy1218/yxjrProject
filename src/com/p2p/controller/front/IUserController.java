@@ -411,6 +411,22 @@ public class IUserController {
 	}
 	
 	/**
+	 * 判断用户原密码是否正确
+	 * */
+	@RequestMapping(value = "getDealPwd")
+	@ResponseBody
+	public int sureDealPwd(Userinfo userinfo) {
+		int isSure = 0;
+		Object results = new SimpleHash("MD5", userinfo.getUidealpwd(), ByteSource.Util.bytes("userinfo"), 10);
+		userinfo.setUidealpwd(results.toString());
+		Userinfo userinfos = userInfoService.getModel(userinfo);
+		if(userinfos!=null) {
+			isSure = 1;
+		}
+		return isSure;
+	}
+	
+	/**
 	 * 退出前台登录
 	 * */
 	@RequestMapping(value="/logout")
@@ -449,11 +465,19 @@ public class IUserController {
 	 * */
 	@RequestMapping(value = "updateUserInfo")
 	@ResponseBody
-	public int updateUserInfo(User users,Userinfo userinfo) {
+	public int updateUserInfo(Userinfo userinfo,HttpSession session) {
 		int isUpdate = 0;
 		try {
+			if(userinfo.getUidealpwd()!=null) {
+				Object results = new SimpleHash("MD5", userinfo.getUidealpwd(), ByteSource.Util.bytes("userinfo"), 10);
+				userinfo.setUidealpwd(results.toString());
+			}
 			userInfoService.update(userinfo);
 			isUpdate = 1;
+			
+			//重新加载userinfo中的值
+			Userinfo uinfo = userInfoService.getModel(userinfo);
+			session.setAttribute("userinfo", uinfo);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
