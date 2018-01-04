@@ -47,6 +47,9 @@ public class Userinfo implements Serializable{
 	@TableField("ui_emailstatus")
 	private Integer uiemailstatus;//邮箱状态(0未审核  1待审核  2已审核)
 	
+	@TableField("ui_openstatus")
+	private Integer uiopenstatus;//开通托管账户状态(默认0：未开户，1：开户)
+	
 	/**
 	 * 二级对象(对应Userinfo用户基本信息基本类)
 	 * */
@@ -65,7 +68,7 @@ public class Userinfo implements Serializable{
 	}
 
 	public Userinfo(Integer uiid, Integer uid, String uiname, String uisex, String uibirthday,
-			Integer peid, Integer cyid, Integer aeid, String uidealpwd, String uiemail,Integer uiemailstatus, User user,IdCard idCard,Userbackcard userbackcard) {
+			Integer peid, Integer cyid, Integer aeid, String uidealpwd, String uiemail,Integer uiemailstatus, Integer uiopenstatus, User user,IdCard idCard,Userbackcard userbackcard) {
 		super();
 		this.uiid = uiid;
 		this.uid = uid;
@@ -78,6 +81,7 @@ public class Userinfo implements Serializable{
 		this.uidealpwd = uidealpwd;
 		this.uiemail = uiemail;
 		this.uiemailstatus = uiemailstatus;
+		this.uiopenstatus = uiopenstatus;
 		this.user = user;
 		this.idCard = idCard;
 		this.userbackcard = userbackcard;
@@ -195,12 +199,20 @@ public class Userinfo implements Serializable{
 		this.userbackcard = userbackcard;
 	}
 
+	public Integer getUiopenstatus() {
+		return uiopenstatus;
+	}
+
+	public void setUiopenstatus(Integer uiopenstatus) {
+		this.uiopenstatus = uiopenstatus;
+	}
+
 	@Override
 	public String toString() {
 		return "Userinfo [uiid=" + uiid + ", uid=" + uid + ", uiname=" + uiname + ", uisex=" + uisex + ", uibirthday="
 				+ uibirthday + ", peid=" + peid + ", cyid=" + cyid + ", aeid=" + aeid + ", uidealpwd=" + uidealpwd
-				+ ", uiemail=" + uiemail + ", uiemailstatus=" + uiemailstatus + ", user=" + user + ", idCard=" + idCard
-				+ ", userbackcard=" + userbackcard + "]";
+				+ ", uiemail=" + uiemail + ", uiemailstatus=" + uiemailstatus + ", uiopenstatus=" + uiopenstatus
+				+ ", user=" + user + ", idCard=" + idCard + ", userbackcard=" + userbackcard + "]";
 	}
 
 }
