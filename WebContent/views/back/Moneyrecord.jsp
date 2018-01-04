@@ -11,52 +11,168 @@
 <title>Insert title here</title>
 <!-- 引用js文件 -->
 <jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
+<script type="text/javascript" src="${pageContext.request.contextPath}/statics/back/static/js/laydate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery.form.js"></script>
+<script src="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<link href="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#editForm')
+        .bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+            	uid: {
+                    message: '用户id验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '用户id不能为空'
+                         },
+     		            stringLength: {
+     		                min: 1,
+     		                max: 9,
+     		                message: '请输入0-9位数字'
+     		            },
+     		            regexp: {
+     		                regexp: /^[0-9]*$/,
+     		                message: '只能输入数字'
+     		            }
+                    }
+                },
+                mrdetail: {
+                    message: '资金明细验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '资金不能为空'
+                         },
+                         stringLength: {
+                             min: 6,
+                             max: 30,
+                             message: '资金明细必须大于6，长度小于30个字符。'
+                         },
+                    }
+                },
+                mrwastemoney: {
+                    message: '消费金额验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '资金不能为空'
+                         },
+     		            stringLength: {
+     		                min: 1,
+     		                max: 9,
+     		                message: '请输入0-9位数字'
+     		            },
+     		            regexp: {
+     		                regexp: /^[0-9]*$/,
+     		                message: '只能输入数字'
+     		            }
+                    }
+                },
+                mrwasttime: {
+                    message: '消费时间验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '消费时间不能为空'
+                         }
+                        
+                    }
+                },
+            }
+        })
+        .on('success.form.bv', function(e) {
+        	
+        	$("#editForm").modal('hide');
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+            var form = new FormData(document.getElementById("editForm"));
+            var mrid =$("#editForm #mrid").val();
+            alert(mrid); 
+            if(mrid==null || mrid==""){
+            	$("#editForm").modal('hide');
+        		var url = "${pageContext.request.contextPath }/money/insertmoneyrecord";
+        		$.post(
+        			url,
+        			{
+        				uid:$("#editForm #uid").val(),
+        				mrdetail:$("#editForm #mrdetail").val(),
+        				mrwastemoney:$("#editForm #mrwastemoney").val(),
+        				mrwasttime:$("#editForm #mrwasttime").val(),
+        			},
+        			function(data){
+        				//后台返回int类型的数据
+        				if(data>0){
+        					//新增成功，下面是后台框架的提示
+        					parent.layer.alert('修改成功');
+        					
+        				}else{
+        					//新增失败
+        					parent.layer.alert('修改失败');
+        				}
+        				//新增完刷新表格数据
+        				$('#tb_role').bootstrapTable('refresh');
+        			},
+        			"text"
+        		);		
+            	
+            }else{
+            	$("#editForm").modal('hide');
+        		var url = "${pageContext.request.contextPath }/money/updateMoneyrecord";
+        		$.post(
+        			url,
+        			{
+        				mrid:mrid,
+        				uid:$("#editForm #uid").val(),
+        				mrdetail:$("#editForm #mrdetail").val(),
+        				mrwastemoney:$("#editForm #mrwastemoney").val(),
+        				mrwasttime:$("#editForm #mrwasttime").val(),
+        			},
+        			function(data){
+        				//后台返回int类型的数据
+        				if(data>0){
+        					//新增成功，下面是后台框架的提示
+        					parent.layer.alert('修改成功');
+        					
+        				}else{
+        					//新增失败
+        					parent.layer.alert('修改失败');
+        				}
+        				//新增完刷新表格数据
+        				$('#tb_role').bootstrapTable('refresh');
+        			},
+        			"text"
+        		);		
+            } 
+        });
+});
+</script>
 <script  type="text/javascript">
     var rows = null;
     
     function addRole(){
     	//清空editModel原来填写的内容
+    	$("#editForm #mrid").val('');
 		$("#editForm #uid").val('');
 		$("#editForm #mrdetail").val('');
 		$("#editForm #mrwastemoney").val('');
 		$("#editForm #mrwasttime").val('');
 		
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
-		$("#btn_submit").attr("onclick","insertMoneyrecord()");
+		//$("#btn_submit").attr("onclick","insertMoneyrecord()");
 		//显示新增窗口
 		$('#editForm').modal('show');
     }
-  //新增员工
-	function insertMoneyrecord() {
-	  
-		//用来关闭新增窗口***********
-		$("#editForm").modal('hide');
-		var url = "${pageContext.request.contextPath }/money/insertmoneyrecord";
-		$.post(
-			url,
-			{	
-				uid:$("#editForm #uid").val(),
-				mrdetail:$("#editForm #mrdetail").val(),
-				mrwastemoney:$("#editForm #mrwastemoney").val(),
-				mrwasttime:$("#editForm #mrwasttime").val(),
-							
-                
-			},
-			function(data){
-				//后台返回int类型的数据
-				if(data>0){
-					//新增成功，下面是后台框架的提示
-					parent.layer.alert('新增成功');
-				}else{
-					//新增失败
-					parent.layer.alert('新增失败');
-				}
-				//新增完刷新表格数据
-				$('#tb_role').bootstrapTable('refresh');
-			},
-			"text"
-		);	
-	}
 	//修改按钮事件
      function UpRole(){
     	//获取当前选中行的信息
@@ -73,6 +189,7 @@
  		}
  		var athRole = selectList[0];
  		//把选中行的数据放到弹窗的控件中
+ 		$("#editForm #mrid").val(athRole.mrid);
  		$("#editForm #uid").val(athRole.uid);
  		$("#editForm #mrdetail").val(athRole.mrdetail);
  		$("#editForm #mrwastemoney").val(athRole.mrwastemoney);
@@ -81,38 +198,10 @@
  		
  		
  		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
- 		$("#btn_submit").attr("onclick","updateMoneyrecord("+athRole.mrid+")");
+ 		//$("#btn_submit").attr("onclick","updateMoneyrecord("+athRole.mrid+")");
  		//显示新增窗口
  		$('#editForm').modal('show');
      }
-	function updateMoneyrecord(mrid){
-		//用来关闭新增窗口***********
-		$("#editForm").modal('hide');
-		var url = "${pageContext.request.contextPath }/money/updateMoneyrecord";
-		$.post(
-			url,
-			{
-				mrid:mrid,
-				uid:$("#editForm #uid").val(),
-				mrdetail:$("#editForm #mrdetail").val(),
-				mrwastemoney:$("#editForm #mrwastemoney").val(),
-				mrwasttime:$("#editForm #mrwasttime").val(),
-			},
-			function(data){
-				//后台返回int类型的数据
-				if(data>0){
-					//新增成功，下面是后台框架的提示
-					parent.layer.alert('修改成功');
-				}else{
-					//新增失败
-					parent.layer.alert('修改失败');
-				}
-				//新增完刷新表格数据
-				$('#tb_role').bootstrapTable('refresh');
-			},
-			"text"
-		);	
-	}
 	//删除按钮事件
 	//*************************************************************************按钮事件
 	function btn_delete(){
@@ -167,57 +256,7 @@
 			$("[data-toggle='tooltip']").tooltip();
 			 //先销毁表格  
 	        $('#tb_role').bootstrapTable('destroy'); 
-			/* $('#tb_role').bootstrapTable({
-				url : '${pageContext.request.contextPath}/money/selectrecords', //请求后台的URL（*）
-				method : 'post', //请求方式（*）
-				contentType: "application/x-www-form-urlencoded",
-				toolbar : '#toolbar', //工具按钮用哪个容器
-				striped : true, //是否显示行间隔色
-				showExport: true, //是否显示导出
-				cache : false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
-				pagination : true, //是否显示分页（*）
-				sortable : false, //是否启用排序
-				sortOrder : "asc", //排序方式
-				queryParams : queryParams,//传递参数（*）
-				sidePagination : "server", //分页方式：client客户端分页，server服务端分页（*）
-				pageNumber : 1, //初始化加载第一页，默认第一页
-				pageSize : 10, //每页的记录行数（*）
-				pageList : [ 10, 15, 20, 25 ], //可供选择的每页的行数（*）
-				search : true, //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
-				strictSearch : false,
-				searchOnEnterKey :true, //按回车搜索
-				showColumns : true, //是否显示所有的列
-				showRefresh : true, //是否显示刷新按钮
-				minimumCountColumns : 2, //最少允许的列数
-				clickToSelect : true, //是否启用点击选中行
-				//height : 300, //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-				uniqueId : "id", //每一行的唯一标识，一般为主键列
-				showToggle : true, //是否显示详细视图和列表视图的切换按钮
-				cardView : false, //是否显示详细视图
-				detailView : false, //是否显示父子表
-				singleSelect: false,  //设置为单选
-				columns : [ {
-					checkbox : true,
-				},
-				{
-					field : 'mrid',
-					title : '主键id'
-				},
-				{
-					field : 'uid',
-					title : '用户id'
-				}, {
-					field : 'mrdetail',
-					title : '资金明细'
-				}, {
-					field : 'mrwastemoney',
-					title : '消费金额'
-				},  {
-					field : 'mrwasttime',
-					title : '消费时间',
-				}, ]
-			});
-			 */
+			
 	        $('#tb_role').bootstrapTable({
 				url : '${pageContext.request.contextPath}/money/selectrecords', //请求后台的URL（*）
 				method : 'post', //请求方式（*）
@@ -342,6 +381,7 @@
 					<form id="editForm" class="form-horizontal m-t">
 						<div class="form-group">
 							<label for="url" class="control-label col-sm-3">用户id</label>
+							<input type="hidden" name="mrid" id="mrid" /> 
 							<div class="col-sm-8">
 								<textarea name="uid" rows="3" class="form-control" id="uid"></textarea>
 	            			</div>
@@ -364,16 +404,26 @@
 								<textarea name="mrwasttime" rows="3" class="form-control" id="mrwasttime"></textarea>
 	            			</div>
 						</div>
+						<div class="form-group">
+		                   <div class="modal-footer">
+								<button type="submit" class="btn btn-default" data-dismiss="modal">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
+								</button>
+								 <button type="submit" class="btn btn-primary">
+								 	<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
+								 </button>
+							</div>
+                </div>
 					</form>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">
+				<!-- <div class="modal-footer">
+					<button type="button"" class="btn btn-default" data-dismiss="modal">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
 					</button>
-					<button type="button" id="btn_submit" class="btn btn-primary" onclick="insertRole()">
+					<button type="submit" id="btn_submit" class="btn btn-primary" onclick="insertRole()">
 						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
 					</button>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
