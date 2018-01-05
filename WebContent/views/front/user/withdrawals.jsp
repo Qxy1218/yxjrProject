@@ -340,7 +340,116 @@
         </div>
     </div>
 </div>
+ <script type="text/javascript">
+        // 点击切换银行卡弹出弹窗
+        $(function () {
+            $('.m2-userCentermanagedraw-addArea-hs,#addother').click(function () {
+                $('#cardinput').val('');
+                card_no = '';
+                new_card = '';
+                $('.m2-userCentercommon-bg,.m2-charge2Confirm').show();
+                chaContop();
+            });
+        })
+        /*
+         var oldBank =$('.m2-userBankitem').children('i').attr('class');
+         var newBank="";
+         $('.m2-cha2Bank-item').click(function(){
+         oldBank =$('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bank').children('i').attr('class');
+         newBank = $(this).children('i').attr('class');
+         
+         if($(this).hasClass('m2-cha2Bank-unsel')){
+         $(this).addClass('m2-cha2Bank-sel').removeClass('m2-cha2Bank-unsel');
+         $(this).siblings('.m2-cha2Bank-sel').addClass('m2-cha2Bank-unsel').removeClass('m2-cha2Bank-sel');
+         }
+         });
+         */
+        // 绑定、选择银行卡
+        $('.m2-cha2Conf-head span').click(function () {
+            // 绑定银行卡显示
+            if ($(this).hasClass('m2-cha2Confhead-other')) {
+                $(this).addClass('m2-cha2Confhead-bind').removeClass('m2-cha2Confhead-other');
+                $(this).html('选择已有银行卡');
+                $('.m2-cha2Bank').hide();
+                $('.m2-cha2Conf-bind').show();
+                chaContop();
+            } else if ($(this).hasClass('m2-cha2Confhead-bind')) {
+                // 选择银行卡显示
+                $(this).addClass('m2-cha2Confhead-other').removeClass('m2-cha2Confhead-bind');
+                $(this).html('绑定其他银行卡');
+                $('.m2-cha2Bank').show();
+                $('.m2-cha2Conf-bind').hide();
+                chaContop();
+            }
+        });
 
+
+        // 关闭
+        $('.m2-cha2Con-close,.m2-cha2Confsub-sure').click(function () {
+            $('.m2-charge2Confirm,.m2-userCentercommon-bg').hide();
+        });
+
+        // 点击确认按钮
+        function binkSubmit() {
+            $('.m2-cha2Confsub-sure').click(function () {
+                // $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bank').children('i').removeClass(oldBank).addClass(newBank);
+                $('.m2-userCentercommon-bg').hide();
+                $('.m2-charge2Confirm').hide();
+                if (newBank == 'm2-userBank-1') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国银行');
+                } else if (newBank == 'm2-userBank-2') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国农业银行');
+                } else if (newBank == 'm2-userBank-3') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('交通银行');
+                } else if (newBank == 'm2-userBank-4') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('浦发银行');
+                } else if (newBank == 'm2-userBank-5') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国邮政储蓄银行');
+                } else if (newBank == 'm2-userBank-6') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国光大银行');
+                } else if (newBank == 'm2-userBank-7') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('招商银行');
+                } else if (newBank == 'm2-userBank-8') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('兴业银行');
+                } else if (newBank == 'm2-userBank-9') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('上海银行');
+                } else if (newBank == 'm2-userBank-10') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国民生银行');
+                } else if (newBank == 'm2-userBank-11') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国建设银行');
+                } else if (newBank == 'm2-userBank-12') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国工商银行');
+                } else if (newBank == 'm2-userBank-13') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中信银行');
+                } else if (newBank == 'm2-userBank-14') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('华夏银行');
+                } else if (newBank == 'm2-userBank-15') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('广发银行');
+                } else if (newBank == 'm2-userBank-16') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('深圳发展银行');
+                } else if (newBank == 'm2-userBank-17') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('平安银行');
+                } else if (newBank == 'm2-userBank-18') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('恒丰银行');
+                } else if (newBank == 'm2-userBank-19') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('渤海银行');
+                } else if (newBank == 'm2-userBank-20') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('浙商银行');
+                } else if (newBank == 'm2-userBank-21') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('北京银行');
+                } else if (newBank == 'm2-userBank-22') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('其他银行');
+                }
+            });
+        }
+
+        //调整弹窗top值
+        function chaContop() {
+            $('.m2-charge2Confirm').css('top', $(document).scrollTop() + 150);
+        }
+    </script>
+    <!-- 绑定银行卡弹窗end -->
+    <!-- 提现弹窗start -->
 <script type="text/javascript">
     $(function () {
         //汇付点击关闭隐藏银行卡

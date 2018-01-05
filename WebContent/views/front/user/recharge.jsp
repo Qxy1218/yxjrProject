@@ -45,6 +45,93 @@
             <div style="width: 30px;height: 30px;position: absolute;top: 11px;right: 0px;color: #666;font-size: 20px;cursor: pointer;" id="close">X</div>
         </div>
    </div>
+    <!-- 绑定银行卡弹窗start -->
+    <!--<div class="m2-userCentercommon-bg" style="display:none;"></div>-->
+    <div class="m2-charge2Confirm" style="display:none;">
+        <b class="m2-cha2Con-close"></b>
+        <div class="m2-cha2Conf-bind">
+            <div class="m2-cha2Conf-tit">
+                <span>绑定银行卡</span>
+            </div>
+            <table cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td class="m2-chaConf-tit">
+                            <i class="m2-chaConf-user"></i>
+                            <span>真实姓名</span>
+                        </td>
+                        <td class="m2-chaConf-con">
+                            <span></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="m2-chaConf-tit">
+                            <i class="m2-chaConf-tel"></i>
+                            <span>手机号</span>
+                        </td>
+                        <td class="m2-chaConf-con">
+                            <span>17370134046</span>
+                            <a href="/usercenter-accountcontrol-userverify?phone=1">修改</a>
+                            <b class="m2-chaConf-warn" style='color:#999;'>认证手机号须与银行卡预留手机号一致 否则无法绑卡</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="m2-chaConf-tit">
+                            <i class="m2-chaConf-card"></i>
+                            <span>借记卡</span>
+                        </td>
+                        <td class="m2-chaConf-con">
+                            <input type="text" style="width:265px;" placeholder="" id="cardinput" maxlength="19">
+                            <b class="m2-chaConf-warn" style='color:#999;'>该银行卡开户姓名必须为，否则会提现失败！</b>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="m2-cha2Confsubmit">
+            <span class="m2-cha2Confsub-sure" onclick="changeCard()">确&nbsp;&nbsp;&nbsp;认</span>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var oldBank = $('.m2-userBankitem').children('i').attr('class');
+        var newBank = "";
+        // 关闭
+        $('.m2-cha2Con-close').click(function () {
+            $('.m2-charge2Confirm,.m2-userCentercommon-bg').hide();
+        });
+
+        binkSubmit();
+        // 点击确认按钮
+        function binkSubmit() {
+            $('.m2-cha2Confsub-sure').click(function () {
+//                $('.m2-userBankitem').children('i').removeClass(oldBank).addClass(newBank);
+                $('.m2-userCentercommon-bg').hide();
+                $('.m2-charge2Confirm').hide();
+            });
+        }
+        //调整弹窗top值
+        function chaContop() {
+            $('.m2-charge2Confirm').css('top', $(document).scrollTop() + 150);
+        }
+    </script>
+    <!-- 绑定银行卡弹窗end -->
+    <div class="m2-userCentercommon-confirm" style='display: none;' id='msgdialog1'>
+        <span class="m2-userCentercommon-confirmClose"></span>
+        <p class="m2-userCommon-confirmWar"><i></i></p>
+        <p class="m2-userCommon-confirmBtn"><a class="m2-user-confirmBtn" href="javascript:void(0)">确&nbsp;定</a></p>		
+    </div>
+    <div class="m2-userCentercommon-confirm" style='display: none;' id='msgdialog2'>
+        <span class="m2-userCentercommon-confirmClose"></span>
+        <p class="m2-userCommon-confirmSuc"><i></i></p>
+        <p class="m2-userCommon-confirmBtn"><a class="m2-user-confirmBtn" href="javascript:void(0)">确&nbsp;定</a></p>		
+    </div>
+    <script type="text/javascript">
+        $('.m2-userCentercommon-confirmClose,.m2-user-confirmBtn').click(function () {
+            $('.m2-userCentercommon-confirm').hide();
+            $('.m2-userCentercommon-bg').hide();
+            window.location.reload();
+        });
+    </script>
 	<div class="m2-userCentermanage-con">      
 		<div class="m2-user-recharge" style="padding:4px 0 4px 0;"><h3><i></i>充值</h3></div>
         <div class="m2-recharge-mainbody">
@@ -97,59 +184,9 @@
             </div>
 			<h4 class="m2-userCha2-tabHead">选择充值方式</h4>
             <div class="m2-usercha2-tab">
-                <ul>
-                	<li class="m2-userCha2tab-sel"><span>网银充值</span><b></b></li>
-                    <li class="m2-userCha2tab-unsel"><span>快捷支付</span><b></b></li>
-                    <li class="m2-userCha2tab-unsel">
-					    <span>支付宝转账</span><b></b>
-                        <div id="alipayalert">直接充值到您本人的<br/>电子账户，快速到账</div>
-					</li>
-                    <li class="m2-userCha2tab-unsel" id="getinfo"><span>银行转账</span><b></b></li>
-                </ul>
+                
             </div>
-            <div class="m2-usercha2-contain">	
-				<div class="m2-recharge-ent m2-recharge-ipt" style="border-bottom:1px solid #f3f3f3;padding-top:70px;">
-					<table cellpadding="0" cellspacing="0" border="0" style="width:538px;">
-						<tr>
-							<td align="right" style="width:125px;padding-top:20px;">充值金额：</td>
-							<td style="width:270px;padding-top:20px;"><input type="text" class="m2-input-ent" id="wangguan_num" placeholder="请输入充值金额" style="width:264px;" /></td>
-							<td style="width:143px;padding-top:20px;"><a href="#" class="m2-recharge-entChr" id="wangguan_recharge" style="border-radius:4px;margin-left:8px;">充值</a></td>
-						</tr>
-						<tr>
-							<td align="right" style="padding-top:15px;">充值限额：</td>
-							<td style="padding-top:15px;" colspan="2"><span>根据发卡行网银支付限额而定，使用U盾可提高支付限额</span></td>
-						</tr>
-
-						<tr>
-							<td align="right" style="padding-top:20px;">手续费：</td>
-							<td style="padding-top:20px;"><span>0</span>元 </td>
-							<td style="padding-top:20px;"></td>
-						</tr>
-					</table>
-				</div>
-				<div class="m2-onlineChargelist">
-					<h3>支持银行列表：</h3>
-					<ul>
-					<li class="m2-onlineCha-li"><img src="/Finances/statics/front/images/bank/onlineBank1.jpg" alt=""></li>
-					<li class="m2-onlineCha-li"><img src="/Finances/statics/front/images/bank/onlineBank2.jpg" alt=""></li>
-					<li class="m2-onlineCha-li"><img src="/Finances/statics/front/images/bank/onlineBank3.jpg" alt=""></li>
-					<li class="m2-onlineCha-li"><img src="/Finances/statics/front/images/bank/onlineBank5.jpg" alt=""></li>
-					<li class="m2-onlineCha-li"><img src="/Finances/statics/front/images/bank/onlineBank6.jpg" alt=""></li>
-					<li class="m2-onlineCha-li"><img src="/Finances/statics/front/images/bank/onlineBank7.jpg" alt=""></li>
-					<li class="m2-onlineCha-li"><img src="/Finances/statics/front/images/bank/onlineBank11.jpg" alt=""></li>
-				</div>
-				<div class="m2-recharge-tips">
-					<h3><i></i>温馨提示：</h3>
-					<ul>
-						    <li><i class="m2-recharge-tips01"></i><b>请勿使用360兼容模式进行充值操作。</b></li>
-                            <li><i class="m2-recharge-tips02"></i><b>投资人充值不收取手续费。</b></li>
-                            <li><i class="m2-recharge-tips03"></i><b>徽商银行电子交易账户采用原卡进出设置，为了您的资金安全，只能提现至您绑定的银行卡。</b></li>
-                            <li><i class="m2-recharge-tips04"></i><b>更换已绑定的银行卡需在投金额和账户余额都为0，如需换卡或充值过程中遇到问题，请联系客服：4006-777-518。</b></li>
-                            <li><i class="m2-recharge-tips05"></i><b>若您充值后未投资，系统将自动为您认购国寿安保货币基金，您持有的基金总额可直接用于投资爱钱帮任意理财产品，以此使您的理财收益最大化。</b></li>
-					</ul>
-				</div>
-			</div>
-            <div class="m2-usercha2-contain" style="display:none;">
+            <div class="m2-usercha2-contain">
                 <div class="m2-recharge-mainbody">
                     <div class="m2-user-bankSelbox"  id='carddiv1'>
                         <div class="m2-userBankitem m2-userBank-unsel m2-userBankitem-add" style="width:255px;height:64px;">
@@ -213,7 +250,21 @@
                             </tr>
                         </table>
                     </div>
-                    
+                    <div class="m2-onlineChargelist">
+					<h3>支持银行列表：</h3>
+					<ul>
+					<li class="m2-onlineCha-li"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank1.jpg" alt=""></li>
+					<li class="m2-onlineCha-li"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank2.jpg" alt=""></li>
+					<li class="m2-onlineCha-li"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank3.jpg" alt=""></li>
+					<li class="m2-onlineCha-li"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank5.jpg" alt=""></li>
+					<li class="m2-onlineCha-li"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank6.jpg" alt=""></li>
+					<li class="m2-onlineCha-li"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank7.jpg" alt=""></li>
+					<li class="m2-onlineCha-li"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank11.jpg" alt=""></li>
+                     </ul>
+<!--					<div class="m2-onlineToggle">-->
+<!--						<span class="toggleUp">更多银行<i></i></span>-->
+<!--					</div>-->
+				</div>
                     <div class="m2-recharge-tips">
                         <h3><i></i>温馨提示：</h3>
 						<ul>
@@ -226,55 +277,12 @@
                     </div>
                 </div>
             </div>
-            <div class="m2-usercha2-contain" id="alipay" style="display:none;">
-				<div class="m2-userCha2-exp">
-					<p>您可以使用您的银行卡，通过支付宝的方式将资金充值到您的徽商银行存管账户（支付APP更方便），转账时所需填写信息如下：</p>
-					<div class="container">
-					<p>收款方户名：<b></b></p>
-                    <p>收款方账号：<b></b></p>
-					<p>收款方开户行：<b>徽商银行股份有限公司合肥花园街支行</b></p>
-				</div>
-				</div>
-				<div style="clear:both;"></div>
-				<div class="m2-recharge-tips">
-					<h3><i></i>温馨提示：</h3>
-					<ul>
-						<li><i class="m2-recharge-tips01"></i><b>充值过程收取转账费用，以支付宝规定为准，爱钱帮不收取其他任何手续费。</b></li>
-						<li><i class="m2-recharge-tips02"></i><b>徽商银行电子交易账户采用原卡进出设置，为了您的资金安全，只能提现至您绑定的银行卡。</b></li>
-						<li><i class="m2-recharge-tips03"></i><b>更换已绑定的银行卡需在投金额和账户余额都为0，如需换卡或充值过程中遇到问题，请联系客服：4006-777-518。</b></li>
-						<li><i class="m2-recharge-tips04"></i><b>若您充值后未投资，系统将自动为您认购国寿安保货币基金，您持有的基金总额可直接用于投资爱钱帮任意理财产品，以此使您的理财收益最大化。</b></li>
-					</ul>
-				</div>
-				<div style="clear:both;"></div>
-				<div id="alipaycontent">
-					<ul style="height:54px;">
-						<li style="border-top:1px solid #ddd;border-left:1px solid #ddd;border-top-left-radius:4px;" class="alipayselect" data="36">第一步</li>
-						<li style="border:1px solid #ddd;" data="35">第二步</li>
-						<li style="border-top:1px solid #ddd;border-right:1px solid #ddd;border-top-right-radius:4px;" data="34">第三步</li>
-					</ul>
-					<img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank36.png" width="100%;">
-            </div>
+           
 			</div>
-            <div class="m2-usercha2-contain" style="display:none;">
-				<div class="m2-userCha2-exp">
-                    <p>您可以向您的徽商银行账户转账，实现账户充值。建议转账方式包括：银行柜台转账、网银转账、手机银行转账。转账时所需填写信息如下： </p>
-                    <p>收款方户名：<b></b></p>
-                    <p>收款方账号：<b></b></p>
-                    <p>收款方开户行：<b>徽商银行股份有限公司合肥花园街支行</b></p>
-                </div>
-                <div class="m2-recharge-tips">
-                    <h3><i></i>温馨提示：</h3>
-                    <ul>
-                        <li><i class="m2-recharge-tips01"></i><b>充值过程收取转账费用，以银行规定为准，爱钱帮不收取其他任何手续费。</b></li>
-                        <li><i class="m2-recharge-tips02"></i><b>徽商银行电子交易账户采用原卡进出设置，为了您的资金安全，只能提现至您绑定的银行卡。</b></li>
-                        <li><i class="m2-recharge-tips03"></i><b>更换已绑定的银行卡需在投金额和账户余额都为0，如需换卡或充值过程中遇到问题，请联系客服：4006-777-518。</b></li>
-                        <li><i class="m2-recharge-tips04"></i><b>若您充值后未投资，系统将自动为您认购国寿安保货币基金，您持有的基金总额可直接用于投资爱钱帮任意理财产品，以此使您的理财收益最大化。</b></li>
-                    </ul>
-                </div>
-			</div> 
+           
 		</div>
     </div>
-    <script type="text/javascript">
+<script type="text/javascript">
     $(function () {
     	// 支持网银充值银行列表展开收起
 		$('.m2-onlineToggle span').click(function(){
@@ -324,8 +332,8 @@
 			$(".m2-usercha2-tab ul li").eq(3).click();
 		})
     });
-	</script>
-    <script>
+</script>
+<script>
     'use strict';
 
     //充值金额
@@ -519,7 +527,7 @@
                     }
                     day_limit = obj['iqbresult']['day_limit'] ? obj['iqbresult']['day_limit'] : 0;
                     single_limit = obj['iqbresult']['single_limit'] ? obj['iqbresult']['single_limit'] : 0;
-                    //$('#limitspan').text('单笔' + (single_limit > 10000 ? (single_limit / 10000 + '万') : (single_limit + '元')) + '，单日' + (day_limit > 10000 ? (day_limit / 10000 + '万') : (day_limit + '元')));
+                    $('#limitspan').text('单笔' + (single_limit > 10000 ? (single_limit / 10000 + '万') : (single_limit + '元')) + '，单日' + (day_limit > 10000 ? (day_limit / 10000 + '万') : (day_limit + '元')));
                     $('#cardshow').text(card.substr(0, 4) + '************' + card.substr(-4, 4));
                     $('#inst_name').text(obj['iqbresult']['inst_name']);
                 } else {
@@ -593,6 +601,7 @@
 
 </script>
 <script>
+
     var send_flag = true;
     var show_flag = true;
     var card_no;
@@ -642,6 +651,7 @@
             });
         }
     };
+
     var t1=0;
     $("#fsyzm").click(function(){
     		t2 = Date.now();
@@ -663,6 +673,7 @@
 		              }
 		        	}
 		        });
+				  
 					var self=$(this);
 					$(this).css("backgroundColor","gray").html(num);
 					var set=setInterval(function(){
@@ -676,6 +687,15 @@
 				
 			}
     });
+    	   
+
+ 			
+ 		
+
+        
+       
+    
+
     //提交充值
     // 新版验证码充值 20160523 - add by zml 
      function recharge_yzm() {
@@ -716,6 +736,7 @@
  			if(data==0){
  				showMsg('邮政每天20：00~次日2：30不可充值', true);
  			}else{
+
  		        var recharge_money = money;
  		        money = '';
  		        $('#chargemoney').val(money);
@@ -762,6 +783,8 @@
  			}
          });
      }
+     
+     
 </script>
 </body>
 </html>
