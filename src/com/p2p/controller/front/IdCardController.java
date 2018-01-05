@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.p2p.pojo.AuthebDetais;
 import com.p2p.pojo.Bank;
 import com.p2p.pojo.IdCard;
 import com.p2p.pojo.Redmoney;
@@ -22,6 +23,7 @@ import com.p2p.pojo.User;
 import com.p2p.pojo.Userbackcard;
 import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Users;
+import com.p2p.service.back.AuthebDetaisService;
 import com.p2p.pojo.Uservouch;
 import com.p2p.service.back.RedmoneyService;
 import com.p2p.service.back.UservouchService;
@@ -52,6 +54,8 @@ public class IdCardController {
 	private UserInfoService userInfoService;
 	@Resource(name="IUserServiceImpl")
 	private IUserService iUserService;
+	@Resource(name="authebDetaisServiceImpl")
+	private AuthebDetaisService authebDetaisService;
 	
 	//红包
 	@Resource(name="redmoneyServiceImpl")
@@ -79,6 +83,12 @@ public class IdCardController {
 				count = idCardService.update(idCard);
 				count = 2;
 			}
+			AuthebDetais authebDetais = new AuthebDetais();
+			authebDetais.setAdintroduct("用户: "+idCard.getIcname()+",已输入身份信息,需后台管理员审核通过!");
+			authebDetais.setAdtime(DateUtils.getDateTimeFormat(new Date()));
+			authebDetais.setUiid(idCard.getUiid());
+			authebDetaisService.addModel(authebDetais);
+			
 			Userinfo userinfos = new Userinfo();
 			userinfos.setUiid(idCard.getUiid());
 			userinfos.setUiopenstatus(1);
