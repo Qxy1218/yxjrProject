@@ -6,38 +6,45 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<!--[if lt IE 9]>
-	    	<script src="<%=path%>/statics/front/statics/newcommon/js/html5shiv.js"></script>
-	    <![endif]-->
-		<title>我的账户 | 亿信金融</title>
-		<link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
-		<link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">
+<meta charset="UTF-8">
+	    <!--[if lt IE 9]>
+    	<script src="<%=path%>/statics/front/statics/newcommon/js/html5shiv.js"></script>
+    <![endif]-->
+	    <meta name="keywords" content="网贷平台,网络借贷，网络赚钱项目,理财产品">
+	    <meta name="description" content="爱钱帮网贷平台为您提供网络赚钱项目；为此相继推出了许多新的理财产品，在为您创造高收益的同时也优化了理财产品模式。网络借贷，就选爱钱帮。">
+	    <meta charset="UTF-8">
+		<link rel="shortcut icon" href="/Finances/statics/other/lco/smalllog.png"> 
+	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-common.css">
-	    <link rel="Shortcut  Icon" href="/Finances/statics/front/statics/newcommon/images/minilogo.png">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/userCenter.css">
 	    <script type="text/javascript" src="/Finances/statics/front/statics/newcommon/js/jquery.min.js"></script>
 	    <script type="text/javascript" src="/Finances/statics/front/statics/newcommon/js/common.js"></script>
 	    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/esl.js"></script>
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/jquery.datetimepicker.css" />
 	    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/jquery.datetimepicker.js"></script>
-	<title>Insert title here</title>
+		<title>投资记录 | 亿信金融</title>
 </head>
 <body>
-	<div class="m2-userCentercommon-bg" style="display:none;"></div>
 	<!-- 右侧边栏start -->
-	<jsp:include page="../include/userside.jsp"></jsp:include>
+	<jsp:include page="../include/userside.jsp"></jsp:include>		
 	<!-- 右侧边栏end -->
-	<!-- 左部导航start -->
-	<jsp:include page="../include/tree.jsp"></jsp:include>
-	<!-- 左部导航end -->
-	<!-- 头部end -->
-
+	
 	<!-- 头部start -->
-	<jsp:include page="../include/head.jsp"></jsp:include>
+		<jsp:include page="../include/head.jsp"></jsp:include>
 	<!-- 头部end -->
-	 
-
+	
+	<!-- 内容 -->
+		
+		<!-- 树start -->
+	    <jsp:include page="../include/tree.jsp"></jsp:include>
+	    <!-- 树end -->
+	<div style="width:100%; height:100%; position:fixed; z-index:100; top:0; display:none; left:0;" id="allP" >
+        <div style="width:100%; height:100%; position:absolute; top:0; left:0; background:#000; opacity:0.5;"></div>
+        <div style="width:404px; height:154px; background:#fff; position:absolute; top:50%; left:50%; margin-left:-252px; margin-top:-100px; border:2px solid #666;">
+            <p style="color: #666666;font-size: 16px;absolute;line-height:170px;text-align: center; font-family: Microsoft YaHei;;">该项目已还清，为保护企业隐私，不再公示项目信息</p>
+            <div style="width: 30px;height: 30px;position: absolute;top: 11px;right: 0px;color: #666;font-size: 20px;cursor: pointer;" id="close">X</div>
+        </div>
+   </div>
 	<div class="m2-userCentermanage-con">      
 		<div class="m2-user-recharge" style="padding:4px 0 4px 0;"><h3><i></i>充值</h3></div>
         <div class="m2-recharge-mainbody">
@@ -123,43 +130,13 @@
 				<div class="m2-onlineChargelist">
 					<h3>支持银行列表：</h3>
 					<ul>
-					<li class="m2-onlineCha-li"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank1.jpg" alt=""></li>
-					<li class="m2-onlineCha-li"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank2.jpg" alt=""></li>
-					<li class="m2-onlineCha-li"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank3.jpg" alt=""></li>
-<!--					<li class="m2-onlineCha-li"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank4.jpg" alt=""></li>-->
-					<li class="m2-onlineCha-li"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank5.jpg" alt=""></li>
-					<li class="m2-onlineCha-li"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank6.jpg" alt=""></li>
-					<li class="m2-onlineCha-li"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank7.jpg" alt=""></li>
-					<li class="m2-onlineCha-li"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank11.jpg" alt=""></li>
-                        <!--					<li class="m2-onlineCha-li"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank9.jpg" alt=""></li>
-                                            <li class="m2-onlineCha-li"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank32.jpg" alt=""></li>-->
-<!--					<li class="m2-onlineCha-li"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank12.jpg" alt=""></li>-->
-<!--					<li class="m2-onlineCha-li"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank11.jpg" alt=""></li>-->
-<!--					<li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank13.jpg" alt=""></li>-->
-					<!-- <li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="images/bank/onlineBank14.jpg" alt=""></li> -->
-<!--					<li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank15.jpg" alt=""></li>-->
-<!--					<li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank16.jpg" alt=""></li>-->
-<!--					<li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank17.jpg" alt=""></li>-->
-<!--					<li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank18.jpg" alt=""></li>-->
-<!--					<li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank19.jpg" alt=""></li>-->
-<!--					<li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank20.jpg" alt=""></li>-->
-<!--					<li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank21.jpg" alt=""></li>-->
-<!--					<li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank22.jpg" alt=""></li>-->
-<!--					<li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank23.jpg" alt=""></li>-->
-<!--					<li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank24.jpg" alt=""></li>-->
-<!--					<li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank25.jpg" alt=""></li>-->
-<!--					<li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank26.jpg" alt=""></li>-->
-<!--					<li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank27.jpg" alt=""></li>-->
-<!--					<li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank28.jpg" alt=""></li>-->
-<!--					<li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank29.jpg" alt=""></li>-->
-<!--					<li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank30.jpg" alt=""></li>-->
-<!--					<li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank31.jpg" alt=""></li>-->
-<!--					 <li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="images/bank/onlineBank32.jpg" alt=""></li> -->
-<!--					<li class="m2-onlineCha-li m2-onlineCha-hid" style="display:none;"><img src="https://www.iqianbang.com/statics/home2/images/bank/onlineBank33.jpg" alt=""></li>-->
-					</ul>
-<!--					<div class="m2-onlineToggle">-->
-<!--						<span class="toggleUp">更多银行<i></i></span>-->
-<!--					</div>-->
+					<li class="m2-onlineCha-li"><img src="/Finances/statics/front/images/bank/onlineBank1.jpg" alt=""></li>
+					<li class="m2-onlineCha-li"><img src="/Finances/statics/front/images/bank/onlineBank2.jpg" alt=""></li>
+					<li class="m2-onlineCha-li"><img src="/Finances/statics/front/images/bank/onlineBank3.jpg" alt=""></li>
+					<li class="m2-onlineCha-li"><img src="/Finances/statics/front/images/bank/onlineBank5.jpg" alt=""></li>
+					<li class="m2-onlineCha-li"><img src="/Finances/statics/front/images/bank/onlineBank6.jpg" alt=""></li>
+					<li class="m2-onlineCha-li"><img src="/Finances/statics/front/images/bank/onlineBank7.jpg" alt=""></li>
+					<li class="m2-onlineCha-li"><img src="/Finances/statics/front/images/bank/onlineBank11.jpg" alt=""></li>
 				</div>
 				<div class="m2-recharge-tips">
 					<h3><i></i>温馨提示：</h3>
@@ -297,6 +274,57 @@
 			</div> 
 		</div>
     </div>
+    <script type="text/javascript">
+    $(function () {
+    	// 支持网银充值银行列表展开收起
+		$('.m2-onlineToggle span').click(function(){
+			if ($(this).hasClass('toggleUp')) {
+				$(this).addClass('toggleDown').removeClass('toggleUp');
+				$('.m2-onlineCha-hid').show();
+				$(this).html('收起更多<i></i>')
+			}else if ($(this).hasClass('toggleDown')) {
+				$(this).addClass('toggleUp').removeClass('toggleDown');
+				$('.m2-onlineCha-hid').hide();
+				$(this).html('展开银行<i></i>')
+			}
+		})
+        
+        $('.m2-userBankitem').click(function () {
+            $(this).toggleClass('m2-userBank-sel m2-userBank-unsel');
+        });
+        $('.m2-userBank-chose span,.m2-userBankitem-add').click(function () {
+            $('#cardinput').val('');
+            card_no = '';
+            new_card = '';
+            $('.m2-userCentercommon-bg,.m2-charge2Confirm').show();
+        });
+        $('.m2-usercha2-tab ul li').click(function () {
+            if ($(this).hasClass('m2-userCha2tab-unsel')) {
+                $(this).addClass('m2-userCha2tab-sel').removeClass('m2-userCha2tab-unsel');
+                $(this).siblings('.m2-userCha2tab-sel').addClass('m2-userCha2tab-unsel').removeClass('m2-userCha2tab-sel');
+                $('.m2-usercha2-contain').eq($(this).index()).show();
+                $('.m2-usercha2-contain').eq($(this).index()).siblings('.m2-usercha2-contain').hide();
+            }
+        });
+        $('#wangguan_recharge').click(function(){
+          var wgmoney=$("#wangguan_num").val();
+          if (!wgmoney||wgmoney<=0) {
+              showMsg('请输入有效的充值金额！');
+              return;
+          }
+          window.open('/usercenter-capitalcontrol-recharge_wangguan?tmoney='+wgmoney);
+        });
+        $("#alipaycontent li").click(function(){
+			$("#alipaycontent li").removeClass("alipayselect");
+			$(this).addClass("alipayselect");
+			var data="https://www.iqianbang.com/statics/home2/images/bank/onlineBank"+$(this).attr("data")+".png";
+			$("#alipaycontent img").prop("src",data);
+    });
+		$("#changbank").click(function(){
+			$(".m2-usercha2-tab ul li").eq(3).click();
+		})
+    });
+	</script>
     <script>
     'use strict';
 
@@ -491,7 +519,7 @@
                     }
                     day_limit = obj['iqbresult']['day_limit'] ? obj['iqbresult']['day_limit'] : 0;
                     single_limit = obj['iqbresult']['single_limit'] ? obj['iqbresult']['single_limit'] : 0;
-                    $('#limitspan').text('单笔' + (single_limit > 10000 ? (single_limit / 10000 + '万') : (single_limit + '元')) + '，单日' + (day_limit > 10000 ? (day_limit / 10000 + '万') : (day_limit + '元')));
+                    //$('#limitspan').text('单笔' + (single_limit > 10000 ? (single_limit / 10000 + '万') : (single_limit + '元')) + '，单日' + (day_limit > 10000 ? (day_limit / 10000 + '万') : (day_limit + '元')));
                     $('#cardshow').text(card.substr(0, 4) + '************' + card.substr(-4, 4));
                     $('#inst_name').text(obj['iqbresult']['inst_name']);
                 } else {
@@ -614,7 +642,6 @@
             });
         }
     };
-
     var t1=0;
     $("#fsyzm").click(function(){
     		t2 = Date.now();
@@ -636,7 +663,6 @@
 		              }
 		        	}
 		        });
-				  
 					var self=$(this);
 					$(this).css("backgroundColor","gray").html(num);
 					var set=setInterval(function(){
@@ -690,7 +716,6 @@
  			if(data==0){
  				showMsg('邮政每天20：00~次日2：30不可充值', true);
  			}else{
-
  		        var recharge_money = money;
  		        money = '';
  		        $('#chargemoney').val(money);
