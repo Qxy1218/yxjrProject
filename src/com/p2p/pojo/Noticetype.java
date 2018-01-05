@@ -26,16 +26,18 @@ public class Noticetype implements Serializable{
 	
 	@TableField("nt_news")
 	private String ntnews; //短信通知状态
-
+	
+	private Employe employe;
 	public Noticetype() {
 	}
 
-	public Noticetype(Integer ntid, Integer eid, String ntemail, String ntnews) {
+	public Noticetype(Integer ntid, Integer eid, String ntemail, String ntnews,Employe employe) {
 		super();
 		this.ntid = ntid;
 		this.eid = eid;
 		this.ntemail = ntemail;
 		this.ntnews = ntnews;
+		this.employe = employe;
 	}
 
 	public Integer getNtid() {
@@ -74,8 +76,19 @@ public class Noticetype implements Serializable{
 		return serialVersionUID;
 	}
 
+	public Employe getEmploye() {
+		return employe;
+	}
+
+	public void setEmploye(Employe employe) {
+		this.employe = employe;
+	}
+
 	@Override
 	public String toString() {
-		return "Noticetype [ntid=" + ntid + ", eid=" + eid + ", ntemail=" + ntemail + ", ntnews=" + ntnews + "]";
+		return "Noticetype [ntid=" + ntid + ", eid=" + eid + ", ntemail=" + ntemail + ", ntnews=" + ntnews
+				+ ", employe=" + employe + "]";
 	}
+
+	
 }
