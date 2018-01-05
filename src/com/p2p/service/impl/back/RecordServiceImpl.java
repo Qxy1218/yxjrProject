@@ -59,5 +59,4 @@ public class RecordServiceImpl implements RecordService{
 	public Integer countRecord() {
 		return recordMapper.countRecord();
 	}
-
 }
