@@ -31,11 +31,13 @@ public class Record implements Serializable{
 	
 	@TableField("rd_remark")
 	private String rdremark; //备注
+	
+	private Employe employe;
 
 	public Record() {
 	}
 
-	public Record(Integer rdid, String rdname, Integer reid, String rdstatus, String rdtime, String rdremark) {
+	public Record(Integer rdid, String rdname, Integer reid, String rdstatus, String rdtime, String rdremark, Employe employe) {
 		super();
 		this.rdid = rdid;
 		this.rdname = rdname;
@@ -43,6 +45,7 @@ public class Record implements Serializable{
 		this.rdstatus = rdstatus;
 		this.rdtime = rdtime;
 		this.rdremark = rdremark;
+		this.employe = employe;
 	}
 
 	public Integer getRdid() {
@@ -96,11 +99,19 @@ public class Record implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	public Employe getEmploye() {
+		return employe;
+	}
+
+	public void setEmploye(Employe employe) {
+		this.employe = employe;
+	}
 
 	@Override
 	public String toString() {
 		return "Record [rdid=" + rdid + ", rdname=" + rdname + ", reid=" + reid + ", rdstatus=" + rdstatus + ", rdtime="
-				+ rdtime + ", rdremark=" + rdremark + "]";
+				+ rdtime + ", rdremark=" + rdremark + ", employe=" + employe + "]";
 	}
 
 }
