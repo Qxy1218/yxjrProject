@@ -16,7 +16,7 @@
 			}
 				return false; 
 			}else if(uid != null){
-				parent.window.location="${pageContext.request.contextPath }/tousercenter"; 
+				parent.window.location="${pageContext.request.contextPath }/tousercenter?uid="+uid; 
 				return true;
 			}
 		}

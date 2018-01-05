@@ -35,30 +35,43 @@
 	
 	<!--  内容-->
 	<!--公用提示框start-->
-<div class="m2-userCentercommon-confirm" style="display:none;" id="dialog-info-div1">
-    <span class="m2-userCentercommon-confirmClose"></span>
-    <!--<p class="m2-userCommon-confirmWar"></p>-->
-    <p class="m2-userCommon-confirmSuc" style='padding-right: 20px;'></p>
-    <p class="m2-userCommon-confirmBtn"><a class="m2-user-confirmBtn" target="_blank" href="#">确&nbsp;定</a></p>
-</div>
-<div class="m2-userCentercommon-confirm" style="top:30%;padding-top:10px;display:none"  id='dialog-info-div'>
-    <span class="m2-userCentercommon-confirmClose"></span>
-    <div style="text-align: center;padding: 20px 0 20px 0;">
-        <h3 id='dialog-info-text'></h3>
+	<div class="m2-userCentercommon-confirm" style="display:none;" id="dialog-info-div1">
+	    <span class="m2-userCentercommon-confirmClose"></span>
+	    <!--<p class="m2-userCommon-confirmWar"></p>-->
+	    <p class="m2-userCommon-confirmSuc" style='padding-right: 20px;'></p>
+	    <p class="m2-userCommon-confirmBtn"><a class="m2-user-confirmBtn" target="_blank" href="#">确&nbsp;定</a></p>
+	</div> 
+	<div class="m2-userCentercommon-confirm" style="top:30%;padding-top:10px;display:none"  id='dialog-info-div'>
+	    <span class="m2-userCentercommon-confirmClose"></span>
+	    <div style="text-align: center;padding: 20px 0 20px 0;">
+	        <h3 id='dialog-info-text'></h3>
+	    </div>
+	    <p class="m2-userCommon-confirmBtn">
+	        <a class="m2-user-confirmBtn" target="_blank" href="#">确定</a>
+	    </p>
+	</div>
+	<script type="text/javascript">
+	    $('.m2-userCentercommon-confirmClose,.m2-user-confirmBtn').click(function () {
+	        $('.m2-userCommon-confirmSuc').hide();
+	        $('.m2-userCommon-confirmWar').hide();
+	        $('.m2-userCentercommon-confirm').hide();
+	        $('.m2-userCentercommon-bg').hide();
+	        window.location.reload();
+	    });
+	</script>
+	
+	
+    <div class="m2-userCentercommon-confirm" style='display: none;' id='msgdialog2'>
+        <span class="m2-userCentercommon-confirmClose"></span>
+        <p class="m2-userCommon-confirmSuc"><i></i></p>
+        <p class="m2-userCommon-confirmBtn"><a class="m2-user-confirmBtn" href="javascript:void(0)">确&nbsp;定</a></p>		
     </div>
-    <p class="m2-userCommon-confirmBtn">
-        <a class="m2-user-confirmBtn" target="_blank" href="#">确定</a>
-    </p>
-</div>
-<script type="text/javascript">
-    $('.m2-userCentercommon-confirmClose,.m2-user-confirmBtn').click(function () {
-        $('.m2-userCommon-confirmSuc').hide();
-        $('.m2-userCommon-confirmWar').hide();
-        $('.m2-userCentercommon-confirm').hide();
-        $('.m2-userCentercommon-bg').hide();
-        window.location.reload();
-    });
-</script>
+    <script type="text/javascript">
+        $('.m2-userCentercommon-confirmClose,.m2-user-confirmBtn').click(function () {
+            $('.m2-userCentercommon-confirm').hide();
+            $('.m2-userCentercommon-bg').hide();
+        });
+    </script>
 <!--公用提示框end-->
 
 		<!-- 树start -->

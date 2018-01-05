@@ -57,7 +57,7 @@ function setVerifyStatus(){
     if($("#icstatus").val()==1){
     	name_number = 1;
     }
-    if($("#vp-uiopenstatic").val()==1){
+    if($("#vp-uiopenstatic").val()==2){
     	id_status = 1;
     }
     if($("#dealpwd").val()!=""){

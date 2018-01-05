@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -7,7 +11,7 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-			<div class="m2-userCentermain">
+		<div class="m2-userCentermain">
 			<div class="m2-userCentermain-aside">
 	        <ul>
 	            <li class="m2-asideListitem">
@@ -47,8 +51,24 @@
 	                </a>
 	            </li>
 	            <li class="m2-asideListitem">
-	                <a class="m2-aside-item m2-aside-toggle" href="/Finances/toopen"><i class="m2-asideIcon3"></i>徽商资金管理</a>         
-	                <ul class="m2-aside-secItem" ><!-- style="display:none" -->
+	            	<input type="hidden" id="vp_status" value="${sessionScope.userinfo.uiid }"/>
+	            	<c:set var="status" value="${sessionScope.userinfo.uiopenstatus }" />
+					<c:if test="${status == 0 }">
+						<a id="openstatus" class="m2-aside-item m2-aside-toggle" href="javascript:void(0);">
+							<i class="m2-asideIcon3"></i>徽商资金管理
+						</a>
+					</c:if>  
+					<c:if test="${status == 1 }">
+						<a class="m2-aside-item m2-aside-toggle" href="/Finances/toopen">
+							<i class="m2-asideIcon3"></i>徽商资金管理
+						</a>
+					</c:if>
+	                <c:if test="${status == 2 }">
+						<a class="m2-aside-item m2-aside-toggle">
+							<i class="m2-asideIcon3"></i>徽商资金管理
+						</a>
+					</c:if>
+	                <ul class="m2-aside-secItem" style="display:none">
 		                <li><a class="m2-aside-secLink-item" href="/Finances/views/front/user/recharge.jsp">充&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;值</a></li>
 		                <li><a class="m2-aside-secLink-item" href="/Finances/views/front/user/withdrawals.jsp">提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现</a></li>
 		                <li><a class="m2-aside-secLink-item" href="#">资金流水</a></li>
@@ -92,6 +112,7 @@
 	            </li>
 	        </ul>
 	    </div>
+	
 	    <script>
 	        // 		$(document).ready(function(){
 	        var href = window.location.href;
@@ -130,5 +151,15 @@
 	        });
 	        // 		});
 	    </script>
+	    <script type="text/javascript">
+		    var uiid = $("#vp_status").val();
+			$('#openstatus').click(function(){
+				if(confirm("请先实名认证!")){ 
+					window.location="http://127.0.0.1:8080/Finances/userverify?uiid="+uiid;
+				}else{
+					return;
+				}
+			});
+		</script>
 	</body>
 </html>

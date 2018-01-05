@@ -111,7 +111,7 @@
                         <span class="m2-userSettingsshow-tit m2-userSettingsshow-tit2">徽商存管账户</span>
                         <span class="m2-userSettingsshow-exp">投资合同需要实名签署，实名合同才有法律效应，爱钱帮通过徽商银行完成实名认证</span>
                         <span class="m2-userSettingsaut m2-userSettingsaut-fal"  id='id_status'><b></b>未认证</span>
-                        <span class="m2-userSettingsshow-link"><a href="<%=path %>/views/front/openbankid.jsp" target="_blank">认证</a></span>
+                        <span class="m2-userSettingsshow-link"><a href="<%=path %>/toopen" target="_blank">认证</a></span>
                     </div>
                 </li>
                 <li class="m2-userCentersettings-step3 m2-userSettings-step">
@@ -126,12 +126,14 @@
                     </div>
 					<ul class="m2-userSettings-setpHide" style="display:none;">
 						<c:set var="dealpwds" value="${sessionScope.userinfo.uidealpwd }" />
+						<c:if test="${dealpwds != null }">
 						<c:if test="${dealpwds != '' }">
 				    		<li>
 	                            <span class="m2-userSettingshide-nor"><u>*</u>原密码：</span>
 	                            <input type="password" placeholder="请输入原密码" type="text" id='olddealpwd'>
 	                            <span class="m2-userSettingshide-warning"></span>
 	                        </li>
+	                    </c:if>
 			    		</c:if>
                         <li>
                             <span class="m2-userSettingshide-nor"><u>*</u>新密码：</span>
