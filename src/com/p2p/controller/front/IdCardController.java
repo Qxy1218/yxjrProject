@@ -45,17 +45,17 @@ import com.p2p.util.SendServiceUtil;
 public class IdCardController {
 	
 	@Resource(name="idCardServiceImpl")
-	private IdCardService idCardService;
+	private IdCardService idCardService;  //身份证
 	
 	@Resource(name="userbackcardServiceImpl") 
-	private UserbackcardService userbackcardService;
+	private UserbackcardService userbackcardService;  //银行卡
 	
 	@Resource(name="userInfoServiceImpl")
-	private UserInfoService userInfoService;
+	private UserInfoService userInfoService;  //用户基本信息
 	@Resource(name="IUserServiceImpl")
-	private IUserService iUserService;
+	private IUserService iUserService;  //用户
 	@Resource(name="authebDetaisServiceImpl")
-	private AuthebDetaisService authebDetaisService;
+	private AuthebDetaisService authebDetaisService;  //消息
 	
 	//红包
 	@Resource(name="redmoneyServiceImpl")
