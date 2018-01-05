@@ -33,19 +33,19 @@ public class Uservouch implements Serializable{
 	
 	@TableField("u_id")
 	private Integer uid; //用户id
+	
+	private String uiname;
 
-	@Override
-	public String toString() {
-		return "Uservouch [uvid=" + uvid + ", uvday=" + uvday + ", uvmoney=" + uvmoney + ", uvimage=" + uvimage
-				+ ", uvstartDate=" + uvstartDate + ", uvendDate=" + uvendDate + ", uid=" + uid + "]";
-	}
+
 
 	public Uservouch() {
 
 	}
 
+
+
 	public Uservouch(Integer uvid, Integer uvday, double uvmoney, String uvimage, String uvstartDate, String uvendDate,
-			Integer uid) {
+			Integer uid, String uiname) {
 		super();
 		this.uvid = uvid;
 		this.uvday = uvday;
@@ -54,66 +54,112 @@ public class Uservouch implements Serializable{
 		this.uvstartDate = uvstartDate;
 		this.uvendDate = uvendDate;
 		this.uid = uid;
+		this.uiname = uiname;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Uservouch [uvid=" + uvid + ", uvday=" + uvday + ", uvmoney=" + uvmoney + ", uvimage=" + uvimage
+				+ ", uvstartDate=" + uvstartDate + ", uvendDate=" + uvendDate + ", uid=" + uid + ", uiname=" + uiname
+				+ "]";
+	}
+
+
 
 	public Integer getUvid() {
 		return uvid;
 	}
 
+
+
 	public void setUvid(Integer uvid) {
 		this.uvid = uvid;
 	}
+
+
 
 	public Integer getUvday() {
 		return uvday;
 	}
 
+
+
 	public void setUvday(Integer uvday) {
 		this.uvday = uvday;
 	}
+
+
 
 	public double getUvmoney() {
 		return uvmoney;
 	}
 
+
+
 	public void setUvmoney(double uvmoney) {
 		this.uvmoney = uvmoney;
 	}
+
+
 
 	public String getUvimage() {
 		return uvimage;
 	}
 
+
+
 	public void setUvimage(String uvimage) {
 		this.uvimage = uvimage;
 	}
+
+
 
 	public String getUvstartDate() {
 		return uvstartDate;
 	}
 
+
+
 	public void setUvstartDate(String uvstartDate) {
 		this.uvstartDate = uvstartDate;
 	}
+
+
 
 	public String getUvendDate() {
 		return uvendDate;
 	}
 
+
+
 	public void setUvendDate(String uvendDate) {
 		this.uvendDate = uvendDate;
 	}
+
+
 
 	public Integer getUid() {
 		return uid;
 	}
 
+
+
 	public void setUid(Integer uid) {
 		this.uid = uid;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+
+
+	public String getUiname() {
+		return uiname;
+	}
+
+
+
+	public void setUiname(String uiname) {
+		this.uiname = uiname;
 	}
 
 }

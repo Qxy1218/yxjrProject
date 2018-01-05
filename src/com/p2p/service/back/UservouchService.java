@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.p2p.base.IBaseService;
+import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Uservouch;
 import com.p2p.util.PageInfo;
 
@@ -14,4 +15,8 @@ public interface UservouchService extends IBaseService<Integer, Uservouch>{
 		
 		//查询总的记录数
 		abstract Integer UservouchyCount();
+		
+		
+		//查询所有的用户
+		abstract List<Userinfo> seleUservouchList();
 }

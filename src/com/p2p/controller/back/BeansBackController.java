@@ -97,4 +97,13 @@ public class BeansBackController {
 		request.setAttribute("uselist", uselist);
 		return "views/back/withdrawals";
 	}
+	/**
+	 * 进入代金券页面
+	 * */
+	@RequestMapping(value="/toUservouch")
+	public String toBackUservouch(HttpServletRequest request) {
+		List<Userinfo> uselist = userlevelService.seleUserlevelList();
+		request.setAttribute("uselist", uselist);
+		return "views/back/uservouch";
+	}
 }

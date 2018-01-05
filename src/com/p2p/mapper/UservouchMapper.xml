@@ -12,13 +12,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="uv_endDate" property="uvendDate"/>  
 		<result column="u_id" property="uid"/>  
     </resultMap>
+     <resultMap type="com.p2p.pojo.Userinfo" id="userInfoBaseResultMap">
+		  <id column="ui_id" property="uiid"/>
+ 		  <result column="u_id" property="uid"/>
+ 		  <result column="ui_name" property="uiname"/>
+ 		  <result column="ui_sex" property="uisex"/>
+ 		  <result column="ic_id" property="icid"/>
+ 		   <result column="ui_birthday" property="uibirthday"/>
+ 		  <result column="pe_id" property="peid"/>
+ 		  <result column="cy_id" property="cyid"/>
+ 		  <result column="ae_id" property="aeid"/>
+ 		  <result column="ui_dealpwd" property="uidealpwd"/>
+ 		  <result column="ui_email" property="uiemail"/>
+ 		  <result column="ui_emailstatus" property="uiemailstatus"/>
+ 	</resultMap>
 	 <!-- 代金券查询 -->
 	<select id="getAllModel"  resultMap="BaseResultMap">
- 		select * from user_vouch;
+ 			select uv.uv_id,uv.uv_day,uv.uv_money,uv.uv_image,uv.uv_startDate,uv.uv_endDate,uv.u_id,ui.ui_name as uiname,u.u_id  from  user_vouch uv,user u ,user_info ui 
+		<where>
+			 uv.u_id = u.u_id and ui.u_id = u.u_id
+		</where>
  	</select>
  	  <!-- 查询代金券 -->
     <select id="selectPage" resultMap="BaseResultMap">
-		select * from  user_vouch;        
+		select uv.uv_id,uv.uv_day,uv.uv_money,uv.uv_image,uv.uv_startDate,uv.uv_endDate,uv.u_id,ui.ui_name as uiname,u.u_id  from  user_vouch uv,user u ,user_info ui 
+		<where>
+			 uv.u_id = u.u_id and ui.u_id = u.u_id
+		</where>   
     </select>
     <!-- 查询代金券的总记录数 -->
     <select id="UservouchyCount" resultType="java.lang.Integer">
@@ -44,4 +64,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <delete id="delete" parameterType="com.p2p.pojo.Uservouch">
         DELETE FROM user_vouch WHERE uv_id=#{uvid}
     </delete>
+    <!-- 查询 -->
+     <select id="seleUservouchList" resultMap="userInfoBaseResultMap">
+      	select * from user_info 
+    </select> 
 </mapper>

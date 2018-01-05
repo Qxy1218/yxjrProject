@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.p2p.mapper.UservouchMapper;
 import com.p2p.pojo.Redmoney;
+import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Uservouch;
 import com.p2p.service.back.UservouchService;
 import com.p2p.util.PageInfo;
@@ -66,6 +67,12 @@ public class UservouchServiceImpl implements UservouchService{
 	@Override
 	public Integer UservouchyCount() {
 		return uservouchmapper.UservouchyCount();
+	}
+
+	@Override
+	public List<Userinfo> seleUservouchList() {
+		// TODO Auto-generated method stub
+		return uservouchmapper.seleUservouchList();
 	}
 
 	

@@ -3,6 +3,7 @@
 <%
 	String path = request.getContextPath();
 %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,9 +15,100 @@
 <jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
 <script type="text/javascript" src="/Finances/statics/back/static/js/laydate.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery.form.js"></script>
+<script src="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<link href="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#editForm')
+        .bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+            	uvday: {
+                    message: '过期天数验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '过期天数不能为空'
+                         }
+                        
+                    }
+                },
+                uvmoney: {
+                    message: '代金券金额验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '代金券金额不能为空'
+                         }
+                        
+                    }
+                },
+                uvstartDate: {
+                    message: '开始时间验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '开始时间不能为空'
+                         }
+                        
+                    }
+                },
+                uvendDate: {
+                	message: '结束时间验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '结束时间不能为空,请选择'
+                        }
+                    }
+                }
+            }
+        }).on('success.form.bv', function(e) {
+        	
+        	$("#editForm").modal('hide');
+        	$("#editImg").modal('hide');
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+            var form = new FormData(document.getElementById("editForm"));
+            var uvid =$("#editForm #uvid").val();
+            var uid =$("#editForm #uid").val();
+            if(uvid==null || uvid==""){
+            	$.ajax({
+       	          url:"${pageContext.request.contextPath}/back/admin/insertUservouch",
+       	          type:"post",
+       	          data:form,
+       	          processData:false,
+       	          contentType:false,
+       	          success:function(data){
+       	        	//后台返回int类型的数据
+       					if(data>0){
+       						//新增成功，下面是后台框架的提示
+       						parent.layer.alert('增加成功');
+       					}else{
+       						//新增失败
+       						parent.layer.alert('增加失败');
+       					}
+       					$('#tb_role').bootstrapTable('refresh');
+       	          },
+       	          error:function(e){
+       	        	parent.layer.alert('错误');
+       	          }
+             });
+            	
+            }else{
+            	updateUser(uvid,uid);
+            } 
+        });
+});
+</script>
 <script  type="text/javascript" >
-
-
     var rows = null;
     function addRole(){
     	//清空editModel原来填写的内容
@@ -32,36 +124,7 @@
 		//显示新增窗口
 		$('#editImg').modal('show');
     }
-  //新增轮播图
-	function insertUser() {
-		//用来关闭新增窗口***********
-		$("#editImg").modal('hide');
-	  
-		 var form = new FormData(document.getElementById("editForm"));
-	      $.ajax({
-	          url:"${pageContext.request.contextPath}/back/admin/insertUservouch",
-	          type:"post",
-	          data:form,
-	          processData:false,
-	          contentType:false,
-	          success:function(data){
-	        	//后台返回int类型的数据
-					if(data>0){
-						//新增成功，下面是后台框架的提示
-						parent.layer.alert('增加成功');
-					}else{
-						//新增失败
-						parent.layer.alert('增加失败');
-					}
-					//新增完刷新表格数据
-					$('#tb_role').bootstrapTable('refresh');
-	          },
-	          error:function(e){
-	              alert("错误！！");
-	          }
-	      });        
-
-  }
+ 
 	//修改按钮事件
     function UpUser(){
    	//获取当前选中行的信息
@@ -78,6 +141,7 @@
 		}
 		var athRole = selectList[0];
 		//把选中行的数据放到弹窗的控件中
+		$("#editForm #uvid").val(athRole.uvid);
 		$("#editForm #uvday").val(athRole.uvday);
 		$("#editForm #uvmoney").val(athRole.uvmoney);
 		//$("#editForm #ipimage").val(athRole.ipimage); 
@@ -216,8 +280,8 @@
 				field : 'uvendDate',
 				title : '代金卷结束时间'
 			}, {
-				field : 'uid',
-				title : '用户id'
+				field : 'uiname',
+				title : '用户表名字'
 			},]
 		});
 });
@@ -322,6 +386,7 @@
 					<!-- 新增系别 -->
 							<div class="form-group">
 							<label for="urlName" class="control-label col-sm-3">过期天数</label> 
+							<input type="hidden" name="uvid" id="uvid" />
 							<div class="col-sm-8">
 								<input type="text" name="uvday" class="form-control" id="uvday">
 							</div>
@@ -355,21 +420,26 @@
 	            			</div>
 						</div>
 							<div class="form-group">
-							<label for="url" class="control-label col-sm-3">用户id</label>
+							<label for="url" class="control-label col-sm-3">所属角色id</label>
 							<div class="col-sm-8">
-								<input type="text" name="uid" class="form-control" id="uid">
+								<select class="form-control m-b" id="uid" name="uid" style="margin-bottom: 0px;">
+		                        	<c:forEach items="${uselist}" var="uservouch" >
+		                        		<option value="${uservouch.uid}">${uservouch.uiname}</option>
+		                        	</c:forEach>
+		                        </select>
 	            			</div>
+	            			<div class="modal-footer">
+								<button type="submit" class="btn btn-default" data-dismiss="modal">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
+								</button>
+								<button type="submit" id="btn_submit" class="btn btn-primary" >
+									<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>提交
+								</button>
+						</div>
 						
 			</form>		
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
-					</button>
-					<button type="button" id="btn_submit" class="btn btn-primary" >
-						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>提交
-					</button>
-				</div>
+				
 				
 			</div>
 		</div>

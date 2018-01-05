@@ -85,6 +85,8 @@ public class User implements Serializable{
 
 	private Withdrawals withdrawals;
 	
+	private Uservouch uservouch;
+	
 
 	public User() {
 		super();
@@ -94,7 +96,7 @@ public class User implements Serializable{
 	public User(Integer uid, String upassword, String uheadImg, String uphone, String uregTime, String uloginTime,
 			String orderinvite, String uinvite, Integer uenable, Integer uisAccountSum, String qrcode, String uaddress,
 			String uip, Integer ucredit, Double ubalance, String ulid, Double vdid, Userinfo userinfo,
-			Userlevel userlevel, Redmoney redmoney, Withdrawals withdrawals) {
+			Userlevel userlevel, Redmoney redmoney, Withdrawals withdrawals, Uservouch uservouch) {
 		super();
 		this.uid = uid;
 		this.upassword = upassword;
@@ -117,6 +119,7 @@ public class User implements Serializable{
 		this.userlevel = userlevel;
 		this.redmoney = redmoney;
 		this.withdrawals = withdrawals;
+		this.uservouch = uservouch;
 	}
 
 
@@ -127,7 +130,7 @@ public class User implements Serializable{
 				+ ", uinvite=" + uinvite + ", uenable=" + uenable + ", uisAccountSum=" + uisAccountSum + ", qrcode="
 				+ qrcode + ", uaddress=" + uaddress + ", uip=" + uip + ", ucredit=" + ucredit + ", ubalance=" + ubalance
 				+ ", ulid=" + ulid + ", vdid=" + vdid + ", userinfo=" + userinfo + ", userlevel=" + userlevel
-				+ ", redmoney=" + redmoney + ", withdrawals=" + withdrawals + "]";
+				+ ", redmoney=" + redmoney + ", withdrawals=" + withdrawals + ", uservouch=" + uservouch + "]";
 	}
 
 
@@ -341,7 +344,17 @@ public class User implements Serializable{
 	}
 
 
+	public Uservouch getUservouch() {
+		return uservouch;
+	}
 
+
+	public void setUservouch(Uservouch uservouch) {
+		this.uservouch = uservouch;
+	}
+
+
+	
 	
 	
 }

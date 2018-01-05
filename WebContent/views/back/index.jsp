@@ -262,6 +262,10 @@
 
                                 <a class="J_menuItem" href="${pageContext.request.contextPath}/back/toRedmoney">红包管理</a>
                             </li>
+                             <li>
+
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/back/toUservouch">代金券管理</a>
+                            </li>
                             <shiro:hasPermission name="联系管理">
                             	<li>
                                	 	<a class="J_menuItem" href="graph_flot.jsp">联系管理</a>
