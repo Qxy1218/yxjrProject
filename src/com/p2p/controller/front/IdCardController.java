@@ -117,7 +117,7 @@ public class IdCardController {
 	 * */
 	@RequestMapping("/addbackcard")
 	@ResponseBody
-	public int addBankCard(Userbackcard userback) {
+	public int addBankCard(Userbackcard userback,HttpSession session) {
 		int addCard = 0;
 		Integer uiid = userback.getUiid();
 		try {
@@ -167,6 +167,10 @@ public class IdCardController {
 				//当服务端开通成功后才可以成功开户
 				if(usercount==1 && bankcount==1) {
 					addCard = userbackcardService.addModel(bank);
+					Userbackcard userbackcard = new Userbackcard();
+					userbackcard.setUiid(uiid);
+					Userbackcard uback = userbackcardService.getModel(userbackcard);
+					session.setAttribute("userbackcard", uback);
 					
 					Userinfo userinfo1 = new Userinfo();
 					userinfo1.setUiid(uiid);
