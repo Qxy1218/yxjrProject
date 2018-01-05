@@ -529,6 +529,23 @@
 	                        </a>
                     	</li>
                     </shiro:hasPermission>
+                    
+                    <li>
+                        <a href="#">
+                        	<i class="fa fa-desktop"></i> 
+	                        	<span class="nav-label">投资管理</span>
+	                        	<span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                        	<li>
+                        		 <a class="J_menuItem" href="table_basic.jsp">投标管理</a>
+                           </li>
+                           <li>
+                        		 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/fabiao.jsp">发标管理</a>
+                           </li>
+                        </ul>
+                    </li>
+                    
                 </ul>
             </div>
         </nav>
