@@ -154,8 +154,10 @@
 	    <script type="text/javascript">
 		    var uiid = $("#vp_status").val();
 			$('#openstatus').click(function(){
+				//showMsg("请先实名认证!");
+				//window.location="http://127.0.0.1:8080/Finances/userverify?uiid="+uiid;
 				if(confirm("请先实名认证!")){ 
-					window.location="http://127.0.0.1:8080/Finances/userverify?uiid="+uiid;
+					window.location="http://127.0.0.1:8080/Finances/userverify?uiid="+uiid+"&nameNumber="+1;
 				}else{
 					return;
 				}

@@ -137,6 +137,10 @@ function setVerifyStatus(){
     if(getParam('hspassword')==1){
         $('#email_status').next('span').find('a').click();
     }
+    if(getParam('nameNumber')==1){
+        $('#name_number').next('span').find('a').click();
+    }
+    
 }
 
 //手机号设置
