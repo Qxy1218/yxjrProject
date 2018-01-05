@@ -98,6 +98,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			ui.u_id = #{uid}
  		</where>
  	</select>
+ 	<select id="getUserinfoByuiid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+ 		select * from user_info ui <where>
+ 			ui.ui_id = #{uiid}
+ 		</where>
+ 	</select>
  	<update id="update" parameterType="com.p2p.pojo.Userinfo">
  		update user_info ui
  		<trim prefix="set" suffixOverrides=",">

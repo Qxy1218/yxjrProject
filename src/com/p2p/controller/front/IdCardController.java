@@ -66,6 +66,14 @@ public class IdCardController {
 				count = idCardService.update(idCard);
 				count = 2;
 			}
+			Userinfo userinfos = new Userinfo();
+			userinfos.setUiid(idCard.getUiid());
+			userinfos.setUiopenstatus(1);
+			int counts = userInfoService.update(userinfos);
+			if(counts>0) {
+				Userinfo uifo = userInfoService.getModel(userinfos);
+				session.setAttribute("userinfo", uifo);
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -149,7 +157,7 @@ public class IdCardController {
 					
 					Userinfo userinfo1 = new Userinfo();
 					userinfo1.setUiid(uiid);
-					userinfo1.setUiopenstatus(1);
+					userinfo1.setUiopenstatus(2);
 					userInfoService.update(userinfo1);
 					
 					addCard = 1;

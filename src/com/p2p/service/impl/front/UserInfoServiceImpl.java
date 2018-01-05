@@ -57,6 +57,10 @@ public class UserInfoServiceImpl implements UserInfoService{
 		return userinfoMapper.seleUserinfoByuid(uid);
 	}
 
+	@Override
+	public Userinfo getUserinfoByuiid(Integer uiid) {
+		return userinfoMapper.getUserinfoByuiid(uiid);
+	}
 
 	
 }

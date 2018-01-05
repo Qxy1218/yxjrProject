@@ -496,10 +496,25 @@ public class FrontController {
 	 * 我的账户页面的conteroller
 	 * */
 	@RequestMapping(value="/tousercenter")
-	public ModelAndView tofronusercenter(Model model) {
+	public ModelAndView tofronusercenter(@RequestParam Integer uid,Model model,HttpSession session) {
 		ModelAndView mo = new ModelAndView();
 		
 		model.addAttribute("pageName", "myinfo");
+		
+		//获取用户基本信息
+		Userinfo userinfos = new Userinfo();
+		userinfos.setUid(uid);
+		Userinfo userinfo = userInfoService.getModel(userinfos);
+		session.setAttribute("userinfo", userinfo);
+		
+		/**
+		 * 根据对象查询时会有关联实名认证表,若没有实名认证则userinfo为空
+		 * 此时需要根据用户表id查询
+		 * */
+		if(userinfo==null) {
+			Userinfo userinf = userInfoService.seleUserinfoByuid(uid);
+			session.setAttribute("userinfo", userinf);
+		}
 		
 		mo.setViewName("views/front/user/usercenter");
 		return mo;
@@ -727,6 +742,15 @@ public class FrontController {
 		userinfos.setUiid(uiid);
 		Userinfo userinfo = userInfoService.getModel(userinfos);
 		session.setAttribute("userinfo", userinfo);
+		
+		/**
+		 * 根据对象查询时会有关联实名认证表,若没有实名认证则userinfo为空
+		 * 此时需要根据用户表id查询
+		 * */
+		if(userinfo==null) {
+			Userinfo userinf = userInfoService.getUserinfoByuiid(uiid);
+			session.setAttribute("userinfo", userinf);
+		}
 		
 		mo.setViewName("views/front/user/userverify");
 		return mo;
