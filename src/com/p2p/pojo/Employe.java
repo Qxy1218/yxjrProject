@@ -23,8 +23,15 @@ public class Employe implements Serializable{
 	@TableField("e_enum")
 	private String eenum;//员工编号
 	
+	@TableField("e_name")
+	private String ename; //员工姓名
+	
+	
 	@TableField("e_sex")
 	private String esex; //员工性别
+	
+	@TableField("e_password")
+	private String epassword; //员工密码
 	
 	@TableField("e_idcard")
 	private String eidcard; //员工身份证号
@@ -38,11 +45,7 @@ public class Employe implements Serializable{
 	@TableField("e_email")
 	private String eemail; //员工邮箱
 	
-	@TableField("e_name")
-	private String ename; //员工姓名
 	
-	@TableField("e_password")
-	private String epassword; //员工密码
 	
 	@TableField("e_status")
 	private String estatus; //角色状态
@@ -178,26 +181,7 @@ public class Employe implements Serializable{
 		this.role = role;
 	}
 
-	public Employe(Integer eid, Integer reid, String eenum, String esex, String eidcard, String ephone,
-			String eposition, String eemail, String ename, String epassword, String estatus, String eretime,
-			String eremark, String eimage, Role role) {
-		super();
-		this.eid = eid;
-		this.reid = reid;
-		this.eenum = eenum;
-		this.esex = esex;
-		this.eidcard = eidcard;
-		this.ephone = ephone;
-		this.eposition = eposition;
-		this.eemail = eemail;
-		this.ename = ename;
-		this.epassword = epassword;
-		this.estatus = estatus;
-		this.eretime = eretime;
-		this.eremark = eremark;
-		this.eimage = eimage;
-		this.role = role;
-	}
+
 
 	public String getEimage() {
 		return eimage;
@@ -209,19 +193,32 @@ public class Employe implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Employe [eid=" + eid + ", reid=" + reid + ", eenum=" + eenum + ", esex=" + esex + ", eidcard=" + eidcard
-				+ ", ephone=" + ephone + ", eposition=" + eposition + ", eemail=" + eemail + ", ename=" + ename
-				+ ", epassword=" + epassword + ", estatus=" + estatus + ", eretime=" + eretime + ", eremark=" + eremark
-				+ ", e_image=" + eimage + ", role=" + role + "]";
+		return "Employe [eid=" + eid + ", reid=" + reid + ", eenum=" + eenum + ", ename=" + ename + ", esex=" + esex
+				+ ", epassword=" + epassword + ", eidcard=" + eidcard + ", ephone=" + ephone + ", eposition="
+				+ eposition + ", eemail=" + eemail + ", estatus=" + estatus + ", eretime=" + eretime + ", eremark="
+				+ eremark + ", eimage=" + eimage + ", role=" + role + "]";
+	}
+
+	public Employe(Integer eid, Integer reid, String eenum, String ename, String esex, String epassword, String eidcard,
+			String ephone, String eposition, String eemail, String estatus, String eretime, String eremark,
+			String eimage, Role role) {
+		super();
+		this.eid = eid;
+		this.reid = reid;
+		this.eenum = eenum;
+		this.ename = ename;
+		this.esex = esex;
+		this.epassword = epassword;
+		this.eidcard = eidcard;
+		this.ephone = ephone;
+		this.eposition = eposition;
+		this.eemail = eemail;
+		this.estatus = estatus;
+		this.eretime = eretime;
+		this.eremark = eremark;
+		this.eimage = eimage;
+		this.role = role;
 	}
 
 	
-
-	
-	
-	
-
-
-	
-
 }
