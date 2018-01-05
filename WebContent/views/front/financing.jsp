@@ -21,6 +21,10 @@
 	    
 	    <script type="text/javascript" src="/Finances/statics/front/statics/home/js/jquery.min.js"></script>
 	    <script type="text/javascript" src="/Finances/statics/front/statics/newcommon/js/common.js"></script>
+		
+		<!-- 图形验证码 -->
+	<script src="/Finances/statics/front/js/gVerify.js"></script>
+		
 	</head>
 	<body>
 		<!-- 右侧边栏 start -->
@@ -559,6 +563,9 @@
 		<!-- 足部start -->
 			<jsp:include page="include/floot.jsp"></jsp:include>
 		<!-- 足部end -->
+	  
+		 <!-- 实现右侧登入注册功能 -->
+	<script src="/Finances/statics/front/js/sidebarlogreg.js"></script>
 	
 	</body>
 </html>
