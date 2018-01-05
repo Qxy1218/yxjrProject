@@ -26,6 +26,8 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/statics/home2/css/front.css">
   	<link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/statics/newcommon/css/m2-common.css">
    	<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/statics/home2/js/m2-front.js"></script>
+   	
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/statics/home2/css/newreg.css">
 </head>
 </head>
 <body>
@@ -36,12 +38,19 @@
 	<!-- 右侧边栏 start -->
 	<jsp:include page="include/sidebar.jsp"></jsp:include>
 	<!-- 右侧边栏 end -->
-	<div class="buffer">
-    	<div class="main warp-1000">
-    		<h1>恭喜您，微商存管账户开户成功</h1>
-    		<p>返回个人中心</p>
-	        <a href="${pageContext.request.contextPath}/userverify?uiid=${sessionScope.userinfo.uiid}">返回</a>
-       </div>
+   
+    <div class="buffer">
+	    <div class="main warp-1000">
+	    	<div class="reg-success">
+	        <img src="${pageContext.request.contextPath}/uploadFile/redmoney/3.jpg" height="100" width="100"/>
+	        <h1>恭喜您微商存管账户开户成功，<br/>您已累计获得50元红包及2000元代金券</h1>
+	        <div class="btnwrap" style="margin-top: 30px;">
+	            <a href="${pageContext.request.contextPath}/togold" class="succ-btn btn-red ml68"><b>使用代金券</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	            <a href="${pageContext.request.contextPath}/toinvestzt" class="succ-btn btn-red ml68"><b>去投资</b></a>
+	        </div><br/><br/>
+	        <a href="${pageContext.request.contextPath}/userverify?uiid=${sessionScope.userinfo.uiid}" class="succ-btn btn-red ml68">返回个人中心</a>
+	       	</div>
+	    </div>
     </div>
     <!-- 足部start -->
     <jsp:include page="include/floot.jsp"></jsp:include>
