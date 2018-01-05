@@ -183,7 +183,7 @@
 	                            <td><i class="m2-regist-cardnumber"></i>手机号</td>
 	                            <td class="m2-regist-tdInput">
 	                                <span class="m2-reg-telSpan" style="">
-	                                	<span>${sessionScope.user.uphone }</span><!-- <a target="_blank" href="#?phone=1">修改</a> -->
+	                                	<span>${sessionScope.user.uphone }</span><a target="_blank" href="/Finances/userverify?uiid=${sessionScope.userinfo.uiid }&phone=1">修改</a>
 	                                </span>
 	                                <span class="m2-regist-errMsg " style="color:#aaa;top:45px;">您的手机号需与开卡时手机号一致</span>
 	                            </td>

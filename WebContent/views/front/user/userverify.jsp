@@ -111,7 +111,18 @@
                         <span class="m2-userSettingsshow-tit m2-userSettingsshow-tit2">徽商存管账户</span>
                         <span class="m2-userSettingsshow-exp">投资合同需要实名签署，实名合同才有法律效应，爱钱帮通过徽商银行完成实名认证</span>
                         <span class="m2-userSettingsaut m2-userSettingsaut-fal"  id='id_status'><b></b>未认证</span>
-                        <span class="m2-userSettingsshow-link"><a href="<%=path %>/toopen" target="_blank">认证</a></span>
+                        <span class="m2-userSettingsshow-link">
+                        	<c:set var="statuses" value="${sessionScope.userinfo.uiopenstatus }" />
+							<c:if test="${statuses == 0 }">
+								<a id="uiopenstatuses" href="javascript:void(0);" target="_blank">认证</a>
+							</c:if>  
+							<c:if test="${statuses == 1 }">
+								<a href="<%=path %>/toopen" target="_blank">认证</a>
+							</c:if>
+			                <c:if test="${statuses == 2 }">
+								<a href="<%=path %>/toopen" target="_blank">认证</a>
+							</c:if>
+                        </span>
                     </div>
                 </li>
                 <li class="m2-userCentersettings-step3 m2-userSettings-step">

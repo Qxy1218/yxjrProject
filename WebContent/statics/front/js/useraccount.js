@@ -38,7 +38,13 @@ $(function(){
         $("#hsmmxg").trigger("click");
     }
 });
-
+$('#uiopenstatuses').click(function(){
+	var obj = new Array();
+	obj['msg']="请先实名认证才可开通托管账户!";
+    obj['status']=0;
+    dialog(obj);
+    $('#name_number').next('span').find('a').click();
+});
 function setVerifyStatus(){
     var id_status = 0;  //徽商存管账户
     var address_status = 0;  //联系地址
