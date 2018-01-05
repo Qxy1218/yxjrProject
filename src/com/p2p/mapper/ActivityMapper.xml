@@ -44,9 +44,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 修改 -->
 	<update id="update" parameterType="com.p2p.pojo.Activity">
-		update activity set at_title=#{attitle},at_intgard=#{atintgard},
-			at_content=#{atcontent},at_starttime=#{atstarttime},
-				at_endtime=#{atendtime},at_status=#{atstatus} where at_id=#{atid}
+		update activity set 
+		<if test="attitle!=null">at_title=#{attitle},</if>
+		<if test="atintgard!=null">at_intgard=#{atintgard},</if>
+		<if test="atcontent!=null">at_content=#{atcontent},</if>
+		<if test="atstarttime!=null">at_starttime=#{atstarttime},</if>
+		<if test="atendtime!=null">at_endtime=#{atendtime},</if>
+		<if test="atstatus!=null">at_status=#{atstatus}</if>
+		<where>
+		 at_id=#{atid}
+		</where>
 	</update>
 	<!-- 删除 -->
 	<delete id="delete" parameterType="java.lang.Integer">
