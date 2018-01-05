@@ -35,10 +35,12 @@ public class Notice implements Serializable{
 	
 	@TableField("n_type")
 	private Integer ntype; //公告发布类型
+	
+	private Noticetype noticetype;
 	public Notice() {
 		super();
 	}
-	public Notice(Integer nid, String ntitle, String ncontent, String nstype, String ntime, Integer ntype) {
+	public Notice(Integer nid, String ntitle, String ncontent, String nstype, String ntime, Integer ntype,Noticetype noticetype) {
 		super();
 		this.nid = nid;
 		this.ntitle = ntitle;
@@ -46,11 +48,13 @@ public class Notice implements Serializable{
 		this.nstype = nstype;
 		this.ntime = ntime;
 		this.ntype = ntype;
+		this.noticetype = noticetype;
 	}
+	
 	@Override
 	public String toString() {
 		return "Notice [nid=" + nid + ", ntitle=" + ntitle + ", ncontent=" + ncontent + ", nstype=" + nstype
-				+ ", ntime=" + ntime + ", ntype=" + ntype + "]";
+				+ ", ntime=" + ntime + ", ntype=" + ntype + ", noticetype=" + noticetype + "]";
 	}
 	public Integer getNid() {
 		return nid;
@@ -91,7 +95,12 @@ public class Notice implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	public Noticetype getNoticetype() {
+		return noticetype;
+	}
+	public void setNoticetype(Noticetype noticetype) {
+		this.noticetype = noticetype;
+	}
 	
-
 	
 }
