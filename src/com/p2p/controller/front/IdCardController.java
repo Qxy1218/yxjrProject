@@ -1,5 +1,6 @@
 package com.p2p.controller.front;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,10 +17,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.pojo.Bank;
 import com.p2p.pojo.IdCard;
+import com.p2p.pojo.Redmoney;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Userbackcard;
 import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Users;
+import com.p2p.pojo.Uservouch;
+import com.p2p.service.back.RedmoneyService;
+import com.p2p.service.back.UservouchService;
 import com.p2p.service.front.IUserService;
 import com.p2p.service.front.IdCardService;
 import com.p2p.service.front.UserInfoService;
@@ -48,6 +53,14 @@ public class IdCardController {
 	@Resource(name="IUserServiceImpl")
 	private IUserService iUserService;
 	
+	//红包
+	@Resource(name="redmoneyServiceImpl")
+	private RedmoneyService redmoneyservice;
+	
+	//代金券
+	@Resource(name="uservouchServiceImpl")
+	private UservouchService uservouchService;
+
 	/**
 	 * 添加(修改)身份证信息
 	 * */
@@ -160,7 +173,35 @@ public class IdCardController {
 					userinfo1.setUiopenstatus(2);
 					userInfoService.update(userinfo1);
 					
+					//用户开户成功，给与奖励红包和代金券
+					Redmoney redmoney = new Redmoney();
+					redmoney.setRmoney(30.0);
+					redmoney.setRimage("/uploadFile/redmoney/redmoney1.jpg");
+					redmoney.setRstardtime(DateUtils.getDateTimeFormat(new Date()));
+					//获取当前时间的后几天
+					Date date = new Date();  
+					SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+					date = DateUtils.getDayAfter(date,15);
+					redmoney.setRendtime(formatDate.format(date));
+					redmoney.setUid(uiid);
+					redmoneyservice.addModel(redmoney);
+					
+					//获得代金券
+					Uservouch uservouch = new Uservouch();
+					uservouch.setUid(uiid);
+					uservouch.setUvday(30);
+					uservouch.setUvstartDate(DateUtils.getDateTimeFormat(new Date()));
+					//获取当前时间的后几天
+					Date d = new Date();  
+					SimpleDateFormat fDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+					date = DateUtils.getDayAfter(d, 30);
+					uservouch.setUvendDate(fDate.format(d));
+					uservouch.setUvimage("/uploadFile/redmoney/dai.jpg");
+					uservouch.setUvmoney(2000.0);
+					uservouchService.addModel(uservouch);
+					
 					addCard = 1;
+					
 				}
 			}
 		}catch(Exception e) {
