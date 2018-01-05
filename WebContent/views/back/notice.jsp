@@ -11,59 +11,266 @@
 <title>Insert title here</title>
 <!-- 引用js文件 -->
 <jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
+<script type="text/javascript" src="${pageContext.request.contextPath}/statics/back/static/js/laydate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery.form.js"></script>
+<script src="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<link href="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#editActivity')
+        .bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+            	nid: {
+                    message: '编号验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '编号不能为空'
+                         },
+     		            stringLength: {
+     		                min: 1,
+     		                max: 9,
+     		                message: '请输入0-9位数字'
+     		            },
+     		            regexp: {
+     		                regexp: /^[0-9]*$/,
+     		                message: '只能输入数字'
+     		            }
+                    }
+                },
+                /* atintgard: {
+                    message: '奖励值验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '奖励值不能为空'
+                         },
+                         stringLength: {
+                             min: 1000,
+                             max: 100000,
+                             message: '请输入5位数的奖励值'
+                         },
+                         regexp: {
+                             regexp: /^1[3|5|8]{1}[0-9]{9}$/,
+                             message: '请输入正确的奖励值'
+                         }
+                    }
+                },  */
+                ntitle: {
+                    message: '标题验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '标题不能为空'
+                         },
+                         stringLength: {
+                             min: 6,
+                             max: 30,
+                             message: '标题必须大于6，长度小于30个字符。'
+                         },
+                    }
+                },
+                ncontent: {
+                    message: '活动内容验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '活动内容不能为空,请选择'
+                         }
+                    }
+                },
+                /* eidcard: {
+                    message: '身份证验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '身份证不能为空'
+                         },
+                         regexp: {
+                             regexp:  /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/,
+                             message: '请输入正确的身份证'
+                         }
+                         
+                    }
+                }, */
+               /*  eemail: {
+                	message: '员工邮箱验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '员工邮箱不能为空'
+                        },
+                        emailAddress: {
+                            message: '请输入正确的邮件地址如：123@qq.com'
+                        }
+                    }
+                },
+                eposition: {
+                    message: '员工职位验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '员工职位不能为空'
+                         }
+                         
+                    }
+                }, */
+                nstype: {
+                    validators: {
+                    	 notEmpty: {
+                             message: '类型不能为空'
+                         }
+                        
+                    }
+                },
+                ntime: {
+                    message: '公告时间验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '公告时间不能为空'
+                         }
+                        
+                    }
+                },
+                ntype: {
+                    validators: {
+                        notEmpty: {
+                            message: '类型不能为空,请选择'
+                        }
+                    }
+                }
+            }
+        })
+        .on('success.form.bv', function(e) {
+        	$("#editForm").modal('hide');
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+            var form = new FormData(document.getElementById("editActivity"));
+            var nid =$("#editActivity #nid").val(); 
+            
+            alert(nid);
+            if(nid==null || nid==""){
+            	$.ajax({
+       	          url:"${pageContext.request.contextPath}/back/admin/insertNotice",
+       	          type:"post",
+       	          data:form,
+       	          processData:false,
+       	          contentType:false,
+       	          success:function(data){
+       	        	//后台返回int类型的数据
+       					if(data>0){
+       						//新增成功，下面是后台框架的提示
+       						parent.layer.alert('增加成功');
+       					}else{
+       						//新增失败
+       						parent.layer.alert('增加失败');
+       					}
+       					$('#tb_Activity').bootstrapTable('refresh');
+       	          },
+       	          error:function(e){
+       	        	parent.layer.alert('错误');
+       	          }
+             });
+            	
+            }else{
+            	$("#editForm").modal('hide');
+        		var url = "${pageContext.request.contextPath }/back/admin/updateNotice";
+        		$.post(
+        			url,
+        			{
+        				nid:nid,
+        				ntitle:$("#editActivity #ntitle").val(),
+        				ncontent:$("#editActivity #ncontent").val(),
+        				nstype:$("#editActivity #nstype").val(),
+        				ntime:$("#editActivity #ntime").val(),
+        				ntype:$("#editActivity #ntype").val(),
+        				
+        				
+        			},
+        			function(data){
+        				//后台返回int类型的数据
+        				if(data>0){
+        					//新增成功，下面是后台框架的提示
+        					parent.layer.alert('修改成功');
+        					$('#tb_Activity').bootstrapTable('refresh');
+        				}else{
+        					//新增失败
+        					parent.layer.alert('修改失败');
+        				}
+        				//新增完刷新表格数据
+        				$('#tb_Activity').bootstrapTable('refresh');
+        			},
+        			"text"
+        		);		
+            } 
+        });
+});
+</script>
 <script  type="text/javascript">
     var rows = null;
     
-    function addRole(){
+    function addActivity(){
     	//清空editModel原来填写的内容
-		$("#editRole #ntitle").val('');
-		$("#editRole #ncontent").val('');
-		$("#editRole #nstype").val('');
-		$("#editRole #ntime").val('');
-		$("#editRole #ntype").val('');
+		$("#editActivity #attitle").val('');
+		$("#editActivity #atintgard").val('');
+		$("#editActivity #atcontent").val('');
+		$("#editActivity #atimag").val('');
+		$("#editActivity #atstarttime").val('');
+		$("#editActivity #atendtime").val('');
+		$("#editActivity #atstatus").val('');
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
-		$("#btn_submit").attr("onclick","insertRole()");
+		$("#saveadd").attr("onclick","insertActivity()");
 		//显示新增窗口
-		$('#editRole').modal('show');
+		$('#editForm').modal('show');
     }
   //新增角色
-	function insertRole() {
+	 function insertActivity() {
 		//表单验证
 		//alert(123);
-		/* if (!validateForm($("#editForm"))) {
+		 if (!validateForm($("#editForm"))) {
 			return;
-		} */
+		}
 		//用来关闭新增窗口***********
-		$("#editRole").modal('hide');
-		var url = "${pageContext.request.contextPath }/back/admin/insertNotice";
-		$.post(
-			url,
-			{
-				ntitle:$("#editRole #ntitle").val(),
-				ncontent:$("#editRole #ncontent").val(),
-				nstype:$("#editRole #nstype").val(),
-                ntime:$("#editRole #ntime").val(),
-                ntype:$("#editRole #ntype").val(),
-			},
-			function(data){
-				//后台返回int类型的数据
-				if(data>0){
-					//新增成功，下面是后台框架的提示
-					parent.layer.alert('新增成功');
-				}else{
-					//新增失败
-					parent.layer.alert('新增失败');
-				}
-				//新增完刷新表格数据
-				$('#tb_role').bootstrapTable('refresh');
-			},
-			"text"
-		);	
-	}
+		
+		 var formobj =  document.getElementById("editForm");
+		var formdata = new FormData(formobj);
+		
+		$.ajax({
+		    url: '${pageContext.request.contextPath }/back/admin/insertNotice',
+		    type: 'POST',
+		    cache: false,
+		    data: formdata,
+		    processData: false,
+		    contentType: false
+		}).done(function(res) {
+			//后台返回int类型的数据
+			if(res>0){
+				//新增成功，下面是后台框架的提示
+				parent.layer.alert('增加成功');
+				$('#tb_Activity').bootstrapTable('refresh'); 
+			}else{
+				//新增失败
+				parent.layer.alert('增加失败');
+			} 
+			//新增完刷新表格数据
+		 }).fail(function(res) {
+			$('#tb_Activity').bootstrapTable('refresh');
+		});
+		
+		 $("#editActivity").modal('hide');	
+		$('#tb_Activity').bootstrapTable('refresh'); 
+	 } 
+  
 	//修改按钮事件
-     function UpRole(){
+     function UpActivity(){
     	//获取当前选中行的信息
- 		var selectList = $('#tb_role').bootstrapTable('getSelections');
+ 		var selectList = $('#tb_Activity').bootstrapTable('getSelections');
  		//判断有没有选中
  		if(selectList.length<=0){
  			parent.layer.alert('请选择要修改的数据');
@@ -76,30 +283,34 @@
  		}
  		var athRole = selectList[0];
  		//把选中行的数据放到弹窗的控件中
- 		$("#editRole #ntitle").val(athRole.ntitle);
- 		$("#editRole #ncontent").val(athRole.ncontent);
- 		$("#editRole #nstype").val(athRole.nstype);
- 		$("#editRole #ntime").val(athRole.ntime);
- 		$("#editRole #ntype").val(athRole.ntype);
+ 		$("#editActivity #nid").val(athRole.nid);
+ 		$("#editActivity #ntitle").val(athRole.ntitle);
+ 		$("#editActivity #ncontent").val(athRole.ncontent);
+ 		$("#editActivity #nstype").val(athRole.nstype);
+ 		/* $("#editActivity #atimag").val(athRole.atimag); */
+ 		$("#editActivity #ntime").val(athRole.ntime),
+        $("#editActivity #ntype").val(athRole.ntype),
  		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
- 		$("#btn_submit").attr("onclick","updateRole("+athRole.nid+","+athRole.ptid+")");
+ 		$("#saveadd").attr("onclick","updateRole("+athRole.nid+")");
  		//显示新增窗口
- 		$('#editRole').modal('show');
+ 		$('#editForm').modal('show');
      }
-	function updateRole(nid,ptid){
+	/* function updateRole(atid,ptid){
 		//用来关闭新增窗口***********
-		$("#editRole").modal('hide');
-		var url = "${pageContext.request.contextPath }/back/admin/updateNotice";
+		$("#editActivity").modal('hide');
+		//alert("ghjkl")
+		var url = "${pageContext.request.contextPath }/back/admin/updateActivity";
 		$.post(
 			url,
 			{
-				nid:nid,
+				atid:atid,
 				ptid:ptid,
-				ntitle:$("#editRole #ntitle").val(),
-				ncontent:$("#editRole #ncontent").val(),
-				nstype:$("#editRole #nstype").val(),
-				ntime:$("#editRole #ntime").val(),
-				ntype:$("#editRole #ntype").val(),
+				attitle:$("#editActivity #attitle").val(),
+				atintgard:$("#editActivity #atintgard").val(),
+				atcontent:$("#editActivity #atcontent").val(), 
+				atstarttime:$("#editActivity #atstarttime").val(),
+				atendtime:$("#editActivity #atendtime").val(),
+				atstatus:$("#editActivity #atstatus").val(),
 			},
 			function(data){
 				//后台返回int类型的数据
@@ -111,20 +322,20 @@
 					parent.layer.alert('修改失败');
 				}
 				//新增完刷新表格数据
-				$('#tb_role').bootstrapTable('refresh');
+				$('#tb_Activity').bootstrapTable('refresh');
 			},
 			"text"
 		);	
-	}
+	}  */
 	//删除按钮事件
 	//*************************************************************************按钮事件
 	function btn_delete(){
-		delRole();
+		delActivity();
 	}
 	//删除
-	function delRole(){
+	function delActivity(){
 		//获取当前选中行的信息
-		var stuList = $('#tb_role').bootstrapTable('getSelections');
+		var stuList = $('#tb_Activity').bootstrapTable('getSelections');
 		var ids = "";
 		//判断有没有选中
 		if(stuList.length<=0){
@@ -155,7 +366,7 @@
 					parent.layer.alert('删除失败');
 				}
 				//新增完刷新表格数据
-				$('#tb_role').bootstrapTable('refresh');
+				$('#tb_Activity').bootstrapTable('refresh');
 			},
 			"text"
 		);	
@@ -163,14 +374,14 @@
 	
 	//条件查询按钮
 	function searchForm(){
-		$('#tb_role').bootstrapTable('refresh');
+		$('#tb_Activity').bootstrapTable('refresh');
 	}
 	$(function () {
 	 	//激活弹框提示
 		$("[data-toggle='tooltip']").tooltip();
 		 //先销毁表格  
-        $('#tb_role').bootstrapTable('destroy');  
-		$('#tb_role').bootstrapTable({
+        $('#tb_Activity').bootstrapTable('destroy');  
+		$('#tb_Activity').bootstrapTable({
 			url : '${pageContext.request.contextPath}/back/admin/pageNotice', //请求后台的URL（*）
 			method : 'post', //请求方式（*）
 			contentType: "application/x-www-form-urlencoded",
@@ -203,7 +414,7 @@
 				checkbox : true,
 			}, {
 				field : 'nid',
-				title : '公告ID'
+				title : '主键ID'
 			}, {
 				field : 'ntitle',
 				title : '公告主题'
@@ -212,13 +423,13 @@
 				title : '公告内容'
 			},  {
 				field : 'nstype',
-				title : '公告类型'
+				title : '类型'
 			},	{
-				field : 'ntime',
+				field :	'ntime',
 				title : '公告时间'
-			}, {
-				field : 'ntype',
-				title : '公告发布类型',
+			},{
+				field :	'ntype',
+				title : '公告类型',
 				align : 'center',
 				/* formatter : function(value, row, index) {
 					var status = row.restatus; */
@@ -227,7 +438,7 @@
 					}else{
 						return "<span class='label label-danger'>禁用</span>";
 					} */
-					/* if(status==1){
+				/* 	if(status==1){
 			            return '<i class="fa fa-lock" style="color:red"></i>'
 			        }else if(status==0){
 			            return '<i class="fa fa-unlock" style="color:green"></i>'
@@ -240,7 +451,7 @@
 				title : '角色权限',
 				formatter : function(value, row, index) {
 					//var id = row.id;
-					return "<a  onclick='rolist("+row.nid+");' data-toggle='modal' data-target='#tb_model'><span class='glyphicon glyphicon-new-window'></span>权限设置</a>";
+					return "<a  onclick='rolist("+row.atid+");' data-toggle='modal' data-target='#tb_model'><span class='glyphicon glyphicon-new-window'></span>权限设置</a>";
 				}
 			}, */]
 		});
@@ -252,11 +463,11 @@
 			//***这里的参数传到后台，用来进行分页处理*************************
 			rows: params.limit, //页面大小
 			page: params.offset, //页码
-			ntitle : $("#ntitle").val(),
-			ncontent : $("#ncontent").val(),
-			nstype : $("#nstype").val(), 
-			ntime : $("#ntime").val(), 
-			ntype : $("#ntype").val(), 
+			ntitle:$("#editActivity #ntitle").val(),
+			ncontent:$("#editActivity #ncontent").val(),
+			nstype:$("#editActivity #nstype").val(),
+			ntime:$("#editActivity #ntime").val(),
+			ntype:$("#editActivity #ntype").val(),
 		};
 		return temp;
 	};
@@ -269,7 +480,7 @@
 			<div class="col-sm-12">
 				<div class="ibox float-e-margins">
 					<div class="ibox-title">
-						<h5>网站角色信息</h5>
+						<h5>网站活动信息</h5>
 						<div class="ibox-tools">
 							<a class="collapse-link"> <i class="fa fa-chevron-up"></i></a>
 							<!-- <a class="close-link"> <i class="fa fa-times"></i></a> -->
@@ -277,17 +488,14 @@
 					</div>
 					<div class="ibox-content">
 							<div class="form-group">
-		            			<label for="incomeTypes" class="control-label col-sm-1">角色名称</label>
+		            			<label for="incomeTypes" class="control-label col-sm-1">活动标题：</label>
 								<div class="col-sm-2">
-									<input type="text" name="rename" class="form-control" id="renames">
+									<input type="text" name="attitle" class="form-control" id="attitle">
 		            			</div>
-		            			<label for="operateTime" class="control-label col-sm-1">角色备注</label>
-		            			<div class="col-sm-2">
-	            					<input type="text" name="reremark" class="form-control" id="reremarks">
-	            				</div>
+		            			
 		            			<label for="operateTime" class="control-label col-sm-1">角色状态</label>
 		            			<div class="col-sm-2">
-									<select class="form-control m-b" id="restatuss" name="restatus" style="margin-bottom: 0px;">
+									<select class="form-control m-b" id="atstatus" name="atstatus" style="margin-bottom: 0px;">
 		                        		<option value=-1>请选择</option>
 		                        		<option value=1>禁用</option>
 		                        		<option value=2>启用</option>
@@ -296,10 +504,10 @@
 				                <button type="button" id="searchForm" class="btn btn-primary" onclick="searchForm()">搜索</button>
 							</div>
 						<div id="toolbar" class="btn-group">
-							<button id="btn_add" type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#addStudent" onclick="addRole()">
+							<button id="btn_add" type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#addStudent" onclick="addActivity()">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
 							</button>
-							<button id="btn_edit" type="button" class="btn btn-w-m btn-success" onclick="UpRole()">
+							<button id="btn_edit" type="button" class="btn btn-w-m btn-success" onclick="UpActivity();">
 								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 							</button>
 							<button id="btn_delete" type="button" class="btn btn-w-m btn-danger" onclick="btn_delete()">
@@ -307,7 +515,7 @@
 							</button>
 						</div>
 						<!-- table代码就这些，用js构建表格 -->
-						<table id="tb_role" >
+						<table id="tb_Activity" >
 							
 						</table>
 					</div>
@@ -316,23 +524,26 @@
 		</div>
 	</div>
 	<!-- 新增弹窗 -->
-	<div class="modal fade" id="editRole" tabindex="-1" role="dialog"
+	<div class="modal fade" id="editForm" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
+	<form id="editActivity" class="form-horizontal m-t" method="post" enctype="multipart/form-data">
+			
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">×</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">公告管理</h4>
+					<h4 class="modal-title" id="myModalLabel">活动管理</h4>
 				</div>
 				<div class="modal-body">
 					<!-- 新增系别 -->
-					<form id="editForm" class="form-horizontal m-t">
+					
 						<div class="form-group">
 							<label for="urlName" class="control-label col-sm-3">公告标题</label> 
 							<div class="col-sm-8">
+							<input type="hidden" name="nid" id="nid" />
 								<input type="text" name="ntitle" class="form-control" id="ntitle">
 							</div>
 						</div>
@@ -343,34 +554,36 @@
 	            			</div>
 						</div>
 						<div class="form-group">
-							<label for="url" class="control-label col-sm-3">公告类型</label>
+							<label for="url" class="control-label col-sm-3">类型</label>
 							<div class="col-sm-8">
 								<input type="text" name="nstype" class="form-control" id="nstype">
 	            			</div>
 						</div>
 						<div class="form-group">
-							<label for="url" class="control-label col-sm-3">发布时间</label>
+							<label for="url" class="control-label col-sm-3">公告时间</label>
 							<div class="col-sm-8">
 								<input type="text" name="ntime" class="form-control" id="ntime">
 	            			</div>
 						</div>
 						<div class="form-group">
-							<label for="url" class="control-label col-sm-3">类型关联ID</label>
+							<label for="url" class="control-label col-sm-3">公告发布ID</label>
 							<div class="col-sm-8">
 								<input type="text" name="ntype" class="form-control" id="ntype">
 	            			</div>
 						</div>
-					</form>
+						
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">
+					
+					<button type="submit" class="btn btn-default" data-dismiss="modal">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
 					</button>
-					<button type="button" id="btn_submit" class="btn btn-primary" onclick="insertRole()">
+					<button type="submit" id="saveadd" class="btn btn-primary" >
 						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
 					</button>
 				</div>
 			</div>
+	</form>
 		</div>
 	</div>
 </body>
