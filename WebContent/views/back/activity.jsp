@@ -11,7 +11,210 @@
 <title>Insert title here</title>
 <!-- 引用js文件 -->
 <jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
+<script type="text/javascript" src="${pageContext.request.contextPath}/statics/back/static/js/laydate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery.form.js"></script>
+<script src="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<link href="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
 
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#editActivity')
+        .bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+            	atid: {
+                    message: '编号验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '编号不能为空'
+                         },
+     		            stringLength: {
+     		                min: 1,
+     		                max: 9,
+     		                message: '请输入0-9位数字'
+     		            },
+     		            regexp: {
+     		                regexp: /^[0-9]*$/,
+     		                message: '只能输入数字'
+     		            }
+                    }
+                },
+                /* atintgard: {
+                    message: '奖励值验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '奖励值不能为空'
+                         },
+                         stringLength: {
+                             min: 1000,
+                             max: 100000,
+                             message: '请输入5位数的奖励值'
+                         },
+                         regexp: {
+                             regexp: /^1[3|5|8]{1}[0-9]{9}$/,
+                             message: '请输入正确的奖励值'
+                         }
+                    }
+                },  */
+                attitle: {
+                    message: '标题验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '标题不能为空'
+                         },
+                         stringLength: {
+                             min: 6,
+                             max: 30,
+                             message: '标题必须大于6，长度小于30个字符。'
+                         },
+                    }
+                },
+                atcontent: {
+                    message: '活动内容验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '活动内容不能为空,请选择'
+                         }
+                    }
+                },
+                /* eidcard: {
+                    message: '身份证验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '身份证不能为空'
+                         },
+                         regexp: {
+                             regexp:  /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/,
+                             message: '请输入正确的身份证'
+                         }
+                         
+                    }
+                }, */
+               /*  eemail: {
+                	message: '员工邮箱验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '员工邮箱不能为空'
+                        },
+                        emailAddress: {
+                            message: '请输入正确的邮件地址如：123@qq.com'
+                        }
+                    }
+                },
+                eposition: {
+                    message: '员工职位验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '员工职位不能为空'
+                         }
+                         
+                    }
+                }, */
+                atstarttime: {
+                    message: '活动开始时间验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '活动开始时间不能为空'
+                         }
+                        
+                    }
+                },
+                atendtime: {
+                    message: '活动结束时间验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '活动结束时间不能为空'
+                         }
+                        
+                    }
+                },
+                atstatus: {
+                	message: '状态验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '状态不能为空,请选择'
+                        }
+                    }
+                }
+            }
+        })
+        .on('success.form.bv', function(e) {
+        	$("#editForm").modal('hide');
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+            var form = new FormData(document.getElementById("editActivity"));
+            var atid =$("#editActivity #atid").val(); 
+            
+            alert(atid);
+            if(atid==null || atid==""){
+            	$.ajax({
+       	          url:"${pageContext.request.contextPath}/back/admin/insertActivity",
+       	          type:"post",
+       	          data:form,
+       	          processData:false,
+       	          contentType:false,
+       	          success:function(data){
+       	        	//后台返回int类型的数据
+       					if(data>0){
+       						//新增成功，下面是后台框架的提示
+       						parent.layer.alert('增加成功');
+       					}else{
+       						//新增失败
+       						parent.layer.alert('增加失败');
+       					}
+       					$('#tb_Activity').bootstrapTable('refresh');
+       	          },
+       	          error:function(e){
+       	        	parent.layer.alert('错误');
+       	          }
+             });
+            	
+            }else{
+            	$("#editForm").modal('hide');
+        		var url = "${pageContext.request.contextPath }/back/admin/updateActivity";
+        		$.post(
+        			url,
+        			{
+        				atid:atid,
+        				attitle:$("#editActivity #attitle").val(),
+        				atintgard:$("#editActivity #atintgard").val(),
+        				atcontent:$("#editActivity #atcontent").val(),
+        				atimag:$("#editActivity #atimag").val(),
+        				atstarttime:$("#editActivity #atstarttime").val(),
+        				atendtime:$("#editActivity #atendtime").val(),
+        				atstatus:$("#editActivity #atstatus").val(),
+        				
+        			},
+        			function(data){
+        				//后台返回int类型的数据
+        				if(data>0){
+        					//新增成功，下面是后台框架的提示
+        					parent.layer.alert('修改成功');
+        					$('#tb_Activity').bootstrapTable('refresh');
+        				}else{
+        					//新增失败
+        					parent.layer.alert('修改失败');
+        				}
+        				//新增完刷新表格数据
+        				$('#tb_Activity').bootstrapTable('refresh');
+        			},
+        			"text"
+        		);		
+            } 
+        });
+});
+</script>
 <script  type="text/javascript">
     var rows = null;
     
@@ -27,18 +230,18 @@
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
 		$("#saveadd").attr("onclick","insertActivity()");
 		//显示新增窗口
-		$('#editActivity').modal('show');
+		$('#editForm').modal('show');
     }
   //新增角色
-	function insertActivity() {
+	 function insertActivity() {
 		//表单验证
 		//alert(123);
-		/* if (!validateForm($("#editForm"))) {
+		 if (!validateForm($("#editForm"))) {
 			return;
-		} */
+		}
 		//用来关闭新增窗口***********
 		
-		var formobj =  document.getElementById("editForm");
+		 var formobj =  document.getElementById("editForm");
 		var formdata = new FormData(formobj);
 		
 		$.ajax({
@@ -57,20 +260,18 @@
 			}else{
 				//新增失败
 				parent.layer.alert('增加失败');
-			}
+			} 
 			//新增完刷新表格数据
-		}).fail(function(res) {
+		 }).fail(function(res) {
 			$('#tb_Activity').bootstrapTable('refresh');
 		});
 		
 		 $("#editActivity").modal('hide');	
-		/*$('#tb_Activity').bootstrapTable('refresh'); */
-	}
+		$('#tb_Activity').bootstrapTable('refresh'); 
+	 } 
   
 	//修改按钮事件
      function UpActivity(){
-    	//$("#editActivity").modal('hide');
- 		//var url = "${pageContext.request.contextPath }/back/admin/updateActivity";
     	//获取当前选中行的信息
  		var selectList = $('#tb_Activity').bootstrapTable('getSelections');
  		//判断有没有选中
@@ -85,6 +286,7 @@
  		}
  		var athRole = selectList[0];
  		//把选中行的数据放到弹窗的控件中
+ 		$("#editActivity #atid").val(athRole.atid);
  		$("#editActivity #attitle").val(athRole.attitle);
  		$("#editActivity #atintgard").val(athRole.atintgard);
  		$("#editActivity #atcontent").val(athRole.atcontent);
@@ -93,11 +295,11 @@
         $("#editActivity #atendtime").val(athRole.atendtime),
  		$("#editActivity #atstatus").val(athRole.atstatus);
  		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
- 		$("#saveadd").attr("onclick","updateRole("+athRole.atid+","+athRole.ptid+")");
+ 		$("#saveadd").attr("onclick","updateRole("+athRole.atid+")");
  		//显示新增窗口
- 		$('#editActivity').modal('show');
+ 		$('#editForm').modal('show');
      }
-	function updateRole(atid,ptid){
+	/* function updateRole(atid,ptid){
 		//用来关闭新增窗口***********
 		$("#editActivity").modal('hide');
 		//alert("ghjkl")
@@ -109,8 +311,7 @@
 				ptid:ptid,
 				attitle:$("#editActivity #attitle").val(),
 				atintgard:$("#editActivity #atintgard").val(),
-				atcontent:$("#editActivity #atcontent").val(),
-				/* atimag:$("#editActivity #atimag").val(), */
+				atcontent:$("#editActivity #atcontent").val(), 
 				atstarttime:$("#editActivity #atstarttime").val(),
 				atendtime:$("#editActivity #atendtime").val(),
 				atstatus:$("#editActivity #atstatus").val(),
@@ -129,7 +330,7 @@
 			},
 			"text"
 		);	
-	}
+	}  */
 	//删除按钮事件
 	//*************************************************************************按钮事件
 	function btn_delete(){
@@ -228,8 +429,16 @@
 				field : 'atcontent',
 				title : '活动内容'
 			},	{
-				field :	'atimag',
-				title : '活动图片'
+				field : 'atimag',
+				title : '员工头像',
+				align : 'center',
+				formatter : function(value,row,index) {
+					var image = row.atimag;
+					//alert(image);
+					if(image!=null){
+						return "<img src="+row.atimag+" width='35px' height='40px' />"
+					}
+				}
 			},	{
 				field :	'atstarttime',
 				title : '活动开始时间'
@@ -240,21 +449,16 @@
 				field :	'atstatus',
 				title : '活动状态',
 				align : 'center',
-				/* formatter : function(value, row, index) {
-					var status = row.restatus; */
-					/* if(status==0){
-						return "<span class='label label-primary'>启用</span>";
-					}else{
-						return "<span class='label label-danger'>禁用</span>";
-					} */
-				/* 	if(status==1){
+				formatter : function(value, row, index) {
+					var atstatus = row.atstatus;
+					if(atstatus==1){
 			            return '<i class="fa fa-lock" style="color:red"></i>'
-			        }else if(status==0){
+			        }else if(atstatus==2){
 			            return '<i class="fa fa-unlock" style="color:green"></i>'
 			        }else{
 			            return '数据错误'
 			        }
-				} */
+				}
 			},/* {
 				field : 'ptid',
 				title : '角色权限',
@@ -318,7 +522,7 @@
 							<button id="btn_add" type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#addStudent" onclick="addActivity()">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
 							</button>
-							<button id="btn_edit" type="button" class="btn btn-w-m btn-success" onclick="UpActivity()">
+							<button id="btn_edit" type="button" class="btn btn-w-m btn-success" onclick="UpActivity();">
 								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 							</button>
 							<button id="btn_delete" type="button" class="btn btn-w-m btn-danger" onclick="btn_delete()">
@@ -335,10 +539,11 @@
 		</div>
 	</div>
 	<!-- 新增弹窗 -->
-	<div class="modal fade" id="editActivity" tabindex="-1" role="dialog"
+	<div class="modal fade" id="editForm" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
-	<form id="editForm"  class="form-horizontal m-t" method="post" enctype="multipart/form-data">
+	<form id="editActivity" class="form-horizontal m-t" method="post" enctype="multipart/form-data">
+			
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
@@ -349,9 +554,11 @@
 				</div>
 				<div class="modal-body">
 					<!-- 新增系别 -->
+					
 						<div class="form-group">
 							<label for="urlName" class="control-label col-sm-3">活动标题</label> 
 							<div class="col-sm-8">
+							<input type="hidden" name="atid" id="atid" />
 								<input type="text" name="attitle" class="form-control" id="attitle">
 							</div>
 						</div>
@@ -398,10 +605,10 @@
 				</div>
 				<div class="modal-footer">
 					
-					<button type="button" class="btn btn-default" data-dismiss="modal">
+					<button type="submit" class="btn btn-default" data-dismiss="modal">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
 					</button>
-					<button type="button" id="saveadd"  class="btn btn-primary" >
+					<button type="submit" id="saveadd" class="btn btn-primary" >
 						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
 					</button>
 				</div>
