@@ -197,7 +197,7 @@
 			            	</div>
 	               			<div class="mo2-indLog-userHead">
 	                    		<a href="/Finances/tousercenter">
-	                    			<img src="/Finances/statics/front/statics/home2/images/user-head.png" title="欢迎来到爱钱帮投资理财平台" alt="">
+	                    			<img src="<%=path %>${sessionScope.user.userinfo.uiheadImg}" title="欢迎来到爱钱帮投资理财平台" alt="">
 	                    		</a>
 	                		</div>
 	                		
