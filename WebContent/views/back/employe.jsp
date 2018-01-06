@@ -15,6 +15,34 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery.form.js"></script>
 <script src="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/js/bootstrapValidator.min.js"></script>
 <link href="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+		
+		<script type="text/javascript">
+			function upload() {
+				var option = {
+					type : "POST",
+					url : "${pageContext.request.contextPath}/back/import",
+					data : {"fileName" : "file1"},
+					dataType : "JSON",
+					success : function(data) {
+						console.info(data);
+						if(data=="success"){
+							alert("上传成功");
+							$('#import').modal('hide');
+							$('#tb_emp').bootstrapTable('refresh');
+						}
+						/* 
+						var json = $.parseJSON(data);
+						
+						$("#img1").attr("src", json.relativePath);
+						$("#imgPath").val(json.relativePath); */
+					}					
+				};
+				
+				// ajax表单提交
+				$("#uploadForm").ajaxSubmit(option);
+			}
+		</script>
+
 <script type="text/javascript">
 $(document).ready(function() {
     $('#editRole')
@@ -471,7 +499,37 @@ $(document).ready(function() {
 		};
 		laydate(start);
 		laydate(end);
+		
+		
+		
+		//导出
+		function btn_export(){
+			$.ajax({
+				url:'${pageContext.request.contextPath}/back/export',
+				type:'post',
+				success:function(data){
+					//alert("导出成功，地址在："+data);
+					if(data!=null){
+						//$('#exportOpens').append("");
+						$('#exportOpens').html("导出成功，地址在："+data);
+						$('#export').modal('show');
+					}
+				}
+			});
+		}
+		//导入
+		function openImport(){
+			//$('#import').show();
+			
+			$('#import').modal('show');
+		}
 
+		//关闭导出窗口
+		function enterExport(){
+			//$('#import').show();
+			
+			$('#export').modal('hide');
+		}
 	</script>
 </head>
 <body class="gray-bg">
@@ -518,6 +576,13 @@ $(document).ready(function() {
 							</button>
 							<button id="btn_delete" type="button" class="btn btn-w-m btn-danger" onclick="btn_delete()">
 								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+							</button>
+							<button id="btn_export" type="button" class="btn btn-w-m btn-primary" onclick="btn_export()">
+								<span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+							</button>
+							<button  type="button" class="btn btn-w-m btn-success" id="openImport" onclick="openImport();">
+								<span class="glyphicon glyphicon-import" aria-hidden="true"></span>
+								导入
 							</button>
 						</div>
 						<!-- table代码就这些，用js构建表格 -->
@@ -649,6 +714,72 @@ $(document).ready(function() {
             
         </div>
 		</form>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		<!-- 导入 -->
+		<div class="modal fade" id="import" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">导入</h4>
+				</div>
+					<center>
+						<%-- <form id="importAjax" action="${pageContext.request.contextPath}/back/import" namespace="/" enctype="multipart/form-data" method="post" >
+							<input type="file" name="fileName" accept="excel/*">
+							<br><br>
+							<input type="submit" id="importIn" value="导入">
+						</form> --%>
+						<form id="uploadForm">
+							<input type="file" name="file1" class="btn btn-w-m btn-primary"/>
+							<br><br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<button  type="button" class="btn btn-w-m btn-primary" onclick="upload();">
+								导入
+							</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href="${pageContext.request.contextPath}/back/downloadEmploye" class="btn btn-w-m btn-danger">下载模板</a> <br>
+							
+							
+							
+						</form>
+					</center>
+				</div>
+			</div>
+		</div>
+		
+		
+		<!-- 导导出 -->
+		<div class="modal fade" id="export" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document" style="width:300px;height: 500px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">导出</h4>
+				</div>
+					<center style="height:250px;">
+					<br><br><br>
+						<div>
+							<font size="5" color="red"><span id="exportOpens"></span></font>
+						</div>
+						<button  type="button" class="btn btn-w-m btn-primary" onclick="enterExport();">
+								确定
+						</button>
+					</center>
 				</div>
 			</div>
 		</div>
