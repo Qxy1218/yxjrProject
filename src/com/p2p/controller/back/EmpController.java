@@ -2,8 +2,19 @@ package com.p2p.controller.back;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -22,17 +33,24 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.alibaba.druid.util.StringUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.pojo.Employe;
+import com.p2p.pojo.Employed;
 import com.p2p.service.back.EmpService;
+import com.p2p.util.ExportExcel;
+import com.p2p.util.ImportExcel;
 import com.p2p.util.PageInfo;
 import com.p2p.util.ValidateCodeUtil;
 
@@ -227,5 +245,153 @@ public class EmpController {
 		   EmpSession.logout();
 		return "redirect:/back/tologin";
 		}
+	   
+	   
+	   
+	  //导出
+	   @RequestMapping("export")
+	   @ResponseBody
+	   public String export() {
+		   String sheetName="员工列表";
+		    String titleName="Employee";
+		    String[] headers = {"主键id", "角色id", "员工编号","员工姓名", "员工性别","员工密码","员工身份证号","员工手机号","员工职位","员工邮箱","角色状态","创建时间","自我声明","员工头像"};
+		    List<Employe> dataSet = empService.getAllModel();
+		    List<Employed> data=new ArrayList<>();
+		    for(Employe emp: dataSet) {
+		    	Employed e=new Employed();
+		    	e.setEemail(emp.getEemail());
+		    	e.setEenum(emp.getEenum());
+		    	e.setEid(emp.getEid());
+		    	e.setEidcard(emp.getEidcard());
+		    	e.setEimage(emp.getEimage());
+		    	e.setEname(emp.getEname());
+		    	e.setEpassword(emp.getEpassword());
+		    	e.setEphone(emp.getEphone());
+		    	e.setEposition(emp.getEposition());
+		    	e.setEremark(emp.getEremark());
+		    	e.setEretime(emp.getEretime());
+		    	e.setEsex(emp.getEsex());
+		    	e.setEstatus(emp.getEstatus());
+		    	e.setReid(emp.getReid());
+		    	data.add(e);
+		    }
+		    String resultUrl="E:\\Employee.xls";
+		    String pattern="yyyy-MM-dd";
+		    ExportExcel.exportExcel(sheetName, titleName, headers, data, resultUrl, pattern);
+		    return "E:\\Employee.xls";
+	   }
 	
+	   
+	 //导入
+	   @RequestMapping("import")
+	   @ResponseBody
+	   public String imports(HttpServletRequest request,String fileName) throws IllegalStateException, IOException {
+		   
+		   MultipartHttpServletRequest sr = (MultipartHttpServletRequest )request;
+			//拿到文件对象
+			CommonsMultipartFile mf = (CommonsMultipartFile)sr.getFile(fileName);
+			
+			//文件名字  book.xml
+			String filename = mf.getOriginalFilename();
+			//就是.xml
+			String suffix = filename.substring(filename.indexOf("."));
+			
+			SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+			
+			String newFilename = df.format(new Date());
+			
+			String contextPath = request.getSession().getServletContext().getRealPath("/uploadFile/file/");
+			
+			contextPath = contextPath.replace("\\", "/");
+			//上传文件
+			mf.transferTo(new File(contextPath+newFilename+suffix));
+			//f:\abd\dd\dd
+			String originUrl = contextPath+newFilename+suffix;
+			
+			int startRow = 2;
+			int endRow = 0;
+			
+			List<Employed> list = (List<Employed>)ImportExcel.importExcel(originUrl, startRow, endRow, Employed.class);
+			
+			for(Employed emp:list){
+				//testService.insert(test);
+				Employe e=new Employe();
+		    	e.setEemail(emp.getEemail());
+		    	e.setEenum(emp.getEenum());
+		    	e.setEid(emp.getEid());
+		    	e.setEidcard(emp.getEidcard());
+		    	e.setEimage(emp.getEimage());
+		    	e.setEname(emp.getEname());
+		    	e.setEpassword(emp.getEpassword());
+		    	e.setEphone(emp.getEphone());
+		    	e.setEposition(emp.getEposition());
+		    	e.setEremark(emp.getEremark());
+		    	e.setEretime(emp.getEretime());
+		    	e.setEsex(emp.getEsex());
+		    	e.setEstatus(emp.getEstatus());
+		    	e.setReid(emp.getReid());
+
+				empService.addModel(e);
+			}
+			return "success";
+			
+	   }
+	   
+	   
+	   //下载
+	   @RequestMapping("downloadEmploye")
+	   @ResponseBody
+	   public String  download(HttpServletRequest request,HttpServletResponse res) throws IOException {
+		  String path=request.getServletContext().getRealPath("/uploadFile/file/Employee.xls");  
+		  File file=new File(path);  
+		  HttpHeaders headers = new HttpHeaders();    
+	       // res.addHeader("Content-Disposition", "attachment;filename="+new String("Employe.xlsx".getBytes("gbk"),"iso-8859-1"));
+	        String fileName=new String("Employee.xls".getBytes("utf-8"),"gbk");//为了解决中文名称乱码问题  
+	        /*  headers.setContentDispositionFormData("attachment", fileName);   
+	        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);   */
+		   
+		   if (file.exists()) {
+               res.setContentType("application/force-download");// 设置强制下载不打开
+               res.addHeader("Content-Disposition",
+                       "attachment;fileName=" + fileName);// 设置文件名
+               byte[] buffer = new byte[1024];
+               FileInputStream fis = null;
+               BufferedInputStream bis = null;
+               try {
+                   fis = new FileInputStream(file);
+                   bis = new BufferedInputStream(fis);
+                   OutputStream os = res.getOutputStream();
+                   int i = bis.read(buffer);
+                   while (i != -1) {
+                       os.write(buffer, 0, i);
+                       i = bis.read(buffer);
+                   }
+               } catch (Exception e) {
+                   // TODO: handle exception
+                   e.printStackTrace();
+               } finally {
+                   if (bis != null) {
+                       try {
+                           bis.close();
+                       } catch (IOException e) {
+                           // TODO Auto-generated catch block
+                           e.printStackTrace();
+                       }
+                   }
+                   if (fis != null) {
+                       try {
+                           fis.close();
+                       } catch (IOException e) {
+                           // TODO Auto-generated catch block
+                           e.printStackTrace();
+                       }
+                   }
+               }
+           }
+       return null;
+	     /*   return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),    
+	                                          headers, HttpStatus.CREATED); */   
+	   }
+	   
+	  
 }
