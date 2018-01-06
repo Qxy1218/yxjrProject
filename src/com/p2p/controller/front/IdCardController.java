@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,8 +24,8 @@ import com.p2p.pojo.User;
 import com.p2p.pojo.Userbackcard;
 import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Users;
-import com.p2p.service.back.AuthebDetaisService;
 import com.p2p.pojo.Uservouch;
+import com.p2p.service.back.AuthebDetaisService;
 import com.p2p.service.back.RedmoneyService;
 import com.p2p.service.back.UservouchService;
 import com.p2p.service.front.IUserService;
@@ -228,7 +229,8 @@ public class IdCardController {
 	 * 开户成功后需跳转的页面
 	 * */
 	@RequestMapping(value="/opensuccess")
-	public String openCustody() {
+	public String openCustody(Model model) {
+		model.addAttribute("pageName", "myinfo");
 		return "views/front/open_success";
 	}
 }
