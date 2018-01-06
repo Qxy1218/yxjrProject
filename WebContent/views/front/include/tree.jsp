@@ -15,7 +15,7 @@
 			<div class="m2-userCentermain-aside">
 	        <ul>
 	            <li class="m2-asideListitem">
-	                <a class="m2-aside-item" href="/Finances/tousercenter"><i class="m2-asideIcon1"></i>我的账户</a>
+	                <a class="m2-aside-item" href="/Finances/tousercenter?uid=${sessionScope.user.uid }"><i class="m2-asideIcon1"></i>我的账户</a>
 	            </li>
 	            <li class="m2-asideListitem">
 	                <a class="m2-aside-item" href="/Finances/togrowth"><i class="m2-asideIcon-vip"></i>成长值中心</a>
