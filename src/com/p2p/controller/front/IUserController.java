@@ -139,7 +139,6 @@ public class IUserController {
 		Object result = new SimpleHash("MD5", pas, ByteSource.Util.bytes("user"), 10);
 		User user = new User();
 		user.setUpassword(result.toString());
-		user.setUheadImg("/statics/front/images/IMG_2166.JPG");
 		user.setUphone(phone);
 		user.setUloginTime(DateUtils.getDateTimeFormat(new Date()));
 		
@@ -199,6 +198,7 @@ public class IUserController {
 			 * */
 			Userinfo userinfo = new Userinfo();
 			userinfo.setUid(user.getUid());
+			userinfo.setUiheadImg("/statics/front/statics/home2/images/user-head.png");
 			userinfo.setUiname("yxjr"+user.getUphone());
 			userinfo.setUisex("保密");
 			userinfo.setUibirthday(DateUtils.getDateTimeFormat(new Date()));

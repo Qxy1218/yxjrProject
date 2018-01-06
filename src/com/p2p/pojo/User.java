@@ -23,9 +23,6 @@ public class User implements Serializable{
 	@TableField("u_password")
 	private String upassword; //用户密码
 
-	@TableField("u_headImg")
-	private String uheadImg;  //用户头像
-	
 	@TableField("u_phone")
 	private String uphone;  //电话号码
 	
@@ -93,14 +90,13 @@ public class User implements Serializable{
 	}
 
 
-	public User(Integer uid, String upassword, String uheadImg, String uphone, String uregTime, String uloginTime,
+	public User(Integer uid, String upassword,String uphone, String uregTime, String uloginTime,
 			String orderinvite, String uinvite, Integer uenable, Integer uisAccountSum, String qrcode, String uaddress,
 			String uip, Integer ucredit, Double ubalance, String ulid, Double vdid, Userinfo userinfo,
 			Userlevel userlevel, Redmoney redmoney, Withdrawals withdrawals, Uservouch uservouch) {
 		super();
 		this.uid = uid;
 		this.upassword = upassword;
-		this.uheadImg = uheadImg;
 		this.uphone = uphone;
 		this.uregTime = uregTime;
 		this.uloginTime = uloginTime;
@@ -125,7 +121,7 @@ public class User implements Serializable{
 
 	@Override
 	public String toString() {
-		return "User [uid=" + uid + ", upassword=" + upassword + ", uheadImg=" + uheadImg + ", uphone=" + uphone
+		return "User [uid=" + uid + ", upassword=" + upassword + ", uphone=" + uphone
 				+ ", uregTime=" + uregTime + ", uloginTime=" + uloginTime + ", orderinvite=" + orderinvite
 				+ ", uinvite=" + uinvite + ", uenable=" + uenable + ", uisAccountSum=" + uisAccountSum + ", qrcode="
 				+ qrcode + ", uaddress=" + uaddress + ", uip=" + uip + ", ucredit=" + ucredit + ", ubalance=" + ubalance
@@ -152,17 +148,6 @@ public class User implements Serializable{
 	public void setUpassword(String upassword) {
 		this.upassword = upassword;
 	}
-
-
-	public String getUheadImg() {
-		return uheadImg;
-	}
-
-
-	public void setUheadImg(String uheadImg) {
-		this.uheadImg = uheadImg;
-	}
-
 
 	public String getUphone() {
 		return uphone;

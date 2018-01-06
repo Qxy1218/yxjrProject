@@ -20,6 +20,9 @@ public class Userinfo implements Serializable{
 	@TableField("u_id")
 	private Integer uid;//用户表id
 	
+	@TableField("ui_headImg")
+	private String uiheadImg;  //用户头像
+	
 	@TableField("ui_name")
 	private String uiname;//昵称
 	
@@ -67,11 +70,12 @@ public class Userinfo implements Serializable{
 		
 	}
 
-	public Userinfo(Integer uiid, Integer uid, String uiname, String uisex, String uibirthday,
+	public Userinfo(Integer uiid, Integer uid, String uiheadImg, String uiname, String uisex, String uibirthday,
 			Integer peid, Integer cyid, Integer aeid, String uidealpwd, String uiemail,Integer uiemailstatus, Integer uiopenstatus, User user,IdCard idCard,Userbackcard userbackcard) {
 		super();
 		this.uiid = uiid;
 		this.uid = uid;
+		this.uiheadImg = uiheadImg;
 		this.uiname = uiname;
 		this.uisex = uisex;
 		this.uibirthday = uibirthday;
@@ -207,12 +211,21 @@ public class Userinfo implements Serializable{
 		this.uiopenstatus = uiopenstatus;
 	}
 
+	public String getUiheadImg() {
+		return uiheadImg;
+	}
+
+	public void setUiheadImg(String uiheadImg) {
+		this.uiheadImg = uiheadImg;
+	}
+
 	@Override
 	public String toString() {
-		return "Userinfo [uiid=" + uiid + ", uid=" + uid + ", uiname=" + uiname + ", uisex=" + uisex + ", uibirthday="
-				+ uibirthday + ", peid=" + peid + ", cyid=" + cyid + ", aeid=" + aeid + ", uidealpwd=" + uidealpwd
-				+ ", uiemail=" + uiemail + ", uiemailstatus=" + uiemailstatus + ", uiopenstatus=" + uiopenstatus
-				+ ", user=" + user + ", idCard=" + idCard + ", userbackcard=" + userbackcard + "]";
+		return "Userinfo [uiid=" + uiid + ", uid=" + uid + ", uiheadImg=" + uiheadImg + ", uiname=" + uiname
+				+ ", uisex=" + uisex + ", uibirthday=" + uibirthday + ", peid=" + peid + ", cyid=" + cyid + ", aeid="
+				+ aeid + ", uidealpwd=" + uidealpwd + ", uiemail=" + uiemail + ", uiemailstatus=" + uiemailstatus
+				+ ", uiopenstatus=" + uiopenstatus + ", user=" + user + ", idCard=" + idCard + ", userbackcard="
+				+ userbackcard + "]";
 	}
 
 }
