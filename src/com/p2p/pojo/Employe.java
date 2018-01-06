@@ -13,7 +13,7 @@ public class Employe implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
 	@TableField("e_id")
 	private Integer eid; //主键
 	
@@ -166,9 +166,9 @@ public class Employe implements Serializable{
 		this.eemail = eemail;
 	}
 
-	public static long getSerialversionuid() {
+	/*public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
+	}*/
 	
 	public Employe() {
 	}
