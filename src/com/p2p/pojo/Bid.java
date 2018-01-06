@@ -1,6 +1,7 @@
 package com.p2p.pojo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 
@@ -29,32 +30,14 @@ public class Bid implements Serializable{
 	private Integer bfid; //投标id
 	
 	@TableField("b_money")
-	private double bmoney; //投标金额
+	private BigDecimal bmoney; //投标金额
 	
 	@TableField("b_time")
 	private String btime; //投标时间
 	
 	@TableField("b_endtime")
 	private String bendtime; //还标时间
-	
-	@TableField("b_maxmoney")
-	private double bmaxmoney; //最大金额
-	
-	@TableField("b_getallmoney")
-	private double bgetallmoney; //总金额
 
-	public Bid(Integer bid, Integer uid, Integer bfid, double b_money, String btime, String bendtime, double bmaxmoney,
-			double bgetallmoney) {
-		super();
-		this.bid = bid;
-		this.uid = uid;
-		this.bfid = bfid;
-		this.bmoney = b_money;
-		this.btime = btime;
-		this.bendtime = bendtime;
-		this.bmaxmoney = bmaxmoney;
-		this.bgetallmoney = bgetallmoney;
-	}
 
 	public Bid() {
 		super();
@@ -84,14 +67,6 @@ public class Bid implements Serializable{
 		this.bfid = bfid;
 	}
 
-	public double getB_money() {
-		return bmoney;
-	}
-
-	public void setB_money(double b_money) {
-		this.bmoney = b_money;
-	}
-
 	public String getBtime() {
 		return btime;
 	}
@@ -108,31 +83,35 @@ public class Bid implements Serializable{
 		this.bendtime = bendtime;
 	}
 
-	public double getBmaxmoney() {
-		return bmaxmoney;
-	}
-
-	public void setBmaxmoney(double bmaxmoney) {
-		this.bmaxmoney = bmaxmoney;
-	}
-
-	public double getBgetallmoney() {
-		return bgetallmoney;
-	}
-
-	public void setBgetallmoney(double bgetallmoney) {
-		this.bgetallmoney = bgetallmoney;
-	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
+	public BigDecimal getBmoney() {
+		return bmoney;
+	}
+
+	public void setBmoney(BigDecimal bmoney) {
+		this.bmoney = bmoney;
+	}
+
+	public Bid(Integer bid, Integer uid, Integer bfid, BigDecimal bmoney, String btime, String bendtime) {
+		super();
+		this.bid = bid;
+		this.uid = uid;
+		this.bfid = bfid;
+		this.bmoney = bmoney;
+		this.btime = btime;
+		this.bendtime = bendtime;
+	}
+
 	@Override
 	public String toString() {
-		return "Bid [bid=" + bid + ", uid=" + uid + ", bfid=" + bfid + ", b_money=" + bmoney + ", btime=" + btime
-				+ ", bendtime=" + bendtime + ", bmaxmoney=" + bmaxmoney + ", bgetallmoney=" + bgetallmoney + "]";
+		return "Bid [bid=" + bid + ", uid=" + uid + ", bfid=" + bfid + ", bmoney=" + bmoney + ", btime=" + btime
+				+ ", bendtime=" + bendtime + "]";
 	}
+
 	
 	
 }
