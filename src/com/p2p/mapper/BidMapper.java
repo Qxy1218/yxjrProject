@@ -19,5 +19,4 @@ public interface BidMapper extends IBaseDao<Integer, Bid>{
 			List<Bid> selectPage(Pagination page,Map<String ,Object> params,@Param(value="bid") Bid bid);
 			//查询总的记录数
 			abstract Integer contactcount();
-			Integer cxslist(String cxs);
 }

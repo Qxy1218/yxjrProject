@@ -542,7 +542,7 @@
                         </a>
                         <ul class="nav nav-second-level">
                         	<li>
-                        		 <a class="J_menuItem" href="table_basic.jsp">投标管理</a>
+                        		 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/bid.jsp">投标管理</a>
                            </li>
                            <li>
                         		 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/fabiao.jsp">发标管理</a>

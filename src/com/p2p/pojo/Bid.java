@@ -27,7 +27,7 @@ public class Bid implements Serializable{
 	private Integer uid; //用户id
 	
 	@TableField("b_fid")
-	private Integer bfid; //投标id
+	private Integer bfid; //发标id
 	
 	@TableField("b_money")
 	private BigDecimal bmoney; //投标金额

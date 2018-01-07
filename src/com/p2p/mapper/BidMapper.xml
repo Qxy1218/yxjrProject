@@ -40,15 +40,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update" parameterType="com.p2p.pojo.Bid">
 		update bid
 		<trim prefix="set" suffixOverrides=",">
-			<if test="uid!=null">and u_id=#{uid}</if>
-			<if test="bfid!=null">and b_fid=#{bfid}</if>
-			<if test="bmoney!=null">and b_money=#{bmoney}</if>
-			<if test="btime!=null">and b_time=#{btime}</if>
-			<if test="bendtime!=null">and b_endtime=#{bendtime}</if>		
+			<if test="uid!=null">u_id=#{uid},</if>
+			<if test="bfid!=null">b_fid=#{bfid},</if>
+			<if test="bmoney!=null">b_money=#{bmoney},</if>
+			<if test="btime!=null">b_time=#{btime},</if>
+			<if test="bendtime!=null">b_endtime=#{bendtime},</if>		
 		</trim>
 		<where>
 			b_id = #{bid}
 		</where>
 	</update>
 	
+	<!-- 分页查询 -->
+	<select id="selectPage" resultMap="BaseResultMap">
+		select * from bid
+	</select>
+	
+		<!-- 查询总记录数 -->
+	<select id="countActivity" resultType="java.lang.Integer">
+		select count(*) from bid
+	</select>
 </mapper>
