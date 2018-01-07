@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<result column="ui_name" property="uiname"/>
  			<result column="ui_sex" property="uisex"/>
  			<result column="ui_birthday" property="uibirthday"/>
- 			<result column="pe_id" property="peid"/>
+ 			<result column="pv_id" property="pvid"/>
  			<result column="cy_id" property="cyid"/>
  			<result column="ae_id" property="aeid"/>
  			<result column="ui_dealpwd" property="uidealpwd"/>
