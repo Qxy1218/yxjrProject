@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		  <result column="ui_name" property="uiname"/>
  		  <result column="ui_sex" property="uisex"/>
  		  <result column="ui_birthday" property="uibirthday"/>
- 		  <result column="pe_id" property="peid"/>
+ 		  <result column="pv_id" property="pvid"/>
  		  <result column="cy_id" property="cyid"/>
  		  <result column="ae_id" property="aeid"/>
  		  <result column="ui_dealpwd" property="uidealpwd"/>
@@ -60,13 +60,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </resultMap>
 	
 	<sql id="myusersql">
-		u_id,ui_name,ui_sex,ui_birthday,pe_id,cy_id,
+		u_id,ui_name,ui_sex,ui_birthday,pv_id,cy_id,
 		ae_id,ui_dealpwd,ui_email,ui_emailstatus,ui_openstatus
 	</sql>
 	<!-- 增加 -->
 	<insert id="addModel" parameterType="com.p2p.pojo.Userinfo" useGeneratedKeys="true" keyProperty="uiid">
  		 insert into user_info(<include refid="myusersql" />)
- 		 values(#{uid},#{uiname},#{uisex},#{uibirthday},#{peid},#{cyid},#{aeid},#{uidealpwd},#{uiemail},#{uiemailstatus},#{uiopenstatus})
+ 		 values(#{uid},#{uiname},#{uisex},#{uibirthday},#{pvid},#{cyid},#{aeid},#{uidealpwd},#{uiemail},#{uiemailstatus},#{uiopenstatus})
  	</insert>
  	
  	<select id="getModel" parameterType="com.p2p.pojo.Userinfo" resultMap="BaseResultMap">
@@ -78,7 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		<if test="uiname!=null">and ui.ui_name=#{uiname}</if>
 		  		<if test="uisex!=null">and ui.ui_sex=#{uisex}</if>
 		  		<if test="uibirthday!=null">and ui.ui_birthday=#{uibirthday}</if>
-		  		<if test="peid!=null">and ui.pe_id=#{peid}</if>
+		  		<if test="pvid!=null">and ui.pv_id=#{pvid}</if>
 		  		<if test="cyid!=null">and ui.cy_id=#{cyid}</if>
 		  		<if test="aeid!=null">and ui.ae_id=#{aeid}</if>
 		  		<if test="uidealpwd!=null">and ui.ui_dealpwd=#{uidealpwd}</if>
@@ -109,7 +109,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  <if test="uidealpwd!=null">ui.ui_dealpwd=#{uidealpwd},</if>
 		  <if test="uiemail!=null">ui.ui_email=#{uiemail},</if>
 		  <if test="uiname!=null">ui.ui_name=#{uiname},</if>
-		  <if test="peid!=null">ui.pe_id=#{peid},</if>
+		  <if test="pvid!=null">ui.pv_id=#{pvid},</if>
 		  <if test="cyid!=null">ui.cy_id=#{cyid},</if>
 		  <if test="aeid!=null">ui.ae_id=#{aeid},</if>
 		  <if test="uiemailstatus!=null">ui.ui_emailstatus=#{uiemailstatus},</if>
