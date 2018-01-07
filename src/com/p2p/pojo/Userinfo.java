@@ -32,8 +32,8 @@ public class Userinfo implements Serializable{
 	@TableField("ui_birthday")
 	private String uibirthday;//生日日期
 	
-	@TableField("pe_id")
-	private Integer peid;//省份id
+	@TableField("pv_id")
+	private Integer pvid;//省份id
 	
 	@TableField("cy_id")
 	private Integer cyid;//城市id
@@ -71,7 +71,7 @@ public class Userinfo implements Serializable{
 	}
 
 	public Userinfo(Integer uiid, Integer uid, String uiheadImg, String uiname, String uisex, String uibirthday,
-			Integer peid, Integer cyid, Integer aeid, String uidealpwd, String uiemail,Integer uiemailstatus, Integer uiopenstatus, User user,IdCard idCard,Userbackcard userbackcard) {
+			Integer pvid, Integer cyid, Integer aeid, String uidealpwd, String uiemail,Integer uiemailstatus, Integer uiopenstatus, User user,IdCard idCard,Userbackcard userbackcard) {
 		super();
 		this.uiid = uiid;
 		this.uid = uid;
@@ -79,7 +79,7 @@ public class Userinfo implements Serializable{
 		this.uiname = uiname;
 		this.uisex = uisex;
 		this.uibirthday = uibirthday;
-		this.peid = peid;
+		this.pvid = pvid;
 		this.cyid = cyid;
 		this.aeid = aeid;
 		this.uidealpwd = uidealpwd;
@@ -131,12 +131,12 @@ public class Userinfo implements Serializable{
 		this.uibirthday = uibirthday;
 	}
 
-	public Integer getPeid() {
-		return peid;
+	public Integer getPvid() {
+		return pvid;
 	}
 
-	public void setPeid(Integer peid) {
-		this.peid = peid;
+	public void setPvid(Integer pvid) {
+		this.pvid = pvid;
 	}
 
 	public Integer getCyid() {
@@ -222,7 +222,7 @@ public class Userinfo implements Serializable{
 	@Override
 	public String toString() {
 		return "Userinfo [uiid=" + uiid + ", uid=" + uid + ", uiheadImg=" + uiheadImg + ", uiname=" + uiname
-				+ ", uisex=" + uisex + ", uibirthday=" + uibirthday + ", peid=" + peid + ", cyid=" + cyid + ", aeid="
+				+ ", uisex=" + uisex + ", uibirthday=" + uibirthday + ", pvid=" + pvid + ", cyid=" + cyid + ", aeid="
 				+ aeid + ", uidealpwd=" + uidealpwd + ", uiemail=" + uiemail + ", uiemailstatus=" + uiemailstatus
 				+ ", uiopenstatus=" + uiopenstatus + ", user=" + user + ", idCard=" + idCard + ", userbackcard="
 				+ userbackcard + "]";
