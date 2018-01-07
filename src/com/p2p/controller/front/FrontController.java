@@ -22,11 +22,13 @@ import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.ProjectSelect;
 import com.p2p.pojo.Setupnatice;
 import com.p2p.pojo.User;
+import com.p2p.pojo.Userbackcard;
 import com.p2p.pojo.Userinfo;
 import com.p2p.service.back.ContactService;
 import com.p2p.service.front.FabiaoService;
 import com.p2p.service.front.SetupnaticeService;
 import com.p2p.service.front.UserInfoService;
+import com.p2p.service.front.UserbackcardService;
 import com.p2p.util.ContextUtils;
 import com.p2p.util.DateUtils;
 import com.p2p.util.Page;
@@ -51,6 +53,9 @@ public class FrontController {
 	
 	@Resource(name="userInfoServiceImpl")
 	private UserInfoService userInfoService;
+	
+	@Resource(name="userbackcardServiceImpl") 
+	private UserbackcardService userbackcardService;
 	
 	/**
 	 * 头部的conteroller
@@ -779,5 +784,29 @@ public class FrontController {
 	@RequestMapping(value="/togold")
 	public String togold() {
 		return "views/front/expgold";
+	}
+	
+	/**
+	 *充值页面的contorller
+	 * */
+	@RequestMapping(value="/torecharge")
+	public String torecharge(Integer uiid,HttpSession session) {
+		Userbackcard userbackcard = new Userbackcard();
+		userbackcard.setUiid(uiid);
+		Userbackcard uback = userbackcardService.getModel(userbackcard);
+		session.setAttribute("userbackcard", uback);
+		return "views/front/user/recharge";
+	}
+	
+	/**
+	 *提现页面的contorller
+	 * */
+	@RequestMapping(value="/towithdraw")
+	public String towithdraw(Integer uiid,HttpSession session) {
+		Userbackcard userbackcard = new Userbackcard();
+		userbackcard.setUiid(uiid);
+		Userbackcard uback = userbackcardService.getModel(userbackcard);
+		session.setAttribute("userbackcard", uback);
+		return "views/front/user/withdrawals";
 	}
 }
