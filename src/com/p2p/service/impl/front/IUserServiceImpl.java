@@ -1,15 +1,21 @@
 package com.p2p.service.impl.front;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.p2p.mapper.IUserMapper;
+import com.p2p.pojo.Role;
 import com.p2p.pojo.User;
+import com.p2p.pojo.Userinfo;
+import com.p2p.pojo.Withdrawals;
 import com.p2p.service.front.IUserService;
+import com.p2p.util.PageInfo;
 /**
  * 操作人:汪栋才
  * 操作时间:2017-12-18
@@ -60,5 +66,22 @@ public class IUserServiceImpl implements IUserService{
 	public User sletUserOinvite(String orderinvite) {
 		return iUserMapper.sletUserOinvite(orderinvite);
 	}
+
+	@Override
+	public void selectPage(PageInfo pageInfo, User user) {
+		//传入一个分页bean pageInfo
+				Page<User> page = new Page(pageInfo.getNowpage(),pageInfo.getSize());
+				List<User> list = iUserMapper.selectPage(page, pageInfo.getCondition(),user);
+				pageInfo.setRows(list);
+				pageInfo.setTotal(list.size());
+		
+	}
+
+	@Override
+	public Integer userCount() {
+		// TODO Auto-generated method stub
+		return iUserMapper.iuserCount();
+	}
+
 
 }

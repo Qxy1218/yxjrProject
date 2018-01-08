@@ -27,6 +27,7 @@ import com.p2p.controller.back.SendMailUtil;
 import com.p2p.controller.back.UtilController;
 import com.p2p.pojo.AuthebDetais;
 import com.p2p.pojo.Redmoney;
+import com.p2p.pojo.Role;
 import com.p2p.pojo.Setupnatice;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Userinfo;
@@ -41,6 +42,7 @@ import com.p2p.service.front.UserInfoService;
 import com.p2p.util.AddressUtils;
 import com.p2p.util.DateUtils;
 import com.p2p.util.IpChecker;
+import com.p2p.util.PageInfo;
 /**
  * 关于前台用户相关操作的controller
  * 2017-11-16
@@ -523,4 +525,19 @@ public class IUserController {
 		return "views/front/user/email_success";
 	}
 	
+	@RequestMapping(value="selectiUserList")
+	@ResponseBody
+	public PageInfo selectiUserList(Integer page, Integer rows,User user) {
+       Integer pageSize = 0;
+		
+		//得到总的页数
+		//Integer count = roleService.roleCount();
+		
+		PageInfo pageInfo = new PageInfo(pageSize,rows);
+		Map<String,Object> map = new HashMap<String,Object>();
+		pageInfo.setCondition(map);
+		iUserService.selectPage(pageInfo,user);
+		pageInfo.setTotal(pageInfo.getTotal());
+		return pageInfo;
+	}
 }

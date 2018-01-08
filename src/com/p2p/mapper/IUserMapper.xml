@@ -95,4 +95,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		    u.u_id=#{uid}
  		</where>
  	</update>
+ 	<!-- 查询提现的总记录数 -->
+    <select id="userCount" resultType="java.lang.Integer">
+        select count(*) from user;
+    </select>
+    <!-- 查询提现的总记录数 -->
+    <select id="selectPage" resultMap="BaseResultMap">
+        select * from user;
+    </select>
 </mapper>
