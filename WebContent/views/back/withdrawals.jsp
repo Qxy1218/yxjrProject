@@ -15,9 +15,107 @@
 <jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
 <script type="text/javascript" src="/Finances/statics/back/static/js/laydate.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery.form.js"></script>
+<script src="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<link href="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#editForm')
+        .bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+            	wmoney: {
+                    message: '提现金额验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '提现金额不能为空'
+                         }
+                        
+                    }
+                },
+                wtime: {
+                    message: '提现时间验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '提现时间不能为空'
+                         }
+                        
+                    }
+                },
+                wmoneytowhere: {
+                    message: '提现去向验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '提现去向不能为空'
+                         }
+                        
+                    }
+                },
+                wstatus: {
+                    message: '状态验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '状态不能为空'
+                         }
+                        
+                    }
+                },
+                wfee: {
+                	message: '手续费验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '手续费不能为空'
+                        }
+                    }
+                }
+            }
+        }).on('success.form.bv', function(e) {
+        	
+        	$("#editForm").modal('hide');
+        	$("#editImg").modal('hide');
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+            var form = new FormData(document.getElementById("editForm"));
+            var wid =$("#editForm #wid").val();
+            var uid =$("#editForm #uid").val();
+            if(wid==null || wid==""){
+            	$.ajax({
+       	          url:"${pageContext.request.contextPath}/back/admin/insertWithdrawals",
+       	          type:"post",
+       	          data:form,
+       	          processData:false,
+       	          contentType:false,
+       	          success:function(data){
+       	        	//后台返回int类型的数据
+       					if(data>0){
+       						//新增成功，下面是后台框架的提示
+       						parent.layer.alert('增加成功');
+       					}else{
+       						//新增失败
+       						parent.layer.alert('增加失败');
+       					}
+       					$('#tb_role').bootstrapTable('refresh');
+       	          },
+       	          error:function(e){
+       	        	parent.layer.alert('错误');
+       	       }
+                });
+               	
+               }
+           });
+   });
+</script>
 <script  type="text/javascript" >
-
-
     var rows = null;
     function addRole(){
     	//清空editModel原来填写的内容
@@ -33,37 +131,7 @@
 		//显示新增窗口
 		$('#editImg').modal('show');
     }
-  //新增轮播图
-	function insertWith() {
-		//用来关闭新增窗口***********
-		$("#editImg").modal('hide');
-	  
-		 var form = new FormData(document.getElementById("editForm"));
-	      $.ajax({
-	          url:"${pageContext.request.contextPath}/back/admin/insertWithdrawals",
-	          type:"post",
-	          data:form,
-	          processData:false,
-	          contentType:false,
-	          success:function(data){
-	        	//后台返回int类型的数据
-					if(data>0){
-						//新增成功，下面是后台框架的提示
-						parent.layer.alert('增加成功');
-					}else{
-						//新增失败
-						parent.layer.alert('增加失败');
-					}
-					//新增完刷新表格数据
-					$('#tb_role').bootstrapTable('refresh');
-	          },
-	          error:function(e){
-	              alert("错误！！");
-	          }
-	      });        
-
-  }
-	
+  
 	//删除按钮事件
 	//*************************************************************************按钮事件
 	function btn_delete(){
@@ -265,6 +333,7 @@
 							<div class="form-group">
 							<label for="urlName" class="control-label col-sm-3">用户id</label> 
 							<div class="col-sm-8">
+								
 								<select class="form-control m-b" id="uid" name="uid" style="margin-bottom: 0px;">
 		                        	<c:forEach items="${uselist}" var="userlevel" >
 		                        		<option value="${userlevel.uid}">${userlevel.uiname}</option>
@@ -309,10 +378,10 @@
 			</form>		
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">
+					<button type="submit" class="btn btn-default" data-dismiss="modal">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
 					</button>
-					<button type="button" id="btn_submit" class="btn btn-primary" >
+					<button type="submit" id="btn_submit" class="btn btn-primary" >
 						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>提交
 					</button>
 				</div>
