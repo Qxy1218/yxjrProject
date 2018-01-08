@@ -260,6 +260,10 @@
                             </li>
                             <li>
 
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/video.jsp">视频管理</a>
+                            </li>
+                            <li>
+
                                 <a class="J_menuItem" href="${pageContext.request.contextPath}/back/toRedmoney">红包管理</a>
                             </li>
                              <li>

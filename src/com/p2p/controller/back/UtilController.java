@@ -162,7 +162,7 @@ public class UtilController {
   
             fName = fileName.substring(0,fileName.lastIndexOf("."));  
             Date now = new Date();  
-            fName = fName + "_"  +now.getTime();  
+            fName = "yxry" + "_"  +now.getTime();  
             fName =  fName  + suffix;  
         }  
         File targetFile = new File(path, fName);    

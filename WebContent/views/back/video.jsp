@@ -28,7 +28,7 @@
 		                validating: 'glyphicon glyphicon-refresh'
 		            },
 		            fields: {
-		            	abname: {
+		            	vname: {
 		            		message: '名称验证失败',
 		                    validators: {
 		                    	 notEmpty: {
@@ -41,7 +41,7 @@
 		                         },
 		                    }
 		                },		           
-		                abimage: {
+		                vimgurl: {
 		                	message: '图片验证失败',
 		                    validators: {
 		                        notEmpty: {
@@ -50,21 +50,13 @@
 		                    }
 		                },
 		       
-		                abintroduce: {
-		                	message: '介绍验证失败',
+		                vvurl: {
+		                	message: '视频验证失败',
 		                    validators: {
 		                    	 notEmpty: {
-		                             message: '介绍不能为空'
+		                             message: '视频不能为空'
 		                         }
 		                        
-		                    }
-		                },
-		                abremark: {
-		                	message: '备注失败',
-		                    validators: {
-		                        notEmpty: {
-		                            message: '备注不能为空'
-		                        }
 		                    }
 		                }
 		            }
@@ -81,13 +73,12 @@
 		            // Get the BootstrapValidator instance
 		            var bv = $form.data('bootstrapValidator');
 		            var form = new FormData(document.getElementById("editRole"));
-		            var abid =$("#newsform #abid").val();
-		            var abid =$("#newsform #abid").val();
-		            if(abid==null || abid==""){
-		            	insertAbout();
+		            var vid =$("#newsform #vid").val();
+		            if(vid==null || vid==""){
+		            	insertVideo();
 		            	
 		            }else{
-		            	updateAbout();
+		            	updateVideo();
 		            } 
 		        });
 		});
@@ -97,19 +88,16 @@
 <script  type="text/javascript">
     var rows = null;
     
-    function addAbout(){
+    function addVideo(){
     	//清空editModel原来填写的内容
-		$("#aboutform #abname").val(''),
-		//$("#newsform #abimage").val(''),
-		$("#aboutform #abintroduce").val(''),
-		$("#aboutform #abremark").val(''),
+		$("#aboutform #vname").val(''),
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
 		//$("#isave").attr("onclick","insertAbout()");
 		//显示新增窗口
 		$('#newsform').modal('show');
     }
   //新增角色
-	function insertAbout() {
+	function insertVideo() {
 		//表单验证
 		//alert(123);
 		/* if (!validateForm($("#editForm"))) {
@@ -122,7 +110,7 @@
 				var formdata = new FormData(formobj);
 				
 				$.ajax({
-					url:  "${pageContext.request.contextPath }/back/admin/insertAbout",
+					url:  "${pageContext.request.contextPath }/back/admin/insertVideo",
 				    type: 'POST',
 				    cache: false,
 				    data: formdata,
@@ -149,7 +137,7 @@
 		
 	}
 	//修改按钮事件
-     function UpAbout(){
+     function UpVideo(){
     	//获取当前选中行的信息
  		var selectList = $('#tb_role').bootstrapTable('getSelections');
  		//判断有没有选中
@@ -164,18 +152,15 @@
  		}
  		var athRole = selectList[0];
  		//把选中行的数据放到弹窗的控件中
- 		$("#aboutform #abid").val(athRole.abid);
- 		$("#aboutform #abname").val(athRole.abname);
- 		//$("#aboutform #abimage").val(athRole.abimage);
- 		$("#aboutform #abintroduce").val(athRole.abintroduce);		
- 		$("#aboutform #abremark").val(athRole.abremark);
+ 		$("#aboutform #vid").val(athRole.vid);
+ 		$("#aboutform #vname").val(athRole.vname);
  		
  		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
  		//$("#isave").attr("onclick","updateAbout()");
  		//显示新增窗口
  		$('#newsform').modal('show');
      }
-	function updateAbout(){
+	function updateVideo(){
 		//用来关闭新增窗口***********
 		$("#newsform").modal('hide');
 	    
@@ -183,7 +168,7 @@
 			var formdata = new FormData(formobj);
 			
 			$.ajax({
-				url:  "${pageContext.request.contextPath }/back/admin/updateAbout",
+				url:  "${pageContext.request.contextPath }/back/admin/updateVideo",
 			    type: 'POST',
 			    cache: false,
 			    data: formdata,
@@ -207,10 +192,10 @@
 	//删除按钮事件
 	//*************************************************************************按钮事件
 	function btn_delete(){
-		deleteabout();
+		deleteVideo();
 	}
 	//删除
-	function deleteabout(){
+	function deleteVideo(){
 		//获取当前选中行的信息
 		var stuList = $('#tb_role').bootstrapTable('getSelections');
 		var ids = "";
@@ -222,12 +207,12 @@
 		//拼接ids  1,2,3,4  用于批量删除
 		for(var i =0 ;i<stuList.length;i++){
 			if(i!=stuList.length-1){
-				ids = ids +stuList[i].abid+",";
+				ids = ids +stuList[i].vid+",";
 			}else{
-				ids = ids +stuList[i].abid;
+				ids = ids +stuList[i].vid;
 			}
 		}
-		var url = "${pageContext.request.contextPath }/back/admin/deleteAbout";
+		var url = "${pageContext.request.contextPath }/back/admin/deleteVideo";
 		$.post(
 			url,
 			{
@@ -259,7 +244,7 @@
 		 //先销毁表格  
         $('#tb_role').bootstrapTable('destroy');  
 		$('#tb_role').bootstrapTable({
-			url : '${pageContext.request.contextPath}/back/admin/selectAboutList', //请求后台的URL（*）
+			url : '${pageContext.request.contextPath}/back/admin/selectVideoList', //请求后台的URL（*）
 			method : 'post', //请求方式（*）
 			contentType: "application/x-www-form-urlencoded",
 			toolbar : '#toolbar', //工具按钮用哪个容器
@@ -290,20 +275,17 @@
 			columns : [ {
 				checkbox : true,
 			}, {
-				field : 'abid',
+				field : 'vid',
 				title : '编号'
 			}, {
-				field : 'abname',
+				field : 'vname',
 				title : '名称'
 			}, {
-				field : 'abimage',
+				field : 'vimgurl',
 				title : '图片'
 			},  {
-				field : 'abintroduce',
-				title : '介绍',				
-			},{
-				field : 'abremark',
-				title : '备注',			
+				field : 'vvurl',
+				title : '视频',				
 			},]
 		});
 		
@@ -314,10 +296,9 @@
 			//***这里的参数传到后台，用来进行分页处理*************************
 			rows: params.limit, //页面大小
 			page: params.offset, //页码
-			abname:$("#newsform #abname").val(),
-			abimage:$("#newsform #abimage").val(),
-			abintroduce:$("#newsform #abintroduce").val(),
-			abremark:$("#newsform #abremark").val(),
+			abname:$("#newsform #vname").val(),
+			abimage:$("#newsform #vimgurl").val(),
+			abintroduce:$("#newsform #vvurl").val(),
 		};
 		return temp;
 	};
@@ -340,23 +321,15 @@
 							<div class="form-group">
 		            			<label for="incomeTypes" class="control-label col-sm-1">名称</label>
 								<div class="col-sm-2">
-									<input type="text" name="abname" class="form-control" id="abname">
-		            			</div>
-		            			<label for="operateTime" class="control-label col-sm-1">介绍</label>
-		            			<div class="col-sm-2">
-	            					<input type="text" name="abintroduce" class="form-control" id="abintroduce">
-	            				</div>
-		            			<label for="operateTime" class="control-label col-sm-1">备注</label>
-		            			<div class="col-sm-2">
-	            					<input type="text" name="abremark" class="form-control" id="abremark">
-	            				</div>
+									<input type="text" name="vname" class="form-control" id="vname">
+		            			</div>		            
 				                <button type="button" id="searchForm" class="btn btn-primary" onclick="searchForm()">搜索</button>
 							</div>
 						<div id="toolbar" class="btn-group">
-							<button id="btn_add" type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#addStudent" onclick="addAbout();">
+							<button id="btn_add" type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#addStudent" onclick="addVideo();">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
 							</button>
-							<button id="btn_edit" type="button" class="btn btn-w-m btn-success" onclick="UpAbout();">
+							<button id="btn_edit" type="button" class="btn btn-w-m btn-success" onclick="UpVideo();">
 								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 							</button>
 							<button id="btn_delete" type="button" class="btn btn-w-m btn-danger" onclick="btn_delete();">
@@ -394,7 +367,8 @@
 						<div class="form-group">
 							<label for="urlName" class="control-label col-sm-3">名称</label> 
 							<div class="col-sm-8">
-								<input type="text" name="abname" class="form-control" id="abname">
+								<input type="text" name="vname" class="form-control" id="vname">
+								<input type="hidden" name="vid" id="vid">
 							</div>
 						</div>
 						<div class="form-group">
@@ -463,7 +437,7 @@
 				    // 图片最大宽度  
 				    var maxWidth = 300;
 				    // 最大上传图片数量  
-				    var maxCount = 6;
+				    var maxCount = 1;
 				    $('.js_file').on('change', function(event) {
 				        var files = event.target.files;
 				
@@ -561,17 +535,11 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="urlName" class="control-label col-sm-3">介绍</label> 
+							<label for="urlName" class="control-label col-sm-3">视频</label> 
 							<div class="col-sm-8">
 								 
-								 <input type="text" name="abintroduce"  class="form-control" id="abintroduce">
+								 <input type="file" name="upfile"  class="form-control" id="upfile">
 								 
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="urlName" class="control-label col-sm-3">备注</label> 
-							<div class="col-sm-8">
-								<input type="text" name="abremark" class="form-control" id="abremark">
 							</div>
 						</div>
 				</div>
