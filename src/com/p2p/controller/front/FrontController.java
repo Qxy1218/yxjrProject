@@ -36,6 +36,7 @@ import com.p2p.service.front.UserbackcardService;
 import com.p2p.util.ContextUtils;
 import com.p2p.util.DateUtils;
 import com.p2p.util.Page;
+import com.p2p.util.YieldUtil;
 
 /**
  * 开发人:杨嘉辉
@@ -100,8 +101,6 @@ public class FrontController {
 		List<Fabiao> fabiaolist = new ArrayList<Fabiao>();
 		 if (pageNow != null) {  
 	        page = new Page(totalCount,pageNow);  
-	        //现在模拟为两页
-	        page.setPageSize(2);
 	        fabiaolist = this.fabiaoService.selectProductsByPage(page.getStartPos(), page.getPageSize(),null);  
 	     } else {  
 	        page = new Page(totalCount, 1);  
@@ -150,6 +149,13 @@ public class FrontController {
 			//取两个时间的天数 
 			int aa = DateUtils.differentDays(date3, date2);
 			fabiao.setRematime(aa);
+			
+			//取投资万元收益
+			String type = fabiao.getFrepayment();
+			double syl = (fabiao.getFroe().add(fabiao.getFincrease())).doubleValue();
+			if(type!=null && !type.equals("")) {
+				fabiao.setYield(YieldUtil.getYield(fabiao.getFhuanstat(), fabiao.getFhuanend(), syl,10000,type));
+			}
 			fabiaolists.add(fabiao);
 		}
 
@@ -236,6 +242,13 @@ public class FrontController {
 				//取两个时间的天数 
 				int aa = DateUtils.differentDays(date3, date2);
 				fabiao.setRematime(aa);
+				
+				//取投资万元收益
+				String type = fabiao.getFrepayment();
+				double syl = (fabiao.getFroe().add(fabiao.getFincrease())).doubleValue();
+				if(type!=null && !type.equals("")) {
+					fabiao.setYield(YieldUtil.getYield(fabiao.getFhuanstat(), fabiao.getFhuanend(), syl,10000,type));
+				}
 				acds.add(fabiao);
 			}
 			//爱车贷
@@ -314,6 +327,14 @@ public class FrontController {
 				//取两个时间的天数 
 				int aa = DateUtils.differentDays(date3, date2);
 				fabiao.setRematime(aa);
+				
+				//取投资万元收益
+				String type = fabiao.getFrepayment();
+				double syl = (fabiao.getFroe().add(fabiao.getFincrease())).doubleValue();
+				if(type!=null && !type.equals("")) {
+					fabiao.setYield(YieldUtil.getYield(fabiao.getFhuanstat(), fabiao.getFhuanend(), syl,10000,type));
+				}
+				
 				afds.add(fabiao);
 			}
 			//爱房贷
@@ -391,6 +412,15 @@ public class FrontController {
 				//取两个时间的天数 
 				int aa = DateUtils.differentDays(date3, date2);
 				fabiao.setRematime(aa);
+				
+				//取投资万元收益
+				String type = fabiao.getFrepayment();
+				double syl = (fabiao.getFroe().add(fabiao.getFincrease())).doubleValue();
+				if(type!=null && !type.equals("")) {
+					fabiao.setYield(YieldUtil.getYield(fabiao.getFhuanstat(), fabiao.getFhuanend(), syl,10000,type));
+				}
+				
+				
 				xfjjs.add(fabiao);
 			}		
 			//消费金融
@@ -469,6 +499,14 @@ public class FrontController {
 			//取两个时间的天数 
 			int aa = DateUtils.differentDays(date3, date2);
 			fabiao.setRematime(aa);
+			
+			//取投资万元收益
+			String type = fabiao.getFrepayment();
+			double syl = (fabiao.getFroe().add(fabiao.getFincrease())).doubleValue();
+			if(type!=null && !type.equals("")) {
+				fabiao.setYield(YieldUtil.getYield(fabiao.getFhuanstat(), fabiao.getFhuanend(), syl,10000,type));
+			}
+			
 			agys.add(fabiao);
 		}
 		//爱公益

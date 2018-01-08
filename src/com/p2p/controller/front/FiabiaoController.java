@@ -22,6 +22,7 @@ import com.p2p.pojo.ProjectSelect;
 import com.p2p.service.front.FabiaoService;
 import com.p2p.util.ContextUtils;
 import com.p2p.util.DateUtils;
+import com.p2p.util.YieldUtil;
 
 @Controller
 public class FiabiaoController {
@@ -39,12 +40,8 @@ public class FiabiaoController {
 		SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
 		Date date3 = format2.parse(time);
 		
-		
 		Fabiao fabiao = new Fabiao();
 		fabiao.setFid(Integer.parseInt(pid));
-		
-		
-		
 		
 		Fabiao thisfb =  fabiaoService.getModel(fabiao);
 		//取完成率
@@ -59,8 +56,16 @@ public class FiabiaoController {
 		int aa = DateUtils.differentDays(date3, date2);
 		thisfb.setRematime(aa);
 		
-		//规定还款期限的日期格式
-		thisfb.setFendtime(format.format(new Date()));
+		//取投资万元收益
+		String type = thisfb.getFrepayment();
+		double syl = (thisfb.getFroe().add(thisfb.getFincrease())).doubleValue();
+		if(type!=null && !type.equals("")) {
+			thisfb.setYield(YieldUtil.getYield(thisfb.getFhuanstat(), thisfb.getFhuanend(), syl,10000,type));
+		}
+		
+		//规定还款日期格式
+		 Date dd =  format.parse(thisfb.getFhuanstat());
+		 thisfb.setFhuanstat(format.format(dd));
 		
 		model.addAttribute("thisfb", thisfb);
 		return "views/front/product";
@@ -120,6 +125,14 @@ public class FiabiaoController {
 			//取两个时间的天数 
 			int aa = DateUtils.differentDays(date3, date2);
 			fabiao.setRematime(aa);
+			
+			//取投资万元收益
+			String type = fabiao.getFrepayment();
+			double syl = (fabiao.getFroe().add(fabiao.getFincrease())).doubleValue();
+			if(type!=null && !type.equals("")) {
+				fabiao.setYield(YieldUtil.getYield(fabiao.getFhuanstat(), fabiao.getFhuanend(), syl,10000,type));
+			}
+			
 			fabiaolists.add(fabiao);
 		}
 		 //项目直投

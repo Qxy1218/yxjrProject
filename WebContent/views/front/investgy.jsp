@@ -227,7 +227,7 @@
                             </div>
                         </div>
                         <c:if test="${fabiaos.fstatus==1}">
-                        	<p class="m2-invItem-det" style="text-indent:20px;">投资万元预期收益：<span>64.10元</span></p>
+                        	<p class="m2-invItem-det" style="text-indent:20px;">投资万元预期收益：<span>${fabiaos.yield}元</span></p>
                         	<p class="m2-invItem-det">投资起点金额：<span style="color:#ff6666;">${fabiaos.fminmoney}元</span></p>
                      	 </c:if>
                      	 <c:if test="${fabiaos.fstatus==2}">
@@ -492,7 +492,7 @@
          		 }
          		 cc+='</div></div>'
          		if(item.fstatus==1){
-         			cc += '<p class="m2-invItem-det" style="text-indent:20px;">投资万元预期收益：<span>64.10元</span></p>'
+         			cc += '<p class="m2-invItem-det" style="text-indent:20px;">投资万元预期收益：<span>'+item.yield+'元</span></p>'
          			cc += '	<p class="m2-invItem-det">投资起点金额：<span style="color:#ff6666;">'+item.fminmoney+'元</span></p>'
          		 }
          		 if(item.fstatus==2){

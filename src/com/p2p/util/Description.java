@@ -20,7 +20,7 @@ import java.util.Map;
  * 然后平均分摊到还款期限的每个月中。作为还款人，每个月还给银行固定金额，但每月还款额中的本金比重逐月递增、利息比重逐月递减。  
  */  
   
-public class Demomain {  
+public class Description {  
   
     /**  
      * 等额本息计算获取还款方式为等额本息的每月偿还本金和利息  
@@ -140,7 +140,7 @@ public class Demomain {
      */  
     public static void main(String[] args) {  
         double invest = 20000; // 本金  
-        int month = 12;  
+        int month = 1;  
         double yearRate = 0.15; // 年利率  
         double perMonthPrincipalInterest = getPerMonthPrincipalInterest(invest, yearRate, month);  
         System.out.println("等额本息---每月还款本息：" + perMonthPrincipalInterest);  

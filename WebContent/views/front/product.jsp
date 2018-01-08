@@ -370,7 +370,7 @@
 	                        <span class="m2-detItempsg-nor">产品金额</span>
 	                    </li>
 	                    <li>
-	                        <span class="m2-detItempsg-sma">还款日期：${thisfb.fendtime}</span>
+	                        <span class="m2-detItempsg-sma">还款日期：${thisfb.fhuanstat}</span>
 	                    </li>
 	                </ul>
 	                <div class="m2-detPro">
@@ -381,12 +381,12 @@
 	                        <span>${thisfb.compnrate}</span>
 	                    </div>
 	                    <div class="m2-detProdet">
-	                        <span class="m2-detProdet-lef">投资万元预期收益：<span>64.11元</span></span>
+	                        <span class="m2-detProdet-lef">投资万元预期收益：<span>${thisfb.yield}元</span></span>
 	                        <a href="/member-contract-project-id-11606.shtml" class="m2-detProdet-rig" target='_blank'>项目合同范本<i></i></a>
 	                    </div>
 	                </div>
 	                <div class="m2-detItemlef-bot">
-	                    <a href="javascript:void(0)" class="m2-detIetmbot2" title='担保措施：车辆质押（押车押手续）' style='margin-right: 24px;'><i></i>担保措施</a>                    <a href="javascript:void(0)" class="m2-detIetmbot3" style='margin-right: 0px;' title='还款方式：按日计息，到期还本息'>
+	                    <a href="javascript:void(0)" class="m2-detIetmbot2" title='担保措施：${thisfb.fsecuritymea}' style='margin-right: 24px;'><i></i>担保措施</a>                    <a href="javascript:void(0)" class="m2-detIetmbot3" style='margin-right: 0px;' title='还款方式：${thisfb.frepayment}'>
 	                    <i></i>还款方式</a>
 	                </div>
 	            </div>
@@ -394,12 +394,12 @@
 	        <div class="m2-detItemrig"  style="display:none;">
 	            <div class="m2-detRig-unlogin m2-detRig-select">
 	                <div class="m2-detRiglogin">
-	                    <p class="mo2-proNewdet">可投金额：<span id='left_money'>12,700.00                                元 </span></p>
+	                    <p class="mo2-proNewdet">可投金额：<span id='left_money'>${ thisfb.fmoney-thisfb.fendmoney }                             元 </span></p>
 	                    <p>徽商账户余额：0元<a style="color: #09c;float: right;margin-right: 30px;" href='#?chargereturnurl=/invest-borrownew-id-moxOeTwTZaOw8TY79g.shtml' target="_blank">充值</a>
 	                    </p>
 	                </div>
 	                <div class="m2-detRigipt">
-	                    <input placeholder="100元起投" type="text" id="invest_money"> <span  class='invest_all'>全投</span>
+	                    <input placeholder="${thisfb.fminmoney}元起投" type="text" id="invest_money"> <span  class='invest_all'>全投</span>
 	                </div>
 	                <div class="m2-detRigjust">
 	                    <b class="m2-detRigjust-btn"></b>
@@ -478,13 +478,7 @@
 		                     1.平台上发布的质押车辆，车辆手续齐全，借款人信息实名认证，专业团队实地评估车辆性能与价格、借款人信用情况；
 		                     2.采用车贷业内安全级别最高的风控手段——押车押手续，车辆入库保管，车场设有屏蔽器，互联网监控设备，车辆手续存入保险柜。根据不同城市车市值存在差价以及冷热门车，设置的质押率控制在估值的85%以内；大额度车辆要求质押并过户抵押；
 		                     3.项目到期由担保公司进行债权回购。</p>-->
-		            <p style='font-size: 14px;line-height: 26px;'>产品金额为8.62万元。借款人的信用良好。
-		                质押车辆基本信息：
-		                车辆型号：迈锐宝
-		                车辆购买时间：2014-07-23
-		                公里数：31986公里
-		                二手市场评估价格：17.5万
-		                车辆是否有贷款：是</p>
+		            <p style='font-size: 14px;line-height: 26px;'>${thisfb.fcontent}</p>
 		        </div>
 		        <div class="m2-detSec-toggle">
 		            <!--<span class="m2-detSec-down">展开<i></i></span>
@@ -504,10 +498,7 @@
 		                                    公里数：31986公里
 		                                   二手市场评估价格：17.5万
 		                                   车辆是否有贷款：是</p>-->
-		            <p style='font-size: 14px;line-height: 26px;'>“爱车贷-汽车质押贷款”是爱钱帮在汽车金融垂直领域的新产品，联手线下专业车贷团队，为投资人提供期限1至3个月的优质短期投资项目。
-		                1.平台上发布的质押车辆，车辆手续齐全，借款人信息实名认证，专业团队实地评估车辆性能与价格、借款人信用情况；
-		                2.采用车贷业内安全级别最高的风控手段——押车押手续，车辆入库保管，车场设有屏蔽器，互联网监控设备，车辆手续存入保险柜。根据不同城市车市值存在差价以及冷热门车，设置的质押率控制在估值的85%以内；大额度车辆要求质押并过户抵押；
-		                3.项目到期由担保公司进行债权回购。</p>
+		            <p style='font-size: 14px;line-height: 26px;'>${thisfb.fsituation}</p>
 		        </div>
 		        <div class="m2-detSec-toggle">
 		            <span class="m2-detSec-down">展开<i></i></span>
@@ -539,9 +530,7 @@
 		    <div class="m2-detSit m2-detSection">
 		        <h3>爱钱帮独立意见<i></i></h3>
 		        <div class="m2-detSitbox m2-det-togBox">
-		            <p style='font-size: 14px;line-height: 26px;'>押车押手续的质押方式，属于车贷业务中常见的安全级别较高的风控手段，对于车辆控制的力度较高。借款人的借款周期较短，对于车辆的价格波动影响较小，且爱钱帮设置的质押率控制在85%以内，进一步增加了借款人的综合违约成本。
-		
-		                综上，爱车贷项目的风险性相对可控。</p>
+		            <p style='font-size: 14px;line-height: 26px;'>${thisfb.fopinion}</p>
 		        </div>
 		        <div class="m2-detSec-toggle">
 		            <span class="m2-detSec-down">展开<i></i></span>
@@ -592,15 +581,7 @@
 		    <div class="m2-detSit m2-detSection">
 		        <h3>风控措施<i></i></h3>
 		        <div class="m2-detSitbox m2-det-togBox">
-		            <p style='font-size: 14px;line-height: 26px;'>1.车辆经过验车后，已质押入库，详情可参考照片。
-		                2.车辆证件手续已落实质押：
-		                车主身份证：已核实并留存复印件
-		                机动车行驶证：原件已提交质押
-		
-		                车钥匙：钥匙已提交质押
-		
-		                综上，已办理押车押手续的质押手续，借款人已签署《逾期买卖委托书》和《车辆买卖协议》，当借款人出现未能按时还款的情形，平台公司和线下合作公司可自行或委托第三方直接处理该车辆。
-		                爱钱帮为爱车贷项目设置了10%的风险保证金。</p>
+		            <p style='font-size: 14px;line-height: 26px;'>${thisfb.fsecurity}</p>
 		        </div>
 		        <div class="m2-detSec-toggle">
 		            <span class="m2-detSec-down">展开<i></i></span>
