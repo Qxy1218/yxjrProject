@@ -100,12 +100,20 @@ public class Fabiao implements Serializable{
 	@TableField("f_securitymea")
 	private String fsecuritymea; //担保措施(varchar)
 	
+	@TableField("f_huanstat")
+	private String fhuanstat; //还款开始时间
+	
+	@TableField("f_huanend")
+	private String fhuanend; //还款结束时间
+	
 	
 	private Integer rematime;  //计算剩余时间
 	
 	private String compnrate;  //完成率
 	
 	private BigDecimal yield; //万元收益率
+	
+	
 	
 	
 	public Fabiao() {
@@ -557,9 +565,26 @@ public class Fabiao implements Serializable{
 	}
 
 
-	
 
 
-	
+	public String getFhuanstat() {
+		return fhuanstat;
+	}
+
+
+
+
+	public void setFhuanstat(String fhuanstat) {
+		this.fhuanstat = fhuanstat;
+	}
+
+
+	public String getFhuanend() {
+		return fhuanend;
+	}
+
+	public void setFhuanend(String fhuanend) {
+		this.fhuanend = fhuanend;
+	}
 	
 }
