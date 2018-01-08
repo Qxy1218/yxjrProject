@@ -547,6 +547,8 @@ function dialog(obj){
     }
     $('.m2-userCentercommon-confirm').html(dom);
     $('.m2-userCentercommon-confirm').show();
+    $('#dialog-info-divs1').hide();
+    $('#dialog-info-divs').hide();
     $('.m2-userCentercommon-bg').show();
 }
 
