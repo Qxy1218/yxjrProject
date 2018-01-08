@@ -1,11 +1,15 @@
 package com.p2p.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.p2p.base.IBaseDao;
+import com.p2p.pojo.Employe;
 import com.p2p.pojo.Fabiao;
+import com.p2p.pojo.Indexpic;
 import com.p2p.pojo.ProjectSelect;
 
 public interface FabiaoMapper extends IBaseDao<Integer, Fabiao>{
@@ -30,4 +34,10 @@ public interface FabiaoMapper extends IBaseDao<Integer, Fabiao>{
 		
 		//条件查询
 		List<Fabiao> selectByLike(ProjectSelect rProjectSelect);
+		
+		//实现分页查询
+		List<Fabiao> selectPage(Pagination page,Map<String ,Object> params,@Param(value="fabiao") Fabiao fabiao);
+		
+		//查询总的记录数
+		abstract Integer fabiaoCount();
 }
