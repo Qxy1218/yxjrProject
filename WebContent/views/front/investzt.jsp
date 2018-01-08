@@ -30,6 +30,7 @@
 	
 		<!-- 图形验证码 -->
 	<script src="/Finances/statics/front/js/gVerify.js"></script>
+
 </head>
 <body>
 	<!-- 右侧边栏 start -->
