@@ -105,7 +105,7 @@ public class Fabiao implements Serializable{
 	
 	private String compnrate;  //完成率
 	
-	
+	private BigDecimal yield; //万元收益率
 	
 	
 	public Fabiao() {
@@ -148,6 +148,20 @@ public class Fabiao implements Serializable{
 		this.fsecuritymea = fsecuritymea;
 		this.rematime = rematime;
 		this.compnrate = compnrate;
+	}
+
+
+
+
+	public BigDecimal getYield() {
+		return yield;
+	}
+
+
+
+
+	public void setYield(BigDecimal yield) {
+		this.yield = yield;
 	}
 
 
