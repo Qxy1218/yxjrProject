@@ -30,6 +30,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		  <result column="f_procedures" property="fprocedures"/>
  		  <result column="f_repayment" property="frepayment"/>
  		  <result column="f_securitymea" property="fsecuritymea"/>
+ 		  <result column="f_huanstat" property="fhuanstat"/>
+ 		  <result column="f_huanend" property="fhuanend"/>
+ 		  
 </resultMap>
 	<select id="getModel" parameterType="com.p2p.pojo.Fabiao" resultMap="BaseResultMap">
  		select * from fabiao 
@@ -61,13 +64,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		<if test="fsecurity!=null">and f_security=#{fsecurity}</if>
 		  		<if test="fprocedures!=null">and f_procedures=#{fprocedures}</if>
  				<if test="frepayment!=null">and f_repayment=#{frepayment}</if>
+ 				<if test="fhuanstat!=null">and f_huanstat=#{fhuanstat}</if>
+ 				<if test="fhuanend!=null">and f_huanend=#{fhuanend}</if>
  		</where>
  	</select>
  	
  	<!-- 发标添加 -->
 	<insert id="addModel" useGeneratedKeys="true" keyProperty="fid">
- 		 insert into fabiao(f_title,u_id,f_code,f_type,f_part,f_roe,f_increase,f_content,f_situation,f_opinion,f_money,f_endmoney,f_endtime,f_minmoney,f_maxmoney,f_rate,f_image,f_orderimg,f_contract,f_bidstatus,f_status,f_securitymea,f_security,f_procedures,f_repayment) 
- 		 values(#{ftitle},#{uid},#{fcode},#{ftype},#{fpart},#{froe},#{fincrease},#{fcontent},#{fsituation},#{fopinion},#{fmoney},#{fendmoney},#{fendtime},#{fminmoney},#{fmaxmoney},#{frate},#{fimage},#{forderimg},#{fcontract},#{fcontract},#{fbidstatus},#{fstatus},#{fsecuritymea},#{fsecurity},#{fprocedures},#{frepayment})
+ 		 insert into fabiao(f_title,u_id,f_code,f_type,f_part,f_roe,f_increase,f_content,f_situation,f_opinion,f_money,f_endmoney,f_endtime,f_minmoney,f_maxmoney,f_rate,f_image,f_orderimg,f_contract,f_bidstatus,f_status,f_securitymea,f_security,f_procedures,f_repayment,f_huanstat,f_huanend) 
+ 		 values(#{ftitle},#{uid},#{fcode},#{ftype},#{fpart},#{froe},#{fincrease},#{fcontent},#{fsituation},#{fopinion},#{fmoney},#{fendmoney},#{fendtime},#{fminmoney},#{fmaxmoney},#{frate},#{fimage},#{forderimg},#{fcontract},#{fcontract},#{fbidstatus},#{fstatus},#{fsecuritymea},#{fsecurity},#{fprocedures},#{frepayment},#{fhuanstat},#{fhuanend})
  	</insert>
  	
  	<!-- 发标删除 -->
@@ -105,7 +110,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		<if test="fsecurity!=null">and f_security=#{fsecurity},</if>
 		  		<if test="fprocedures!=null">and f_procedures=#{fprocedures},</if>
  				<if test="frepayment!=null">and f_repayment=#{frepayment},</if>
- 				<if test="fstrattime!=null">and f_strattime=#{fstrattime},</if>
+ 				<if test="fsecuritymea!=null">and f_securitymea=#{fsecuritymea},</if>
+ 				<if test="fhuanstat!=null">and f_huanstat=#{fhuanstat},</if>
+ 				<if test="fhuanend!=null">and f_huanend=#{fhuanend},</if>
  		</trim>
 			
 		<where>
@@ -264,6 +271,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		<if test="fsecurity!=null">and f_security=#{fsecurity}</if>
 		  		<if test="fprocedures!=null">and f_procedures=#{fprocedures}</if>
  				<if test="frepayment!=null">and f_repayment=#{frepayment}</if>
+ 				<if test="fhuanstat!=null">and f_huanstat=#{fhuanstat}</if>
  		</where>
 	</select>
 	<!-- 后台表总记录数查询 -->
