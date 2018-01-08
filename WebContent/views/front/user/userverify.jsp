@@ -29,13 +29,6 @@
     <!-- 图形验证码 -->
 	<script src="/Finances/statics/front/js/gVerify.js"></script>
 	
-	<!-- 弹出框 -->
-	<!--  
-		<script src="/Finances/statics/front/js/jquery-1.7.1.min.js"></script>
-	-->
-	<script src="/Finances/statics/front/js/ui.js"></script>
-	<link href="/Finances/statics/front/css/style.css" rel="stylesheet" />
-	
 	<!-- 美化按钮  -->
 	<link href="/Finances/statics/front/css/beautify-bar.css" rel="stylesheet" />
 </head>
@@ -326,7 +319,7 @@
     <!-- 需要具体实现的js(修改验证的ajax) -->
     <script type="text/javascript" src="<%=path %>/statics/front/js/useraccount.js"></script>
     <!-- 获取日期 -->
-    <script type="text/javascript" src="<%=path %>//statics/back/static/js/laydate.js"></script>
+    <script type="text/javascript" src="<%=path %>/statics/back/static/js/laydate.js"></script>
 	    
 	    <!-- 获取上传文件名 -->
 	    <script type="text/javascript">
