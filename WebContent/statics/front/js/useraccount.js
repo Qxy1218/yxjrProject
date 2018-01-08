@@ -15,7 +15,7 @@ $(function(){
     setVerifyStatus();  //安全级别
     bindphone();  //手机号码
     setPassword();  //修改登录密码
-    setAddress();  //添加联系地址
+    setBaseinfo();  //完善(修改)基本信息
     verifyemail();   //电子邮箱
     //hsChangePassWord();  //微商交易密码
     setDealPassword();  //微商交易密码
@@ -47,7 +47,7 @@ $('#uiopenstatuses').click(function(){
 });
 function setVerifyStatus(){
     var id_status = 0;  //徽商存管账户
-    var address_status = 0;  //联系地址
+    var base_info = 0;  //基本信息
     var email_status = 0;  //电子邮箱
     var phone_status = 0;  //手机号码
     var dealpwd = 0;  //交易密码
@@ -89,6 +89,18 @@ function setVerifyStatus(){
             j++;
         }
     });
+    
+    //获取用户基本信息(判断是否填写完整)
+    var sex = $("#getValueSex").val();
+    var uibirthday = $("#uibirthday").val();
+    var name = $("#uiname").val();
+    var pvid = $('#lmkselect1').val();
+    var cyid = $('#lmkselect2').val();
+    var aeid = $('#lmkselect3').val();
+    if((sex=="男" || sex=="女") && name!=null && uibirthday!=null && pvid!=null && cyid!=null && aeid!=null){
+    	base_info = 1;
+    }
+    
     if(id_status == 1){
         $('#id_status').removeClass('m2-userSettingsaut-fal');
         $('#id_status').addClass('m2-userSettingsaut-tur');
@@ -121,11 +133,11 @@ function setVerifyStatus(){
         $('#email_status').html('<b></b>已验证');
         $('#email_status').next('span').find('a').text('修改');
     }
-    if(address_status == 1){
-        $('#address_status').removeClass('m2-userSettingsaut-fal');
-        $('#address_status').addClass('m2-userSettingsaut-tur');
-        $('#address_status').html('<b></b>已添加');
-        $('#address_status').next('span').find('a').text('修改');
+    if(base_info == 1){
+        $('#base_info').removeClass('m2-userSettingsaut-fal');
+        $('#base_info').addClass('m2-userSettingsaut-tur');
+        $('#base_info').html('<b></b>已完善');
+        $('#base_info').next('span').find('a').text('修改');
     }
     if(name_number == 1){
         $('#name_number').removeClass('m2-userSettingsaut-fal');
@@ -282,71 +294,6 @@ function bindphone(){
 			    }
 			});
 		}
-    });
-}
-
-function setAddress(){
-    var flag = false;
-
-    $('.addr_info').keyup(function(){
-        var addrMsg=$(this).attr('id');
-        var addrMsgValue=$(this).val();
-        if(addrMsg == 'addr_consignee'){
-            if(isNaN(addrMsgValue)){
-                $(this).next('span').html('');
-                flag = true;
-            }else{
-                $(this).next('span').html('<em></em>收货人格式不正确。');
-                flag = false;
-            }
-        } else if(addrMsg == 'addr_address'){
-            if(isNaN(addrMsgValue)){
-                $(this).next('span').html('');
-                flag = true;
-            }else{
-                $(this).next('span').html('<em></em>请输入正确的地址。');
-                flag = false;
-            }
-        } else if(addrMsg == 'addr_phone'){
-            re = /^1\d{10}$/;
-            if(re.test(addrMsgValue)){
-                $(this).next('span').html('');
-                flag = true;
-            }else{
-                $(this).next('span').html('<em></em>请输入正确的手机号。');
-                flag = false;
-            }
-        }
-    });
-
-    $('#newaddress-btn').click(function(){
-        if($("#lmkselect1 option:selected").attr("data") == 'all'){
-            return false;
-        }
-        if($("#lmkselect2 option:selected").attr("data") == 'all'){
-            return false;
-        }
-        if($("#lmkselect3 option:selected").attr("data") == 'all'){
-            return false;
-        }
-        if(flag){
-            $.ajax({
-                url:"/usercenter-Accountcontrol-setAddress",
-                type:"POST",
-                data:{
-                    addr_consignee:$('#addr_consignee').val(),
-                    addr_province:$("#lmkselect1 option:selected").text(),
-                    addr_city:$("#lmkselect2 option:selected").text(),
-                    addr_area:$("#lmkselect3 option:selected").text(),
-                    addr_address:$('#addr_address').val(),
-                    addr_phone:$('#addr_phone').val()
-                },
-                success:function(data){
-                    obj = eval('('+data+')');
-                    dialog(obj);
-                }
-            });
-        }
     });
 }
 
@@ -539,7 +486,6 @@ function setDealPassword(){
     });
 }
 
-
 //修改及认证邮箱
 function verifyemail(){
     var flag = false;
@@ -570,12 +516,14 @@ function verifyemail(){
         }
     });
 }
-        
+
+//关闭提示框
 function closeDialog(){
     $('.m2-userCentercommon-confirm').hide();
     $('.m2-userCentercommon-bg').hide();
 }
 
+//打开提示框
 function dialog(obj){
     var dom = '<span class="m2-userCentercommon-confirmClose" onclick="closeDialog()"></span>';
     if(obj['status']==1 || obj['status']==2){
@@ -602,7 +550,7 @@ function dialog(obj){
     $('.m2-userCentercommon-bg').show();
 }
 
-//修改用户名
+//修改用户名(实名认证)
 function changeUserName(){
 	var uiid = $("#vp-uiid").val();
 	var icid = $("#vp-icid").val();
@@ -706,179 +654,29 @@ function userIcidWarn(msg){
     }
 }
 
-//修改交易密码
-function hsChangePassWord(){
-    var t1=0
-    $('#hsvp-textbtn').click(function(){
-    	t2 = Date.now();
-	    if(t2-t1 > 60*1000 ){
-	        t1 = Date.now();
-	        $.ajax({
-	            url:"/Finances/front/getregsendphone",
-	            type:"POST",
-	            data:{
-	            	phone:$('#vp-phonenum').val(),
-	            },
-	            success:function(data){
-	                var obj = eval('('+data+')');
-	                mo2_regTim();
+//完善(修改)基本信息
+function setBaseinfo(){
+    $('#baseinfo-btn').click(function(){
+		$("#uploadForm").ajaxSubmit({  
+	        url:"/Finances/userInfo/updateBaseInfo",  
+	        type:"post",
+	        async:false,  
+	        success:function(data){  
+	        	var obj=new Array();
+	            if(data == 1){
+	                obj['msg']="恭喜你,基本信息修改成功";
+	                obj['status']=1;
 	                dialog(obj);
+	            }else{
+	                obj['msg']="提交信息失败";
+	                obj['status']=0;
+	                dialog(obj);
+	                return;
 	            }
-	        });
-	        if($(this).hasClass('m2-userSettings-telSubmit')){
-	            $(this).removeClass('m2-userSettings-telSubmit');
-	            $(this).addClass('m2-userSettings-telSubmit-disabled');
-	            setTimeout(function(){
-	                $('#hsvp-textbtn').removeClass('m2-userSettings-telSubmit-disabled');
-	                $('#hsvp-textbtn').addClass('m2-userSettings-telSubmit');
-	            },60000);
 	        }
-	    }
+		});     	
     });
-	$('#hsChange-btn').click(function(){
-	    var hsvp_phonenum=$("#hsvp-phonenum").val();
-	    var hs_code=$("#hs_code").val();
-	    var hs_name=$("#hs_name").val();
-	    var hs_idCard=$("#hs_idCard").val();
-	
-	    if( $user_type==1){
-	        var regu =/(^[0-9]{15}$)|([0-9]{17}([0-9]|X|x)$)/;
-	        var re = new RegExp(regu);
-	        if (!re.test(hs_idCard)) {
-	            var obj=new Array();
-	            obj['msg']="身份证格式不正确";
-	            obj['status']=0;
-	            dialog(obj);
-	            return false;
-	        }
-	    }
-	
-	    if(hs_code==""||hs_name==""|| hs_idCard=="" ){
-	        var obj=new Array();
-	        obj['msg']="您需要填写全部信息才能提交";
-	        obj['status']=0;
-	        dialog(obj);
-	        return;
-	    }else{
-	        $.ajax({
-	            url:"usercenter-Accountcontrol-hs_changePassWord",
-	            type:"POST",
-	            dataType: "json",
-	            data:{
-	                hs_code:hs_code,
-	                hs_name:hs_name,
-	                hs_idCard:hs_idCard,
-	                hsvp_phonenum:hsvp_phonenum
-	            },
-	            success:function(data){
-	                if(data.status == 3){
-	                    window.location.href="/cupdata-Capital-setting";
-	                }else{
-	                    dialog(data);
-	                }
-	            }
-	        });
-	    }
-	});
-
-	// 注册倒计时
-	var regTim =60; //剩余时间
-	function mo2_regTim(){
-	    if (regTim>0) {
-	        $('#hsvp-textbtn').html(regTim+'秒后重新发送');
-	        regTim--;
-	        setTimeout(function(){
-	            mo2_regTim();
-	        } , 1000);
-	    }
-	    else if (regTim<=0) {
-	        regTim =60;
-	        $('#hsvp-textbtn').removeClass('m2-userSettings-telSubmit-disabled');
-	        $('#hsvp-textbtn').addClass('m2-userSettings-telSubmit');
-	        //$('.mo2-indRegtim').addClass('mo2-regTin-able').removeClass('mo2-regTin-unable');
-	        $('#hsvp-textbtn').html('重新发送');
-	    }
-	}
 }
- 
-$(function(){
-    //初始化省级下拉框
-	var str="";
-	for(var i=0;i<china.length;i++){
-	    str+="<option data=" + i +">" + china[i].name + "</option>";
-	}
-	$("#lmkselect1").append(str);
-
-	//省级下拉框的change事件
-	$("#lmkselect1").change(function(){
-	    $("#lmkselect2").attr("disabled",false);
-	    $("#lmkselect3").attr("disabled",true);
-	    var data=$("#lmkselect1").find("option:selected").attr("data");
-	    $("#lmkselect2 option:not(.all),#lmkselect3 option:not(.all)").remove();
-	    if(data=="all"){
-	        $("#lmkselect2,#lmkselect3").attr("disabled",true);
-	    }else{
-	        data=parseInt(data);
-	        str="";
-	        for(var i=0;i<china[data].city.length;i++){
-	            str+="<option data=" + i + " provice=" + data + ">" + china[data].city[i].name + "</option>";
-	        }
-	        $("#lmkselect2").append(str);
-	    }
-	});
-    //市级下拉框的事件
-    $("#lmkselect2").change(function(){
-        $("#lmkselect3").attr("disabled",false);
-        var data=$("#lmkselect2").find("option:selected").attr("data");
-        var provice=parseInt($("#lmkselect2").find("option:selected").attr("provice"));
-        $("#lmkselect3 option:not(.all)").remove();
-        if(data=="all"){
-            $("#lmkselect3").attr("disabled",true);
-        }else{
-            data=parseInt(data);
-            str="";
-            for(var i=0;i<china[provice].city[data].area.length;i++){
-                str+="<option>" + china[provice].city[data].area[i] + "</option>";
-            }
-            $("#lmkselect3").append(str);
-        }
-    });
-    //初始化默认值
-    var provice="";
-    var city="";
-    var area="";
-    if(provice!=""){
-        // 循环省
-        for(var i=0;i<china.length;i++){
-            if(china[i].name==provice){
-                $("#lmkselect1 option[data=" + i +"]").attr("selected",true);
-                //循环得到市
-                str="";
-                for(var j=0;j<china[i].city.length;j++){
-                    if (china[i].city[j].name==city) {
-                        str+="<option data=" + j + " provice=" + i + " selected>" + china[i].city[j].name + "</option>";
-                    }else {
-                        str+="<option data=" + j + " provice=" + i + ">" + china[i].city[j].name + "</option>";
-                    }
-                }
-                $("#lmkselect2").append(str);
-                //循环得到区
-                str="";
-                var data=parseInt($("#lmkselect2").find("option:selected").attr("data"));
-                for(var j=0;j<china[i].city[data].area.length;j++){
-                    if (china[i].city[data].area[j]==area) {
-                        str+="<option selected>" + china[i].city[data].area[j] + "</option>";
-                    }else {
-                        str+="<option>" + china[i].city[data].area[j] + "</option>";
-                    }
-                }
-                $("#lmkselect3").append(str);
-                $("#lmkselect2,#lmkselect3").attr("disabled",false);
-                return false;
-            }
-        }
-    }
-})
 
 jQuery.fn.shake = function (intShakes /*Amount of shakes*/, intDistance /*Shake distance*/, intDuration /*Time duration*/) {
     this.each(function () {

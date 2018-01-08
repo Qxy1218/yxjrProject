@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">
     <link rel="stylesheet" href="/Finances/statics/front/statics/home2/css/m2-main.css">
     <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-common.css">
+    <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/userCenter.css">
     
     <script type="text/javascript" src="/Finances//statics/front/statics/newcommon/js/common.js"></script>
 	<script type="text/javascript" src="/Finances/statics/front/statics/home2/js/jquery.knob.js"></script>

@@ -463,7 +463,7 @@ public class IUserController {
 	
 	
 	/**
-	 * 修改用户的基本信息
+	 * 修改用户的基本信息(交易密码以及需要认证的状态)
 	 * */
 	@RequestMapping(value = "updateUserInfo")
 	@ResponseBody

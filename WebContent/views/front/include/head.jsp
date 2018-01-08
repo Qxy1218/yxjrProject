@@ -10,26 +10,44 @@
 	function myinfo(){ 
 		var uid = $("#uid").val();
 		if( uid == null){
-			if(confirm("您还未登录 ! 请先登录")){ 
-				parent.window.location="${pageContext.request.contextPath }/tologin"; 
-				return true; 
-			}
-				return false; 
-			}else if(uid != null){
-				parent.window.location="${pageContext.request.contextPath }/tousercenter?uid="+uid; 
-				return true;
-			}
-		}
-	function logout(){
-		if(confirm("是否退出登录？")){ 
-			parent.window.location="${pageContext.request.contextPath }/user/logout"; 
-			return true; 
-		}
-			return false; 
+			$('#dialog-info-divs1').show();
+	        $('#dialog-info-texts1').text("您还未登录 ! 请先登录");
+	        $('.m2-user-confirmBtn').click(function () {
+	        	window.location="${pageContext.request.contextPath }/tologin";
+	        })
+	        $('.m2-userCentercommon-confirmClose,.m2-user-confirmBtns').click(function () {
+	            $('.m2-userCentercommon-confirm').hide();
+	        });
+		}else if(uid != null){
+			parent.window.location="${pageContext.request.contextPath }/tousercenter?uid="+uid; 
+			return true;
+		} 
 	}
-	</script>
+	function logout(){
+		$('#dialog-info-divs1').show();
+        $('#dialog-info-texts1').text("是否退出登录？");
+        $('.m2-user-confirmBtn').click(function () {
+        	window.location="${pageContext.request.contextPath }/user/logout";
+        })
+        $('.m2-userCentercommon-confirmClose,.m2-user-confirmBtns').click(function () {
+            $('.m2-userCentercommon-confirm').hide();
+        });
+	}
+</script>
 </head>
 <body>
+	<!-- 登录提示框  -->
+	<div class="m2-userCentercommon-confirm" style="top:30%;padding-top:10px;display:none"  id='dialog-info-divs1'>
+	    <span class="m2-userCentercommon-confirmClose"></span>
+	    <div style="text-align: center;padding: 20px 0 20px 0;">
+	        <h3 id='dialog-info-texts1'></h3>
+	    </div>
+	    <p class="m2-userCommon-confirmBtn">
+	        <a class="m2-user-confirmBtn" target="_blank">确&nbsp;定</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	        <a class="m2-user-confirmBtns" target="_blank">取&nbsp;消</a>
+	    </p>
+	</div>
+	
 	<!-- headerStart -->
 <header>
 <div class="m2-commonTop-con">

@@ -17,14 +17,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.p2p.pojo.Area;
+import com.p2p.pojo.City;
 import com.p2p.pojo.Contact;
 import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.ProjectSelect;
+import com.p2p.pojo.Provice;
 import com.p2p.pojo.Setupnatice;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Userbackcard;
 import com.p2p.pojo.Userinfo;
 import com.p2p.service.back.ContactService;
+import com.p2p.service.front.AddressService;
 import com.p2p.service.front.FabiaoService;
 import com.p2p.service.front.SetupnaticeService;
 import com.p2p.service.front.UserInfoService;
@@ -53,6 +57,9 @@ public class FrontController {
 	
 	@Resource(name="userInfoServiceImpl")
 	private UserInfoService userInfoService;
+	
+	@Resource(name="addressServiceImpl")
+	private AddressService addressService;  //地址(省市县)
 	
 	@Resource(name="userbackcardServiceImpl") 
 	private UserbackcardService userbackcardService;
@@ -756,6 +763,19 @@ public class FrontController {
 			Userinfo userinf = userInfoService.getUserinfoByuiid(uiid);
 			session.setAttribute("userinfo", userinf);
 		}
+		
+		//省
+		List<Provice> pvList = addressService.getProvinceList();
+		mo.addObject("pvlist",pvList);
+		mo.addObject("pvlistsize",pvList.size());
+		//市
+		List<City> cyList = addressService.getCityList();
+		mo.addObject("cylist",cyList);
+		mo.addObject("cylistsize",cyList.size());
+		//县
+		List<Area> aeList = addressService.getAreaList();
+		mo.addObject("aelist",aeList);
+		mo.addObject("aelistsize",aeList.size());
 		
 		mo.setViewName("views/front/user/userverify");
 		return mo;

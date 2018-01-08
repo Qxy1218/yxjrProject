@@ -108,7 +108,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		<trim prefix="set" suffixOverrides=",">
 		  <if test="uidealpwd!=null">ui.ui_dealpwd=#{uidealpwd},</if>
 		  <if test="uiemail!=null">ui.ui_email=#{uiemail},</if>
+		  <if test="uiheadImg!=null">ui.ui_headImg=#{uiheadImg},</if>
 		  <if test="uiname!=null">ui.ui_name=#{uiname},</if>
+		  <if test="uisex!=null">ui.ui_sex=#{uisex},</if>
+		  <if test="uibirthday!=null">ui.ui_birthday=#{uibirthday},</if>
 		  <if test="pvid!=null">ui.pv_id=#{pvid},</if>
 		  <if test="cyid!=null">ui.cy_id=#{cyid},</if>
 		  <if test="aeid!=null">ui.ae_id=#{aeid},</if>

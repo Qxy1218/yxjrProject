@@ -112,7 +112,32 @@
 	            </li>
 	        </ul>
 	    </div>
-	
+		<!-- 实名认证提示框 -->
+		<div class="m2-userCentercommon-confirm" style="top:30%;padding-top:10px;display:none"  id='dialog-info-divs'>
+		    <span class="m2-userCentercommon-confirmClose"></span>
+		    <div style="text-align: center;padding: 20px 0 20px 0;">
+		        <h3 id='dialog-info-texts'></h3>
+		    </div>
+		    <p class="m2-userCommon-confirmBtn">
+		        <a class="m2-user-confirmBtn" target="_blank">确&nbsp;定</a>
+		    </p>
+		</div>
+		<script type="text/javascript">
+		    var uiid = $("#vp_status").val();
+			$('#openstatus').click(function(){
+				$('#dialog-info-divs').show();
+	            $('#dialog-info-texts').text("请先实名认证!");
+	            
+	            $('.m2-user-confirmBtn').click(function () {
+	            	window.location="http://127.0.0.1:8080/Finances/userverify?uiid="+uiid+"&nameNumber="+1;
+	            })
+	            $('.m2-userCentercommon-confirmClose').click(function () {
+	                $('.m2-userCentercommon-confirm').hide();
+	            });
+			});
+		</script>
+		
+		
 	    <script>
 	        // 		$(document).ready(function(){
 	        var href = window.location.href;
@@ -151,17 +176,5 @@
 	        });
 	        // 		});
 	    </script>
-	    <script type="text/javascript">
-		    var uiid = $("#vp_status").val();
-			$('#openstatus').click(function(){
-				//showMsg("请先实名认证!");
-				//window.location="http://127.0.0.1:8080/Finances/userverify?uiid="+uiid;
-				if(confirm("请先实名认证!")){ 
-					window.location="http://127.0.0.1:8080/Finances/userverify?uiid="+uiid+"&nameNumber="+1;
-				}else{
-					return;
-				}
-			});
-		</script>
 	</body>
 </html>

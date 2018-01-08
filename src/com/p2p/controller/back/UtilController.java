@@ -80,6 +80,8 @@ public class UtilController {
 		//拿到文件名称
 		String exfileName = mf.getOriginalFilename();
 		
+		//String exfileName = fileName;
+		
 		//截取文件名称。取从.号开始到后面的所有名称
 		String suffix =exfileName.substring(exfileName.indexOf("."));
 		
@@ -96,6 +98,10 @@ public class UtilController {
 		contextPath = contextPath.replace("\\","/");
 		
 		//上传文件
+		/*File dir = new File(contextPath,newFilename+suffix);          
+        if(!dir.exists()){  
+            dir.mkdirs();  
+        }  */
 		mf.transferTo(new File(contextPath+newFilename+suffix));
 		String path = "/uploadFile/"+newFilename+suffix;
 		return path;

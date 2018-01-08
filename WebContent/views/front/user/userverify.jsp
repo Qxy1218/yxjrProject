@@ -21,18 +21,23 @@
     <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/userCenter.css">
     <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/jquery.datetimepicker.css" />
     
-    <script type="text/javascript" src="/Finances/statics/front/statics/newcommon/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/statics/back/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/Finances/statics/front/statics/newcommon/js/common.js"></script>
     <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/esl.js"></script>
     <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/jquery.datetimepicker.js"></script>
-    
+    <script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery.form.js"></script>
     <!-- 图形验证码 -->
 	<script src="/Finances/statics/front/js/gVerify.js"></script>
 	
 	<!-- 弹出框 -->
-	<script src="/Finances/statics/front/js/jquery-1.7.1.min.js"></script>
+	<!--  
+		<script src="/Finances/statics/front/js/jquery-1.7.1.min.js"></script>
+	-->
 	<script src="/Finances/statics/front/js/ui.js"></script>
 	<link href="/Finances/statics/front/css/style.css" rel="stylesheet" />
+	
+	<!-- 美化按钮  -->
+	<link href="/Finances/statics/front/css/beautify-bar.css" rel="stylesheet" />
 </head>
 <body>
 	<div class="m2-userCentercommon-bg" style='display: none'></div>
@@ -180,48 +185,85 @@
                         <li class="m2-userSettingshide-btn"><a href="javascript:void(0)" id='verifyemail-btn'>发送验证邮件</a></li>
                     </ul>
                 </li>
+            
                 <li class="m2-userCentersettings-step5 m2-userSettings-step">
+                	<form id="uploadForm" enctype="multipart/form-data">
+                	<input type="hidden" name="uiid" value="${sessionScope.userinfo.uiid }"/>
                     <div class="m2-userSettings-stepShow">
                         <i></i>
-                        <span class="m2-userSettingsshow-tit">联系地址</span>
-                        <span class="m2-userSettingsshow-exp">用于邮寄资料或礼品</span>
-                        <span class="m2-userSettingsaut m2-userSettingsaut-fal"  id='address_status'><b></b>未添加</span>
-                        <span class="m2-userSettingsshow-link"><a href="javascript:void(0)">添加</a></span>
+                        <span class="m2-userSettingsshow-tit">基本信息</span>
+                        <span class="m2-userSettingsshow-exp">完善(修改)用户基本信息</span>
+                        <span class="m2-userSettingsaut m2-userSettingsaut-fal"  id='base_info'><b></b>未完善</span>
+                        <span class="m2-userSettingsshow-link"><a href="javascript:void(0)">完善</a></span>
                     </div>
-
                     <ul class="m2-userSettings-setpHide">
-                        <li>
-                            <span class="m2-userSettingshide-nor"><u>*</u>收货人：</span>
-                            <input type="text" placeholder="长度不超过25个字符" name="consignee" id="addr_consignee" class="addr_info" type="text" style='width: 350px;' value="">
+                    	<li>
+                            <span class="m2-userSettingshide-nor">头像：</span>
+                            <a href="javascript:void(0);" class="file">选择文件
+                            	<input type="file" id="uiheadImg" name="uiheadImg"  style='width: 100px;'/>
+							</a>
+                            <input type="hidden" name="uiheadImgs" id="getValueName" class="addr_info"/>
                             <span class="m2-userSettingshide-warning"></span>
                         </li>
                         <li>
-                            <span class="m2-userSettingshide-nor"><u>*</u>省市区：</span>
-                            <select id="lmkselect1" name="province" style="width:140px;height:30px;">
-                                <option data="all" class="all">请选择</option>
-                            </select>
-                            <select id="lmkselect2" name="city" id="addr_city" disabled="true" style="width:120px;height:30px;">
-                                <option data="all" class="all">请选择</option>
-                            </select>
-                            <select id="lmkselect3" name="area" id="addr_area" disabled="true" style="width:120px;height:30px;">
-                                <option data="all" class="all">请选择</option>
-                            </select>
+                        	<div>
+                            	<span class="m2-userSettingshide-nor">性别：</span>
+                            	<c:set var="sex" value="${sessionScope.userinfo.uisex }" />
+                            	<input type="radio" id="male" name="uisex" value="男" <c:if test="${sex=='男'}"> checked </c:if> /><label for="male">男</label>
+                            	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							    <input type="radio" id="female" name="uisex" value="女" <c:if test="${sex=='女'}"> checked </c:if> /><label for="female">女</label>
+							   	<input type="hidden" id="getValueSex" value="${sessionScope.userinfo.uisex }"/>
+							   	<span class="m2-userSettingshide-warning"></span>
+							</div>
+                        </li>
+                        <li>
+                            <span class="m2-userSettingshide-nor">生日：</span>
+							<input class="laydate-icon" name="uibirthday" id="uibirthday" value="${sessionScope.userinfo.uibirthday }" placeholder="请选择日期" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" />
                             <span class="m2-userSettingshide-warning"></span>
                         </li>
                         <li>
-                            <span class="m2-userSettingshide-nor"><u>*</u>详细地址：</span>
-                            <input type="text" placeholder="请填写详细收货地址" id="addr_address" class="addr_info" type="text" style='width: 350px;' value="">
+                            <span class="m2-userSettingshide-nor">昵称：</span>
+                            <input type="text" name="uiname" id="uiname" value="${sessionScope.userinfo.uiname }" placeholder="请输入昵称" style='width: 280px;' />
                             <span class="m2-userSettingshide-warning"></span>
                         </li>
                         <li>
-                            <span class="m2-userSettingshide-nor"><u>*</u>手机号码：</span>
-                            <input type="text" name='phone' id="addr_phone" class="addr_info" placeholder="请填写收货人的手机号码" type="text" style='width: 350px;' value="">
+                        	<c:set var="address_privice" value="${sessionScope.userinfo.pvid }" />
+                        	<c:set var="address_city" value="${sessionScope.userinfo.cyid }" />
+                        	<c:set var="address_area" value="${sessionScope.userinfo.aeid }" />
+                            <span class="m2-userSettingshide-nor">地址：</span>
+                            <select id="lmkselect1" name="pvid" style="width:140px;height:30px;">
+		            			<option value="">请选择</option>
+						        <c:forEach items="${pvlist}" begin="0" end="${pvlistsize}" var="p" >
+									<option value="${p.pvid}" <c:if  test="${p.pvid==address_privice}"> selected="selected"</c:if> >${p.pvname}</option>
+								</c:forEach>
+							</select>
+							<select id="lmkselect2" name="cyid" <c:if test="${address_city==null }"> disabled="true" </c:if> style="width:120px;height:30px;">
+								<c:if test="${address_city==null }">
+									<option value="">请选择</option>
+								</c:if>
+								<c:if test="${address_city!=null }">
+									<c:forEach items="${cylist}" begin="0" end="${cylistsize}" var="cys" >
+										<option value="${cys.cyid}" <c:if  test="${cys.cyid==address_city}"> selected="selected"</c:if> >${cys.cyname}</option>
+									</c:forEach>
+								</c:if>
+							</select>
+                            <select id="lmkselect3" name="aeid" <c:if test="${address_area==null }"> disabled="true" </c:if> style="width:120px;height:30px;">
+								<c:if test="${address_area==null }">
+									<option value="">请选择</option>
+								</c:if>
+								<c:if test="${address_area!=null }">
+									<c:forEach items="${aelist}" begin="0" end="${aelistsize}" var="aes" >
+										<option value="${aes.aeid}" <c:if  test="${aes.aeid==address_area}"> selected="selected"</c:if> >${aes.aename}</option>
+									</c:forEach>
+								</c:if>
+							</select>
                             <span class="m2-userSettingshide-warning"></span>
                         </li>
-                        <li class="m2-userSettingshide-btn"><a href="javascript:void(0)" id='newaddress-btn'>确认</a></li>
+                        <li class="m2-userSettingshide-btn"><a href="javascript:void(0)" id='baseinfo-btn'>确认</a></li>
                     </ul>
+                    </form>
                 </li>
-
+				
                 <li class="m2-userCentersettings-step6 m2-userSettings-step">
                     <div class="m2-userSettings-stepShow">
                         <i></i>
@@ -283,5 +325,115 @@
     <script type="text/javascript" src="<%=path %>/statics/front/statics/home2/js/HMZCity.json"></script>
     <!-- 需要具体实现的js(修改验证的ajax) -->
     <script type="text/javascript" src="<%=path %>/statics/front/js/useraccount.js"></script>
+    <!-- 获取日期 -->
+    <script type="text/javascript" src="<%=path %>//statics/back/static/js/laydate.js"></script>
+	    
+	    <!-- 获取上传文件名 -->
+	    <script type="text/javascript">
+		  	//设置文件上传显示的文件
+		    $(".file").on("change","input[type='file']",function(){
+		        var filePath=$(this).val();
+		        if(filePath.indexOf("jpg")!=-1 || filePath.indexOf("png")!=-1){
+		        	$('.file').next('span').html("");
+		            var arr=filePath.split('\\');
+		            var fileName=arr[arr.length-1];
+		            $('.file').next("#getValueName").next('span').css('color','#000000').html(fileName);
+		            $("#getValueName").val(fileName);
+		        }else{
+		            $('.file').next("#getValueName").next('span').css('color','red').html('<em></em>您未上传文件，或者您上传文件类型有误！');
+		            return false 
+		        }
+		    })
+	    </script>
+    
+	    <!-- 时间插件 -->
+	    <script type="text/javascript">
+			!function(){
+				laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
+				laydate({elem: '#demo'});//绑定元素
+			}();
+	
+			//日期范围限制
+			var start = {
+				elem: '#start',
+				format: 'YYYY-MM-DD',
+				min: laydate.now(), //设定最小日期为当前日期
+				max: '2099-06-16', //最大日期
+				istime: true,
+				istoday: false,
+				choose: function(datas){
+					 end.min = datas; //开始日选好后，重置结束日的最小日期
+					 end.start = datas //将结束日的初始值设定为开始日
+				}
+			};
+	
+			var end = {
+				elem: '#end',
+				format: 'YYYY-MM-DD',
+				min: laydate.now(),
+				max: '2099-06-16',
+				istime: true,
+				istoday: false,
+				choose: function(datas){
+					start.max = datas; //结束日选好后，充值开始日的最大日期
+				}
+			};
+			laydate(start);
+			laydate(end);
+		</script>
+		
+		<!-- 地址 -->
+		<script type="text/javascript">
+			/*地址(三级联动)*/
+			$('document').ready(function(){
+				$("#lmkselect1").change(function(){
+					$("#lmkselect2").attr("disabled",false);
+				    $("#lmkselect3").attr("disabled",true);
+					$.ajax({
+						type:"post",
+						url:"/Finances/userInfo/getCity",
+						data:"pvid="+$("#lmkselect1").val(),
+						cache:false,
+						dataType:"json",
+						success:function(data){
+							var attr="<option value=''>请选择</option>";
+							$("#lmkselect2").html("");
+							for(var i=0;i<data.length;i++){
+								attr += "<option value='" + data[i].cyid
+								+ "'>" +data[i].cyname
+								+ "</option>";
+							}
+							$("#lmkselect2").append(attr);
+							$("#lmkselect3").html("");
+							$("#lmkselect3").append("<option value=''>请选择</option>");
+						},error:function(){
+							alert("请与管理员联系");
+						}
+					});
+				});
+				$("#lmkselect2").change(function(){
+					$("#lmkselect3").attr("disabled",false);
+					$.ajax({
+						type:"post",
+						url:"/Finances/userInfo/getArea",
+						data:"cyid="+$("#lmkselect2").val(),
+						cache:false,
+						dataType:"json",
+						success:function(data){
+							var attr="<option value=''>请选择</option>";
+							$("#lmkselect3").html("");
+							for(var i=0;i<data.length;i++){
+								attr += "<option value='" + data[i].aeid
+								+ "'>" +data[i].aename
+								+ "</option>";
+							}
+							$("#lmkselect3").append(attr);
+						},error:function(){
+							alert("请与管理员联系");
+						}
+					});
+				});
+			});
+		</script>
     </body>
 </html>
