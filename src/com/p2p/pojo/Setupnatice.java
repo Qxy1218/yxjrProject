@@ -13,73 +13,26 @@ import com.baomidou.mybatisplus.annotations.TableField;
 public class Setupnatice implements Serializable{
 	
 	@TableField("us_id")
-	public Integer usid; //主键id
+	private Integer usid; //主键id
 	
 	@TableField("u_id")
-	public Integer uid; //用户id
+	private Integer uid; //用户id
 	
 	@TableField("us_name")
-	public String usname; //用户id
+	private String usname; //用户id
 	
 	@TableField("us_insideStatus")
-	public Integer usinsideStatus; //站内消息(1:开启   2:开启)
+	private Integer usinsideStatus; //站内消息(1:开启   2:开启)
 	
 	@TableField("us_emailStatus")
-	public Integer usemailStatus; //邮件通知(1:开启   2:开启)
+	private Integer usemailStatus; //邮件通知(1:开启   2:开启)
 	
 	@TableField("us_messageStatus")
-	public Integer usmessageStatus; //短信通知(1:开启   2:开启)
+	private Integer usmessageStatus; //短信通知(1:开启   2:开启)
 	
 	public Setupnatice() {
 	}
 
-	public Integer getUsid() {
-		return usid;
-	}
-
-	public void setUsid(Integer usid) {
-		this.usid = usid;
-	}
-
-	public Integer getUid() {
-		return uid;
-	}
-
-	public void setUid(Integer uid) {
-		this.uid = uid;
-	}
-
-	public String getUsname() {
-		return usname;
-	}
-
-	public void setUsname(String usname) {
-		this.usname = usname;
-	}
-
-	public Integer getUsinsideStatus() {
-		return usinsideStatus;
-	}
-
-	public void setUsinsideStatus(Integer usinsideStatus) {
-		this.usinsideStatus = usinsideStatus;
-	}
-
-	public Integer getUsemailStatus() {
-		return usemailStatus;
-	}
-
-	public void setUsemailStatus(Integer usemailStatus) {
-		this.usemailStatus = usemailStatus;
-	}
-
-	public Integer getUsmessageStatus() {
-		return usmessageStatus;
-	}
-
-	public void setUsmessageStatus(Integer usmessageStatus) {
-		this.usmessageStatus = usmessageStatus;
-	}
 
 	public Setupnatice(Integer usid, Integer uid, String usname, Integer usinsideStatus, Integer usemailStatus,
 			Integer usmessageStatus) {
@@ -92,6 +45,64 @@ public class Setupnatice implements Serializable{
 		this.usmessageStatus = usmessageStatus;
 	}
 
-	
+
+	public Integer getUsid() {
+		return usid;
+	}
+
+
+	public void setUsid(Integer usid) {
+		this.usid = usid;
+	}
+
+
+	public Integer getUid() {
+		return uid;
+	}
+
+
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
+
+
+	public String getUsname() {
+		return usname;
+	}
+
+
+	public void setUsname(String usname) {
+		this.usname = usname;
+	}
+
+
+	public Integer getUsinsideStatus() {
+		return usinsideStatus;
+	}
+
+
+	public void setUsinsideStatus(Integer usinsideStatus) {
+		this.usinsideStatus = usinsideStatus;
+	}
+
+
+	public Integer getUsemailStatus() {
+		return usemailStatus;
+	}
+
+
+	public void setUsemailStatus(Integer usemailStatus) {
+		this.usemailStatus = usemailStatus;
+	}
+
+
+	public Integer getUsmessageStatus() {
+		return usmessageStatus;
+	}
+
+
+	public void setUsmessageStatus(Integer usmessageStatus) {
+		this.usmessageStatus = usmessageStatus;
+	}
 	
 }

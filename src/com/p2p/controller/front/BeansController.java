@@ -17,6 +17,7 @@ import com.p2p.pojo.User;
 import com.p2p.service.back.IndexpicService;
 import com.p2p.service.front.IUserService;
 import com.p2p.service.front.SetupnaticeService;
+import com.p2p.util.SetupnaticeUtil;
 /**
  * 开发人:汪栋才
  * 2017-11-13
@@ -31,6 +32,8 @@ public class BeansController {
 	@Resource(name="IUserServiceImpl")
 	private IUserService iUserService;
 
+	@Resource(name="setupnaticeServiceImpl")
+	private SetupnaticeService setupnaticeService;
 	
 	/**
 	 * 进入首界面(index.jsp)
@@ -70,6 +73,14 @@ public class BeansController {
 					session.setAttribute("user",user3);
 				}
 			}
+		}
+		
+		/**
+		 * 初始化用户通知消息设置
+		 * */
+		User us = (User)session.getAttribute("user");
+		if(us!=null && us.getUid()!=null) {
+			SetupnaticeUtil.initSetupnatice(us.getUid(), setupnaticeService);
 		}
 		
 		return "views/front/index";

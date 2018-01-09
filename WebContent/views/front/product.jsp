@@ -393,14 +393,31 @@
 	        </div>
 	        <div class="m2-detItemrig"  style="display:none;">
 	            <div class="m2-detRig-unlogin m2-detRig-select">
+	              <c:if test="${sessionScope.user.uid != null}">
 	                <div class="m2-detRiglogin">
 	                    <p class="mo2-proNewdet">可投金额：<span id='left_money'>${ thisfb.fmoney-thisfb.fendmoney }                             元 </span></p>
 	                    <p>徽商账户余额：0元<a style="color: #09c;float: right;margin-right: 30px;" href='#?chargereturnurl=/invest-borrownew-id-moxOeTwTZaOw8TY79g.shtml' target="_blank">充值</a>
 	                    </p>
 	                </div>
+	             </c:if>
+	             <c:if test="${sessionScope.user.uid == null}">
+	             	<div class="m2-indTralog">
+                        <p>账户余额：<a href="${pageContext.request.contextPath }/tologin" target="_blank">登录</a>后可查看</p>
+                    </div>
+	             </c:if>
+	             
+	             <c:if test="${sessionScope.user.uid != null}"> 
 	                <div class="m2-detRigipt">
-	                    <input placeholder="${thisfb.fminmoney}元起投" type="text" id="invest_money"> <span  class='invest_all'>全投</span>
+	                    <input placeholder="${thisfb.fminmoney}元起投" type="text" id="invest_money"> 
+	                    <span  class='invest_all'>全投</span>
 	                </div>
+	             </c:if>
+	              <c:if test="${sessionScope.user.uid == null}">
+	              	<div class="m2-detRigipt">
+	                    <input placeholder="请先登入" type="text"  readonly="true"> 
+	                </div>
+	              </c:if>
+	                
 	                <div class="m2-detRigjust">
 	                    <b class="m2-detRigjust-btn"></b>
 	                    <!--<b class="m2-detRigjust-lef" style="color: #f5944f;cursor: pointer;">使用奖励</b>-->
@@ -415,9 +432,16 @@
 	            </div>
 	
 	            <div class="m2-detRigjust-linkBtn">
-	
+				 <c:if test="${sessionScope.user.uid != null}">
 	                <a id="invest_now" href="javascript:void(0)">立即投资</a>
 	                <i id='interestcal' class='m2-detRigjust-linkBtning'></i>
+	             </c:if>
+	              <c:if test="${sessionScope.user.uid == null}">
+	                 <a style="background-color: #ccc;" href="javascript:void(0)">立即投资</a>
+	             	 <i onclick="showMsg('您还没有登录，请先登录！');" class='m2-detRigjust-linkBtning'></i>
+	              </c:if>  
+	              
+	                
 	
 	
 	            </div>

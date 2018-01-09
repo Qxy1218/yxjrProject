@@ -699,6 +699,8 @@ public class FrontController {
 		if(user==null) {
 			return "redirect:/toindex";
 		}
+		
+		
 		List<Setupnatice> setupnatice2 = setupnaticeService.getUserSetup(user.getUid());
 		model.addAttribute("setupnatice",setupnatice2);
 		return "views/front/message/setmsg";

@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper  namespace="com.p2p.mapper.SetupnaticeMapper">
 	<resultMap type="com.p2p.pojo.Setupnatice" id="BaseResultMap">
 		      <id column="us_id" property="usid"/>
-	 		  <result column="us_id" property="uid"/>
-	 		    <result column="us_name" property="usname"/>
+	 		  <result column="u_id" property="uid"/>
+	 		   <result column="us_name" property="usname"/>
 	 		  <result column="us_insideStatus" property="usinsideStatus"/>
 	 		  <result column="us_emailStatus" property="usemailStatus"/>
 	 		  <result column="us_messageStatus" property="usmessageStatus"/>
@@ -26,16 +26,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from user_setupnatice u 
 			<where>
 				1=1 
-				<if test="usid!=null">and u.us_id#{usid}</if>
-				<if test="uid!=null">and u.u_id#{uid}</if>
-				<if test="usname!=null">and u.us_name#{usname}</if>
-				<if test="usinsideStatus!=null">and u.us_insideStatus#{usinsideStatus}</if>
-				<if test="us_emailStatus!=null">and u.us_emailStatus#{usemailStatus}</if>
-				<if test="us_messageStatus!=null">and u.us_messageStatus#{usmessageStatus}</if>
+				<if test="usid!=null">and u.us_id=#{usid}</if>
+				<if test="uid!=null">and u.u_id=#{uid}</if>
+				<if test="usname!=null">and u.us_name=#{usname}</if>
+				<if test="usinsideStatus!=null">and u.us_insideStatus=#{usinsideStatus}</if>
+				<if test="usemailStatus!=null">and u.us_emailStatus=#{usemailStatus}</if>
+				<if test="usmessageStatus!=null">and u.us_messageStatus=#{usmessageStatus}</if>
 			</where>
 	</select>
 	<insert id="addModel" parameterType="com.p2p.pojo.Setupnatice" useGeneratedKeys="true" keyProperty="usid">
-		insert into user_setupnatice(us_id,us_id,us_name,us_insideStatus,us_emailStatus,us_messageStatus) values(#{uid},#{usname},#{usinsideStatus},#{usemailStatus},#{usmessageStatus})
+		insert into user_setupnatice(u_id,us_name,us_insideStatus,us_emailStatus,us_messageStatus) values(#{uid},#{usname},#{usinsideStatus},#{usemailStatus},#{usmessageStatus})
 	</insert>
 	<delete id="delete" parameterType="com.p2p.pojo.SendMsg">
 		delete from user_setupnatice where us_id = #{usid}
