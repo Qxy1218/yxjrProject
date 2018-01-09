@@ -1,5 +1,7 @@
 package com.p2p.util;
 
+import java.util.List;
+
 import com.p2p.pojo.Setupnatice;
 import com.p2p.service.front.SetupnaticeService;
 
@@ -14,11 +16,8 @@ import com.p2p.service.front.SetupnaticeService;
 public class SetupnaticeUtil {
 	public static int initSetupnatice(Integer userid,SetupnaticeService setupnaticeService) {
 		int issave = 0;
-		Setupnatice ss = new Setupnatice();
-		ss.setUid(userid);
-		ss = setupnaticeService.getModel(ss);
-		if(ss==null) {
-
+		List<Setupnatice> list = setupnaticeService.getUserSetup(userid);
+		if(list==null) {
 			Setupnatice set1 = new Setupnatice();
 			set1.setUid(userid);
 			set1.setUsname("充值成功");
