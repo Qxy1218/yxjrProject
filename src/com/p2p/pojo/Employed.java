@@ -5,8 +5,8 @@ import java.io.Serializable;
 import com.baomidou.mybatisplus.annotations.TableField;
 /**
  * 员工表
- * 2017-11-14
- * 操作人:宋泰伟
+ * 2017-01-05
+ * 操作人：邱雪云
  * */
 public class Employed implements Serializable{
 
