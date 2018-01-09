@@ -17,16 +17,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+
+import com.p2p.pojo.About;
+
 import com.p2p.pojo.Area;
 import com.p2p.pojo.City;
+
 import com.p2p.pojo.Contact;
 import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.ProjectSelect;
 import com.p2p.pojo.Provice;
 import com.p2p.pojo.Setupnatice;
 import com.p2p.pojo.User;
+
+import com.p2p.service.back.AboutService;
+
 import com.p2p.pojo.Userbackcard;
 import com.p2p.pojo.Userinfo;
+
 import com.p2p.service.back.ContactService;
 import com.p2p.service.front.AddressService;
 import com.p2p.service.front.FabiaoService;
@@ -56,8 +64,13 @@ public class FrontController {
 	@Resource(name="contactServiceImpl")
 	private ContactService contactService;
 	
+
+	@Resource(name="aboutServiceImpl")
+	private AboutService aboutService;
+
 	@Resource(name="userInfoServiceImpl")
 	private UserInfoService userInfoService;
+
 	
 	@Resource(name="addressServiceImpl")
 	private AddressService addressService;  //地址(省市县)
@@ -533,13 +546,15 @@ public class FrontController {
 	 * 关于我们页面的conteroller
 	 * */
 	@RequestMapping(value="/toabout")
-	public ModelAndView tofronabout(Model model) {
-		ModelAndView mo = new ModelAndView();
-		
-		model.addAttribute("pageName", "about");
-		
-		mo.setViewName("views/front/about");
-		return mo;
+	public String tofronabout(Model model) {
+		//ModelAndView mo = new ModelAndView();
+		About a = new About();
+		a.setAbid(23);
+		//model.addAttribute("pageName", "about");
+		a = aboutService.getModel(a);
+		//a.setViewName("views/front/about");
+		model.addAttribute("about", a);
+		return "views/front/about";
 	}
 	
 	/**
