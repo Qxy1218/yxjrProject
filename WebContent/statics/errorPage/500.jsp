@@ -4,43 +4,33 @@
 %>  
 <!DOCTYPE html>
 <html>
-
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-    <title>易信金融-- 500错误</title>
-
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/statics/other/lco/smalllog.png"> 
-    <link href="${pageContext.request.contextPath}/statics/other/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/statics/other/css/font-awesome.css" rel="stylesheet">
-
-    <link href="${pageContext.request.contextPath}/statics/other/css/animate.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/statics/other/css/style.css" rel="stylesheet">
-
-</head>
-
-<body class="gray-bg">
-
-
-    <div class="middle-box text-center animated fadeInDown">
-        <h1>500</h1>
-        <h3 class="font-bold">服务器内部错误</h3>
-
-        <div class="error-desc">
-            服务器好像出错了...
-            <br/>您可以再试一次!
-            <br/>
-        </div>
-    </div>
-
-    <!-- 全局js -->
-   <script src="${pageContext.request.contextPath}/statics/other/bootstrap/js/jquery-3.2.1.min.js"></script>
-   <script src="${pageContext.request.contextPath}/statics/other/bootstrap/js/bootstrap.min.js"></script>
-
-
-</body>
-
+	<head>
+		<title>易信金融-- 500错误</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="" />
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<!-- Custom Theme files -->
+		<link rel="shortcut icon" href="${pageContext.request.contextPath}/statics/other/lco/smalllog.png">
+		<link href="/Finances/statics/find/css/style.css" rel="stylesheet" type="text/css" media="all" />
+		<!-- //Custom Theme files -->
+		<!-- web font -->
+		<!-- <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>web font -->
+		<!-- //web font -->
+	</head>
+	<body>
+		<!-- main -->
+		<div class="agileits-main"> 
+			<div class="agileinfo-row">
+				<h2>500</h2>
+				<h3>此页面在海上迷失了方向<a href="/Finances/toindex">返回首页</a></h3>
+			</div>	
+		</div>	
+		<!-- //main -->
+		<!-- copyright -->
+		<div class="copyright w3-agile">
+			<p>© 2018 亿信金融的错误页面 . 保留所有权利 | 设计 <a href="/Finances/toindex" target="_blank">亿信金融</a></p>
+		</div>
+		<!-- //copyright --> 
+	</body>
 </html>

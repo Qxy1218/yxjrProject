@@ -93,7 +93,7 @@
 		<!-- 404 graphic -->
 		<!-- Not found text -->
 			<div class="not-found-text">
-		    	<h1 class="not-found-text">File not found, sorry!</h1>
+		    	<h1 class="not-found-text">抱歉，页面不见了</h1>
 		    </div>
 		<!-- Not found text -->
 		
