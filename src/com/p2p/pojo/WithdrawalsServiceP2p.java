@@ -1,8 +1,12 @@
 package com.p2p.pojo;
 
 import java.io.Serializable;
-import java.util.Date;
 
+/**
+ * 提现Javabean
+ * 2017-01-07
+ * 操作人：邱雪云
+ * */
 public class WithdrawalsServiceP2p implements Serializable{
 
 	private Integer cid;//主键id
