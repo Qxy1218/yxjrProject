@@ -84,6 +84,9 @@ public class WithdrawalsfrontController {
 		@ResponseBody
 		public int selectBankcard(String wmoneytowhere,HttpServletRequest request) {
 			int count=0;
+			if(wmoneytowhere.equals(null)|wmoneytowhere.equals("")) {
+				return 2;
+			}
 			Userbackcard userback=new Userbackcard();
 			userback.setUbbackcardnum(wmoneytowhere);
 			Userbackcard ubc=userBankcardService.selectBackcard(userback);
@@ -93,7 +96,7 @@ public class WithdrawalsfrontController {
 				Integer uiid = ui.getUiid();
 				ub.setUiid(uiid);
 				Userbackcard ubk=userBankcardService.getModel(ub);
-				if(ubk.getUbbackcardnum()==ubc.getUbbackcardnum()) {
+				if(ubk.getUbbackcardnum().equals(ubc.getUbbackcardnum())) {
 					count=1;
 				}else {
 					count=2;
