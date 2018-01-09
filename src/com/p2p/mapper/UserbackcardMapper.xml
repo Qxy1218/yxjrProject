@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	   		ub.ub_id = #{ubid}
 	   </where>
 	</update>
-	<select id="selectBackcard" parameterType="com.p2p.pojo.Userbackcard" resultType="com.p2p.pojo.Userbackcard">
+	<select id="selectBackcard" parameterType="com.p2p.pojo.Userbackcard" resultMap="UserbackcardResultMap">
 		select * from user_backcard
 		<where>
  		     1=1
