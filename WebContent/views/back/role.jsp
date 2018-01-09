@@ -233,7 +233,7 @@
 		
 });
 	function queryParams(params) {
-		var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+		var temp = { //这里的键的名字和控制器的变量名必须一致，这边改动，控制器也需要改成一样的
 			//***这里的参数传到后台，用来进行分页处理*************************
 			rows: params.limit, //页面大小
 			page: params.offset, //页码
@@ -255,8 +255,8 @@
 	        data: {
 	            simpleData: {
 	                enable:true,
-	                idKey: "id",
-	                pIdKey: "pId",
+	                idKey: "id",//子节点
+	                pIdKey: "pId",//父节点
 	                rootPId: ""
 	            }
 	        },
@@ -276,9 +276,12 @@
 	    };
 	    var saveNode ="";
 	    function save(reid){
+	    	//获取到树对象
 	    	var treeObj = $.fn.zTree.getZTreeObj("tree");
+	    	//获取到树勾选的所有id
 	    	var nodes = treeObj.getCheckedNodes(true);
-	    	v="";
+	    	//v="";
+	    	//遍历出所有id，并用逗号隔开
 	    	for(var i=0;i<nodes.length;i++){
 	    		if(i!=nodes.length-1){
 	    			saveNode = saveNode +nodes[i].id+",";
@@ -286,7 +289,7 @@
 					saveNode = saveNode +nodes[i].id;
 				}
 	    	}
-	    	alert(saveNode);
+	    	//alert(saveNode);
 	    	var url = "${pageContext.request.contextPath}/back/admin/updatePower";
 	    	$.post(
 	    			url,

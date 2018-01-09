@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getAllModel" resultMap="UserbackcardResultMap">
 		select * from user_backcard 
 	</select>
-	<select id="findModel" parameterType="Integer" resultType="com.p2p.pojo.Userbackcard">
+	<select id="findModel" parameterType="java.lang.Integer" resultType="com.p2p.pojo.Userbackcard">
 		select * from user_backcard where ui_id=#{uiid} and ub_status=1
 	</select>
 	<update id="update" parameterType="com.p2p.pojo.Userbackcard">
@@ -54,4 +54,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	   		ub.ub_id = #{ubid}
 	   </where>
 	</update>
+	<select id="selectBackcard" parameterType="com.p2p.pojo.Userbackcard" resultType="com.p2p.pojo.Userbackcard">
+		select * from user_backcard
+		<where>
+ 		     1=1
+ 			    <if test="ubbackcardnum!=null">and ub_backcardnum=#{ubbackcardnum}</if>
+ 		</where>
+	</select>
 </mapper>

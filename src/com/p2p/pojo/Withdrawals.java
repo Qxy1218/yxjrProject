@@ -2,6 +2,8 @@ package com.p2p.pojo;
 
 import java.io.Serializable;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 
 /**
@@ -39,6 +41,8 @@ public class Withdrawals implements Serializable{
 	@TableField("w_fee")
 	private double wfee; //手续费
 	
+	@TableField("w_nowMoney")
+	private double wnowMoney;	//实际到账
 	
 	private String uiname;
 	
@@ -47,9 +51,27 @@ public class Withdrawals implements Serializable{
 		super();
 	}
 
+	
+		public double getWnowMoney() {
+		return wnowMoney;
+	}
 
-	public Withdrawals(Integer wid, Integer uid, double wmoney, String wtime, String wmoneytowhere, Integer wstatus,
-			double wfee, String uiname) {
+
+	public void setWnowMoney(double wnowMoney) {
+		this.wnowMoney = wnowMoney;
+	}
+
+
+		@Override
+	public String toString() {
+		return "Withdrawals [wid=" + wid + ", uid=" + uid + ", wmoney=" + wmoney + ", wtime=" + wtime
+				+ ", wmoneytowhere=" + wmoneytowhere + ", wstatus=" + wstatus + ", wfee=" + wfee + ", wnowMoney="
+				+ wnowMoney + ", uiname=" + uiname + "]";
+	}
+
+
+		public Withdrawals(Integer wid, Integer uid, double wmoney, String wtime, String wmoneytowhere, Integer wstatus,
+			double wfee, double wnowMoney, String uiname) {
 		super();
 		this.wid = wid;
 		this.uid = uid;
@@ -58,19 +80,12 @@ public class Withdrawals implements Serializable{
 		this.wmoneytowhere = wmoneytowhere;
 		this.wstatus = wstatus;
 		this.wfee = wfee;
+		this.wnowMoney = wnowMoney;
 		this.uiname = uiname;
 	}
 
 
-	@Override
-	public String toString() {
-		return "Withdrawals [wid=" + wid + ", uid=" + uid + ", wmoney=" + wmoney + ", wtime=" + wtime
-				+ ", wmoneytowhere=" + wmoneytowhere + ", wstatus=" + wstatus + ", wfee=" + wfee + ", uiname=" + uiname
-				+ "]";
-	}
-
-
-	public Integer getWid() {
+		public Integer getWid() {
 		return wid;
 	}
 

@@ -5,28 +5,34 @@
 	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="UTF-8">
-	    <!--[if lt IE 9]>
-    	<script src="<%=path%>/statics/front/statics/newcommon/js/html5shiv.js"></script>
-    <![endif]-->
-	    <meta name="keywords" content="网贷平台,网络借贷，网络赚钱项目,理财产品">
-	    <meta name="description" content="爱钱帮网贷平台为您提供网络赚钱项目；为此相继推出了许多新的理财产品，在为您创造高收益的同时也优化了理财产品模式。网络借贷，就选爱钱帮。">
-	    <meta charset="UTF-8">
-		<link rel="shortcut icon" href="/Finances/statics/other/lco/smalllog.png"> 
-	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">
-	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-common.css">
-	    <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/userCenter.css">
-	    <script type="text/javascript" src="/Finances/statics/front/statics/newcommon/js/jquery.min.js"></script>
-	    <script type="text/javascript" src="/Finances/statics/front/statics/newcommon/js/common.js"></script>
-	    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/esl.js"></script>
-	    <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/jquery.datetimepicker.css" />
-	    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/jquery.datetimepicker.js"></script>
-		<title>投资记录 | 亿信金融</title>
-</head>
+
+    <head>
+        <meta charset="UTF-8">
+        <!--[if lt IE 9]>
+        <script src="https://www.iqianbang.com/statics/newcommon/js/html5shiv.js"></script>
+        <![endif]-->
+        <meta name="keywords" content="投资理财平台，个人理财，新型投资理财，网上理财平台，理财产品P2P，正规理财产品">
+        <meta name="description" content="爱钱帮网贷平台为您提供网络赚钱项目；为此相继推出了许多新的理财产品，在为您创造高收益的同时也优化了理财产品模式。网络理财，就选爱钱帮。">
+        <meta charset="UTF-8">
+        <meta property="og:type" content="image" />
+		<meta property="og:image" content="https://www.iqianbang.com/statics/home/images/logo_brief.jpg" />
+        <link  rel="Shortcut  Icon"  href="https://www.iqianbang.com/statics/home/images/minilogo.png">
+        <link rel="stylesheet" href="https://www.iqianbang.com/statics/newcommon/css/m2-commonNew.css?20160520">
+        <link rel="stylesheet" href="https://www.iqianbang.com/statics/newcommon/css/m2-common.css?20160520">
+        <link rel="Shortcut  Icon" href="https://www.iqianbang.com/statics/newcommon/images/minilogo.png?20160520">
+        <link rel="stylesheet" href="https://www.iqianbang.com/statics/usercenter/css/userCenter.css?20160520">
+        <link rel="stylesheet" href="https://www.iqianbang.com/statics/home2/styles/newreg.css?20160520">
+        <link rel="stylesheet" href="https://www.iqianbang.com/statics/usercenter/css/common.css?20160520">
+        <script type="text/javascript" src="https://www.iqianbang.com/statics/newcommon/js/jquery.min.js?20160520"></script>
+        <script type="text/javascript" src="https://www.iqianbang.com/statics/newcommon/js/common.js?t=1506418932570"></script>
+        <script type="text/javascript" src="https://www.iqianbang.com/statics/usercenter/js/esl.js?20160520"></script>
+        <link rel="stylesheet" href="https://www.iqianbang.com/statics/usercenter/css/jquery.datetimepicker.css?20160520" />
+        <script type="text/javascript" src="https://www.iqianbang.com/statics/usercenter/js/jquery.datetimepicker.js?20160520"></script>
+
+    </head>
+<title>会员提现--爱钱帮</title>
 <body>
-	<!-- 右侧边栏start -->
+<!-- 右侧边栏start -->
 	<jsp:include page="../include/userside.jsp"></jsp:include>		
 	<!-- 右侧边栏end -->
 	
@@ -38,18 +44,339 @@
 		
 		<!-- 树start -->
 	    <jsp:include page="../include/tree.jsp"></jsp:include>
-	    <!-- 树end -->
+<div class="m2-userCentercommon-bg" style="display:none;"></div>
+<div class="m2-userAjax-loading" style="display:none;">
+    <img src="https://www.iqianbang.com/statics/usercenter/images/ajax-loading.gif" alt="">
+</div>
+    <script>
+        // 		$(document).ready(function(){
+        var href = window.location.href;
+        var search = window.location.search;
+        $('.m2-asideListitem ul a').each(function () {
+            if ($(this).prop('href') + search == href) {
+                if ($(this).prop('href') == "/usercenter-wangbaoqiang" || $(this).prop('href') == "/usercenter-sirendingqi") {
+                } else {
+                    $(this).parent().parent('ul').show();
+                    $(this).parent().parent('ul').prev('a').removeClass('m2-aside-item');
+                    $(this).parent().parent('ul').prev('a').addClass('m2-aside-cur');
+                    $(this).css('text-decoration', 'underline');
+                    $(this).css('color', '#0996CC');
+                }
+            }
+        });
+        $('.m2-asideListitem a:not(.m2-asideListitem ul a)').each(function () {
+            if ($(this).prop('href') + search == href) {
+                if ($(this).prop('href').search("usercenter-wangbaoqiang") > -1) {
+                    $(this).removeClass('m2-aside-wbq');
+                    $(this).addClass('m2-aside-cur');
+                } else if ($(this).prop('href').search("usercenter-sirendingqi") > -1) {
+                    $(this).removeClass('m2-aside-wbq');
+                    $(this).addClass('m2-aside-cur');
+                } else {
+                    $(this).removeClass('m2-aside-item');
+                    $(this).addClass('m2-aside-cur');
+                }
+            }
+        });
+        $('.m2-asideListitem a:not(.m2-asideListitem ul a)').click(function () {
+            if ($(this).prop('href') == '') {
+                $(this).siblings('ul').slideToggle();
+                $(this).parent().siblings('.m2-asideListitem').children('.m2-aside-secItem').slideUp();
+            }
+        });
+        // 		});
+    </script>
 
-    <div style="width:100%; height:100%; position:fixed; z-index:100; top:0; display:none; left:0;" id="allP" >
-        <div style="width:100%; height:100%; position:absolute; top:0; left:0; background:#000; opacity:0.5;"></div>
-        <div style="width:404px; height:154px; background:#fff; position:absolute; top:50%; left:50%; margin-left:-252px; margin-top:-100px; border:2px solid #666;">
-            <p style="color: #666666;font-size: 16px;absolute;line-height:170px;text-align: center; font-family: Microsoft YaHei;;">该项目已还清，为保护企业隐私，不再公示项目信息</p>
-            <div style="width: 30px;height: 30px;position: absolute;top: 11px;right: 0px;color: #666;font-size: 20px;cursor: pointer;" id="close">X</div>
+<body>
+    <!-- 绑定银行卡弹窗start -->
+    <div class="m2-charge2Confirm" style="display:none;">
+        <b class="m2-cha2Con-close"></b>
+        <div class="m2-cha2Bank" style="display:none;">
+            <div class="m2-cha2Conf-tit">
+                <span>选择银行卡</span>
+            </div>
+            <ul class="m2-cha2Banklist">
+                <li class="m2-cha2Bank-item m2-cha2Bank-sel"><i class="m2-userBank-1"></i><span>**5601</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-2"></i><span>**5602</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-3"></i><span>**5603</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-4"></i><span>**5604</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-5"></i><span>**5604</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-6"></i><span>**5604</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-7"></i><span>**5604</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-8"></i><span>**5604</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-9"></i><span>**5604</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-10"></i><span>**5604</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-11"></i><span>**5604</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-12"></i><span>**5604</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-13"></i><span>**5604</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-14"></i><span>**5604</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-15"></i><span>**5604</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-16"></i><span>**5604</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-17"></i><span>**5604</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-18"></i><span>**5604</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-19"></i><span>**5604</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-20"></i><span>**5604</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-21"></i><span>**5604</span><b></b></li>
+                <li class="m2-cha2Bank-item m2-cha2Bank-unsel"><i class="m2-userBank-22"></i><span>**5604</span><b></b></li>
+            </ul>
+        </div>
+        <div class="m2-cha2Conf-bind">
+            <div class="m2-cha2Conf-tit">
+                <span>切换银行卡</span>
+            </div>
+            <table cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td class="m2-chaConf-tit">
+                            <i class="m2-chaConf-user"></i>
+                            <span>真实姓名</span>
+                        </td>
+                        <td class="m2-chaConf-con">
+                            <span></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="m2-chaConf-tit">
+                            <i class="m2-chaConf-tel"></i>
+                            <span>手机号</span>
+                        </td>
+                        <td class="m2-chaConf-con">
+                           <span>17370134046</span>
+                            <a href="/usercenter-accountcontrol-userverify?phone=1">修改</a>
+                           
+                            <b class="m2-chaConf-warn"  style='color:#999;'>认证手机号须与银行卡预留手机号一致 否则无法绑卡</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="m2-chaConf-tit">
+                            <i class="m2-chaConf-card"></i>
+                            <span>借记卡</span>
+                        </td>
+                        <td class="m2-chaConf-con">
+                            <input type="text" style="width:265px;" placeholder="" id='cardinput' maxlength='19'>
+                            <b class="m2-chaConf-warn"  style='color:#999;'>该银行卡开户姓名必须为，否则会提现失败！</b>
+                        </td>
+                    </tr>
+<!--                    <tr>
+                        <td class="m2-chaConf-tit">
+                            <i class="m2-chaConf-psw"></i>
+                            <span>验证码</span>
+                        </td>
+                        <td class="m2-chaConf-con">
+                            <input type="text" style="width:173px;" placeholder=""><img class="m2-chaConf-code" src="" alt="">
+                        </td>
+                    </tr>-->
+                </tbody>
+            </table>
+        </div>
+        <!-- 	<div class="m2-cha2Conf-head">
+            <span class="m2-cha2Confhead-other">绑定其他银行卡</span>
+          </div> -->
+        <div class="m2-cha2Confsubmit">
+            <span class="m2-cha2Confsub-sure" onclick="changeCard()">确&nbsp;&nbsp;&nbsp;认</span>
+        </div>
     </div>
+    <script type="text/javascript">
+        // 点击切换银行卡弹出弹窗
+        $(function () {
+            $('.m2-userCentermanagedraw-addArea-hs,#addother').click(function () {
+                $('#cardinput').val('');
+                card_no = '';
+                new_card = '';
+                $('.m2-userCentercommon-bg,.m2-charge2Confirm').show();
+                chaContop();
+            });
+        })
+        /*
+         var oldBank =$('.m2-userBankitem').children('i').attr('class');
+         var newBank="";
+         $('.m2-cha2Bank-item').click(function(){
+         oldBank =$('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bank').children('i').attr('class');
+         newBank = $(this).children('i').attr('class');
+         
+         if($(this).hasClass('m2-cha2Bank-unsel')){
+         $(this).addClass('m2-cha2Bank-sel').removeClass('m2-cha2Bank-unsel');
+         $(this).siblings('.m2-cha2Bank-sel').addClass('m2-cha2Bank-unsel').removeClass('m2-cha2Bank-sel');
+         }
+         });
+         */
+        // 绑定、选择银行卡
+        $('.m2-cha2Conf-head span').click(function () {
+            // 绑定银行卡显示
+            if ($(this).hasClass('m2-cha2Confhead-other')) {
+                $(this).addClass('m2-cha2Confhead-bind').removeClass('m2-cha2Confhead-other');
+                $(this).html('选择已有银行卡');
+                $('.m2-cha2Bank').hide();
+                $('.m2-cha2Conf-bind').show();
+                chaContop();
+            } else if ($(this).hasClass('m2-cha2Confhead-bind')) {
+                // 选择银行卡显示
+                $(this).addClass('m2-cha2Confhead-other').removeClass('m2-cha2Confhead-bind');
+                $(this).html('绑定其他银行卡');
+                $('.m2-cha2Bank').show();
+                $('.m2-cha2Conf-bind').hide();
+                chaContop();
+            }
+        });
 
-    </div>
-    
- <!--公用提示框start-->
+
+        // 关闭
+        $('.m2-cha2Con-close,.m2-cha2Confsub-sure').click(function () {
+            $('.m2-charge2Confirm,.m2-userCentercommon-bg').hide();
+        });
+
+        // 点击确认按钮
+        function binkSubmit() {
+            $('.m2-cha2Confsub-sure').click(function () {
+                // $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bank').children('i').removeClass(oldBank).addClass(newBank);
+                $('.m2-userCentercommon-bg').hide();
+                $('.m2-charge2Confirm').hide();
+                if (newBank == 'm2-userBank-1') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国银行');
+                } else if (newBank == 'm2-userBank-2') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国农业银行');
+                } else if (newBank == 'm2-userBank-3') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('交通银行');
+                } else if (newBank == 'm2-userBank-4') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('浦发银行');
+                } else if (newBank == 'm2-userBank-5') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国邮政储蓄银行');
+                } else if (newBank == 'm2-userBank-6') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国光大银行');
+                } else if (newBank == 'm2-userBank-7') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('招商银行');
+                } else if (newBank == 'm2-userBank-8') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('兴业银行');
+                } else if (newBank == 'm2-userBank-9') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('上海银行');
+                } else if (newBank == 'm2-userBank-10') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国民生银行');
+                } else if (newBank == 'm2-userBank-11') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国建设银行');
+                } else if (newBank == 'm2-userBank-12') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国工商银行');
+                } else if (newBank == 'm2-userBank-13') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中信银行');
+                } else if (newBank == 'm2-userBank-14') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('华夏银行');
+                } else if (newBank == 'm2-userBank-15') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('广发银行');
+                } else if (newBank == 'm2-userBank-16') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('深圳发展银行');
+                } else if (newBank == 'm2-userBank-17') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('平安银行');
+                } else if (newBank == 'm2-userBank-18') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('恒丰银行');
+                } else if (newBank == 'm2-userBank-19') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('渤海银行');
+                } else if (newBank == 'm2-userBank-20') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('浙商银行');
+                } else if (newBank == 'm2-userBank-21') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('北京银行');
+                } else if (newBank == 'm2-userBank-22') {
+                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('其他银行');
+                }
+            });
+        }
+
+        //调整弹窗top值
+        function chaContop() {
+            $('.m2-charge2Confirm').css('top', $(document).scrollTop() + 150);
+        }
+    </script>
+    <!-- 绑定银行卡弹窗end -->
+    <!-- 提现弹窗start -->
+<style type="text/css">
+	.mo2-userDarwcon{
+		position: fixed;
+		z-index: 121;
+		position: fixed;
+		left: 50%;
+		top:50%;
+		margin-left: -245px;
+		margin-top: -100px;
+		width: 490px;
+		min-height: 65px;
+		z-index: 121;
+		background-color: #fff;
+		border: 6px solid #616161;
+		padding: 40px 0 22px 0;
+	}
+	.mo2-confBig{
+		font-size: 26px;
+		line-height: 40px;
+		color: #5f5e5e;
+		text-align: center;
+	}
+	.mo2-confClose{
+		position: absolute;
+		display: block;
+		width: 20px;
+		height: 20px;
+		right: 0;
+		top: 5px;
+		cursor: pointer;
+		background: url(https://www.iqianbang.com/statics/usercenter/images/m2-userCenter-icon.png) no-repeat -300px -20px;
+	}
+	.mo2-confLink{
+		display: block;
+		text-align: center;
+		color: #39adf7;
+		font-size: 15px;
+		line-height: 26px;
+	}
+	.mo2-confLink:hover,.mo2-confLink:active{
+		color: #299DE7;
+	}
+	.mo2-confBtn{
+		width: 370px;
+		height: 42px;
+		line-height: 42px;
+		margin: 20px auto 0 auto;
+	}
+	.mo2-confBtn span,.mo2-confBtn a{
+		display: inline-block;
+		width: 155px;
+		height: 40px;
+		border: 1px solid #F59451;
+		font-size: 18px;
+		text-align: center;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+	.btn_lef{
+		float: left;
+		color: #F59451;
+		background-color: #FFF;
+	}
+	.btn_lef:hover,.btn_lef:active{color: #E58441;}
+	.btn_rig{
+		float: right;
+		color: #fff;
+		background-color: #F59451;
+	}
+	.btn_rig:hover,.btn_rig:active{background-color: #E58441;}
+</style>
+<!-- 提现提示活动下线 -->
+		<!--<div class="mo2-userDarwcon" style="display:none;">
+			<div class="mo2-confClose"></div>
+			<p class="mo2-confBig">领新年红包，得更高收益。</p>
+			<a href="/market-newyear" class="mo2-confLink" style="margin-top:15px;">点击查看详情</a>
+			<div class="mo2-confBtn">
+				<span class="btn_lef">狠心提现</span>
+				<a href="#" class="btn_rig">马上投资</a>
+			</div>
+		</div>
+<script type="text/javascript">
+	$(function(){
+		// 关闭
+		$('.mo2-confClose').click(function(){
+			$('.mo2-userDarwcon,.m2-userCentercommon-bg').hide();
+		})
+	})
+</script>-->
+<!-- 提现弹窗end -->
+    <!--公用提示框start-->
     <div class="m2-userCentercommon-confirm" style='display: none;' id='msgdialog1'>
         <span class="m2-userCentercommon-confirmClose"></span>
         <p class="m2-userCommon-confirmWar"><i></i></p>
@@ -74,8 +401,7 @@
             <!--  <a href="#">查看提现记录</a>-->
         </div>
 
-<!--        
-		<div class="m2-userCentermanage-accNum">
+<!--        <div class="m2-userCentermanage-accNum">
             <div class="m2-userCentermanage-accNumlef">
                 <p class="m2-userCentermanage-accNumtit">
                     <span>账户余额（元）</span>
@@ -208,7 +534,7 @@
                                                             </li>-->
                             <li style="margin:10px 0;">
                                 <span class="m2-txtRig">账户余额：</span>
-                                <span class="m2-userCenterdraw-serTot" style="color:#f5944f;">0元</span>
+                                <span class="m2-userCenterdraw-serTot" style="color:#f5944f;">${sessionScope.user.ubalance}元</span>
                             </li>
                         </ul>
                     </div>
@@ -217,8 +543,9 @@
                             <span>提现金额：</span>
                         </div>
                         <div class="m2-userCentermanage-drawNum">
-                            <input type="text" class="m2-userCentermanagedraw-num" placeholder="请输入提现金额" id='withdrawmoney'>
-                            <input type="submit" class="m2-userCentermanagedraw-submit" value="提&nbsp;现" id='withdrawbutton'>
+                            <input type="text" class="m2-userCentermanagedraw-num" placeholder="请输入提现金额" id='withdrawals'
+                            onkeyup="var p2 = parseFloat(value).toFixed(2);value = p2>=0?(/\.0?$/.test(value)?value:p2.replace(/0$/,'').replace(/\.0$/,'')):''" onblur="value = value.replace(/\.0*$/,'')"/>
+                            <input type="button" class="m2-userCentermanagedraw-submit" value="提&nbsp;现" id='withdrawbuttons'>
                             <!-- <b class="m2-userCentermanagedraw-moreDetail">
                               <u>
                                 <em class="m2-draw-arr"></em>
@@ -246,8 +573,11 @@
                             <li class="m2-userHslist-unsel m2-userHs-list2" id='dae'><i></i><span>大额</span></li>
                         </ul>
                         <p class="m2-userHs-exp"><i></i>
-                        	<!--<span>支持20万元（含20万元）以下资金提现，实时到账。20万元以上请使用大额提现。</span>-->
-                        	                        		<span>支持单笔5万及以下，单日20万及以下实时提现到账。单日20万以上请用大额提现。</span>                        </p>
+                        	<span>支持单笔5万及以下，单日20万及以下实时提现到账。单日20万以上请用大额提现。</span>
+                        </p>
+                        <p class="m2-userHs-exp"><i></i>
+                        	<span>提现越多手续费越低,五万以下1%,20万以下0.8%,20万以上0.6%的手续费。</span>
+                        </p>
                     </div>
 
                 <!--已经有银行卡end-->
@@ -256,70 +586,16 @@
                     <ul>
                         <li>
                             <span class="m2-txtRig">手续费：</span>
-                            <span class="m2-userCenterdraw-serTot">0元</span>
-                            <b class="m2-userCentermanagedraw-moreDetail">
-                                <u>
-                                    <em class="m2-draw-arr"></em>
-                                    <em class="m2-draw-arrBg"></em>
-                                    使用徽商银行电子交易账户提现无需支付任何手续费。
-                                </u>
-                            </b>
+                            <span class="m2-userCenterdraw-serTot" id="wfee">0元</span>
                         </li>
-                        <!-- <li>
-                          <span class="m2-txtRig">服务费：</span>
-                          <span class="m2-userCenterdraw-ser">100.12元</span>
-                          <b class="m2-userCentermanagedraw-moreDetail">
-                          <u>
-                            <em class="m2-draw-arr"></em>
-                            <em class="m2-draw-arrBg"></em>
-                                文字说明文字说明文字说明文字说明文字说明
-                          </u>
-                        </b>
+                         <li>
+                            <span class="m2-txtRig">实际到账：</span>
+                            <span class="m2-userCenterdraw-serTot" id="wnowMoney">0元</span>
                         </li>
-                        <li>
-                          <span class="m2-txtRig">汇付手续费：</span>
-                          <span class="m2-userCenterdraw-fees">1000元</span>
-                          <b class="m2-userCentermanagedraw-moreDetail">
-                            <u>
-                              <em class="m2-draw-arr"></em>
-                              <em class="m2-draw-arrBg"></em>
-                                文字说明文字说明文字说明文字说明文字说明
-                            </u>
-                          </b>
-                        </li>
-                        <li>
-                          <span class="m2-txtRig">免手续费次数：</span>
-                          <span class="m2-userCenterdraw-tim">3次</span>
-                          <a class="m2-userCenterdraw-timLink" href="#">如何获取&raquo;</a>
-                          <b class="m2-userCentermanagedraw-moreDetail">
-                            <u>
-                              <em class="m2-draw-arr"></em>
-                              <em class="m2-draw-arrBg"></em>
-                                文字说明文字说明文字说明文字说明文字说明
-                            </u>
-                          </b>
-                        </li> -->
+                       
                     </ul>
                 </div>
-                <!-- 		<div class="m2-userHs-banMsg">
-                      <p>请补充转入账户信息</p>
-                      <div class="m2-userCentermanagedraw-numInput">
-                        <div class="m2-userCentermanage-drawBox-cardTit m2-txtRig">
-                          <span>开户支行：</span>
-                        </div>
-                        <div class="m2-userCentermanage-drawNum">
-                          <div style="position:relative;">
-                            <input type="text" class="m2-userCentermanagedraw-num" placeholder="开户支行名称">
-                            <b class="m2-userHs-iptWarn">错误提示信息</b>
-                            <a href="http://www.lianhanghao.com/" target="_blank" class="m2-userHs-drawForget">忘记开户支行？</a>
-                          </div>
-                          <div style="padding:30px 0 80px 10px;">
-                            <input type="submit" class="m2-userCentermanagedraw-submit" value="确&nbsp;定">
-                          </div>
-                          
-                        </div>
-                      </div>
-                    </div> -->
+              
 
                 <div class="m2-recharge-tips">
                     <h3><i></i>温馨提示：</h3>
@@ -340,117 +616,91 @@
         </div>
     </div>
 </div>
- <script type="text/javascript">
-        // 点击切换银行卡弹出弹窗
-        $(function () {
-            $('.m2-userCentermanagedraw-addArea-hs,#addother').click(function () {
-                $('#cardinput').val('');
-                card_no = '';
-                new_card = '';
-                $('.m2-userCentercommon-bg,.m2-charge2Confirm').show();
-                chaContop();
-            });
-        })
-        /*
-         var oldBank =$('.m2-userBankitem').children('i').attr('class');
-         var newBank="";
-         $('.m2-cha2Bank-item').click(function(){
-         oldBank =$('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bank').children('i').attr('class');
-         newBank = $(this).children('i').attr('class');
-         
-         if($(this).hasClass('m2-cha2Bank-unsel')){
-         $(this).addClass('m2-cha2Bank-sel').removeClass('m2-cha2Bank-unsel');
-         $(this).siblings('.m2-cha2Bank-sel').addClass('m2-cha2Bank-unsel').removeClass('m2-cha2Bank-sel');
-         }
-         });
-         */
-        // 绑定、选择银行卡
-        $('.m2-cha2Conf-head span').click(function () {
-            // 绑定银行卡显示
-            if ($(this).hasClass('m2-cha2Confhead-other')) {
-                $(this).addClass('m2-cha2Confhead-bind').removeClass('m2-cha2Confhead-other');
-                $(this).html('选择已有银行卡');
-                $('.m2-cha2Bank').hide();
-                $('.m2-cha2Conf-bind').show();
-                chaContop();
-            } else if ($(this).hasClass('m2-cha2Confhead-bind')) {
-                // 选择银行卡显示
-                $(this).addClass('m2-cha2Confhead-other').removeClass('m2-cha2Confhead-bind');
-                $(this).html('绑定其他银行卡');
-                $('.m2-cha2Bank').show();
-                $('.m2-cha2Conf-bind').hide();
-                chaContop();
-            }
-        });
 
-
-        // 关闭
-        $('.m2-cha2Con-close,.m2-cha2Confsub-sure').click(function () {
-            $('.m2-charge2Confirm,.m2-userCentercommon-bg').hide();
-        });
-
-        // 点击确认按钮
-        function binkSubmit() {
-            $('.m2-cha2Confsub-sure').click(function () {
-                // $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bank').children('i').removeClass(oldBank).addClass(newBank);
-                $('.m2-userCentercommon-bg').hide();
-                $('.m2-charge2Confirm').hide();
-                if (newBank == 'm2-userBank-1') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国银行');
-                } else if (newBank == 'm2-userBank-2') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国农业银行');
-                } else if (newBank == 'm2-userBank-3') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('交通银行');
-                } else if (newBank == 'm2-userBank-4') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('浦发银行');
-                } else if (newBank == 'm2-userBank-5') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国邮政储蓄银行');
-                } else if (newBank == 'm2-userBank-6') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国光大银行');
-                } else if (newBank == 'm2-userBank-7') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('招商银行');
-                } else if (newBank == 'm2-userBank-8') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('兴业银行');
-                } else if (newBank == 'm2-userBank-9') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('上海银行');
-                } else if (newBank == 'm2-userBank-10') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国民生银行');
-                } else if (newBank == 'm2-userBank-11') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国建设银行');
-                } else if (newBank == 'm2-userBank-12') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中国工商银行');
-                } else if (newBank == 'm2-userBank-13') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('中信银行');
-                } else if (newBank == 'm2-userBank-14') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('华夏银行');
-                } else if (newBank == 'm2-userBank-15') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('广发银行');
-                } else if (newBank == 'm2-userBank-16') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('深圳发展银行');
-                } else if (newBank == 'm2-userBank-17') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('平安银行');
-                } else if (newBank == 'm2-userBank-18') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('恒丰银行');
-                } else if (newBank == 'm2-userBank-19') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('渤海银行');
-                } else if (newBank == 'm2-userBank-20') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('浙商银行');
-                } else if (newBank == 'm2-userBank-21') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('北京银行');
-                } else if (newBank == 'm2-userBank-22') {
-                    $('.m2-userCentermanage-drawBox2 .m2-userCentermanage-drawBox-bankName').html('其他银行');
-                }
-            });
-        }
-
-        //调整弹窗top值
-        function chaContop() {
-            $('.m2-charge2Confirm').css('top', $(document).scrollTop() + 150);
-        }
-    </script>
-    <!-- 绑定银行卡弹窗end -->
-    <!-- 提现弹窗start -->
 <script type="text/javascript">
+
+$(document).ready(function(){
+	 $('#withdrawals').blur(function(){
+		 var withdrawals=$('#withdrawals').val();
+		 var wfee=0;
+		 var count=0;
+		 if(${user.ubalance }<withdrawals){
+			 alert("余额不足");
+			 $('#withdrawals').val("");
+			 return;
+		 }
+		 if(100>withdrawals){
+			 alert("提现金额需要大于100");
+			 $('#withdrawals').val("");
+			 return;
+		 }
+		 if(withdrawals<50000){
+			wfee = withdrawals * 0.01;
+			count = withdrawals-wfee;
+		 }else if(50000<withdrawals&&withdrawals<200000){
+			wfee = withdrawals * 0.008;
+			count = withdrawals-wfee;
+		 }else if(withdrawals>200000){
+			 wfee = withdrawals* 0.006;
+			 count = withdrawals-wfee;
+		 }
+		 document.getElementById('wfee').innerText=Math.round(wfee*100)/100;
+		 document.getElementById('wnowMoney').innerText=Math.round(count*100)/100;
+		// ('#wfee').html(wfee);
+		 //('#wnowMoney').html(count);
+	 });
+	 $('#cardinput').blur(function(){
+		 $.ajax({
+			 url:'${pageContext.request.contextPath }/front/withdrawals/selectBankcard',
+			 data:{"wmoneytowhere":$('#cardinput').val()},
+			 type:'post',
+			 dataType:'json',
+			 success:function(data){
+				 alert(data)
+				 if(data==1){
+					 alert("卡号和默认卡号相同,不能进行切换");
+					 $('#cardinput').val("");
+					 return;
+				 }else if(data==0){
+					 alert("该卡号未绑定,不能提现到这张卡");
+					 $('#cardinput').val("");
+					 return;
+				 }
+				 
+			 }
+		 });
+	 });
+	 $('#withdrawbuttons').click(function(){
+		 var withdrawals=$('#withdrawals').val();
+		 var wfee=document.getElementById("wfee").innerHTML;
+		 var wnowMoney=document.getElementById("wnowMoney").innerHTML;
+		 var cardinput=$('#cardinput').val();
+		 if(withdrawals=""){
+			 alert("请输入提现金额");
+		 }
+		 $.ajax({
+			 url:'${pageContext.request.contextPath }/front/withdrawals/insertWithdrawals',
+			 data:{
+				 "wmoney":$('#withdrawals').val(),
+				 "wfee":document.getElementById("wfee").innerHTML,
+				 "wnowMoney":document.getElementById("wnowMoney").innerHTML,
+				 "wmoneytowhere":$('#cardinput').val()
+		 },
+			 type:'post',
+			 dataType:'json',
+			 success:function(data){
+				 if(data==1){
+					 alert("提现成功");
+				 }else if(data==2){
+					 alert("");
+				 }
+			 }
+		 });
+	 });
+	 
+});
+
+
     $(function () {
         //汇付点击关闭隐藏银行卡
         $('.m2-userCentermanage-drawBox1 .m2-userCentermanage-bank-close').bind("click", function (event) {
@@ -577,7 +827,7 @@
             //});
     });
 	//提现方法
-	function cupwithdraw(){
+	/* function cupwithdraw(){
 		var withdrawmoney = $('#withdrawmoney').val();
 		if (!card) {
             showMsg( '请先绑卡！' );
@@ -661,7 +911,7 @@
 		
 
 		
-	}
+	} */
     
     function cleanAmount() {
         $('#withdrawmoney').val('');
@@ -774,10 +1024,13 @@
 
 </script>
 <script>
+
     var send_flag = true;
     var show_flag = true;
     var card_no;
+
     $('#cardinput').keyup(function () {
+
         var tcard_no = $('#cardinput').val();
         if (tcard_no.length < 6) {
             $('#cardinput').next('b').html('');
@@ -794,6 +1047,7 @@
     });
 
     function getCardInfo() {
+
         if (send_flag) {
             card_no = $('#cardinput').val();
             send_flag = false;
@@ -810,9 +1064,9 @@
                         if (obj['day_limit'] >= 500000 && obj['single_limit'] >= 500000) {
                             $('#cardinput').next('b').html('');
                         } else if (obj['day_limit'] > 0 && obj['single_limit'] >= 0) {
-                           /*  $('#cardinput').next('b').html(obj['inst_name'] + '充值限额：单笔'
+                            $('#cardinput').next('b').html(obj['inst_name'] + '充值限额：单笔'
                                     + (obj['single_limit'] / 10000) + '万，单日' + (obj['day_limit'] / 10000) + '万');
-                         */} else {
+                        } else {
                             $('#cardinput').next('b').html('您的银行卡不支持充值，但可用于提现操作。');
                         }
                     }
@@ -822,5 +1076,13 @@
     }
 </script>
 
+</script>
 </body>
 </html>
+
+<input type="text" onkeyup="var p2 = parseFloat(value).toFixed(2);value = p2>=0?(/\.0?$/.test(value)?value:p2.replace(/0$/,'').replace(/\.0$/,'')):''" onblur="value = value.replace(/\.0*$/,'')"/>
+
+
+
+
+

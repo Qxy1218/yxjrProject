@@ -10,4 +10,6 @@ import com.p2p.pojo.Userbackcard;
  * */
 public interface UserbackcardMapper extends IBaseDao<Integer, Userbackcard> {
 
+	//根据银行卡号查找判断是否存在
+	Userbackcard selectBackcard(Userbackcard str);
 }

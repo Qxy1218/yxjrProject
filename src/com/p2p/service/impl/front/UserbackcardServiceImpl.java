@@ -53,4 +53,10 @@ public class UserbackcardServiceImpl implements UserbackcardService {
 		return userbackcardMapper.findModel(id);
 	}
 
+	@Override
+	public Userbackcard selectBackcard(Userbackcard str) {
+		// TODO Auto-generated method stub
+		return userbackcardMapper.selectBackcard(str);
+	}
+
 }

@@ -4,15 +4,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
+import com.p2p.pojo.Userbackcard;
 import com.p2p.pojo.Withdrawals;
 import com.p2p.service.back.WithdrawalsService;
+import com.p2p.service.front.IUserService;
+import com.p2p.service.front.UserbackcardService;
 import com.p2p.util.PageInfo;
 
 
@@ -21,6 +22,10 @@ import com.p2p.util.PageInfo;
 public class WithdrawalsController {
 	@Resource(name="withdrawalsServiceImpl")
 	private WithdrawalsService withdrawalsService;
+	@Resource(name="userbackcardServiceImpl")
+	private UserbackcardService userBankcardService;
+	@Resource(name="IUserServiceImpl")
+	private IUserService userService;
 	
 	@RequestMapping(value="selectWithdrawalsList")
 	@ResponseBody
@@ -33,13 +38,7 @@ public class WithdrawalsController {
 		pageInfo.setTotal(pageInfo.getTotal());
 		return pageInfo;
 	}
-	//实现新增
-		@RequestMapping(value="insertWithdrawals")
-		@ResponseBody
-		public int insertWithdrawals(Withdrawals withdrawals) {
-			int count = withdrawalsService.addModel(withdrawals);
-			return count;
-		}
+	
 		
 	
 	//删除
@@ -51,7 +50,7 @@ public class WithdrawalsController {
 		for (int i = 0; i < idStr.length;i++) {
 			String wid = (String) idStr[i];
 			Withdrawals withdrawals = new Withdrawals();
-			withdrawals.setWid(Integer.valueOf(wid));;
+			withdrawals.setWid(Integer.valueOf(wid));
 			count =withdrawalsService.delete(withdrawals);
 		}
 		return count;

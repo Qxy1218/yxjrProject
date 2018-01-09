@@ -3,13 +3,10 @@ package com.p2p.controller.back;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,7 +32,6 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -246,8 +242,7 @@ public class EmpController {
 		return "redirect:/back/tologin";
 		}
 	   
-	   
-	   
+	 
 	  //导出
 	   @RequestMapping("export")
 	   @ResponseBody
@@ -367,14 +362,12 @@ public class EmpController {
                        i = bis.read(buffer);
                    }
                } catch (Exception e) {
-                   // TODO: handle exception
                    e.printStackTrace();
                } finally {
                    if (bis != null) {
                        try {
                            bis.close();
                        } catch (IOException e) {
-                           // TODO Auto-generated catch block
                            e.printStackTrace();
                        }
                    }
@@ -382,15 +375,12 @@ public class EmpController {
                        try {
                            fis.close();
                        } catch (IOException e) {
-                           // TODO Auto-generated catch block
                            e.printStackTrace();
                        }
                    }
                }
            }
        return null;
-	     /*   return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),    
-	                                          headers, HttpStatus.CREATED); */   
 	   }
 	   
 	  

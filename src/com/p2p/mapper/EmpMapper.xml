@@ -34,8 +34,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    e.re_id = r.re_id and  e_name=#{ename}
 		</where>
  	</select>
-	<select id="getModel"  resultMap="BaseResultMap">
+	<select id="getAllModel"  resultMap="BaseResultMap">
  		select * from employee 
+ 	</select>
+ 	
+ 	<select id="getModel"  resultMap="BaseResultMap">
+ 		select * from employee 
+ 		<!-- <if test="e_id!=null">e_id=#{eid}</if> -->
+ 		<where>
+ 			e_id=#{eid}
+ 		</where>
  	</select>
  	
  	<!-- 根据id查询对象 -->

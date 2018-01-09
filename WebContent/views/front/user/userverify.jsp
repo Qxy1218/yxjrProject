@@ -227,7 +227,7 @@
                             <select id="lmkselect1" name="pvid" style="width:140px;height:30px;">
 		            			<option value="">请选择</option>
 						        <c:forEach items="${pvlist}" begin="0" end="${pvlistsize}" var="p" >
-									<option value="${p.pvid}" <c:if  test="${p.pvid==address_privice}"> selected="selected"</c:if> >${p.pvname}</option>
+						  			<option value="${p.pvid}" <c:if  test="${p.pvid==address_privice}"> selected="selected"</c:if> >${p.pvname}</option>
 								</c:forEach>
 							</select>
 							<select id="lmkselect2" name="cyid" <c:if test="${address_city==null }"> disabled="true" </c:if> style="width:120px;height:30px;">
