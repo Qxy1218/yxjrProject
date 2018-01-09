@@ -216,7 +216,18 @@ $(document).ready(function() {
 			"text"
 		);	
 	}
-	
+	window.operateEvents = {
+            'click .RoleOfdelete': function (e, value, row, index) {
+                alert(row.dno);  
+              
+              
+         },
+            'click .RoleOfedit': function (e, value, row, index) {
+               // $("#editModal").modal('show');
+
+
+            }
+    };
 	$(function () {
 	 	//激活弹框提示
 		$("[data-toggle='tooltip']").tooltip();
@@ -300,12 +311,22 @@ $(document).ready(function() {
 				field : 'vid',
 				title : '会员积分id'
 			},{
-				field : '',
-				title : '状态'
-			}, ]
+                field: 'operate',
+                title: '操作',
+                align: 'center',
+                width : 100,
+                events: operateEvents,
+                formatter: operateFormatter
+                } ]
 		});
 });
+	function operateFormatter(value, row, index) {
+	      return [
+	      '<button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">查看</button>',
 
+
+	      ].join('');
+	      }
 	function queryParams(params) {
 		var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
 			//***这里的参数传到后台，用来进行分页处理*************************
@@ -367,14 +388,7 @@ $(document).ready(function() {
 					</div>
 					<div class="ibox-content">
 						<div id="toolbar" class="btn-group">
-							<button id="btn_add" type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#addStudent" onclick="addRole()">
-								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
-							</button>
-							<button id="btn_edit" type="button" class="btn btn-w-m btn-success" onclick="UpRed()">
-								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
-							</button>
-							<button id="btn_delete" type="button" class="btn btn-w-m btn-danger" onclick="btn_delete()">
-								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+							
 							</button>
 						</div>
 						<!-- table代码就这些，用js构建表格 -->
