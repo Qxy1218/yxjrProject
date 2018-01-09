@@ -656,7 +656,6 @@ $(document).ready(function(){
 			 type:'post',
 			 dataType:'json',
 			 success:function(data){
-				 alert(data)
 				 if(data==1){
 					 alert("卡号和默认卡号相同,不能进行切换");
 					 $('#cardinput').val("");
