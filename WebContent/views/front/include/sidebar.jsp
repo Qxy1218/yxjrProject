@@ -37,7 +37,7 @@
                     <i class="mo2-indLogicon-code"></i><input class="mo2-indIptcod-step1" id="vcodeRight" type="text" placeholder="验证码">
                 </div>
                 	<!-- 图形验证码 -->
-                  <div class="mo2-indRegcode"  id="reverifyCodeRight" ></div>
+                  <div class="mo2-indRegcode" id="reverifyCodeRight" ></div>
                 <b class="mo2-indLogwarRight"><em class="mo2-indlogWar-arr"></em><u></u></b>
             </div>
             <div class="mo2-indReg-btn" id="verifyregcode" onclick="verifycodeRight();" style="margin-top:8px;">
