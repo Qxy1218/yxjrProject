@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from user_backcard where ub_id = #{ubid}
 	</delete>
 	<select id="getAllModel" resultMap="UserbackcardResultMap">
-		select * from user_backcard
+		select * from user_backcard 
 	</select>
 	<select id="findModel" parameterType="Integer" resultType="com.p2p.pojo.Userbackcard">
 		select * from user_backcard where ui_id=#{uiid} and ub_status=1
