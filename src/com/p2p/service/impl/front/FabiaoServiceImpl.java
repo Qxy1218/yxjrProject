@@ -73,4 +73,9 @@ public class FabiaoServiceImpl implements FabiaoService{
 		return fabiaomapper.selectProductsByPage(startPos, pageSize, fpart);
 	}
 
+	@Override
+	public List<Fabiao> hotSelect() {
+		return fabiaomapper.hotselect();
+	}
+
 }

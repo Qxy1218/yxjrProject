@@ -132,7 +132,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     		根据f_status做升序排练
     	 -->
     	select * from fabiao where 
-    		f_status in(1,2)
+    		f_status not in(4,5)
     		<if test="type!=null">and f_part=#{type}</if>
     	   	order by f_status;
     </select>
@@ -278,4 +278,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="fabiaoCount" resultType="java.lang.Integer">
 		select count(*) from fabiao
 	</select>
+	
+	<select id="hotselect" resultMap="BaseResultMap">
+		
+ 	</select>
 </mapper>

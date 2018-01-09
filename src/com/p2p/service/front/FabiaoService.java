@@ -12,6 +12,7 @@ public interface FabiaoService extends IBaseService<Integer, Fabiao>{
 	List<Fabiao> selectByType(String type);
 	List<Fabiao> selectByLike(ProjectSelect rProjectSelect);
 	List<Fabiao> getAreasById(String cityid);
+	List<Fabiao> hotSelect();
 	
 	/** 
 	 * 使用注解方式传入多个参数，用户产品分页， 根据标类型查询

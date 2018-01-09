@@ -40,4 +40,7 @@ public interface FabiaoMapper extends IBaseDao<Integer, Fabiao>{
 		
 		//查询总的记录数
 		abstract Integer fabiaoCount();
+		
+		//首页热门查询
+		List<Fabiao> hotselect();
 }

@@ -1,5 +1,11 @@
 package com.p2p.controller.front;
 
+import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,12 +18,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.Indexpic;
 import com.p2p.pojo.User;
 import com.p2p.service.back.IndexpicService;
+import com.p2p.service.front.FabiaoService;
 import com.p2p.service.front.IUserService;
 import com.p2p.service.front.SetupnaticeService;
+import com.p2p.util.CodePassage;
+import com.p2p.util.ContextUtils;
+import com.p2p.util.DateUtils;
 import com.p2p.util.SetupnaticeUtil;
+import com.p2p.util.YieldUtil;
 /**
  * 开发人:汪栋才
  * 2017-11-13
@@ -35,11 +47,16 @@ public class BeansController {
 	@Resource(name="setupnaticeServiceImpl")
 	private SetupnaticeService setupnaticeService;
 	
+	@Resource(name="fabiaoServiceImpl")
+	private FabiaoService fabiaoService;
+	
+	
 	/**
 	 * 进入首界面(index.jsp)
+	 * @throws ParseException 
 	 * */
 	@RequestMapping(value="/toindex")
-	public String toFrontIndex(Model model,HttpServletRequest request,HttpSession session){
+	public String toFrontIndex(Model model,HttpServletRequest request,HttpSession session) throws ParseException{
 		List<Indexpic> lists = indexpicService.getAllModel();
 		model.addAttribute("indexpicList", lists);
 		model.addAttribute("pageName","index");
@@ -82,6 +99,10 @@ public class BeansController {
 		if(us!=null && us.getUid()!=null) {
 			SetupnaticeUtil.initSetupnatice(us.getUid(), setupnaticeService);
 		}
+		
+		//首页爱车贷遍历
+		List<Fabiao> acds = CodePassage.makeList(fabiaoService,"爱车贷");
+		model.addAttribute("fabiaolistsafd", acds);
 		
 		return "views/front/index";
 	}	

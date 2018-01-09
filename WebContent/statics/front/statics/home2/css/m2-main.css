@@ -425,8 +425,8 @@ a{cursor: pointer;}
 	display: block;
 	width: 63px;
 	height: 50px;
-	top: 0px;
-	left: 12px;
+	top: -10px;
+	left: -12px;
 	background: url(../images/m2-mainIcon.png) no-repeat 0px -58px;
 }
 .m2-invItem-new{

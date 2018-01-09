@@ -609,32 +609,44 @@
         <div class="mo2-indCarlist-next"></div>
         <div class="mo2-indCarbox">
             <ul class="mo2-indCar">
+            <c:forEach items="${fabiaolistsafd}" var="fbindexlist">
                 <li class="mo2-indCarlist mo2-indCarlist-ing">
 					<div class="mo2-indCartop">
 	                    <div class="mo2-indCartop-img">
-	                        <i class="mo2-listNewicon"></i>                        
-	                        <img src=/Finances/statics/front/uploadData/UserBorrowData/182015-20160902132425642.jpg alt="爱车贷-雪佛兰迈锐宝-XAA067" title="爱车贷-雪佛兰迈锐宝-XAA067" onclick="window.open('duanqi_licai_chanpin-moxOeTwTZaOw8TY79g.html')"/>
+	                    	<!-- 
+                        	m2-invItem-new :为图片上的新手标
+                        	m2-invItem-hot :为图片上的热门标
+                        	没加i标签的则为普通标
+                         -->
+                         	<c:if test="${fbindexlist.ftype=='新手标'}">
+                         		<i class="mo2-listNewicon"></i>
+                         	</c:if>
+                            <c:if test="${fbindexlist.ftype=='热门标'}">
+                         		<i class="m2-invItem-hot"></i>
+                         	</c:if>
+	                                             
+	                        <img src="${pageContext.request.contextPath}/${fbindexlist.fimage}" alt="${fbindexlist.ftitle}" title="${fbindexlist.ftitle}" onclick="window.open('duanqi_licai_chanpin-moxOeTwTZaOw8TY79g.html')"/>
 	                    </div>
                     
                     	<div class="mo2-indCartop-rig">
                         	<ul>
-	                            <li class="mo2-indCar-tit"><a href="/Finances/topro" target="_blank" title="爱车贷-雪佛兰迈锐宝-XAA067">爱车贷-雪佛兰迈锐宝-XAA067</a></li>
+	                            <li class="mo2-indCar-tit"><a href="/Finances/topro" target="_blank" title="${fbindexlist.ftitle}">${fbindexlist.ftitle}</a></li>
 	                            <li class="mo2-indCar-msg">
                                 	<span>预期年化收益率：</span>
                                 		<span class="huodongjiaxi">
-                                			8%+1%								
+                                			${fbindexlist.froe*100}%+${fbindexlist.fincrease*100}%								
                                 		</span>
-                                		<p style="margin-top:0;margin-left:60px;" class="jiaxishow"> 活动加息1%</p>
+                                		<p style="margin-top:0;margin-left:60px;" class="jiaxishow"> 活动加息${fbindexlist.fincrease*100}%</p>
                             	</li>
                             	
 	                            <li class="mo2-indCar-msg">
 	                                <span>项目期限：</span>
-	                                <span>1个月</span>
+	                                <span>${fbindexlist.rematime}个月</span>
 	                            </li>
 	                            
 	                            <li class="mo2-indCar-msg">
 	                                <span>项目余额：</span>
-	                                <span>4.99万</span>
+	                                <span>${fbindexlist.fmoney-fbindexlist.fendmoney}万</span>
 	                            </li>
                         	</ul>
                     	</div>
@@ -645,9 +657,9 @@
                             <span class="mo2-carProcess">
                                 <span class="mo2-carProcess-tit">正在募集：</span>
                                 <b>
-                                    <i style="width:42%;"></i>
-                                    <u style="left:42%;">
-                                        42%
+                                    <i style="width:${fbindexlist.compnrate};"></i>
+                                    <u style="left:${fbindexlist.compnrate};">
+                                       ${fbindexlist.compnrate}
                                         <em></em>
                                     </u>
                                 </b>
@@ -656,443 +668,16 @@
                     </div> 
 					
 					<div class="mo2-indCarbot">
-                        <a href="/Finances/topro" target="_blank">立即投资</a>                
+                        <c:if test="${fbindexlist.fstatus==1}">
+							<a href="/Finances/topro" target="_blank">立即投资</a> 
+                         </c:if> 
+                         <c:if test="${fbindexlist.fstatus==2}">
+							<a href="javascript:void(0)" style="background-color:#ccc;" target="_blank">还款中</a>
+                         </c:if>                
                     </div>
-                </li>                    
-                
-                <li class="mo2-indCarlist mo2-indCarlist-ing"> 
-					<div class="mo2-indCartop">
-		                <div class="mo2-indCartop-img">
-		                    <img src=/Finances/statics/front/uploadData/UserBorrowData/200528-201609011135068334.jpg alt="【新手标】爱车贷-丰田普瑞维亚-SX047" title="【新手标】爱车贷-丰田普瑞维亚-SX047" onclick="window.open('/Finances/topro')"/>
-		                </div>
-                		
-                		<div class="mo2-indCartop-rig">
-                    		<ul>
-		                        <li class="mo2-indCar-tit"><a href="/Finances/topro" target="_blank" title="【新手标】爱车贷-丰田普瑞维亚-SX047">【新手标】爱车贷-丰田普瑞维亚-SX047</a></li>
-		                        <li class="mo2-indCar-msg">
-                            		<span>预期年化收益率：</span>
-                                	<span class="huodongjiaxi">9%+1%</span>
-                            		<p style="margin-top:0;margin-left:60px;" class="jiaxishow">
-  									活动加息1%
-  									</p>
-                        		</li>
-		                        
-		                        <li class="mo2-indCar-msg">
-		                            <span>项目期限：</span>
-		                            <span>2个月</span>
-		                        </li>
-		                        
-		                        <li class="mo2-indCar-msg">
-		                            <span>项目余额：</span>
-		                            <span>200元</span>
-		                        </li>
-                    		</ul>
-                		</div>
-            		</div>
-            		
-                <div class="mo2-indCarmid">
-                    <div class="mo2-carProc">
-                         <span class="mo2-carProcess">
-                            <span class="mo2-carProcess-tit">正在募集：</span>
-                             <b>
-                               <i style="width:99%;"></i>
-                               <u style="left:99%;">
-                                   99%
-                                   <em></em>
-                               </u>
-                             </b>
-                          </span>
-                    </div>
-                </div>
-				
-				<div class="mo2-indCarbot">
-                    <a href="/Finances/topro" target="_blank">立即投资</a>
-				</div>
-            </li>
+                </li>             
+                </c:forEach>  
             
-            <li class="mo2-indCarlist mo2-indCarlist-ed">
-                <div class="mo2-indCartop">
-                    <div class="mo2-indCartop-img">
-                        <img src=/Finances/statics/front/uploadData/UserBorrowData/200528-201609031224409479.jpg alt="爱车贷-尼桑天籁-SX119" title="爱车贷-尼桑天籁-SX119" onclick="window.open('/Finances/topro')"/>
-                    </div>
-                    
-                    <div class="mo2-indCartop-rig">
-                        <ul>
-                            <li class="mo2-indCar-tit"><a href="/Finances/topro" target="_blank" title="爱车贷-尼桑天籁-SX119">爱车贷-尼桑天籁-SX119</a></li>
-                            
-                            <li class="mo2-indCar-msg">
-                                <span>预期年化收益率：</span>
-                                <span class="huodongjiaxi">9%+1%</span>
-                                <p style="margin-top:0;margin-left:60px;" class="jiaxishow">活动加息1%	</p>
-                            </li>
-                            
-                            <li class="mo2-indCar-msg">
-                                <span>项目期限：</span>
-                                <span>2个月</span>
-                            </li>
-                            
-                            <li class="mo2-indCar-msg">
-                                <span>项目余额：</span>
-                                <span>0元</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="mo2-indCarmid">
-                    <div class="mo2-carProc">
-                         <span class="mo2-carProcess">
-                             <span class="mo2-carProcess-tit">正在募集：</span>
-                                <b>
-                                  <i style="width:100%;"></i>
-                                  <u style="left:100%;">
-                                      100%
-                                      <em></em>
-                                  </u>
-                                </b>
-                            </span>
-                    </div>
-                </div>   
-                
-                <div class="mo2-indCarbot">
-                	<a href="/Finances/topro" target="_blank">还款中</a>
-            	</div>
-            </li>
-            
-            <li class="mo2-indCarlist mo2-indCarlist-ed">
-                <div class="mo2-indCartop">
-                    <div class="mo2-indCartop-img">
-                        <img src=/Finances/statics/front/uploadData/UserBorrowData/208071-201609031345456731.jpg alt="爱车贷-本田艾力绅-HCK120" title="爱车贷-本田艾力绅-HCK120" onclick="window.open('/Finances/topro')"/>
-                    </div>
-                    
-                    <div class="mo2-indCartop-rig">
-                        <ul>
-                            <li class="mo2-indCar-tit"><a href="/Finances/topro" target="_blank" title="爱车贷-本田艾力绅-HCK120">爱车贷-本田艾力绅-HCK120</a></li>
-                            <li class="mo2-indCar-msg">
-                                <span>预期年化收益率：</span>
-                                <span class="huodongjiaxi">9%+1%</span>
-                                <p style="margin-top:0;margin-left:60px;" class="jiaxishow">活动加息1%	</p>
-                            </li>
-                            
-                            <li class="mo2-indCar-msg">
-                                <span>项目期限：</span>
-                                <span>2个月</span>
-                            </li>
-                            
-                            <li class="mo2-indCar-msg">
-                                <span>项目余额：</span>
-                                <span>0元</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="mo2-indCarmid">
-                    <div class="mo2-carProc">
-                            <span class="mo2-carProcess">
-                                <span class="mo2-carProcess-tit">正在募集：</span>
-                                <b>
-                                    <i style="width:100%;"></i>
-                                    <u style="left:100%;">
-                                        100%
-                                        <em></em>
-                                    </u>
-                                </b>
-                            </span>
-                    </div>
-                </div>                \
-                
-                <div class="mo2-indCarbot">
-            	    <a href="/Finances/topro" target="_blank">还款中</a>
-            	</div>
-            </li>
-            
-            <li class="mo2-indCarlist mo2-indCarlist-ed">
-                <div class="mo2-indCartop">
-                    <div class="mo2-indCartop-img">
-                        <img src=/Finances/statics/front/uploadData/UserBorrowData/199076-201609031612075569.jpg alt="爱车贷-风行景逸-XT125" title="爱车贷-风行景逸-XT125" onclick="window.open('/Finances/topro')"/>
-                    </div>
-                    
-                    <div class="mo2-indCartop-rig">
-                        <ul>
-                            <li class="mo2-indCar-tit"><a href="/Finances/topro" target="_blank" title="爱车贷-风行景逸-XT125">爱车贷-风行景逸-XT125</a></li>
-                            <li class="mo2-indCar-msg">
-                                <span>预期年化收益率：</span>
-                                <span class="huodongjiaxi">8%+1%</span>
-                                <p style="margin-top:0;margin-left:60px;" class="jiaxishow"> 活动加息1%</p>
-                            </li>
-                            
-                            <li class="mo2-indCar-msg">
-                                <span>项目期限：</span>
-                                <span>1个月</span>
-                            </li>
-                            
-                            <li class="mo2-indCar-msg">
-                                <span>项目余额：</span>
-                                <span>0元</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="mo2-indCarmid">
-                    <div class="mo2-carProc">
-                        <span class="mo2-carProcess">
-                            <span class="mo2-carProcess-tit">正在募集：</span>
-                            <b>
-                                <i style="width:100%;"></i>
-                                <u style="left:100%;">
-                                    100%
-                                    <em></em>
-                                </u>
-                            </b>
-                        </span>
-                    </div>
-                </div>                
-                
-                <div class="mo2-indCarbot">
-                	<a href="/Finances/topro" target="_blank">还款中</a>
-            	</div>
-            </li>
-            
-            <li class="mo2-indCarlist mo2-indCarlist-ed">
-                <div class="mo2-indCartop">
-                    <div class="mo2-indCartop-img">
-                        <img src=/Finances/statics/front/uploadData/UserBorrowData/182015-201609021449381074.jpg alt="爱车贷-北汽坤宝-XAA090" title="爱车贷-北汽坤宝-XAA090" onclick="window.open('/Finances/topro')"/>
-                    </div>
-                    
-                    <div class="mo2-indCartop-rig">
-                        <ul>
-                            <li class="mo2-indCar-tit"><a href="/Finances/topro" target="_blank" title="爱车贷-北汽坤宝-XAA090">爱车贷-北汽坤宝-XAA090</a></li>
-                            <li class="mo2-indCar-msg">
-                                <span>预期年化收益率：</span>
-                                <span class="huodongjiaxi">8%+1%</span>
-                                <p style="margin-top:0;margin-left:60px;" class="jiaxishow">活动加息1%	</p>
-                            </li>
-                            
-                            <li class="mo2-indCar-msg">
-                                <span>项目期限：</span>
-                                <span>1个月</span>
-                            </li>
-                            
-                            <li class="mo2-indCar-msg">
-                                <span>项目余额：</span>
-                                <span>0元</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="mo2-indCarmid">
-                    <div class="mo2-carProc">
-                        <span class="mo2-carProcess">
-                            <span class="mo2-carProcess-tit">正在募集：</span>
-                            <b>
-                                <i style="width:100%;"></i>
-                                <u style="left:100%;">
-                                    100%
-                                    <em></em>
-                                </u>
-                            </b>
-                        </span>
-                    </div>
-                </div>                
-                
-                <div class="mo2-indCarbot">
-                	<a href="/Finances/topro" target="_blank">还款中</a>
-            	</div>
-            </li>
-            
-            <li class="mo2-indCarlist mo2-indCarlist-ed">
-                <div class="mo2-indCartop">
-                    <div class="mo2-indCartop-img">
-                        <img src=/Finances/statics/front/uploadData/UserBorrowData/300410-201609021848439311.jpg alt="爱车贷-别克凯越-AKK109" title="爱车贷-别克凯越-AKK109" onclick="window.open('/Finances/topro')"/>
-                    </div>
-                    <div class="mo2-indCartop-rig">
-                        <ul>
-                            <li class="mo2-indCar-tit"><a href="/Finances/topro" target="_blank" title="爱车贷-别克凯越-AKK109">爱车贷-别克凯越-AKK109</a></li>
-                            <li class="mo2-indCar-msg">
-                                <span>预期年化收益率：</span>
-                                <span class="huodongjiaxi">9%+1%</span>
-                                <p style="margin-top:0;margin-left:60px;" class="jiaxishow">活动加息1%	</p>
-                            </li>
-                            
-                            <li class="mo2-indCar-msg">
-                                <span>项目期限：</span>
-                                <span>2个月</span>
-                            </li>
-                            
-                            <li class="mo2-indCar-msg">
-                                <span>项目余额：</span>
-                                <span>0元</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="mo2-indCarmid">
-                    <div class="mo2-carProc">
-                        <span class="mo2-carProcess">
-                            <span class="mo2-carProcess-tit">正在募集：</span>
-                            <b>
-                                <i style="width:100%;"></i>
-                                <u style="left:100%;">
-                                    100%
-                                    <em></em>
-                                </u>
-                            </b>
-                        </span>
-                    </div>
-                </div>   
-				
-				<div class="mo2-indCarbot">
-                	<a href="/Finances/topro" target="_blank">还款中</a>
-            	</div>
-            </li>
-            
-            <li class="mo2-indCarlist mo2-indCarlist-ed">
-                <div class="mo2-indCartop">
-                    <div class="mo2-indCartop-img">
-                        <img src=/Finances/statics/front/uploadData/UserBorrowData/196107-201609031419270.jpg alt="爱车贷-大众宝来-SR122" title="爱车贷-大众宝来-SR122" onclick="window.open('duanqi_licai_chanpin-zdsbJW1DZ!Cw8TY+9A.html')"/>
-                    </div>
-                    
-                    <div class="mo2-indCartop-rig">
-                        <ul>
-                            <li class="mo2-indCar-tit"><a href="/Finances/topro" target="_blank" title="爱车贷-大众宝来-SR122">爱车贷-大众宝来-SR122</a></li>
-                            <li class="mo2-indCar-msg">
-                                <span>预期年化收益率：</span>
-                                <span class="huodongjiaxi">9%+1%</span>
-                                <p style="margin-top:0;margin-left:60px;" class="jiaxishow">活动加息1%</p>
-                            </li>
-                            
-                            <li class="mo2-indCar-msg">
-                                <span>项目期限：</span>
-                                <span>2个月</span>
-                            </li>
-                            
-                            <li class="mo2-indCar-msg">
-                                <span>项目余额：</span>
-                                <span>0元</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="mo2-indCarmid">
-                    <div class="mo2-carProc">
-                       <span class="mo2-carProcess">
-                           <span class="mo2-carProcess-tit">正在募集：</span>
-                           <b>
-                               <i style="width:100%;"></i>
-                               <u style="left:100%;">
-                                   100%
-                                   <em></em>
-                               </u>
-                           </b>
-                       </span>
-                    </div>
-                </div> 
-			
-				<div class="mo2-indCarbot">
-	                <a href="/Finances/topro" target="_blank">还款中</a>
-	            </div>
-            </li>
-            
-            <li class="mo2-indCarlist mo2-indCarlist-ed">
-                <div class="mo2-indCartop">
-                    <div class="mo2-indCartop-img">
-                        <img src=/Finances/statics/front/uploadData/UserBorrowData/294791-201609031439176634.jpg alt="爱车贷-JEEP牧马人-YKK123" title="爱车贷-JEEP牧马人-YKK123" onclick="window.open('/Finances/topro')"/>
-                    </div>
-                    
-                    <div class="mo2-indCartop-rig">
-                        <ul>
-                            <li class="mo2-indCar-tit"><a href="/Finances/topro" target="_blank" title="爱车贷-JEEP牧马人-YKK123">爱车贷-JEEP牧马人-YKK123</a></li>
-                            <li class="mo2-indCar-msg">
-                                <span>预期年化收益率：</span>
-                                <span class="huodongjiaxi">8%+1%</span>
-                                <p style="margin-top:0;margin-left:60px;" class="jiaxishow">活动加息1%	</p>
-                            </li>
-                            
-                            <li class="mo2-indCar-msg">
-                                <span>项目期限：</span>
-                                <span>1个月</span>
-                            </li>
-                            
-                            <li class="mo2-indCar-msg">
-                                <span>项目余额：</span>
-                                <span>0元</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="mo2-indCarmid">
-                    <div class="mo2-carProc">
-                       <span class="mo2-carProcess">
-                           <span class="mo2-carProcess-tit">正在募集：</span>
-                           <b>
-                               <i style="width:100%;"></i>
-                               <u style="left:100%;">
-                                   100%
-                                   <em></em>
-                               </u>
-                           </b>
-                       </span>
-                    </div>
-                </div>                
-                
-                <div class="mo2-indCarbot">
-                	<a href="/Finances/topro" target="_blank">还款中</a>
-            	</div>
-            </li>
-            
-            <li class="mo2-indCarlist mo2-indCarlist-ed">
-                <div class="mo2-indCartop">
-                    <div class="mo2-indCartop-img">
-                        <img src=/Finances/statics/front/uploadData/UserBorrowData/253893-201609031514329977.JPG alt="爱车贷-五菱箱货-ASK124" title="爱车贷-五菱箱货-ASK124" onclick="window.open('/Finances/topro')"/>
-                    </div>
-                    
-                    <div class="mo2-indCartop-rig">
-                        <ul>
-                            <li class="mo2-indCar-tit"><a href="/Finances/topro" target="_blank" title="爱车贷-五菱箱货-ASK124">爱车贷-五菱箱货-ASK124</a></li>
-                            <li class="mo2-indCar-msg">
-                                <span>预期年化收益率：</span>
-                                <span class="huodongjiaxi">8%+1%</span>
-                                <p style="margin-top:0;margin-left:60px;" class="jiaxishow">活动加息1%	</p>
-                            </li>
-                            
-                            <li class="mo2-indCar-msg">
-                                <span>项目期限：</span>
-                                <span>1个月</span>
-                            </li>
-                            
-                            <li class="mo2-indCar-msg">
-                                <span>项目余额：</span>
-                                <span>0元</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="mo2-indCarmid">
-                    <div class="mo2-carProc">
-                       <span class="mo2-carProcess">
-                           <span class="mo2-carProcess-tit">正在募集：</span>
-                           <b>
-                               <i style="width:100%;"></i>
-                               <u style="left:100%;">
-                                   100%
-                                   <em></em>
-                               </u>
-                           </b>
-                       </span>
-                    </div>
-                </div>                
-                
-                <div class="mo2-indCarbot">
-                	<a href="/Finances/topro" target="_blank">还款中</a>
-            	</div>
-            </li>        
           </ul>
         </div>
     </div>
