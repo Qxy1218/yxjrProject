@@ -690,8 +690,9 @@ $(document).ready(function(){
 			 success:function(data){
 				 if(data==1){
 					 alert("提现成功");
+					 parent.window.location="${pageContext.request.contextPath }/tousercenter?uid="+${user.uid};
 				 }else if(data==2){
-					 alert("");
+					 alert("体现失败");
 				 }
 			 }
 		 });
