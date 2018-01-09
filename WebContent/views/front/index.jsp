@@ -5079,78 +5079,78 @@
                 <div class="m2-indexVodbtn-next"></div>
                 <div class="m2-indVodmain">
                     <ul class="m2-indVodlist">
-                        <li data-vedio='uploadData/vedio/12.mp4'>
+                        <li videvalue="${pageContext.request.contextPath}/uploadFile/video/10.mp4">
                             <div class="m2-indVodlist-bg"></div>
                             <div class="m2-indVodlist-bot">舌尖上的金融</div>
-                            <img src="/Finances/statics/front/statics/home/images/vedio/vedio12.jpg" alt="舌尖上的金融">
+                            <img src="/Finances/statics/front/statics/home/images/vedio/vedio10.jpg" alt="舌尖上的金融">
                             <i></i>
                         </li>
-                        <li data-vedio='uploadData/vedio/10.mp4'>
+                        <li videvalue="${pageContext.request.contextPath}/uploadFile/video/2.mp4">
                             <div class="m2-indVodlist-bg"></div>
                             <div class="m2-indVodlist-bot">金融革命的萌芽</div>
                             <img src="/Finances/statics/front/statics/home/images/vedio/vedio10.jpg" alt="金融革命的萌芽">
                             <i></i>
                         </li>
-                        <li data-vedio='uploadData/vedio/11.mp4'>
+                        <li videvalue="${pageContext.request.contextPath}/uploadFile/video/3.mp4">
                             <div class="m2-indVodlist-bg"></div>
                             <div class="m2-indVodlist-bot">几招搞定P2P网贷投资</div>
                             <img src="/Finances/statics/front/statics/home/images/vedio/vedio11.jpg" alt="几招搞定P2P网贷投资">
                             <i></i>
                         </li>
-                        <li data-vedio='uploadData/vedio/9.mp4'>
+                        <li videvalue="${pageContext.request.contextPath}/uploadFile/video/4.mp4">
                             <div class="m2-indVodlist-bg"></div>
                             <div class="m2-indVodlist-bot">P2P网贷 经济转型下的投资新契机</div>
                             <img src="/Finances/statics/front/statics/home/images/vedio/vedio9.jpg" alt="P2P网贷 经济转型下的投资新契机">
                             <i></i>
                         </li>
-                        <li data-vedio='uploadData/vedio/8.mp4'>
+                        <li videvalue="${pageContext.request.contextPath}/uploadFile/video/5.mp4">
                             <div class="m2-indVodlist-bg"></div>
                             <div class="m2-indVodlist-bot">如何成为专业网贷投资人</div>
                             <img src="/Finances/statics/front/statics/home/images/vedio/vedio8.jpg" alt="如何成为专业网贷投资人">
                             <i></i>
                         </li>
-                        <li data-vedio='uploadData/vedio/1.mp4'>
+                        <li videvalue="${pageContext.request.contextPath}/uploadFile/video/6.mp4">
                             <div class="m2-indVodlist-bg"></div>
                             <div class="m2-indVodlist-bot">中国P2P网贷特点与风险控制</div>
                             <img src="/Finances/statics/front/statics/home/images/vedio/vedio1.jpg" alt="中国P2P网贷特点与风险控制">
                             <i></i>
                         </li>
-                        <li data-vedio='uploadData/vedio/6.mp4'>
+                        <li videvalue="${pageContext.request.contextPath}/uploadFile/video/7.mp4">
                             <div class="m2-indVodlist-bg"></div>
                             <div class="m2-indVodlist-bot">金融行业的新革命 P2P网贷</div>
                             <img src="/Finances/statics/front/statics/home/images/vedio/vedio6.jpg" alt="金融行业的新革命 P2P网贷">
                             <i></i>
                         </li>
-                        <li data-vedio='uploadData/vedio/2.mp4'>
+                        <li videvalue="${pageContext.request.contextPath}/uploadFile/video/8.mp4">
                             <div class="m2-indVodlist-bg"></div>
                             <div class="m2-indVodlist-bot">中国P2P网贷监管与投资人利益保护</div>
                             <img src="/Finances/statics/front/statics/home/images/vedio/vedio2.jpg" alt="中国P2P网贷监管与投资人利益保护">
                             <i></i>
                         </li>
-                        <li data-vedio='uploadData/vedio/3.mp4'>
+                        <li videvalue="${pageContext.request.contextPath}/uploadFile/video/8.mp4">
                             <div class="m2-indVodlist-bg"></div>
                             <div class="m2-indVodlist-bot">爱钱帮访谈之P2P</div>
                             <img src="/Finances/statics/front/statics/home/images/vedio/vedio3.jpg" alt="爱钱帮访谈之P2P">
                             <i></i>
                         </li>
-                        <li data-vedio='uploadData/vedio/4.mp4'>
+                        <li videvalue="${pageContext.request.contextPath}/uploadFile/video/9.mp4">
                             <div class="m2-indVodlist-bg"></div>
                             <div class="m2-indVodlist-bot">如何选择P2P平台</div>
                             <img src="/Finances/statics/front/statics/home/images/vedio/vedio4.jpg" alt="如何选择P2P平台">
                             <i></i>
                         </li>
-                        <li data-vedio='uploadData/vedio/5.mp4'>
+<!--                         <li vedio='uploadData/vedio/5.mp4'>
                             <div class="m2-indVodlist-bg"></div>
                             <div class="m2-indVodlist-bot">CCTV2特别报道爱钱帮</div>
                             <img src="/Finances/statics/front/statics/home/images/vedio/vedio5.jpg" alt="CCTV2特别报道爱钱帮">
                             <i></i>
                         </li>
-                        <li data-vedio='uploadData/vedio/7.mp4'>
+                        <li vedio='uploadData/vedio/7.mp4'>
                             <div class="m2-indVodlist-bg"></div>
                             <div class="m2-indVodlist-bot">CCTV2特别报道爱钱帮</div>
                             <img src="/Finances/statics/front/statics/home/images/vedio/vedio7.jpg" alt="CCTV2特别报道爱钱帮">
                             <i></i>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>

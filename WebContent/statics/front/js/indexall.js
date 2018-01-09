@@ -602,9 +602,10 @@ $(function () {
     // 视频播放
     $('.m2-indVodlist li').click(function () {
         $('.m2-indVoditem').remove();
-        //var vedio = $(this).data('vedio');
-        //现在先设置死值
-        vedio = "/Finances/statics/front/uploadData/vedio/1.mp4";
+        var vedio = $(this).attr("videvalue");  
+        alert(vedio);
+        
+        
         $('.m2-indexVod-con').prepend('<div class="m2-indVoditem"><i></i><video class="m2-indexVideo" data-setup="{}" preload="none" loop="false" controls="controls"><source src="' + vedio + '" type="video/mp4">您的浏览器版本过低,不能播放此视频</video></div>');
         $('.m2-indexVideo').attr("autoplay", "autoplay");
         closeVideo();
