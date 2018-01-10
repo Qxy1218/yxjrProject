@@ -22,21 +22,25 @@ public class AuthebDetais implements Serializable{
 	@TableField("ui_id")
 	private Integer uiid; //用户详情uiid
 	
+	@TableField("ad_status")
+	private Integer adstatus; //后台是否已读(0：未读，1：已读)
+	
+	@TableField("ad_stype")
+	private Integer adstype; //认证类型（0：不是认证，只是通知信息  1.实名认证  2.提现认证 ）
+	
+	
 	public AuthebDetais() {
 	}
 	
-	public AuthebDetais(Integer adid, String adintroduct, String adtime,Integer uiid) {
+	public AuthebDetais(Integer adid, String adintroduct, String adtime, Integer uiid, Integer adstatus,
+			Integer adstype) {
 		super();
 		this.adid = adid;
 		this.adintroduct = adintroduct;
 		this.adtime = adtime;
 		this.uiid = uiid;
-	}
-
-	@Override
-	public String toString() {
-		return "AuthebDetais [adid=" + adid + ", adintroduct=" + adintroduct + ", adtime=" + adtime + ", uiid=" + uiid
-				+ "]";
+		this.adstatus = adstatus;
+		this.adstype = adstype;
 	}
 
 	public Integer getAdid() {
@@ -69,6 +73,22 @@ public class AuthebDetais implements Serializable{
 
 	public void setUiid(Integer uiid) {
 		this.uiid = uiid;
+	}
+
+	public Integer getAdstatus() {
+		return adstatus;
+	}
+
+	public void setAdstatus(Integer adstatus) {
+		this.adstatus = adstatus;
+	}
+
+	public Integer getAdstype() {
+		return adstype;
+	}
+
+	public void setAdstype(Integer adstype) {
+		this.adstype = adstype;
 	}
 	
 
