@@ -16,22 +16,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 查询所有数据 -->
 	<select id="getAllModel" resultMap="BaseResultMap">
 		select * from activity
-		<!-- <where>
-			1=1
-			<if test="activity.attitle != null and activity.attitle !='' ">
-			    and at_title like CONCAT(CONCAT('%', #{activity.attitle}), '%')
-			</if>
-		</where> -->
 	</select>
 	<!-- 分页查询 -->
 	<select id="pageActivity" resultMap="BaseResultMap">
 		select * from activity 
-		<!-- <where>
-			 2 = 2
+		<where>
+			1=1
 			<if test="activity.attitle != null and activity.attitle !='' ">
 			    and at_title like CONCAT(CONCAT('%', #{activity.attitle}), '%')
 			</if>
-		</where> -->
+			<if test="activity.atstatus != null and activity.atstatus !=-1 "> 
+				and at_status like CONCAT(CONCAT('%', #{activity.atstatus}), '%')
+			</if>
+		</where>
 	</select>
 	<!-- 增加数据 -->
 	<insert id="addModel" parameterType="com.p2p.pojo.Activity" useGeneratedKeys="true" keyProperty="atid">
