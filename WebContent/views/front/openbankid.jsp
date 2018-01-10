@@ -280,6 +280,10 @@
                             	$("#placeback").val(data.type);
                             	$("#staticNumber").val("1");
             		            return true;
+                            }else if(data.status == 0){
+                            	$('.m2-regist-errMsgcard').next('.m2-regist-errsMsgcard').css('color','red').html("已存在此银行卡,请重新绑卡开户!");
+                            	$("#staticNumber").val("2");
+                            	return false;
                             } else {
                             	$('.m2-regist-errMsgcard').next('.m2-regist-errsMsgcard').css('color','red').html("银行卡号输入有误,请输入正确的银行卡号!");
                             	$("#staticNumber").val("2");
