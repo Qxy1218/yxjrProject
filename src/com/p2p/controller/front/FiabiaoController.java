@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.ProjectSelect;
+import com.p2p.pojo.User;
 import com.p2p.service.front.FabiaoService;
 import com.p2p.util.ContextUtils;
 import com.p2p.util.DateUtils;
@@ -30,8 +32,10 @@ public class FiabiaoController {
 	@Resource(name="fabiaoServiceImpl")
 	private FabiaoService fabiaoService;
 	
+	
+	
 	@RequestMapping("toproject")
-	public String toProject(String pid,Model model) throws Exception{
+	public String toProject(String pid,Model model,HttpServletRequest request) throws Exception{
 		
 		//取当前时间	
 		Date date=new Date();
@@ -67,6 +71,13 @@ public class FiabiaoController {
 		 Date dd =  format.parse(thisfb.getFhuanstat());
 		 thisfb.setFhuanstat(format.format(dd));
 		
+		 
+		 //查找当前用户的红包和贷息券
+		 User user = (User)request.getAttribute("user");
+		 if(user!=null) {
+			 
+		 }
+		 
 		model.addAttribute("thisfb", thisfb);
 		return "views/front/product";
 	}

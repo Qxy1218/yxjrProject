@@ -74,6 +74,11 @@ public class RedmoneyServiceImpl implements RedmoneyService{
 		return redmoneymapper.seleRedmoneyList();
 	}
 
+	@Override
+	public List<Redmoney> selectByUserId(Integer userid) {
+		return redmoneymapper.selectByUserId(userid);
+	}
+
 
 
 	

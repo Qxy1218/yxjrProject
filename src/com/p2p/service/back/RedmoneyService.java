@@ -2,6 +2,8 @@ package com.p2p.service.back;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.p2p.base.IBaseService;
 import com.p2p.pojo.Redmoney;
 import com.p2p.pojo.Userinfo;
@@ -15,4 +17,6 @@ public interface RedmoneyService extends IBaseService<Integer,Redmoney>{
 		abstract Integer redmoneyCount();
 		//查询所有的用户
 		abstract List<Userinfo> selectRedmoneyList();
+		
+		List<Redmoney> selectByUserId(@Param("userid")Integer userid);
 }

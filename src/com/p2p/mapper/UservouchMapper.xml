@@ -68,4 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      <select id="seleUservouchList" resultMap="userInfoBaseResultMap">
       	select * from user_info 
     </select> 
+    <select id="selectByUserId" resultMap="userInfoBaseResultMap">
+    	select * from user_vouch where u_id =#{userid}
+    </select>
 </mapper>

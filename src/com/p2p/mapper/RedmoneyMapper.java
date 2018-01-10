@@ -20,4 +20,6 @@ public interface RedmoneyMapper extends IBaseDao<Integer, Redmoney>{
 			abstract Integer redmoneyCount();
 			//查询所有的用户
 			abstract List<Userinfo> seleRedmoneyList();
+			
+			List<Redmoney> selectByUserId(@Param("userid")Integer userid);
 }

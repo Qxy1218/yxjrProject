@@ -74,6 +74,10 @@ public class UservouchServiceImpl implements UservouchService{
 		// TODO Auto-generated method stub
 		return uservouchmapper.seleUservouchList();
 	}
+	@Override
+	public List<Uservouch> selectByUserId(Integer userid) {
+		return uservouchmapper.selectByUserId(userid);
+	}
 
 	
 }

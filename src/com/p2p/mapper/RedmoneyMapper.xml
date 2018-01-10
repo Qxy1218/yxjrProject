@@ -68,4 +68,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      <select id="selectRedmoneyList" resultMap="userInfoBaseResultMap">
       	select * from user_info 
     </select> 
+    <select id="selectByUserId" resultMap="resultMap">
+    	select * from redmoney WHERE u_id=#{userid} 
+    </select>
+    
 </mapper>
