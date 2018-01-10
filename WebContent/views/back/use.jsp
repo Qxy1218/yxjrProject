@@ -9,7 +9,7 @@
 <head>
 <base href="<%=path%>/">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<title>用户列表</title>
 <!-- 引用js文件 -->
 
 <jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
@@ -17,217 +17,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery.form.js"></script>
 <script src="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/js/bootstrapValidator.min.js"></script>
 <link href="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#editForm')
-        .bootstrapValidator({
-            message: 'This value is not valid',
-            feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-            	rendtime: {
-                    message: '红包结束时间验证失败',
-                    validators: {
-                    	 notEmpty: {
-                             message: '红包结束时间不能为空'
-                         }
-                        
-                    }
-                },
-                rstardtime: {
-                    message: '红包开始时间验证失败',
-                    validators: {
-                    	 notEmpty: {
-                             message: '红包开始时间不能为空'
-                         }
-                        
-                    }
-                },
-                rmoney: {
-                	message: '红包验证失败',
-                    validators: {
-                        notEmpty: {
-                            message: '红包金额不能为空,请选择'
-                        }
-                    }
-                }
-            }
-        }).on('success.form.bv', function(e) {
-        	
-        	$("#editForm").modal('hide');
-        	$("#editImg").modal('hide');
-            // Prevent form submission
-            e.preventDefault();
 
-            // Get the form instance
-            var $form = $(e.target);
-
-            // Get the BootstrapValidator instance
-            var bv = $form.data('bootstrapValidator');
-            var form = new FormData(document.getElementById("editForm"));
-            var rid =$("#editForm #rid").val();
-            var uid =$("#editForm #uid").val();
-            if(rid==null || rid==""){
-            	$.ajax({
-       	          url:"${pageContext.request.contextPath}/back/admin/insertRedmoney",
-       	          type:"post",
-       	          data:form,
-       	          processData:false,
-       	          contentType:false,
-       	          success:function(data){
-       	        	//后台返回int类型的数据
-       					if(data>0){
-       						//新增成功，下面是后台框架的提示
-       						parent.layer.alert('增加成功');
-       					}else{
-       						//新增失败
-       						parent.layer.alert('增加失败');
-       					}
-       					$('#tb_role').bootstrapTable('refresh');
-       	          },
-       	          error:function(e){
-       	        	parent.layer.alert('错误');
-       	          }
-             });
-            	
-            }else{
-            	updateRed(rid,uid);
-            } 
-        });
-});
-</script>
 <script  type="text/javascript" >
     var rows = null;
-    function addRole(){
-    	//清空editModel原来填写的内容
-    	$("#editForm #rid").val('');
-		$("#editForm #uid").val('');
-		$("#editForm #rimage").val('');
-		$("#editForm #rendtime").val('');
-		$("#editForm #rstardtime").val('');
-		$("#editForm #rmoney").val('');
-		
-		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
-		$("#btn_submit").attr("onclick","insertRed()");
-		//显示新增窗口
-		$('#editImg').modal('show');
-    }
-	//修改按钮事件
-    function UpRed(){
-   	//获取当前选中行的信息
-		var selectList = $('#tb_role').bootstrapTable('getSelections');
-		//判断有没有选中
-		if(selectList.length<=0){
-			parent.layer.alert('请选择要修改的数据');
-			return;
-		}
-		//判断有没有选中多个
-		if(selectList.length>1){
-			parent.layer.alert('一次只能修改一条数据');
-			return;
-		}
-		var athRole = selectList[0];
-		//把选中行的数据放到弹窗的控件中
-		$("#editForm #rid").val(athRole.rid);
-		$("#editForm #uid").val(athRole.uid);
-		$("#editForm #rendtime").val(athRole.rendtime);
-		//$("#editForm #ipimage").val(athRole.ipimage); 
-		$("#editForm #rstardtime").val(athRole.rstardtime);
-		$("#editForm #rmoney").val(athRole.rmoney);
-		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
-		$("#btn_submit").attr("onclick","updateRed("+athRole.rid+","+athRole.uid+")");
-		//显示新增窗口
-		$('#editImg').modal('show');
-    }
-	function updateRed(rid,uid){
-		//用来关闭新增窗口***********
-		$("#editImg").modal('hide');
-		var url = "${pageContext.request.contextPath }/back/admin/updateRedmoney";
-		$.post(
-			url,
-			{
-				rid:rid,
-				uid:uid,
-				rimage:$("#editForm #rimage").val(),
-				rendtime:$("#editForm #rendtime").val(),
-				rstardtime:$("#editForm #rstardtime").val(),
-				rmoney:$("#editForm #rmoney").val(),
-			},
-			function(data){
-				//后台返回int类型的数据
-				if(data>0){
-					//新增成功，下面是后台框架的提示
-					parent.layer.alert('修改成功');
-				}else{
-					//新增失败
-					parent.layer.alert('修改失败');
-				}
-				//新增完刷新表格数据
-				$('#tb_role').bootstrapTable('refresh');
-			},
-			"text"
-		);	
-	}
-	//删除按钮事件
-	//*************************************************************************按钮事件
-	function btn_delete(){
-		deleteIndexpic();
-	}
-	//删除
-	function deleteIndexpic(){
-		//获取当前选中行的信息
-		var stuList = $('#tb_role').bootstrapTable('getSelections');
-		var ids = "";
-		//判断有没有选中
-		if(stuList.length<=0){
-			parent.layer.alert('请选择要删除的数据');
-			return;
-		}
-		//拼接ids  1,2,3,4  用于批量删除
-		for(var i =0 ;i<stuList.length;i++){
-			if(i!=stuList.length-1){
-				ids = ids +stuList[i].rid+",";
-			}else{
-				ids = ids +stuList[i].rid;
-			}
-		}
-		var url = "${pageContext.request.contextPath }/back/admin/deleteRedmoney";
-		
-		$.post(
-			url,
-			{
-				ids:ids,
-			},
-			function(data){
-				//后台返回int类型的数据
-				if(data>0){
-					//新增成功，下面是后台框架的提示
-					parent.layer.alert('删除成功');
-				}else{
-					//新增失败
-					parent.layer.alert('删除失败');
-				}
-				//新增完刷新表格数据
-				$('#tb_role').bootstrapTable('refresh');
-			},
-			"text"
-		);	
-	}
-	window.operateEvents = {
-            'click .RoleOfdelete': function (e, value, row, index) {
-                alert(row.dno);  
-              
-              
-         },
-            'click .RoleOfedit': function (e, value, row, index) {
-               // $("#editModal").modal('show');
-
-
-            }
-    };
+	
 	$(function () {
 	 	//激活弹框提示
 		$("[data-toggle='tooltip']").tooltip();
@@ -265,10 +58,7 @@ $(document).ready(function() {
 			},{
 				field : 'uid',
 				title : '用户ID'
-			}, {
-				field : 'upassword',
-				title : '用户密码'
-			}, {
+			},{
 				field : 'uphone',
 				title : '电话号码'
 			}, {
@@ -278,20 +68,15 @@ $(document).ready(function() {
 				field : 'uloginTime',
 				title : '登录时间'
 			}, {
-				field : 'orderinvite',
-				title : '别人的邀请码'
-			}, {
-				field : 'uinvite',
-				title : '自己的邀请码'
-			}, {
-				field : 'uenable',
-				title : '是否禁用'
-			}, {
-				field : 'uisAccountSum',
-				title : '是否领取代金券'
-			}, {
 				field : 'qrcode',
-				title : '二维码'
+				title : '二维码',
+				align : 'center',
+				formatter : function(value,row,index) {
+					var qrcode = row.qrcode;
+					if(qrcode!=null){
+						return "<img src=${pageContext.request.contextPath}"+row.qrcode+" width='35px' height='40px' />"
+					}
+				}
 			}, {
 				field : 'uaddress',
 				title : '自己常用登陆地'
@@ -310,23 +95,28 @@ $(document).ready(function() {
 			}, {
 				field : 'vid',
 				title : '会员积分id'
+			}, {
+				field : 'uenable',
+				title : '是否禁用',
+				align : 'center',
+				formatter : function(value, row, index) {
+					var uenable = row.uenable;
+					if(uenable==1){
+			            return '<i class="fa fa-unlock" style="color:green"></i>'
+			        }else{
+			        	return '<i class="fa fa-lock" style="color:red"></i>'
+			        }
+				}
 			},{
                 field: 'operate',
                 title: '操作',
-                align: 'center',
-                width : 100,
-                events: operateEvents,
-                formatter: operateFormatter
-                } ]
+                align : 'center',
+				formatter : function(value, row, index) {
+					return "<button type='button' onclick='getAlert("+row.uid+");' class='btn btn-primary'>查看</button>"
+				}
+            } ]
 		});
-});
-	function operateFormatter(value, row, index) {
-	      return [
-	      '<button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">查看</button>',
-
-
-	      ].join('');
-	      }
+	});
 	function queryParams(params) {
 		var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
 			//***这里的参数传到后台，用来进行分页处理*************************
@@ -335,43 +125,46 @@ $(document).ready(function() {
 		};
 		return temp;
 	};
+	function getAlert(uid){
+		$.ajax({
+ 	          url:"${pageContext.request.contextPath}/user/findUserinfo",
+ 	          type:"post",
+ 	          data:{"uid":uid},
+ 	          dataType : "JSON",
+ 	          success:function(data){
+ 	        	 if(data!=null){
+ 	        		var cc ='<div style="width: 80%;margin: 20px;"><span style="margin: 20px;height: 21px;line-height: 20px;">头像:</span><span><img src=${pageContext.request.contextPath}'+data.uiheadImg+' style="width: 40px;height: 40px;"/></span><br/>';
+						cc+='<span style="margin: 20px;height: 21px;line-height: 20px;">昵称:</span><span>'+data.uiname+'</span><br />';
+	        			cc+='<span style="margin: 20px;height: 21px;line-height: 20px;">性别:</span><span>'+data.uisex+'</span><br/>';		
+	        			cc+='<span style="margin: 20px;height: 21px;line-height: 20px;">生日:</span><span>'+data.uibirthday+'</span><br/>';
+	        			cc+='<span style="margin: 20px;height: 21px;line-height: 20px;">邮箱:</span><span>'+data.uiemail+'</span><br/>';
+ 	        			if(data.uiopenstatus=='1'){
+ 	        				cc+='<span style="margin: 20px;height: 21px;line-height: 20px;">开户:</span><span>实名认证待审核</span></div>';
+ 	        			}
+ 	        			if(data.uiopenstatus=='2'){
+ 	        				cc+='<span style="margin: 20px;height: 21px;line-height: 20px;">开户:</span><span>已开户</span></div>';
+ 	        			}
+ 	        			if(data.uiopenstatus=='0'){
+ 	        				cc+='<span style="margin: 20px;height: 21px;line-height: 20px;">开户:</span><span>未实名认证</span></div>'
+ 	        			}
+ 	        		 
+	 	        	parent.layer.open({
+	 	       		    type: 1,
+	 	       		    skin: 'layui-layer-rim', //加上边框
+	 	       		    area: ['300px', '240px'], //宽高
+	 	       		    content:cc
+	 	       		})
+ 	        	 }else{
+ 	        		parent.layer.alert('数据返回失败');
+ 	        	 }
+ 	          },
+ 	          error:function(e){
+ 	        	parent.layer.alert('请求错误');
+ 	          }
+       });
+	}
+</script>
 	
-	</script>
-<script type="text/javascript">
-		!function(){
-			laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
-			laydate({elem: '#demo'});//绑定元素
-		}();
-
-		//日期范围限制
-		var start = {
-			elem: '#start',
-			format: 'YYYY-MM-DD',
-			min: laydate.now(), //设定最小日期为当前日期
-			max: '2099-06-16', //最大日期
-			istime: true,
-			istoday: false,
-			choose: function(datas){
-				 end.min = datas; //开始日选好后，重置结束日的最小日期
-				 end.start = datas //将结束日的初始值设定为开始日
-			}
-		};
-
-		var end = {
-			elem: '#end',
-			format: 'YYYY-MM-DD',
-			min: laydate.now(),
-			max: '2099-06-16',
-			istime: true,
-			istoday: false,
-			choose: function(datas){
-				start.max = datas; //结束日选好后，充值开始日的最大日期
-			}
-		};
-		laydate(start);
-		laydate(end);
-
-	</script>
 </head>
 <body class="gray-bg">
    <body style="background-color:#F2F9FD">
@@ -383,90 +176,13 @@ $(document).ready(function() {
 						<h5>网站角色信息</h5>
 						<div class="ibox-tools">
 							<a class="collapse-link"> <i class="fa fa-chevron-up"></i></a>
-							<!-- <a class="close-link"> <i class="fa fa-times"></i></a> -->
 						</div>
 					</div>
 					<div class="ibox-content">
-						<div id="toolbar" class="btn-group">
-							
-							</button>
-						</div>
+						<div id="toolbar" class="btn-group"></div>
 						<!-- table代码就这些，用js构建表格 -->
-						<table id="tb_role" >
-							
-						</table>
-						
+						<table id="tb_role" ></table>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 新增弹窗 -->
-	<div class="modal fade" id="editImg" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">角色管理</h4>
-				</div>
-				
-				<div class="modal-body">
-					<form id="editForm" action="" class="form-horizontal m-t" method="post" enctype="multipart/form-data">  
-		
-					<!-- 新增系别 -->
-							<div class="form-group">
-							<label for="urlName" class="control-label col-sm-3">用户表名字</label> 
-							<input type="hidden" name="rid" id="rid" />
-							<div class="col-sm-8">
-								<select class="form-control m-b" id="uid" name="uid" style="margin-bottom: 0px;">
-		                        	<c:forEach items="${uselist}" var="userlevel" >
-		                        		<option value="${userlevel.uid}">${userlevel.uiname}</option>
-		                        	</c:forEach>
-		                        </select>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="url" class="control-label col-sm-3">红包表图片介绍</label>
-							<div class="col-sm-8">
-								<input type="file" name="file" id="rimage"/>
-	            			</div>
-						</div>
-						<div class="form-group">
-							<label for="url" class="control-label col-sm-3">结束时间</label>
-							<div class="col-sm-8">
-								<input placeholder="请选择日期" name="rendtime" id="rendtime" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
-								
-								
-	            			</div>
-						</div>
-							<div class="form-group">
-							<label for="url" class="control-label col-sm-3">开始时间</label>
-							<div class="col-sm-8">
-								
-								<input placeholder="请选择日期" name="rstardtime" id="rstardtime" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
-								
-	            			</div>
-						</div>
-							<div class="form-group">
-							<label for="url" class="control-label col-sm-3">红包金额</label>
-							<div class="col-sm-8">
-								<textarea name="rmoney" rows="3" class="form-control" id="rmoney"></textarea>
-	            			</div>
-	            	<div class="modal-footer">
-					<button type="submit" class="btn btn-default" data-dismiss="modal">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
-					</button>
-					<button type="submit" id="btn_submit" class="btn btn-primary" >
-						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>提交
-					</button>
-				</div>
-				
-						
-			</form>		
 				</div>
 			</div>
 		</div>

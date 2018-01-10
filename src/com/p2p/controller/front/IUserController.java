@@ -525,6 +525,9 @@ public class IUserController {
 		return "views/front/user/email_success";
 	}
 	
+	/**
+	 * 后台获取用户信息
+	 * */
 	@RequestMapping(value="selectiUserList")
 	@ResponseBody
 	public PageInfo selectiUserList(Integer page, Integer rows,User user) {
@@ -539,5 +542,19 @@ public class IUserController {
 		iUserService.selectPage(pageInfo,user);
 		pageInfo.setTotal(pageInfo.getTotal());
 		return pageInfo;
+	}
+	
+	/**
+	 * 根据用户id获取基本信息表中信息
+	 * */
+	@RequestMapping(value="findUserinfo")
+	@ResponseBody
+	public String findUserinfo(@RequestParam Integer uid,HttpServletResponse response)throws Exception {
+		//防止数据乱码
+		response.setCharacterEncoding("UTF-8");
+		Userinfo ui = userInfoService.seleUserinfoByuid(uid);
+		ObjectMapper ob = new ObjectMapper();
+		String result = ob.writeValueAsString(ui);
+		return result;
 	}
 }

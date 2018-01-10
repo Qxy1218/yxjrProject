@@ -60,7 +60,7 @@ function setVerifyStatus(){
     if($("#getemailstatus").val()==1){
     	email_status = 1;
     }
-    if($("#icstatus").val()==1){
+    if($("#icstatus").val()==2){
     	name_number = 1;
     }
     if($("#vp-uiopenstatic").val()==2){
@@ -143,6 +143,12 @@ function setVerifyStatus(){
         $('#name_number').removeClass('m2-userSettingsaut-fal');
         $('#name_number').addClass('m2-userSettingsaut-tur');
         $('#name_number').html('<b></b>已认证');
+        $('#name_number').next('span').find('a').text('修改');
+    }
+    if($("#icstatus").val() == 1){
+        $('#name_number').removeClass('m2-userSettingsaut-tur');
+        $('#name_number').addClass('m2-userSettingsaut-fal');
+        $('#name_number').html('<b></b>待审核');
         $('#name_number').next('span').find('a').text('修改');
     }
     
@@ -579,11 +585,11 @@ function changeUserName(){
             success:function(data){
             	var obj=new Array();
                 if(data == 1){
-                    obj['msg']="恭喜你,实名认证成功";
+                    obj['msg']="恭喜你,实名信息提交成功,请等待后台审核";
                     obj['status']=1;
                     dialog(obj);
                 }else if(data == 2){
-                    obj['msg']="恭喜你,信息修改成功";
+                    obj['msg']="恭喜你,修改信息提交成功,请等待后台审核";
                     obj['status']=1;
                     dialog(obj);
                 }else{
