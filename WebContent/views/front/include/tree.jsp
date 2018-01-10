@@ -84,11 +84,11 @@
 	                        <a class="m2-aside-secLink-item" href="/Finances/toredpack">我的红包</a>
 	                    </li>
 	                    <li>
-	                        <a class="m2-aside-secLink-item" href="/Finances/tointerest">我的加息券</a>
+	                        <a class="m2-aside-secLink-item" href="/Finances/tointerest">我的代金券</a>
 	                    </li>
-	                    <li>
+	                    <!-- <li>
 	                        <a class="m2-aside-secLink-item" href="/Finances/tomycoin">我的钱帮币</a>
-	                    </li>
+	                    </li> -->
 	                </ul>
 	            </li>
 	            <li class="m2-asideListitem">
