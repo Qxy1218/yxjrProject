@@ -114,10 +114,17 @@ public class IdCardController {
 		ObjectMapper mapper = new ObjectMapper(); 
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		String type = BankUtil.getNameOfBank(ubbackcardnum);
-		if(type!="") {
-			map.put("status",1);
-			map.put("type",type);
+		IdCard ic = new IdCard();
+		ic.setIcnumber(ubbackcardnum);
+		IdCard ids = idCardService.getModel(ic);
+		if(ids!=null){
+			map.put("status",0);
+		}else{
+			String type = BankUtil.getNameOfBank(ubbackcardnum);
+			if(type!="") {
+				map.put("status",1);
+				map.put("type",type);
+			}
 		}
 		String result = mapper.writeValueAsString(map);
 		return result;
