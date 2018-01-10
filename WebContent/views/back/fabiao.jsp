@@ -4,30 +4,53 @@
 	String path = request.getContextPath();
 %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <!-- 引用js文件 -->
 <jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
+<script type="text/javascript" src="/Finances/statics/back/static/js/laydate.js"></script>
 <script  type="text/javascript">
     var rows = null;
     
     function addRole(){
     	//清空editModel原来填写的内容
-		$("#editRole #rdname").val('');
-		$("#editRole #reid").val('');
-		$("#editRole #rdstatus").val('');
-		$("#editRole #rdtime").val('');
-		$("#editRole #rdremark").val('');
+		$("#editRole #ftitle").val('');
+		$("#editRole #uid").val('');
+		$("#editRole #fcode").val('');
+		$("#editRole #ftype").val('');
+		$("#editRole #fpart").val('');
+		$("#editRole #froe").val('');
+		$("#editRole #fincrease").val('');
+		$("#editRole #fcontent").val('');
+		$("#editRole #fsituation").val('');
+		$("#editRole #fopinion").val('');
+		$("#editRole #fmoney").val('');
+		$("#editRole #fendmoney").val('');
+		$("#editRole #fendtime").val('');
+		$("#editRole #fminmoney").val('');
+		$("#editRole #fmaxmoney").val('');
+		$("#editRole #frate").val('');
+		$("#editRole #fimage").val('');
+		$("#editRole #forderimg").val('');
+		$("#editRole #fcontract").val('');
+		$("#editRole #fbidstatus").val('');
+		$("#editRole #fstatus").val('');
+		$("#editRole #fsecurity").val('');
+		$("#editRole #fprocedures").val('');
+		$("#editRole #frepayment").val('');
+		$("#editRole #fsecuritymea").val('');
+		$("#editRole #fhuanstat").val('');
+		$("#editRole #fhuanend").val('');
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
-		$("#btn_submit").attr("onclick","insertRole()");
+		$("#btn_submit").attr("onclick","insertCooorganiz()");
 		//显示新增窗口
 		$('#editRole').modal('show');
     }
   //新增角色
-	function insertRole() {
+	function insertCooorganiz() {
 		//表单验证
 		//alert(123);
 		/* if (!validateForm($("#editForm"))) {
@@ -35,24 +58,47 @@
 		} */
 		//用来关闭新增窗口***********
 		$("#editRole").modal('hide');
-		var url = "${pageContext.request.contextPath }/back/admin/insertRecord";
+		var url = "${pageContext.request.contextPath }/back/insertfabiao";
 		$.post(
 			url,
 			{
-				rdname:$("#editRole #rdname").val(),
-				reid:$("#editRole #reid").val(),
-				rdstatus:$("#editRole #rdstatus").val(),
-				rdtime:$("#editRole #rdtime").val(),
-				rdremark:$("#editRole #rdremark").val(),
+				ftitle:$("#editRole #ftitle").val(),
+				uid:$("#editRole #uid").val(),
+				fcode:$("#editRole #fcode").val(),
+				ftype:$("#editRole #ftype").val(),
+				fpart:$("#editRole #fpart").val(),
+				froe:$("#editRole #froe").val(),
+				fincrease:$("#editRole #fincrease").val(),
+				fcontent:$("#editRole #fcontent").val(),
+				fsituation:$("#editRole #fsituation").val(),
+				fopinion:$("#editRole #fopinion").val(),
+				fmoney:$("#editRole #fmoney").val(),
+				fendmoney:$("#editRole #fendmoney").val(),
+				fendtime:$("#editRole #fendtime").val(),
+				fminmoney:$("#editRole #fminmoney").val(),
+				fmaxmoney:$("#editRole #fmaxmoney").val(),
+				frate:$("#editRole #frate").val(),
+				fimage:$("#editRole #fimage").val(),
+				forderimg:$("#editRole #forderimg").val(),
+				fcontract:$("#editRole #fcontract").val(),
+				fbidstatus:$("#editRole #fbidstatus").val(),
+				fstatus:$("#editRole #fstatus").val(),
+				fsecurity:$("#editRole #fsecurity").val(),
+				fprocedures:$("#editRole #fprocedures").val(),
+				frepayment:$("#editRole #frepayment").val(),
+				fsecuritymea:$("#editRole #fsecuritymea").val(),
+				fhuanstat:$("#editRole #fhuanstat").val(),
+				fhuanend:$("#editRole #fhuanend").val(),
 			},
 			function(data){
 				//后台返回int类型的数据
 				if(data>0){
 					//新增成功，下面是后台框架的提示
-					parent.layer.alert('新增成功');
+					parent.layer.alert('增加成功');
+					
 				}else{
 					//新增失败
-					parent.layer.alert('新增失败');
+					parent.layer.alert('增加失败');
 				}
 				//新增完刷新表格数据
 				$('#tb_role').bootstrapTable('refresh');
@@ -61,60 +107,98 @@
 		);	
 	}
 	//修改按钮事件
-     function UpRole(){
-    	//获取当前选中行的信息
- 		var selectList = $('#tb_role').bootstrapTable('getSelections');
- 		//判断有没有选中
- 		if(selectList.length<=0){
- 			parent.layer.alert('请选择要修改的数据');
- 			return;
- 		}
- 		//判断有没有选中多个
- 		if(selectList.length>1){
- 			parent.layer.alert('一次只能修改一条数据');
- 			return;
- 		}
- 		var athRole = selectList[0];
- 		//把选中行的数据放到弹窗的控件中
- 		$("#editRole #rdname").val(athRole.rdname);
- 		$("#editRole #reid").val(athRole.reid);
- 		$("#editRole #rdstatus").val(athRole.rdstatus);
- 		$("#editRole #rdtime").val(athRole.rdtime);
- 		$("#editRole #rdremark").val(athRole.rdremark);
- 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
- 		$("#btn_submit").attr("onclick","updateRole("+athRole.rdid+","+athRole.ptid+")");
- 		//显示新增窗口
- 		$('#editRole').modal('show');
-     }
-	function updateRole(rdid,ptid){
+    function UpRole(){
+   	//获取当前选中行的信息
+		var selectList = $('#tb_role').bootstrapTable('getSelections');
+		//判断有没有选中
+		if(selectList.length<=0){
+			parent.layer.alert('请选择要修改的数据');
+			return;
+		}
+		//判断有没有选中多个
+		if(selectList.length>1){
+			parent.layer.alert('一次只能修改一条数据');
+			return;
+		}
+		var athRole = selectList[0];
+		//把选中行的数据放到弹窗的控件中
+		
+		$("#editRole #ftitle").val(athRole.ftitle);
+		$("#editRole #uid").val(athRole.uid);
+		$("#editRole #fcode").val(athRole.fcode);
+		$("#editRole #ftype").val(athRole.ftype);
+		$("#editRole #fpart").val(athRole.fpart);
+		$("#editRole #froe").val(athRole.froe);
+		$("#editRole #fincrease").val(athRole.fincrease);
+		$("#editRole #fcontent").val(athRole.fcontent);
+		$("#editRole #fsituation").val(athRole.fsituation);
+		$("#editRole #fopinion").val(athRole.fopinion);
+		$("#editRole #fmoney").val(athRole.fmoney);
+		$("#editRole #fendmoney").val(athRole.fendmoney);
+		$("#editRole #fendtime").val(athRole.fendtime);
+		$("#editRole #fminmoney").val(athRole.fminmoney);
+		$("#editRole #fmaxmoney").val(athRole.fmaxmoney);
+		$("#editRole #frate").val(athRole.frate);
+		$("#editRole #fimage").val(athRole.fimage);
+		$("#editRole #forderimg").val(athRole.forderimg);
+		$("#editRole #fcontract").val(athRole.fcontract);
+		$("#editRole #fbidstatus").val(athRole.fbidstatus);
+		$("#editRole #fstatus").val(athRole.fstatus);
+		$("#editRole #fsecurity").val(athRole.fsecurity);
+		$("#editRole #fprocedures").val(athRole.fprocedures);
+		$("#editRole #frepayment").val(athRole.frepayment);
+		$("#editRole #fsecuritymea").val(athRole.fsecuritymea);
+		$("#editRole #fhuanstat").val(athRole.fhuanstat);
+		$("#editRole #fhuanend").val(athRole.fhuanend);
+		
+		$("#editRole #fid").val(athRole.fid);
+		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
+		$("#btn_submit").attr("onclick","updateRole()");
+		//显示新增窗口
+		$('#editRole').modal('show');
+    }
+    function updateRole(){
+		//用来关闭新增窗口***********
 		//用来关闭新增窗口***********
 		$("#editRole").modal('hide');
-		var url = "${pageContext.request.contextPath }/back/admin/updateRecord";
-		$.post(
-			url,
-			{
-				rdid:rdid,
-				ptid:ptid,
-				rdname:$("#editRole #rdname").val(),
-				reid:$("#editRole #reid").val(),
-				rdstatus:$("#editRole #rdstatus").val(),
-				rdtime:$("#editRole #rdtime").val(),
-				rdremark:$("#editRole #rdremark").val(),
-			},
-			function(data){
-				//后台返回int类型的数据
-				if(data>0){
-					//新增成功，下面是后台框架的提示
-					parent.layer.alert('修改成功');
-				}else{
-					//新增失败
-					parent.layer.alert('修改失败');
-				}
-				//新增完刷新表格数据
-				$('#tb_role').bootstrapTable('refresh');
-			},
-			"text"
-		);	
+		var form = new FormData(document.getElementById("editForm"));
+	/**
+		var dd = $("#cwechartimgurl").val();
+		if(dd==""){
+			parent.layer.alert('第一个文件不能为空');
+			return;
+		}
+		
+		var cc = $(" #cweboimgurl").val();
+		if(cc==""){
+			alert('第二个文件不能为空');
+			parent.layer.alert('第二个文件不能为空');
+			return;
+		}
+		*/
+	      $.ajax({
+	          url:"${pageContext.request.contextPath}/back/updatefabiao",
+	          type:"post",
+	          data:form,
+	          processData:false,
+	          contentType:false,
+	          success:function(data){
+	        	//后台返回int类型的数据
+					if(data>0){
+						//新增成功，下面是后台框架的提示
+						parent.layer.alert('修改成功');
+						
+					}else{
+						//新增失败
+						parent.layer.alert('修改失败');
+					}
+					//新增完刷新表格数据
+					$('#tb_role').bootstrapTable('refresh');
+	          },
+	          error:function(e){
+	              alert("错误！！");
+	          }
+	      });  
 	}
 	//删除按钮事件
 	//*************************************************************************按钮事件
@@ -134,12 +218,12 @@
 		//拼接ids  1,2,3,4  用于批量删除
 		for(var i =0 ;i<stuList.length;i++){
 			if(i!=stuList.length-1){
-				ids = ids +stuList[i].rdid+",";
+				ids = ids +stuList[i].fid+",";
 			}else{
-				ids = ids +stuList[i].rdid;
+				ids = ids +stuList[i].fid;
 			}
 		}
-		var url = "${pageContext.request.contextPath }/back/admin/deleteRecord";
+		var url = "${pageContext.request.contextPath }/back/deletefabiao";
 		$.post(
 			url,
 			{
@@ -166,12 +250,12 @@
 		$('#tb_role').bootstrapTable('refresh');
 	}
 	$(function () {
-	 	//激活弹框提示
+		//激活弹框提示
 		$("[data-toggle='tooltip']").tooltip();
 		 //先销毁表格  
         $('#tb_role').bootstrapTable('destroy');  
 		$('#tb_role').bootstrapTable({
-			url : '${pageContext.request.contextPath}/back/admin/pageRecord', //请求后台的URL（*）
+			url : '${pageContext.request.contextPath}/back/pagefabiao', //请求后台的URL（*）
 			method : 'post', //请求方式（*）
 			contentType: "application/x-www-form-urlencoded",
 			toolbar : '#toolbar', //工具按钮用哪个容器
@@ -198,49 +282,76 @@
 			showToggle : true, //是否显示详细视图和列表视图的切换按钮
 			cardView : false, //是否显示详细视图
 			detailView : false, //是否显示父子表
-			singleSelect: false,  //设置为单选
+			singleSelect: false,  //设置为单选
 			columns : [ {
 				checkbox : true,
 			}, {
-				field : 'rdid',
+				field : 'fid',
 				title : '主键ID'
 			}, {
-				field : 'rdname',
-				title : '操作名称'
+				field : 'ftitle',
+				title : '标名'
 			}, {
-				field : 'reid',
-				title : '操作人ID'
+				field : 'fcode',
+				title : '商品编号'
 			},  {
-				field : 'rdtime',
-				title : '操作时间'
+				field : 'ftype',
+				title : '标种'
 			},	{
-				field : 'rdremark',
-				title : '备注'
+				field : 'fpart',
+				title : '标的分类'
+			},	{
+				field : 'froe',
+				title : '年收益率'
+			},	{
+				field : 'fincrease',
+				title : '活动加息'
+			},	{
+				field : 'fmoney',
+				title : '投标金额'
+			},	{
+				field : 'fendmoney',
+				title : '已投金额'
+			},	{
+				field : 'fendtime',
+				title : '投标截止时间'
+			},	{
+				field : 'fminmoney',
+				title : '最小投标金额'
+			},	{
+				field : 'fmaxmoney',
+				title : '最大投标金额'
+			},	{
+				field : 'frate',
+				title : '收益率'
+			},	{
+				field : 'fbidstatus',
+				title : 'fbidstatus'
 			}, {
-				field : 'rdstatus',
-				title : '成功状态',
+				field : 'compnrate',
+				title : '完成率',
 				align : 'center',
 				/* formatter : function(value, row, index) {
 					var status = row.restatus; */
 					/* if(status==0){
-						return "<span class='label label-primary'>启用</span>";
+						return "<span class='label label-primary'>å¯ç¨</span>";
 					}else{
-						return "<span class='label label-danger'>禁用</span>";
+						return "<span class='label label-danger'>ç¦ç¨</span>";
 					} */
 					/* if(status==1){
 			            return '<i class="fa fa-lock" style="color:red"></i>'
 			        }else if(status==0){
 			            return '<i class="fa fa-unlock" style="color:green"></i>'
 			        }else{
-			            return '数据错误'
+			            return 'æ°æ®éè¯¯'
 			        }
 				} */
 			},/* {
 				field : 'ptid',
-				title : '角色权限',
+				title : 'è§è²æé',
 				formatter : function(value, row, index) {
 					//var id = row.id;
-					return "<a  onclick='rolist("+row.nid+");' data-toggle='modal' data-target='#tb_model'><span class='glyphicon glyphicon-new-window'></span>权限设置</a>";
+					return "<a  onclick='rolist("+row.nid+");' data-toggle='modal' data-target='#tb_model'><span class='glyphicon glyphicon-new-window'></span>æéè®¾ç½®</a>";
 				}
 			}, */]
 		});
@@ -251,12 +362,22 @@
 		var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
 			//***这里的参数传到后台，用来进行分页处理*************************
 			rows: params.limit, //页面大小
-			page: params.offset, //页码
-			rdname : $("#rdname").val(),
-			reid : $("#reid").val(),
-			rdtime : $("#rdtime").val(), 
-			rdremark : $("#rdremark").val(), 
-			ntype : $("#ntype").val(), 
+			page: params.offset, //页码
+			fid : $("#fid").val(),
+			ftitle : $("#ftitle").val(),
+			fcode : $("#fcode").val(),
+			ftype : $("#ftype").val(), 
+			fpart : $("#fpart").val(),
+			froe : $("#froe").val(),
+			fincrease : $("#fincrease").val(),
+			fmoney : $("#fmoney").val(),
+			fendmoney : $("#fendmoney").val(),
+			fendtime : $("#fendtime").val(),
+			fminmoney : $("#fminmoney").val(),
+			fmaxmoney : $("#fmaxmoney").val(),
+			frate : $("#frate").val(),
+			fbidstatus : $("#fbidstatus").val(),
+			compnrate : $("#compnrate").val(), 
 		};
 		return temp;
 	};
@@ -276,28 +397,30 @@
 						</div>
 					</div>
 					<div class="ibox-content">
-							<div class="form-group">
-		            			<label for="incomeTypes" class="control-label col-sm-1">角色名称</label>
-								<div class="col-sm-2">
-									<input type="text" name="rename" class="form-control" id="renames">
-		            			</div>
-		            			<label for="operateTime" class="control-label col-sm-1">角色备注</label>
-		            			<div class="col-sm-2">
-	            					<input type="text" name="reremark" class="form-control" id="reremarks">
-	            				</div>
-		            			<label for="operateTime" class="control-label col-sm-1">角色状态</label>
-		            			<div class="col-sm-2">
-									<select class="form-control m-b" id="restatuss" name="restatus" style="margin-bottom: 0px;">
-		                        		<option value=-1>请选择</option>
-		                        		<option value=1>禁用</option>
-		                        		<option value=2>启用</option>
-		                        	</select>
-		            			</div>
-				                <button type="button" id="searchForm" class="btn btn-primary" onclick="searchForm()">搜索</button>
+					<!-- 
+					<div class="form-group">
+            			<label for="incomeTypes" class="control-label col-sm-1">è§è²åç§°</label>
+						<div class="col-sm-2">
+							<input type="text" name="rename" class="form-control" id="renames">
+            			</div>
+            			<label for="operateTime" class="control-label col-sm-1">è§è²å¤æ³¨</label>
+            			<div class="col-sm-2">
+           					<input type="text" name="reremark" class="form-control" id="reremarks">
+           				</div>
+            			<label for="operateTime" class="control-label col-sm-1">è§è²ç¶æ</label>
+            			<div class="col-sm-2">
+							<select class="form-control m-b" id="restatuss" name="restatus" style="margin-bottom: 0px;">
+                        		<option value=-1>è¯·éæ©</option>
+                        		<option value=1>ç¦ç¨</option>
+                        		<option value=2>å¯ç¨</option>
+                        	</select>
+            			</div>
+				                <button type="button" id="searchForm" class="btn btn-primary" onclick="searchForm()">æç´¢</button>
 							</div>
+						-->
 						<div id="toolbar" class="btn-group">
 							<button id="btn_add" type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#addStudent" onclick="addRole()">
-								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
 							</button>
 							<button id="btn_edit" type="button" class="btn btn-w-m btn-success" onclick="UpRole()">
 								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
@@ -320,57 +443,204 @@
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">公告管理</h4>
+		<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-label="Close">
+			<span aria-hidden="true">x</span>
+		</button>
+		<h4 class="modal-title" id="myModalLabel">发标表</h4>
+		</div>
+		<div class="modal-body">
+			<!-- 新增系别 -->
+			<form id="editForm" class="form-horizontal m-t">
+			<input type="hidden" name="fid" id="fid">
+				<div class="form-group">
+					<label for="urlName" class="control-label col-sm-3">标名</label> 
+					<div class="col-sm-8">
+						<input type="text" name="ftitle" class="form-control" id="ftitle">
+					</div>
 				</div>
-				<div class="modal-body">
-					<!-- 新增系别 -->
-					<form id="editForm" class="form-horizontal m-t">
-						<div class="form-group">
-							<label for="urlName" class="control-label col-sm-3">操作名称</label> 
-							<div class="col-sm-8">
-								<input type="text" name="rdname" class="form-control" id="rdname">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="url" class="control-label col-sm-3">操作员工id</label>
-							<div class="col-sm-8">
-								<input type="text" name="reid" class="form-control" id="reid" disabled="true">
-	            			</div>
-						</div>
-						<div class="form-group">
-							<label for="url" class="control-label col-sm-3">操作时间</label>
-							<div class="col-sm-8">
-								<input type="text" name="rdtime" class="form-control" id="rdtime">
-	            			</div>
-						</div>
-						<div class="form-group">
-							<label for="url" class="control-label col-sm-3">备注</label>
-							<div class="col-sm-8">
-								<input type="text" name="rdremark" class="form-control" id="rdremark">
-	            			</div>
-						</div>
-						<div class="form-group">
-							<label for="url" class="control-label col-sm-3">成功状态</label>
-							<div class="col-sm-8">
-								<select name="rdstatus"  class="form-control" id="rdstatus" disabled="true">
-									<option value="0">成功</option>
-									<option value="1">失败</option>
-								</select>
-	            			</div>
-						</div>
-					</form>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">用户id</label>
+					<div class="col-sm-8">
+						<input type="text" name="uid" class="form-control" id="uid">
+           			</div>
 				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">商品编号</label>
+					<div class="col-sm-8">
+						<input type="text" name="fcode" class="form-control" id="fcode">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">标种</label>
+					<div class="col-sm-8">
+						<input type="text" name="ftype" class="form-control" id="ftype">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">标的分类</label>
+					<div class="col-sm-8">
+						<select name="fpart"  class="form-control" id="fpart">
+							<option value="爱车贷">爱车贷</option>
+							<option value="爱房贷">爱房贷</option>
+							<option value="消费基金">消费基金</option>
+							<option value="爱公益">爱公益</option>
+						</select>
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">年收益率</label>
+					<div class="col-sm-8">
+						<input type="text" name="froe" class="form-control" id="froe">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">活动加息</label>
+					<div class="col-sm-8">
+						<input type="text" name="fincrease" class="form-control" id="fincrease">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">产品概要</label>
+					<div class="col-sm-8">
+						<input type="text" name="fcontent" class="form-control" id="fcontent">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">项目情况</label>
+					<div class="col-sm-8">
+						<input type="text" name="fsituation" class="form-control" id="fsituation">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">爱钱帮独立意见</label>
+					<div class="col-sm-8">
+						<input type="text" name="fopinion" class="form-control" id="fopinion">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">投标金额</label>
+					<div class="col-sm-8">
+						<input type="text" name="fmoney" class="form-control" id="fmoney">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">已投金额</label>
+					<div class="col-sm-8">
+						<input type="text" name="fendmoney" class="form-control" id="fendmoney">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">投标截止时间</label>
+					<div class="col-sm-8">
+						<!--<input type="text" name="fendtime" class="form-control" id="fendtime"> <input name="fendtime" id="fendtime" placeholder="请输入日期" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"> -->
+           				
+           				<input placeholder="请选择日期" name="fendtime" id="fendtime" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">最小投标金额</label>
+					<div class="col-sm-8">
+						<input type="text" name="fminmoney" class="form-control" id="fminmoney">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">最大投标金额</label>
+					<div class="col-sm-8">
+						<input type="text" name="fmaxmoney" class="form-control" id="fmaxmoney">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">收益率</label>
+					<div class="col-sm-8">
+						<input type="text" name="frate" class="form-control" id="frate">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">代表图</label>
+					<div class="col-sm-8">
+						<input type="text" name="fimage" class="form-control" id="fimage">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">其他图片</label>
+					<div class="col-sm-8">
+						<input type="text" name="forderimg" class="form-control" id="forderimg">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">合同</label>
+					<div class="col-sm-8">
+						<input type="text" name="fcontract" class="form-control" id="fcontract">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">投标状态</label>
+					<div class="col-sm-8">
+						<select name="fbidstatus"  class="form-control" id="fbidstatus">
+							<option value="0">0</option>
+							<option value="1">1</option>
+						</select>
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">发布状态</label>
+					<div class="col-sm-8">
+						<select name="fstatus"  class="form-control" id="fstatus">
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">担保措施</label>
+					<div class="col-sm-8">
+						<input type="text" name="fsecurity" class="form-control" id="fsecurity">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">还款开始时间</label>
+					<div class="col-sm-8">
+						<input placeholder="请选择日期" name="fhuanstat" id="fhuanstat" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">还款结束时间</label>
+					<div class="col-sm-8">
+						<input placeholder="请选择日期" name="fhuanend" id="fhuanend" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">手续</label>
+					<div class="col-sm-8">
+						<input type="text" name="fprocedures" class="form-control" id="fprocedures">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">还款方式</label>
+					<div class="col-sm-8">
+						<input type="text" name="frepayment" class="form-control" id="frepayment">
+           			</div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label col-sm-3">担保措施</label>
+					<div class="col-sm-8">
+						<input type="text" name="fsecuritymea" class="form-control" id="fsecuritymea">
+           			</div>
+				</div>
+			</form>
+		</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
 					</button>
 					<button type="button" id="btn_submit" class="btn btn-primary" onclick="insertRole()">
-						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
+						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
 					</button>
 				</div>
 			</div>

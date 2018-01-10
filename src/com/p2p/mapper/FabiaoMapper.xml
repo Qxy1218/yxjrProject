@@ -72,7 +72,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<!-- 发标添加 -->
 	<insert id="addModel" useGeneratedKeys="true" keyProperty="fid">
  		 insert into fabiao(f_title,u_id,f_code,f_type,f_part,f_roe,f_increase,f_content,f_situation,f_opinion,f_money,f_endmoney,f_endtime,f_minmoney,f_maxmoney,f_rate,f_image,f_orderimg,f_contract,f_bidstatus,f_status,f_securitymea,f_security,f_procedures,f_repayment,f_huanstat,f_huanend) 
- 		 values(#{ftitle},#{uid},#{fcode},#{ftype},#{fpart},#{froe},#{fincrease},#{fcontent},#{fsituation},#{fopinion},#{fmoney},#{fendmoney},#{fendtime},#{fminmoney},#{fmaxmoney},#{frate},#{fimage},#{forderimg},#{fcontract},#{fcontract},#{fbidstatus},#{fstatus},#{fsecuritymea},#{fsecurity},#{fprocedures},#{frepayment},#{fhuanstat},#{fhuanend})
+ 		 values(#{ftitle},#{uid},#{fcode},#{ftype},#{fpart},#{froe},#{fincrease},#{fcontent},#{fsituation},#{fopinion},#{fmoney},#{fendmoney},#{fendtime},#{fminmoney},#{fmaxmoney},#{frate},#{fimage},#{forderimg},#{fcontract},#{fbidstatus},#{fstatus},#{fsecuritymea},#{fsecurity},#{fprocedures},#{frepayment},#{fhuanstat},#{fhuanend})
  	</insert>
  	
  	<!-- 发标删除 -->
@@ -84,35 +84,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="update" parameterType="com.p2p.pojo.Fabiao" >
         UPDATE fabiao  
 		<trim prefix="set" suffixOverrides=",">
-				<if test="fid!=null">and f_id=#{fid},</if>
-		  		<if test="ftitle!=null">and f_title=#{ftitle},</if>
-		  		<if test="uid!=null">and u_id=#{uid},</if>
-		  		<if test="fcode!=null">and f_code=#{fcode},</if>
-		  		<if test="ftype!=null">and f_type=#{ftype},</if>
-		  		<if test="fpart!=null">and f_part=#{fpart},</if>
-		  		<if test="froe!=null">and f_roe=#{froe},</if>
-		  		<if test="fincrease!=null">and f_increase=#{fincrease},</if>
-		  		<if test="fcontent!=null">and f_content=#{fcontent},</if>
-		  		<if test="fsituation!=null">and  f_situation=#{fsituation},</if>
-		  		<if test="fopinion!=null">and  f_opinion=#{fopinion},</if>
-		  		<if test="fmoney!=null">and  f_money=#{fmoney},</if>
-		  		<if test="fendmoney!=null">and  f_endmoney=#{fendmoney},</if>
-		  		<if test="fendtime!=null">and f_endtime=#{fendtime},</if>
-		  		<if test="fminmoney!=null">and f_minmoney=#{fminmoney},</if>
-		  		<if test="fmaxmoney!=null">and f_maxmoney=#{fmaxmoney},</if>
-		  		<if test="frate!=null">and f_rate=#{frate},</if>
-		  		<if test="fimage!=null">and  f_image=#{fimage},</if>
-		  		<if test="forderimg!=null">and  f_orderimg=#{forderimg},</if>
-		  		<if test="fcontract!=null">and  f_contract=#{fcontract},</if>
-		  		<if test="fbidstatus!=null">and f_bidstatus=#{fbidstatus},</if>
-		  		<if test="fstatus!=null">and f_status=#{fstatus},</if>
-		  		<if test="fsecuritymea!=null">and f_securitymea=#{fsecuritymea},</if>
-		  		<if test="fsecurity!=null">and f_security=#{fsecurity},</if>
-		  		<if test="fprocedures!=null">and f_procedures=#{fprocedures},</if>
- 				<if test="frepayment!=null">and f_repayment=#{frepayment},</if>
- 				<if test="fsecuritymea!=null">and f_securitymea=#{fsecuritymea},</if>
- 				<if test="fhuanstat!=null">and f_huanstat=#{fhuanstat},</if>
- 				<if test="fhuanend!=null">and f_huanend=#{fhuanend},</if>
+		  		<if test="ftitle!=null">f_title=#{ftitle},</if>
+		  		<if test="uid!=null">u_id=#{uid},</if>
+		  		<if test="fcode!=null">f_code=#{fcode},</if>
+		  		<if test="ftype!=null">f_type=#{ftype},</if>
+		  		<if test="fpart!=null">f_part=#{fpart},</if>
+		  		<if test="froe!=null">f_roe=#{froe},</if>
+		  		<if test="fincrease!=null">f_increase=#{fincrease},</if>
+		  		<if test="fcontent!=null">f_content=#{fcontent},</if>
+		  		<if test="fsituation!=null">f_situation=#{fsituation},</if>
+		  		<if test="fopinion!=null">f_opinion=#{fopinion},</if>
+		  		<if test="fmoney!=null">f_money=#{fmoney},</if>
+		  		<if test="fendmoney!=null">f_endmoney=#{fendmoney},</if>
+		  		<if test="fendtime!=null">f_endtime=#{fendtime},</if>
+		  		<if test="fminmoney!=null">f_minmoney=#{fminmoney},</if>
+		  		<if test="fmaxmoney!=null">f_maxmoney=#{fmaxmoney},</if>
+		  		<if test="frate!=null">f_rate=#{frate},</if>
+		  		<if test="fimage!=null">f_image=#{fimage},</if>
+		  		<if test="forderimg!=null">f_orderimg=#{forderimg},</if>
+		  		<if test="fcontract!=null">f_contract=#{fcontract},</if>
+		  		<if test="fbidstatus!=null">f_bidstatus=#{fbidstatus},</if>
+		  		<if test="fstatus!=null">f_status=#{fstatus},</if>
+		  		<if test="fsecurity!=null">f_security=#{fsecurity},</if>
+		  		<if test="fprocedures!=null">f_procedures=#{fprocedures},</if>
+ 				<if test="frepayment!=null">f_repayment=#{frepayment},</if>
+ 				<if test="fsecuritymea!=null">f_securitymea=#{fsecuritymea},</if>
+ 				<if test="fhuanstat!=null">f_huanstat=#{fhuanstat},</if>
+ 				<if test="fhuanend!=null">f_huanend=#{fhuanend},</if>
  		</trim>
 			
 		<where>
