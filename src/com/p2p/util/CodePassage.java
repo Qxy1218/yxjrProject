@@ -86,7 +86,7 @@ public class CodePassage {
 				String types = fabiao.getFrepayment();
 				double syl = (fabiao.getFroe().add(fabiao.getFincrease())).doubleValue();
 				if(types!=null && !types.equals("")) {
-					fabiao.setYield(YieldUtil.getYield(fabiao.getFhuanstat(), fabiao.getFhuanend(), syl,10000,type));
+					fabiao.setYield(YieldUtil.getYield(fabiao.getFhuanstat(), fabiao.getFhuanend(), syl,10000,types));
 				}
 				acds.add(fabiao);
 			}

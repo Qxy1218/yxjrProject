@@ -21,7 +21,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.Indexpic;
 import com.p2p.pojo.User;
+import com.p2p.pojo.Video;
 import com.p2p.service.back.IndexpicService;
+import com.p2p.service.back.VideoService;
 import com.p2p.service.front.FabiaoService;
 import com.p2p.service.front.IUserService;
 import com.p2p.service.front.SetupnaticeService;
@@ -50,6 +52,8 @@ public class BeansController {
 	@Resource(name="fabiaoServiceImpl")
 	private FabiaoService fabiaoService;
 	
+	@Resource(name="videoServiceImpl")
+	private VideoService videoservices;
 	
 	/**
 	 * 进入首界面(index.jsp)
@@ -103,6 +107,22 @@ public class BeansController {
 		//首页爱车贷遍历
 		List<Fabiao> acds = CodePassage.makeList(fabiaoService,"爱车贷");
 		model.addAttribute("fabiaolistsafd", acds);
+		
+		//首页爱房贷遍历
+		List<Fabiao> fdas = CodePassage.makeList(fabiaoService,"爱房贷");
+		model.addAttribute("fabiaofdas",fdas);
+		
+		//首页消费金融遍历
+		List<Fabiao> xfjr = CodePassage.makeList(fabiaoService,"消费金融");
+		model.addAttribute("fabiaoxfjr",xfjr);
+		
+		//项目直投遍历
+		List<Fabiao> xmzt = CodePassage.makeList(fabiaoService,null);
+		model.addAttribute("fabiaoxmzt",xmzt);
+		
+		//视频遍历
+		List<Video> listvideo = videoservices.getAllModel();
+		model.addAttribute("videosp", listvideo);
 		
 		return "views/front/index";
 	}	
