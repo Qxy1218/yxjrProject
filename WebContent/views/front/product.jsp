@@ -225,12 +225,13 @@
             <p class="m2-detHide-nor">已选择红包金额：<span id="reward_red">0元</span></p>
             <ul>
 	            <!-- 红包列出框 -->
-	             <li class="m2-detHidered-unsel reward-item" style="display: none" data-condition="200" data-rewardid="2498620" data-rewardtype="1" data-rewardval="8.00">
-	                 <div class="m2-detHidered-num"><span>8.00</span>元红包</div>
-	                 <div class="m2-detHidered-tim">7天后过期</div>
-	                 <div class="mo2-detHide-icon"><i></i></div>
-	             </li>
-          
+	           <c:forEach items="${redlist}" var="reds">
+		             <li class="m2-detHidered-unsel reward-item" style="display: none" data-condition="200" data-rewardid="2498620" data-rewardtype="1" data-rewardval="8.00">
+		                 <div class="m2-detHidered-num"><span>8.00</span>元红包</div>
+		                 <div class="m2-detHidered-tim">7天后过期</div>
+		                 <div class="mo2-detHide-icon"><i></i></div>
+		             </li>
+            	</c:forEach>
 	          </ul>
             <div class="m2-detHide-pagebox">
                 <span class="m2-detHidered-cancle">取消选择</span>
@@ -247,7 +248,7 @@
         <div class="m2-detHidemain-add">
             <p class="m2-detHide-nor">代金券券带来额外收益：<span id="reward_coupon">0元</span></p>
             <ul>
-            	  <li class="m2-detHidered-unsel reward-item" style="display: none" data-condition="200" data-rewardid="2498620" data-rewardtype="1" data-rewardval="8.00">
+            	  <li class="m2-detHidered-unsel reward-item" style="display: none" data-condition="200" data-rewardid="2498620" data-rewardtype="2" data-rewardval="8.00">
 	                 <div class="m2-detHidered-num"><span>8.00</span>元代金券</div>
 	                 <div class="m2-detHidered-tim">7天后过期</div>
 	                 <div class="mo2-detHide-icon"><i></i></div>

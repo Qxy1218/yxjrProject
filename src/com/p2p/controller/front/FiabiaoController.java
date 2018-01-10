@@ -20,7 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.ProjectSelect;
+import com.p2p.pojo.Redmoney;
 import com.p2p.pojo.User;
+import com.p2p.pojo.Uservouch;
+import com.p2p.service.back.RedmoneyService;
+import com.p2p.service.back.UservouchService;
 import com.p2p.service.front.FabiaoService;
 import com.p2p.util.ContextUtils;
 import com.p2p.util.DateUtils;
@@ -32,6 +36,11 @@ public class FiabiaoController {
 	@Resource(name="fabiaoServiceImpl")
 	private FabiaoService fabiaoService;
 	
+	@Resource(name="redmoneyServiceImpl")
+	private RedmoneyService redmoneyService;
+	
+	@Resource(name="uservouchServiceImpl")
+	private UservouchService uservouchService;
 	
 	
 	@RequestMapping("toproject")
@@ -74,11 +83,17 @@ public class FiabiaoController {
 		 
 		 //查找当前用户的红包和贷息券
 		 User user = (User)request.getAttribute("user");
+		 List<Redmoney> redlist = new ArrayList<Redmoney>();
+		 List<Uservouch> voulist = new ArrayList<Uservouch>();
 		 if(user!=null) {
-			 
+			 //查询红包
+			 redlist = redmoneyService.selectByUserId(user.getUid());
+			 //查询代金券
+			 voulist = uservouchService.selectByUserId(user.getUid());
 		 }
-		 
 		model.addAttribute("thisfb", thisfb);
+		model.addAttribute("redlist", redlist);
+		model.addAttribute("voulist", voulist);
 		return "views/front/product";
 	}
 	

@@ -1,5 +1,6 @@
 package com.p2p.controller.front;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -186,10 +187,11 @@ public class IUserController {
 
 		user.setUregTime(DateUtils.getDateTimeFormat(new Date()));
 		user.setUcredit(3000);
-		user.setUbalance(0.00);
+		Double double1 = new Double("0.00");
+		user.setUbalance(double1);
 		
 		user.setUlid("0");
-		user.setVdid(0.00);
+		user.setVdid(0);
 		
 		try {
 			Integer isadd = iUserService.addModel(user);

@@ -1,6 +1,7 @@
 package com.p2p.pojo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 
@@ -65,7 +66,7 @@ public class User implements Serializable{
 	private String  ulid;//成长等级id
 	
 	@TableField("vd_id")
-	private Double vdid;//会员积分id
+	private Integer vdid;//会员积分id
 
 	
 	/**
@@ -90,46 +91,6 @@ public class User implements Serializable{
 	}
 
 
-	public User(Integer uid, String upassword,String uphone, String uregTime, String uloginTime,
-			String orderinvite, String uinvite, Integer uenable, Integer uisAccountSum, String qrcode, String uaddress,
-			String uip, Integer ucredit, Double ubalance, String ulid, Double vdid, Userinfo userinfo,
-			Userlevel userlevel, Redmoney redmoney, Withdrawals withdrawals, Uservouch uservouch) {
-		super();
-		this.uid = uid;
-		this.upassword = upassword;
-		this.uphone = uphone;
-		this.uregTime = uregTime;
-		this.uloginTime = uloginTime;
-		this.orderinvite = orderinvite;
-		this.uinvite = uinvite;
-		this.uenable = uenable;
-		this.uisAccountSum = uisAccountSum;
-		this.qrcode = qrcode;
-		this.uaddress = uaddress;
-		this.uip = uip;
-		this.ucredit = ucredit;
-		this.ubalance = ubalance;
-		this.ulid = ulid;
-		this.vdid = vdid;
-		this.userinfo = userinfo;
-		this.userlevel = userlevel;
-		this.redmoney = redmoney;
-		this.withdrawals = withdrawals;
-		this.uservouch = uservouch;
-	}
-
-
-	@Override
-	public String toString() {
-		return "User [uid=" + uid + ", upassword=" + upassword + ", uphone=" + uphone
-				+ ", uregTime=" + uregTime + ", uloginTime=" + uloginTime + ", orderinvite=" + orderinvite
-				+ ", uinvite=" + uinvite + ", uenable=" + uenable + ", uisAccountSum=" + uisAccountSum + ", qrcode="
-				+ qrcode + ", uaddress=" + uaddress + ", uip=" + uip + ", ucredit=" + ucredit + ", ubalance=" + ubalance
-				+ ", ulid=" + ulid + ", vdid=" + vdid + ", userinfo=" + userinfo + ", userlevel=" + userlevel
-				+ ", redmoney=" + redmoney + ", withdrawals=" + withdrawals + ", uservouch=" + uservouch + "]";
-	}
-
-
 	public Integer getUid() {
 		return uid;
 	}
@@ -148,6 +109,7 @@ public class User implements Serializable{
 	public void setUpassword(String upassword) {
 		this.upassword = upassword;
 	}
+
 
 	public String getUphone() {
 		return uphone;
@@ -279,12 +241,12 @@ public class User implements Serializable{
 	}
 
 
-	public Double getVdid() {
+	public Integer getVdid() {
 		return vdid;
 	}
 
 
-	public void setVdid(Double vdid) {
+	public void setVdid(Integer vdid) {
 		this.vdid = vdid;
 	}
 
@@ -338,6 +300,34 @@ public class User implements Serializable{
 		this.uservouch = uservouch;
 	}
 
+
+	public User(Integer uid, String upassword, String uphone, String uregTime, String uloginTime, String orderinvite,
+			String uinvite, Integer uenable, Integer uisAccountSum, String qrcode, String uaddress, String uip,
+			Integer ucredit, Double ubalance, String ulid, Integer vdid, Userinfo userinfo, Userlevel userlevel,
+			Redmoney redmoney, Withdrawals withdrawals, Uservouch uservouch) {
+		super();
+		this.uid = uid;
+		this.upassword = upassword;
+		this.uphone = uphone;
+		this.uregTime = uregTime;
+		this.uloginTime = uloginTime;
+		this.orderinvite = orderinvite;
+		this.uinvite = uinvite;
+		this.uenable = uenable;
+		this.uisAccountSum = uisAccountSum;
+		this.qrcode = qrcode;
+		this.uaddress = uaddress;
+		this.uip = uip;
+		this.ucredit = ucredit;
+		this.ubalance = ubalance;
+		this.ulid = ulid;
+		this.vdid = vdid;
+		this.userinfo = userinfo;
+		this.userlevel = userlevel;
+		this.redmoney = redmoney;
+		this.withdrawals = withdrawals;
+		this.uservouch = uservouch;
+	}
 
 	
 	
