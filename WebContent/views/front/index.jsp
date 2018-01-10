@@ -1030,7 +1030,7 @@
                 <div class="m2-indVodmain">
                     <ul class="m2-indVodlist">
                     	<c:forEach items="${videosp}" var="listvideos">
-                        <li data-vedio='${pageContext.request.contextPath}${listvideos.vvurl}'>
+                        <li videvalue='${pageContext.request.contextPath}${listvideos.vvurl}'>
                             <div class="m2-indVodlist-bg"></div>
                             <div class="m2-indVodlist-bot">${listvideos.vname}</div>
                             <img src="${pageContext.request.contextPath}${listvideos.vimgurl}" alt="${listvideos.vname}">
