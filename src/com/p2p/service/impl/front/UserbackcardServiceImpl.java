@@ -54,6 +54,11 @@ public class UserbackcardServiceImpl implements UserbackcardService {
 	}
 
 	@Override
+	public Userbackcard seleBybanknum(Userbackcard userbackcard) {
+		return userbackcardMapper.seleBybanknum(userbackcard);
+	}
+
+	@Override
 	public Userbackcard selectBackcard(Userbackcard str) {
 		// TODO Auto-generated method stub
 		return userbackcardMapper.selectBackcard(str);

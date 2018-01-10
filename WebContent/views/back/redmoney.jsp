@@ -216,7 +216,6 @@ $(document).ready(function() {
 			"text"
 		);	
 	}
-	
 	$(function () {
 	 	//激活弹框提示
 		$("[data-toggle='tooltip']").tooltip();
@@ -266,10 +265,12 @@ $(document).ready(function() {
 			}, {
 				field : 'rmoney',
 				title : '红包金额'
-			}, ]
+			},
+			
+			]
 		});
 });
-
+	
 	function queryParams(params) {
 		var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
 			//***这里的参数传到后台，用来进行分页处理*************************

@@ -9,7 +9,7 @@ import com.p2p.pojo.Userbackcard;
  * @author  lxj
  * */
 public interface UserbackcardService extends IBaseService<Integer, Userbackcard> {
-
+	abstract Userbackcard seleBybanknum(Userbackcard userbackcard);
 	//根据银行卡号查找判断是否存在
 		Userbackcard selectBackcard(Userbackcard str);
 }

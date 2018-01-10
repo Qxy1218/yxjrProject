@@ -185,10 +185,6 @@ public class IdCardController {
 				//当服务端开通成功后才可以成功开户
 				if(usercount==1 && bankcount==1) {
 					addCard = userbackcardService.addModel(bank);
-					Userbackcard userbackcard = new Userbackcard();
-					userbackcard.setUiid(uiid);
-					Userbackcard uback = userbackcardService.getModel(userbackcard);
-					session.setAttribute("userbackcard", uback);
 					
 					Userinfo userinfo1 = new Userinfo();
 					userinfo1.setUiid(uiid);
@@ -230,6 +226,55 @@ public class IdCardController {
 			e.printStackTrace();
 		}
 		return addCard;
+	}
+	
+	//根据银行卡去查询是否当前用户是否存在
+	@RequestMapping(value="seleBybanknum")
+	@ResponseBody
+	public int seleBybanknum(String backnum,String bankicname,String bankphone) {
+		int count = 0;
+		try {
+			Userbackcard uback = new  Userbackcard();
+			uback.setUbbackcardnum(backnum);
+			Userbackcard userbackcard = userbackcardService.seleBybanknum(uback);
+			
+			//服务端银行卡设值(如果服务端存在这张银行卡，服务端不添加,否则添加)
+			Bank banks = new Bank();
+			banks.setBsuid(userbackcard.getUiid());
+			banks.setBcode(userbackcard.getUbbackcardnum());
+			banks.setBtype(userbackcard.getUbplaceback());
+			banks.setBmoney(userbackcard.getUbmoney());
+			banks.setBstate(userbackcard.getUbstatus());
+			SendServiceUtil.list(banks, "192.168.90.47:8080/ServiceP2p/bank/add");
+			
+			Userinfo uinfo = new Userinfo();
+			uinfo.setUiid(userbackcard.getUiid());
+			Userinfo userinfo = userInfoService.getModel(uinfo);
+			User u = new User();
+			u.setUid(userinfo.getUid());
+			User user = iUserService.getModel(u);
+			if(userbackcard!=null && bankicname.equals(userinfo.getIdCard().getIcname()) && bankphone.equals(user.getUphone())) {
+				count = 1;
+				//Ubstatus状态为1的银行卡为默认的银行卡
+				Userbackcard ub = new  Userbackcard();
+				ub.setUiid(userinfo.getUiid());
+				Userbackcard ud = userbackcardService.getModel(ub);
+				Userbackcard ucard = new  Userbackcard();
+				ucard.setUbstatus(0);
+				ucard.setUbid(ud.getUbid());
+				userbackcardService.update(ucard);
+				userbackcard.setUbstatus(1);
+				userbackcardService.update(userbackcard);
+			}
+			else {
+				count = 0;
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			count = 0;
+		}
+		return count ;
 	}
 	
 	/**

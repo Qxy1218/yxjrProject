@@ -869,7 +869,10 @@ public class FrontController {
 		Userbackcard userbackcard = new Userbackcard();
 		userbackcard.setUiid(uiid);
 		Userbackcard uback = userbackcardService.getModel(userbackcard);
+		String kahao = uback.getUbbackcardnum();
+		String xianshi=kahao.substring(0,4)+"********"+kahao.substring(kahao.length()-4);
 		session.setAttribute("userbackcard", uback);
+		session.setAttribute("backnum", xianshi);
 		return "views/front/user/recharge";
 	}
 	
