@@ -53,7 +53,17 @@
             <div style="width: 30px;height: 30px;position: absolute;top: 11px;right: 0px;color: #666;font-size: 20px;cursor: pointer;" id="close">X</div>
         </div>
    </div>
-    <script type="text/javascript">
+	<div class="m2-userCentercommon-confirm" style='display: none;' id='msgdialog1'>
+        <span class="m2-userCentercommon-confirmClose"></span>
+        <p class="m2-userCommon-confirmWar"><i></i></p>
+        <p class="m2-userCommon-confirmBtn"><a class="m2-user-confirmBtn" href="javascript:void(0)">确&nbsp;定</a></p>		
+    </div>
+    <div class="m2-userCentercommon-confirm" style='display: none;' id='msgdialog2'>
+        <span class="m2-userCentercommon-confirmClose"></span>
+        <p class="m2-userCommon-confirmSuc"><i></i></p>
+        <p class="m2-userCommon-confirmBtn"><a class="m2-user-confirmBtn" href="javascript:void(0)">确&nbsp;定</a></p>		
+    </div>
+     <script type="text/javascript">
         $('.m2-userCentercommon-confirmClose,.m2-user-confirmBtn').click(function () {
             $('.m2-userCentercommon-confirm').hide();
             $('.m2-userCentercommon-bg').hide();
@@ -401,17 +411,6 @@
 	            }
 	        });
 	}
-	function showMsg(msg, flag) {
-        if (!flag) {
-            $('.m2-userCommon-confirmWar').html('<i></i>' + msg);
-            $('#msgdialog1').show();
-            $('.m2-userCentercommon-bg').show();
-        } else {
-            $('.m2-userCommon-confirmSuc').html('<i></i>' + msg);
-            $('#msgdialog2').show();
-            $('.m2-userCentercommon-bg').show();
-        }
-    }
 	function remoneyBlur(){
 		var remoney = $('#remoney').val();
 		$('#actualMoney').html(remoney+"元");
@@ -467,6 +466,17 @@
 	    	});
 	    }
 	    }
+	function showMsg(msg, flag) {
+        if (!flag) {
+            $('.m2-userCommon-confirmWar').html('<i></i>' + msg);
+            $('#msgdialog1').show();
+            $('.m2-userCentercommon-bg').show();
+        } else {
+            $('.m2-userCommon-confirmSuc').html('<i></i>' + msg);
+            $('#msgdialog2').show();
+            $('.m2-userCentercommon-bg').show();
+        }
+    }
 </script>
 </body>
 </html>
