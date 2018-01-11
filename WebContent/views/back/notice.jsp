@@ -463,11 +463,7 @@ $(document).ready(function() {
 			//***这里的参数传到后台，用来进行分页处理*************************
 			rows: params.limit, //页面大小
 			page: params.offset, //页码
-			ntitle:$("#editActivity #ntitle").val(),
-			ncontent:$("#editActivity #ncontent").val(),
-			nstype:$("#editActivity #nstype").val(),
-			ntime:$("#editActivity #ntime").val(),
-			ntype:$("#editActivity #ntype").val(),
+			ntitle:$("#ntitle").val(),
 		};
 		return temp;
 	};
@@ -490,17 +486,9 @@ $(document).ready(function() {
 							<div class="form-group">
 		            			<label for="incomeTypes" class="control-label col-sm-1">活动标题：</label>
 								<div class="col-sm-2">
-									<input type="text" name="attitle" class="form-control" id="attitle">
+									<input type="text" name="ntitle" class="form-control" id="ntitle">
 		            			</div>
 		            			
-		            			<label for="operateTime" class="control-label col-sm-1">角色状态</label>
-		            			<div class="col-sm-2">
-									<select class="form-control m-b" id="atstatus" name="atstatus" style="margin-bottom: 0px;">
-		                        		<option value=-1>请选择</option>
-		                        		<option value=1>禁用</option>
-		                        		<option value=2>启用</option>
-		                        	</select>
-		            			</div>
 				                <button type="button" id="searchForm" class="btn btn-primary" onclick="searchForm()">搜索</button>
 							</div>
 						<div id="toolbar" class="btn-group">
