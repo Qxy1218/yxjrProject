@@ -676,7 +676,7 @@
 					
 					<div class="mo2-indCarbot">
                         <c:if test="${fbindexlist.fstatus==1}">
-							<a href="/Finances/topro" target="_blank">立即投资</a> 
+							<a href="/Finances/toproject?pid=${fbindexlist.fid}" target="_blank">立即投资</a> 
                          </c:if> 
                          <c:if test="${fbindexlist.fstatus==2}">
 							<a href="javascript:void(0)" style="background-color:#ccc;" target="_blank">还款中</a>
@@ -757,7 +757,7 @@
 					
 					<div class="mo2-indCarbot">
                         <c:if test="${afdfabiao.fstatus==1}">
-							<a href="/Finances/topro" target="_blank">立即投资</a> 
+							<a href="/Finances/toproject?pid=${afdfabiao.fid}" target="_blank">立即投资</a> 
                          </c:if> 
                          <c:if test="${afdfabiao.fstatus==2}">
 							<a href="javascript:void(0)" style="background-color:#ccc;" target="_blank">还款中</a>
@@ -836,7 +836,7 @@
                     
                     <div class="mo2-indHoubot">
                     	<c:if test="${xfjrlist.fstatus==1}">
-							<a href="/Finances/topro" target="_blank">立即投资</a> 
+							<a href="/Finances/toproject?pid=${xfjrlist.fid}" target="_blank">立即投资</a> 
                          </c:if> 
                          <c:if test="${xfjrlist.fstatus==2}">
                          	<a href="javascript:void(0)" style="background-color:#ccc;" target="_blank">还款中</a>
@@ -914,7 +914,7 @@
                     </div>
 
                     <div class="m2-indItembtn">
-                        <a class="m2-indItembtn-ing" href="/Finances/topro" target="_blank">立即投资</a> </div>
+                        <a class="m2-indItembtn-ing" href="/Finances/toproject?pid=${xmztlist.fid}" target="_blank">立即投资</a> </div>
                 </li>    
                 </c:forEach>                    
                 	
