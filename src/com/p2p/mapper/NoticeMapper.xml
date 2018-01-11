@@ -18,6 +18,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 公告表后台分页查询 -->
 	<select id="pageNotice" resultMap="BaseResultMap">
 		select * from notice 
+			<where>
+			1=1
+				<if test="notice.ntitle!=null and notice.ntitle!=''">
+					and n_title like CONCAT(CONCAT('%', #{notice.ntitle}), '%')
+				</if>
+				
+			</where>
 	</select>
 	<!-- 后台总记录数查询 -->
 	<select id="countNotice" resultType="java.lang.Integer">
