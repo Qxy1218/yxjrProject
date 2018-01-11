@@ -34,6 +34,10 @@ public class Uservouch implements Serializable{
 	@TableField("u_id")
 	private Integer uid; //用户id
 	
+	@TableField("u_strat")
+	private Integer ustrat; //状态(0未使用 1:已使用)
+	
+	
 	private String uiname;
 
 
@@ -160,6 +164,17 @@ public class Uservouch implements Serializable{
 
 	public void setUiname(String uiname) {
 		this.uiname = uiname;
+	}
+
+
+
+	public Integer getUstrat() {
+		return ustrat;
+	}
+
+
+	public void setUstrat(Integer ustrat) {
+		this.ustrat = ustrat;
 	}
 
 }

@@ -37,6 +37,9 @@ public class Redmoney implements Serializable{
 	@TableField("r_money")
 	private double rmoney; //红包金额
 	
+	@TableField("r_start")
+	private Integer rstart; //状态(0未使用 1:已使用)
+	
 	private String uiname;
 
 	public Redmoney() {
@@ -111,6 +114,13 @@ public class Redmoney implements Serializable{
 		this.uiname = uiname;
 	}
 
-	
+	public Integer getRstart() {
+		return rstart;
+	}
+
+	public void setRstart(Integer rstart) {
+		this.rstart = rstart;
+	}
+
 	
 }

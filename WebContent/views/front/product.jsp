@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	String path = request.getContextPath();
 %>  
@@ -224,9 +225,19 @@
         <div class="m2-detHidemain-red">
             <p class="m2-detHide-nor">已选择红包金额：<span id="reward_red">0元</span></p>
             <ul>
+            	<c:if test="${fabiaolist==null || fn:length(redlist) == 0}">
+				<center>
+					<img src="/Finances/statics/front/images/nodata.png" style="width: 200px;height: 150px;">	
+				</center>
+				</c:if>
 	            <!-- 红包列出框 -->
 	           <c:forEach items="${redlist}" var="reds">
-		             <li class="m2-detHidered-unsel reward-item" style="display: none" data-condition="200" data-rewardid="2498620" data-rewardtype="1" data-rewardval="8.00">
+	           <!-- 
+	           		data-condition :使用条件(0元起)
+	           		data-rewardtype :使用条件
+	           		data-rewardval :钱数
+	            -->
+		             <li class="m2-detHidered-unsel reward-item" style="display: none" data-condition="0" data-rewardid="${reds.rid}" data-rewardtype="1" data-rewardval="${reds.rmoney}">
 		                 <div class="m2-detHidered-num"><span>8.00</span>元红包</div>
 		                 <div class="m2-detHidered-tim">7天后过期</div>
 		                 <div class="mo2-detHide-icon"><i></i></div>
@@ -248,11 +259,19 @@
         <div class="m2-detHidemain-add">
             <p class="m2-detHide-nor">代金券券带来额外收益：<span id="reward_coupon">0元</span></p>
             <ul>
-            	  <li class="m2-detHidered-unsel reward-item" style="display: none" data-condition="200" data-rewardid="2498620" data-rewardtype="2" data-rewardval="8.00">
-	                 <div class="m2-detHidered-num"><span>8.00</span>元代金券</div>
-	                 <div class="m2-detHidered-tim">7天后过期</div>
-	                 <div class="mo2-detHide-icon"><i></i></div>
-	             </li>
+	                <c:forEach items="${redlist}" var="reds">
+	           <!-- 
+	           		data-condition :使用条件(0元起)
+	           		data-rewardtype :使用条件
+	           		data-rewardval :钱数
+	            -->
+		             <li class="m2-detHidered-unsel reward-item" style="display: none" data-condition="0" data-rewardid="${reds.rid}" data-rewardtype="2" data-rewardval="${reds.rmoney}">
+		                 <div class="m2-detHidered-num"><span>8.00</span>元红包</div>
+		                 <div class="m2-detHidered-tim">7天后过期</div>
+		                 <div class="mo2-detHide-icon"><i></i></div>
+		             </li>
+            	</c:forEach>
+	             
             </ul>
             <div class="m2-detHide-pagebox">
                 <span class="m2-detHidered-cancle">取消选择</span>
@@ -278,6 +297,7 @@
 		        <i class="m2-parPageprev"></i><i class="m2-parPagenext"></i>
 		    </div>
 		</div>
+		<!-- 投资计算器 -->
 		<div class="m2-tranHide">
 		    <i class="m2-tranHide-close"></i>
 		    <h2 class="m2-tranHide-head">投资收益计算器</h2>
@@ -288,6 +308,7 @@
 		        <div class="m2-tranHiderem">
 		            <span>徽商账户余额：</span>
 		            <span style="color:#ea731e;">${sessionScope.user.ubalance}元</span>
+		           
 		            <b class='invest_all'>全用</b>
 		        </div>
 		        <div class="m2-tranHidenum">
@@ -405,7 +426,7 @@
 	              <c:if test="${sessionScope.user.uid != null}">
 	                <div class="m2-detRiglogin">
 	                    <p class="mo2-proNewdet">可投金额：<span id='left_money'>${ thisfb.fmoney-thisfb.fendmoney }                             元 </span></p>
-	                    <p>徽商账户余额：0元<a style="color: #09c;float: right;margin-right: 30px;" href='#?chargereturnurl=/invest-borrownew-id-moxOeTwTZaOw8TY79g.shtml' target="_blank">充值</a>
+	                    <p>徽商账户余额：${sessionScope.user.ubalance}元<a style="color: #09c;float: right;margin-right: 30px;" href='#?chargereturnurl=/invest-borrownew-id-moxOeTwTZaOw8TY79g.shtml' target="_blank">充值</a>
 	                    </p>
 	                </div>
 	             </c:if>
