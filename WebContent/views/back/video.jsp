@@ -260,7 +260,7 @@
 			pageSize : 10, //每页的记录行数（*）
 			pageList : [ 10, 15, 20, 25 ], //可供选择的每页的行数（*）
 			search : true, //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
-			strictSearch : false,
+			strictSearch : false, 
 			searchOnEnterKey :true, //按回车搜索
 			showColumns : true, //是否显示所有的列
 			showRefresh : true, //是否显示刷新按钮
