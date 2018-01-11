@@ -11,6 +11,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="w_moneytowhere" property="wmoneytowhere"/> 
 		<result column="w_status" property="wstatus"/>  
 		<result column="w_fee" property="wfee"/>  
+		<result column="w_nowMoney" property="wnowMoney"/>
+		<result column="w_order" property="worder"/>
     </resultMap>
     <resultMap type="com.p2p.pojo.Userinfo" id="userInfoBaseResultMap">
 		  <id column="ui_id" property="uiid"/>
@@ -46,8 +48,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
      <!-- 提现添加 -->
 	<insert id="addModel" useGeneratedKeys="true" keyProperty="wid">
- 		 insert into withdrawals(u_id,w_money,w_time,w_moneytowhere,w_status,w_fee) 
- 		 values(#{uid},#{wmoney},#{wtime},#{wmoneytowhere},#{wstatus},#{wfee})
+ 		 insert into withdrawals(u_id,w_money,w_time,w_moneytowhere,w_status,w_fee,w_nowMoney,w_order) 
+ 		 values(#{uid},#{wmoney},#{wtime},#{wmoneytowhere},#{wstatus},#{wfee},#{wnowMoney},#{worder})
  	</insert>
  	 <!-- 删除提现 -->
     <delete id="delete" parameterType="com.p2p.pojo.Withdrawals">
@@ -57,4 +59,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      <select id="seleWithdrawalsList" resultMap="userInfoBaseResultMap">
       	select * from user_info 
     </select> 
+    <!-- 提现修改 -->
+    <update id="update" parameterType="com.p2p.pojo.Withdrawals">
+    	update withdrawals 
+    	<trim prefix="set" suffixOverrides=",">
+    		<if test="uid!=null">u_id=#{uid},</if>
+    		<if test="wtime!=null">w_time =#{wtime},</if>
+    		<if test="wfee!=null">w_fee=#{wfee},</if>
+    		<if test="wnowMoney!=null">w_nowMoney=#{wnowMoney},</if>
+    		<if test="wstatus!=null">w_status=#{wstatus},</if>
+    	</trim>
+    		<where>
+		 		w_order= #{worder}    		
+    		</where>
+    </update>
 </mapper>
