@@ -1,5 +1,9 @@
 package com.p2p.controller.front;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 /**
  * 提现controller
  * 2017-01-07
@@ -11,11 +15,13 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Userbackcard;
 import com.p2p.pojo.Userinfo;
@@ -36,6 +42,7 @@ public class WithdrawalsfrontController {
 	private UserbackcardService userBankcardService;
 	@Resource(name="IUserServiceImpl")
 	private IUserService userService;
+	
 	
 	//实现新增
 	@RequestMapping(value="insertWithdrawals")
@@ -76,9 +83,11 @@ public class WithdrawalsfrontController {
 		int count=SendServiceUtil.list(ws, "192.168.90.47:8080/ServiceP2p/withdrawals/add");
 		
 		if(count==1) {
+			withdrawals.setWorder(orderNumber);
+			withdrawalsService.addModel(withdrawals);
 			user.setUbalance(user.getUbalance()-withdrawals.getWmoney());
 			userService.update(user);
-			withdrawalsService.addModel(withdrawals);
+			
 			request.getSession().setAttribute("user", user);
 			
 		}
@@ -110,4 +119,65 @@ public class WithdrawalsfrontController {
 			}
 			return count;
 		}
+		@RequestMapping("updateWithdrawals")
+		@ResponseBody
+		public void updateWithdrawals(HttpServletRequest request,HttpServletResponse response) throws IOException {
+			//判断请求报文是否来自代维系统的ip地址  
+		     String ip = request.getRemoteHost(); 
+			
+		     System.out.println("ip地址="+ip);
+		      
+		   
+		     try {
+		    	//获取接收的报文
+				BufferedReader reader=request.getReader();
+				
+				String line="";
+				
+				 StringBuffer inputString = new StringBuffer();  
+			        while ((line = reader.readLine()) != null) {  
+			        inputString.append(line);  
+			     }  
+		       
+			    //jackJson    
+		        ObjectMapper o=new ObjectMapper();
+		        
+		        WithdrawalsServiceP2p u=o.readValue(inputString.toString(), WithdrawalsServiceP2p.class);
+		        System.out.println("接收的报文为= "+u);
+		        Withdrawals with=new Withdrawals();
+		        with.setWorder(u.getCorder());
+		        with.setWstatus(u.getCstate());
+		        withdrawalsService.update(with);
+		       // 要返回的报文  
+		       StringBuffer resultBuffer = new StringBuffer();  
+		       resultBuffer.append("1");
+		     
+		       // 设置发送报文的格式  
+		       response.setContentType("text/xml");  
+		       response.setCharacterEncoding("UTF-8");  
+		   
+		       PrintWriter out = response.getWriter();  
+		       out.println(resultBuffer.toString());  
+		       out.flush();  
+		       out.close();  
+				
+				
+			} catch (IOException e) {
+				 // 要返回的报文  
+			       StringBuffer resultBuffer = new StringBuffer();  
+			       resultBuffer.append("2");
+			     
+			       // 设置发送报文的格式  
+			       response.setContentType("text/xml");  
+			       response.setCharacterEncoding("UTF-8");  
+			   
+			       PrintWriter out = response.getWriter();  
+			       out.println(resultBuffer.toString());  
+			       out.flush();  
+			       out.close();  
+					
+				e.printStackTrace();
+			}
+		}
+
 }
