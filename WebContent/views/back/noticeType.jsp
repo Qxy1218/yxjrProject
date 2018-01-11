@@ -463,22 +463,7 @@ $(document).ready(function() {
 						</div>
 					</div>
 					<div class="ibox-content">
-							<div class="form-group">
-		            			<label for="incomeTypes" class="control-label col-sm-1">活动标题：</label>
-								<div class="col-sm-2">
-									<input type="text" name="attitle" class="form-control" id="attitle">
-		            			</div>
-		            			
-		            			<label for="operateTime" class="control-label col-sm-1">角色状态</label>
-		            			<div class="col-sm-2">
-									<select class="form-control m-b" id="atstatus" name="atstatus" style="margin-bottom: 0px;">
-		                        		<option value=-1>请选择</option>
-		                        		<option value=1>禁用</option>
-		                        		<option value=2>启用</option>
-		                        	</select>
-		            			</div>
-				                <button type="button" id="searchForm" class="btn btn-primary" onclick="searchForm()">搜索</button>
-							</div>
+							
 						<div id="toolbar" class="btn-group">
 							<button id="btn_add" type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#addStudent" onclick="addActivity()">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
