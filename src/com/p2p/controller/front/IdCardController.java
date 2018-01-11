@@ -333,7 +333,9 @@ public class IdCardController {
 	        userbackcardService.update(userbackcard);
 	        
 	        //发送短信
-	        User user=iUserService.findModel(u.getBsuid());
+	        User use=new User();
+	        use.setUid(u.getBsuid());
+	        User user=iUserService.getModel(use);
 	        SendMsgUtil sUtil = new SendMsgUtil();
 			Map<String,Object> orther = new HashMap<String,Object>();
 			orther.put("userphone",user.getUphone());
