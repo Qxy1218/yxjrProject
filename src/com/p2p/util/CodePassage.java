@@ -110,6 +110,17 @@ public class CodePassage {
 			red.setRmoney(list.get(i).getRmoney());
 			red.setRstart(list.get(i).getRstart());
 			red.setUid(list.get(i).getUid());
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			Date date1=null;
+			Date date2=null;
+			try {
+				date2 = format.parse(red.getRendtime());
+				date1 = format.parse(red.getRstardtime());
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			int day =  DateUtils.differentDays(date1, date2);
+			red.setExpireday(day);
 			mylist.add(red);
 		}
 		return mylist;
@@ -131,8 +142,23 @@ public class CodePassage {
 			uvo.setUvid(list.get(i).getUvid());
 			uvo.setUvimage(list.get(i).getUvimage());
 			uvo.setUvmoney(list.get(i).getUvmoney());
+			
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			Date date1=null;
+			Date date2=null;
+			try {
+				date2 = format.parse(uvo.getUvendDate());
+				date1 = format.parse(uvo.getUvstartDate());
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			int day =  DateUtils.differentDays(date1, date2);
+			uvo.setUvday(day);
+			
 			mylist.add(uvo);
 		}
 		return mylist;
 	}
+	
+	
 }

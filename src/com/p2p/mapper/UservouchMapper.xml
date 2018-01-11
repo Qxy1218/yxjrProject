@@ -72,9 +72,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      <select id="seleUservouchList" resultMap="userInfoBaseResultMap">
       	select * from user_info 
     </select> 
-    <select id="selectByUserId" resultMap="userInfoBaseResultMap">
+    <select id="selectByUserId" resultMap="BaseResultMap">
    	 <![CDATA[
-    	select * from user_vouch WHERE u_id=#{userid} and u_strat=0 and uv_endDate <=now(); 
+    	select * from user_vouch WHERE u_id=#{userid} and u_strat=0 and uv_endDate >=now(); 
      ]]>
     </select>
     

@@ -48,6 +48,8 @@ public class Redmoney implements Serializable{
 	private BigDecimal rcondition; //大于这个值才可使用此红包
 	
 	private String uiname;
+	
+	private Integer expireday;//过期天数
 
 	public Redmoney() {
 
@@ -136,5 +138,12 @@ public class Redmoney implements Serializable{
 	public void setRcondition(BigDecimal rcondition) {
 		this.rcondition = rcondition;
 	}
-	
+
+	public Integer getExpireday() {
+		return expireday;
+	}
+
+	public void setExpireday(Integer expireday) {
+		this.expireday = expireday;
+	}
 }

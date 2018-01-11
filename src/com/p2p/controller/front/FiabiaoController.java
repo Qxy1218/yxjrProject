@@ -11,6 +11,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,7 @@ import com.p2p.pojo.Uservouch;
 import com.p2p.service.back.RedmoneyService;
 import com.p2p.service.back.UservouchService;
 import com.p2p.service.front.FabiaoService;
+import com.p2p.util.CodePassage;
 import com.p2p.util.ContextUtils;
 import com.p2p.util.DateUtils;
 import com.p2p.util.YieldUtil;
@@ -44,7 +46,7 @@ public class FiabiaoController {
 	
 	
 	@RequestMapping("toproject")
-	public String toProject(String pid,Model model,HttpServletRequest request) throws Exception{
+	public String toProject(String pid,Model model,HttpSession session) throws Exception{
 		
 		//取当前时间	
 		Date date=new Date();
@@ -82,14 +84,16 @@ public class FiabiaoController {
 		
 		 
 		 //查找当前用户的红包和贷息券
-		 User user = (User)request.getAttribute("user");
+		 User user = (User)session.getAttribute("user");
 		 List<Redmoney> redlist = new ArrayList<Redmoney>();
 		 List<Uservouch> voulist = new ArrayList<Uservouch>();
 		 if(user!=null) {
 			 //查询红包
 			 redlist = redmoneyService.selectByUserId(user.getUid());
+			 redlist = CodePassage.makeRedMoneyList(redlist);
 			 //查询代金券
 			 voulist = uservouchService.selectByUserId(user.getUid());
+			 voulist = CodePassage.makeUserVouchList(voulist);
 		 }
 		model.addAttribute("thisfb", thisfb);
 		model.addAttribute("redlist", redlist);

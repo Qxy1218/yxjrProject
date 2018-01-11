@@ -223,13 +223,14 @@
             <!--<a href="#">如何获取&raquo;</a>-->
         </div>
         <div class="m2-detHidemain-red">
-            <p class="m2-detHide-nor">已选择红包金额：<span id="reward_red">0元</span></p>
-            <ul>
-            	<c:if test="${fabiaolist==null || fn:length(redlist) == 0}">
+        	<c:if test="${fabiaolist==null || fn:length(redlist) == 0}">
 				<center>
 					<img src="/Finances/statics/front/images/nodata.png" style="width: 200px;height: 150px;">	
 				</center>
-				</c:if>
+			</c:if>
+            <p class="m2-detHide-nor">已选择红包金额：<span id="reward_red">0元</span></p>
+            <ul>
+            	
 	            <!-- 红包列出框 -->
 	           <c:forEach items="${redlist}" var="reds">
 	           <!-- 
@@ -237,9 +238,9 @@
 	           		data-rewardtype :使用条件
 	           		data-rewardval :钱数
 	            -->
-		             <li class="m2-detHidered-unsel reward-item" style="display: none" data-condition="0" data-rewardid="${reds.rid}" data-rewardtype="1" data-rewardval="${reds.rmoney}">
-		                 <div class="m2-detHidered-num"><span>8.00</span>元红包</div>
-		                 <div class="m2-detHidered-tim">7天后过期</div>
+		             <li class="m2-detHidered-unsel reward-item" style="display: none" data-condition="${reds.rcondition}" data-rewardid="${reds.rid}" data-rewardtype="1" data-rewardval="${reds.rmoney}">
+		                 <div class="m2-detHidered-num"><span>${reds.rmoney}</span>元红包</div>
+		                 <div class="m2-detHidered-tim">${reds.expireday}天后过期</div>
 		                 <div class="mo2-detHide-icon"><i></i></div>
 		             </li>
             	</c:forEach>
@@ -257,17 +258,22 @@
             <!--<a href="#">如何获取&raquo;</a>-->
         </div>
         <div class="m2-detHidemain-add">
+       		 <c:if test="${voulist==null || fn:length(voulist) == 0}">
+				<center>
+					<img src="/Finances/statics/front/images/nodata.png" style="width: 200px;height: 150px;">	
+				</center>
+			</c:if>
             <p class="m2-detHide-nor">代金券券带来额外收益：<span id="reward_coupon">0元</span></p>
             <ul>
-	                <c:forEach items="${redlist}" var="reds">
+	                <c:forEach items="${voulist}" var="vos">
 	           <!-- 
 	           		data-condition :使用条件(0元起)
 	           		data-rewardtype :使用条件
 	           		data-rewardval :钱数
 	            -->
-		             <li class="m2-detHidered-unsel reward-item" style="display: none" data-condition="0" data-rewardid="${reds.rid}" data-rewardtype="2" data-rewardval="${reds.rmoney}">
-		                 <div class="m2-detHidered-num"><span>8.00</span>元红包</div>
-		                 <div class="m2-detHidered-tim">7天后过期</div>
+		             <li class="m2-detHidered-unsel reward-item" style="display: none" data-condition="${vos.ucondition}" data-rewardid="${vos.uvid}" data-rewardtype="2" data-rewardval="${vos.uvmoney}">
+		                 <div class="m2-detHidered-num"><span>${vos.uvmoney}</span>元红包</div>
+		                 <div class="m2-detHidered-tim">${vos.uvday}天后过期</div>
 		                 <div class="mo2-detHide-icon"><i></i></div>
 		             </li>
             	</c:forEach>
@@ -986,7 +992,7 @@
 	                t += hongbao + '元红包 ';
 	            }
 	            if (jiaxiquan > 0) {
-	                t += jiaxiquan + '%的加息券';
+	                t += jiaxiquan + '元的加息券';
 	            }
 	            t += '可供选择';
 	            if (next > 0&&hbcount==0) {
