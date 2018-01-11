@@ -1,6 +1,7 @@
 package com.p2p.pojo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 
@@ -33,6 +34,9 @@ public class Uservouch implements Serializable{
 	
 	@TableField("u_id")
 	private Integer uid; //用户id
+	
+	@TableField("u_condition")
+	private BigDecimal ucondition; //大于这个值才可使用此红包
 	
 	@TableField("u_strat")
 	private Integer ustrat; //状态(0未使用 1:已使用)
@@ -175,6 +179,16 @@ public class Uservouch implements Serializable{
 
 	public void setUstrat(Integer ustrat) {
 		this.ustrat = ustrat;
+	}
+
+
+
+	public BigDecimal getUcondition() {
+		return ucondition;
+	}
+
+	public void setUcondition(BigDecimal ucondition) {
+		this.ucondition = ucondition;
 	}
 
 }

@@ -10,6 +10,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="r_endtime" property="rendtime"/>  
 		<result column="r_stardtime" property="rstardtime"/> 
 		<result column="r_money" property="rmoney"/>  
+		<result column="r_start" property="rstart"/> 
+		<result column="r_condition" property="rcondition"/>   
     </resultMap>
      <resultMap type="com.p2p.pojo.Userinfo" id="userInfoBaseResultMap">
 		  <id column="ui_id" property="uiid"/>
@@ -68,8 +70,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      <select id="selectRedmoneyList" resultMap="userInfoBaseResultMap">
       	select * from user_info 
     </select> 
+    <!-- 投资项目查询可使用红包 -->
     <select id="selectByUserId" resultMap="BaseResultMap">
-    	select * from redmoney WHERE u_id=#{userid} 
+     <![CDATA[
+    	select * from redmoney WHERE u_id=#{userid} and r_start=0 and r_endtime <=now(); 
+     ]]>
     </select>
     
 </mapper>

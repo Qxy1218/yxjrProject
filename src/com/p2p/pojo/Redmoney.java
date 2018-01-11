@@ -1,6 +1,7 @@
 package com.p2p.pojo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 
@@ -34,11 +35,17 @@ public class Redmoney implements Serializable{
 	@TableField("r_stardtime")
 	private String rstardtime; //开始时间
 	
+	
 	@TableField("r_money")
 	private double rmoney; //红包金额
 	
+	
 	@TableField("r_start")
 	private Integer rstart; //状态(0未使用 1:已使用)
+	
+	
+	@TableField("r_condition")
+	private BigDecimal rcondition; //大于这个值才可使用此红包
 	
 	private String uiname;
 
@@ -122,5 +129,12 @@ public class Redmoney implements Serializable{
 		this.rstart = rstart;
 	}
 
+	public BigDecimal getRcondition() {
+		return rcondition;
+	}
+
+	public void setRcondition(BigDecimal rcondition) {
+		this.rcondition = rcondition;
+	}
 	
 }

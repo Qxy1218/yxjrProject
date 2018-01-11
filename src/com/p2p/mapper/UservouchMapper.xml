@@ -11,6 +11,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="uv_startDate" property="uvstartDate"/> 
 		<result column="uv_endDate" property="uvendDate"/>  
 		<result column="u_id" property="uid"/>  
+		<result column="u_condition" property="ucondition"/>  
+		<result column="u_strat" property="ustrat"/>  
     </resultMap>
      <resultMap type="com.p2p.pojo.Userinfo" id="userInfoBaseResultMap">
 		  <id column="ui_id" property="uiid"/>
@@ -69,6 +71,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       	select * from user_info 
     </select> 
     <select id="selectByUserId" resultMap="userInfoBaseResultMap">
-    	select * from user_vouch where u_id =#{userid}
+   	 <![CDATA[
+    	select * from user_vouch WHERE u_id=#{userid} and u_strat=0 and uv_endDate <=now(); 
+     ]]>
     </select>
 </mapper>
