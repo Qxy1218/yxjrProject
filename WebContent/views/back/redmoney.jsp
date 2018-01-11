@@ -53,6 +53,15 @@ $(document).ready(function() {
                             message: '红包金额不能为空,请选择'
                         }
                     }
+                },
+                rcondition: {
+                    message: '大于这个值才可使用此红包验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '此红包不能为空'
+                         }
+                        
+                    }
                 }
             }
         }).on('success.form.bv', function(e) {
@@ -109,6 +118,8 @@ $(document).ready(function() {
 		$("#editForm #rendtime").val('');
 		$("#editForm #rstardtime").val('');
 		$("#editForm #rmoney").val('');
+		$("#editForm #rstart").val('');
+		$("#editForm #rcondition").val('');
 		
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
 		$("#btn_submit").attr("onclick","insertRed()");
@@ -137,6 +148,8 @@ $(document).ready(function() {
 		//$("#editForm #ipimage").val(athRole.ipimage); 
 		$("#editForm #rstardtime").val(athRole.rstardtime);
 		$("#editForm #rmoney").val(athRole.rmoney);
+		//$("#editForm #rstart").val(athRole.rstart);
+		$("#editForm #rcondition").val(athRole.rcondition);
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
 		$("#btn_submit").attr("onclick","updateRed("+athRole.rid+","+athRole.uid+")");
 		//显示新增窗口
@@ -155,6 +168,8 @@ $(document).ready(function() {
 				rendtime:$("#editForm #rendtime").val(),
 				rstardtime:$("#editForm #rstardtime").val(),
 				rmoney:$("#editForm #rmoney").val(),
+				rstart:$("#editForm #rstart").val(),
+				rcondition:$("#editForm #rcondition").val(),
 			},
 			function(data){
 				//后台返回int类型的数据
@@ -265,6 +280,12 @@ $(document).ready(function() {
 			}, {
 				field : 'rmoney',
 				title : '红包金额'
+			},{
+				field : 'rstart',
+				title : '状态'
+			},{
+				field : 'rcondition',
+				title : '大于值才可使用红包'
 			},
 			
 			]
@@ -405,7 +426,23 @@ $(document).ready(function() {
 							<div class="form-group">
 							<label for="url" class="control-label col-sm-3">红包金额</label>
 							<div class="col-sm-8">
-								<textarea name="rmoney" rows="3" class="form-control" id="rmoney"></textarea>
+								<textarea name="rmoney" rows="1" class="form-control" id="rmoney"></textarea>
+	            			</div>
+	            			</div>
+	            			<div class="form-group">
+							<label for="url" class="control-label col-sm-3">状态</label>
+							<div class="col-sm-8">
+								<select class="form-control m-b" id="rstart" name="rstart" style="margin-bottom: 0px;">
+		                        		<option value="0">未使用</option>
+		                        		<option value="1">已使用</option>	
+		                        </select>
+	            			</div>
+	            			</div>
+	            			<div class="form-group">
+							<label for="url" class="control-label col-sm-3">大于值才可使用的红包</label>
+							<div class="col-sm-8">
+								<textarea name="rcondition" rows="1" class="form-control" id="rcondition"></textarea>
+	            			</div>
 	            			</div>
 	            	<div class="modal-footer">
 					<button type="submit" class="btn btn-default" data-dismiss="modal">
