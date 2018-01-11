@@ -887,4 +887,5 @@ public class FrontController {
 		session.setAttribute("userbackcard", uback);
 		return "views/front/user/withdrawals";
 	}
+	
 }

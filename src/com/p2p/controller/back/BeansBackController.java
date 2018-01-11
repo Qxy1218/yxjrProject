@@ -35,9 +35,9 @@ public class BeansBackController {
 	/**
 	 * 进入后台登陆界面
 	 * */
-	@RequestMapping(value="/tologin")
+	@RequestMapping(value="/toiner")
 	public String toBackLogin(HttpServletRequest request){
-		return "views/back/login";
+		return "views/back/loginer";
 	}
 	
 	/**

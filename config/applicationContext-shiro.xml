@@ -34,7 +34,7 @@
         <!-- 装配 securityManager -->
         <property name="securityManager" ref="securityManager"/>
         <!-- 配置验证失败,登陆页面 -->
-        <property name="loginUrl" value="/back/tologin"/>
+        <property name="loginUrl" value="/back/toiner"/>
         <!-- 验证成功后的一面 -->
         <property name="successUrl" value="/back/loginindext"/>
         <property name="unauthorizedUrl" value="/shiro-unauthorized.jsp"/>
@@ -48,7 +48,7 @@
                 -->
                 <!-- 配置登出: 使用 logout 过滤器 -->
 
-                /back/tologin = anon
+                /back/toiner = anon
                 /back/loginindex = anon
                 /statics/**=anon
                 <!-- 验证码图片 -->
