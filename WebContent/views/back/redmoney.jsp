@@ -445,7 +445,7 @@ $(document).ready(function() {
 	            			</div>
 	            			</div>
 	            	<div class="modal-footer">
-					<button type="submit" class="btn btn-default" data-dismiss="modal">
+					<button type="submit" class="btn btn-default" data-dismiss="modal"> 
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
 					</button>
 					<button type="submit" id="btn_submit" class="btn btn-primary" >
