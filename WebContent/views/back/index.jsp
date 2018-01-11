@@ -437,7 +437,7 @@
                         </ul>
                     </li>
                     </shiro:hasPermission>
-                    <shiro:hasPermission name="认证管理">
+                    <shiro:hasPermission name="认证审核管理">
                     	 <li>
                         <a href="#">
                         	<i class="fa fa-flask"></i> 
@@ -554,7 +554,6 @@
                         </ul>
                     </li>
                     
-                </ul>
             </div>
         </nav>
         <!--左侧导航结束-->
