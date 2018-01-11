@@ -35,9 +35,7 @@ public class UservouchController {
 	//实现新增
 			@RequestMapping(value="insertUservouch")
 			@ResponseBody
-			public int insertUservouch(Uservouch uservouch,HttpServletRequest request,MultipartFile file) throws Exception {
-				String filepath = UtilController.uploadFrom(request, file);
-				uservouch.setUvimage(filepath);
+			public int insertUservouch(Uservouch uservouch){
 				int count = uservouchService.addModel(uservouch);
 				return count;
 	}

@@ -46,6 +46,15 @@ $(document).ready(function() {
                         
                     }
                 },
+                uvimage: {
+                    message: '代金券介绍验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '代金券介绍不能为空'
+                         }
+                        
+                    }
+                },
                 uvstartDate: {
                     message: '开始时间验证失败',
                     validators: {
@@ -118,6 +127,8 @@ $(document).ready(function() {
 		$("#editForm #uvstartDate").val();
 		$("#editForm #uvendDate").val();
 		$("#editForm #uid").val();
+		$("#editForm #ucondition").val();
+		$("#editForm #ustrat").val();
 		
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
 		$("#btn_submit").attr("onclick","insertUser()");
@@ -144,10 +155,12 @@ $(document).ready(function() {
 		$("#editForm #uvid").val(athRole.uvid);
 		$("#editForm #uvday").val(athRole.uvday);
 		$("#editForm #uvmoney").val(athRole.uvmoney);
-		//$("#editForm #ipimage").val(athRole.ipimage); 
+		$("#editForm #ipimage").val(athRole.ipimage); 
 		$("#editForm #uvstartDate").val(athRole.uvstartDate);
 		$("#editForm #uvendDate").val(athRole.uvendDate);
 		$("#editForm #uid").val(athRole.uid);
+		$("#editForm #ucondition").val(athRole.ucondition);
+		$("#editForm #ustrat").val(athRole.ustrat);
 		
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
 		$("#btn_submit").attr("onclick","updateUser("+athRole.uvid+","+athRole.uid+")");
@@ -168,6 +181,8 @@ $(document).ready(function() {
 				uvstartDate:$("#editForm #uvstartDate").val(),
 				uvendDate:$("#editForm #uvendDate").val(),
 				uid:uid,
+				ucondition:$("#editForm #ucondition").val(),
+				ustrat:$("#editForm #ustrat").val(),
 			},
 			function(data){
 				//后台返回int类型的数据
@@ -272,7 +287,7 @@ $(document).ready(function() {
 				title : '代金卷金额'
 			}, {
 				field : 'uvimage',
-				title : '代金卷图片介绍'
+				title : '代金卷介绍'
 			}, {
 				field : 'uvstartDate',
 				title : '代金卷开始时间'
@@ -402,11 +417,11 @@ $(document).ready(function() {
 							<div class="col-sm-8">
 								<textarea name="uvmoney"  class="form-control" id="uvmoney"></textarea>
 	            			</div>
-	            			
+	            			</div>
 						<div class="form-group">
 							<label for="url" class="control-label col-sm-3">代金卷图片介绍</label>
 							<div class="col-sm-8">
-								<input type="file" name="file" id="uvimage"/>
+							<textarea name="uvimage" rows="3" class="form-control" id="uvimage"></textarea>
 	            			</div>
 						</div>
 						<div class="form-group">
@@ -434,6 +449,23 @@ $(document).ready(function() {
 		                        	</c:forEach>
 		                        </select>
 	            			</div>
+	            			</div>
+	            			<div class="form-group">
+							<label for="url" class="control-label col-sm-3">状态</label>
+							<div class="col-sm-8">
+								<select class="form-control m-b" id="ustrat" name="ustrat" style="margin-bottom: 0px;">
+		                        		<option value="0">未使用</option>
+		                        		<option value="1">已使用</option>	
+		                        </select>
+	            			</div>
+	            			</div>
+	            			<div class="form-group">
+							<label for="url" class="control-label col-sm-3">大于值才可使用的红包</label>
+							<div class="col-sm-8">
+								<textarea name="ucondition" rows="1" class="form-control" id="ucondition"></textarea>
+	            			</div>
+	            			</div>
+	            			
 	            			<div class="modal-footer">
 								<button type="submit" class="btn btn-default" data-dismiss="modal">
 									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
