@@ -38,7 +38,12 @@ public class WithdrawalsController {
 		pageInfo.setTotal(pageInfo.getTotal());
 		return pageInfo;
 	}
-	
+	@RequestMapping("updateWithdrawals")
+	@ResponseBody
+	public int updateWithdrawals(Withdrawals withdrawals) {
+		int count = withdrawalsService.update(withdrawals);
+		return count;
+	}
 		
 	
 	//删除
