@@ -20,7 +20,7 @@
     	<script type="text/javascript" src="/Finances/statics/front/statics/home2/js/m2-front.js"></script>
     	<script type="text/javascript" src="/Finances/statics/front/statics/home2/js/jquery.roundabout.js"></script>
         <script type="text/javascript" src="/Finances/statics/front/statics/home2/js/jquery.easing.js"></script>
-       
+        <script type="text/javascript" src="/Finances/statics/back/statics/js/jquery.uploadify.min.js"></script>
 	</head>
 	
 <body>

@@ -33,7 +33,7 @@
 		$("#editRole #fminmoney").val('');
 		$("#editRole #fmaxmoney").val('');
 		$("#editRole #frate").val('');
-		$("#editRole #fimage").val('');
+		$("#editRole #upfile").val('');
 		$("#editRole #forderimg").val('');
 		$("#editRole #fcontract").val('');
 		$("#editRole #fbidstatus").val('');
@@ -58,53 +58,32 @@
 		} */
 		//用来关闭新增窗口***********
 		$("#editRole").modal('hide');
-		var url = "${pageContext.request.contextPath }/back/insertfabiao";
-		$.post(
-			url,
-			{
-				ftitle:$("#editRole #ftitle").val(),
-				uid:$("#editRole #uid").val(),
-				fcode:$("#editRole #fcode").val(),
-				ftype:$("#editRole #ftype").val(),
-				fpart:$("#editRole #fpart").val(),
-				froe:$("#editRole #froe").val(),
-				fincrease:$("#editRole #fincrease").val(),
-				fcontent:$("#editRole #fcontent").val(),
-				fsituation:$("#editRole #fsituation").val(),
-				fopinion:$("#editRole #fopinion").val(),
-				fmoney:$("#editRole #fmoney").val(),
-				fendmoney:$("#editRole #fendmoney").val(),
-				fendtime:$("#editRole #fendtime").val(),
-				fminmoney:$("#editRole #fminmoney").val(),
-				fmaxmoney:$("#editRole #fmaxmoney").val(),
-				frate:$("#editRole #frate").val(),
-				fimage:$("#editRole #fimage").val(),
-				forderimg:$("#editRole #forderimg").val(),
-				fcontract:$("#editRole #fcontract").val(),
-				fbidstatus:$("#editRole #fbidstatus").val(),
-				fstatus:$("#editRole #fstatus").val(),
-				fsecurity:$("#editRole #fsecurity").val(),
-				fprocedures:$("#editRole #fprocedures").val(),
-				frepayment:$("#editRole #frepayment").val(),
-				fsecuritymea:$("#editRole #fsecuritymea").val(),
-				fhuanstat:$("#editRole #fhuanstat").val(),
-				fhuanend:$("#editRole #fhuanend").val(),
-			},
-			function(data){
-				//后台返回int类型的数据
-				if(data>0){
-					//新增成功，下面是后台框架的提示
-					parent.layer.alert('增加成功');
-					
-				}else{
-					//新增失败
-					parent.layer.alert('增加失败');
-				}
-				//新增完刷新表格数据
-				$('#tb_role').bootstrapTable('refresh');
-			},
-			"text"
-		);	
+	
+		var formobj =  document.getElementById("editForm");
+		var formdata = new FormData(formobj);
+		
+		$.ajax({
+			url:  "${pageContext.request.contextPath }/back/insertfabiao",
+		    type: 'POST',
+		    cache: false,
+		    data: formdata,
+		    processData: false,
+		    contentType: false
+		}).done(function(res) {
+			//后台返回int类型的数据
+			if(res>0){
+				//新增成功，下面是后台框架的提示
+				parent.layer.alert('增加成功');
+			}else{
+				//新增失败
+				parent.layer.alert('增加失败');
+			}
+			//新增完刷新表格数据
+			$('#tb_role').bootstrapTable('refresh');
+		}).fail(function(res) {
+			
+		});
+		
 	}
 	//修改按钮事件
     function UpRole(){
@@ -139,14 +118,14 @@
 		$("#editRole #fminmoney").val(athRole.fminmoney);
 		$("#editRole #fmaxmoney").val(athRole.fmaxmoney);
 		$("#editRole #frate").val(athRole.frate);
-		$("#editRole #fimage").val(athRole.fimage);
-		$("#editRole #forderimg").val(athRole.forderimg);
-		$("#editRole #fcontract").val(athRole.fcontract);
+		//$("#editRole #fimage").val(athRole.fimage);
+		//$("#editRole #forderimg").val(athRole.forderimg);
+		//$("#editRole #fcontract").val(athRole.fcontract);
 		$("#editRole #fbidstatus").val(athRole.fbidstatus);
 		$("#editRole #fstatus").val(athRole.fstatus);
-		$("#editRole #fsecurity").val(athRole.fsecurity);
+		//$("#editRole #fsecurity").val(athRole.fsecurity);
 		$("#editRole #fprocedures").val(athRole.fprocedures);
-		$("#editRole #frepayment").val(athRole.frepayment);
+		//$("#editRole #frepayment").val(athRole.frepayment);
 		$("#editRole #fsecuritymea").val(athRole.fsecuritymea);
 		$("#editRole #fhuanstat").val(athRole.fhuanstat);
 		$("#editRole #fhuanend").val(athRole.fhuanend);
@@ -161,7 +140,8 @@
 		//用来关闭新增窗口***********
 		//用来关闭新增窗口***********
 		$("#editRole").modal('hide');
-		var form = new FormData(document.getElementById("editForm"));
+		var formobj =  document.getElementById("editForm");
+		var formdata = new FormData(formobj);
 	/**
 		var dd = $("#cwechartimgurl").val();
 		if(dd==""){
@@ -179,7 +159,7 @@
 	      $.ajax({
 	          url:"${pageContext.request.contextPath}/back/updatefabiao",
 	          type:"post",
-	          data:form,
+	          data:formdata,
 	          processData:false,
 	          contentType:false,
 	          success:function(data){
@@ -382,6 +362,13 @@
 		return temp;
 	};
 	</script>
+	<script type="text/javascript">
+		function addimgs(){
+			$('#tisspan').remove();
+			var html = '<input type="file" name="upfile"><span id="tisspan" onclick="addimgs()">添加</span>';
+			$("#filecontr").append(html);		
+		};
+	</script>
 </head>
 <body class="gray-bg">
    <body style="background-color:#F2F9FD">
@@ -475,7 +462,10 @@
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">标种</label>
 					<div class="col-sm-8">
-						<input type="text" name="ftype" class="form-control" id="ftype">
+						<select name="ftype"  class="form-control" id="ftype">
+							<option value="新手标">新手标</option>
+							<option value="热门标">热门标</option>
+						</select>
            			</div>
 				</div>
 				<div class="form-group">
@@ -560,27 +550,27 @@
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">代表图</label>
 					<div class="col-sm-8">
-						<input type="text" name="fimage" class="form-control" id="fimage">
+						<input type="file"  name="upfile" >
            			</div>
 				</div>
 				<div class="form-group">
-					<label for="url" class="control-label col-sm-3">其他图片</label>
-					<div class="col-sm-8">
-						<input type="text" name="forderimg" class="form-control" id="forderimg">
+					<label for="url" class="control-label col-sm-3">详情图片</label>
+					<div class="col-sm-8" id="filecontr">
+						<input type="file" name="upfile" id="upfile"><span id="tisspan" onclick="addimgs()">添加</span>
            			</div>
 				</div>
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">合同</label>
 					<div class="col-sm-8">
-						<input type="text" name="fcontract" class="form-control" id="fcontract">
+						<input type="file" name="orderfile" >
            			</div>
 				</div>
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">投标状态</label>
 					<div class="col-sm-8">
 						<select name="fbidstatus"  class="form-control" id="fbidstatus">
-							<option value="0">0</option>
-							<option value="1">1</option>
+							<option value="0">未满</option>
+							<option value="1">已满</option>
 						</select>
            			</div>
 				</div>
@@ -588,19 +578,18 @@
 					<label for="url" class="control-label col-sm-3">发布状态</label>
 					<div class="col-sm-8">
 						<select name="fstatus"  class="form-control" id="fstatus">
-							<option value="0">0</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
+							<option value="0">募集标</option>
+							<option value="1">还款标</option>
+							<option value="2">结清标</option>
+							<option value="3">流标</option>
+							<option value="4">废标</option>
 						</select>
            			</div>
 				</div>
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">担保措施</label>
 					<div class="col-sm-8">
-						<input type="text" name="fsecurity" class="form-control" id="fsecurity">
+						<input type="file" name="secfile" >
            			</div>
 				</div>
 				<div class="form-group">
@@ -624,11 +613,11 @@
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">还款方式</label>
 					<div class="col-sm-8">
-						<input type="text" name="frepayment" class="form-control" id="frepayment">
+						<input type="file" name="repfile" >
            			</div>
 				</div>
 				<div class="form-group">
-					<label for="url" class="control-label col-sm-3">担保措施</label>
+					<label for="url" class="control-label col-sm-3">风险措施</label>
 					<div class="col-sm-8">
 						<input type="text" name="fsecuritymea" class="form-control" id="fsecuritymea">
            			</div>

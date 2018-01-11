@@ -98,7 +98,7 @@ public class Fabiao implements Serializable{
 	private String frepayment; //还款方式
 	
 	@TableField("f_securitymea")
-	private String fsecuritymea; //担保措施(varchar)
+	private String fsecuritymea; //风险措施(varchar)
 	
 	@TableField("f_huanstat")
 	private String fhuanstat; //还款开始时间

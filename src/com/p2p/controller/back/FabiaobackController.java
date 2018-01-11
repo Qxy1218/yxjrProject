@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.p2p.pojo.Fabiao;
 import com.p2p.service.back.FabiaobackService;
@@ -43,16 +45,43 @@ public class FabiaobackController {
 	@RequestMapping("insertfabiao")
 	@ResponseBody
 	//发标表增加
-	public int insertfabiao(Fabiao fabiao) {
-		int count =0;
-		count = fabiaoService.addModel(fabiao);
+	public int insertfabiao(Fabiao fabiao,HttpServletRequest request,MultipartFile[] upfile,MultipartFile orderfile,MultipartFile secfile,MultipartFile repfile)throws Exception {
+		String filepath = "";
+		if(upfile.length!=0) {
+			filepath = UtilController.uploadReNames(upfile,request.getSession());
+			String[] aa =  filepath.split(",");
+			fabiao.setFimage(aa[0]);
+		}
+		String fcontract = UtilController.uploadFrom(request,orderfile);
+		fabiao.setFcontract(fcontract);
+		String frepayment = UtilController.uploadFrom(request,repfile);
+		fabiao.setFrepayment(frepayment);
+		String fsecurity = UtilController.uploadFrom(request,secfile);
+		fabiao.setFsecurity(fsecurity);
+		
+		fabiao.setForderimg(filepath);
+		int count = fabiaoService.addModel(fabiao);
 		return count;
 	}
 	
 	@RequestMapping("updatefabiao")
 	@ResponseBody
 	//发标表修改
-	public int updatefabiao(Fabiao fabiao) {
+	public int updatefabiao(Fabiao fabiao,HttpServletRequest request,MultipartFile[] upfile,MultipartFile orderfile,MultipartFile secfile,MultipartFile repfile) throws Exception {
+		String filepath = "";
+		if(upfile.length!=0) {
+			filepath = UtilController.uploadReNames(upfile,request.getSession());
+			String[] aa =  filepath.split(",");
+			fabiao.setFimage(aa[0]);
+		}
+		String fcontract = UtilController.uploadFrom(request,orderfile);
+		fabiao.setFcontract(fcontract);
+		String frepayment = UtilController.uploadFrom(request,repfile);
+		fabiao.setFrepayment(frepayment);
+		String fsecurity = UtilController.uploadFrom(request,secfile);
+		fabiao.setFsecurity(fsecurity);
+		
+		fabiao.setForderimg(filepath);
 		int count = fabiaoService.update(fabiao);
 		return count;
 	}
