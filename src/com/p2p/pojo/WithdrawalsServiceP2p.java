@@ -19,9 +19,18 @@ public class WithdrawalsServiceP2p implements Serializable{
 	private double cnowMoney;//实际到账
 	private double cpoundage;//提现手续费
 	private String cip;//提现ip
+	private Users user;
 	public WithdrawalsServiceP2p() {}
+	
+	@Override
+	public String toString() {
+		return "WithdrawalsServiceP2p [cid=" + cid + ", csuid=" + csuid + ", cmoney=" + cmoney + ", ccard=" + ccard
+				+ ", corder=" + corder + ", ctime=" + ctime + ", cstate=" + cstate + ", cnowMoney=" + cnowMoney
+				+ ", cpoundage=" + cpoundage + ", cip=" + cip + ", user=" + user + "]";
+	}
+
 	public WithdrawalsServiceP2p(Integer cid, Integer csuid, double cmoney, String ccard, String corder, String ctime,
-			Integer cstate, double cnowMoney, double cpoundage, String cip) {
+			Integer cstate, double cnowMoney, double cpoundage, String cip, Users user) {
 		super();
 		this.cid = cid;
 		this.csuid = csuid;
@@ -33,13 +42,9 @@ public class WithdrawalsServiceP2p implements Serializable{
 		this.cnowMoney = cnowMoney;
 		this.cpoundage = cpoundage;
 		this.cip = cip;
+		this.user = user;
 	}
-	@Override
-	public String toString() {
-		return "Withdrawals [cid=" + cid + ", csuid=" + csuid + ", cmoney=" + cmoney + ", ccard=" + ccard + ", corder="
-				+ corder + ", ctime=" + ctime + ", cstate=" + cstate + ", cnowMoney=" + cnowMoney + ", cpoundage="
-				+ cpoundage + ", cip=" + cip + "]";
-	}
+
 	public Integer getCid() {
 		return cid;
 	}
@@ -99,5 +104,13 @@ public class WithdrawalsServiceP2p implements Serializable{
 	}
 	public void setCip(String cip) {
 		this.cip = cip;
+	}
+
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
 	}
 }
