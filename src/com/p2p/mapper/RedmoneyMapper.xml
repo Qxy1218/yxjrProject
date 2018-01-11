@@ -30,17 +30,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <!-- 红包查询 -->
 	<select id="getAllModel"  resultMap="BaseResultMap">
- 		select r.r_id,r.u_id,r.r_image,r.r_endtime,r.r_stardtime,r.r_money,ui.ui_name as uiname,u.u_id  from  redmoney r ,user u ,user_info ui 
+ 		select r.r_id,r.u_id,r.r_image,r.r_endtime,r.r_stardtime,r.r_money,r.r_start,r.r_condition,ui.ui_name as uiname,u.u_id  from  redmoney r ,user u ,user_info ui  
 		<where>
 			 r.u_id = u.u_id and ui.u_id = u.u_id
 		</where>
  	</select>
  	     <!-- 查询所有角色 -->
     <select id="selectPage" resultMap="BaseResultMap">
-		select r.r_id,r.u_id,r.r_image,r.r_endtime,r.r_stardtime,r.r_money,ui.ui_name as uiname,u.u_id  from  redmoney r ,user u ,user_info ui 
+		select r.r_id,r.u_id,r.r_image,r.r_endtime,r.r_stardtime,r.r_money,r.r_start,r.r_condition,ui.ui_name as uiname,u.u_id  from  redmoney r ,user u ,user_info ui  
 		<where>
 			 r.u_id = u.u_id and ui.u_id = u.u_id
-		</where>    
+		</where>  
     </select>
  	 <!-- 查询红包的总记录数 -->
     <select id="redmoneyCount" resultType="java.lang.Integer">
@@ -49,8 +49,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
     <!-- 红包添加 -->
 	<insert id="addModel" useGeneratedKeys="true" keyProperty="rid">
- 		 insert into redmoney(u_id,r_image,r_endtime,r_stardtime,r_money) 
- 		 values(#{uid},#{rimage},#{rendtime},#{rstardtime},#{rmoney})
+ 		 insert into redmoney(u_id,r_image,r_endtime,r_stardtime,r_money,r_start,r_condition) 
+ 		 values(#{uid},#{rimage},#{rendtime},#{rstardtime},#{rmoney},#{rstart},#{rcondition})
  	</insert>
  	 <!-- 修改红包-->
     <update id="update" parameterType="com.p2p.pojo.Redmoney" >
@@ -59,7 +59,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			r_image=#{rimage},
 			r_endtime=#{rendtime},
 			r_stardtime =#{rstardtime},
-			r_money =#{rmoney}
+			r_money =#{rmoney},
+			r_start =#{rstart},
+			r_condition =#{rcondition}
+			
 		WHERE r_id=#{rid}
     </update>
      <!-- 删除 -->
