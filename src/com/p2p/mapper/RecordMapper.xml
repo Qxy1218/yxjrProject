@@ -37,7 +37,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select r.*,e.e_name from record r ,employee e 
 			<where>
 				r.e_id = e.e_id
-			</where>
+				<if test="record.rdname!=null and record.rdname!=''">
+					and rd_name like CONCAT(CONCAT('%', #{record.rdname}), '%')
+				</if>
+				
+			</where> 
 	</select>
 	<!-- 后台管理员操作记录根据id查询员工查询名字 -->
 	<select id="getEmpIdName" parameterType="java.lang.Integer" resultType="java.lang.String">
