@@ -1,10 +1,14 @@
 package com.p2p.controller.front;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
@@ -12,12 +16,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.controller.back.SendMsgUtil;
 import com.p2p.pojo.Chongzhi;
 import com.p2p.pojo.Recharge;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Userbackcard;
 import com.p2p.pojo.Userinfo;
+import com.p2p.pojo.Users;
 import com.p2p.service.back.MessageUtilService;
 import com.p2p.service.back.SendMsgService;
 import com.p2p.service.front.IUserService;
@@ -97,19 +103,8 @@ public class RechargeController {
 				userbackcardService.update(userbackcard);
 				count = rechargeService.addModel(recharge);
 				
-				//发送短信
-				SendMsgUtil sUtil = new SendMsgUtil();
-				Map<String,Object> orther = new HashMap<String,Object>();
-				orther.put("userphone",user.getUphone());
-				orther.put("money",recharge.getRemoney());
-				try {
-					sUtil.Send(user.getUphone(),MessageBenas.MSG_ADDMONEY,orther,sendmsg,messageUtil);
-				} catch (Exception e) {
-					//日志打印
-					//map.put("status", 2);
-					//map.put("msg","发送异常");
-					e.printStackTrace();
-				}
+				
+				
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -119,5 +114,51 @@ public class RechargeController {
 		}
 		return count;
 	}
+	@RequestMapping("rechargereplay")
+	public void replay(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
+	    	//获取接收的报文
+			BufferedReader reader=request.getReader();
+			
+			String line="";
+			
+			 StringBuffer inputString = new StringBuffer();  
+		        while ((line = reader.readLine()) != null) {  
+		        inputString.append(line);  
+		     }  
+	       
+		    //jackJson    
+	        ObjectMapper o=new ObjectMapper();
+	        
+	        Chongzhi u=o.readValue(inputString.toString(), Chongzhi.class);
+	        System.out.println("接收的报文为= "+u);
+	        
+	        User use=new User();
+	        use.setUid(u.getChsuid());
+	        User user=iUserService.getModel(use);
+	        
+	        //发送短信
+	        SendMsgUtil sUtil = new SendMsgUtil();
+			Map<String,Object> orther = new HashMap<String,Object>();
+			orther.put("userphone",user.getUphone());
+			orther.put("money",u.getChmoney());
+			
+			sUtil.Send(user.getUphone(),MessageBenas.MSG_ADDMONEY,orther,sendmsg,messageUtil);
+	        
+			// 要返回的报文  
+	       StringBuffer resultBuffer = new StringBuffer();  
+	       resultBuffer.append("1");
+	     
+	       // 设置发送报文的格式  
+	       response.setContentType("text/xml");  
+	       response.setCharacterEncoding("UTF-8");  
+	   
+	       PrintWriter out = response.getWriter();  
+	       out.println(resultBuffer.toString());  
+	       out.flush();  
+	       out.close();  
+		
+		
+		}
 	
 }
