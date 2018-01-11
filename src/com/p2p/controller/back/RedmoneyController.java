@@ -40,9 +40,7 @@ public class RedmoneyController {
 		//实现新增
 		@RequestMapping(value="insertRedmoney")
 		@ResponseBody
-		public int insertRedmoney(Redmoney redmoney,HttpServletRequest request,MultipartFile file) throws Exception {
-			String filepath = UtilController.uploadFrom(request, file);
-			redmoney.setRimage(filepath);
+		public int insertRedmoney(Redmoney redmoney){
 			int count = redmoneyservice.addModel(redmoney);
 			return count;
 }

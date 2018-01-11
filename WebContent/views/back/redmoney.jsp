@@ -145,7 +145,7 @@ $(document).ready(function() {
 		$("#editForm #rid").val(athRole.rid);
 		$("#editForm #uid").val(athRole.uid);
 		$("#editForm #rendtime").val(athRole.rendtime);
-		//$("#editForm #ipimage").val(athRole.ipimage); 
+		$("#editForm #ipimage").val(athRole.ipimage); 
 		$("#editForm #rstardtime").val(athRole.rstardtime);
 		$("#editForm #rmoney").val(athRole.rmoney);
 		//$("#editForm #rstart").val(athRole.rstart);
@@ -404,7 +404,7 @@ $(document).ready(function() {
 						<div class="form-group">
 							<label for="url" class="control-label col-sm-3">红包表图片介绍</label>
 							<div class="col-sm-8">
-								<input type="file" name="file" id="rimage"/>
+								<textarea name="rimage" rows="3" class="form-control" id="rimage"></textarea>
 	            			</div>
 						</div>
 						<div class="form-group">

@@ -30,17 +30,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</resultMap>
 	 <!-- 代金券查询 -->
 	<select id="getAllModel"  resultMap="BaseResultMap">
- 			select uv.uv_id,uv.uv_day,uv.uv_money,uv.uv_image,uv.uv_startDate,uv.uv_endDate,uv.u_id,ui.ui_name as uiname,u.u_id  from  user_vouch uv,user u ,user_info ui 
+ 		select uv.uv_id,uv.uv_day,uv.uv_money,uv.uv_image,uv.uv_startDate,uv.uv_endDate,uv.u_id,uv.u_condition,uv.u_strat,ui.ui_name as uiname,u.u_id  from  user_vouch uv,user u ,user_info ui 
 		<where>
 			 uv.u_id = u.u_id and ui.u_id = u.u_id
-		</where>
+			 </where>
  	</select>
  	  <!-- 查询代金券 -->
     <select id="selectPage" resultMap="BaseResultMap">
-		select uv.uv_id,uv.uv_day,uv.uv_money,uv.uv_image,uv.uv_startDate,uv.uv_endDate,uv.u_id,ui.ui_name as uiname,u.u_id  from  user_vouch uv,user u ,user_info ui 
+			select uv.uv_id,uv.uv_day,uv.uv_money,uv.uv_image,uv.uv_startDate,uv.uv_endDate,uv.u_id,uv.u_condition,uv.u_strat,ui.ui_name as uiname,u.u_id  from  user_vouch uv,user u ,user_info ui 
 		<where>
 			 uv.u_id = u.u_id and ui.u_id = u.u_id
-		</where>   
+			 </where>   
     </select>
     <!-- 查询代金券的总记录数 -->
     <select id="UservouchyCount" resultType="java.lang.Integer">
@@ -48,8 +48,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
      <!-- 代金券添加 -->
 	<insert id="addModel" useGeneratedKeys="true" keyProperty="uvid">
- 		 insert into user_vouch(uv_day,uv_money,uv_image,uv_startDate,uv_endDate,u_id) 
- 		 values(#{uvday},#{uvmoney},#{uvimage},#{uvstartDate},#{uvendDate},#{uid})
+ 		 insert into user_vouch(uv_day,uv_money,uv_image,uv_startDate,uv_endDate,u_id,u_condition,u_strat) 
+ 		 values(#{uvday},#{uvmoney},#{uvimage},#{uvstartDate},#{uvendDate},#{uid},#{ucondition},#{ustrat})
  	</insert>
  	 <!-- 修改代金券-->
     <update id="update" parameterType="com.p2p.pojo.Uservouch" >
@@ -59,7 +59,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			uv_image=#{uvimage},
 			uv_startDate =#{uvstartDate},
 			uv_endDate =#{uvendDate},
-			u_id =#{uid}
+			u_id =#{uid},
+			u_condition=#{ucondition},
+			u_strat = #{ustrat}
 		WHERE uv_id=#{uvid}
     </update>
     <!-- 删除代金券 -->

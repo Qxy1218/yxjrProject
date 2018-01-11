@@ -282,6 +282,12 @@ $(document).ready(function() {
 			}, {
 				field : 'uiname',
 				title : '用户表名字'
+			}, {
+				field : 'ucondition',
+				title : '大于这个值才可使用此红包'
+			}, {
+				field : 'ustrat',
+				title : '状态'
 			},]
 		});
 });
