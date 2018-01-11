@@ -290,6 +290,9 @@
                                 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/Cooorganiz.jsp">合作机构</a>
                                 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/noticeType.jsp">公告类型管理</a>
                             </li>
+                            <li>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/SendMsg.jsp">短信接口管理</a>
+                            </li>
                         </ul>
                     </li>
                     </shiro:hasPermission>
