@@ -43,7 +43,8 @@ public class Withdrawals implements Serializable{
 	
 	@TableField("w_nowMoney")
 	private double wnowMoney;	//实际到账
-	
+	@TableField("w_order")
+	private String worder;//订单号
 	private String uiname;
 	
 
@@ -61,17 +62,16 @@ public class Withdrawals implements Serializable{
 		this.wnowMoney = wnowMoney;
 	}
 
-
 		@Override
 	public String toString() {
 		return "Withdrawals [wid=" + wid + ", uid=" + uid + ", wmoney=" + wmoney + ", wtime=" + wtime
 				+ ", wmoneytowhere=" + wmoneytowhere + ", wstatus=" + wstatus + ", wfee=" + wfee + ", wnowMoney="
-				+ wnowMoney + ", uiname=" + uiname + "]";
+				+ wnowMoney + ", worder=" + worder + ", uiname=" + uiname + "]";
 	}
 
 
 		public Withdrawals(Integer wid, Integer uid, double wmoney, String wtime, String wmoneytowhere, Integer wstatus,
-			double wfee, double wnowMoney, String uiname) {
+			double wfee, double wnowMoney, String uiname,String worder) {
 		super();
 		this.wid = wid;
 		this.uid = uid;
@@ -82,6 +82,7 @@ public class Withdrawals implements Serializable{
 		this.wfee = wfee;
 		this.wnowMoney = wnowMoney;
 		this.uiname = uiname;
+		this.worder = worder;
 	}
 
 
@@ -164,5 +165,15 @@ public class Withdrawals implements Serializable{
 		this.uiname = uiname;
 	}
 
+
+	public String getWorder() {
+		return worder;
+	}
+
+
+	public void setWorder(String worder) {
+		this.worder = worder;
+	}
+	
 
 }
