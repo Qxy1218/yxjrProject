@@ -1,11 +1,16 @@
 package com.p2p.controller.front;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -16,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.p2p.controller.back.SendMsgUtil;
 import com.p2p.pojo.AuthebDetais;
 import com.p2p.pojo.Bank;
 import com.p2p.pojo.IdCard;
@@ -25,8 +31,12 @@ import com.p2p.pojo.Userbackcard;
 import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Users;
 import com.p2p.pojo.Uservouch;
+import com.p2p.pojo.Withdrawals;
+import com.p2p.pojo.WithdrawalsServiceP2p;
 import com.p2p.service.back.AuthebDetaisService;
+import com.p2p.service.back.MessageUtilService;
 import com.p2p.service.back.RedmoneyService;
+import com.p2p.service.back.SendMsgService;
 import com.p2p.service.back.UservouchService;
 import com.p2p.service.front.IUserService;
 import com.p2p.service.front.IdCardService;
@@ -34,6 +44,7 @@ import com.p2p.service.front.UserInfoService;
 import com.p2p.service.front.UserbackcardService;
 import com.p2p.util.BankUtil;
 import com.p2p.util.DateUtils;
+import com.p2p.util.MessageBenas;
 import com.p2p.util.SendServiceUtil;
 
 /**
@@ -44,6 +55,12 @@ import com.p2p.util.SendServiceUtil;
 @Controller
 @RequestMapping("idcard")
 public class IdCardController {
+	
+	@Resource(name="sendMsgServiceImpl")
+	private SendMsgService sendmsg;
+	
+	@Resource(name="messageUtilServiceImpl")
+	private MessageUtilService messageUtil;
 	
 	@Resource(name="idCardServiceImpl")
 	private IdCardService idCardService;  //身份证
@@ -285,4 +302,79 @@ public class IdCardController {
 		model.addAttribute("pageName", "myinfo");
 		return "views/front/open_success";
 	}
+	@RequestMapping("updateBank")
+	@ResponseBody
+	public void updateBank(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		//判断请求报文是否来自代维系统的ip地址  
+	     String ip = request.getRemoteHost(); 
+		
+	     System.out.println("ip地址="+ip);
+	      
+	   
+	     try {
+	    	//获取接收的报文
+			BufferedReader reader=request.getReader();
+			
+			String line="";
+			
+			 StringBuffer inputString = new StringBuffer();  
+		        while ((line = reader.readLine()) != null) {  
+		        inputString.append(line);  
+		     }  
+	       
+		    //jackJson    
+	        ObjectMapper o=new ObjectMapper();
+	        
+	        Bank u=o.readValue(inputString.toString(), Bank.class);
+	        System.out.println("接收的报文为= "+u);
+	        Userbackcard userbackcard = new Userbackcard();
+	        userbackcard.setUbbackcardnum(u.getBcode());
+	        userbackcard.setUbmoney(u.getBmoney());
+	        userbackcardService.update(userbackcard);
+	        
+	        //发送短信
+	        User user=iUserService.findModel(u.getBsuid());
+	        SendMsgUtil sUtil = new SendMsgUtil();
+			Map<String,Object> orther = new HashMap<String,Object>();
+			orther.put("userphone",user.getUphone());
+			orther.put("money",u.getBmoney());
+			try {
+				sUtil.Send(user.getUphone(),MessageBenas.MSG_DEPOSIT,orther,sendmsg,messageUtil);
+			} catch (Exception e) {
+				//日志打印
+				//map.put("status", 2);
+				//map.put("msg","发送异常");
+				e.printStackTrace();
+			}
+	       // 要返回的报文  
+	       StringBuffer resultBuffer = new StringBuffer();  
+	       resultBuffer.append("1");
+	     
+	       // 设置发送报文的格式  
+	       response.setContentType("text/xml");  
+	       response.setCharacterEncoding("UTF-8");  
+	   
+	       PrintWriter out = response.getWriter();  
+	       out.println(resultBuffer.toString());  
+	       out.flush();  
+	       out.close();  
+			
+			
+		} catch (IOException e) {
+			StringBuffer resultBuffer = new StringBuffer();  
+		       resultBuffer.append("2");
+		     
+		       // 设置发送报文的格式  
+		       response.setContentType("text/xml");  
+		       response.setCharacterEncoding("UTF-8");  
+		   
+		       PrintWriter out = response.getWriter();  
+		       out.println(resultBuffer.toString());  
+		       out.flush();  
+		       out.close();  
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }
