@@ -64,4 +64,9 @@ public class UserbackcardServiceImpl implements UserbackcardService {
 		return userbackcardMapper.selectBackcard(str);
 	}
 
+	@Override
+	public void updatenum(Userbackcard userbackcard) {
+		userbackcardMapper.updatenum(userbackcard);
+	}
+
 }
