@@ -77,4 +77,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	select * from user_vouch WHERE u_id=#{userid} and u_strat=0 and uv_endDate <=now(); 
      ]]>
     </select>
+    
+    <!--查询还没过期的并且没有使用的  -->
+    <select id="selectByNIU" resultMap="BaseResultMap">
+		select * from user_vouch WHERE u_id=#{uvid} and u_strat=0 and uv_endDate>=now(); 
+    </select>
+    
+    <!-- 查询已使用 -->
+	<select id="selectByUse" resultMap="BaseResultMap">
+		select * from user_vouch WHERE u_id=#{uvid} and u_strat=1;
+	</select>
+	
+	<!-- 查询过期 -->
+	<select id="selectByOver" resultMap="BaseResultMap">
+	<![CDATA[
+		select * from user_vouch WHERE u_id=#{uvid} and uv_endDate<=now();
+	]]>
+	</select>
+    
 </mapper>

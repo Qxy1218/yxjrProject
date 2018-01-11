@@ -654,21 +654,6 @@ public class FrontController {
 		return "views/front/management/rewardrecord";
 	}
 	
-	/**
-	 *我的红包页面的conteroller
-	 * */
-	@RequestMapping(value="/toredpack")
-	public String toredpack() {
-		return "views/front/management/redpacket";
-	}
-	
-	/**
-	 *我的加息券页面的conteroller
-	 * */
-	@RequestMapping(value="/tointerest")
-	public String tointerest() {
-		return "views/front/management/interestcoupon";
-	}
 	
 	/**
 	 *我的钱帮币页面的conteroller

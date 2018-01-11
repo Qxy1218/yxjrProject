@@ -79,5 +79,20 @@ public class UservouchServiceImpl implements UservouchService{
 		return uservouchmapper.selectByUserId(userid);
 	}
 
+	@Override
+	public List<Uservouch> selectByNIU(Integer uvid) {
+		return uservouchmapper.selectByNIU(uvid);
+	}
+
+	@Override
+	public List<Uservouch> selectByUse(Integer uvid) {
+		return uservouchmapper.selectByUse(uvid);
+	}
+
+	@Override
+	public List<Uservouch> selectByOver(Integer uvid) {
+		return uservouchmapper.selectByOver(uvid);
+	}
+
 	
 }

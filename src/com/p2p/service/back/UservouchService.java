@@ -1,13 +1,10 @@
 package com.p2p.service.back;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.p2p.base.IBaseService;
-import com.p2p.pojo.Redmoney;
 import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Uservouch;
 import com.p2p.util.PageInfo;
@@ -24,4 +21,13 @@ public interface UservouchService extends IBaseService<Integer, Uservouch>{
 		abstract List<Userinfo> seleUservouchList();
 		
 		List<Uservouch> selectByUserId(@Param("userid")Integer userid);
+		
+		//查询还没过期的并且没有使用的
+		List<Uservouch> selectByNIU(@Param("uvid")Integer uvid);
+		
+		//查询已使用
+		List<Uservouch> selectByUse(@Param("uvid")Integer uvid);
+		
+		//查询过期
+		List<Uservouch> selectByOver(@Param("uvid")Integer uvid);
 }

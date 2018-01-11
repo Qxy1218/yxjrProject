@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.eclipse.jdt.internal.compiler.ReadManager;
+
 import com.p2p.pojo.Fabiao;
+import com.p2p.pojo.Redmoney;
+import com.p2p.pojo.Uservouch;
 import com.p2p.service.front.FabiaoService;
 /**
  * 操作人:饶磊
@@ -91,5 +95,44 @@ public class CodePassage {
 				acds.add(fabiao);
 			}
 		return acds;
+	}
+	public static List<Redmoney> makeRedMoneyList(List<Redmoney> list){
+		List<Redmoney> mylist = new ArrayList<Redmoney>();
+		for(int i=0;i<list.size();i++) {
+			Redmoney red = new Redmoney();
+			String starttime = DateUtils.ChuSHDateFormat(list.get(i).getRstardtime()) ;
+			red.setRstardtime(starttime);
+			String endtime = DateUtils.ChuSHDateFormat(list.get(i).getRendtime());
+			red.setRendtime(endtime);
+			red.setRcondition(list.get(i).getRcondition());
+			red.setRid(list.get(i).getRid());
+			red.setRimage(list.get(i).getRimage());
+			red.setRmoney(list.get(i).getRmoney());
+			red.setRstart(list.get(i).getRstart());
+			red.setUid(list.get(i).getUid());
+			mylist.add(red);
+		}
+		return mylist;
+	}
+	
+	public static List<Uservouch> makeUserVouchList(List<Uservouch> list){
+		List<Uservouch> mylist = new ArrayList<Uservouch>();
+		for(int i=0;i<list.size();i++) {
+			Uservouch uvo = new Uservouch();
+			String starttime = DateUtils.ChuSHDateFormat(list.get(i).getUvstartDate()) ;
+			uvo.setUvstartDate(starttime);
+			String endtime = DateUtils.ChuSHDateFormat(list.get(i).getUvendDate());
+			uvo.setUvendDate(endtime);
+			uvo.setUcondition(list.get(i).getUcondition());
+			uvo.setUid(list.get(i).getUid());
+			uvo.setUiname(list.get(i).getUiname());
+			uvo.setUstrat(list.get(i).getUstrat());
+			uvo.setUvday(list.get(i).getUvday());
+			uvo.setUvid(list.get(i).getUvid());
+			uvo.setUvimage(list.get(i).getUvimage());
+			uvo.setUvmoney(list.get(i).getUvmoney());
+			mylist.add(uvo);
+		}
+		return mylist;
 	}
 }

@@ -54,7 +54,25 @@ public class DateUtils {
 		}
 		return null;
 	}
-
+	/**
+	 * @param  date
+	 * 		要格式化的时间
+	 * @return
+	 * 		yyyy-MM-dd格式时间
+	 * */
+	public static String ChuSHDateFormat(String date) {
+		SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
+		Date date1 = null;
+		try {
+			date1 = format2.parse(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		String dateString2 = format2.format(date1);
+		return dateString2;
+	}
+	
+	
 	/**
 	 * 日期格式化yyyy-MM-dd
 	 * 

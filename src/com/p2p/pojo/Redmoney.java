@@ -27,7 +27,7 @@ public class Redmoney implements Serializable{
 	private Integer uid; //用户id
 	
 	@TableField("r_image")
-	private String rimage; //红包表图片介绍
+	private String rimage; //介绍
 	
 	@TableField("r_endtime")
 	private String rendtime; //结束时间

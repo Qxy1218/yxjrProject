@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -148,40 +150,131 @@
 	                <li class="m2-ticSea-unsel" onclick="showTab(3)"><span>已过期</span></li>
 	            </ul>
 	        </div>
+	        
+	        
+	          <!-- 未使用的代金息券 -->
 	        <div id="tab1">
 	            <div class="m2-ticResult">
 	                <div id="list1"  class="m2-ticResult_container">
-	
-	                </div>
-	                <div class="m2-ticTotbottom-add">
-	                    <span id="total1"><i></i>累计可用加息卷：0个</span>
-	                </div>
+			                <div class="m2-ticResult_container">
+								<c:if test="${listniu==null || fn:length(listniu)==0 }">
+									<center>
+										<img src="/Finances/statics/front/images/nodata.png">	
+										<h1>你还没有代金券哦</h1>
+									</center>
+								</c:if>
+								<c:forEach items="${listniu}" var="wsyrm">
+				                    <div class="m2_ticresult_reword m2_ticresult_unuse">						
+				                    <div class="packet_title">
+				                        <span>${wsyrm.uvimage}</span>
+				                        <span class="packet_where"></span>
+				                    </div>
+			                        <div class="packet_introduce_left">
+			                            <span class="number">${wsyrm.uvmoney}</span>
+			                            <span class="unit">元</span>
+			                        </div>
+			                        <div class="packet_introduce_right">
+			                            <div class="packet_introduce_right_con">
+			
+			                                <p>·&nbsp;投资额≥ ${wsyrm.ucondition} 元可使用</p>
+			                            </div>
+			                            <i></i>
+			                        </div>
+			                        <div class="packet_bottom">
+			                            <span>起效期：${wsyrm.uvstartDate}</span>
+			                            <span class="packet_endtime">有效期至：${wsyrm.uvendDate}</span>
+			                        </div>
+			                    </div>
+			                    </c:forEach>
+			                    <!--  -->
+			                    </div>
+	                	</div>
 	            </div>
 	            <div class="m2-ticMoreadd" id="loadmore1">
 	                <span onclick="getMore(1)">加载更多</span>
 	            </div>
 	        </div>
+	        
+	        <!-- 已使用的代金券 -->
 	        <div id="tab2" style="display:none;">
 	            <div class="m2-ticResult">
 	                <div id="list2"  class="m2-ticResult_container">
-	
-	                </div>
-	                <div class="m2-ticTotbottom-add">
-	                    <span id="total2"><i></i>累计已使用加息卷：0个</span>
+						<div class="m2-ticResult_container">
+								<c:if test="${listuse==null || fn:length(listuse)==0 }">
+									<center>
+										<img src="/Finances/statics/front/images/nodata.png">	
+										<h1>你还没有已使用的代金券哦</h1>
+									</center>
+								</c:if>
+								<c:forEach items="${listuse}" var="ysyrm">
+				                    <div class="m2_ticresult_reword m2_ticresult_unuse">						
+				                    <div class="packet_title">
+				                        <span>${ysyrm.uvimage}</span>
+				                        <span class="packet_where"></span>
+				                    </div>
+			                        <div class="packet_introduce_left">
+			                            <span class="number">${ysyrm.uvmoney}</span>
+			                            <span class="unit">元</span>
+			                        </div>
+			                        <div class="packet_introduce_right">
+			                            <div class="packet_introduce_right_con">
+			
+			                                <p>·&nbsp;投资额≥ ${ysyrm.ucondition} 元可使用</p>
+			                            </div>
+			                            <i></i>
+			                        </div>
+			                        <div class="packet_bottom">
+			                            <span>起效期：${ysyrm.uvstartDate}</span>
+			                            <span class="packet_endtime">有效期至：${ysyrm.uvendDate}</span>
+			                        </div>
+			                    </div>
+			                    </c:forEach>
+			                    <!--  -->
+			                    </div>
 	                </div>
 	            </div>
 	            <div class="m2-ticMoreadd" id="loadmore2">
 	                <span onclick="getMore(2)">加载更多</span>
 	            </div>
 	        </div>
+	        
+	        <!-- 已使用的代金券 -->
 	        <div id="tab3" style="display:none;">
 	            <div class="m2-ticResult">
 	                <div id="list3"  class="m2-ticResult_container">
-	
+						<div class="m2-ticResult_container">
+								<c:if test="${listover==null || fn:length(listover)==0 }">
+									<center>
+										<img src="/Finances/statics/front/images/nodata.png">	
+										<h1>你还没有过期的代金券哦</h1>
+									</center>
+								</c:if>
+								<c:forEach items="${listover}" var="ygqrm">
+				                    <div class="m2_ticresult_reword m2_ticresult_unuse">						
+				                    <div class="packet_title">
+				                        <span>${ygqrm.uvimage}</span>
+				                        <span class="packet_where"></span>
+				                    </div>
+			                        <div class="packet_introduce_left">
+			                            <span class="number">${ygqrm.uvmoney}</span>
+			                            <span class="unit">元</span>
+			                        </div>
+			                        <div class="packet_introduce_right">
+			                            <div class="packet_introduce_right_con">
+			                                <p>·&nbsp;投资额≥ ${ygqrm.ucondition} 元可使用</p>
+			                            </div>
+			                            <i></i>
+			                        </div>
+			                        <div class="packet_bottom">
+			                            <span>起效期：${ygqrm.uvstartDate}</span>
+			                            <span class="packet_endtime">有效期至：${ygqrm.uvendDate}</span>
+			                        </div>
+			                    </div>
+			                    </c:forEach>
+			                    <!--  -->
+			                  </div>
 	                </div>
-	                <div class="m2-ticTotbottom-add">
-	                    <span id="total3"><i></i>累计已过期加息卷：0个</span>
-	                </div>
+	                
 	            </div>
 	            <div class="m2-ticMoreadd" id="loadmore3">
 	                <span onclick="getMore(3)">加载更多</span>

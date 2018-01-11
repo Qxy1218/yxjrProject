@@ -19,4 +19,13 @@ public interface RedmoneyService extends IBaseService<Integer,Redmoney>{
 		abstract List<Userinfo> selectRedmoneyList();
 		
 		List<Redmoney> selectByUserId(@Param("userid")Integer userid);
+		
+		//查询还没过期的并且没有使用的
+		List<Redmoney> selectByNIU(@Param("uid")Integer uid);
+		
+		//查询已使用
+		List<Redmoney> selectByUse(@Param("uid")Integer uid);
+		
+		//查询过期
+		List<Redmoney> selectByOver(@Param("uid")Integer uid);
 }

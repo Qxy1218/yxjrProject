@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -131,91 +133,117 @@
 	                <li class="m2-ticSea-unsel m2-ticSea-click" data="3"><span>已过期</span></li>
 	            </ul>
 	        </div>
+	        
+	       	<!-- 未使用的红包 -->
 	        <div id="tab1" class="m2-ticSea-sel-content">
 	            <div class="m2-ticResult">
 	                <div class="m2-ticResult_container">
-	
-	                    <div class="m2_ticresult_reword m2_ticresult_unuse">						<div class="packet_title">
-	                        <span>注册奖励</span>
-	                        <span class="packet_where"></span>
-	                    </div>
+						<c:if test="${listniu==null || fn:length(listniu)==0 }">
+							<center>
+								<img src="/Finances/statics/front/images/nodata.png">	
+								<h1>你还没有红包哦</h1>
+							</center>
+						</c:if>
+						<c:forEach items="${listniu}" var="wsyrm">
+		                    <div class="m2_ticresult_reword m2_ticresult_unuse">						<div class="packet_title">
+		                        <span>${wsyrm.rimage}</span>
+		                        <span class="packet_where"></span>
+		                    </div>
 	                        <div class="packet_introduce_left">
-	                            <span class="number">8</span>
+	                            <span class="number">${wsyrm.rmoney}</span>
 	                            <span class="unit">元</span>
 	                        </div>
 	                        <div class="packet_introduce_right">
 	                            <div class="packet_introduce_right_con">
 	
-	                                <p>·&nbsp;投资额≥200元可使用</p>
+	                                <p>·&nbsp;投资额≥ ${wsyrm.rcondition} 元可使用</p>
 	                            </div>
 	                            <i></i>
 	                        </div>
 	                        <div class="packet_bottom">
-	                            <span>起效期：2016-09-05</span>
-	                            <span class="packet_endtime">有效期至：2016-09-12 09:29:52</span>
+	                            <span>起效期：${wsyrm.rstardtime}</span>
+	                            <span class="packet_endtime">有效期至：${wsyrm.rendtime}</span>
 	                        </div>
 	                    </div>
-	                    <div class="m2_ticresult_reword m2_ticresult_unuse">						<div class="packet_title">
-	                        <span>注册奖励</span>
-	                        <span class="packet_where"></span>
+	                    </c:forEach>
+	                    <!--  -->
+	                    
 	                    </div>
-	                        <div class="packet_introduce_left">
-	                            <span class="number">10</span>
-	                            <span class="unit">元</span>
-	                        </div>
-	                        <div class="packet_introduce_right">
-	                            <div class="packet_introduce_right_con">
-	
-	                                <p>·&nbsp;投资额≥1000元可使用</p>
-	                            </div>
-	                            <i></i>
-	                        </div>
-	                        <div class="packet_bottom">
-	                            <span>起效期：2016-09-05</span>
-	                            <span class="packet_endtime">有效期至：2016-10-05 09:29:52</span>
-	                        </div>
-	                    </div>
-	                    <div class="m2_ticresult_reword m2_ticresult_unuse">						<div class="packet_title">
-	                        <span>注册奖励</span>
-	                        <span class="packet_where"></span>
-	                    </div>
-	                        <div class="packet_introduce_left">
-	                            <span class="number">20</span>
-	                            <span class="unit">元</span>
-	                        </div>
-	                        <div class="packet_introduce_right">
-	                            <div class="packet_introduce_right_con">
-	
-	                                <p>·&nbsp;投资额≥5000元可使用</p>
-	                            </div>
-	                            <i></i>
-	                        </div>
-	                        <div class="packet_bottom">
-	                            <span>起效期：2016-09-05</span>
-	                            <span class="packet_endtime">有效期至：2016-10-05 09:29:52</span>
-	                        </div>
-	                    </div>			</div>
-	                <div class="m2-ticTotbottom-red">
-	                    <span><i></i><span id="wsyljkyze">累计可用总额：38元</span></span>
-	                </div>
+	                
 	            </div>
 	        </div>
+	        
+	        <!-- 已使用的红包 -->
 	        <div id="tab2" class="m2-ticSea-sel-content" style="display:none;">
 	            <div class="m2-ticResult">
 	                <div class="m2-ticResult_container">
-	                </div>
-	                <div class="m2-ticTotbottom-red">
-	                    <span><i></i><span id="ysyljkyze">累计可用总额：0元</span></span>
+	                	<c:if test="${listuse==null || fn:length(listuse)==0 }">
+							<center>
+								<img src="/Finances/statics/front/images/nodata.png">	
+								<h1>你还没有使用过的红包哦</h1>
+							</center>
+						</c:if>
+						<c:forEach items="${listuse}" var="ysyrm">
+		                    <div class="m2_ticresult_reword m2_ticresult_unuse">						<div class="packet_title">
+		                        <span>${ysyrm.rimage}</span>
+		                        <span class="packet_where"></span>
+		                    </div>
+	                        <div class="packet_introduce_left">
+	                            <span class="number">${ysyrm.rmoney}</span>
+	                            <span class="unit">元</span>
+	                        </div>
+	                        <div class="packet_introduce_right">
+	                            <div class="packet_introduce_right_con">
+	
+	                                <p>·&nbsp;投资额≥ ${ysyrm.rcondition} 元可使用</p>
+	                            </div>
+	                            <i></i>
+	                        </div>
+	                        <div class="packet_bottom">
+	                            <span>起效期：${ysyrm.rstardtime}</span>
+	                            <span class="packet_endtime">有效期至：${ysyrm.rendtime}</span>
+	                        </div>
+	                    </div>
+	                    </c:forEach>
 	                </div>
 	            </div>
 	        </div>
+	        
+	        <!-- 已过期的红包 -->
 	        <div id="tab3" class="m2-ticSea-sel-content" style="display:none;">
 	            <div class="m2-ticResult">
 	                <div class="m2-ticResult_container">
+	                	<c:if test="${listover==null || fn:length(listover)==0 }">
+							<center>
+								<img src="/Finances/statics/front/images/nodata.png">	
+								<h1>你还没有过期了的红包哦</h1>
+							</center>
+						</c:if>
+						<c:forEach items="${listover}" var="ygqrm">
+		                    <div class="m2_ticresult_reword m2_ticresult_unuse" >						
+		                    <div class="packet_title" style="background-color: #ccc;">
+		                        <span>${ygqrm.rimage}</span>
+		                        <span class="packet_where"></span>
+		                    </div>
+	                        <div class="packet_introduce_left">
+	                            <span class="number" style="font-size: 30px;">${ygqrm.rmoney}</span>
+	                            <span class="unit">元</span>
+	                        </div>
+	                        <div class="packet_introduce_right">
+	                            <div class="packet_introduce_right_con">
+	
+	                                <p>·&nbsp;投资额≥ ${ygqrm.rcondition} 元可使用</p>
+	                            </div>
+	                            <i></i>
+	                        </div>
+	                        <div class="packet_bottom" style="background-color: #ccc;">
+	                            <span>起效期：${ygqrm.rstardtime}</span>
+	                            <span class="packet_endtime">有效期至：${ygqrm.rendtime}</span>
+	                        </div>
+	                    </div>
+	                    </c:forEach>
 	                </div>
-	                <div class="m2-ticTotbottom-red">
-	                    <span><i></i><span id="ygqljkstze">累计可用总额：0元</span></span>
-	                </div>
+	               
 	            </div>
 	        </div>
 	        <div class="m2-ticMoreadd">
