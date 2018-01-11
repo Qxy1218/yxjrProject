@@ -476,13 +476,8 @@ $(document).ready(function() {
 			//***这里的参数传到后台，用来进行分页处理*************************
 			rows: params.limit, //页面大小
 			page: params.offset, //页码
-			attitle:$("#editActivity #attitle").val(),
-			atintgard:$("#editActivity #atintgard").val(),
-			atcontent:$("#editActivity #atcontent").val(),
-			atimag:$("#editActivity #atimag").val(),
-			atstarttime:$("#editActivity #atstarttime").val(),
-			atendtime:$("#editActivity #atendtime").val(),
-			atstatus:$("#editActivity #atstatus").val(),
+			attitle:$("#attitle").val(),
+			atstatus:$("#atstatus").val(),
 		};
 		return temp;
 	};
