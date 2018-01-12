@@ -7,9 +7,11 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.p2p.mapper.SendMsgMapper;
 import com.p2p.pojo.SendMsg;
 import com.p2p.service.back.SendMsgService;
+import com.p2p.util.PageInfo;
 
 @Transactional
 @Service
@@ -51,6 +53,24 @@ public class SendMsgServiceImpl implements SendMsgService{
 	@Override
 	public SendMsg findUserMsg(Integer isuser) {
 		return sendmsg.findUserMsg(isuser);
+	}
+
+	@Override
+	public void selectPage(PageInfo pageInfo,SendMsg sendMsg) {
+		Page<SendMsg> page = new Page(pageInfo.getNowpage(),pageInfo.getSize());
+		List<SendMsg> list = sendmsg.selectPage(page, pageInfo.getCondition(), sendMsg);
+		pageInfo.setRows(list);
+		pageInfo.setTotal(page.getTotal());
+	}
+
+	@Override
+	public Integer sendMsgCount() {
+		return sendmsg.sendMsgCount();
+	}
+
+	@Override
+	public int updateIsUser() {
+		return sendmsg.updateIsUser();
 	}
 	
 }

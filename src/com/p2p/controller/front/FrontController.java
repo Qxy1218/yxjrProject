@@ -5,36 +5,32 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.p2p.pojo.About;
-
 import com.p2p.pojo.Area;
 import com.p2p.pojo.City;
-
 import com.p2p.pojo.Contact;
 import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.ProjectSelect;
 import com.p2p.pojo.Provice;
 import com.p2p.pojo.Setupnatice;
 import com.p2p.pojo.User;
-
-import com.p2p.service.back.AboutService;
-
 import com.p2p.pojo.Userbackcard;
 import com.p2p.pojo.Userinfo;
-
+import com.p2p.service.back.AboutService;
 import com.p2p.service.back.ContactService;
 import com.p2p.service.front.AddressService;
 import com.p2p.service.front.FabiaoService;
@@ -547,12 +543,10 @@ public class FrontController {
 	 * */
 	@RequestMapping(value="/toabout")
 	public String tofronabout(Model model) {
-		//ModelAndView mo = new ModelAndView();
-		About a = new About();
-		a.setAbid(23);
-		//model.addAttribute("pageName", "about");
-		a = aboutService.getModel(a);
-		//a.setViewName("views/front/about");
+	
+		About a = aboutService.getAllModel().get(0);
+		List<String> result = Arrays.asList(StringUtils.split(a.getAbimage(),","));
+		model.addAttribute("aboutimg",result);
 		model.addAttribute("about", a);
 		return "views/front/about";
 	}

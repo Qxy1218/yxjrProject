@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%
+	String path = request.getContextPath();
+%>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -94,12 +97,9 @@
  	<div id="m2-aboutSec-list" style="width:1030px;margin-bottom:50px;">
         <h3>企业荣誉</h3>
         <ul>
-            <li><img src="/Finances${about.abimage}"></li>
-            <li><img src="/Finances/statics/front/statics/home2/images/about/prize04_v2.jpg" alt=""></li>
-            <li><img src="/Finances/statics/front/statics/home2/images/about/prize02_v2.jpg" alt=""></li>
-            <li><img src="/Finances/statics/front/statics/home2/images/about/prize03_v2.jpg" alt=""></li>
-            <li><img src="/Finances/statics/front/statics/home2/images/about/prize05_v2.jpg" alt=""></li>
-            <li><img src="/Finances/statics/front/statics/home2/images/about/prize06_v2.jpg" alt=""></li>
+       	<c:forEach items="${aboutimg}" var="aimg">
+            <li><img src="${pageContext.request.contextPath}${aimg}"></li>
+        </c:forEach> 
         </ul>
     </div>
     

@@ -28,33 +28,45 @@
 		                validating: 'glyphicon glyphicon-refresh'
 		            },
 		            fields: {
-		            	vname: {
-		            		message: '名称验证失败',
+		            	username: {
+		            		message: '用户名验证失败',
 		                    validators: {
 		                    	 notEmpty: {
-		                             message: '名称不能为空'
+		                             message: '用户名不能为空'
 		                         },
 		                         stringLength: {
 		                             min: 6,
 		                             max: 30,
-		                             message: '名称必须大于6，长度小于30个字符。'
+		                             message: '用户名必须大于6，长度小于30个字符。'
 		                         },
 		                    }
-		                },		           
-		                vimgurl: {
-		                	message: '图片验证失败',
+		                },	
+		                password: {
+		                     message:'密码无效',
+		                     validators: {
+		                         notEmpty: {
+		                             message: '密码不能为空'
+		                         },
+		                         stringLength: {
+		                             min: 1,
+		                             max: 30,
+		                             message: '密码长度必须在6到30之间'
+		                         },
+		                     }
+		                },
+		                method: {
+		                	message: '接口地址失败',
 		                    validators: {
 		                        notEmpty: {
-		                            message: '图片不能为空'
+		                            message: '接口地址不能为空'
 		                        },		                    
 		                    }
 		                },
-		       
-		                vvurl: {
-		                	message: '视频验证失败',
+		                isuser: {
+		                	message: '是否使用验证失败',
 		                    validators: {
 		                    	 notEmpty: {
-		                             message: '视频不能为空'
+		                             message: '是否使用不能为空'
 		                         }
 		                        
 		                    }
@@ -73,12 +85,12 @@
 		            // Get the BootstrapValidator instance
 		            var bv = $form.data('bootstrapValidator');
 		            var form = new FormData(document.getElementById("editRole"));
-		            var vid =$("#newsform #vid").val();
-		            if(vid==null || vid==""){
-		            	insertVideo();
+		            var msgid =$("#newsform #msgid").val();
+		            if(msgid==null || msgid==""){
+		            	insertSendMsg();
 		            	
 		            }else{
-		            	updateVideo();
+		            	updateSendMsg();
 		            } 
 		        });
 		});
@@ -88,16 +100,19 @@
 <script  type="text/javascript">
     var rows = null;
     
-    function addVideo(){
+    function addSendMsg(){
     	//清空editModel原来填写的内容
-		$("#aboutform #vname").val(''),
+		$("#aboutform #username").val(''),
+		$("#newsform #password").val(''),
+		$("#aboutform #method").val(''),
+		$("#aboutform #isuser").val(''),
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
 		//$("#isave").attr("onclick","insertAbout()");
 		//显示新增窗口
 		$('#newsform').modal('show');
     }
   //新增角色
-	function insertVideo() {
+	function insertSendMsg() {
 		//表单验证
 		//alert(123);
 		/* if (!validateForm($("#editForm"))) {
@@ -110,7 +125,7 @@
 				var formdata = new FormData(formobj);
 				
 				$.ajax({
-					url:  "${pageContext.request.contextPath }/back/admin/insertVideo",
+					url:  "${pageContext.request.contextPath }/back/admin/insertSendMsg",
 				    type: 'POST',
 				    cache: false,
 				    data: formdata,
@@ -137,7 +152,7 @@
 		
 	}
 	//修改按钮事件
-     function UpVideo(){
+     function UpSendMsg(){
     	//获取当前选中行的信息
  		var selectList = $('#tb_role').bootstrapTable('getSelections');
  		//判断有没有选中
@@ -152,15 +167,18 @@
  		}
  		var athRole = selectList[0];
  		//把选中行的数据放到弹窗的控件中
- 		$("#aboutform #vid").val(athRole.vid);
- 		$("#aboutform #vname").val(athRole.vname);
+ 		$("#aboutform #msgid").val(athRole.msgid);
+ 		$("#aboutform #username").val(athRole.username);
+ 		$("#aboutform #password").val(athRole.password);
+ 		$("#aboutform #method").val(athRole.method);		
+ 		$("#aboutform #isuser").val(athRole.isuser);
  		
  		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
  		//$("#isave").attr("onclick","updateAbout()");
  		//显示新增窗口
  		$('#newsform').modal('show');
      }
-	function updateVideo(){
+	function updateSendMsg(){
 		//用来关闭新增窗口***********
 		$("#newsform").modal('hide');
 	    
@@ -168,7 +186,7 @@
 			var formdata = new FormData(formobj);
 			
 			$.ajax({
-				url:  "${pageContext.request.contextPath }/back/admin/updateVideo",
+				url:  "${pageContext.request.contextPath }/back/admin/updateSendMsg",
 			    type: 'POST',
 			    cache: false,
 			    data: formdata,
@@ -192,10 +210,10 @@
 	//删除按钮事件
 	//*************************************************************************按钮事件
 	function btn_delete(){
-		deleteVideo();
+		deleteSendMsg();
 	}
 	//删除
-	function deleteVideo(){
+	function deleteSendMsg(){
 		//获取当前选中行的信息
 		var stuList = $('#tb_role').bootstrapTable('getSelections');
 		var ids = "";
@@ -207,12 +225,12 @@
 		//拼接ids  1,2,3,4  用于批量删除
 		for(var i =0 ;i<stuList.length;i++){
 			if(i!=stuList.length-1){
-				ids = ids +stuList[i].vid+",";
+				ids = ids +stuList[i].msgid+",";
 			}else{
-				ids = ids +stuList[i].vid;
+				ids = ids +stuList[i].msgid;
 			}
 		}
-		var url = "${pageContext.request.contextPath }/back/admin/deleteVideo";
+		var url = "${pageContext.request.contextPath }/back/admin/deleteSendMsg";
 		$.post(
 			url,
 			{
@@ -244,7 +262,7 @@
 		 //先销毁表格  
         $('#tb_role').bootstrapTable('destroy');  
 		$('#tb_role').bootstrapTable({
-			url : '${pageContext.request.contextPath}/back/admin/selectVideoList', //请求后台的URL（*）
+			url : '${pageContext.request.contextPath}/back/admin/selectSendMsgList', //请求后台的URL（*）
 			method : 'post', //请求方式（*）
 			contentType: "application/x-www-form-urlencoded",
 			toolbar : '#toolbar', //工具按钮用哪个容器
@@ -260,7 +278,7 @@
 			pageSize : 10, //每页的记录行数（*）
 			pageList : [ 10, 15, 20, 25 ], //可供选择的每页的行数（*）
 			search : true, //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
-			strictSearch : false, 
+			strictSearch : false,
 			searchOnEnterKey :true, //按回车搜索
 			showColumns : true, //是否显示所有的列
 			showRefresh : true, //是否显示刷新按钮
@@ -275,17 +293,20 @@
 			columns : [ {
 				checkbox : true,
 			}, {
-				field : 'vid',
+				field : 'msgid',
 				title : '编号'
 			}, {
-				field : 'vname',
-				title : '名称'
+				field : 'username',
+				title : '用户名'
 			}, {
-				field : 'vimgurl',
-				title : '图片'
+				field : 'password',
+				title : '密码'
 			},  {
-				field : 'vvurl',
-				title : '视频',				
+				field : 'method',
+				title : '接口地址',				
+			},{
+				field : 'isuser',
+				title : '是否使用(1：使用   2：未使用)',			
 			},]
 		});
 		
@@ -296,9 +317,7 @@
 			//***这里的参数传到后台，用来进行分页处理*************************
 			rows: params.limit, //页面大小
 			page: params.offset, //页码
-			abname:$("#newsform #vname").val(),
-			abimage:$("#newsform #vimgurl").val(),
-			abintroduce:$("#newsform #vvurl").val(),
+			username:$("#username").val(),
 		};
 		return temp;
 	};
@@ -319,17 +338,17 @@
 					</div>
 					<div class="ibox-content">
 							<div class="form-group">
-		            			<label for="incomeTypes" class="control-label col-sm-1">名称</label>
+		            			<label for="incomeTypes" class="control-label col-sm-1">用户名</label>
 								<div class="col-sm-2">
-									<input type="text" name="vname" class="form-control" id="vname">
-		            			</div>		            
+									<input type="text" name="username" class="form-control" id="username">
+		            			</div>		         
 				                <button type="button" id="searchForm" class="btn btn-primary" onclick="searchForm()">搜索</button>
 							</div>
 						<div id="toolbar" class="btn-group">
-							<button id="btn_add" type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#addStudent" onclick="addVideo();">
+							<button id="btn_add" type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#addStudent" onclick="addSendMsg();">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
 							</button>
-							<button id="btn_edit" type="button" class="btn btn-w-m btn-success" onclick="UpVideo();">
+							<button id="btn_edit" type="button" class="btn btn-w-m btn-success" onclick="UpSendMsg();">
 								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 							</button>
 							<button id="btn_delete" type="button" class="btn btn-w-m btn-danger" onclick="btn_delete();">
@@ -365,26 +384,30 @@
 				
 					<!-- 新增系别 -->				
 						<div class="form-group">
-							<label for="urlName" class="control-label col-sm-3">名称</label> 
+							<label for="urlName" class="control-label col-sm-3">用户名</label> 
 							<div class="col-sm-8">
-								<input type="text" name="vname" class="form-control" id="vname">
-								<input type="hidden" name="vid" id="vid">
+								<input type="text" name="username" class="form-control" id="username">
+								<input type="hidden" name="msgid" id="msgid">
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="urlName" class="control-label col-sm-3">图片</label> 
+							<label for="urlName" class="control-label col-sm-3">密码</label> 
 							<div class="col-sm-8">
 								 
-								 <input type="file" name="upfile"  class="form-control" id="upfile">
+								 <input type="text" name="password"  class="form-control" id="password">
 								 
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="urlName" class="control-label col-sm-3">视频</label> 
+							<label for="urlName" class="control-label col-sm-3">接口地址</label> 
 							<div class="col-sm-8">
-								 
-								 <input type="file" name="upfile"  class="form-control" id="upfile">
-								 
+								<input type="text" name="method" class="form-control" id="method">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="urlName" class="control-label col-sm-3">是否使用(1：使用   2：未使用)</label> 
+							<div class="col-sm-8">
+								<input type="text" name="isuser" class="form-control" id="isuser">
 							</div>
 						</div>
 				</div>
