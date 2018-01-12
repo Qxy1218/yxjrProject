@@ -25,6 +25,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select>
 	
+	<select id="selectCount" resultMap="BaseResultMap">
+		select * from bid where b_fid=#{fid}
+	</select>
+	
 	<!-- 投标添加 -->
 	<insert id="addModel" useGeneratedKeys="true" keyProperty="bid">
 		insert into bid(u_id,b_fid,b_money,b_time,b_endtime)

@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -19,19 +18,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.p2p.pojo.Bid;
 import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.ProjectSelect;
 import com.p2p.pojo.Redmoney;
 import com.p2p.pojo.User;
+import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Uservouch;
+import com.p2p.service.back.BidService;
 import com.p2p.service.back.RedmoneyService;
 import com.p2p.service.back.UservouchService;
 import com.p2p.service.front.FabiaoService;
+import com.p2p.service.front.IUserService;
+import com.p2p.service.front.UserInfoService;
 import com.p2p.util.CodePassage;
 import com.p2p.util.ContextUtils;
 import com.p2p.util.DateUtils;
 import com.p2p.util.YieldUtil;
-
+/**
+ * 操作人:汪栋才
+ * 操作时间:2017-1-12
+ * 操作前台标详情的controller
+ * */
 @Controller
 public class FiabiaoController {
 	
@@ -43,6 +51,12 @@ public class FiabiaoController {
 	
 	@Resource(name="uservouchServiceImpl")
 	private UservouchService uservouchService;
+	
+	@Resource(name="bidServiceImpl")
+	private BidService bidService;
+	
+	@Resource(name="IUserServiceImpl")
+	private IUserService iUserService;
 	
 	
 	@RequestMapping("toproject")
@@ -95,6 +109,26 @@ public class FiabiaoController {
 			 voulist = uservouchService.selectByUserId(user.getUid());
 			 voulist = CodePassage.makeUserVouchList(voulist);
 		 }
+		 //查询投标情况
+		List<Bid> bids = bidService.selectCount(thisfb.getFid());
+		List<Bid> mybids = new ArrayList<Bid>();
+		for(int i=0;i<bids.size();i++) {
+			Bid bid = new Bid();
+			User u = new User();
+			if(u==null) {
+				continue;
+			}
+			u.setUid(bids.get(i).getUid());
+			u = iUserService.getModel(u);
+			bid.setUname(u.getUserinfo().getUiname());
+			bid.setBtime(bids.get(i).getBtime());
+			//加密手机号码
+			String phoneNumber = u.getUphone().substring(0, 3) + "****" + u.getUphone().substring(7, u.getUphone().length());
+			bid.setUphone(phoneNumber);
+			bid.setBmoney(bids.get(i).getBmoney());
+			mybids.add(bid);
+		}
+		model.addAttribute("mybids", mybids);
 		model.addAttribute("thisfb", thisfb);
 		model.addAttribute("redlist", redlist);
 		model.addAttribute("voulist", voulist);

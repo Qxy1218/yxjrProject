@@ -1,5 +1,7 @@
 package com.p2p.service.back;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.p2p.base.IBaseService;
@@ -11,4 +13,5 @@ public interface BidService extends IBaseService<Integer, Bid>{
 			abstract void selectPage(@Param(value="pageInfo")PageInfo pageInfo,@Param(value="bid") Bid bid);//实现分页
 			//查询总的记录数
 			abstract Integer Contactcount();
+			List<Bid> selectCount(@Param("fid")Integer fid);
 }

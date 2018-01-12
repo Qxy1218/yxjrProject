@@ -56,6 +56,9 @@ public class YieldUtil {
 	    	  }
 	    	  //5舍6入,2.355变成2.35,如果是5则向下舍
 	    	  d1TobigDe = new BigDecimal(count).setScale(2,BigDecimal.ROUND_HALF_DOWN);  
+	      }else {
+	    	  //天标不做任何操作
+	    	  d1TobigDe = new BigDecimal("0.00");
 	      }
 	      return d1TobigDe;
 	}

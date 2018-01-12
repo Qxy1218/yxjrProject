@@ -62,4 +62,9 @@ public class BidServiceImpl implements BidService{
 		return bidmapper.contactcount();
 	}
 
+	@Override
+	public List<Bid> selectCount(Integer fid) {
+		return bidmapper.selectCount(fid);
+	}
+
 }

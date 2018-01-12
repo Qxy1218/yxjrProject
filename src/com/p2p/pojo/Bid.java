@@ -38,7 +38,10 @@ public class Bid implements Serializable{
 	@TableField("b_endtime")
 	private String bendtime; //还标时间
 
-
+	private String uname;  //用户姓名
+	
+	private String uphone; //用户电话号码
+	
 	public Bid() {
 		super();
 	}
@@ -112,6 +115,20 @@ public class Bid implements Serializable{
 				+ ", bendtime=" + bendtime + "]";
 	}
 
-	
+	public String getUname() {
+		return uname;
+	}
+
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+
+	public String getUphone() {
+		return uphone;
+	}
+
+	public void setUphone(String uphone) {
+		this.uphone = uphone;
+	}
 	
 }

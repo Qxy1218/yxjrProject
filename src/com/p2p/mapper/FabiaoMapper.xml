@@ -231,6 +231,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	 select * from fabiao where 
     		f_status not in(4,5)
     		<if test="fpart!=null">and f_part=#{fpart}</if>
+    		and f_endtime >=now()
     	   	order by f_status limit #{startPos},#{pageSize}
     </select>
     <select id="getProductsCount" resultType="long">

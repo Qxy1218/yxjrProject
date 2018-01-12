@@ -685,7 +685,15 @@
 		                <span class="m2-detReccon-tim">投资时间</span>
 		            </li>
 		            <li class="m2-detRecitem">
-		                <span style='width: 90%;'>暂无数据</span>
+			            <c:if test="${mybids==null || fn:length(mybids) == 0}">
+			                 <span style='width: 90%;'>暂无数据</span> 
+			            </c:if>
+		            	<c:forEach items="${mybids}" var="bids">
+			                <span class="m2-detReccon-user">${bids.uname}</span>
+			                <span class="m2-detReccon-tel">${bids.uphone}</span>
+			                <span class="m2-detReccon-sum" style="color:#f5944f;">${bids.bmoney}元</span>
+			                <span class="m2-detReccon-tim">${bids.btime}</span>
+			           	</c:forEach>
 		            </li>
 		        </ul>
 		    </div>
@@ -864,7 +872,7 @@
 	    //使用奖励金
 	    var reward_money = 0;
 	    //项目利率
-	    var interest_rate = Number("9");
+	    var interest_rate = Number("${thisfb.froe*100+thisfb.fincrease*100}");
 	    //加息券利率
 	    var reward_interest_rate = 0;
 	    //使用红包金额
@@ -873,12 +881,13 @@
 	    var reward_condition = 0;
 	    //徽商账户余额
 	    var account_money = Number("${sessionScope.user.ubalance}");
+	    //alert(${sessionScope.user.ubalance});
 	    //账户奖励金余额
 	    var account_reward = Number("0");
 	    //已投资金额
 	    var have_invest = Number("");
 	    //剩余投资天数
-	    var days = Number("26");
+	    var days = Number("${thisfb.rematime}");
 	    //剩余可投资金额
 	    var left_money = Number($('#left_money').text().replace(/元/g, '').replace(/,/g, ''));
 	    //邀请码
@@ -950,6 +959,10 @@
 	        $('#invest_money1').val(invest_money);
 	        $('#invest_money2').html(invest_money + '元');
 	        $('#invest_money3').html(invest_money + '元');
+	        alert('天数'+days);
+	        alert('项目利率'+interest_rate);
+	        alert('投资钱数'+invest_money);
+	        //计算收益
 	        var otitm = Math.round(days * interest_rate * invest_money / 365) / 100;
 	        $('#interest_money').text(otitm + '元');
 	        interestSync();
@@ -997,13 +1010,14 @@
 	            t += '可供选择';
 	            if (next > 0&&hbcount==0) {
 	                //您差XX元可用XX元红包
-	                t +=  '，您差'+ next + '元可用'+ nextmoney + '元红包';
+	                t +=  '，您差'+ next + '元可用'+ nextmoney + '奖励';
 	                //  t += next + '元';
 	            }
 	
 	            $('#reward_tip').html(t);
 	        }
 	        if (reward_id > 0 && reward_type == 2) {
+	        	//计算收益额外的钱(剩余天数,加息券利率,投资钱数)
 	            var extram = Math.round(days * reward_interest_rate * invest_money / 365) / 100;
 	            $('#reward_money').text(extram + '元');
 	        }
@@ -1106,7 +1120,7 @@
 	                $('#reward_coupon').text(extram + '元');
 	                $('#reward_money').text(extram + '元');
 	                interestSync();
-	                rwd += '<i class="m2-detRigjust-icon m2-detRigicon-add"></i>选中加息券：<span class="m2-detjustAdd-num">' + val + '%加息券</span></span>';
+	                rwd += '<i class="m2-detRigjust-icon m2-detRigicon-add"></i>选中加息券：<span class="m2-detjustAdd-num">' + val + '元加息券</span></span>';
 	            } else {
 	                rwd = '<span class="m2-detJust-tit reward-select"><i></i>未使用任何奖励</span>';
 	            }
