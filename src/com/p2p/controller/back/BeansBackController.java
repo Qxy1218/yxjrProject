@@ -12,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.p2p.pojo.AuthebDetais;
 import com.p2p.pojo.Role;
 import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Userlevel;
+import com.p2p.service.back.AuthebDetaisService;
 import com.p2p.service.back.RoleService;
 import com.p2p.service.back.UserlevelService;
 
@@ -32,10 +34,14 @@ public class BeansBackController {
 	
 	@Resource(name="userlevelServiceImpl")
 	private UserlevelService userlevelService;
+	
+	@Resource(name="authebDetaisServiceImpl")
+	private AuthebDetaisService authebDetaisService;  //消息
+	
 	/**
 	 * 进入后台登陆界面
 	 * */
-	@RequestMapping(value="/toiner")
+	@RequestMapping(value="/tologin")
 	public String toBackLogin(HttpServletRequest request){
 		return "views/back/loginer";
 	}
@@ -106,5 +112,36 @@ public class BeansBackController {
 		request.setAttribute("uselist", uselist);
 		return "views/back/uservouch";
 	}
+	/**
+	 * 修改消息表已读和未读状态
+	 * **/
+	  @RequestMapping(value="/toAuthIdCardStatus")
+	  public String toAuthIdCardStatus(Integer adstype,Integer adid) {
+		  AuthebDetais authebDetais = new AuthebDetais();
+		  authebDetais.setAdid(adid);
+		  authebDetais.setAdstatus(1);
+		  authebDetaisService.update(authebDetais);
+		  if(adstype==1) {
+			  return "views/back/idcard";
+		  }else {
+			  return "view/back/AuthWithDrawls";
+		  }
+		  
+	  }
 	
+	/**
+	 *进入实名认证页面 
+	 * **/
+	@RequestMapping(value="toAuthIdCard")
+	public String toAuthIdCard() {
+		return "views/back/idcard";
+	}
+	
+	/**
+	 * 进入提现认证页面
+	 * */
+	@RequestMapping(value="toAuthWithDrawls")
+	public String toAuthWithDrawls() {
+		return "view/back/AuthWithDrawls";
+	}
 }

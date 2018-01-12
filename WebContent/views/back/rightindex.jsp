@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ 
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -150,73 +152,29 @@
                     </div>
                     <div class="ibox-content ibox-heading">
                         <h3><i class="fa fa-envelope-o"></i> 新消息</h3>
-                        <small><i class="fa fa-tim"></i> 您有22条未读消息</small>
+                        <small><i class="fa fa-tim"></i> 您有${sessionScope.audetailsSize}条未读消息</small>
                     </div>
                     <div class="ibox-content">
                         <div class="feed-activity-list">
-
-                            <div class="feed-element">
-                                <div>
-                                    <small class="pull-right text-navy">1月前</small>
-                                    <strong>井幽幽</strong>
-                                    <div>有人说：“一辈子很长，要跟一个有趣的人在一起”。我想关注我的人，应该是那种喜欢找乐子也乐意分享乐趣的人，你们一定挺优秀的。所以单身的应该在这条留言，互相勾搭一下。特别有钱人又帅可以直接私信我！</div>
-                                    <small class="text-muted">4月11日 00:00</small>
-                                </div>
-                            </div>
-
-                            <div class="feed-element">
-                                <div>
-                                    <small class="pull-right">2月前</small>
-                                    <strong>马伯庸 </strong>
-                                    <div>又方便，又防水，手感又好，还可以用手机遥控。简直是拍戏利器，由其是跟老师们搭戏的时候…想想还有点小激动啊，嘿嘿。</div>
-                                    <small class="text-muted">11月8日 20:08 </small>
-                                </div>
-                            </div>
-
-                            <div class="feed-element">
-                                <div>
-                                    <small class="pull-right">5月前</small>
-                                    <strong>芒果宓 </strong>
-                                    <div>一个完整的梦。</div>
-                                    <small class="text-muted">11月8日 20:08 </small>
-                                </div>
-                            </div>
-
-                            <div class="feed-element">
-                                <div>
-                                    <small class="pull-right">5月前</small>
-                                    <strong>刺猬尼克索</strong>
-                                    <div>哈哈哈哈 你卖什么萌啊! 蠢死了</div>
-                                    <small class="text-muted">11月8日 20:08 </small>
-                                </div>
-                            </div>
-
-
-                            <div class="feed-element">
-                                <div>
-                                    <small class="pull-right">5月前</small>
-                                    <strong>老刀99</strong>
-                                    <div>昨天评论里你见过最“温暖和感人”的诗句，整理其中经典100首，值得你收下学习。</div>
-                                    <small class="text-muted">11月8日 20:08 </small>
-                                </div>
-                            </div>
-                            <div class="feed-element">
-                                <div>
-                                    <small class="pull-right">5月前</small>
-                                    <strong>娱乐小主 </strong>
-                                    <div>你是否想过记录自己的梦？你是否想过有自己的一个记梦本？小时候写日记，没得写了就写昨晚的梦，后来变成了习惯………翻了一晚上自己做过的梦，想哭，想笑…</div>
-                                    <small class="text-muted">11月8日 20:08 </small>
-                                </div>
-                            </div>
-                            <div class="feed-element">
-                                <div>
-                                    <small class="pull-right">5月前</small>
-                                    <strong>DMG电影 </strong>
-                                    <div>《和外国男票乘地铁，被中国大妈骂不要脸》妹子实在委屈到不行，中国妹子找外国男友很令人不能接受吗？大家都来说说自己的看法</div>
-                                    <small class="text-muted">11月8日 20:08 </small>
-                                </div>
-                            </div>
-
+							<c:forEach items="${authebDetais}" var="authebDetais">
+								<div class="feed-element">
+	                                <div>
+	                                    <small class="pull-right text-navy">1月前</small>
+	                                    <strong>${authebDetais.uiname}</strong>
+	                                    <div>${authebDetais.adintroduct}</div>
+	                                    <small class="text-muted">${authebDetais.adtime}</small>
+	                                    <c:set var="adstype" value="${authebDetais.adstype}" /><!-- 标签用于设置变量值和对象属性。 -->
+	                                    <c:if test="${adstype == 1}">
+	                                    	 <small class="pull-right text-navy"><a class="J_menuItem"  href="${pageContext.request.contextPath}/back/toAuthIdCardStatus?adstype=${adstype}&adid=${authebDetais.adid}">
+	                                    		查看详情</a></small>
+	                                    </c:if>
+	                                    <c:if test="${adstype ==2}">
+	                                    	 <small class="pull-right text-navy"><a class="J_menuItem" href="${pageContext.request.contextPath}/back/toAuthIdCardStatus?adstype=${adstype}&adid=${authebDetais.adid}">提现认证
+	                                    		查看详情</a></small>
+	                                    </c:if>
+	                                </div>
+                            	</div>
+							</c:forEach>
                         </div>
                     </div>
                 </div>

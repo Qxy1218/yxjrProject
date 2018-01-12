@@ -37,10 +37,13 @@ public class IdCard implements Serializable{
 	@TableField("ic_name")
 	private String icname;  //用户真实姓名 
 	
+	private String uiname; //用户昵称
+	
 	public IdCard() {
 	}
-	
-	public IdCard(Integer icid, String icfrontUrl, String icbackUrl, Integer icstatus,String icnumber, String icstarttime,Integer uiid,String icname) {
+
+	public IdCard(Integer icid, String icfrontUrl, String icbackUrl, Integer icstatus, String icstarttime,
+			String icnumber, Integer uiid, String icname, String uiname) {
 		super();
 		this.icid = icid;
 		this.icfrontUrl = icfrontUrl;
@@ -50,13 +53,14 @@ public class IdCard implements Serializable{
 		this.icnumber = icnumber;
 		this.uiid = uiid;
 		this.icname = icname;
+		this.uiname = uiname;
 	}
 
 	@Override
 	public String toString() {
 		return "IdCard [icid=" + icid + ", icfrontUrl=" + icfrontUrl + ", icbackUrl=" + icbackUrl + ", icstatus="
 				+ icstatus + ", icstarttime=" + icstarttime + ", icnumber=" + icnumber + ", uiid=" + uiid + ", icname="
-				+ icname + "]";
+				+ icname + ", uiname=" + uiname + "]";
 	}
 
 	public Integer getIcid() {
@@ -122,5 +126,15 @@ public class IdCard implements Serializable{
 	public void setIcname(String icname) {
 		this.icname = icname;
 	}
+
+	public String getUiname() {
+		return uiname;
+	}
+
+	public void setUiname(String uiname) {
+		this.uiname = uiname;
+	}
+	
+	
 	
 }

@@ -131,7 +131,6 @@
 		        	$("#upPwd").modal('hide');
 		            // Prevent form submission
 		            e.preventDefault();
-					alert("sdfgsdfgh");
 		            // Get the form instance
 		            var $form = $(e.target);
 		
@@ -448,14 +447,14 @@
                         	<span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                        	<shiro:hasPermission name="身份认证">
+                        	<shiro:hasPermission name="实名认证">
                         		<li>
-                        			<a class="J_menuItem" href="typography.jsp">身份认证</a>
+                        			<a class="J_menuItem" href="${pageContext.request.contextPath}/back/toAuthIdCard">实名认证</a>
                             	</li>
                         	</shiro:hasPermission>
-                        	<shiro:hasPermission name="邮箱认证">
+                        	<shiro:hasPermission name="提现认证">
                         		<li>
-                        			<a class="J_menuItem" href="typography.jsp">邮箱认证</a>
+                        			<a class="J_menuItem" href="${pageContext.request.contextPath}/back/toAuthWithDrawls">提现认证</a>
                             	</li>
                         	</shiro:hasPermission>
                         	<shiro:hasPermission name="资本资料认证">

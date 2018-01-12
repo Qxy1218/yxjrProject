@@ -18,9 +18,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.p2p.controller.back.UtilController;
 import com.p2p.controller.back.SendMsgUtil;
 import com.p2p.pojo.AuthebDetais;
 import com.p2p.pojo.Bank;
@@ -31,8 +33,6 @@ import com.p2p.pojo.Userbackcard;
 import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Users;
 import com.p2p.pojo.Uservouch;
-import com.p2p.pojo.Withdrawals;
-import com.p2p.pojo.WithdrawalsServiceP2p;
 import com.p2p.service.back.AuthebDetaisService;
 import com.p2p.service.back.MessageUtilService;
 import com.p2p.service.back.RedmoneyService;
@@ -44,6 +44,7 @@ import com.p2p.service.front.UserInfoService;
 import com.p2p.service.front.UserbackcardService;
 import com.p2p.util.BankUtil;
 import com.p2p.util.DateUtils;
+import com.p2p.util.PageInfo;
 import com.p2p.util.MessageBenas;
 import com.p2p.util.SendServiceUtil;
 
@@ -72,6 +73,7 @@ public class IdCardController {
 	private UserInfoService userInfoService;  //用户基本信息
 	@Resource(name="IUserServiceImpl")
 	private IUserService iUserService;  //用户
+	
 	@Resource(name="authebDetaisServiceImpl")
 	private AuthebDetaisService authebDetaisService;  //消息
 	
@@ -104,6 +106,7 @@ public class IdCardController {
 			AuthebDetais authebDetais = new AuthebDetais();
 			authebDetais.setAdintroduct("用户: "+idCard.getIcname()+",已输入身份信息,需后台管理员审核通过!");
 			authebDetais.setAdtime(DateUtils.getDateTimeFormat(new Date()));
+			authebDetais.setAdstype(1); //1代表实名认证
 			authebDetais.setUiid(idCard.getUiid());
 			authebDetaisService.addModel(authebDetais);
 			
@@ -294,6 +297,50 @@ public class IdCardController {
 		return count ;
 	}
 	
+	//后台实名认证查询及分页
+	@RequestMapping(value="selectiIdcardList")
+	@ResponseBody
+	public PageInfo selectiIdcardList(Integer page, Integer rows,IdCard idcard) {
+		Integer pageSize = 0;
+		//得到总的页数
+		PageInfo pageInfo = new PageInfo(pageSize,rows);
+		Map<String,Object> map = new HashMap<String,Object>();
+		pageInfo.setCondition(map);
+		
+		idCardService.selectPage(pageInfo,idcard);
+		pageInfo.setTotal(pageInfo.getTotal());
+		return pageInfo;
+	}
+	
+	/**
+	 * 修改实名认证状态
+	 * **/
+	@RequestMapping(value="AuthIdCard")
+	@ResponseBody
+	public int AuthIdCard(IdCard idcard ,HttpServletRequest request,MultipartFile[] upfile) {
+		Userinfo userinfo = new Userinfo();
+		if(upfile.length!=0) {
+			String filepath = UtilController.uploadReNames(upfile,request.getSession());
+			String[] aa =  filepath.split(",");
+			idcard.setIcfrontUrl(aa[0]);
+			idcard.setIcbackUrl(aa[1]);
+		}
+		int conut = idCardService.update(idcard);
+		if(conut>0) {
+			userinfo.setUiid(idcard.getUiid());
+			userinfo.setUiopenstatus(2);
+			userInfoService.update(userinfo);
+			Userinfo uinfo = userInfoService.getUserinfoByuiid(idcard.getUiid());
+			AuthebDetais authebDetais = new AuthebDetais();
+			authebDetais.setAdintroduct("您好,"+uinfo.getUiname()+"用户恭喜你实名认证通过,欢迎加入亿信平台,亿信金融平台更多好礼等着你来领哦!");
+			authebDetais.setAdtime(DateUtils.getDateTimeFormat(new Date()));
+			authebDetais.setUiid(uinfo.getUiid());
+			authebDetais.setAdstatus(0);
+			authebDetais.setAdstype(0);
+			authebDetaisService.addModel(authebDetais);
+		}
+		return conut;
+	}
 	/**
 	 * 开户成功后需跳转的页面
 	 * */

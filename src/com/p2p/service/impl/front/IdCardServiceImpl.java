@@ -7,9 +7,12 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.p2p.mapper.IdCardMapper;
 import com.p2p.pojo.IdCard;
+import com.p2p.pojo.Role;
 import com.p2p.service.front.IdCardService;
+import com.p2p.util.PageInfo;
 
 /**
  * 身份证Service实现类
@@ -50,6 +53,15 @@ public class IdCardServiceImpl implements IdCardService {
 	@Override
 	public IdCard findModel(Integer id) {
 		return idCardMapper.findModel(id);
+	}
+
+	//实现后台分页及模糊查询
+	public void selectPage(PageInfo pageInfo, IdCard idcard) {
+		//传入一个分页bean pageInfo
+		Page<IdCard> page = new Page(pageInfo.getNowpage(),pageInfo.getSize());
+		List<IdCard> list = idCardMapper.selectPage(page, pageInfo.getCondition(),idcard);
+		pageInfo.setRows(list);
+		pageInfo.setTotal(list.size());
 	}
 
 }

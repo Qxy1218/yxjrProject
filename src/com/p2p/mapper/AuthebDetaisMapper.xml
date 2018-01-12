@@ -28,6 +28,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from authebDetais where ad_id = #{adid}
 	</delete>
 	<select id="getAllModel" resultMap="AuthebDetaisResultMap">
-		select * from authebDetais
+		select a.* ,ui.ui_name as uiname  from authebDetais a ,user_info ui <where>
+			a.ui_id = ui.ui_id and a.ad_stype !=0 and a.ad_status = 0
+		</where>
 	</select>
+	<update id="update" parameterType="com.p2p.pojo.AuthebDetais">
+		 UPDATE authebDetais  ad
+        	<trim prefix="set" suffixOverrides=",">
+        		<if test="adintroduct!=null">ad.ad_introduct = #{adintroduct},</if>
+        		<if test="adtime!=null">ad.ad_time = #{adtime},</if>
+        		<if test="uiid!=null">ad.ui_id = #{uiid},</if>
+        		<if test="adstatus!=null">ad.ad_status = #{adstatus},</if>
+        		<if test="adstype!=null">ad.ad_stype = #{adstype},</if>
+        	</trim>
+        	<where>
+        		ad.ad_id =#{adid}
+        	</where>
+	</update>
 </mapper>

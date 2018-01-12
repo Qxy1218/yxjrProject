@@ -103,7 +103,7 @@ public class EmpController {
 	           System.out.println("用户[" + name + "]登录认证通过..账号密码正确");
 	           Employe employe = empService.getByemployname(name);
 	           session.setAttribute("employee", employe);
-	           return "redirect:/back/toindex";
+	           return "redirect:/backindex/indexall";
 	       }else{  
 	           token.clear();  
 	           return "redirect:/back/tologin";

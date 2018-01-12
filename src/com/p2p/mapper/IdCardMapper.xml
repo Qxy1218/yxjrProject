@@ -30,6 +30,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		<if test="icname!=null">and ic.ic_name=#{icname}</if>
  		</where>
 	</select>
+	<!-- 后台实现分页及模糊查询 -->
+	<select id="selectPage"  resultMap="IdCardResultMap">
+		select ic.* ,ui.ui_name as uiname from idCard ic ,user_info ui
+		<where>
+ 		     1=1
+ 		     <if test="idcard.icnumber!=null and idcard.icnumber !='' ">
+			    and ic.ic_number like CONCAT(CONCAT('%', #{idcard.icnumber}), '%')
+			</if>
+			<if test="idcard.icname != null and idcard.icname!=''">
+			     and ic.ic_name like CONCAT(CONCAT('%', #{idcard.icname}), '%')
+			</if>
+			<if test="idcard.icstatus != null and idcard.icstatus != -1">
+			     and ic.ic_status like CONCAT(CONCAT('%', #{idcard.icstatus}), '%')
+			</if>
+		  	and ic.ui_id = ui.ui_id	
+ 		</where>
+	</select>
 	<insert id="addModel" parameterType="com.p2p.pojo.IdCard" useGeneratedKeys="true" keyProperty="id">
 		insert into idCard(<include refid="myidcardsql" />) values(#{icfrontUrl},#{icbackUrl},#{icstatus},#{icstarttime},#{icnumber},#{uiid},#{icname})
 	</insert>

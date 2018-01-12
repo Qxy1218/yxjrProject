@@ -157,8 +157,6 @@ public class RechargeController {
 	       out.println(resultBuffer.toString());  
 	       out.flush();  
 	       out.close();  
-		
-		
 		}
 	
 }
