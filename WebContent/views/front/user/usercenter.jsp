@@ -109,10 +109,12 @@
         <div class="m2-wel-con" style="background-color:white;width:798px;">
             <p class="m2-wel-hello" id='greeting' style="background-color:white;margin:0 10px;width: 730px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" title='上午好，iqb13737301354，投资，是为了更好的自己！'>上午好，iqb13737301354，投资，是为了更好的自己！</p>
             <div class="m2-wel-lef">
-                <!--            <span style="position:absolute;top:85px;right:10px;font-size:15px;line-height:15px;">邀请码：<i style="font-style:normal;">xrejfr</i></span>-->
+                <!-- <span style="position:absolute;top:85px;right:10px;font-size:15px;line-height:15px;">邀请码：
+				<i style="font-style:normal;">xrejfr</i></span>-->
                 <div class="left">
                     <img src="/Finances/statics/front/statics/usercenter/images/growth/vip.png" alt="爱钱帮" style="margin:20px;"><br>
-                    <button style="background-color:#b7b6b6;outline:none;" >已签到</button>                <p>您已连续签到<span id='day'>1</span>天，</p>
+                    <button style="background-color:#b7b6b6;outline:none;" >已签到</button>                
+					<p>您已连续签到<span id='day'>1</span>天，</p>
                     <p><span id='today'>明天</span>再签到可获得<span id='growth'>2</span>个成长值</p>
                 </div>
                 <div class="right">
@@ -495,236 +497,29 @@
             }
             -->
        </script>
-       <style type="text/css">
-                div.calenderdetail{
-                    position: absolute;
-                    display: none;
-                    top: 0px;
-                    left: 39px;
-                    box-sizing:contect-box;
-                    -moz-box-sizing:contect-box; /* Firefox */
-                    -webkit-box-sizing:contect-box; /* Safari */
-                    z-index: 100;
-                    width: 222px;
-                    border: 1px solid #F67645;
-                    background-color: #fff;
-                }
-                .calItem{
-                    width: 220px;
-                    height: 29px;
-                    line-height: 29px;
-                    border-bottom: 1px solid #F67645;
-                    zoom: 1;
-                }
-                .calItem:after{display:block;clear:both;visibility:hidden;height:0;content:'-';}
-                .lefItem{
-                    float: left;
-                    display: inline-block;
-                    width: 95px;
-                    height: 29px;
-                    line-height: 29px;
-                    background-color: #F67645;
-                    color: #fff;
-                    font-size: 12px;
-                    text-align: center;
-                }
-                .rigItem{
-                    float: left;
-                    display: inline-block;
-                    width: 124px;
-                    height: 28px;
-                    line-height: 28px;
-                    background-color: #fff;
-                    color: #F67645;
-                    font-size: 12px;
-                    color: #F67645;
-                    text-align: center;
-                }
-                .calMore{
-                    width: 220px;
-                    height: 28px;
-                    line-height: 28px;
-                    background-color: #fff;
-                    text-align: right;
-                }
-                .link_more{
-                    display: inline-block;
-                    padding-right: 15px;
-                    color: #F67645;
-                    font-size: 12px;
-                }
-                .link_more:hover,.link_more:active{
-                    color: #F85625;
-                }
-                .xdsoft_calendar td:hover div.calenderdetail{
-                    display: block;
-                }
-                .xdsoft_calendar td{
-                    position: relative;
-                }
-                .advIcon{
-                    display: block;
-                    position: absolute;
-                    width: 26px;
-                    height: 21px;
-                    top: -4px;
-                    left: -3px;
-                }
-                .advIcon img{
-                    width: 100%;
-                    height: 100%;
-                }
-                .b0-backDet{
-                    width: 414px;
-                    padding: 10px 0;
-                    zoom: 1;
-                }
-                .b0-backDet:after{display:block;clear:both;visibility:hidden;height:0;content:'-';}
-                .b0-backLef{
-                    float: left;
-                    width: 232px;
-                    border-right: 1px solid #CDCDCD;
-                    padding-left: 12px;
-                }
-                .b0-orange{
-                    height: 24px;
-                    line-height: 24px;
-                }
-                .b0-orange span,.b0-purple span{
-                    display: inline-block;
-                }
-                .b0-purple{
-                    height: 24px;
-                    line-height: 24px;
-                }
-                .b0-orange .b0-lefTit{
-                    color: #fb9c77;
-                    font-size: 12px;
-                }
-                .b0-orange .b0-lefNum{
-                    color: #f67645;
-                    font-size: 16px;
-                    font-weight: bold;
-                }
-                .b0-purple .b0-lefTit{
-                    color: #cb7bcb;
-                    font-size: 12px;
-                }
-                .b0-purple .b0-lefNum{
-                    color: #b35db3;
-                    font-size: 16px;
-                    font-weight: bold;
-                }
-                .b0-backRig{
-                    float: left;
-                    width: 152px;
-                    padding-left: 6px;
-                }
-                .b0-rigTop{
-                    zoom: 1;
-                    height: 23px;
-                    line-height: 23px;
-                    border-bottom: 1px solid #CDCDCD;
-                }
-                .b0-rigTop:after{display:block;clear:both;visibility:hidden;height:0;content:'-';}
-                .b0-rigDis{
-                    float: left;
-                    position: relative;
-                    width: 40px;
-                    padding-left: 22px;
-                }
-                .b0-rigDis i{
-                    display: block;
-                    position: absolute;
-                    width: 13px;
-                    height: 13px;
-                    left: 4px;
-                    top: 5px;
-                    border-radius: 50%;
-                }
-                .b0-rigBot{
-                    zoom: 1;
-                }
-                .b0-rigBot:after{display:block;clear:both;visibility:hidden;height:0;content:'-';}
-                .b0-iconAdv{
-                    display: inline-block;
-                    float: left;
-                    margin-left: 4px;
-                    width: 50px;
-                    height: 25px;
-                    background: url(/Finances/statics/front/statics/usercenter/images/iconAdv.png) no-repeat 0 5px;
-                }
-                .b0-botDet{
-                    display: inline-block;
-                    float: left;
-                    font-size: 12px;
-                    color: #4e4e4e;
-                    margin-left: 13px;
-                    line-height: 30px;
-                }
-                .b0-backMore{
-                    display: inline-block;
-                    float: left;
-                    position: relative;
-                    width: 16px;
-                    height: 16px;
-                    margin: 6px 0 0 12px;
-                    background: url(/Finances/statics/front/statics/usercenter/images/b-question.png) no-repeat;
-                    cursor: pointer;
-                }
-                .b0-backMore:hover span{
-                    display: block;
-                }
-                .b0-backMore span{
-                    display: none;
-                    position: absolute;
-                    width: 200px;
-                    left: 22px;
-                    top: -70px;
-                    padding: 5px 8px;
-                    line-height: 18px;
-                    font-size: 12px;
-                    color: #717171;
-                    background-color: #fff;
-                    border: 1px solid #b35db3;
-                }
-                .b0-backMore span i{
-                    display: block;
-                    position: absolute;
-                    width: 8px;
-                    height: 12px;
-                    left: -8px;
-                    top:70px;
-                    background: url(/Finances/statics/front/statics/usercenter/images/borrow_arrow.png);
-                }
-                .b0-backMore span b{
-                    font-weight:normal;
-                    color:#0996cc;
-                }
-            </style>
-         </div>
-                 <div class="m2-user-invest">
-            <div class="m2-user-invest-head">
-                <h3><i></i>最近投资记录<a href="usercenter-investcontrol-investrecord.html">更多</a></h3>
-                <hr style="display:inline-block;width:148px;border:0;background-color:#0996cc
-				;height:1px;margin-left:6px;"></h3>
-                <hr style="display:inline-block;width:642px;border:0;background-color:#dadada;height:1px;margin-left:-4px;"></h3>
-            </div>
-            <div class="m2-user-invest-list">
-                <table class="m2-userInvest-table"  cellpadding="0" cellspacing="0" >
-                    <tr class="m2-userInevst-head" >
-                        <th style="width:150px;">项目名称</th>
-                        <th style="width:130px;">投资金额</th>
-                        <th style="width:110px;">收益率</th>
-                        <th style="width:120px;">计息日</th>
-                        <th style="width:120px;">还款日</th>
-                        <th style="width:148px;"></th>
-                    </tr>
-                </table>
-            </div>
+       	<link rel="stylesheet" href="/Finances/statics/front/statics/company_finance/css/center_div.css">
+     </div>
+     <div class="m2-user-invest">
+          <div class="m2-user-invest-head">
+              <h3><i></i>最近投资记录<a href="usercenter-investcontrol-investrecord.html">更多</a></h3>
+              <hr style="display:inline-block;width:148px;border:0;background-color:#0996cc;height:1px;margin-left:6px;"></h3>
+              <hr style="display:inline-block;width:642px;border:0;background-color:#dadada;height:1px;margin-left:-4px;"></h3>
+          </div>
+          <div class="m2-user-invest-list">
+              <table class="m2-userInvest-table"  cellpadding="0" cellspacing="0" >
+                  <tr class="m2-userInevst-head" >
+                      <th style="width:150px;">项目名称</th>
+                      <th style="width:130px;">投资金额</th>
+                      <th style="width:110px;">收益率</th>
+                      <th style="width:120px;">计息日</th>
+                      <th style="width:120px;">还款日</th>
+                      <th style="width:148px;"></th>
+                  </tr>
+              </table>
+          </div>
         </div>
     </div>
-        <div style="display:none;">
+    <div style="display:none;">
         <span id='ntitle'></span>
         <span id='nmsg'></span>
     </div>

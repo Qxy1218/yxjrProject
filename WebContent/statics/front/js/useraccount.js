@@ -210,10 +210,11 @@ function bindphone(){
         	if(t2-t1 > 60*1000 && flag){
                 t1 = Date.now();
                 $.ajax({
-                    url:"/Finances/front/getregsendphone",
+                    url:"/Finances/front/getsendphone",
                     type:"POST",
                     data:{
-                    	phone:uphone 
+                    	phone:uphone,
+                    	count:"1"
                     },
                     success:function(data){
                         var obj = eval('('+data+')');
