@@ -1,6 +1,5 @@
 package com.p2p.controller.front;
 
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -28,7 +27,6 @@ import com.p2p.controller.back.SendMailUtil;
 import com.p2p.controller.back.UtilController;
 import com.p2p.pojo.AuthebDetais;
 import com.p2p.pojo.Redmoney;
-import com.p2p.pojo.Role;
 import com.p2p.pojo.Setupnatice;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Userinfo;
@@ -557,6 +555,35 @@ public class IUserController {
 		Userinfo ui = userInfoService.seleUserinfoByuid(uid);
 		ObjectMapper ob = new ObjectMapper();
 		String result = ob.writeValueAsString(ui);
+		return result;
+	}
+	
+	/**
+	 * 根据用户注册手机号修改密码
+	 * @throws JsonProcessingException 
+	 * */
+	@RequestMapping(value="findPwd")
+	@ResponseBody
+	public String findPwd(@RequestParam String uphone,@RequestParam String surepwd) throws JsonProcessingException {
+		Map<String,Object> map = new HashMap<String,Object>();
+		try {
+			Object results = new SimpleHash("MD5", surepwd, ByteSource.Util.bytes("user"), 10);
+			String upassword = results.toString();
+			int count = iUserService.updatePwd(uphone,upassword);
+			if(count>0) {
+				map.put("status", 1);
+				map.put("msg", "恭喜您,成功找回密码!");
+			}else {
+				map.put("status", 0);
+				map.put("msg", "很遗憾,找回密码失败!");
+			}
+		}catch(Exception e) {
+			map.put("status", 0);
+			map.put("msg", "很遗憾,找回密码失败!");
+			e.printStackTrace();
+		}
+		ObjectMapper om = new ObjectMapper();
+		String result = om.writeValueAsString(map);
 		return result;
 	}
 }

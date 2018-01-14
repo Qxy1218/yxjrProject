@@ -70,17 +70,21 @@ public class IUserServiceImpl implements IUserService{
 	@Override
 	public void selectPage(PageInfo pageInfo, User user) {
 		//传入一个分页bean pageInfo
-				Page<User> page = new Page(pageInfo.getNowpage(),pageInfo.getSize());
-				List<User> list = iUserMapper.selectPage(page, pageInfo.getCondition(),user);
-				pageInfo.setRows(list);
-				pageInfo.setTotal(list.size());
+		Page<User> page = new Page(pageInfo.getNowpage(),pageInfo.getSize());
+		List<User> list = iUserMapper.selectPage(page, pageInfo.getCondition(),user);
+		pageInfo.setRows(list);
+		pageInfo.setTotal(list.size());
 		
 	}
 
 	@Override
 	public Integer userCount() {
-		// TODO Auto-generated method stub
 		return iUserMapper.iuserCount();
+	}
+
+	@Override
+	public Integer updatePwd(String uphone, String upassword) {
+		return iUserMapper.updatePwd(uphone, upassword);
 	}
 
 

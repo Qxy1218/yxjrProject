@@ -20,8 +20,12 @@ public interface IUserService extends IBaseService<Integer, User>{
 	//根据别人邀请码去查询用户
 	abstract User sletUserOinvite(String orderinvite);
 	//实现分页查询
-		abstract void selectPage(@Param(value="pageInfo")PageInfo pageInfo,@Param(value="role") User user);//实现分页
-			
-		//查询总的记录数
-		abstract Integer userCount();
+	abstract void selectPage(@Param(value="pageInfo")PageInfo pageInfo,@Param(value="role") User user);//实现分页
+		
+	//查询总的记录数
+	abstract Integer userCount();
+	
+	//根据手机号修改密码
+  	abstract Integer updatePwd(String uphone,String upassword);
+	
 }

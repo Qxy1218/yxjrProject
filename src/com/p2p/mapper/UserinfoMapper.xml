@@ -127,4 +127,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      <select id="seleUserlevelList" resultMap="BaseResultMap">
       	select * from user_info 
     </select> 
+    
+    <!-- 根据邮箱查询用户 -->
+    <select id="selectByEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
+    	select *from user_info where ui_email=#{uiemail}
+    </select>
 </mapper>

@@ -151,6 +151,28 @@ public class SendMsgUtil {
 			message =  messa.getMsgvalue();
 			message =  message.replaceFirst("a",""+orther.get("project")+"");
 			System.out.println("短信收到本金或利息......"+message);
+		}else if(msg.equals("短信修改账号提示")) {
+			/**
+			 * 需要的第一个参数:验证码
+			 * */
+			MessageUtil mess = new MessageUtil();
+			mess.setMsgkey(msg);
+			MessageUtil messa = messageUtil.getModel(mess);
+			message =  messa.getMsgvalue();
+			message =  message.replaceFirst("a",""+orther.get("yzcode")+"");
+			System.out.println("短信修改账号提示......"+message);
+		}else if(msg.equals("短信找回密码提示")) {
+			/**
+			 * 需要的第一个参数:手机号
+			 * 需要的第二个参数:验证码
+			 * */
+			MessageUtil mess = new MessageUtil();
+			mess.setMsgkey(msg);
+			MessageUtil messa = messageUtil.getModel(mess);
+			message =  messa.getMsgvalue();
+			message =  message.replaceFirst("a",""+phone+"");
+			message =  message.replaceFirst("b",""+orther.get("yzcode")+"");
+			System.out.println("短信找回密码提示......"+message);
 		}else {
 			return;
 		}

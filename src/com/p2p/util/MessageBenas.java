@@ -21,7 +21,16 @@ public class MessageBenas {
 	public static final String MSG_LOGING = "短信登入提示";
 	public static final String MAIL_LOGIN = "邮箱登入提示";
 	
-
+	/**
+	 * 尊敬的用户您好,您的需要修改账号的验证码为{*},请尽快填写完相关资料信息完成修改,祝您生活愉快【忆信财富】
+	 * */
+	public static final String MSG_UPDATEPHONE = "短信修改账号提示";
+	
+	/**
+	 * 尊敬的用户您好,您的账号{*}需找回密码的验证码是{*},请尽快填写相关资料信息,祝您生活愉快【忆信财富】
+	 * */
+	public static final String MSG_UPDATEPWD = "短信找回密码提示";
+	public static final String MAIL_UPDATEPWD = "邮箱找回密码提示";
 	
 	/**
 	 *尊敬的用户您好,您的{*}账号在{**}已充值{***}元,如对此账单有疑问,请及时联系我们的客服,祝您生活愉快【忆信财富】

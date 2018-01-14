@@ -29,4 +29,7 @@ public interface IUserMapper extends IBaseDao<Integer, User>{
   	
   	//查询总的记录数
   	abstract Integer userCount();
+  	
+  	//根据手机号修改密码
+  	abstract Integer updatePwd(@Param("uphone")String uphone,@Param("upassword")String password);
 }

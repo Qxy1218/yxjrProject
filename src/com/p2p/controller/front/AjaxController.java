@@ -100,7 +100,7 @@ public class AjaxController {
 		
 		
 		
-		//发送验证码
+		//注册时需发送的验证码
 		@RequestMapping(value="/getregsendphone")
 		@ResponseBody
 		public String RegSendPhone(@RequestParam String phone) throws JsonProcessingException {
@@ -131,6 +131,49 @@ public class AjaxController {
 			ModelAndView model = new ModelAndView();
 			model.setViewName("/views/front/register");
 			model.addObject(aa);
+			return aa;
+		}
+		
+		/**
+		 * 修改账号和找回密码时需发送的验证码
+		 * 当  count=1  选择修改账号发送短信
+		 *   count=2 选择找回密码发短信
+		 * */
+		@RequestMapping(value="/getsendphone")
+		@ResponseBody
+		public String SendPhone(@RequestParam String phone,@RequestParam Integer count) throws JsonProcessingException {
+		
+			ObjectMapper mapper = new ObjectMapper(); //转换器  
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			Integer ranks = (int)((Math.random()*9+1)*100000); 
+			
+			SendMsgUtil sUtil = new SendMsgUtil();
+			Map<String,Object> orther = new HashMap<String,Object>();
+			orther.put("yzcode",ranks);
+			try {
+				if(count==1) {
+					sUtil.Send(phone,MessageBenas.MSG_UPDATEPHONE,orther,sendmsg,messageUtil);
+					map.put("status",1);
+					map.put("ranks", ranks);
+				}else if(count==2){
+					sUtil.Send(phone,MessageBenas.MSG_UPDATEPWD,orther,sendmsg,messageUtil);
+					map.put("status",1);
+					map.put("ranks", ranks);
+					map.put("msg","已成功发送验证码");
+				}else {
+					map.put("status",0);
+					map.put("msg", "短信发送异常");
+				}
+			} catch (Exception e) {
+				//日志打印
+				map.put("status", 2);
+				map.put("msg","发送异常");
+				e.printStackTrace();
+			}
+			String aa = mapper.writeValueAsString(map);
+			System.out.println(aa);
+			
 			return aa;
 		}
 }

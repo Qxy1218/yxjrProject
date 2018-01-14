@@ -96,6 +96,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		    u.u_id=#{uid}
  		</where>
  	</update>
+ 	
+ 	<!-- 根据手机号修改密码 -->
+ 	<update id="updatePwd" parameterType="java.lang.String">
+ 		update user u
+ 		<trim prefix="set" suffixOverrides=",">
+		  <if test="upassword!=null">u.u_password=#{upassword},</if>
+ 		</trim>
+ 		<where>
+ 		    u.u_phone=#{uphone}
+ 		</where>
+ 	</update>
+ 	
  	<!-- 查询提现的总记录数 -->
     <select id="userCount" resultType="java.lang.Integer">
         select count(*) from user;
