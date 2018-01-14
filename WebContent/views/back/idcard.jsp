@@ -79,7 +79,14 @@
                 title: '操作',
                 align : 'center',
 				formatter : function(value, row, index) {
-					return "<button type='button' onclick='getupIdCard("+row.icid+");' class='btn btn-primary'>修改</button>"
+					var icstatus = row.icstatus;
+					if(icstatus==2){
+						return "<button type='button' class='btn btn-primary' style='background-color: #ccc;'>修改</button>"
+					}
+					else{
+						return "<button type='button' onclick='getupIdCard("+row.icid+");' class='btn btn-primary'>修改</button>"
+					}
+				
 				}
             } ]
 		});

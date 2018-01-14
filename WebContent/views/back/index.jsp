@@ -5,6 +5,7 @@
 	String path = request.getContextPath();
 %> 
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%  
     String empName = (String) session.getAttribute("empName");  
     pageContext.setAttribute("currentUser", org.apache.shiro.SecurityUtils.getSubject().getPrincipal().toString());  
@@ -565,42 +566,37 @@
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
                         <form role="search" class="navbar-form-custom" method="post" action="search_results.jsp">
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search" id="top-search">
-                            </div>
+                            </div> -->
                         </form>
                     </div>
                     <ul class="nav navbar-top-links navbar-right">
                         <li class="dropdown">
                             <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                <i class="fa fa-envelope"></i> <span class="label label-warning">16</span>
+                                <i class="fa fa-envelope"></i> <span class="label label-warning">${sessionScope.audetailsSize}</span>
                             </a>
                             <ul class="dropdown-menu dropdown-messages">
                                 <li class="m-t-xs">
                                     <div class="dropdown-messages-box">
-                                        <a href="profile.jsp" class="pull-left">
-                                            <img alt="image" class="img-circle" src="/Finances/statics/back/static/img/a7.jpg">
-                                        </a>
-                                        <div class="media-body">
-                                            <small class="pull-right">46小时前</small>
-                                            <strong>小四</strong> 这个在日本投降书上签字的军官，建国后一定是个不小的干部吧？
-                                            <br>
-                                            <small class="text-muted">3天前 2014.11.8</small>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <div class="dropdown-messages-box">
-                                        <a href="profile.jsp" class="pull-left">
-                                            <img alt="image" class="img-circle" src="/Finances/statics/back/static/img/a4.jpg">
-                                        </a>
-                                        <div class="media-body ">
-                                            <small class="pull-right text-navy">25小时前</small>
-                                            <strong>国民岳父</strong> 如何看待“男子不满自己爱犬被称为狗，刺伤路人”？——这人比犬还凶
-                                            <br>
-                                            <small class="text-muted">昨天</small>
-                                        </div>
+                                    	<c:forEach items="${authebDetais}" var="authebDetais">
+											<div class="feed-element">
+				                                <div>
+				                                    <strong>${authebDetais.uiname}</strong>
+				                                    <div>${authebDetais.adintroduct}</div>
+				                                    <small class="text-muted">${authebDetais.adtime}</small>
+				                                    <c:set var="adstype" value="${authebDetais.adstype}" /><!-- 标签用于设置变量值和对象属性。 -->
+				                                    <c:if test="${adstype == 1}">
+				                                    	 <small class="pull-right text-navy"><a class="J_menuItem"  href="${pageContext.request.contextPath}/back/toAuthIdCardStatus?adstype=${adstype}&adid=${authebDetais.adid}">
+				                                    		<u>去处理</u></a></small>
+				                                    </c:if>
+				                                    <c:if test="${adstype ==2}">
+				                                    	 <small class="pull-right text-navy"><a class="J_menuItem" href="${pageContext.request.contextPath}/back/toAuthIdCardStatus?adstype=${adstype}&adid=${authebDetais.adid}">提现认证
+				                                    		<u>去处理</u></a></small>
+				                                    </c:if>
+				                                </div>
+			                            	</div>
+									</c:forEach>
                                     </div>
                                 </li>
                                 <li class="divider"></li>
@@ -615,27 +611,18 @@
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                <i class="fa fa-bell"></i> <span class="label label-primary">8</span>
+                                <i class="fa fa-bell"></i> <span class="label label-primary">${sessionScope.audetailsSize}</span>
                             </a>
                             <ul class="dropdown-menu dropdown-alerts">
                                 <li>
                                     <a href="mailbox.jsp">
                                         <div>
-                                            <i class="fa fa-envelope fa-fw"></i> 您有16条未读消息
-                                            <span class="pull-right text-muted small">4分钟前</span>
+                                            <i class="fa fa-envelope fa-fw"></i> 您有${sessionScope.audetailsSize}条未读消息
                                         </div>
                                     </a>
                                 </li>
                                 <li class="divider"></li>
-                                <li>
-                                    <a href="profile.jsp">
-                                        <div>
-                                            <i class="fa fa-qq fa-fw"></i> 3条新回复
-                                            <span class="pull-right text-muted small">12分钟钱</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
+                              
                                 <li>
                                     <div class="text-center link-block">
                                         <a class="J_menuItem" href="notifications.jsp">
@@ -645,11 +632,6 @@
                                     </div>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="hidden-xs">
-                            <a href="index_v1.jsp" class="J_menuItem" data-index="0">
-                            	<i class="fa fa-cart-arrow-down"></i> 购买
-                            </a>
                         </li>
                         <li class="dropdown hidden-xs">
                             <a class="right-sidebar-toggle" aria-expanded="false">
@@ -1010,100 +992,6 @@
 
             </div>
         </div>
-        <!--右侧边栏结束-->
-        <!--mini聊天窗口开始-->
-        <div class="small-chat-box fadeInRight animated">
-
-            <div class="heading" draggable="true">
-                <small class="chat-date pull-right">
-                    2015.9.1
-                </small> 与 Beau-zihan 聊天中
-            </div>
-
-            <div class="content">
-
-                <div class="left">
-                    <div class="author-name">
-                        Beau-zihan <small class="chat-date">
-                        10:02
-                    </small>
-                    </div>
-                    <div class="chat-message active">
-                        你好
-                    </div>
-
-                </div>
-                <div class="right">
-                    <div class="author-name">
-                        游客
-                        <small class="chat-date">
-                            11:24
-                        </small>
-                    </div>
-                    <div class="chat-message">
-                        你好，请问H+有帮助文档吗？
-                    </div>
-                </div>
-                <div class="left">
-                    <div class="author-name">
-                        Beau-zihan
-                        <small class="chat-date">
-                            08:45
-                        </small>
-                    </div>
-                    <div class="chat-message active">
-                        有，购买的H+源码包中有帮助文档，位于docs文件夹下
-                    </div>
-                </div>
-                <div class="right">
-                    <div class="author-name">
-                        游客
-                        <small class="chat-date">
-                            11:24
-                        </small>
-                    </div>
-                    <div class="chat-message">
-                        那除了帮助文档还提供什么样的服务？
-                    </div>
-                </div>
-                <div class="left">
-                    <div class="author-name">
-                        Beau-zihan
-                        <small class="chat-date">
-                            08:45
-                        </small>
-                    </div>
-                    <div class="chat-message active">
-                        1.所有源码(未压缩、带注释版本)；
-                        <br> 2.说明文档；
-                        <br> 3.终身免费升级服务；
-                        <br> 4.必要的技术支持；
-                        <br> 5.付费二次开发服务；
-                        <br> 6.授权许可；
-                        <br> ……
-                        <br>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="form-chat">
-                <div class="input-group input-group-sm">
-                    <input type="text" class="form-control"> <span class="input-group-btn"> <button
-                        class="btn btn-primary" type="button">发送
-                </button> </span>
-                </div>
-            </div>
-
-        </div>
-        <div id="small-chat">
-            <span class="badge badge-warning pull-right">5</span>
-            <a class="open-small-chat">
-                <i class="fa fa-comments"></i>
-
-            </a>
-        </div>
-        <!--mini聊天窗口结束-->
     </div>
     
     <!-- 修改密码弹窗 -->

@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
@@ -276,7 +277,7 @@ public class EmpController {
 		    return "E:\\Employee.xls";
 	   }
 	
-	   
+	  
 	 //导入
 	   @RequestMapping("import")
 	   @ResponseBody

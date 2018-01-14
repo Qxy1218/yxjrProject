@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
+<%@ page import="java.text.*" %> 
+<%@ page import="java.util.*" %> 
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -18,7 +19,14 @@
 
     <link href="${pageContext.request.contextPath}/statics/back/static/css/animate.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/statics/back/static/css/style.css?v=4.1.0" rel="stylesheet">
+	<!-- <script type="text/javascript">
+	var adtime = $('#adtime').val();
+	SimpleDateFormat format2 = new SimpleDateFormat("MM");
+	String admm = format2.format(adtime);
+	String mon = format2.format(new Date());
+	request.setAttribute("month",mon);
 
+	</script> -->
 </head>
 <body class="gray-bg">
     <div class="wrapper wrapper-content">
@@ -27,55 +35,55 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <span class="label label-success pull-right">月</span>
-                        <h5>收入</h5>
+                        <h5>平台累计借款</h5>
                     </div>
                     <div class="ibox-content">
                         <h1 class="no-margins">40 886,200</h1>
                         <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i>
                         </div>
-                        <small>总收入</small>
+                        <small>借款数</small>
                     </div>
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <span class="label label-info pull-right">全年</span>
-                        <h5>订单</h5>
+                        <span class="label label-info pull-right">月</span>
+                        <h5>平台累计收益</h5>
                     </div>
                     <div class="ibox-content">
                         <h1 class="no-margins">275,800</h1>
                         <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i>
                         </div>
-                        <small>新订单</small>
+                        <small>收益数</small>
                     </div>
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <span class="label label-primary pull-right">今天</span>
-                        <h5>访客</h5>
+                        <span class="label label-primary pull-right">年</span>
+                        <h5>平台累计访客</h5>
                     </div>
                     <div class="ibox-content">
                         <h1 class="no-margins">106,120</h1>
                         <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i>
                         </div>
-                        <small>新访客</small>
+                        <small>注册客户</small>
                     </div>
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <span class="label label-danger pull-right">最近一个月</span>
-                        <h5>活跃用户</h5>
+                        <span class="label label-danger pull-right">月</span>
+                        <h5>平台累计发标</h5>
                     </div>
                     <div class="ibox-content">
                         <h1 class="no-margins">80,600</h1>
                         <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i>
                         </div>
-                        <small>12月</small>
+                        <small>发标数</small>
                     </div>
                 </div>
             </div>
@@ -158,19 +166,19 @@
                         <div class="feed-activity-list">
 							<c:forEach items="${authebDetais}" var="authebDetais">
 								<div class="feed-element">
+									<input type="hidden" value="${authebDetais.adtime}" id="adtime"/>
 	                                <div>
-	                                    <small class="pull-right text-navy">1月前</small>
-	                                    <strong>${authebDetais.uiname}</strong>
+	                                	<strong>${authebDetais.uiname}</strong>
 	                                    <div>${authebDetais.adintroduct}</div>
 	                                    <small class="text-muted">${authebDetais.adtime}</small>
 	                                    <c:set var="adstype" value="${authebDetais.adstype}" /><!-- 标签用于设置变量值和对象属性。 -->
 	                                    <c:if test="${adstype == 1}">
 	                                    	 <small class="pull-right text-navy"><a class="J_menuItem"  href="${pageContext.request.contextPath}/back/toAuthIdCardStatus?adstype=${adstype}&adid=${authebDetais.adid}">
-	                                    		查看详情</a></small>
+	                                    		<u>去处理</u></a></small>
 	                                    </c:if>
 	                                    <c:if test="${adstype ==2}">
 	                                    	 <small class="pull-right text-navy"><a class="J_menuItem" href="${pageContext.request.contextPath}/back/toAuthIdCardStatus?adstype=${adstype}&adid=${authebDetais.adid}">提现认证
-	                                    		查看详情</a></small>
+	                                    		<u>去处理</u></a></small>
 	                                    </c:if>
 	                                </div>
                             	</div>
@@ -179,9 +187,7 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-sm-8">
-
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="ibox float-e-margins">
@@ -590,7 +596,6 @@
                 "IN": 200,
                 "GB": 120,
             };
-
             $('#world-map').vectorMap({
                 map: 'world_mill_en',
                 backgroundColor: "transparent",
@@ -611,8 +616,11 @@
                         normalizeFunction: 'polynomial'
                     }]
                 },
+                
+                
             });
-        });
+        })
+        ;
     </script>
 
     <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
