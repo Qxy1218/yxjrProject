@@ -17,6 +17,8 @@ public class IndexController {
 	@Resource(name="authebDetaisServiceImpl")
 	private AuthebDetaisService authebDetaisService;  //消息
 	
+	
+	
 	@RequestMapping(value="indexall")
 	public String indexall(HttpSession session) {
 		List<AuthebDetais> authebDetais =authebDetaisService.getAllModel();
