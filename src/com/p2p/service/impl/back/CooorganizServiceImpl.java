@@ -67,7 +67,7 @@ public class CooorganizServiceImpl implements CooorganizService{
 		Page<Cooorganiz> page = new Page(pageInfo.getNowpage(),pageInfo.getSize());
 		List<Cooorganiz> list = cooorganizMapper.selectPage(page, pageInfo.getCondition(),cooorganiz);
 		pageInfo.setRows(list);
-		pageInfo.setTotal(list.size());
+		pageInfo.setTotal(page.getTotal());
 	}
 
 	@Override

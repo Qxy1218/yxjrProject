@@ -30,13 +30,13 @@ public class CooorganizController {
 	@RequestMapping(value="seleCooorganizlist")
 	@ResponseBody
 	public PageInfo  selectCooorganizList(Integer page, Integer rows,Cooorganiz cooorganiz) {
-		Integer pageSize = 0;
-		
+		Integer pageSize = (page /rows)+1;
+		Integer count = cooorganizService.cooorganizCount();
 		PageInfo pageInfo = new PageInfo(pageSize,rows);
 		Map<String,Object> map = new HashMap<String,Object>();
 		pageInfo.setCondition(map);
 		cooorganizService.selectPage(pageInfo,cooorganiz);
-		pageInfo.setTotal(pageInfo.getTotal());
+		pageInfo.setTotal(count);
 		return pageInfo;
 	}
 	
