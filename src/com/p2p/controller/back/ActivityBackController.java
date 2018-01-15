@@ -29,12 +29,13 @@ public class ActivityBackController {
 	@RequestMapping("pageActivity")
 	@ResponseBody
 	public PageInfo pageActivity(Integer page,Integer rows,Activity activity) {
-		Integer pageSize =0;
+		Integer pageSize = (page /rows)+1;
+		Integer count = activityService.countActivity();
 		PageInfo pageInfo = new PageInfo(pageSize,rows);
 		Map<String,Object> map = new HashMap<String,Object>();
 		pageInfo.setCondition(map);
 		activityService.pageActivity(pageInfo, activity);
-		pageInfo.setTotal(pageInfo.getTotal());
+		pageInfo.setTotal(count);
 		return pageInfo;
 	}
 	@RequestMapping("insertActivity")
