@@ -128,6 +128,7 @@ public class UserinfoController {
 	 * 发送到邮箱中验证
 	 * */
 	@RequestMapping(value = "sendemail")
+	@ResponseBody
 	public int sendMail(@RequestParam String uphone,@RequestParam String uiemail) {
 		int status = 0;
 		Map<String,Object> map = new HashMap<String,Object>();
