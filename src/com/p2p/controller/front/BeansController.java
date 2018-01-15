@@ -20,12 +20,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.Indexpic;
+import com.p2p.pojo.Notice;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Video;
 import com.p2p.service.back.IndexpicService;
 import com.p2p.service.back.VideoService;
 import com.p2p.service.front.FabiaoService;
 import com.p2p.service.front.IUserService;
+import com.p2p.service.front.NoticeFontSrvice;
 import com.p2p.service.front.SetupnaticeService;
 import com.p2p.util.CodePassage;
 import com.p2p.util.ContextUtils;
@@ -55,6 +57,8 @@ public class BeansController {
 	@Resource(name="videoServiceImpl")
 	private VideoService videoservices;
 	
+	@Resource(name="noticeFontServiceImpl")
+	private NoticeFontSrvice noticeFontService;
 	/**
 	 * 进入首界面(index.jsp)
 	 * @throws ParseException 
@@ -123,6 +127,10 @@ public class BeansController {
 		//视频遍历
 		List<Video> listvideo = videoservices.getAllModel();
 		model.addAttribute("videosp", listvideo);
+		
+		//公告遍历
+		List<Notice> listNotice = noticeFontService.getAllModel();
+		model.addAttribute("listNotice", listNotice);
 		
 		return "views/front/index";
 	}	
