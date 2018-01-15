@@ -66,4 +66,10 @@ public class ContactServiceImpl implements ContactService{
 		
 	}
 
+	@Override
+	public Integer updateContact() {
+		
+		return contactMapper.updateContact();
+	}
+
 }
