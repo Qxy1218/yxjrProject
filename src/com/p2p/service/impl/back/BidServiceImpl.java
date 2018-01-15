@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.p2p.mapper.BidMapper;
 import com.p2p.pojo.Bid;
+import com.p2p.pojo.Fabiao;
 import com.p2p.service.back.BidService;
 import com.p2p.util.PageInfo;
 @Transactional
@@ -65,6 +66,16 @@ public class BidServiceImpl implements BidService{
 	@Override
 	public List<Bid> selectCount(Integer fid) {
 		return bidmapper.selectCount(fid);
+	}
+
+	@Override
+	public List<Bid> selectProductsByPage(Integer startPos, Integer pageSize, String fid) {
+		return bidmapper.selectProductsByPage(startPos, pageSize, fid);
+	}
+
+	@Override
+	public long getProductsCount(String fid) {
+		return bidmapper.getProductsCount(fid);
 	}
 
 }

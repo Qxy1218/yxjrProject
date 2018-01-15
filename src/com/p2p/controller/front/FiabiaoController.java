@@ -10,11 +10,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,17 +25,16 @@ import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.ProjectSelect;
 import com.p2p.pojo.Redmoney;
 import com.p2p.pojo.User;
-import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Uservouch;
 import com.p2p.service.back.BidService;
 import com.p2p.service.back.RedmoneyService;
 import com.p2p.service.back.UservouchService;
 import com.p2p.service.front.FabiaoService;
 import com.p2p.service.front.IUserService;
-import com.p2p.service.front.UserInfoService;
 import com.p2p.util.CodePassage;
 import com.p2p.util.ContextUtils;
 import com.p2p.util.DateUtils;
+import com.p2p.util.Page;
 import com.p2p.util.YieldUtil;
 /**
  * 操作人:汪栋才
@@ -58,10 +59,23 @@ public class FiabiaoController {
 	@Resource(name="IUserServiceImpl")
 	private IUserService iUserService;
 	
+	@RequestMapping("checkUserByBid")
+	@ResponseBody
+	public Integer checkUserByBid(HttpServletRequest req) {
+		Bid bid = new Bid();
+		bid.setBfid(Integer.parseInt(req.getParameter("fid")));
+		bid.setUid(Integer.parseInt(req.getParameter("uid")));
+		Bid bid2 = bidService.getModel(bid);
+		if(bid2!=null) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
 	
 	@RequestMapping("toproject")
-	public String toProject(String pid,Model model,HttpSession session) throws Exception{
-		
+	public String toProject(String pid,Model model,HttpSession session,ProjectSelect select,Integer pageNow) throws Exception{
+		model.addAttribute("pageName", "invset");
 		//取当前时间	
 		Date date=new Date();
 		DateFormat format1 =new SimpleDateFormat("yyyy-MM-dd");
@@ -110,16 +124,26 @@ public class FiabiaoController {
 			 voulist = CodePassage.makeUserVouchList(voulist);
 		 }
 		 //查询投标情况
-		List<Bid> bids = bidService.selectCount(thisfb.getFid());
+		 int totalCount =  (int) bidService.getProductsCount(pid);
+		 
+		 Page page ;  
+		 List<Bid> bids = new ArrayList<Bid>();
+		 if (pageNow != null) {  
+	        page = new Page(totalCount,pageNow);  
+	        bids = this.bidService.selectProductsByPage(page.getStartPos(), page.getPageSize(),pid);  
+	     } else {  
+	        page = new Page(totalCount, 1);  
+	        bids = this.bidService.selectProductsByPage(page.getStartPos(), page.getPageSize(),pid);  
+	     }  
 		List<Bid> mybids = new ArrayList<Bid>();
 		for(int i=0;i<bids.size();i++) {
 			Bid bid = new Bid();
 			User u = new User();
+			u.setUid(bids.get(i).getUid());
+			u = iUserService.getModel(u);
 			if(u==null) {
 				continue;
 			}
-			u.setUid(bids.get(i).getUid());
-			u = iUserService.getModel(u);
 			bid.setUname(u.getUserinfo().getUiname());
 			bid.setBtime(bids.get(i).getBtime());
 			//加密手机号码
@@ -128,6 +152,8 @@ public class FiabiaoController {
 			bid.setBmoney(bids.get(i).getBmoney());
 			mybids.add(bid);
 		}
+		
+		model.addAttribute("page",page);
 		model.addAttribute("mybids", mybids);
 		model.addAttribute("thisfb", thisfb);
 		model.addAttribute("redlist", redlist);

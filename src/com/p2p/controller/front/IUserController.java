@@ -275,8 +275,11 @@ public class IUserController {
 		 * */
 		@RequestMapping(value="/userLogin")
 		@ResponseBody
-		public String mnlogin(@RequestParam String user_name,@RequestParam String pass_word,String issvae,HttpSession session,HttpServletResponse response) throws Exception {
-		
+		public String mnlogin(HttpSession session,HttpServletResponse response,HttpServletRequest request) throws Exception {
+			String user_name = request.getParameter("user_name");
+			String pass_word = request.getParameter("pass_word");
+			String issvae = request.getParameter("issvae");
+			
 			ObjectMapper mapper = new ObjectMapper(); //转换器  
 			Map<String, Object> map = new HashMap<String, Object>();
 			
@@ -318,16 +321,19 @@ public class IUserController {
 				 * 如果用户选择了保存账号密码
 				 * 保存进cookies
 				 * */
-				if(issvae.equals("1")) {
-					Cookie c1 = new Cookie("yxjruser",user2.getUphone());
-					c1.setMaxAge(5*365*24*60*60);
-					c1.setPath("/");
-					Cookie c2 = new Cookie("yxjrpassword",user2.getUpassword());
-					c2.setMaxAge(5*365*24*60*60);
-					c2.setPath("/");
-					response.addCookie(c1);
-					response.addCookie(c2);
+				if(issvae!=null && !issvae.equals("")) {
+					if(issvae.equals("1")) {
+						Cookie c1 = new Cookie("yxjruser",user2.getUphone());
+						c1.setMaxAge(5*365*24*60*60);
+						c1.setPath("/");
+						Cookie c2 = new Cookie("yxjrpassword",user2.getUpassword());
+						c2.setMaxAge(5*365*24*60*60);
+						c2.setPath("/");
+						response.addCookie(c1);
+						response.addCookie(c2);
+					}
 				}
+				
 				//证明有值,登入成功
 				map.put("status",1);
 			}else {

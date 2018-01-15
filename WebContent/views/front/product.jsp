@@ -20,12 +20,20 @@
 	    <script type="text/javascript" src="/Finances/statics/front/statics/home/js/jquery.min.js"></script>
 	     
 	    <script type="text/javascript" src="/Finances/statics/front/statics/newcommon/js/common.js"></script>
+		<!-- 弹出层美化 -->
+		
+		<script type="text/javascript" src="/Finances/statics/front/js/ui.js" ></script>
+		<link rel="stylesheet"  href="/Finances/statics/front/css/style.css" ></link>
 		
 		<link rel="stylesheet" href="/Finances/statics/front/statics/home/css/newPage.css" />
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/home2/css/m2-main.css">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/home2/css/m2-loginModify.css">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/userCenter.css">
 	  
+	  	<!-- 支付密码 -->
+		<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/payPwd.js"></script> 
+	
+	  	
 	  	<!-- 图形验证码 -->
 		<script src="/Finances/statics/front/js/gVerify.js"></script>
 	  	          
@@ -52,7 +60,18 @@
 	            display:none;
 	        }
 	    </style>
-		
+		<style type="text/css">
+			.box{width: 100%;margin:0rem auto;display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;-webkit-flex-wrap: wrap;-ms-flex-wrap: wrap;flex-wrap: wrap;}
+			.box-items {-ms-flex-align: center;-webkit-align-items: center;-webkit-box-align: center;align-items: center;}
+			.flex-1{display: block;-webkit-box-flex: 1;-webkit-flex: 1;-ms-flex: 1;flex: 1;width: 0;-webkit-flex-basis: 0;-ms-flex-preferred-size: 0;flex-basis: 0;}
+			.pwd-control {text-align: center; width: 200px;}
+			.pwd-control .item {margin: 0 0.1rem;position: relative;}
+			.pwd-control .item.circle:after {content: "";width: 8px;height: 8px;background: #000;border-radius: 50%;position: absolute;top: 50%;left: 50%;margin-top: -4px;margin-left: -4px;}
+			.pwd-control .normal input {color: #000;}
+			.pwd-control input {display: block;width: inherit;border-radius: 3px;text-align: center;border: 1px solid #c79f62;width: 100%;color: #fff;line-height: 35px}
+			.pwd-control input:focus {box-shadow: 0px 0px 20px #c79f62;}
+			.pwd-control .box {padding: 0rem;}
+		</style>
 		
 	</head>
 	<body>
@@ -75,54 +94,29 @@
     	<script type="text/javascript" src="/Finances/statics/front/statics/home2/js/jquery.knob.js"></script>
 		
 		<body style="background-color:#fff;">
-		<!-- 注册托管弹窗start -->
+		<!--  交易密码弹出框 -->
 		<div class="m2-truPop" style="display: none;">
 		    <div class="m2-turPop-close"></div>
 		    <div class="m2-truPop-radius">
 		        <div class="m2-regist-inputarea m2-regist-sucess">
-		            <!--<h4>开通托管账户</h4>-->
-		            <div class="m2-truPop-det">
-		
-		                尊敬的用户：<br>                    <span id="openaccounttext"></span>
-		            </div>
-		            <table cellpadding="0" cellspacing="0" border="0">
-		                <tbody>
-		                <tr>
-		                    <td><i class="m2-regist-usericon"></i>真实姓名</td>
-		                    <td class="m2-regist-tdInput">
-		                        <input type="text" class="m2-regist-username" placeholder="请输入真实姓名" id="realname">
-		                        <span class="m2-regist-errMsg"></span>
-		                    </td>
-		                </tr>
-		                <tr>
-		                    <td><i class="m2-regist-idnumber"></i>身份证号</td>
-		                    <td class="m2-regist-tdInput">
-		                        <input type="text"  class="m2-regist-username" placeholder="请输入身份证号" id="idcard">
-		                        <span class="m2-regist-errMsg"></span>
-		                    </td>
-		                </tr>
-		                <tr>
-		                    <td><i class="m2-regist-cardnumber"></i>手机号</td>
-		                    <td class="m2-regist-tdInput">
-		                        <span class="m2-reg-telSpan" style=""><span>13737301354</span></span>
-		                        <span class="m2-regist-errMsg" style="color:#aaa;top:45px;">您的手机号需与开卡时手机号一致</span></td>
-		                </tr>
-		                <tr>
-		                    <td><i class="m2-regist-cardnumber"></i>借记卡</td>
-		                    <td class="m2-regist-tdInput">
-		                        <input type="text" class="m2-regist-username" placeholder="请输入借记卡卡号" id="bankcardid">
-		                        <span class="m2-regist-errMsgcard"><span></span><a href="/register-banklist" target="_blank">查看支持银行</a></span>
-		                    </td>
-		                </tr>
-		
-		                </tbody></table>
-		            <div class="m2-trust-btn">
-		                <input type="checkbox" checked="checked" id='service'>我同意<b><a href="/invest-c1" target="_blank">《徽商银行网络交易资金账户服务三方协议》</a></b>
-		            </div>
-		            <div class="m2-regist-btn m2-regist-quit">
-		                <a class="m2-regist-look" href="#">我先看看</a>
-		                <a href="#" id="openbank">立即支付</a>
-		            </div>
+		        <center>
+		        	<font style="color:#000000;font-size: 80px;">￥<span id="inputmoney">20000.00</span></font>
+			            <div class="modal-body">
+			           	请输入支付密码：
+					    <div class="pwd-control" id="payPwd">
+					        <div class="box">
+					         	
+					            <div class="flex-1 item"><input maxlength="1" type="tel"></div>
+					            <div class="flex-1 item"><input maxlength="1" type="tel"></div>
+					            <div class="flex-1 item"><input maxlength="1" type="tel"></div>
+					            <div class="flex-1 item"><input maxlength="1" type="tel"></div>
+					            <div class="flex-1 item"><input maxlength="1" type="tel"></div>
+					            <div class="flex-1 item"><input maxlength="1" type="tel"></div>
+					        </div>
+					        <input type="hidden" name="uidealpwd" id="uidealpwd">
+		    			</div>
+					</div>
+				</center>		            
 		        </div>
 		    </div>
 		</div>
@@ -151,8 +145,11 @@
     <div class="m2-detConfirm-main" id="msgcontent">
 
     </div>
+    
+    
+    <!-- 支付详情框 -->
     <div class="m2-detConfirm-btn" id="msgbtn2" style="display:none;width:350px;">
-        <a href="javascript:void(0)" class="m2-detConfirmbtn-confirm" onclick="$('#invest_form').submit();" style="float:right;margin-right:50px;">确认投资</a>
+        <a href="javascript:void(0)" id="qrtz" class="m2-detConfirmbtn-confirm" style="float:right;margin-right:50px;">确认投资</a>
         <a href="javascript:void(0)" class="m2-detConfirmbtn-cancle" style="float:left;margin-left:62px;">取消</a>
         <div style="clear:both;"></div>
         <div style="margin-top: 10px;">
@@ -166,6 +163,8 @@
             </div>
         </div>
     </div>
+    
+    
     <div class="m2-detConfirm-btn" id="msgbtn3" style="display:none">
         <!--            <a href="#?chargereturnurl=/invest-borrownew-id-moxOeTwTZaOw8TY79g.shtml" target="_blank" class="m2-detConfirmbtn-confirm" style="float:right;">立即支付</a>-->
         <a href="javascript:void(0)" onclick="rechargeInvest();" class="m2-detConfirmbtn-confirm" style="float:right;">立即支付</a>
@@ -223,7 +222,7 @@
             <!--<a href="#">如何获取&raquo;</a>-->
         </div>
         <div class="m2-detHidemain-red">
-        	<c:if test="${fabiaolist==null || fn:length(redlist) == 0}">
+        	<c:if test="${redlist==null || fn:length(redlist) == 0}">
 				<center>
 					<img src="/Finances/statics/front/images/nodata.png" style="width: 200px;height: 150px;">	
 				</center>
@@ -362,7 +361,7 @@
 	        <div class="m2-detItemlef">
 	            <div class="m2-detItemlef-img">
 	                <i class="m2-detItemlef-newIcon"></i>              
-	                <img  src="${thisfb.fimage}" alt="${thisfb.ftitle}" width='256' height="200">
+	                <img  src="${pageContext.request.contextPath}${thisfb.fimage}" alt="${thisfb.ftitle}" width='256' height="200">
 	
 	                <p class="m2-detItemlef-imgSha" style="margin-top: 0">
 	                    <script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
@@ -684,7 +683,7 @@
 		                <span class="m2-detReccon-sum">投资金额</span>
 		                <span class="m2-detReccon-tim">投资时间</span>
 		            </li>
-		            <li class="m2-detRecitem">
+		            <li class="m2-detRecitem" style="height: 200px;">
 			            <c:if test="${mybids==null || fn:length(mybids) == 0}">
 			                 <span style='width: 90%;'>暂无数据</span> 
 			            </c:if>
@@ -695,120 +694,64 @@
 			                <span class="m2-detReccon-tim">${bids.btime}</span>
 			           	</c:forEach>
 		            </li>
+		        <div class="m2-newListpage-con" style="padding-top:5px;">
+		            <div class="m2-newListpage">
+		                <div class="m2-news-pages" style="padding-right:40px;margin:12px auto;text-align: center;">
+	
+				     <c:if test="${fn:length(mybids) > 0}">
+				               <a href="javascript:void(0);" onclick="window.location.href='/Finances/toproject?pid=${thisfb.fid}&pageNow=1'" class="m2-pages-num m2-page-prev">&lt;</a>					
+							<c:choose>
+								<c:when test="${page.pageNow - 1 > 0}">
+									<a href="javascript:void(0);" onclick="window.location.href='/Finances/toproject?pid=${thisfb.fid}&pageNow=${page.pageNow - 1}'"  class="m2-pages-num m2-page-sel"> - </a>
+								</c:when>
+								<c:when test="${page.pageNow - 1 <= 0}">
+									<a href="javascript:void(0);" onclick="window.location.href='/Finances/toproject?pid=${thisfb.fid}&pageNow=1'"  class="m2-pages-num m2-page-sel"> - </a>
+								</c:when>
+							</c:choose>
+							<c:choose>
+								<c:when test="${page.totalPageCount==0}">
+									<a href="javascript:void(0);" onclick="window.location.href='/Finances/toproject?pid=${thisfb.fid}&pageNow=${page.pageNow}'"   class="m2-pages-num m2-page-sel"> + </a>
+								</c:when>
+								<c:when test="${page.pageNow + 1 < page.totalPageCount}">
+									<a href="javascript:void(0);" onclick="window.location.href='/Finances/toproject?pid=${thisfb.fid}&pageNow=${page.pageNow+1}'"  class="m2-pages-num m2-page-sel"> + </a>
+								</c:when>
+								
+								<c:when test="${page.pageNow + 1 >= page.totalPageCount}">
+									<a href="javascript:void(0);" onclick="window.location.href='/Finances/toproject?pid=${thisfb.fid}&pageNow=${page.totalPageCount}'"  class="m2-pages-num m2-page-sel"> + </a>
+								</c:when>
+							</c:choose>
+							<c:choose>
+								<c:when test="${page.totalPageCount==0}">
+									<a href="javascript:void(0);" onclick="window.location.href='/Finances/toproject?pid=${thisfb.fid}&pageNow=${page.pageNow}'" title="尾页" class="m2-pages-num m2-page-next">&gt;</a>
+								</c:when>
+								<c:otherwise>
+									<a href="javascript:void(0);" onclick="window.location.href='/Finances/toproject?pid=${thisfb.fid}&pageNow=${page.totalPageCount}'" title="尾页" class="m2-pages-num m2-page-next">&gt;</a>
+								</c:otherwise>
+							</c:choose>
+						</c:if>		
+		          </div>
+		          </div>
+		          </div>  
 		        </ul>
+		  
+		        
+		        
 		    </div>
 		    <div class="m2-newListpage-con">
 		        <div class="m2-newListpage">
 		            <div class="m2-news-pages" style="padding-right:40px;margin:12px auto;"></div>
 		        </div>
 		    </div>
+			<!-- 投资的表单 -->
+		    <form method="post" action="${pageContext.request.contextPath}/investproject" style="display: none;" id="invest_form">
+		      	<input name="userid" id="userid">
+		        <input name="ordermoney" id="ordermoney">
+		        <input name="investmoney" id="investmoney" >
+		        <input name="projectid" id="projectid" >
+		        <input name="strart" id="strart" >
+		        <input name="end" id="end" >
+		    </form>
 		
-		    <form action="/cupdata-invest-invest" style="display: none;" id="invest_form">
-		        <input name="T_borrow_id" id="form_borrow_id" value='moxOeTwTZaOw8TY79g'>
-		        <input name="transfer_invest_num" id="form_invest_num">
-		        <input name="reward_use" id="form_reward_money">
-		        <input name="enableRobBidding" id="form_enableRobBidding" value="0">
-		        <input name="reward_id" id="form_reward_id">
-		        <input type="hidden" name="__hash__" value="35764fa33449727c3a110ca0a7297eea_e88eca763bffd24b1f72966e02b21810" /></form>
-		
-		    <form action="/cupdata-capital-chargeAndInvest" style="display: none;" id="charge_invest_form">
-		        <input name="amount" id="charge_amount">
-		        <input name="borrow_id" id="charge_borrow_id" value='moxOeTwTZaOw8TY79g'>
-		        <input name="invest_num" id="charge_invest_num">
-		        <input name="reward_use" id="charge_reward_money">
-		        <input name="reward_id" id="charge_reward_id">
-		        <input type="hidden" name="__hash__" value="35764fa33449727c3a110ca0a7297eea_e88eca763bffd24b1f72966e02b21810" /></form>
-		
-		    <script>
-		        //投资记录分页
-		        var borrowid = 'moxOeTwTZaOw8TY79g';
-		        var page = 0;  			//当前页
-		        var totalpage = 0;  	//总页数
-				//注释分页
-		        //pageclick(borrowid, 1);
-		
-		        function pager() {
-		
-		            var n1 = 3;								//前后保留n1项，均分剩余页码，保留最前最后页
-		            var n2 = 3;								//当前页两旁保留n2项
-		            page = Number(page);
-		            totalpage = Number(totalpage);
-		            var pages = '<a onclick="pageclick(\'' + borrowid + '\',' + (page - 1 > 0 ? page - 1 : 1) + ')" class="m2-pages-num m2-page-prev">&lt;</a>';
-		    		
-		            if (totalpage <= 1 || page > totalpage) {
-		                $('.m2-news-pages').hide();
-		            } else {
-		                $('.m2-news-pages').show();
-		
-		                if (page <= n1 + n2 + 1) {
-		                    for (var i = 1; i < page; i++) {
-		                        pages += addonepage(i, false);
-		                    }
-		                } else {
-		                    for (var i = 0; i < n1; i++) {
-		                        var a = 1 + Math.floor((page - n2 - 1) * i / n1);
-		                        pages += addonepage(a, false);
-		                    }
-		                    for (var i = page - n2; i < page; i++) {
-		                        pages += addonepage(i, false);
-		                    }
-		                }
-		                pages += addonepage(page, true);
-		
-		                if (totalpage - page <= n1 + n2) {
-		                    for (var i = page + 1; i <= totalpage; i++) {
-		                        pages += addonepage(i, false);
-		                    }
-		                } else {
-		                    for (var i = page + 1; i <= page + n2; i++) {
-		                        pages += addonepage(i, false);
-		                    }
-		                    for (var i = 1; i <= n1; i++) {
-		                        var b = page + n2 + Math.ceil((totalpage - page - n2) * i / n1);
-		                        pages += addonepage(b, false);
-		                    }
-		                }
-		                pages += '<a onclick="pageclick(\'' + borrowid + '\',' + (page + 1 > totalpage ? totalpage : page + 1) + ')" class="m2-pages-num m2-page-next">&gt;</a>';
-		                $('.m2-news-pages').html(pages);
-		            }
-		        }
-		
-		        function addonepage(index, iscurrent) {
-		            var pageclass = 'm2-page-unsel';
-		            if (iscurrent) {
-		                pageclass = 'm2-page-sel';
-		            }
-		            return '<a onclick="pageclick(\'' + borrowid + '\',' + index + ')" class="m2-pages-num ' + pageclass + '">' + index + '</a>';
-		        }
-		
-		        function pageclick(bid, index) {
-		            $.ajax({
-		                url: 'home-invest-investlogajax',
-		                type: 'GET',
-		                data: {
-		                    id: bid,
-		                    page: index
-		                },
-		                success: function (data) {
-		                    var obj = eval('(' + data + ')');
-		                    page = obj['page'];
-		                    totalpage = obj['totalpage'];
-		                    pager();
-		                    if (!(!obj['list'] && index == 1)) {
-		                        $('.m2-detRecitem').remove();
-		                    }
-		                    for (var i in obj['list']) {
-		                        var li = '<li class="m2-detRecitem">';
-		                        li += '<span class="m2-detReccon-user">' + obj['list'][i]['user_name'] + '</span>';
-		                        li += '<span class="m2-detReccon-tel">' + obj['list'][i]['user_phone'] + '</span>';
-		                        li += '<span class="m2-detReccon-sum" style="color:#f5944f;">' + obj['list'][i]['investor_capital'] + '元</span>';
-		                        li += '<span class="m2-detReccon-tim">' + obj['list'][i]['invest_time'] + '</span></li>';
-		                        $('#investlogul').append(li);
-		                    }
-		                }
-		            });
-		        }
-		    </script>
 		</div>
 		</div>
 		<script type="text/javascript">
@@ -850,6 +793,96 @@
 		
 		<!------------------------------------------------------------------------------------------------------------------>
 		
+		<script>
+			$("#qrtz").click(function(){
+				
+				$("#msgbtn2").hide();
+				//$("#cstc").show();
+				var invest = $('#invest_money').val();
+				$('#inputmoney').html('');
+				$('#inputmoney').html(invest);
+				showOpenDialog();
+				$('#invest_money').val(invest);
+			});
+			/* 
+			$("#cstc").click(function(){
+				
+			}); */
+			$(function(){
+				var issave = 0;
+				$("#payPwd").payPwd({
+					max:6,
+					type:"password",
+					callback:function(arr) {
+						//console.log(arr);
+						//alert('密码是'+arr);
+						//现在判断是否与用户密码相同
+						$.ajax({
+		           	          url:"${pageContext.request.contextPath}/user/getDealPwd",
+		           	          type:"post",
+		           	          data: {uidealpwd:arr,uid:uid},
+		           	          success:function(data){
+		           	        	//后台返回int类型的数据
+		           					if(data>0){
+		           						//mizhu.toast('投资成功');
+		           						//给from表单赋值
+		           						 $('#userid').val(uid);
+		           						 $('#ordermoney').val(reward_type+','+reward_id);
+		           						 $('#projectid').val(borrow_id);
+		           						 $('#strart').val('${thisfb.fhuanstat}');
+		           						 $('#end').val('${thisfb.fhuanend}');
+		           						 var invest = $('#invest_money').val();
+		           						 $('#investmoney').val(invest);
+										//提交form表单	
+		           						//$('#invest_form').submit();
+		           						issave = 1;
+		           					}else{
+		           						mizhu.toast('密码错误');
+		           					}
+		           	          },
+		           	          error:function(e){
+		           	        	mizhu.toast('错误');
+		           	          }
+		                 });	
+					}
+				})
+				
+				//投资实现
+				if(issave==1){
+					 var form = new FormData(document.getElementById("invest_form"));
+					   	$.ajax({
+			       	          url:"${pageContext.request.contextPath}/investproject",
+			       	          type:"post",
+			       	          data:form,
+			       	          processData:false,
+			       	          contentType:false,
+			       	          success:function(data){
+			       	        	//后台返回int类型的数据
+			       					if(data>0){
+			       						//新增成功，下面是后台框架的提示
+			       						mizhu.toast('投资成功');
+			       						window.location.reload();
+			       					}else{
+			       						//新增失败
+			       						mizhu.toast('投资失败');
+			       					}
+			       	          },
+			       	          error:function(e){
+			       	        	mizhu.toast('错误');
+			       	          }
+			             });
+				}
+			})
+		</script>
+		
+		<!-- <script type="text/javascript">
+	    	function openzf(){
+	    		 $('#myModal').modal('hide');
+	    		 var invest = $('#invest_money').val();
+	    		 $('#inputmoney').html(invest);
+	    	}
+	    </script> -->
+		
 		<!-- 奖励金，邀请码 ，红包相关-->
 		<script type="text/javascript">
 		 //奖励金使用限制
@@ -880,7 +913,7 @@
 	    //红包加息券使用条件
 	    var reward_condition = 0;
 	    //徽商账户余额
-	    var account_money = Number("${sessionScope.user.ubalance}");
+	    var account_money = "${sessionScope.user.ubalance}";
 	    //alert(${sessionScope.user.ubalance});
 	    //账户奖励金余额
 	    var account_reward = Number("0");
@@ -929,6 +962,12 @@
 	    });
 	    //投资金额处理
 	    function investValidation(invest, flag) {
+	    	//var invest = $('#invest_money').val();
+	    	if(account_money < invest_limit){
+	    		//alert("不能小于最小投资钱数");
+	    		mizhu.toast('投资钱数低于最小投资钱数');
+	    		return;
+	    	}
 	        if (!isNaN(invest)) {
 	            var im = Number(invest);
 	            if (left_money > 0 && im > left_money) {
@@ -959,9 +998,9 @@
 	        $('#invest_money1').val(invest_money);
 	        $('#invest_money2').html(invest_money + '元');
 	        $('#invest_money3').html(invest_money + '元');
-	        alert('天数'+days);
-	        alert('项目利率'+interest_rate);
-	        alert('投资钱数'+invest_money);
+	        //alert('天数'+days);
+	        //alert('项目利率'+interest_rate);
+	        //alert('投资钱数'+invest_money);
 	        //计算收益
 	        var otitm = Math.round(days * interest_rate * invest_money / 365) / 100;
 	        $('#interest_money').text(otitm + '元');
@@ -1036,7 +1075,8 @@
 	    //全部投资
 	    $('.invest_all').click(function () {
 	    	//投资金额处理
-	        investValidation(account_money, true);
+	    	//alert(account_money);
+	        investValidation(account_money, false);
 	    });
 	    //收益计算器-确认返回
 	    $('.m2-tranHidenum-btn').click(function () {
@@ -1177,33 +1217,50 @@
 	            window.location.href = '${pageContext.request.contextPath }/tologin';
 	            return;
 	        }
-	        if (cardnbr) {
-	            if (!cardbind) {
+	    	//var invest = $('#invest_money').val();
+            if(account_money < invest_limit){
+            	mizhu.toast('投资钱数低于最小投资钱数');
+            	return;
+            }
+	        
+	        //判断用户是否已投资
+	      	 	$.ajax({
+	           	          url:"${pageContext.request.contextPath}/checkUserByBid",
+	           	          type:"post",
+	           	          data: {fid:borrow_id,uid:uid},
+	           	          success:function(data){
+	           	        	//后台返回int类型的数据
+	           					if(data>0){
+	           						mizhu.toast('您已投资过此标');
+	           					}else{
+	           						confirmDialog('invest');
+	           					}
+	           	          },
+	           	          error:function(e){
+	           	        	alert('错误');
+	           	          }
+	                 });	
+	        
+	          /*   if (!cardbind) {
 	                confirmDialog('bindcard');
 	                return;
-	            }
-	            if(setword_status!="1"){
+	            } */
+	            //设置交易密码
+	         	/*  if(setword_status!="1"){
 	                confirmDialog('steword');
 	                return;
-	            }
+	            }  */
+	          
+	            
 	            //投资金额处理
-	            investValidation(invest_money, true);
+	            investValidation(invest_money, false);
 	            if (invest_money - reward_money > account_money && reward_money > 0) {
 	                confirmDialog('charge');
 	            } else if (invest_money - reward_redpacket_money > account_money && reward_redpacket_money > 0) {
 	                confirmDialog('charge');
 	            } else if (invest_money > account_money && reward_money == 0 && reward_redpacket_money == 0) {
 	                confirmDialog('charge');
-	            } else {
-	                $('#form_invest_num').val(Math.floor(invest_money / invest_limit));
-	                $('#form_reward_money').val(reward_money);
-	                $('#form_reward_id').val(reward_id);
-	                confirmDialog('invest');
-	                //$('#invest_form').submit();
 	            }
-	        } else {
-	            showOpenDialog();
-	        }
 	    });
 	    // 确认弹窗
 	    function confirmDialog(action) {
@@ -1225,17 +1282,18 @@
 	            $('#msgbtn3').show();
 	        } else if (action == 'invest') {
 	            $('#msgtitle').text('投资确认');
+	            var invest = $('#invest_money').val();
 	            if (input_invest_money % invest_limit > 0) {
-	                content += '<p class="m2-detConfirm-nor">投资金额应为' + invest_limit + '的整倍数</p>';
+	                content += '<p class="m2-detConfirm-nor">投资金额应为' + invest_limit + '以上</p>';
 	            }
 	            if (input_invest_money < invest_limit * invest_limit_num) {
 	                content += '<p class="m2-detConfirm-nor">最小投资金额为' + invest_limit * invest_limit_num + '元</p>';
 	            }
 	            content += rewardUseDialog();
-	            if(borrow_flag){
-	                content += '<p class="m2-detConfirm-nor">您确认投资 <span style="color:#f48a3f;">' + invest_money + '</span>元吗?<span style="color:#fa533d;">（每位新用户仅限投资一次新手标。)</span></p>';
+	            if(borrow_flag==1){
+	                content += '<p class="m2-detConfirm-nor">您确认投资 <span style="color:#f48a3f;">' + invest + '</span>元吗?<span style="color:#fa533d;">（每位新用户仅限投资一次新手标。)</span></p>';
 	            }else{
-	                content += '<p class="m2-detConfirm-nor">您确认投资 <span style="color:#f48a3f;">' + invest_money + '</span>元吗?</p>';
+	                content += '<p class="m2-detConfirm-nor">您确认投资 <span style="color:#f48a3f;">' + invest + '</span>元吗?</p>';
 	            }
 	
 	            $('#msgcontent').html(content);
@@ -1349,8 +1407,8 @@
 	            $('.m2-detialsAct').hide();
 	        }
 	    });
+	    
 		</script>
-		
 		
 		
 		<!-- 托管，卡，开户相关 -->

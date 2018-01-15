@@ -129,7 +129,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     		根据f_status做升序排练
     	 -->
     	select * from fabiao where 
-    		f_status not in(4,5)
+    		f_status not in(4,5,6)
     		<if test="type!=null">and f_part=#{type}</if>
     	   	order by f_status;
     </select>
@@ -228,7 +228,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     <select id="selectProductsByPage" resultMap="BaseResultMap">
     	 select * from fabiao where 
-    		f_status not in(4,5)
+    		f_status not in(4,5,6)
     		<if test="fpart!=null">and f_part=#{fpart}</if>
     		and f_endtime >=now()
     	   	order by f_status limit #{startPos},#{pageSize}

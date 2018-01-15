@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.p2p.base.IBaseDao;
 import com.p2p.pojo.Bid;
+import com.p2p.pojo.Fabiao;
 
 /**
  * 关于投标的后台操作
@@ -21,4 +22,20 @@ public interface BidMapper extends IBaseDao<Integer, Bid>{
 			abstract Integer contactcount();
 			//查询投标情况
 			List<Bid> selectCount(@Param("fid")Integer fid);
+			
+			
+			/** 
+			 * 使用注解方式传入多个参数，用户产品分页， 根据标id查询
+			 * @param page 
+			 * @param 标id 
+			 * @return startPos},#{pageSize}  
+			 */  
+			public List<Bid> selectProductsByPage(@Param(value="startPos") Integer startPos,@Param(value="pageSize")Integer  pageSize,@Param(value="fid")String fid);  
+			  
+			/** 
+			 * 取得产品数量信息，
+			 * @return 
+			 */  
+			public long getProductsCount(@Param(value="fid")String fid);  
+		
 }

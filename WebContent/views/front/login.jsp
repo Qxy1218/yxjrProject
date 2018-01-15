@@ -108,6 +108,8 @@
             window.location.href="/Index";
         })
     </script>
+   	<!-- 图形验证码 -->
+		<script src="/Finances/statics/front/js/gVerify.js"></script>
 </head>
 <body>
 	<!--公共提示框start-->
@@ -291,6 +293,7 @@
 		        $('.m2-loginEwm2').toggle();
 		    });
 		</script>
-		
+		 <!-- 实现右侧登入注册功能 -->
+		<script src="/Finances/statics/front/js/sidebarlogreg.js"></script>
     </body>
 </html>

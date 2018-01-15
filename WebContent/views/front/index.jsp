@@ -767,7 +767,11 @@
 	                        <div class="mo2-indLogcod-rig"><img src="/Finances/statics/front/statics/home2/images/Index-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='Index-VerifyCode.png?time='+Math.random();void(0);" alt="点击刷新验证码"></div>
 	                    </div>
 	                      -->
-	                    <div class="mo2-indLog-forget"><a href="forget.html">忘记密码?</a></div>
+	                    <div class="mo2-indLog-forget">
+	                    		记住密码：<input type="checkbox" id="issvae" checked="">
+	                    		 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                    		 <a href="forget.html">忘记密码?</a>
+	                    	</div>
 	                    
 	                    <div class="mo2-indReg-btn" style="margin-top: 20px;">
 	                        <a class="mo2-indRegbtn-able" onclick="login();">登录</a>

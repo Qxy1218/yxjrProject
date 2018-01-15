@@ -1,6 +1,7 @@
 //图形验证码
-var verifyCode = new GVerify("reverifyCode");
-
+if ( $("#reverifyCode").length > 0 ) { 
+	var verifyCode = new GVerify("reverifyCode");
+}
 $(function(){
     // 勾选注册用户协议
     $('#reverifyCode').click();
@@ -380,8 +381,16 @@ $('#pass_word').blur(function(){
 });
 //轮播图登入
 function login(){
-    var p = makevar(['user_name','pass_word']);
+    var p = makevar(['user_name','pass_word','issvae']);
     var canSubmit = true;
+    p.issvae =2;
+	if($('#issvae').is(':checked')) {
+		//选择
+		p.issvae = 1;
+    }else{
+    	//未选择
+    	p.issvae = 2;
+    }
     if($('#user_name').val()==""){
         $('#r_usernameMain').html('用户名不能为空');
         $('#w_usernameMain').show();

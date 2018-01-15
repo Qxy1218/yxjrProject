@@ -86,7 +86,7 @@ public class Fabiao implements Serializable{
 	private Integer fbidstatus; //投标状态 0未满 1已满
 
 	@TableField("f_status")
-	private Integer fstatus; //发布状态 0隐藏(默认) 1募集标  2还款标  3结清标 4流标  5废标
+	private Integer fstatus; //发布状态 0隐藏(默认) 1募集标  2还款标  3结清标 4流标  5废标  6待审核标
 
 	@TableField("f_security")
 	private String fsecurity; //担保措施(text)

@@ -54,15 +54,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</insert>
  	 <!-- 修改红包-->
     <update id="update" parameterType="com.p2p.pojo.Redmoney" >
-        UPDATE redmoney SET
-        	u_id = #{uid},
-			r_image=#{rimage},
-			r_endtime=#{rendtime},
-			r_stardtime =#{rstardtime},
-			r_money =#{rmoney},
-			r_start =#{rstart},
-			r_condition =#{rcondition}
-			
+        UPDATE redmoney 
+        <trim prefix="set" suffixOverrides=",">
+        	<if test="uid!=null">u_id = #{uid},</if>
+			<if test="rimage!=null">r_image=#{rimage},</if>
+			<if test="rendtime!=null">r_endtime=#{rendtime},</if>
+			<if test="rstardtime!=null">r_stardtime =#{rstardtime},</if>
+			<if test="rmoney!=null">r_money =#{rmoney},</if>
+			<if test="rstart!=null">r_start =#{rstart},</if>
+			<if test="rcondition!=null">r_condition =#{rcondition},</if>
+		</trim>	
 		WHERE r_id=#{rid}
     </update>
      <!-- 删除 -->
@@ -97,4 +98,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from redmoney WHERE u_id=#{uid} and r_endtime<=now();
 	]]>
 	</select>
+	<select id="getModel" parameterType="com.p2p.pojo.Redmoney" resultMap="BaseResultMap">
+		select * from redmoney
+		<where>
+			1=1
+			<if test="rid!=null">and r_id = #{rid}</if>
+			<if test="uid!=null">and u_id = #{uid}</if>
+			<if test="rimage!=null">and r_image=#{rimage}</if>
+			<if test="rendtime!=null">and r_endtime=#{rendtime}</if>
+			<if test="rstardtime!=null">and r_stardtime =#{rstardtime}</if>
+			<if test="rmoney!=null and rmoney!='0.0'.toString()">and r_money =#{rmoney}</if>
+			<if test="rstart!=null">and r_start =#{rstart}</if>
+			<if test="rcondition!=null">and r_condition =#{rcondition}</if>
+		</where>
+	</select>
+	
 </mapper>

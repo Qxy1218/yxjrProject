@@ -1,5 +1,7 @@
 //图形验证码
-var verifyCode = new GVerify("reverifyCodeRight");
+if ( $("#reverifyCodeRight").length > 0 ) { 
+	var verifyCode = new GVerify("reverifyCodeRight");
+}
 
 $(function(){
     // 是否存在用户
@@ -126,8 +128,17 @@ function registerRight(){
 
 //登录方法
 function loginRight(){
-    var p = makevar(['user_nameRight','pass_wordRight',]);
+    var p = makevar(['user_nameRight','pass_wordRight','issvae']);
     var canSubmit = true;
+    var issvae =2;
+	//alert($('#issvae').is(':checked'));
+	if($('#issvae').is(':checked')) {
+		//选择
+		var issvae = 1;
+    }else{
+    	//未选择
+    	var issvae = 2;
+    }
 	if($('#user_nameRight').val()==""){
         $("#user_nameRight").shake(2, 10, 400);
    	  	$("#user_nameRight").val("");
@@ -144,7 +155,7 @@ function loginRight(){
             $('#w_passwordRight').hide();
             var user_name = $("#user_nameRight").val();
             var pass_word = $("#pass_wordRight").val();
-			postData("/Finances/user/userLogin",{'user_name':user_name,'pass_word':pass_word},function(d){
+			postData("/Finances/user/userLogin",{'user_name':user_name,'pass_word':pass_word,'issvae':issvae},function(d){
     			if(d.status==0){
     				$("#pass_wordRight").shake(2, 10, 400);
     	    	   	$("#pass_wordRight").val("");
