@@ -52,7 +52,7 @@ public class RecordServiceImpl implements RecordService{
 		Page<Record> page = new Page<>(pageInfo.getNowpage(),pageInfo.getPagesize());
 		List<Record> list = recordMapper.pageRecord(page, pageInfo.getCondition(), record);
 		pageInfo.setRows(list);
-		pageInfo.setTotal(list.size());
+		pageInfo.setTotal(page.getTotal());
 	}
 
 	@Override
