@@ -57,7 +57,7 @@ public class NoticeTypeServiceImpl implements NoticeTypeService{
 		Page page = new Page<>(pageInfo.getNowpage(),pageInfo.getPagesize());
 		List<Noticetype> list = noticeTypeMapper.pageNoticeType(page, pageInfo.getCondition(), noticetype);
 		pageInfo.setRows(list);
-		pageInfo.setTotal(list.size());
+		pageInfo.setTotal(page.getTotal());
 	}
 
 	@Override
