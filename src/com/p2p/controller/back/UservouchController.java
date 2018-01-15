@@ -24,12 +24,13 @@ public class UservouchController {
 	@RequestMapping(value="selectUservouchList")
 	@ResponseBody
 	public PageInfo selectUservouchList(Integer page,Integer rows) {
-		PageInfo pageInfo = new PageInfo(page+1,rows);
+		 Integer pageSize = (page /rows)+1;
 		Integer count = uservouchService.UservouchyCount();
+		PageInfo pageInfo = new PageInfo(pageSize,rows);
 		Map<String,Object> map = new HashMap<String,Object>();
 		pageInfo.setCondition(map);
 		uservouchService.selectPage(pageInfo);
-		pageInfo.setTotal(pageInfo.getTotal());
+		pageInfo.setTotal(count);
 		return pageInfo;
 	}
 	//实现新增

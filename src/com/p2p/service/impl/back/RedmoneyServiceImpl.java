@@ -58,7 +58,7 @@ public class RedmoneyServiceImpl implements RedmoneyService{
 				Page<Redmoney> page = new Page(pageInfo.getNowpage(),pageInfo.getSize());
 				List<Redmoney> list = redmoneymapper.selectPage(page, pageInfo.getCondition());
 				pageInfo.setRows(list);
-				pageInfo.setTotal(list.size());
+				pageInfo.setTotal(page.getTotal());
 		
 	}
 

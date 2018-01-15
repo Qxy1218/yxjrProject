@@ -28,12 +28,13 @@ public class RedmoneyController {
 		@RequestMapping(value="selectRedmoneyList")
 		@ResponseBody
 		public PageInfo selectRedmoneyList(Integer page,Integer rows) {
-			PageInfo pageInfo = new PageInfo(page+1,rows);
+			 Integer pageSize = (page /rows)+1;
 			Integer count = redmoneyservice.redmoneyCount();
+			PageInfo pageInfo = new PageInfo(pageSize,rows);
 			Map<String,Object> map = new HashMap<String,Object>();
 			pageInfo.setCondition(map);
 			redmoneyservice.selectPage(pageInfo);
-			pageInfo.setTotal(pageInfo.getTotal());
+			pageInfo.setTotal(count);
 			return pageInfo;
 			
 		}

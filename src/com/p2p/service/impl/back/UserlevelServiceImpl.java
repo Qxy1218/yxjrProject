@@ -61,9 +61,9 @@ public class UserlevelServiceImpl implements UserlevelService{
 	public void selectPage(PageInfo pageInfo) {
 		//传入一个分页bean pageInfo
 		Page<Userlevel> page = new Page(pageInfo.getNowpage(),pageInfo.getSize());
-		List list = userlevelmapper.selectPage(page, pageInfo.getCondition());
+		List<Userlevel> list = userlevelmapper.selectPage(page, pageInfo.getCondition());
 		pageInfo.setRows(list);
-		pageInfo.setTotal(list.size());
+		pageInfo.setTotal(page.getTotal());
 		
 	}
 

@@ -22,12 +22,13 @@ public class UserlevelController {
 	@RequestMapping(value="selectUserlevelList")
 	@ResponseBody
 	public PageInfo selectUserlevelList(Integer page,Integer rows) {
-		PageInfo pageInfo = new PageInfo(page+1,rows);
+		 Integer pageSize = (page /rows)+1;
 		Integer count = userlevelservice.UserlevelCount();
+		PageInfo pageInfo = new PageInfo(pageSize,rows);
 		Map<String,Object> map = new HashMap<String,Object>();
 		pageInfo.setCondition(map);
 		userlevelservice.selectPage(pageInfo);
-		pageInfo.setTotal(pageInfo.getTotal());
+		pageInfo.setTotal(count);
 		return pageInfo;
 	}
 	//实现新增

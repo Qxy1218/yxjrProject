@@ -60,7 +60,7 @@ public class WithdrawalsServiceImpl implements WithdrawalsService{
 				Page<Withdrawals> page = new Page(pageInfo.getNowpage(),pageInfo.getSize());
 				List<Withdrawals> list = withdrawalsMapper.selectPage(page, pageInfo.getCondition());
 				pageInfo.setRows(list);
-				pageInfo.setTotal(list.size());
+				pageInfo.setTotal(page.getTotal());
 		
 	}
 

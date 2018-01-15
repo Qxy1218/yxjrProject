@@ -30,12 +30,13 @@ public class WithdrawalsController {
 	@RequestMapping(value="selectWithdrawalsList")
 	@ResponseBody
 	public PageInfo selectWithdrawalsList(Integer page,Integer rows) {
-		PageInfo pageInfo = new PageInfo(page+1,rows);
+		 Integer pageSize = (page /rows)+1;
 		Integer count = withdrawalsService.withdrawalsCount();
+		PageInfo pageInfo = new PageInfo(pageSize,rows);
 		Map<String,Object> map = new HashMap<String,Object>();
 		pageInfo.setCondition(map);
 		withdrawalsService.selectPage(pageInfo);
-		pageInfo.setTotal(pageInfo.getTotal());
+		pageInfo.setTotal(count);
 		return pageInfo;
 	}
 	@RequestMapping("updateWithdrawals")

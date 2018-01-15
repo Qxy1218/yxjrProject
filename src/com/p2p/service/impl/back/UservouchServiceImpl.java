@@ -60,7 +60,7 @@ public class UservouchServiceImpl implements UservouchService{
 		Page<Uservouch> page = new Page(pageInfo.getNowpage(),pageInfo.getSize());
 		List<Uservouch> list = uservouchmapper.selectPage(page, pageInfo.getCondition());
 		pageInfo.setRows(list);
-		pageInfo.setTotal(list.size());
+		pageInfo.setTotal(page.getTotal());
 		
 	}
 
