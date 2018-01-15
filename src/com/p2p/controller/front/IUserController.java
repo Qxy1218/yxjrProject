@@ -537,7 +537,7 @@ public class IUserController {
 		Map<String,Object> map = new HashMap<String,Object>();
 		pageInfo.setCondition(map);
 		iUserService.selectPage(pageInfo,user);
-		pageInfo.setTotal(count);
+		pageInfo.setTotal(pageInfo.getTotal());
 		return pageInfo;
 	}
 	
