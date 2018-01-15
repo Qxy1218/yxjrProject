@@ -25,12 +25,13 @@ public class RecordController {
 	@ResponseBody
 	//后台管理员操作记录表分页查询
 	public PageInfo pageRecord(Integer page,Integer rows,Record record) {
-		Integer pageSize =0;
+		Integer pageSize = (page /rows)+1;
+		Integer count = recordService.countRecord();
 		PageInfo pageInfo = new PageInfo(pageSize,rows);
 		Map<String,Object> map = new HashMap<String, Object>();
 		pageInfo.setCondition(map);
 		recordService.pageRecord(pageInfo, record);
-		pageInfo.setTotal(pageInfo.getTotal());
+		pageInfo.setTotal(count);
 		return pageInfo;
 	}
 	@RequestMapping("insertRecord")
