@@ -21,4 +21,5 @@ public interface ContactMapper extends IBaseDao<Integer,Contact>{
 		//查询总的记录数
 		abstract Integer contactcount();
 		Integer cxslist(String cxs);
+		Integer updateContact();
 }
