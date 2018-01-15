@@ -28,12 +28,14 @@ nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
 img{max-width:100%;}
 /*end reset*/
 /****-----start-body----****/
-body{
-    background:url('/Finances/statics/backlogin/images/bg2.jpg') no-repeat 62% 10%;
-    background-size: cover;
-    text-align: center;
-	font-family: 'Open Sans', sans-serif;
-}
+body {
+	background-image:url(/Finances/statics/backlogin/images/bg2.jpg);
+	background-size:cover;
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+} 
+
+
 body a,form li,.submit input[type="submit"]{
 	transition: 0.1s all;
 	-webkit-transition: 0.1s all;
