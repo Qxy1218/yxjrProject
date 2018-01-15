@@ -41,10 +41,10 @@ public class RoleServiceImpl implements RoleService{
 	@Override
 	public void selectPage(PageInfo pageInfo,Role role) {
 		//传入一个分页bean pageInfo
-		Page<Role> page = new Page(pageInfo.getNowpage(),pageInfo.getSize());
-		List<Role> list = roleMapper.selectPage(page, pageInfo.getCondition(),role);
-		pageInfo.setRows(list);
-		pageInfo.setTotal(page.getTotal());
+				Page<Role> page = new Page(pageInfo.getNowpage(),pageInfo.getSize());
+				List<Role> list = roleMapper.selectPage(page, pageInfo.getCondition(),role);
+				pageInfo.setRows(list);
+				pageInfo.setTotal(list.size());
 	}
 
 	@Override
