@@ -13,4 +13,5 @@ public interface ContactService extends IBaseService<Integer,Contact>{
 		//查询总的记录数
 		abstract Integer Contactcount();
 		abstract void cxslist(Integer cxs);
+		abstract Integer updateContact();
 }
