@@ -266,6 +266,306 @@
 		                        <i class="mo2-indLogicon-tel"></i><input class="mo2-indIpt-all" id="regTel" maxlength="11" type="text" placeholder="输入手机号码">
 		                        <b class="mo2-indLogwar"><em class="mo2-indlogWar-arr"></em><u></u></b>
 		                    </div>
+
+		                </div>
+		                <div class="m2-commonEwmwb">
+		                    <i class="m2-commonEwmicon" onclick='window.open("http://weibo.com/iqianbang")'></i>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="m2-commonTop-right">
+		            <div class="m2-commonTop-link">
+		                <ul>
+		                    <!-- 论坛导航栏全部关闭 -->
+		                    <!--<li class="m2-commonTop-btn" style="display: none" id="bbs"><a id="bbslogin" target="_blank">论坛</a></li>-->
+		                    <li class="m2-commonTop-btn"><a href="/Finances/toregirset" target="_blank">注册</a></li>
+		                    <li class="m2-commonTop-btn"><a href="/Finances/tologin" target="_blank" style="border-right:none;">登录</a></li>
+		                    <li class="m2-commonTop-btn"><a href="company_finance.html" id="cfpage" style="border-right:none;width: 50px;">企业理财</a></li>                </ul>
+		            </div>
+		            <div class="m2-commonTop-app" onclick='window.open("appdownload.html")' style="cursor:pointer;">
+		                <a href="" class="m2-commonTop-and"></a>
+		                <a href="" class="m2-commonTop-ios"></a>
+		                <span>app下载入口</span>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+
+		
+		<div class="m2-commonNav-con">
+		    <div class="m2-commonNav-box">
+		        <div class="m2-commonLogo">
+		            <a class="m2-comImg-logo" href="index.html">
+		                                <img src="/Finances/statics/front/statics/newcommon/images/log.png" title="亿信金融投资理财平台logo" alt="亿信金融标识">
+		            </a>
+		            <a class="m2-conImg-slogan" href="">
+		                <img src="/Finances/statics/front/statics/newcommon/images/m2-sloganHS.png" title="徽商银行投资理财托管" alt="">
+		            </a>
+		        </div>
+		        <div class="m2-commonNav">
+		             <!--  <li class="m2-commonNav-fir"><a href="http://huifu.iqianbang.com" target="_blank" >汇付版本</a></li>-->
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/index.jsp" id="onepage">首页</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/invest.jsp" id="twopage">我要投资</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/membermall.jsp" id="sevenpage">会员商城</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/user/usercenter.jsp" id="threepage">我的账户</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/guarantee.jsp" id="fourpage">安全保障</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/about.jsp" id="fivepage">关于我们</a></li>
+                <!-- <li class="m2-commonNav-fir"><a href="guide.html">新手引导</a></li> -->
+                <li class="m2-commonNav-fir"><a href="${pageContext.request.contextPath}/listActivity" id="sixpage">活动专区</a></li>
+		        </div>
+		    </div>
+		</div>
+    	
+    	<style>
+		    .vIVR{display:none}
+		</style>
+
+		<!-- headerEnd -->
+		    		
+		
+		<!-- bannerStart -->
+		<div class="m2-banner-box">
+    		<div class="m2-indexLogincon">
+        		<!-- 登录box start -->
+        		<div class="mo2-indexLoginbox">
+	            	<!-- 已登录start -->
+	            	<div class="mo2-indLoged" style="display: none">				<div class="mo2-indLoged-tit"><span>你好！<span style="color:#f34940;"></span>，欢迎来到爱钱帮</span></div>
+               			<div class="mo2-indLog-userHead">
+                    		<a href="usercenter.html"><img src="/Finances/statics/front/statics/home2/images/user-head.png" title="欢迎来到爱钱帮投资理财平台" alt=""></a>
+                		</div>
+                		
+                		<div class="mo2-indLogedmain">
+		                    <p class="mo2-indLoged-sma">今日赚取</p>
+		                    <p class="mo2-indLoged-big">&yen;<span>0.00</span></p>
+                		</div>
+                		
+		                <div class="mo2-indLog-btn" style="margin-top:18px;">
+		                    <a href="usercenter.html">我的账户<i></i></a>
+		                </div>
+            		</div>
+            	<!-- 已登录end -->
+            	<!-- 登录注册start -->
+            	<div class="mo2-indLogreg" >				
+            		<div class="mo2-indLogtab">
+		                <ul>
+		                    <li class="mo2-logTab-unsel mo2-indTab-reg">
+		                        <span>注册</span><b></b>
+		                    </li>
+		                    <li class="mo2-logTab-sel mo2-indTab-log">
+		                        <span>登录</span><b></b>
+		                    </li>
+		                </ul>
+            		</div>
+            		
+                <!-- 注册start(轮播图注册) -->
+                	<div class="mo2-indRegbox" style="display:none;">
+	                    <div class="mo2-indLogitem" style="margin-bottom:6px;">
+	                        <i class="mo2-indLogicon-tel"></i>
+	                        <input class="mo2-indIpt-all" id="regTel" maxlength="11" type="text" placeholder="输入手机号码">
+	                        <b class="mo2-indLogwar">
+		                        <em class="mo2-indlogWar-arr">
+		                        </em><u></u>
+	                        </b>
+		                </div>
+		                <div class="m2-commonEwmwb">
+		                    <i class="m2-commonEwmicon" onclick='window.open("http://weibo.com/iqianbang")'></i>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="m2-commonTop-right">
+		            <div class="m2-commonTop-link">
+		                <ul>
+		                    <!-- 论坛导航栏全部关闭 -->
+		                    <!--<li class="m2-commonTop-btn" style="display: none" id="bbs"><a id="bbslogin" target="_blank">论坛</a></li>-->
+		                    <li class="m2-commonTop-btn"><a href="/Finances/toregirset" target="_blank">注册</a></li>
+		                    <li class="m2-commonTop-btn"><a href="/Finances/tologin" target="_blank" style="border-right:none;">登录</a></li>
+		                    <li class="m2-commonTop-btn"><a href="company_finance.html" id="cfpage" style="border-right:none;width: 50px;">企业理财</a></li>                </ul>
+		            </div>
+		            <div class="m2-commonTop-app" onclick='window.open("appdownload.html")' style="cursor:pointer;">
+		                <a href="" class="m2-commonTop-and"></a>
+		                <a href="" class="m2-commonTop-ios"></a>
+		                <span>app下载入口</span>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+
+		
+		<div class="m2-commonNav-con">
+		    <div class="m2-commonNav-box">
+		        <div class="m2-commonLogo">
+		            <a class="m2-comImg-logo" href="index.html">
+		                                <img src="/Finances/statics/front/statics/newcommon/images/log.png" title="亿信金融投资理财平台logo" alt="亿信金融标识">
+		            </a>
+		            <a class="m2-conImg-slogan" href="">
+		                <img src="/Finances/statics/front/statics/newcommon/images/m2-sloganHS.png" title="徽商银行投资理财托管" alt="">
+		            </a>
+		        </div>
+		        <div class="m2-commonNav">
+		             <!--  <li class="m2-commonNav-fir"><a href="http://huifu.iqianbang.com" target="_blank" >汇付版本</a></li>-->
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/index.jsp" id="onepage">首页</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/invest.jsp" id="twopage">我要投资</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/membermall.jsp" id="sevenpage">会员商城</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/user/usercenter.jsp" id="threepage">我的账户</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/guarantee.jsp" id="fourpage">安全保障</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/about.jsp" id="fivepage">关于我们</a></li>
+                <!-- <li class="m2-commonNav-fir"><a href="guide.html">新手引导</a></li> -->
+                <li class="m2-commonNav-fir"><a href="${pageContext.request.contextPath}/listActivity" id="sixpage">活动专区</a></li>
+		        </div>
+		    </div>
+		</div>
+    	
+    	<style>
+		    .vIVR{display:none}
+		</style>
+
+		<!-- headerEnd -->
+		    		
+		
+		<!-- bannerStart -->
+		<div class="m2-banner-box">
+    		<div class="m2-indexLogincon">
+        		<!-- 登录box start -->
+        		<div class="mo2-indexLoginbox">
+	            	<!-- 已登录start -->
+	            	<div class="mo2-indLoged" style="display: none">				<div class="mo2-indLoged-tit"><span>你好！<span style="color:#f34940;"></span>，欢迎来到爱钱帮</span></div>
+               			<div class="mo2-indLog-userHead">
+                    		<a href="usercenter.html"><img src="/Finances/statics/front/statics/home2/images/user-head.png" title="欢迎来到爱钱帮投资理财平台" alt=""></a>
+                		</div>
+                		
+                		<div class="mo2-indLogedmain">
+		                    <p class="mo2-indLoged-sma">今日赚取</p>
+		                    <p class="mo2-indLoged-big">&yen;<span>0.00</span></p>
+                		</div>
+                		
+		                <div class="mo2-indLog-btn" style="margin-top:18px;">
+		                    <a href="usercenter.html">我的账户<i></i></a>
+		                </div>
+            		</div>
+            	<!-- 已登录end -->
+            	<!-- 登录注册start -->
+            	<div class="mo2-indLogreg" >				
+            		<div class="mo2-indLogtab">
+		                <ul>
+		                    <li class="mo2-logTab-unsel mo2-indTab-reg">
+		                        <span>注册</span><b></b>
+		                    </li>
+		                    <li class="mo2-logTab-sel mo2-indTab-log">
+		                        <span>登录</span><b></b>
+		                    </li>
+		                </ul>
+            		</div>
+            		
+                <!-- 注册start(轮播图注册) -->
+                	<div class="mo2-indRegbox" style="display:none;">
+	                    <div class="mo2-indLogitem" style="margin-bottom:6px;">
+	                        <i class="mo2-indLogicon-tel"></i>
+	                        <input class="mo2-indIpt-all" id="regTel" maxlength="11" type="text" placeholder="输入手机号码">
+	                        <b class="mo2-indLogwar">
+		                        <em class="mo2-indlogWar-arr">
+		                        </em><u></u>
+	                        </b>
+
+		                </div>
+		                <div class="m2-commonEwmwb">
+		                    <i class="m2-commonEwmicon" onclick='window.open("http://weibo.com/iqianbang")'></i>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="m2-commonTop-right">
+		            <div class="m2-commonTop-link">
+		                <ul>
+		                    <!-- 论坛导航栏全部关闭 -->
+		                    <!--<li class="m2-commonTop-btn" style="display: none" id="bbs"><a id="bbslogin" target="_blank">论坛</a></li>-->
+		                    <li class="m2-commonTop-btn"><a href="/Finances/toregirset" target="_blank">注册</a></li>
+		                    <li class="m2-commonTop-btn"><a href="/Finances/tologin" target="_blank" style="border-right:none;">登录</a></li>
+		                    <li class="m2-commonTop-btn"><a href="company_finance.html" id="cfpage" style="border-right:none;width: 50px;">企业理财</a></li>                </ul>
+		            </div>
+		            <div class="m2-commonTop-app" onclick='window.open("appdownload.html")' style="cursor:pointer;">
+		                <a href="" class="m2-commonTop-and"></a>
+		                <a href="" class="m2-commonTop-ios"></a>
+		                <span>app下载入口</span>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+
+		
+		<div class="m2-commonNav-con">
+		    <div class="m2-commonNav-box">
+		        <div class="m2-commonLogo">
+		            <a class="m2-comImg-logo" href="index.html">
+		                                <img src="/Finances/statics/front/statics/newcommon/images/log.png" title="亿信金融投资理财平台logo" alt="亿信金融标识">
+		            </a>
+		            <a class="m2-conImg-slogan" href="">
+		                <img src="/Finances/statics/front/statics/newcommon/images/m2-sloganHS.png" title="徽商银行投资理财托管" alt="">
+		            </a>
+		        </div>
+		        <div class="m2-commonNav">
+		             <!--  <li class="m2-commonNav-fir"><a href="http://huifu.iqianbang.com" target="_blank" >汇付版本</a></li>-->
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/index.jsp" id="onepage">首页</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/invest.jsp" id="twopage">我要投资</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/membermall.jsp" id="sevenpage">会员商城</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/user/usercenter.jsp" id="threepage">我的账户</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/guarantee.jsp" id="fourpage">安全保障</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/about.jsp" id="fivepage">关于我们</a></li>
+                <!-- <li class="m2-commonNav-fir"><a href="guide.html">新手引导</a></li> -->
+                <li class="m2-commonNav-fir"><a href="${pageContext.request.contextPath}/listActivity" id="sixpage">活动专区</a></li>
+		        </div>
+		    </div>
+		</div>
+    	
+    	<style>
+		    .vIVR{display:none}
+		</style>
+
+		<!-- headerEnd -->
+		    		
+		
+		<!-- bannerStart -->
+		<div class="m2-banner-box">
+    		<div class="m2-indexLogincon">
+        		<!-- 登录box start -->
+        		<div class="mo2-indexLoginbox">
+	            	<!-- 已登录start -->
+	            	<div class="mo2-indLoged" style="display: none">				<div class="mo2-indLoged-tit"><span>你好！<span style="color:#f34940;"></span>，欢迎来到爱钱帮</span></div>
+               			<div class="mo2-indLog-userHead">
+                    		<a href="usercenter.html"><img src="/Finances/statics/front/statics/home2/images/user-head.png" title="欢迎来到爱钱帮投资理财平台" alt=""></a>
+                		</div>
+                		
+                		<div class="mo2-indLogedmain">
+		                    <p class="mo2-indLoged-sma">今日赚取</p>
+		                    <p class="mo2-indLoged-big">&yen;<span>0.00</span></p>
+                		</div>
+                		
+		                <div class="mo2-indLog-btn" style="margin-top:18px;">
+		                    <a href="usercenter.html">我的账户<i></i></a>
+		                </div>
+            		</div>
+            	<!-- 已登录end -->
+            	<!-- 登录注册start -->
+            	<div class="mo2-indLogreg" >				
+            		<div class="mo2-indLogtab">
+		                <ul>
+		                    <li class="mo2-logTab-unsel mo2-indTab-reg">
+		                        <span>注册</span><b></b>
+		                    </li>
+		                    <li class="mo2-logTab-sel mo2-indTab-log">
+		                        <span>登录</span><b></b>
+		                    </li>
+		                </ul>
+            		</div>
+            		
+                <!-- 注册start(轮播图注册) -->
+                	<div class="mo2-indRegbox" style="display:none;">
+	                    <div class="mo2-indLogitem" style="margin-bottom:6px;">
+	                        <i class="mo2-indLogicon-tel"></i>
+	                        <input class="mo2-indIpt-all" id="regTel" maxlength="11" type="text" placeholder="输入手机号码">
+	                        <b class="mo2-indLogwar">
+		                        <em class="mo2-indlogWar-arr">
+		                        </em><u></u>
+	                        </b>
+
 		                    
 		                    <div class="mo2-indLogitem" style="margin-bottom:6px;">
 		                        <i class="mo2-indLogicon-psw"></i><input class="mo2-indIpt-all m2-ind-banPsw" id="pass" onkeyup="isNumber()" type="password" placeholder="6-20位数字与字母组合的密码"><b class="mo2-indLogwar"><em class="mo2-indlogWar-arr"></em><u></u></b>
@@ -281,6 +581,138 @@
 		                    
 	                    <div class="mo2-indReg-btn" id="verifyregcode" onclick="verifycode();" style="margin-top:8px;">
 	                        <a class="mo2-indRegbtn-able" href="#">立即注册</a>
+
+		                    
+		                    <div class="mo2-indLogitem" style="margin-bottom:6px;">
+		                        <i class="mo2-indLogicon-psw"></i><input class="mo2-indIpt-all m2-ind-banPsw" id="pass" onkeyup="isNumber()" type="password" placeholder="6-20位数字与字母组合的密码"><b class="mo2-indLogwar"><em class="mo2-indlogWar-arr"></em><u></u></b>
+		                    </div>
+		                    
+		                    <div class="mo2-indLogitem-step1">
+		                        <div class="mo2-indLogreg-step1">
+		                            <i class="mo2-indLogicon-code"></i><input class="mo2-indIptcod-step1" id="vcode" type="text" placeholder="验证码">
+		                        </div>
+		                        <img class="mo2-indRegcode" src="/Finances/statics/front/statics/home2/images/home-register-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='/Finances/statics/front/statics/home2/images/home-register-VerifyCode.png?time='+Math.random();void(0);" id="reverifyCode"  alt="点击刷新验证码">
+		                        <span class="mo2-indReg-refresh">看不清？换一张</span>
+		                        <b class="mo2-indLogwar"><em class="mo2-indlogWar-arr"></em><u></u></b>
+		                    </div>
+		                    
+	                    <div class="mo2-indReg-btn" id="verifyregcode" onclick="verifycode();" style="margin-top:8px;">
+	                        <a class="mo2-indRegbtn-able" href="#">立即注册</a>
+		                    
+		                    <div class="mo2-indLogitem" style="margin-bottom:6px;">
+		                        <i class="mo2-indLogicon-psw"></i><input class="mo2-indIpt-all m2-ind-banPsw" id="pass" onkeyup="isNumber()" type="password" placeholder="6-20位数字与字母组合的密码"><b class="mo2-indLogwar"><em class="mo2-indlogWar-arr"></em><u></u></b>
+		                    </div>
+		                    
+		                    <div class="mo2-indLogitem-step1">
+		                        <div class="mo2-indLogreg-step1">
+		                            <i class="mo2-indLogicon-code"></i><input class="mo2-indIptcod-step1" id="vcode" type="text" placeholder="验证码">
+		                        </div>
+		                        <img class="mo2-indRegcode" src="/Finances/statics/front/statics/home2/images/home-register-VerifyCode.png" onClick="document.getElementById('reverifyCode').src='/Finances/statics/front/statics/home2/images/home-register-VerifyCode.png?time='+Math.random();void(0);" id="reverifyCode"  alt="点击刷新验证码">
+		                        <span class="mo2-indReg-refresh">看不清？换一张</span>
+		                        <b class="mo2-indLogwar"><em class="mo2-indlogWar-arr"></em><u></u></b>
+		                    </div>
+		                    
+	                    <div class="mo2-indReg-btn" id="verifyregcode" onclick="verifycode();" style="margin-top:8px;">
+	                        <a class="mo2-indRegbtn-able" href="#">立即注册</a>
+		                </div>
+		                <div class="m2-commonEwmwb">
+		                    <i class="m2-commonEwmicon" onclick='window.open("http://weibo.com/iqianbang")'></i>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="m2-commonTop-right">
+		            <div class="m2-commonTop-link">
+		                <ul>
+		                    <!-- 论坛导航栏全部关闭 -->
+		                    <!--<li class="m2-commonTop-btn" style="display: none" id="bbs"><a id="bbslogin" target="_blank">论坛</a></li>-->
+		                    <li class="m2-commonTop-btn"><a href="/Finances/toregirset" target="_blank">注册</a></li>
+		                    <li class="m2-commonTop-btn"><a href="/Finances/tologin" target="_blank" style="border-right:none;">登录</a></li>
+		                    <li class="m2-commonTop-btn"><a href="company_finance.html" id="cfpage" style="border-right:none;width: 50px;">企业理财</a></li>                </ul>
+		            </div>
+		            <div class="m2-commonTop-app" onclick='window.open("appdownload.html")' style="cursor:pointer;">
+		                <a href="" class="m2-commonTop-and"></a>
+		                <a href="" class="m2-commonTop-ios"></a>
+		                <span>app下载入口</span>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+
+		
+		<div class="m2-commonNav-con">
+		    <div class="m2-commonNav-box">
+		        <div class="m2-commonLogo">
+		            <a class="m2-comImg-logo" href="index.html">
+		                                <img src="/Finances/statics/front/statics/newcommon/images/log.png" title="亿信金融投资理财平台logo" alt="亿信金融标识">
+		            </a>
+		            <a class="m2-conImg-slogan" href="">
+		                <img src="/Finances/statics/front/statics/newcommon/images/m2-sloganHS.png" title="徽商银行投资理财托管" alt="">
+		            </a>
+		        </div>
+		        <div class="m2-commonNav">
+		             <!--  <li class="m2-commonNav-fir"><a href="http://huifu.iqianbang.com" target="_blank" >汇付版本</a></li>-->
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/index.jsp" id="onepage">首页</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/invest.jsp" id="twopage">我要投资</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/membermall.jsp" id="sevenpage">会员商城</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/user/usercenter.jsp" id="threepage">我的账户</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/guarantee.jsp" id="fourpage">安全保障</a></li>
+                <li class="m2-commonNav-fir"><a href="/Finances/views/front/about.jsp" id="fivepage">关于我们</a></li>
+                <!-- <li class="m2-commonNav-fir"><a href="guide.html">新手引导</a></li> -->
+                <li class="m2-commonNav-fir"><a href="${pageContext.request.contextPath}/listActivity" id="sixpage">活动专区</a></li>
+		        </div>
+		    </div>
+		</div>
+    	
+    	<style>
+		    .vIVR{display:none}
+		</style>
+
+		<!-- headerEnd -->
+		    		
+		
+		<!-- bannerStart -->
+		<div class="m2-banner-box">
+    		<div class="m2-indexLogincon">
+        		<!-- 登录box start -->
+        		<div class="mo2-indexLoginbox">
+	            	<!-- 已登录start -->
+	            	<div class="mo2-indLoged" style="display: none">				<div class="mo2-indLoged-tit"><span>你好！<span style="color:#f34940;"></span>，欢迎来到爱钱帮</span></div>
+               			<div class="mo2-indLog-userHead">
+                    		<a href="usercenter.html"><img src="/Finances/statics/front/statics/home2/images/user-head.png" title="欢迎来到爱钱帮投资理财平台" alt=""></a>
+                		</div>
+                		
+                		<div class="mo2-indLogedmain">
+		                    <p class="mo2-indLoged-sma">今日赚取</p>
+		                    <p class="mo2-indLoged-big">&yen;<span>0.00</span></p>
+                		</div>
+                		
+		                <div class="mo2-indLog-btn" style="margin-top:18px;">
+		                    <a href="usercenter.html">我的账户<i></i></a>
+		                </div>
+            		</div>
+            	<!-- 已登录end -->
+            	<!-- 登录注册start -->
+            	<div class="mo2-indLogreg" >				
+            		<div class="mo2-indLogtab">
+		                <ul>
+		                    <li class="mo2-logTab-unsel mo2-indTab-reg">
+		                        <span>注册</span><b></b>
+		                    </li>
+		                    <li class="mo2-logTab-sel mo2-indTab-log">
+		                        <span>登录</span><b></b>
+		                    </li>
+		                </ul>
+            		</div>
+            		
+                <!-- 注册start(轮播图注册) -->
+                	<div class="mo2-indRegbox" style="display:none;">
+	                    <div class="mo2-indLogitem" style="margin-bottom:6px;">
+	                        <i class="mo2-indLogicon-tel"></i>
+	                        <input class="mo2-indIpt-all" id="regTel" maxlength="11" type="text" placeholder="输入手机号码">
+	                        <b class="mo2-indLogwar">
+		                        <em class="mo2-indlogWar-arr">
+		                        </em><u></u>
+	                        </b>
 	                    </div>
 	                    
 	                    <div class="mo2-indRegagree">
@@ -447,13 +879,21 @@
         	</ul>
     	</div>
     
+    
     <!-- 滚动公告start -->
     <div class="mo2-notice">
         <div id="upRoll1" class="upRoll">
             <div id="holder1">
                 <ul class="list-ul1">
-                    <li>
-                        <a href="/Finances/tobilia">
+				<c:forEach var="notice" items="${listNotice}">
+					<li>
+						<a href="${pageContext.request.contextPath}/font/selectType?nid=${notice.nid}"><span class="mo2-rollTit">${notice.ntitle}<b>&nbsp;</b></span>
+							<span class="mo2-rollTit">${notice.ntime }</span>
+						</a>
+					</li>
+				</c:forEach>
+                    <!-- <li>
+                    	 <a href="/Finances/tobilia">
                             <span class="mo2-rollTit">【平台公告】关于部分银行升级“快捷充值”功能的公告<b>&nbsp;&nbsp;<font color="red">new</font></b></span>
                             <span class="mo2-rollTiM">2016-08-24</span>
                         </a>
@@ -471,15 +911,16 @@
 	                        <span class="mo2-rollTit">【平台公告】关于网络优化的公告</span>
 	                        <span class="mo2-rollTiM">2016-08-18</span>
 	                    </a>
-	                </li>            
-	             </ul>
+	                </li>             -->
+	             </ul> 
             </div>
         </div>
-        
+      
         <div class="mo2-notMore">
-            <a href="/aiqianbang_licaiwang_gonggao">更多公告</a>
+            <a href="${pageContext.request.contextPath}/font/listNotice">更多公告</a>
         </div>
     </div>
+    
     <!-- 滚动公告end -->
     
     
