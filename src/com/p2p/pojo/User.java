@@ -78,7 +78,7 @@ public class User implements Serializable{
 	 *一对一
 	 * */
 	private Userlevel userlevel;
-	
+	private Loan loan;
 	private Redmoney redmoney;
 
 	private Withdrawals withdrawals;
@@ -291,9 +291,20 @@ public class User implements Serializable{
 	}
 
 
+	public Loan getLoan() {
+		return loan;
+	}
 	public Uservouch getUservouch() {
 		return uservouch;
 	}
+
+
+
+	public void setLoan(Loan loan) {
+		this.loan = loan;
+	}
+
+
 
 
 	public void setUservouch(Uservouch uservouch) {
