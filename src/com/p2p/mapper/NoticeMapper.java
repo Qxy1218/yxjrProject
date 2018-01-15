@@ -18,4 +18,6 @@ public interface NoticeMapper extends IBaseDao<Integer,Notice>{
 	List<Notice> pageNotice(Pagination page,Map<String,Object> params,@Param(value="notice")Notice notic);
 	//总记录数查询
 	abstract Integer countNotice(); 
+	//前台根据ID查询名字
+	abstract List<Notice> selectName(Integer nid);
 }
