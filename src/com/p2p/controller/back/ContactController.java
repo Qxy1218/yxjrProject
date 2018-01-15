@@ -26,11 +26,8 @@ public class ContactController {
 	@RequestMapping(value="selectContactlist")
 	@ResponseBody
 	public PageInfo  selectContactlist(Integer page, Integer rows,Contact contact) {
-		Integer pageSize = 0;
-		
-		//得到总的页数
-		//Integer count = roleService.roleCount();
-		
+		Integer pageSize = (page /rows)+1;
+		Integer count = contactService.Contactcount();
 		PageInfo pageInfo = new PageInfo(pageSize,rows);
 		Map<String,Object> map = new HashMap<String,Object>();
 		pageInfo.setCondition(map);
@@ -44,6 +41,9 @@ public class ContactController {
 	@RequestMapping(value="insertContact")
 	@ResponseBody
 	public int insertRole(Contact contact,HttpServletRequest request,MultipartFile[] file) throws Exception{
+		if(contact.getCxs()==1) {
+			contactService.updateContact();
+		}
 		if(file.length!=0) {
 			String filepath = UtilController.uploadReNames(file,request.getSession());
 			String[] aa =  filepath.split(",");
@@ -59,6 +59,9 @@ public class ContactController {
 	@RequestMapping(value = "updateContact")
 	@ResponseBody
 	public  int updateRole(Contact contact,HttpServletRequest request,MultipartFile[] file){ 
+		if(contact.getCxs()==1) {
+			contactService.updateContact();
+		}
 		boolean isave = false; 
 		for(MultipartFile item:file){
 			long ii = item.getSize();
