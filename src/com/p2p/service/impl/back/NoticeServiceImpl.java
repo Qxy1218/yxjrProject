@@ -57,7 +57,7 @@ public class NoticeServiceImpl implements NoticeService{
 		Page<Notice> page = new Page(pageInfo.getNowpage(), pageInfo.getPagesize());
 		List<Notice> list = noticeMapper.pageNotice(page,pageInfo.getCondition(), notice);
 		pageInfo.setRows(list);
-		pageInfo.setTotal(list.size());
+		pageInfo.setTotal(page.getTotal());
 	}
 
 	@Override
