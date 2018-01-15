@@ -55,4 +55,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="java.lang.Integer">
 		delete from notice where n_id=#{nid} 
 	</delete>
+	<!-- 根据id查询名字 -->
+	<select id="selectName" resultMap="BaseResultMap">
+		select n.n_title,n.n_content from notice n where n_id = #{nid}
+	</select>
 </mapper>
