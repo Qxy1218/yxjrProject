@@ -14,7 +14,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		   <result column="c_xs" property="cxs"/>
  		  
 	</resultMap>
-	
+	 <update id="updateContact">
+     update contact set c_xs = 0
+    </update>
 	<!-- 联系人查询 -->
 	<select id="getAllModel"  resultMap="BaseResultMap">
  		select * from contact 
