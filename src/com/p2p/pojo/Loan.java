@@ -41,7 +41,9 @@ public class Loan implements Serializable{
 	
 	@TableField("l_interest")
 	private double linterest; //还款利息
-
+	
+	private User user;
+	
 	public Loan(Integer lid, Integer uid, double lmoney, String ltime, String lendtime, Integer lstatus, String lway,
 			double linterest) {
 		super();
@@ -132,8 +134,14 @@ public class Loan implements Serializable{
 		return "Loan [lid=" + lid + ", uid=" + uid + ", lmoney=" + lmoney + ", ltime=" + ltime + ", lendtime="
 				+ lendtime + ", lstatus=" + lstatus + ", lway=" + lway + ", linterest=" + linterest + "]";
 	}
-	
-	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 	
 }
