@@ -40,7 +40,7 @@ public class Loan implements Serializable{
 	private String lway; //借款类型
 	
 	@TableField("l_interest")
-	private double linterest; //还款时间
+	private double linterest; //还款利息
 
 	public Loan(Integer lid, Integer uid, double lmoney, String ltime, String lendtime, Integer lstatus, String lway,
 			double linterest) {
