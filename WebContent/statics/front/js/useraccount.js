@@ -106,7 +106,7 @@ function setVerifyStatus(){
         $('#id_status').addClass('m2-userSettingsaut-tur');
         $('#id_status').html('<b></b>已认证');
         $('#id_status').next('span').find('a').text('查看');
-        $('#id_status').next('span').find('a').prop('href','#');
+        $('#id_status').next('span').find('a').prop('href','/Finances/torecharge?uiid='+$("#vp-uiid").val());
     }
     if(dealpwd == 1){
         $('#id_dealpwd').removeClass('m2-userSettingsaut-fal');
