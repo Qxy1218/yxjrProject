@@ -450,7 +450,9 @@
                 	p.uphone = uphone;
                 	p.uiemail = user_email;
                     postData("/Finances/userInfo/sendemail",p,function(status){
+                    	alert(status);
                         if(status==1){
+                        	alert("234567890765432");
                         	window.location="http://mail.qq.com";
                         }else{
                             showInfoDialog("发送邮箱失败",0);
