@@ -33,10 +33,10 @@ public class RoleController {
 	@RequestMapping(value="seleRolelist")
 	@ResponseBody
 	public PageInfo  selectRoleList(Integer page, Integer rows,Role role) {
-		Integer pageSize = 0;
+		 Integer pageSize = (page /rows)+1;
 		
 		//得到总的页数
-		//Integer count = roleService.roleCount();
+		Integer count = roleService.roleCount();
 		
 		PageInfo pageInfo = new PageInfo(pageSize,rows);
 		Map<String,Object> map = new HashMap<String,Object>();

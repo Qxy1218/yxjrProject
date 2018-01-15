@@ -44,7 +44,7 @@ public class RoleServiceImpl implements RoleService{
 		Page<Role> page = new Page(pageInfo.getNowpage(),pageInfo.getSize());
 		List<Role> list = roleMapper.selectPage(page, pageInfo.getCondition(),role);
 		pageInfo.setRows(list);
-		pageInfo.setTotal(list.size());
+		pageInfo.setTotal(page.getTotal());
 	}
 
 	@Override
