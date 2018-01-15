@@ -32,7 +32,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		  <result column="f_securitymea" property="fsecuritymea"/>
  		  <result column="f_huanstat" property="fhuanstat"/>
  		  <result column="f_huanend" property="fhuanend"/>
- 		  
 </resultMap>
 	<select id="getModel" parameterType="com.p2p.pojo.Fabiao" resultMap="BaseResultMap">
  		select * from fabiao 
@@ -240,38 +239,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <!-- 后台表管理 -->
-    <select id="selectPage" resultMap="BaseResultMap">
+    <select id="selectPageFabiao" resultMap="BaseResultMap">
 		select * from fabiao 
- 		 <where>
- 		     1=1
- 			    <if test="fid!=null">and f_id=#{fid}</if>
-		  		<if test="ftitle!=null">and f_title=#{ftitle}</if>
-		  		<if test="uid!=null">and u_id=#{uid}</if>
-		  		<if test="fcode!=null">and f_code=#{fcode}</if>
-		  		<if test="ftype!=null">and f_type=#{ftype}</if>
-		  		<if test="fpart!=null">and f_part=#{fpart}</if>
-		  		<if test="froe!=null">and f_roe=#{froe}</if>
-		  		<if test="fincrease!=null">and f_increase=#{fincrease}</if>
-		  		<if test="fcontent!=null">and f_content=#{fcontent}</if>
-		  		<if test="fsituation!=null">and  f_situation=#{fsituation}</if>
-		  		<if test="fopinion!=null">and  f_opinion=#{fopinion}</if>
-		  		<if test="fmoney!=null">and  f_money=#{fmoney}</if>
-		  		<if test="fendmoney!=null">and  f_endmoney=#{fendmoney}</if>
-		  		<if test="fendtime!=null">and f_endtime=#{fendtime}</if>
-		  		<if test="fminmoney!=null">and f_minmoney=#{fminmoney}</if>
-		  		<if test="fmaxmoney!=null">and f_maxmoney=#{fmaxmoney}</if>
-		  		<if test="frate!=null">and f_rate=#{frate}</if>
-		  		<if test="fimage!=null">and  f_image=#{fimage}</if>
-		  		<if test="forderimg!=null">and  f_orderimg=#{forderimg}</if>
-		  		<if test="fcontract!=null">and  f_contract=#{fcontract}</if>
-		  		<if test="fbidstatus!=null">and f_bidstatus=#{fbidstatus}</if>
-		  		<if test="fstatus!=null">and f_status=#{fstatus}</if>
-		  		<if test="fsecuritymea!=null">and f_securitymea=#{fsecuritymea}</if>
-		  		<if test="fsecurity!=null">and f_security=#{fsecurity}</if>
-		  		<if test="fprocedures!=null">and f_procedures=#{fprocedures}</if>
- 				<if test="frepayment!=null">and f_repayment=#{frepayment}</if>
- 				<if test="fhuanstat!=null">and f_huanstat=#{fhuanstat}</if>
- 		</where>
 	</select>
 	<!-- 后台表总记录数查询 -->
 	<select id="fabiaoCount" resultType="java.lang.Integer">

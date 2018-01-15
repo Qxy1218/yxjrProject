@@ -67,7 +67,7 @@ public class EmpServiceImpl implements EmpService{
 		Page<Employe> page = new Page(pageInfo.getNowpage(),pageInfo.getSize());
 		List<Employe> list = empMapper.selectPage(page, pageInfo.getCondition(), emp);
 		pageInfo.setRows(list);
-		pageInfo.setTotal(list.size());
+		pageInfo.setTotal(page.getTotal());
 	}
 
 	@Override

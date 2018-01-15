@@ -33,12 +33,13 @@ public class FabiaobackController {
 	@ResponseBody
 	//发标表分页查询
 	public PageInfo pagefabiao(Integer page,Integer rows,Fabiao fabiao) {
-		Integer pageSize =0;
+		Integer pageSize = (page /rows)+1;
 		PageInfo pageInfo = new PageInfo(pageSize,rows);
+		Integer count = fabiaoService.fabiaoCount();
 		Map<String,Object> map = new HashMap<String, Object>();
 		pageInfo.setCondition(map);
-		fabiaoService.selectPage(pageInfo, fabiao);
-		pageInfo.setTotal(pageInfo.getTotal());
+		fabiaoService.selectPageFabiao(pageInfo, fabiao);
+		pageInfo.setTotal(count);
 		return pageInfo;
 	}
 	

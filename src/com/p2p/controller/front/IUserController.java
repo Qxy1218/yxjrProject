@@ -531,16 +531,13 @@ public class IUserController {
 	@RequestMapping(value="selectiUserList")
 	@ResponseBody
 	public PageInfo selectiUserList(Integer page, Integer rows,User user) {
-       Integer pageSize = 0;
-		
-		//得到总的页数
-		//Integer count = roleService.roleCount();
-		
+       Integer pageSize = (page /rows)+1;
+		Integer count = iUserService.userCount();
 		PageInfo pageInfo = new PageInfo(pageSize,rows);
 		Map<String,Object> map = new HashMap<String,Object>();
 		pageInfo.setCondition(map);
 		iUserService.selectPage(pageInfo,user);
-		pageInfo.setTotal(pageInfo.getTotal());
+		pageInfo.setTotal(count);
 		return pageInfo;
 	}
 	

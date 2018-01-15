@@ -187,14 +187,14 @@ public class EmpController {
 	@RequestMapping(value="selectEmployeList")
 	@ResponseBody
 	public PageInfo  selectEmployeList(Integer page, Integer rows,Employe emp) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-		Integer pageSize = 0;
-		
+		Integer pageSize = (page /rows)+1;
+		Integer count = empService.employeCount();
 		//得到总的页数
 		PageInfo pageInfo = new PageInfo(pageSize,rows);
 		Map<String,Object> map = new HashMap<String,Object>();
 		pageInfo.setCondition(map);
 		empService.selectPage(pageInfo,emp);
-		pageInfo.setTotal(pageInfo.getTotal());
+		pageInfo.setTotal(count);
 		return pageInfo;
 	}
 	
