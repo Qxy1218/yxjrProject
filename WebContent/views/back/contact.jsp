@@ -11,6 +11,168 @@
 <title>Insert title here</title>
 <!-- 引用js文件 -->
 <jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
+<script type="text/javascript" src="${pageContext.request.contextPath}/statics/back/static/js/laydate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery.form.js"></script>
+<script src="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<link href="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#editRole')
+        .bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                cephone: {
+                    message: '企业电话验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '企业电话不能为空'
+                         },
+                         stringLength: {
+                             min: 11,
+                             max: 11,
+                             message: '请输入11位手机号码'
+                         },
+                         regexp: {
+                             regexp: /^1[3|5|8]{1}[0-9]{9}$/,
+                             message: '请输入正确的手机号码'
+                         }
+                    }
+                },
+                csphone: {
+                    message: '客服电话验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '客服电话不能为空'
+                         },
+                         stringLength: {
+                             min: 11,
+                             max: 11,
+                             message: '请输入11位手机号码'
+                         },
+                         regexp: {
+                             regexp: /^1[3|5|8]{1}[0-9]{9}$/,
+                             message: '请输入正确的手机号码'
+                         }
+                    }
+                },
+                cwechartimgurl: {
+                    message: '微信图url验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '微信图url不能为空'
+                         },
+                    }
+                },
+                cweboimgurl: {
+                    message: '微博图url验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '微博图url不能为空'
+                         }
+                    }
+                },
+                cqqnum: {
+                    message: 'qq号验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: 'qq号不能为空'
+                         },
+                         stringLength: {
+                             min: 7,
+                             max: 10,
+                             message: '请输入正确的账号'
+                         },
+                    }
+                },
+                caddress: {
+                	message: '地址验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '地址不能为空'
+                        }
+                    }
+                }
+            }
+        })
+        .on('success.form.bv', function(e) {
+        	
+        	$("#editForm").modal('hide');
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+            var form = new FormData(document.getElementById("editRole"));
+            var cid =$("#editRole #cid").val();
+            var cid =$("#editRole #cid").val();
+            alert(cid); 
+            if(cid==null || cid==""){
+            	$.ajax({
+       	          url:"${pageContext.request.contextPath}/back/insertContact",
+       	          type:"post",
+       	          data:form,
+       	          processData:false,
+       	          contentType:false,
+       	          success:function(data){
+       	        	//后台返回int类型的数据
+       					if(data>0){
+       						//新增成功，下面是后台框架的提示
+       						parent.layer.alert('增加成功');
+       					}else{
+       						//新增失败
+       						parent.layer.alert('增加失败');
+       					}
+       					$('#tb_emp').bootstrapTable('refresh');
+       	          },
+       	          error:function(e){
+       	        	parent.layer.alert('错误');
+       	          }
+             });
+            	
+            }else{
+            	$("#editForm").modal('hide');
+        		var url = "${pageContext.request.contextPath }/back/updateContact";
+        		$.post(
+        			url,
+        			{
+        				cid:cid,
+        				cephone : $("#cephone").val(),
+        	            csphone : $("#csphone").val(),
+        	            cwechartimgurl : $("#cwechartimgurl").val(), 
+        	            cweboimgurl : $("#cweboimgurl").val(),
+        	            cqqnum : $("#cqqnum").val(),
+        	            caddress : $("#caddress").val(),
+        	            cxs : $("#cxs").val(), 
+        			},
+        			function(data){
+        				//后台返回int类型的数据
+        				if(data>0){
+        					//新增成功，下面是后台框架的提示
+        					parent.layer.alert('修改成功');
+        				}else{
+        					//新增失败
+        					parent.layer.alert('修改失败');
+        				}
+        				//新增完刷新表格数据
+        				$('#tb_emp').bootstrapTable('refresh');
+        			},
+        			"text"
+        		);		
+            } 
+        });
+});
+</script>
+
+
+
 <script  type="text/javascript">
     var rows = null;
     
@@ -104,7 +266,7 @@
 		//用来关闭新增窗口***********
 		$("#editRole").modal('hide');
 		var form = new FormData(document.getElementById("editForm"));
-	/**
+		/**
 		var dd = $("#cwechartimgurl").val();
 		if(dd==""){
 			parent.layer.alert('第一个文件不能为空');
@@ -221,7 +383,7 @@
 			clickToSelect : true, //是否启用点击选中行
 			//height : 300, //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
 			width : 150,
-			uniqueId : "id", //每一行的唯一标识，一般为主键列
+			uniqueid : "id", //每一行的唯一标识，一般为主键列
 			showToggle : true, //是否显示详细视图和列表视图的切换按钮
 			cardView : false, //是否显示详细视图
 			detailView : false, //是否显示父子表
