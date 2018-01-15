@@ -52,7 +52,7 @@ public class ActivityBackServiceImpl implements ActivityBackService{
 		Page<Activity> page = new Page(pageInfo.getNowpage(),pageInfo.getPagesize());
 		List<Activity> list = activityMapper.pageActivity(page, pageInfo.getCondition(), activity);
 		pageInfo.setRows(list);
-		pageInfo.setTotal(list.size());
+		pageInfo.setTotal(page.getTotal());
 	}
 
 	@Override
