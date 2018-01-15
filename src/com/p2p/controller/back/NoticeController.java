@@ -26,12 +26,13 @@ public class NoticeController {
 	@ResponseBody
 	//后台分页查询
 	public PageInfo pageNotice(Integer page,Integer rows,Notice notice) {
-		Integer pagesize = 0;
-		PageInfo pageInfo = new PageInfo(pagesize,rows);
+		Integer pageSize = (page /rows)+1;
+		Integer count = noticeService.countNotice();
+		PageInfo pageInfo = new PageInfo(pageSize,rows);
 		Map<String,Object> map = new HashMap<String ,Object>();
 		pageInfo.setCondition(map);
 		noticeService.pageNotice(pageInfo, notice);
-		pageInfo.setTotal(pageInfo.getTotal());
+		pageInfo.setTotal(count);
 		return pageInfo;
 	}
 	@RequestMapping("insertNotice")
