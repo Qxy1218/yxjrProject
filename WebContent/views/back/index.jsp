@@ -227,6 +227,8 @@
                                 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/use.jsp">用户列表</a>
                             </li>
                             <li><a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/contact.jsp">联系我们</a></li>
+                             <li><a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/loan.jsp">借款</a></li>
+                          	 <li><a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/sendMail.jsp">邮箱</a></li>
                             <li>
                                 <a class="J_menuItem" href="${pageContext.request.contextPath}/back/toEmploye">员工列表</a>
                             </li><li>
