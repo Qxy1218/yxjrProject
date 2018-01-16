@@ -33,4 +33,27 @@ public class UUIDCode {
 	    	return UUIDCode.produceUID(10);
 	    }
 	   
+	    /**
+	     * 生成随机字母
+	     * */
+	    public static String MackZM() {
+	    	ArrayList mylist = new ArrayList();
+			for (char c = 'A'; c <= 'Z'; c++) {
+				mylist.add(c);
+			}
+			String str = "";
+			for (int i = 0; i < 4; i++) {
+				int num = (int) (Math.random() * 26);
+				str = str + mylist.get(num);
+			}
+			System.out.println(str);
+			return str;
+	    }
+	    public static void main(String[] args) {
+		 String aa = 	UUIDCode.MackZM();
+		 String bb = UUIDCode.produceUID(1);
+		 System.out.println(aa+bb);
+	    }
+
+	    
 }
