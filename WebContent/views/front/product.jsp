@@ -95,7 +95,7 @@
 		
 		<body style="background-color:#fff;">
 		<!--  交易密码弹出框 -->
-		<div class="m2-truPop" style="display: none;">
+		<div class="m2-truPop" id="moneytru" style="display: none;">
 		    <div class="m2-turPop-close"></div>
 		    <div class="m2-truPop-radius">
 		        <div class="m2-regist-inputarea m2-regist-sucess">
@@ -271,7 +271,7 @@
 	           		data-rewardval :钱数
 	            -->
 		             <li class="m2-detHidered-unsel reward-item" style="display: none" data-condition="${vos.ucondition}" data-rewardid="${vos.uvid}" data-rewardtype="2" data-rewardval="${vos.uvmoney}">
-		                 <div class="m2-detHidered-num"><span>${vos.uvmoney}</span>元红包</div>
+		                 <div class="m2-detHidered-num"><span>${vos.uvmoney}</span>元代金券</div>
 		                 <div class="m2-detHidered-tim">${vos.uvday}天后过期</div>
 		                 <div class="mo2-detHide-icon"><i></i></div>
 		             </li>
@@ -824,7 +824,7 @@
 		           	          success:function(data){
 		           	        	//后台返回int类型的数据
 		           					if(data>0){
-		           						//mizhu.toast('投资成功');
+		           						mizhu.toast('验证成功');
 		           						//给from表单赋值
 		           						 $('#userid').val(uid);
 		           						 $('#ordermoney').val(reward_type+','+reward_id);
@@ -836,6 +836,7 @@
 										//提交form表单	
 		           						//$('#invest_form').submit();
 		           						issave = 1;
+		           						subinvest();
 		           					}else{
 		           						mizhu.toast('密码错误');
 		           					}
@@ -848,6 +849,7 @@
 				})
 				
 				//投资实现
+			function subinvest(){
 				if(issave==1){
 					 var form = new FormData(document.getElementById("invest_form"));
 					   	$.ajax({
@@ -865,14 +867,18 @@
 			       					}else{
 			       						//新增失败
 			       						mizhu.toast('投资失败');
+			       						//window.location.reload();
+			       						$('#moneytru').hide();
 			       					}
 			       	          },
 			       	          error:function(e){
 			       	        	mizhu.toast('错误');
+			       	        	$('#moneytru').hide();
 			       	          }
 			             });
 				}
-			})
+			}
+		})
 		</script>
 		
 		<!-- <script type="text/javascript">
@@ -1324,7 +1330,7 @@
 	        } else if (reward_type == 1) {
 	            dom += '<p class="m2-detConfirm-nor">您投资使用<span style="color:#f48a3f;">' + reward_redpacket_money + '</span>元红包</p>';
 	        } else if (reward_type == 2) {
-	            dom += '<p class="m2-detConfirm-nor">您投资使用<span style="color:#f48a3f;">' + reward_interest_rate + '%</span>加息券</p>';
+	            dom += '<p class="m2-detConfirm-nor">您投资使用<span style="color:#f48a3f;">' + reward_interest_rate + '元</span>加息券</p>';
 	        }
 	        if (invite_code != 0) {
 	            dom += '<p class="m2-detConfirm-nor">您投资使用邀请码：<span style="color:#f48a3f;">' + invite_code + '</span></p>';
