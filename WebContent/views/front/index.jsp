@@ -684,7 +684,10 @@
                          </c:if> 
                          <c:if test="${fbindexlist.fstatus==2}">
 							<a href="javascript:void(0)" style="background-color:#ccc;" target="_blank">还款中</a>
-                         </c:if>                
+                         </c:if> 
+                         <c:if test="${fbindexlist.fstatus==7}">
+							<a href="javascript:void(0)" style="background-color:#ccc;" target="_blank">已满标</a>
+                         </c:if>                    
                     </div>
                 </li>             
                 </c:forEach>  
@@ -765,7 +768,10 @@
                          </c:if> 
                          <c:if test="${afdfabiao.fstatus==2}">
 							<a href="javascript:void(0)" style="background-color:#ccc;" target="_blank">还款中</a>
-                         </c:if>                
+                         </c:if>  
+                          <c:if test="${afdfabiao.fstatus==7}">
+							<a href="javascript:void(0)" style="background-color:#ccc;" target="_blank">已满标</a>
+                         </c:if>                         
                     </div>
                 </li>             
                 </c:forEach>
@@ -844,6 +850,9 @@
                          </c:if> 
                          <c:if test="${xfjrlist.fstatus==2}">
                          	<a href="javascript:void(0)" style="background-color:#ccc;" target="_blank">还款中</a>
+                         </c:if>
+                         <c:if test="${xfjrlist.fstatus==7}">
+                         	<a href="javascript:void(0)" style="background-color:#ccc;" target="_blank">已满标</a>
                          </c:if>
                 	</div>
                 </li>

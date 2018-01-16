@@ -198,6 +198,9 @@
 	                             <c:if test="${fabiaos.fstatus==2}">
 											还款中
 	                             </c:if> 
+	                             <c:if test="${fabiaos.fstatus==7}">
+											已满标
+	                             </c:if> 
 							</span>
                                <b>
                                     <i style="width:${fabiaos.compnrate} "></i>
@@ -222,6 +225,9 @@
                             	</c:if>
                             	<c:if test="${fabiaos.fstatus==2}">
                                		 <a href="javascript:void(0)" class="m2-invItemlink-inv"  title="${fabiaos.ftitle}">还款中</a>	
+                            	</c:if>
+                            	<c:if test="${fabiaos.fstatus==7}">
+                               		 <a href="javascript:void(0)" class="m2-invItemlink-inv"  title="${fabiaos.ftitle}">已满标</a>	
                             	</c:if>
                             </div>
                         </div>
@@ -470,7 +476,10 @@
          		 if(item.fstatus==3){
          			cc += '已结清</span><b>'
          		 }
-         	
+         		 if(item.fstatus==7){
+         			cc += '已满标</span><b>'
+         		 }
+         		 
          		 cc +='<i style="width:'+item.compnrate+'"></i>'
          		 if(item.fstatus==1){
          			 var count = (item.fmoney-item.fendmoney)/10000
@@ -490,12 +499,18 @@
          		 if(item.fstatus==3){
          			cc += '<a href="javascript:void(0)" class="m2-invItemlink-inv"  title="'+item.ftitle+'">已结清</a>'
          		 }
+         		if(item.fstatus==7){
+         			cc += '<a href="javascript:void(0)" class="m2-invItemlink-inv"  title="'+item.ftitle+'">已满标</a>'
+         		 }
          		 cc+='</div></div>'
          		if(item.fstatus==1){
          			cc += '<p class="m2-invItem-det" style="text-indent:20px;">投资万元预期收益：<span>'+item.yield+'元</span></p>'
          			cc += '	<p class="m2-invItem-det">投资起点金额：<span style="color:#ff6666;">'+item.fminmoney+'元</span></p>'
          		 }
          		 if(item.fstatus==2){
+         			cc += '<div class="m2-invItem-rigBg"></div>    '
+         		 }
+         		 if(item.fstatus==7){
          			cc += '<div class="m2-invItem-rigBg"></div>    '
          		 }
          		 cc +='</div></li>'  
