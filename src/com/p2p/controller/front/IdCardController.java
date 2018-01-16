@@ -71,8 +71,9 @@ public class IdCardController {
 	
 	@Resource(name="userInfoServiceImpl")
 	private UserInfoService userInfoService;  //用户基本信息
+	
 	@Resource(name="IUserServiceImpl")
-	private IUserService iUserService;  //用户
+	private IUserService iUserService;
 	
 	@Resource(name="authebDetaisServiceImpl")
 	private AuthebDetaisService authebDetaisService;  //消息
@@ -351,7 +352,7 @@ public class IdCardController {
 	}
 	@RequestMapping("updateBank")
 	@ResponseBody
-	public void updateBank(HttpServletRequest request,HttpServletResponse response) throws IOException {
+	public void updateBank(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		//判断请求报文是否来自代维系统的ip地址  
 	     String ip = request.getRemoteHost(); 
 		
@@ -367,7 +368,7 @@ public class IdCardController {
 			 StringBuffer inputString = new StringBuffer();  
 		        while ((line = reader.readLine()) != null) {  
 		        inputString.append(line);  
-		     }  
+		     } 
 	       
 		    //jackJson    
 	        ObjectMapper o=new ObjectMapper();
@@ -380,21 +381,13 @@ public class IdCardController {
 	        userbackcardService.update(userbackcard);
 	        
 	        //发送短信
-	        User use=new User();
-	        use.setUid(u.getBsuid());
-	        User user=iUserService.getModel(use);
 	        SendMsgUtil sUtil = new SendMsgUtil();
 			Map<String,Object> orther = new HashMap<String,Object>();
-			orther.put("userphone",user.getUphone());
+			orther.put("userphone",u.getBphone());
 			orther.put("money",u.getBmoney());
-			try {
-				sUtil.Send(user.getUphone(),MessageBenas.MSG_DEPOSIT,orther,sendmsg,messageUtil);
-			} catch (Exception e) {
-				//日志打印
-				//map.put("status", 2);
-				//map.put("msg","发送异常");
-				e.printStackTrace();
-			}
+			
+			sUtil.Send(u.getBphone(),MessageBenas.MSG_DEPOSIT,orther,sendmsg,messageUtil);
+			 
 	       // 要返回的报文  
 	       StringBuffer resultBuffer = new StringBuffer();  
 	       resultBuffer.append("1");
