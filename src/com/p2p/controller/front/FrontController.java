@@ -863,7 +863,10 @@ public class FrontController {
 		Userbackcard userbackcard = new Userbackcard();
 		userbackcard.setUiid(uiid);
 		Userbackcard uback = userbackcardService.getModel(userbackcard);
-		session.setAttribute("userbackcard", uback);
+		String kahao = uback.getUbbackcardnum();
+		String xianshi=kahao.substring(0,4)+"********"+kahao.substring(kahao.length()-4);
+		session.setAttribute("userbackcards", uback);
+		session.setAttribute("backnums", xianshi);
 		return "views/front/user/withdrawals";
 	}
 	

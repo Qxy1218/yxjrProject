@@ -30,9 +30,8 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/payPwd.js"></script> 
 		<title>投资记录 | 亿信金融</title>
 </head>
-<body>
+<body style="background:url('/Finances/statics/front/images/two.jpg');background-size:100% 100%;">
 	<!-- 引用js文件 -->
-	
 	<!-- 右侧边栏start -->
 	<jsp:include page="../include/userside.jsp"></jsp:include>		
 	<!-- 右侧边栏end -->
@@ -139,7 +138,7 @@
                         <div class="m2-userBank-chose" style="padding-top:10px;">
                             <a href="#"  class="m2-recharge-entChr"  id="changeBank"><span>选择其他银行卡&raquo;</span></a>
                             <!-- <a href="#">查看充值限额&raquo;</a> -->
-                            <b class="m2-userBank-choWarn">如需换卡，请联系客服：4006-777-518</b>
+                            <b class="m2-userBank-choWarn">存在换卡失败,请联系客服：4006-777-518</b>
                         </div>
                     </div>             
                     <div class="m2-recharge-ent">
