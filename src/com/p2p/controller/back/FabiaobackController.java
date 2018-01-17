@@ -1,5 +1,8 @@
 package com.p2p.controller.back;
 
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,8 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.p2p.pojo.Fabiao;
+import com.p2p.pojo.FabiaoP2p;
 import com.p2p.service.back.FabiaobackService;
 import com.p2p.util.PageInfo;
+import com.p2p.util.SendServiceUtil;
 
 /**
  * 操作人：朱勇峰
@@ -61,7 +66,22 @@ public class FabiaobackController {
 		fabiao.setFsecurity(fsecurity);
 		
 		fabiao.setForderimg(filepath);
-		int count = fabiaoService.addModel(fabiao);
+		FabiaoP2p fp=new FabiaoP2p();
+		BigDecimal acc=fabiao.getFendmoney();
+		Double money=acc.doubleValue();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
+		String time=sdf.format(new Date());
+		fp.setFsmoney(money);
+		fp.setFsstate(fabiao.getFstatus());
+		fp.setFssuid(fabiao.getUid());
+		fp.setFstime(fabiao.getFendtime());
+		fp.setFstitle(fabiao.getFtype());
+		fp.setFsorder(time+fabiao.getUid());
+		int chongzhicount = SendServiceUtil.list(fp, "192.168.90.47:8080/ServiceP2p/recharge/add");
+		int count=0;
+		if(chongzhicount==1) {
+			count = fabiaoService.addModel(fabiao);
+		}
 		return count;
 	}
 	
