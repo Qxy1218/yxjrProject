@@ -10,23 +10,22 @@
 <title>Insert title here</title>
    <link rel="shortcut icon" href="favicon.ico"> <link href="${pageContext.request.contextPath}/statics/back/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/statics/back/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
-
     <!-- Morris -->
     <link href="${pageContext.request.contextPath}/statics/back/static/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
-
     <!-- Gritter -->
     <link href="${pageContext.request.contextPath}/statics/back/static/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
-
     <link href="${pageContext.request.contextPath}/statics/back/static/css/animate.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/statics/back/static/css/style.css?v=4.1.0" rel="stylesheet">
-	<!-- <script type="text/javascript">
-	var adtime = $('#adtime').val();
-	SimpleDateFormat format2 = new SimpleDateFormat("MM");
-	String admm = format2.format(adtime);
-	String mon = format2.format(new Date());
-	request.setAttribute("month",mon);
-
-	</script> -->
+    
+	<!-- 
+		<script type="text/javascript">
+			var adtime = $('#adtime').val();
+			SimpleDateFormat format2 = new SimpleDateFormat("MM");
+			String admm = format2.format(adtime);
+			String mon = format2.format(new Date());
+			request.setAttribute("month",mon);
+		</script> 
+	-->
 </head>
 <body class="gray-bg">
     <div class="wrapper wrapper-content">
@@ -104,9 +103,10 @@
                     <div class="ibox-content">
                         <div class="row">
                             <div class="col-sm-9">
-                                <div class="flot-chart">
+                                <!-- <div class="flot-chart">
                                     <div class="flot-chart-content" id="flot-dashboard-chart"></div>
-                                </div>
+                                </div> -->
+                                <div id="main" style="width: 800px;height:400px;"></div>
                             </div>
                             <div class="col-sm-3">
                                 <ul class="stat-list">
@@ -322,97 +322,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <h5>交易地区</h5>
-                                <div class="ibox-tools">
-                                    <a class="collapse-link">
-                                        <i class="fa fa-chevron-up"></i>
-                                    </a>
-                                    <a class="close-link">
-                                        <i class="fa fa-times"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="ibox-content">
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <table class="table table-hover margin bottom">
-                                            <thead>
-                                                <tr>
-                                                    <th style="width: 1%" class="text-center">序号</th>
-                                                    <th>交易</th>
-                                                    <th class="text-center">日期</th>
-                                                    <th class="text-center">销售额</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="text-center">1</td>
-                                                    <td>防盗门
-                                                        </small>
-                                                    </td>
-                                                    <td class="text-center small">2014.9.15</td>
-                                                    <td class="text-center"><span class="label label-primary">&yen;483.00</span>
-                                                    </td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center">2</td>
-                                                    <td>衣柜
-                                                    </td>
-                                                    <td class="text-center small">2014.9.15</td>
-                                                    <td class="text-center"><span class="label label-primary">&yen;327.00</span>
-                                                    </td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center">3</td>
-                                                    <td>防盗门
-                                                    </td>
-                                                    <td class="text-center small">2014.9.15</td>
-                                                    <td class="text-center"><span class="label label-warning">&yen;125.00</span>
-                                                    </td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center">4</td>
-                                                    <td>橱柜</td>
-                                                    <td class="text-center small">2014.9.15</td>
-                                                    <td class="text-center"><span class="label label-primary">&yen;344.00</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center">5</td>
-                                                    <td>手机</td>
-                                                    <td class="text-center small">2014.9.15</td>
-                                                    <td class="text-center"><span class="label label-primary">&yen;235.00</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center">6</td>
-                                                    <td>显示器</td>
-                                                    <td class="text-center small">2014.9.15</td>
-                                                    <td class="text-center"><span class="label label-primary">&yen;100.00</span>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div id="world-map" style="height: 300px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
             </div>
-
 
         </div>
     </div>
@@ -420,8 +331,6 @@
     <!-- 全局js -->
     <script src="${pageContext.request.contextPath}/statics/back/static/js/jquery.min.js?v=2.1.4"></script>
     <script src="${pageContext.request.contextPath}/statics/back/static/js/bootstrap.min.js?v=3.3.6"></script>
-
-
 
     <!-- Flot -->
     <script src="${pageContext.request.contextPath}/statics/back/static/js/plugins/flot/jquery.flot.js"></script>
@@ -438,7 +347,6 @@
     <!-- 自定义js -->
     <script src="${pageContext.request.contextPath}/statics/back/static/js/content.js?v=1.0.0"></script>
 
-
     <!-- jQuery UI -->
     <script src="${pageContext.request.contextPath}/statics/back/static/js/plugins/jquery-ui/jquery-ui.min.js"></script>
 
@@ -454,177 +362,90 @@
 
     <!-- Sparkline demo data  -->
     <script src="${pageContext.request.contextPath}/statics/back/static/js/demo/sparkline-demo.js"></script>
+    
+    <!-- 引入主要的charts源码js -->
+	<script src="${pageContext.request.contextPath}/statics/back/static/js/echarts.min.js"></script>
+	<script src="${pageContext.request.contextPath}/statics/back/static/js/jquery-3.2.1.min.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            $('.chart').easyPieChart({
-                barColor: '#f8ac59',
-                //                scaleColor: false,
-                scaleLength: 5,
-                lineWidth: 4,
-                size: 80
-            });
+    <script type="text/javascript">
+		//基于准备好的dom,初始化实例,第二参数可以是引入的主题名
+		var chart = echarts.init(document.getElementById('main'), 'macarons');
+		
+		//获取纵坐标
+		var dateTime = new Array();
+		dateTime = ${dateTime};
+		
+		//获取横坐标(投标)
+		var moneyLoan = new Array();
+		moneyLoan = ${moneyLoan};
+		
+		//获取横坐标(借款)
+		var moneyBid = new Array();
+		moneyBid = ${moneyBid};
+		
+		chart.title = '折柱混合';
 
-            $('.chart2').easyPieChart({
-                barColor: '#1c84c6',
-                //                scaleColor: false,
-                scaleLength: 5,
-                lineWidth: 4,
-                size: 80
-            });
+		var option = {
+		    tooltip: {
+		        trigger: 'axis',
+		        axisPointer: {
+		            type: 'cross',
+		            crossStyle: {
+		                color: '#1ab394'
+		            }
+		        }
+		    },
+		    toolbox: {
+		        feature: {
+		            dataView: {show: true, readOnly: false},
+		            magicType: {show: true, type: ['line', 'bar']},
+		            restore: {show: true},
+		            saveAsImage: {show: true}
+		        }
+		    },
+		    legend: {
+		        data:['投标详情','借款详情']
+		    },
+		    xAxis: [
+		        {
+		            type: 'category',
+		            data: dateTime,
+		            axisPointer: {
+		                type: 'shadow'
+		            }
+		        }
+		    ],
+		    yAxis: [
+		        {
+		            type: 'value',
+		            name: '金额',
+		            min: 0,
+		            max: 10000,
+		            interval: 1000,
+		            axisLabel: {
+		                formatter: '{value} 元'
+		            }
+		        },
+		        
+		    ],
+		    series: [
+		        {
+		            name:'投标详情',
+		            type:'bar',
+		            data:moneyLoan
+		        },
+		        {
+		            name:'借款详情',
+		            type:'line',
+		            data:moneyBid
+		        }
+		    ]
+		};
+		
+		//使用刚指定的配置项和数据显示图表。
+        chart.setOption(option);
+	</script>
 
-            var data2 = [
-                [gd(2012, 1, 1), 7], [gd(2012, 1, 2), 6], [gd(2012, 1, 3), 4], [gd(2012, 1, 4), 8],
-                [gd(2012, 1, 5), 9], [gd(2012, 1, 6), 7], [gd(2012, 1, 7), 5], [gd(2012, 1, 8), 4],
-                [gd(2012, 1, 9), 7], [gd(2012, 1, 10), 8], [gd(2012, 1, 11), 9], [gd(2012, 1, 12), 6],
-                [gd(2012, 1, 13), 4], [gd(2012, 1, 14), 5], [gd(2012, 1, 15), 11], [gd(2012, 1, 16), 8],
-                [gd(2012, 1, 17), 8], [gd(2012, 1, 18), 11], [gd(2012, 1, 19), 11], [gd(2012, 1, 20), 6],
-                [gd(2012, 1, 21), 6], [gd(2012, 1, 22), 8], [gd(2012, 1, 23), 11], [gd(2012, 1, 24), 13],
-                [gd(2012, 1, 25), 7], [gd(2012, 1, 26), 9], [gd(2012, 1, 27), 9], [gd(2012, 1, 28), 8],
-                [gd(2012, 1, 29), 5], [gd(2012, 1, 30), 8], [gd(2012, 1, 31), 25]
-            ];
-
-            var data3 = [
-                [gd(2012, 1, 1), 800], [gd(2012, 1, 2), 500], [gd(2012, 1, 3), 600], [gd(2012, 1, 4), 700],
-                [gd(2012, 1, 5), 500], [gd(2012, 1, 6), 456], [gd(2012, 1, 7), 800], [gd(2012, 1, 8), 589],
-                [gd(2012, 1, 9), 467], [gd(2012, 1, 10), 876], [gd(2012, 1, 11), 689], [gd(2012, 1, 12), 700],
-                [gd(2012, 1, 13), 500], [gd(2012, 1, 14), 600], [gd(2012, 1, 15), 700], [gd(2012, 1, 16), 786],
-                [gd(2012, 1, 17), 345], [gd(2012, 1, 18), 888], [gd(2012, 1, 19), 888], [gd(2012, 1, 20), 888],
-                [gd(2012, 1, 21), 987], [gd(2012, 1, 22), 444], [gd(2012, 1, 23), 999], [gd(2012, 1, 24), 567],
-                [gd(2012, 1, 25), 786], [gd(2012, 1, 26), 666], [gd(2012, 1, 27), 888], [gd(2012, 1, 28), 900],
-                [gd(2012, 1, 29), 178], [gd(2012, 1, 30), 555], [gd(2012, 1, 31), 993]
-            ];
-
-
-            var dataset = [
-                {
-                    label: "订单数",
-                    data: data3,
-                    color: "#1ab394",
-                    bars: {
-                        show: true,
-                        align: "center",
-                        barWidth: 24 * 60 * 60 * 600,
-                        lineWidth: 0
-                    }
-
-                }, {
-                    label: "付款数",
-                    data: data2,
-                    yaxis: 2,
-                    color: "#464f88",
-                    lines: {
-                        lineWidth: 1,
-                        show: true,
-                        fill: true,
-                        fillColor: {
-                            colors: [{
-                                opacity: 0.2
-                            }, {
-                                opacity: 0.2
-                            }]
-                        }
-                    },
-                    splines: {
-                        show: false,
-                        tension: 0.6,
-                        lineWidth: 1,
-                        fill: 0.1
-                    },
-                }
-            ];
-
-
-            var options = {
-                xaxis: {
-                    mode: "time",
-                    tickSize: [3, "day"],
-                    tickLength: 0,
-                    axisLabel: "Date",
-                    axisLabelUseCanvas: true,
-                    axisLabelFontSizePixels: 12,
-                    axisLabelFontFamily: 'Arial',
-                    axisLabelPadding: 10,
-                    color: "#838383"
-                },
-                yaxes: [{
-                        position: "left",
-                        max: 1070,
-                        color: "#838383",
-                        axisLabelUseCanvas: true,
-                        axisLabelFontSizePixels: 12,
-                        axisLabelFontFamily: 'Arial',
-                        axisLabelPadding: 3
-                }, {
-                        position: "right",
-                        clolor: "#838383",
-                        axisLabelUseCanvas: true,
-                        axisLabelFontSizePixels: 12,
-                        axisLabelFontFamily: ' Arial',
-                        axisLabelPadding: 67
-                }
-                ],
-                legend: {
-                    noColumns: 1,
-                    labelBoxBorderColor: "#000000",
-                    position: "nw"
-                },
-                grid: {
-                    hoverable: false,
-                    borderWidth: 0,
-                    color: '#838383'
-                }
-            };
-
-            function gd(year, month, day) {
-                return new Date(year, month - 1, day).getTime();
-            }
-
-            var previousPoint = null,
-                previousLabel = null;
-
-            $.plot($("#flot-dashboard-chart"), dataset, options);
-
-            var mapData = {
-                "US": 298,
-                "SA": 200,
-                "DE": 220,
-                "FR": 540,
-                "CN": 120,
-                "AU": 760,
-                "BR": 550,
-                "IN": 200,
-                "GB": 120,
-            };
-            $('#world-map').vectorMap({
-                map: 'world_mill_en',
-                backgroundColor: "transparent",
-                regionStyle: {
-                    initial: {
-                        fill: '#e4e4e4',
-                        "fill-opacity": 0.9,
-                        stroke: 'none',
-                        "stroke-width": 0,
-                        "stroke-opacity": 0
-                    }
-                },
-
-                series: {
-                    regions: [{
-                        values: mapData,
-                        scale: ["#1ab394", "#22d6b1"],
-                        normalizeFunction: 'polynomial'
-                    }]
-                },
-                
-                
-            });
-        })
-        ;
-    </script>
-
-    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
-    <!--统计代码，可删除-->
 
 </body>
 
