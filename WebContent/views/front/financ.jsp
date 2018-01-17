@@ -65,7 +65,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="w3_agileits_main_grid w3l_main_grid">
 						<span class="agileits_grid">
 							<label>发标金额： </label>
-							<input type="text" name="fmoney">
+							<input type="text" name="fmoney" onkeyup="value=value.replace(/[^/d]/g,'') " 
+							onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^/d]/g,''))" >
 						</span>
 					</div>
 					<div class="w3_agileits_main_grid w3l_main_grid">
