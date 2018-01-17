@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<head>
 		<title>亿信金融后台登录</title>
 		<link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
-		<link href="${pageContext.request.contextPath}/statics/backlogin/css/style.css" rel='stylesheet' type='text/css' />
+		<link href="${pageContext.request.contextPath}/statics/back/backlogin/css/style.css" rel='stylesheet' type='text/css' />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="Simple Login Form,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements"./>

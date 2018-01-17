@@ -23,7 +23,7 @@ img{max-width:100%;}
 /*end reset*/
 /****-----start-body----****/
 body {
-	background-image:url(/Finances/statics/backlogin/images/bg2.jpg);
+	background-image:url(/Finances/statics/back/backlogin/images/bg2.jpg);
 	background-size:cover;
 	background-repeat:no-repeat;
 	background-attachment:fixed;
@@ -85,10 +85,10 @@ input[type="text"], input[type="password"] {
   padding: 5px 16px 0 0;
 }
 .user {
-  background: url(/Finances/statics/backlogin/images/user.png) no-repeat 8px 2px ;
+  background: url(/Finances/statics/back/backlogin/images/user.png) no-repeat 8px 2px ;
 }
 .lock {
-  background: url(/Finances/statics/backlogin/images/lock.png) no-repeat 8px 2px ;
+  background: url(/Finances/statics/back/backlogin/images/lock.png) no-repeat 8px 2px ;
 }
 .submit{
 }
