@@ -130,7 +130,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select count(*) from loan;
     </select>
     
-    <select id="getModel" parameterType="com.p2p.pojo.Loan" resultMap="LoanResultMap">
+    <select id="getModel" parameterType="com.p2p.pojo.Loan" resultMap="BaseResultMap">
 		select * from loan
 		<where>
 			1=1
