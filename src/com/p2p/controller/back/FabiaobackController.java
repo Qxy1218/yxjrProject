@@ -48,6 +48,20 @@ public class FabiaobackController {
 		return pageInfo;
 	}
 	
+	@RequestMapping("selectFabiao")
+	@ResponseBody
+	//待审核标表分页查询
+	public PageInfo selectFabiao(Integer page,Integer rows,Fabiao fabiao) {
+		Integer pageSize = (page /rows)+1;
+		PageInfo pageInfo = new PageInfo(pageSize,rows);
+		Integer count = fabiaoService.fabiaoCount();
+		Map<String,Object> map = new HashMap<String, Object>();
+		pageInfo.setCondition(map);
+		fabiaoService.selectFabiao(pageInfo, fabiao);
+		pageInfo.setTotal(count);
+		return pageInfo;
+	}
+	
 	@RequestMapping("insertfabiao")
 	@ResponseBody
 	//发标表增加

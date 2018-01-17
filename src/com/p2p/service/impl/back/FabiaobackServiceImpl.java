@@ -70,4 +70,15 @@ public class FabiaobackServiceImpl implements FabiaobackService{
 		return fabiaomapper.fabiaoCount();
 	}
 
+	public void selectFabiao(PageInfo pageInfo, Fabiao fabiao) {
+		//传入一个分页bean pageInfo
+		Page<Fabiao> page = new Page(pageInfo.getNowpage(),pageInfo.getSize());
+		List<Fabiao> list = fabiaomapper.selectFabiao(page, pageInfo.getCondition(), fabiao);
+		//List<Fabiao> list = fabiaomapper.selectPageFabiao(page, pageInfo.getCondition(), fabiao);
+		//List<Fabiao> list = fabiaomapper.getAllModel();
+		pageInfo.setRows(list);
+		pageInfo.setTotal(page.getTotal());
+		
+	}
+
 }

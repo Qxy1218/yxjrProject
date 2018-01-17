@@ -38,6 +38,9 @@ public interface FabiaoMapper extends IBaseDao<Integer, Fabiao>{
 		//实现分页查询
 		List<Fabiao> selectPageFabiao(Pagination page,Map<String ,Object> params,@Param(value="fabiao") Fabiao fabiao);
 		
+		//实现审核标查询
+		List<Fabiao> selectFabiao(Pagination page,Map<String ,Object> params,@Param(value="fabiao") Fabiao fabiao);
+		
 		//查询总的记录数
 		abstract Integer fabiaoCount();
 		

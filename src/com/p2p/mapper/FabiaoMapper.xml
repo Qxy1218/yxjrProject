@@ -242,6 +242,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectPageFabiao" resultMap="BaseResultMap">
 		select * from fabiao 
 	</select>
+	<select id="selectFabiao" resultMap="BaseResultMap">
+		select * from fabiao where f_status=6;
+	</select>
 	<!-- 后台表总记录数查询 -->
 	<select id="fabiaoCount" resultType="java.lang.Integer">
 		select count(*) from fabiao

@@ -556,6 +556,9 @@
                            <li>
                         		 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/fabiao.jsp">发标管理</a>
                            </li>
+                            <li>
+                        		 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/shfabiao.jsp">待审核标管理</a>
+                           </li>
                         </ul>
                     </li>
                     
