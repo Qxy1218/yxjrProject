@@ -27,6 +27,7 @@ import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.ProjectSelect;
 import com.p2p.pojo.Provice;
 import com.p2p.pojo.Setupnatice;
+import com.p2p.pojo.Sing;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Userbackcard;
 import com.p2p.pojo.Userinfo;
@@ -35,6 +36,7 @@ import com.p2p.service.back.ContactService;
 import com.p2p.service.front.AddressService;
 import com.p2p.service.front.FabiaoService;
 import com.p2p.service.front.SetupnaticeService;
+import com.p2p.service.front.SingService;
 import com.p2p.service.front.UserInfoService;
 import com.p2p.service.front.UserbackcardService;
 import com.p2p.util.ContextUtils;
@@ -73,6 +75,10 @@ public class FrontController {
 	
 	@Resource(name="userbackcardServiceImpl") 
 	private UserbackcardService userbackcardService;
+	
+	
+	@Resource(name="singServiceImpl")
+	private SingService singService;
 	
 	/**
 	 * 头部的conteroller
@@ -574,6 +580,53 @@ public class FrontController {
 			Userinfo userinf = userInfoService.seleUserinfoByuid(uid);
 			session.setAttribute("userinfo", userinf);
 		}
+		//初始化等级
+		Sing sing = new Sing();
+		sing.setSiguser(uid);
+		sing = singService.getModel(sing);
+		if(sing==null) {
+			sing = new Sing();
+			sing.setSiguser(uid);
+			sing.setSiglevel(1);
+			sing.setLasttime(DateUtils.getLastYear());
+			sing.setName("帮主");
+			sing.setSiggrowth(2+"");
+			sing.setCountday(0);
+			//取还需成长值
+			sing.setIntegral(4000-sing.getCountday());
+			singService.addModel(sing);
+		}else {
+			Integer rr = Integer.parseInt(sing.getSiggrowth());
+			/**
+			 * 判断等级
+			 * */
+			if(rr>=4000) {
+				//铁帮主
+				sing.setName("铁帮主");
+				//取还需成长值
+				sing.setIntegral(20000-rr);
+			}else if(rr>=20000) {
+				//铜帮主
+				sing.setName("铜帮主");
+				//取还需成长值
+				sing.setIntegral(60000-rr);
+			}else if(rr>=60000) {
+				//金帮主
+				sing.setName("金帮主");
+				//取还需成长值
+				sing.setIntegral(240000-rr);
+			}else if(rr>=240000) {
+				//白金帮主
+				sing.setName("白金帮主");
+				//取还需成长值
+				sing.setIntegral(99999999-rr);
+			}else {
+				sing.setName("帮主");
+				//取还需成长值
+				sing.setIntegral(4000-rr);
+			}
+		}
+		mo.addObject("singuser", sing);
 		
 		mo.setViewName("views/front/user/usercenter");
 		return mo;
@@ -596,7 +649,12 @@ public class FrontController {
 	 * 成长值中心页面的conteroller
 	 * */
 	@RequestMapping(value="/togrowth")
-	public String tofrongrowth() {
+	public String tofrongrowth(HttpSession session,Model model) {
+		User user =(User)session.getAttribute("user");
+		Sing sing = new Sing();
+		sing.setSiguser(user.getUid());
+		sing = singService.getModel(sing);
+		model.addAttribute("singuser", sing);
 		return "views/front/user/growthcenter";
 	}
 	

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%
 	String path = request.getContextPath();
 %>
@@ -22,6 +23,9 @@
 	    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/esl.js"></script>
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/jquery.datetimepicker.css" />
 	    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/jquery.datetimepicker.js"></script>
+	
+			<link rel="stylesheet" href="/Finances/statics/front/statics/company_finance/css/center_div.css">
+   
 	</head>
 <body>
 	<div class="m2-userCentercommon-bg" style="display:none;"></div>
@@ -107,22 +111,54 @@
             <i class="m2-msgBox-close" id='notice-close'></i>
         </div>
         <div class="m2-wel-con" style="background-color:white;width:798px;">
-            <p class="m2-wel-hello" id='greeting' style="background-color:white;margin:0 10px;width: 730px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" title='上午好，iqb13737301354，投资，是为了更好的自己！'>上午好，iqb13737301354，投资，是为了更好的自己！</p>
+            <p class="m2-wel-hello" id="greeting" style="background-color:white;margin:0 10px;width: 730px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" title='上午好，iqb13737301354，投资，是为了更好的自己！'>
+            	<span id="thistime">上午好</span>，${sessionScope.user.uphone}，投资，是为了更好的自己！
+            </p>
             <div class="m2-wel-lef">
                 <!-- <span style="position:absolute;top:85px;right:10px;font-size:15px;line-height:15px;">邀请码：
 				<i style="font-style:normal;">xrejfr</i></span>-->
                 <div class="left">
-                    <img src="/Finances/statics/front/statics/usercenter/images/growth/vip.png" alt="爱钱帮" style="margin:20px;"><br>
-                    <button style="background-color:#b7b6b6;outline:none;" >已签到</button>                
-					<p>您已连续签到<span id='day'>1</span>天，</p>
-                    <p><span id='today'>明天</span>再签到可获得<span id='growth'>2</span>个成长值</p>
+                    <img id="userImg" src="${pageContext.request.contextPath}${sessionScope.user.userinfo.uiheadImg}" alt="忆信金融" style="margin:20px;"><br>
+                   	 <button id="yiqd" style="background-color:#b7b6b6;outline:none;" >已签到</button>                
+					<p id="msgcount">您已连续签到<span id='day'>${singuser.countday}</span>天，</p>
+                    	<p><span id='today'>明天</span>再签到可获得
+                    		<span id='growth'>
+                    			 <c:if test="${singuser.countday<=10 and singuser.countday!=0}">
+                    			 	${singuser.countday+2}
+                    			 </c:if>
+                    			 <c:if test="${singuser.countday>10}">
+                    			 	10
+                    			 </c:if>
+                    			 <c:if test="${singuser.countday==0}">
+                    			 	2
+                    			 </c:if>
+                    		</span>
+                    		个成长值
+                    	</p>
                 </div>
                 <div class="right">
                     <div class="m2-userMsg-iconLv" >
-                        <a href="usercenter-growth-index.html" class="m2-iconLevel-normal"><i></i><span>帮主</span></a>
+                        <a href="${pageContext.request.contextPath}/togrowth" class="m2-iconLevel-normal"><i></i><span>帮主</span></a>
                     </div>
-                    <div>成长值：<span id="mydetail_num" data="4000">1</span><a href="/usercenter-growth-index#mao" style="color:#69b1d7;float:right;">如何加速？</a></div>
-                    <div id="desc" style="margin:10px 0;font-size:12px;">距离 <span id='vipname'>铁帮主</span> 还需要 <span id='integral'>3999</span> 成长值</div>	            <div id="growth_scale"><div class='bg'></div></div>
+                    <div>成长值：<span id="mydetail_num" data="4000">${singuser.siggrowth}</span><a href="${pageContext.request.contextPath}/togrowth" style="color:#69b1d7;float:right;">如何加速？</a></div>
+                    <div id="desc" style="margin:10px 0;font-size:12px;">距离 <span id='vipname'>
+                     <c:if test="${singuser.siglevel==2}">
+                     	铁帮主
+                     </c:if>
+                      <c:if test="${singuser.siglevel==3}">
+                     	铜帮主
+                     </c:if>
+                      <c:if test="${singuser.siglevel==4}">
+                     	金帮主
+                     </c:if>
+                      <c:if test="${singuser.siglevel==5}">
+                     	白金帮主
+                     </c:if>
+                    </span> 还需要 <span id='integral'>${singuser.integral}</span> 成长值</div>	            
+                    <div id="growth_scale">
+                    	<div class='bg' style="width:${ (singuser.integral+singuser.integral)/siggrowth*100}%"></div>
+                    	
+                    </div>
                     <ul style="margin:16px 0 10px 0;">
                         <li class="m2-userMsg-icon" style="margin-left:-8px;"><a href="#" id='verify_id' class="m2-iconUser-fal" title='实名认证'></a></li>
                         <li class="m2-userMsg-icon"><a href="#?phone=1" id='verify_phone' class="m2-iconPho-fal" title='手机认证'></a></li>
@@ -281,8 +317,9 @@
                 </div>
             </div>
             <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/jquery.datetimepicker.modified.js"></script>
-            <script><!--
-
+            <script>
+            <%--
+           
             var now = new Date();
             var year = now.getFullYear();       //年
             var month = now.getMonth() + 1;     //月
@@ -495,10 +532,9 @@
                 m=Math.pow(10,Math.max(sq1,sq2));
                // return Math.round(( num1 * m - num2 * m ) / m * 100)/100;
             }
-            -->
+         --%>
        </script>
-       	<link rel="stylesheet" href="/Finances/statics/front/statics/company_finance/css/center_div.css">
-     </div>
+         </div>
      <div class="m2-user-invest">
           <div class="m2-user-invest-head">
               <h3><i></i>最近投资记录<a href="usercenter-investcontrol-investrecord.html">更多</a></h3>
@@ -524,70 +560,85 @@
         <span id='nmsg'></span>
     </div>
     <script>
-        $(function(){
-            var scale=$("#mydetail_num").text()/$("#mydetail_num").attr("data")*100+"%";
-            $("#growth_scale .bg").animate({width:scale},900);
-            $('#sign').click(function(){
-                var active_id='0';
-                $.ajax({
-                    type:"POST",
-                    url: "/usercenter-Index-sign_in",
-                    data: {active_id:active_id},
-                    success: function (data) {
-                        var obj=JSON.parse(data);
-                        var data = obj.data;
-                        if(obj.resultcode==41001){
-                            if(data.level==4 ||data.level==5){
-                                $("#mydetail_num").attr("data",data.growthvalue);
-                            }else{
-                                $("#mydetail_num").attr("data",parseInt(data.growthvalue+data.integral));
-                            }
-                            $("#mydetail_num").text(data.growthvalue);
-                            $("#sign").css("backgroundColor","#b7b6b6");
-                            $("#sign").text('已签到');
-                            $('#day').html(parseInt($('#day').html())+1);
-                            var growth=parseInt($('#growth').html())+1;
-                            if (growth>=10){
-                                growth=10;
-                            }
-                            $('#growth').html(growth);
-                            $('#today').html('明天');
-                            var scale=$("#mydetail_num").text()/$("#mydetail_num").attr("data")*100+"%";
-                            $("#growth_scale .bg").animate({width:scale},900);
-                            $('#integral').html(data.integral);
-                            $('#vipname').html(data.name);
-                            switch(data.level){
-                                case 0:
-                                    $('.right .m2-userMsg-iconLv a').attr('class','m2-iconLevel-normal');
-                                    $('.right .m2-userMsg-iconLv a span').text('帮主');
-                                    break;
-                                case 1:
-                                    $('.right .m2-userMsg-iconLv a').attr('class','m2-iconLevel-iron');
-                                    $('.right .m2-userMsg-iconLv a span').text('铁帮主');
-                                    break;
-                                case 2:
-                                    $('.right .m2-userMsg-iconLv a').attr('class','m2-iconLevel-copper');
-                                    $('.right .m2-userMsg-iconLv a span').text('铜帮主');
-                                    break;
-                                case 3:
-                                    $('.right .m2-userMsg-iconLv a').attr('class','m2-iconLevel-gold');
-                                    $('.right .m2-userMsg-iconLv a span').text('金帮主');
-                                    break;
-                                case 4:
-                                    $('.right .m2-userMsg-iconLv a').attr('class','m2-iconLevel-paltinum');
-                                    $('.right .m2-userMsg-iconLv a span').text('白金帮主');
-                                    $('#desc').text('您已然是一人之下，万人之上，无比荣耀');
-                                    break;
-                                case 5:
-                                    $('.right .m2-userMsg-iconLv a').attr('class','m2-iconLevel-svip');
-                                    $('.right .m2-userMsg-iconLv a span').text('特邀帮主');
-                                    $('#desc').text('爱钱帮最高等级，王者荣耀');
-                                    break;
-                            }
-                        }
+    function qiandao(){
+        $.ajax({
+            type:"POST",
+            url: "${pageContext.request.contextPath}/user/usersing",
+            success: function (data) {
+            	data = eval('(' + data+ ')');  
+               alert(data.isupdate);
+                if(data.isupdate==1){
+                    if(data.sing.siglevel==4 ||data.sing.siglevel==5){
+                    	//4级或者5级不添加积分
+                        $("#mydetail_num").attr("data",data.sing.siggrowth);
+                    }else{
+                    	//不是4级或者5级添加积分，时间原因直接+1
+                        $("#mydetail_num").attr("data",parseInt(data.sing.siggrowth+1));
                     }
-                });
-            })
+                    //成长值
+                    $("#mydetail_num").text(data.sing.siggrowth);
+                    $("#sign").css("backgroundColor","#b7b6b6");
+                    $("#sign").text('已签到');
+                    $('#day').html(parseInt($('#day').html())+1);
+                    //获取成长值
+                    var growth=parseInt($('#growth').html())+1;
+                    if (growth>=10){
+                        growth=10;
+                    }
+                    $('#growth').html(growth);
+                    $('#today').html('明天');
+                    var scale=$("#mydetail_num").text()/$("#mydetail_num").attr("data")*100+"%";
+                    $("#growth_scale .bg").animate({width:scale},900);
+                    $('#integral').html(data.sing.integral);
+                    $('#vipname').html(data.sing.name);
+                    switch(data.sing.siglevel){
+                        case 0:
+                            $('.right .m2-userMsg-iconLv a').attr('class','m2-iconLevel-normal');
+                            $('.right .m2-userMsg-iconLv a span').text('帮主');
+                            break;
+                        case 1:
+                            $('.right .m2-userMsg-iconLv a').attr('class','m2-iconLevel-iron');
+                            $('.right .m2-userMsg-iconLv a span').text('铁帮主');
+                            break;
+                        case 2:
+                            $('.right .m2-userMsg-iconLv a').attr('class','m2-iconLevel-copper');
+                            $('.right .m2-userMsg-iconLv a span').text('铜帮主');
+                            break;
+                        case 3:
+                            $('.right .m2-userMsg-iconLv a').attr('class','m2-iconLevel-gold');
+                            $('.right .m2-userMsg-iconLv a span').text('金帮主');
+                            break;
+                        case 4:
+                            $('.right .m2-userMsg-iconLv a').attr('class','m2-iconLevel-paltinum');
+                            $('.right .m2-userMsg-iconLv a span').text('白金帮主');
+                            $('#desc').text('您已然是一人之下，万人之上，无比荣耀');
+                            break;
+                        case 5:
+                            $('.right .m2-userMsg-iconLv a').attr('class','m2-iconLevel-svip');
+                            $('.right .m2-userMsg-iconLv a span').text('特邀帮主');
+                            $('#desc').text('爱钱帮最高等级，王者荣耀');
+                            break;
+                    }
+                }
+            }
+        });
+	}
+    
+        $(function(){
+        	//判断用户是否签到
+        	 $.post("${pageContext.request.contextPath}/user/checkusersing",function(result){
+        		 if(result==0){
+        			 $('#yiqd').remove();
+             		var cc = '<button id="sign" onclick="qiandao();"  style="background-color:#2894FF;outline:none;" >签到</button>  ';
+             		$('#msgcount').before(cc);
+        		 }
+        	});
+        	
+        	//   成长值 /成长值的date*100
+           // var scale= $("#mydetail_num").text() / $("#mydetail_num").attr("data")*100+"%";
+            var scale ="24%"
+        	$("#growth_scale .bg").animate({width:scale},900);
+
         })
         var oP=document.getElementById('allP');
         var oClose=document.getElementById('close');
@@ -672,22 +723,37 @@
                 }
             }
         }
-
+		//根据当前时间分别做样式选择
         function getGreeting() {
 
             var date = new Date();
             var H = date.getHours();
-            if (H < 5) {
+            var day = '';
+            //alert(H);
+            if (H <= 5) {
+            	//晚上
                 icon = '<i class="m2-hello-nig">';
-            } else if (H < 12) {
+                day ='晚上好'
+            } else if (H <= 12) {
+            	//上午
                 icon = '<i class="m2-hello-mor">';
-            } else if (H < 18) {
+                day ='上午好'
+            } else if (H <= 18) {
+            	//下午
                 icon = '<i class="m2-hello-aft">';
-            } else if (H < 20) {
+                day ='下午好'
+            } else if (H <= 20) {
+            	//晚上
                 icon = '<i class="m2-hello-nig">';
+                day ='晚上好'
             } else {
+            	//晚上
                 icon = '<i class="m2-hello-nig">';
+                day ='晚上好'
             }
+            //alert(icon);
+            $('#thistime').html('');
+            $('#thistime').html(day);
             $('#greeting').prepend(icon);
         }
 
@@ -741,9 +807,9 @@
         }
 
         function loadMonChart() {
-
+			//先注释
             $('.m2-chartLoading').show();
-            $.ajax({
+          /*   $.ajax({
                 url: "usercenter-Index-getIncomeList",
                 data: {},
                 success: function (data) {
@@ -755,7 +821,7 @@
                     dailyCate = getList(obj.daylist, 'day');
                     loadChartmonth(monthData, monthCate);
                 }
-            });
+            }); */
         }
 
         function getList(data, key) {

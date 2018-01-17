@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%
 	String path = request.getContextPath();
 %>
@@ -94,7 +95,7 @@
 	                <div class="range-parents">
 	                    <div class="range"><div style="width: 8%;" class="range-son"></div></div>
 	                    <span class="progress" style="left:18px;margin-top:10px;">0</span>
-	                    <div class="myprogress" style="left:33px;"><span class="myprogress-son">1</span></div>
+	                    <div class="myprogress" style="left:33px;"><span class="myprogress-son">${singuser.siggrowth}</span></div>
 	                    <span class="progress" style="left:130px;margin-top:10px;">4000</span>
 	                    <span class="progress" style="left:255px;margin-top:10px;">20000</span>
 	                    <span class="progress" style="left:380px;margin-top:10px;">60000</span>

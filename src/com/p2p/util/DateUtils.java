@@ -32,7 +32,9 @@ public class DateUtils {
 	private static DateFormat timeFormat = null;
 
 	private static Calendar gregorianCalendar = null;
-
+	
+	
+	
 	static {
 		dateFormat = new SimpleDateFormat(DATE_DEFAULT_FORMAT);
 		dateTimeFormat = new SimpleDateFormat(DATETIME_DEFAULT_FORMAT);
@@ -437,6 +439,15 @@ public class DateUtils {
 	 } catch (ParseException e) {
 	  e.printStackTrace();
 	 }
+	 }
+	
+	 public static String getLastYear() {
+		 Calendar c = Calendar.getInstance();
+		 	c.setTime(new Date());
+	        c.add(Calendar.YEAR, -1);
+	        Date y = c.getTime();
+	        String year = dateFormat.format(y);
+	        return year;
 	 }
 	
 }
