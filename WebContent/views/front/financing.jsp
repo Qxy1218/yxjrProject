@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -18,9 +22,27 @@
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-common.css">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/company_finance/css/company_finance.css">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/home/css/newPage.css" />
-	    
+	   
 	    <script type="text/javascript" src="/Finances/statics/front/statics/home/js/jquery.min.js"></script>
 	    <script type="text/javascript" src="/Finances/statics/front/statics/newcommon/js/common.js"></script>
+		
+			<!-- 弹出层美化 -->
+		
+		<script type="text/javascript" src="/Finances/statics/front/js/ui.js" ></script>
+		<link rel="stylesheet"  href="/Finances/statics/front/css/style.css" ></link>
+		<style type="text/css">
+			.box{width: 100%;margin:0rem auto;display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;-webkit-flex-wrap: wrap;-ms-flex-wrap: wrap;flex-wrap: wrap;}
+			.box-items {-ms-flex-align: center;-webkit-align-items: center;-webkit-box-align: center;align-items: center;}
+			.flex-1{display: block;-webkit-box-flex: 1;-webkit-flex: 1;-ms-flex: 1;flex: 1;width: 0;-webkit-flex-basis: 0;-ms-flex-preferred-size: 0;flex-basis: 0;}
+			.pwd-control {text-align: center; width: 200px;}
+			.pwd-control .item {margin: 0 0.1rem;position: relative;}
+			.pwd-control .item.circle:after {content: "";width: 8px;height: 8px;background: #000;border-radius: 50%;position: absolute;top: 50%;left: 50%;margin-top: -4px;margin-left: -4px;}
+			.pwd-control .normal input {color: #000;}
+			.pwd-control input {display: block;width: inherit;border-radius: 3px;text-align: center;border: 1px solid #c79f62;width: 100%;color: #fff;line-height: 35px}
+			.pwd-control input:focus {box-shadow: 0px 0px 20px #c79f62;}
+			.pwd-control .box {padding: 0rem;}
+		</style>	
+		
 		
 		<!-- 图形验证码 -->
 	<script src="/Finances/statics/front/js/gVerify.js"></script>
@@ -40,12 +62,8 @@
 		<div id="company_finance">
 		    <div class="topbanner">
 		        <div class="topcontent">
-		            <div class="financeclick">
-		                <p>马上</p>
-		                <p>预约</p>
-		            </div>
+		            
 		        </div>
-		        <div class="bottomcontent">我们将在1个工作日内与你联系</div>
 		    </div>
 		    <div class="firstcontent">
 		        <div class="companytitle"><hr/><span class="sptitle">我们的优势</span><hr/></div>
@@ -294,7 +312,7 @@
 		            <p>定期产品：按月付息、到期还本，可选1~12个月的产品。</p>
 		        </div>
 		        <div class="lastbutton">
-		            <button class="financeclick">马上预约</button>
+		            <button class="financeclick" onclick="window.location.href='/Finances/views/front/financ.jsp' ">马上预约</button>
 		            <p>我们将在1日内与你联系</p>
 		        </div>
 		    </div>
@@ -303,44 +321,37 @@
 		<div id="finance_mask_content">
 		    <img src="/Finances/statics/front/statics/company_finance/images/company_finance11.png" class="finance_chacha">
 		    <h5>填写预约信息</h5>
+		    <form id="editForm" method="post">
 		    <div class="maskdetail">
 		        <p style="font-size:14px;">我们将在<span style="color:#e7b82b;">1个工作日</span>内与你联系，提供企业金融服务。</p>
 		        <div class="inputcontent">
-		            <span><span style="color:red;">*</span>企业名称：</span>
-		            <input type="text" id="corname" placeholder="工商注册名称" />
+		            <span><span style="color:red;">*</span>发标类型：</span>
+					<select name="fpart" id="mySelect">
+						<option value="爱车贷">爱车贷</option>
+						<option value="爱房贷">爱房贷</option>
+						<option value="消费基金">消费基金</option>  
+						<option value="爱公益">爱公益</option>
+					</select>
 		        </div>
 		        <div class="inputcontent">
-		            <span><span style="color:red;">*</span>联系人姓名：</span>
-		            <input type="text" id="linkman" />
+		            <span><span style="color:red;">*</span>产品概要：</span>
+		            <input type="text" id="fcontent" name="fcontent"/>
 		        </div>
 		        <div class="inputcontent">
-		            <span><span style="color:red;">*</span>职位：</span>
-		            <input type="text" id="title" />
+		            <span><span style="color:red;">*</span>风险措施：</span>
+		            <input type="text" id="fsecuritymea" name="fsecuritymea"/>
 		        </div>
-		        <div class="inputcontent">
-		            <span><span style="color:red;">*</span>手机号：</span>
-		            <input type="text" id="phoneno" maxlength="11" />
-		        </div>
-		        <div class="inputcontent">
-		            <span><span style="color:red;">*</span>邮箱：</span>
-		            <input type="text" id="email"  placeholder="优先工作邮箱" />
-		        </div>
-		        <div class="inputcontent">
-		            <span><span style="color:red;">*</span>理财资金：</span>
-		            <div class="checkmoney checked" style="margin:0 10px 0 26px;">100万以下</div>
-		            <div class="checkmoney">100万-500万</div>
-		            <div class="checkmoney">500万-1000万</div>
-		            <div class="checkmoney" style="margin-right:0;">1000万以上</div>
-		        </div>
-		        <textarea class="textarea" id="remark" placeholder="关于企业理财的需求都可以写下来哦~"></textarea>
-		        <div class="inputcontent">
-		            <span><span style="color:red;">*</span>验证码：</span>
-		            <input style="margin-right: 10px; width: 430px;" type="text" maxlength="5" class="m2-regist-username m2-regist-code" id="vcode" placeholder="验证码" />
-		            <span style="position:absolute;right:28px;top:-10px;" class="m2-regist-tdInput m2-regist-check"><img src="/Finances/statics/front/statics/home2/images/Index-VerifyCode.png" onClick="generateVerifyCode();" id="reverifyCode" /></span>
+		        <div class="inputcontent abc">
+		            <span><span style="color:red;">*</span>发标金额：</span>
+		            <div class="checkmoney checked" style="margin:0 10px 0 26px;" name="fmoney" datevalue="100000.00">100000.00</div>
+		            <div class="checkmoney" name="fmoney" datevalue="300000.00">300000.00</div>
+		            <div class="checkmoney" name="fmoney" datevalue="500000.00">500000.00</div>
+		            <div class="checkmoney" style="margin-right:0;" name="fmoney" datevalue="1000000.00">1000000.00</div>
 		        </div>
 		        <div id="alert" style="color:red;font-size:16px;text-align:center;line-height:52px;visibility:hidden;">*为必填项</div>
 		        <button class="lastbtn" onclick="register();">马上预约</button>
 		    </div>
+		    </form>
 		</div>
 		<div id="ajax_alert">
 		    <h5></h5>
@@ -358,7 +369,7 @@
 		        $(data).show();
 		    })
 		    // 点击马上预约的弹窗
-		    $("#company_finance .financeclick").click(function(){
+		    <!--$("#company_finance .financeclick").click(function(){
 		
 		        $("#finance_mask").show();
 		        $("#finance_mask_content").show();
@@ -370,7 +381,7 @@
 		    $("#ajax_alert .confirm").click(function(){
 		        $("#ajax_alert").hide();
 		        $("#finance_mask").hide();
-		    })
+		    })-->
 		    //点击选择不同的钱
 		    $("#finance_mask_content .checkmoney").click(function(){
 		        $("#finance_mask_content .checkmoney").removeClass("checked");
@@ -456,32 +467,6 @@
 		    //            checkPhoneNo();
 		    //        });
 		
-		    function checkPhoneNo() {
-		        phoneno = $('#phoneno').val();
-		        parttern = /^(1)([0-9]{10})?$/;
-		        falg = phoneno.search(parttern);
-		
-		        if (!errormsg(falg == -1, "手机号不合法，请重新输入")) {
-		            return false;
-		        } else {
-		            return true;
-		        }
-		    }
-		
-		    //        $("#email").blur(function () {
-		    //        	checkEmail();
-		    //        });
-		
-		    function checkEmail() {
-		        email = $('#email').val();
-		        parttern = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
-		
-		        if (!errormsg(!email.match(parttern), "邮箱格式不正确，请重新输入")) {
-		            return false;
-		        } else {
-		            return true;
-		        }
-		    }
 		
 		    function errormsg(flag, msg) {
 		        if (flag) {
@@ -496,45 +481,39 @@
 		
 		    function register() {
 		        var datas = {};
-		        datas['corname'] = $('#corname').val();
-		        datas['linkman'] = $('#linkman').val();
-		        datas['title'] = $('#title').val();
-		        datas['phoneno'] = $('#phoneno').val();
-		        datas['email'] = $('#email').val();
-		        datas['capital'] = $('.checked').text();
-		        datas['vcode'] = $('#vcode').val();
-		
+		        datas['fcontent'] = $('#fcontent').val();
+		        datas['fsecuritymea'] = $('#fsecuritymea').val();
 		        // 判断必输项为空
 		        for(var i in datas) {
 		            if (!errormsg(datas[i]=="", "*为必填项")) {
 		                return false;
 		            }
 		        }
-		
-		        datas['remark'] = $('#remark').val();
-		
-		        // 校验手机号码合法性
-		        if (!checkPhoneNo()) {
-		            $("#phoneno").focus();
-		            return false;
-		        }
-		
-		        // 校验邮箱地址
-		        if (!checkEmail()) {
-		            $("#email").focus();
-		            return false;
-		        }
-		
-		        $.ajax({
-		            type: "POST",
-		            url: '/Home-Companyfinance-register',
-		            dataType: 'json',
-		            data:datas,
-		            success: function(data) {
-		                lmkajax(data['success'],data['retUserInfo']);
-		                generateVerifyCode();
-		            }
-		        });
+		        
+		        var formobj =  document.getElementById("editForm");
+				var formdata = new FormData(formobj);
+				var tt =$("div[class*='checked']").attr("datevalue");
+				formdata.append("fmoney",tt);
+				$.ajax({
+					url:  "${pageContext.request.contextPath }/userFabiao/insertFabiao",
+				    type: 'POST',
+				    cache: false,
+				    data: formdata,
+				    processData: false,
+				    contentType: false,
+				    success:function(data){
+				    	//后台返回int类型的数据
+	       					if(data>0){
+	       						mizhu.toast('预约成功', 6000);
+	       					}else{
+	       						//新增失败
+	       						mizhu.toast('预约失败', 6000);
+	       					}
+	       	          },
+	       	          error:function(e){
+	       	        	mizhu.toast('预约错误');
+	       	          }
+				}); 
 		    }
 		
 		    // ajax回调函数
@@ -553,11 +532,7 @@
 		        $("#finance_mask_content").hide();
 		    }
 		
-		    // 生成验证码
-		    function generateVerifyCode() {
-		        document.getElementById('reverifyCode').src='Companyfinance-VerifyCode?time='+Math.random();
-		        void(0);
-		    }
+		    
 		</script>
 		
 		<!-- 足部start -->
