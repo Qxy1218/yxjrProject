@@ -11,6 +11,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="b_time" property="btime"/>
 		<result column="b_endtime" property="bendtime"/>
 	</resultMap>
+	<resultMap type="java.lang.String" id="BidListString">
+		<result column="b_money"/>
+	</resultMap>
 	
 	<select id="getModel" parameterType="com.p2p.pojo.Bid" resultMap="BaseResultMap">
 		select * from bid
@@ -63,6 +66,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- 查询总记录数 -->
 	<select id="countActivity" resultType="java.lang.Integer">
 		select count(*) from bid
+	</select>
+	
+	<select id="getMaxStartTime" resultType="java.lang.String">
+		SELECT b_time FROM bid ORDER BY b_time DESC LIMIT 1
+	</select>
+	
+	<select id="getMinStartTime" resultType="java.lang.String">
+		SELECT b_time FROM bid ORDER BY b_time ASC LIMIT 1
+	</select>
+	
+	<select id="getMoneyByTime" parameterType="java.lang.String" resultType="java.lang.String">
+		select b.b_money from bid b where 1=1
+		<![CDATA[
+			and b.b_time like CONCAT(CONCAT('%', #{time}), '%')
+		]]>
 	</select>
 	
 	<select id="selectProductsByPage" resultMap="BaseResultMap">

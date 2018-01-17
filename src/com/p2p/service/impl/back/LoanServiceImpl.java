@@ -13,6 +13,11 @@ import com.p2p.pojo.Loan;
 import com.p2p.service.back.LoanService;
 import com.p2p.util.PageInfo;
 
+/**
+ * 借款ServiceImpl实现类
+ * 
+ * @author lxj
+ * */
 @Transactional
 @Service
 public class LoanServiceImpl implements LoanService{
@@ -65,6 +70,21 @@ public class LoanServiceImpl implements LoanService{
 	@Override
 	public Loan getByemployname(String ename) {
 		return loanMapper.getByemployname(ename);
+	}
+	
+	@Override
+	public String getMaxStartTime() {
+		return loanMapper.getMaxStartTime();
+	}
+
+	@Override
+	public String getMinStartTime() {
+		return loanMapper.getMinStartTime();
+	}
+
+	@Override
+	public List<String> getMoneyByTime(String time) {
+		return loanMapper.getMoneyByTime(time);
 	}
 
 }

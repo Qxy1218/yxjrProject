@@ -32,6 +32,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<result column="vd_id" property="ulid"/> 
  		   </association>
 	</resultMap>
+	<resultMap type="java.lang.String" id="ListString">
+		<result column="l_money"/>
+	</resultMap>
 	
 	<!-- 联系人查询 -->
 	<select id="getAllModel"  resultMap="BaseResultMap">
@@ -126,4 +129,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <select id="loanCount" resultType="java.lang.Integer">
         select count(*) from loan;
     </select>
+    
+    <select id="getModel" parameterType="com.p2p.pojo.Loan" resultMap="LoanResultMap">
+		select * from loan
+		<where>
+			1=1
+			<if test="lid!=null">and l_id=#{lid}</if>
+			<if test="uid!=null">and u_id=#{uid}</if>
+			<if test="lmoney!=null">and l_money=#{lmoney}</if>
+			<if test="ltime!=null">and l_time=#{ltime}</if>
+			<if test="lendtime!=null">and l_endtime=#{lendtime}</if>
+			<if test="lstatus!=null">and l_status=#{lstatus}</if>
+			<if test="lway!=null">and l_way l_endtime=#{lway}</if>
+			<if test="linterest!=null">and l_interest=#{linterest}</if>
+		</where>
+	</select>
+	
+	<select id="getMaxStartTime" resultType="java.lang.String">
+		select l_time from loan ORDER BY l_time DESC limit 1
+	</select>
+	
+	<select id="getMinStartTime" resultType="java.lang.String">
+		select l_time from loan ORDER BY l_time ASC limit 1
+	</select>
+	
+	<select id="getMoneyByTime" parameterType="java.lang.String" resultMap="ListString">
+		select l.l_money from loan l where 1=1
+		<![CDATA[
+			and l.l_time like CONCAT(CONCAT('%', #{time}), '%')
+		]]>
+	</select>
 </mapper>

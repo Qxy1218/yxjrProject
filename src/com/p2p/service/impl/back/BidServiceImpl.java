@@ -69,6 +69,21 @@ public class BidServiceImpl implements BidService{
 	}
 
 	@Override
+	public String getMaxStartTime() {
+		return bidmapper.getMaxStartTime();
+	}
+
+	@Override
+	public String getMinStartTime() {
+		return bidmapper.getMinStartTime();
+	}
+
+	@Override
+	public List<String> getMoneyByTime(String time) {
+		return bidmapper.getMoneyByTime(time);
+	}
+
+	@Override
 	public List<Bid> selectProductsByPage(Integer startPos, Integer pageSize, String fid) {
 		return bidmapper.selectProductsByPage(startPos, pageSize, fid);
 	}

@@ -72,6 +72,29 @@ public class DateUtils {
 		return dateString2;
 	}
 	
+	/**
+	 * @param  date
+	 * 		要格式化的时间
+	 * @return
+	 * 		返回yyyy-MM-dd的Date
+	 * */
+	public static Date ChuDate(String date) {
+		SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
+		Date date1=null,date2 = null;
+		try {
+			date1 = format2.parse(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		String dateString2 = format2.format(date1);
+		try {
+			date2 = format2.parse(dateString2);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return date2;
+	}
+	
 	
 	/**
 	 * 日期格式化yyyy-MM-dd

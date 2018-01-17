@@ -16,6 +16,11 @@ public interface BidService extends IBaseService<Integer, Bid>{
 			abstract Integer Contactcount();
 			List<Bid> selectCount(@Param("fid")Integer fid);
 			
+			String getMaxStartTime();  //获取到最大的开始时间
+			String getMinStartTime();  //获取到最小的开始时间
+			
+			List<String> getMoneyByTime(String time); //根据时间模糊查询  金额
+			
 			/** 
 			 * 使用注解方式传入多个参数，用户产品分页， 根据标id查询
 			 * @param page 
