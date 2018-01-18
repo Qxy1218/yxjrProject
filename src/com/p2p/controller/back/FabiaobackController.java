@@ -91,7 +91,7 @@ public class FabiaobackController {
 		fp.setFstime(fabiao.getFendtime());
 		fp.setFstitle(fabiao.getFtype());
 		fp.setFsorder(time+fabiao.getUid());
-		int chongzhicount = SendServiceUtil.list(fp, "192.168.90.47:8080/ServiceP2p/recharge/add");
+		int chongzhicount = SendServiceUtil.list(fp, "192.168.90.47:8080/ServiceP2p/fabiao/add");
 		int count=0;
 		if(chongzhicount==1) {
 			count = fabiaoService.addModel(fabiao);
