@@ -87,5 +87,10 @@ public class IUserServiceImpl implements IUserService{
 		return iUserMapper.updatePwd(uphone, upassword);
 	}
 
+	@Override
+	public List<User> seleUserByUinvite(String uinvite) {
+		return iUserMapper.seleUserByUinvite(uinvite);
+	}
+
 
 }

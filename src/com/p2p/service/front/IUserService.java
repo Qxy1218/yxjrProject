@@ -28,4 +28,6 @@ public interface IUserService extends IBaseService<Integer, User>{
 	//根据手机号修改密码
   	abstract Integer updatePwd(String uphone,String upassword);
 	
+  //根据自己的邀请码去找别人的邀请码
+  	abstract List<User> seleUserByUinvite(String uinvite);
 }

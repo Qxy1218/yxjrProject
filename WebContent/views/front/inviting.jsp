@@ -3,6 +3,7 @@
 <%
 	String path = request.getContextPath();
 %>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 		<head>
@@ -25,7 +26,7 @@
 		    <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/jquery.datetimepicker.css" />
 		    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/jquery.datetimepicker.js"></script>
 		</head>
-	<body>
+	<body style="background:url('/Finances/statics/front/images/two.jpg');background-size:100% 100%;">
 		<!-- 右侧边栏start -->
 		<div class="m2-commonRight">
 		    <ul class="m2-comRiglist">
@@ -120,12 +121,14 @@
 		        <div class="m2-userInvcop">
 		            <div class="m2-userInv-wx">
 		                <h4><div class="solid"></div>&ensp;微信邀请&ensp;<div class="solid"></div></h4>
-		                <img src="/Finances/statics/front/statics/market/201604/sharepicture/305497/test7138a179234e8f9529e83521edcfe217.png" alt="" width="120px;">
+		                <img src="/Finances/${sessionScope.user.qrcode}" alt="" width="120px" height="120px">
 		                <p>用户扫描手机二维码分享给好友</p>
 		            </div>
 		            <div class="m2-userInv-url">
+		            	<input type="hidden" name="addIp" id="addIp" value="${sessionScope.addressIp}"/>
+		            	<input type="hidden" name="uinvite" id="uinvite" value="${sessionScope.user.uinvite}"/>
 		                <h4><div class="solid"></div>&ensp;发送邀请链接&ensp;<div class="solid"></div></h4>
-		                <input class="shareCode" type="text" value="home-activity-getnewers?userfrom=yaoqinghaoyou&ukey=xrejfr" readonly>
+		                <input class="shareCode" type="text" value="http://${sessionScope.addressIp}:8080/Finances/user/toLoginHaveYaoqing?phone=${sessionScope.user.uphone}" readonly>
 		                <button class="weiboShare"><img src="/Finances/statics/front/statics/usercenter/images/invite_friends2.png" style="vertical-align:-1px;margin-right:6px;">微博分享</button>
 		                <button class="copyLink">复制邀请链接</button>
 		            </div>
@@ -149,6 +152,14 @@
 		                        <th>奖励原因</th>
 		                        <th>奖励详情</th>
 		                    </tr>
+		                    <c:forEach items="${listUser}" var="user">
+		                    	<tr>
+		                    		<td>${user.uphone}</td>
+		                    		<td>${user.uregTime }</td>
+		                    		<td>注册亿信金融平台</td>
+		                    		<td>奖励了${user.uregTime }注册平台50红包和30代金券</td>
+		                    	</tr>
+		                    </c:forEach>
 		                </table>
 		            </div>
 		            <div class="showcontent2 showcontent">
@@ -168,7 +179,7 @@
 		                <p>1.红包在满足条件后24小时内发放至账户，可进行投资（红包拆分为10元-200元不等金额，使用比例1:300）;</p>
 		                <p>2.发起债权转让，不计入投资总额若被邀请人对已投项目发起债权转让，该项目投资金额将不计入累计投资总额。</p>
 		                <h5>活动时间：</h5>
-		                <p>2016年4月13日-2016年9月30日</p>
+		                <p>2017年12月18日-2018年12月18日</p>
 		            </div>
 		        </div>
 		    </div>
@@ -181,10 +192,12 @@
 	    });
 	    //微博分享
 	    $('.weiboShare').click(function(){
+	    	var addIp = $('#addIp').val();
+	    	var uinvite = $('#uinvite').val();
 	        var top = window.screen.height / 2 - 250;
 	        var left = window.screen.width / 2 - 300;
-	        title = "【20000元体验金】和【88元红包】免费获得地址home-activity-getnewers?userfrom=yaoqinghaoyou&ukey=xrejfr 爱钱帮平台上线两月获得盛大资本投资，并且首家实现银行存管和余额理财的平台。";
-	        rLink = "home-activity-getnewers?userfrom=yaoqinghaoyou&ukey=xrejfr";
+	        title = "【30立即使用的代金券】和【50元红包】免费获得地址http://"+addIp+":8080/Finances/user/toLoginWeiBoJoin?uinvite="+uinvite+" 亿信平台上线两月获得盛大资本投资，并且首家实现银行存管和余额理财的平台。";
+	        rLink = "http://"+addIp+":8080/Finances/user/toLoginWeiBoJoin?uinvite="+uinvite;
 	        window.open("http://service.weibo.com/share/share.php?title=" +
 	                encodeURIComponent(title.replace(/&nbsp;/g, " ").replace(/<br \/>/g, " "))+ "&url=" + encodeURIComponent(rLink),
 	                "分享至新浪微博");
@@ -279,7 +292,6 @@
 	            $(".showcontent1 table").append(tr);
 	        }
 	    }
-	
 	    function checkBtn(pages){
 	        if(start > pages){
 	            $('.loadMore').hide();

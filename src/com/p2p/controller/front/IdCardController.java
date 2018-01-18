@@ -108,17 +108,9 @@ public class IdCardController {
 			authebDetais.setAdintroduct("用户: "+idCard.getIcname()+",已输入身份信息,需后台管理员审核通过!");
 			authebDetais.setAdtime(DateUtils.getDateTimeFormat(new Date()));
 			authebDetais.setAdstype(1); //1代表实名认证
+			authebDetais.setAdstatus(0);
 			authebDetais.setUiid(idCard.getUiid());
 			authebDetaisService.addModel(authebDetais);
-			
-			Userinfo userinfos = new Userinfo();
-			userinfos.setUiid(idCard.getUiid());
-			userinfos.setUiopenstatus(1);
-			int counts = userInfoService.update(userinfos);
-			if(counts>0) {
-				Userinfo uifo = userInfoService.getModel(userinfos);
-				session.setAttribute("userinfo", uifo);
-			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

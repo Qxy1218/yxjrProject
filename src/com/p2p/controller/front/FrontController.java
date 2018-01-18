@@ -2,6 +2,7 @@ package com.p2p.controller.front;
 
 
 import java.math.BigDecimal;
+import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,10 +36,12 @@ import com.p2p.service.back.AboutService;
 import com.p2p.service.back.ContactService;
 import com.p2p.service.front.AddressService;
 import com.p2p.service.front.FabiaoService;
+import com.p2p.service.front.IUserService;
 import com.p2p.service.front.SetupnaticeService;
 import com.p2p.service.front.SingService;
 import com.p2p.service.front.UserInfoService;
 import com.p2p.service.front.UserbackcardService;
+import com.p2p.util.AddressUtils;
 import com.p2p.util.ContextUtils;
 import com.p2p.util.DateUtils;
 import com.p2p.util.Page;
@@ -75,6 +78,10 @@ public class FrontController {
 	
 	@Resource(name="userbackcardServiceImpl") 
 	private UserbackcardService userbackcardService;
+	
+	//用户
+	@Resource(name="IUserServiceImpl")
+	private IUserService iUserService;
 	
 	
 	@Resource(name="singServiceImpl")
@@ -684,9 +691,15 @@ public class FrontController {
 	
 	/**
 	 *邀请好友页面的conteroller
+	 * @throws UnknownHostException 
 	 * */
 	@RequestMapping(value="/toinviting")
-	public String toinviting() {
+	public String toinviting(HttpSession session,String uinvite) throws UnknownHostException {
+		AddressUtils addressUtils = new AddressUtils();
+		String ip =addressUtils.getIP();
+		session.setAttribute("addressIp", ip);
+		List<User> listUser = iUserService.seleUserByUinvite(uinvite);
+		session.setAttribute("listUser",listUser);
 		return "views/front/inviting";
 	}
 	

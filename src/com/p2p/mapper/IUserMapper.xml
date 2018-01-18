@@ -84,6 +84,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select * from user u <where> u.u_invite = #{orderinvite}</where>
  	</select>
  	
+ 	<select id="seleUserByUinvite" resultMap="BaseResultMap" parameterType="java.lang.String">
+ 		select * from user u <where> u.order_invite = #{uinvite}</where>
+ 	</select>
  	<update id="update" parameterType="com.p2p.pojo.User">
  		update user u
  		<trim prefix="set" suffixOverrides=",">

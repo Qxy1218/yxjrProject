@@ -44,7 +44,7 @@
 	            </li>
 	
 	            <li class="m2-asideListitem">
-	                <a class="m2-aside-item" href="/Finances/toinviting">
+	                <a class="m2-aside-item" href="/Finances/toinviting?uinvite=${sessionScope.user.uinvite}">
 	                    <i class="m2-asideIcon-invit"></i>
 	                    <b class="m2-asideIcon-prize"></b>
 	                    邀请好友

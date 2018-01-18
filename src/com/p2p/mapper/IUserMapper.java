@@ -5,13 +5,9 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.p2p.base.IBaseDao;
-import com.p2p.pojo.Role;
 import com.p2p.pojo.User;
-import com.p2p.pojo.Userinfo;
-import com.p2p.util.PageInfo;
 /**
  * 操作人:汪栋才
  * 创建时间:2017-12-28
@@ -29,6 +25,9 @@ public interface IUserMapper extends IBaseDao<Integer, User>{
   	
   	//查询总的记录数
   	abstract Integer userCount();
+  	
+  	//根据自己的邀请码去找别人的邀请码
+  	abstract List<User> seleUserByUinvite(String uinvite);
   	
   	//根据手机号修改密码
   	abstract Integer updatePwd(@Param("uphone")String uphone,@Param("upassword")String password);

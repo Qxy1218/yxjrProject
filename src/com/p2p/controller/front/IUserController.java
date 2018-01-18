@@ -205,6 +205,7 @@ public class IUserController {
 			userinfo.setUisex("保密");
 			userinfo.setUibirthday(DateUtils.getDateTimeFormat(new Date()));
 			userinfo.setUiemailstatus(0);
+			userinfo.setUiopenstatus(0);
 			
 			int isadduserinfo =   userInfoService.addModel(userinfo);
 			System.out.println("插入是否成功 。。。。。"+isadduserinfo);
@@ -217,6 +218,7 @@ public class IUserController {
 			redmoney.setRmoney(50.0);
 			redmoney.setRimage("/uploadFile/redmoney/timg.jpg");
 			redmoney.setRstardtime(DateUtils.getDateTimeFormat(new Date()));
+			redmoney.setRstart(0);
 			//获取当前时间的后几天
 			Date date = new Date();  
 			SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
@@ -247,6 +249,7 @@ public class IUserController {
 				uservouch.setUvendDate(fDate.format(d));
 				uservouch.setUvimage("/uploadFile/redmoney/dai.jpg");
 				uservouch.setUvmoney(50.0);
+				uservouch.setUstrat(0);
 				int count = uservouchService.addModel(uservouch);
 				if(count>0) {
 					AuthebDetais authebDetais = new AuthebDetais();
@@ -256,6 +259,8 @@ public class IUserController {
 					authebDetais.setAdintroduct("您的好友"+uiname+"注册了亿信金融平台,恭喜您获取了"+uvmoney+"代金券");
 					authebDetais.setAdtime(DateUtils.getDateTimeFormat(new Date()));
 					authebDetais.setUiid(u.getUiid());
+					authebDetais.setAdstatus(0);
+					authebDetais.setAdstype(0);
 					authebDetaisService.addModel(authebDetais);
 				}
 			}
@@ -348,10 +353,6 @@ public class IUserController {
 
 			return aa;
 	}
-	
-		
-	
-		
 	/**
 	 * 这里是在二维码扫描的时候进入的controller
 	 * 1:最好是自适应模板
@@ -368,6 +369,21 @@ public class IUserController {
 		mo.setViewName("views/front/qrcode");
 		return mo;
 	}	
+	
+	/**
+	 * 在邀请好友微博分享进入的页面
+	 * 
+	 **/
+	@RequestMapping(value="toLoginWeiBoJoin")
+	public ModelAndView toLoginWeiBoJoin(String uinvite) {
+		ModelAndView mo = new ModelAndView();
+		User u = new User();
+		u.setUinvite(uinvite);
+		User user =iUserService.getModel(u);
+		mo.addObject("userUinvite",user);
+		mo.setViewName("views/front/weiboIndex");
+		return mo;
+	}
 	
 	/**
 	 * 取得UUID
