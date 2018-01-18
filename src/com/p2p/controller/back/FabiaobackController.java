@@ -19,6 +19,7 @@ import com.p2p.pojo.FabiaoP2p;
 import com.p2p.service.back.FabiaobackService;
 import com.p2p.util.PageInfo;
 import com.p2p.util.SendServiceUtil;
+import com.p2p.util.UUIDCode;
 
 /**
  * 操作人：朱勇峰
@@ -78,24 +79,15 @@ public class FabiaobackController {
 		fabiao.setFrepayment(frepayment);
 		String fsecurity = UtilController.uploadFrom(request,secfile);
 		fabiao.setFsecurity(fsecurity);
+		String aa = 	UUIDCode.MackZM();
+		String bb = UUIDCode.produceUID(1);
+		fabiao.setFcode(aa+bb);
 		
 		fabiao.setForderimg(filepath);
-		FabiaoP2p fp=new FabiaoP2p();
-		BigDecimal acc=fabiao.getFendmoney();
-		Double money=acc.doubleValue();
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
-		String time=sdf.format(new Date());
-		fp.setFsmoney(money);
-		fp.setFsstate(fabiao.getFstatus());
-		fp.setFssuid(fabiao.getUid());
-		fp.setFstime(fabiao.getFendtime());
-		fp.setFstitle(fabiao.getFtype());
-		fp.setFsorder(time+fabiao.getUid());
-		int chongzhicount = SendServiceUtil.list(fp, "192.168.90.47:8080/ServiceP2p/fabiao/add");
-		int count=0;
-		if(chongzhicount==1) {
-			count = fabiaoService.addModel(fabiao);
-		}
+	
+		
+		int count = fabiaoService.addModel(fabiao);
+		
 		return count;
 	}
 	
@@ -115,9 +107,27 @@ public class FabiaobackController {
 		fabiao.setFrepayment(frepayment);
 		String fsecurity = UtilController.uploadFrom(request,secfile);
 		fabiao.setFsecurity(fsecurity);
+		String aa = 	UUIDCode.MackZM();
+		String bb = UUIDCode.produceUID(1);
+		fabiao.setFcode(aa+bb);
 		
 		fabiao.setForderimg(filepath);
-		int count = fabiaoService.update(fabiao);
+		FabiaoP2p fp=new FabiaoP2p();
+		BigDecimal acc=fabiao.getFmoney();
+		Double money=acc.doubleValue();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
+		String time=sdf.format(new Date());
+		fp.setFsmoney(money);
+		fp.setFsstate(fabiao.getFstatus());
+		fp.setFssuid(fabiao.getUid());
+		fp.setFstime(fabiao.getFendtime());
+		fp.setFstitle(fabiao.getFtype());
+		fp.setFsorder(time+fabiao.getUid());
+		int fb = SendServiceUtil.list(fp, "192.168.90.47:8080/ServiceP2p/fabiao/add");
+		int count =0;
+		if(fb==1) {
+			count = fabiaoService.update(fabiao);
+		}
 		return count;
 	}
 	
