@@ -17,7 +17,7 @@
        <!--[if lt IE 9]>
         <script src="js/html5shiv_1.js"></script>
         <![endif]-->
-        <link  rel="Shortcut  Icon"  href="https://www.iqianbang.com/statics/home/images/minilogo.png">
+        <link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
         <link rel="stylesheet" href="/Finances/statics/front/css/m2-commonnew_1.css">
 		<link rel="stylesheet" href="/Finances/statics/front/css/m2-main_1.css">
         <link rel="stylesheet" href="/Finances/statics/front/css/m2-common_1.css">
@@ -45,7 +45,7 @@
 <!-- 页头 start -->
 <div class="header-cxm">
     <div class="wrapper clearfix">
-        <a class="logo" href="/"><img src="/Finances/statics/front/images/weibojoin/pread_03_1.png" alt=""></a>
+        <a class="logo" href="/"><img src="/Finances/statics/front/statics/newcommon/images/logr.png" alt=""></a>
         <div class="phone">客服热线：4006-777-518</div>
     </div>
 </div>
