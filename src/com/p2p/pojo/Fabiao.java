@@ -106,13 +106,20 @@ public class Fabiao implements Serializable{
 	@TableField("f_huanend")
 	private String fhuanend; //还款结束时间
 	
+	@TableField("f_fqqx")
+	private Integer ffqqx;    //分期期限
+	
+	@TableField("f_yhqx")
+	private Integer fyhqx;    //已还期限
+	
+	@TableField("f_hkstype")
+	private Integer fhkstype;  //还款类型
 	
 	private Integer rematime;  //计算剩余时间
 	
 	private String compnrate;  //完成率
 	
 	private BigDecimal yield; //万元收益率
-	
 	
 	
 	
@@ -219,6 +226,56 @@ public class Fabiao implements Serializable{
 
 	public String getFcode() {
 		return fcode;
+	}
+
+	
+	
+
+
+	public Integer getFfqqx() {
+		return ffqqx;
+	}
+
+
+
+
+	public void setFfqqx(Integer ffqqx) {
+		this.ffqqx = ffqqx;
+	}
+
+
+
+
+	public Integer getFyhqx() {
+		return fyhqx;
+	}
+
+
+
+
+	public void setFyhqx(Integer fyhqx) {
+		this.fyhqx = fyhqx;
+	}
+
+
+
+
+	public Integer getFhkstype() {
+		return fhkstype;
+	}
+
+
+
+
+	public void setFhkstype(Integer fhkstype) {
+		this.fhkstype = fhkstype;
+	}
+
+
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 

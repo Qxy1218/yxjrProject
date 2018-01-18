@@ -1,5 +1,11 @@
 package com.p2p.controller.front;
 
+
+/**
+ * 操作人：朱勇峰
+ * 操作时间：2018年1月5日09:30:43
+ * 预约发标
+ * */
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -46,6 +52,12 @@ public class UserFabioController {
 		User user = (User)session.getAttribute("user");
 		fabiao.setUid(user.getUid());
 		BigDecimal big = new BigDecimal("0.00");
+		BigDecimal ly = new BigDecimal("0.09");
+		BigDecimal sy = new BigDecimal("0.09");
+		BigDecimal jx = new BigDecimal("0.01");
+		fabiao.setFroe(ly);
+		fabiao.setFincrease(jx);
+		fabiao.setFrate(sy);
 		fabiao.setFendmoney(big);
 		fabiao.setFendtime(DateUtils.getDateTimeFormat(new Date()));
 		fabiao.setFminmoney(big);

@@ -428,13 +428,13 @@
 				<div class="form-group">
 					<label for="urlName" class="control-label col-sm-3">标名</label> 
 					<div class="col-sm-8">
-						<input type="text" name="ftitle" class="form-control" id="ftitle">
+						<input type="text" name="ftitle" class="form-control" id="ftitle" readonly="readonly">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">用户id</label>
 					<div class="col-sm-8">
-						<input type="text" name="uid" class="form-control" id="uid">
+						<input type="text" name="uid" class="form-control" id="uid" readonly="readonly">
            			</div>
 				</div>
 				<div class="form-group">
@@ -478,7 +478,7 @@
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">产品概要</label>
 					<div class="col-sm-8">
-						<input type="text" name="fcontent" class="form-control" id="fcontent">
+						<input type="text" name="fcontent" class="form-control" id="fcontent" readonly="readonly">
            			</div>
 				</div>
 				<div class="form-group">
@@ -496,7 +496,7 @@
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">投标金额</label>
 					<div class="col-sm-8">
-						<input type="text" name="fmoney" class="form-control" id="fmoney">
+						<input type="text" name="fmoney" class="form-control" id="fmoney" readonly="readonly">
            			</div>
 				</div>
 				<div class="form-group">
@@ -605,7 +605,7 @@
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">风险措施</label>
 					<div class="col-sm-8">
-						<input type="text" name="fsecuritymea" class="form-control" id="fsecuritymea">
+						<input type="text" name="fsecuritymea" class="form-control" id="fsecuritymea" readonly="readonly">
            			</div>
 				</div>
 			</form>
