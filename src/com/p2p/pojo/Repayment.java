@@ -30,6 +30,11 @@ public class Repayment implements Serializable{
 	@TableField("rm_style")
 	private Integer rmstyle;	//还款类型
 	private Fabiao fabiao;
+	
+	public Repayment() {
+		super();
+	}
+	
 	@Override
 	public String toString() {
 		return "Repayment [rmid=" + rmid + ", fid=" + fid + ", rmplan=" + rmplan + ", rmface=" + rmface + ", rmwait="
