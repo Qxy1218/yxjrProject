@@ -12,6 +12,65 @@
 <!-- 引用js文件 -->
 <jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
 <script type="text/javascript" src="/Finances/statics/back/static/js/laydate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery.form.js"></script>
+<script src="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<link href="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+
+	
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('#editRole')
+		.bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+            	uid: {
+                    message: '用户编号验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '用户编号不能为空'
+                         },
+     		            regexp: {
+     		                regexp: /^[0-9]*$/,
+     		                message: '用户编号只能输入数字'
+     		            }
+                    }
+                },
+             
+                bfid: {
+                	message: '发标编号验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '发标编号不能为空,请选择'
+                        },
+                        regexp: {
+     		                regexp: /^[0-9]*$/,
+     		                message: '发标编号只能输入数字'
+     		            }
+                    }
+                },
+                bmoney: {
+                	message: '金额验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '金额不能为空,请选择'
+                        },
+                        regexp: {
+     		                regexp: /^[0-9]*$/,
+     		                message: '金额只能输入数字'
+     		            }
+                    }
+                }
+            }
+        })
+		
+	});		
+	</script>
+
 <script  type="text/javascript">
     var rows = null;
     
@@ -379,17 +438,17 @@
 								
 	            			</div>
 						</div>
-						
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
+						</button>
+						<button type="submit" id="btn_submit" class="btn btn-primary" onclick="insertRole()">
+							<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
+						</button>
+					</div>
 					</form>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
-					</button>
-					<button type="button" id="btn_submit" class="btn btn-primary" onclick="insertRole()">
-						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
-					</button>
-				</div>
+			
 			</div>
 		</div>
 	</div>
