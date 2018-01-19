@@ -4,27 +4,33 @@ package com.p2p.controller.front;
 import java.math.BigDecimal;
 import java.net.UnknownHostException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.pojo.About;
 import com.p2p.pojo.Area;
 import com.p2p.pojo.City;
 import com.p2p.pojo.Contact;
 import com.p2p.pojo.Fabiao;
+import com.p2p.pojo.Profit;
 import com.p2p.pojo.ProjectSelect;
 import com.p2p.pojo.Provice;
 import com.p2p.pojo.Setupnatice;
@@ -37,6 +43,7 @@ import com.p2p.service.back.ContactService;
 import com.p2p.service.front.AddressService;
 import com.p2p.service.front.FabiaoService;
 import com.p2p.service.front.IUserService;
+import com.p2p.service.front.ProfitService;
 import com.p2p.service.front.SetupnaticeService;
 import com.p2p.service.front.SingService;
 import com.p2p.service.front.UserInfoService;
@@ -78,6 +85,10 @@ public class FrontController {
 	
 	@Resource(name="userbackcardServiceImpl") 
 	private UserbackcardService userbackcardService;
+	
+	//收益表service
+	@Resource(name="profitServiceImpl")
+	private ProfitService profitService;
 	
 	//用户
 	@Resource(name="IUserServiceImpl")
@@ -566,9 +577,11 @@ public class FrontController {
 	
 	/**
 	 * 我的账户页面的conteroller
+	 * @throws ParseException 
+	 * @throws JsonProcessingException 
 	 * */
 	@RequestMapping(value="/tousercenter")
-	public ModelAndView tofronusercenter(@RequestParam Integer uid,Model model,HttpSession session) {
+	public ModelAndView tofronusercenter(@RequestParam Integer uid,Model model,HttpSession session) throws ParseException, JsonProcessingException {
 		ModelAndView mo = new ModelAndView();
 		
 		model.addAttribute("pageName", "myinfo");
@@ -633,9 +646,98 @@ public class FrontController {
 				sing.setIntegral(4000-rr);
 			}
 		}
-		mo.addObject("singuser", sing);
 		
-		mo.setViewName("views/front/user/usercenter");
+		//得到总收益
+		Double allMoney = 0.0;
+		Profit profit = new Profit();
+		profit.setUid(uid);
+		List<Profit> profitlist = profitService.seleByProfit(profit);
+		for (int i = 0; i < profitlist.size(); i++) {
+			allMoney+=profitlist.get(i).getPfmoney();
+		}
+		
+		//得到当天的收益
+		Double dayMoney = 0.0;
+		Profit pf = new Profit();
+		pf.setUid(uid);
+		SimpleDateFormat dataTime = new SimpleDateFormat("yyyy-MM-dd");
+		pf.setPftime(dataTime.format(new Date()));
+		List<Profit> pflist = profitService.seleByProfit(pf);
+		for (int i = 0; i < pflist.size(); i++) {
+			dayMoney+=pflist.get(i).getPfmoney();
+		}
+		
+		//收益报表
+		String maxProfitTime = profitService.seleProfitBytimeMax(); //得到最近的一天收益的时间
+		String minProfitTime = profitService.seleProfitBytimemin(); //得到最远的一天收益的时间
+		
+		Date maxTime =DateUtils.ChuDate(maxProfitTime) ;
+		Date minTime =DateUtils.ChuDate(minProfitTime) ;
+		
+		SimpleDateFormat dateym = new SimpleDateFormat("yyyy-MM");
+		//获取两个时间段的每一天 yyyy-MM-dd
+		List<Date> dateList = DateUtils.getEveryDay(minTime, maxTime);
+		//获取两个时间段的每一个月 yyyy-MM
+		List<Date> mouthDate = DateUtils.getEveryMouth(minTime, maxTime);
+		
+		
+		List<Object> dayProfit = new ArrayList<>();
+		List<Object> moneyProfit = new ArrayList<>();
+		
+		List<Object> dayTimeList = new ArrayList<>();
+		List<Object> mouthTimeList = new ArrayList<>();
+		Double moneyDay = 0.0;
+		Double moneyMouth = 0.0;
+		for (int i = 0; i < dateList.size(); i++) {
+			dayTimeList.add(dataTime.format(dateList.get(i)));
+			Profit pro = new Profit();
+			pro.setUid(uid);
+			pro.setPftime(dataTime.format(dateList.get(i)));
+			List<Profit> prolist = profitService.seleByProfit(pro);
+			if(prolist.size()>0) {
+				for (int j = 0; j < prolist.size(); j++) {
+					moneyDay+=prolist.get(j).getPfmoney();
+				}
+				dayProfit.add(moneyDay);
+			}
+			else {
+				dayProfit.add(0.0);
+			}
+		}	
+			for (int m = 0; m < mouthDate.size(); m++) {
+				mouthTimeList.add(dateym.format(mouthDate.get(m)));
+				Profit prof = new Profit();
+				prof.setUid(uid);
+				prof.setPftime(dateym.format(mouthDate.get(m)));
+				List<Profit> proflist = profitService.seleByProfit(prof);
+				if(proflist.size()>0) {
+					for (int n = 0; n < proflist.size(); n++) {
+						moneyMouth+=proflist.get(n).getPfmoney();
+					}
+					moneyProfit.add(moneyMouth);
+				}
+				else {
+					moneyProfit.add(0.0);
+				}
+			
+		}
+		ObjectMapper om = new ObjectMapper();
+		//转换成json对象
+		String dayList = om.writeValueAsString(dayTimeList);
+		String mouthList = om.writeValueAsString(mouthTimeList);
+		String dayProfits = om.writeValueAsString(dayProfit);
+		String mouthProfits = om.writeValueAsString(moneyProfit);
+		
+		mo.addObject("dayList",dayList);
+		mo.addObject("mouthList",mouthList);
+		mo.addObject("dayProfits",dayProfits);
+		mo.addObject("mouthProfits",mouthProfits);
+		mo.addObject("allMoney",allMoney);
+		mo.addObject("dayMoney",dayMoney);
+		mo.addObject("singuser", sing);
+			
+		mo.setViewName("views/front/user/usercenter");	
+		//mo.setViewName("views/front/user/baobiao");
 		return mo;
 	}
 	

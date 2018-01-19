@@ -18,5 +18,5 @@ public interface EmpService extends IBaseService<Integer, Employe>{
     abstract void selectPage(@Param(value="pageInfo")PageInfo pageInfo,@Param(value="emp") Employe emp);//实现分页
  		
  	//查询总的记录数
- 	abstract Integer employeCount();
+ 	abstract Integer employeCount(@Param(value="emp") Employe emp);
 }

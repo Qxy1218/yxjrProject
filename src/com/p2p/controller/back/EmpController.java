@@ -104,7 +104,7 @@ public class EmpController {
 	           System.out.println("用户[" + name + "]登录认证通过..账号密码正确");
 	           Employe employe = empService.getByemployname(name);
 	           session.setAttribute("employee", employe);
-	           return "redirect:/backindex/indexall";
+	           return "redirect:/back/toindex";
 	       }else{  
 	           token.clear();  
 	           return "redirect:/back/tologin";
@@ -188,7 +188,7 @@ public class EmpController {
 	@ResponseBody
 	public PageInfo  selectEmployeList(Integer page, Integer rows,Employe emp) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 		Integer pageSize = (page /rows)+1;
-		Integer count = empService.employeCount();
+		Integer count = empService.employeCount(emp);
 		//得到总的页数
 		PageInfo pageInfo = new PageInfo(pageSize,rows);
 		Map<String,Object> map = new HashMap<String,Object>();

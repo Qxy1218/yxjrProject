@@ -21,6 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <select id="seleByProfit" resultMap="BaseResultMap">
     	select * from profit <where>
+    	    1=1
     		<if test="uid != null">
 			    and u_id like CONCAT(CONCAT('%', #{uid}), '%')
 			</if>
@@ -31,8 +32,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			    and pf_moneywhere like CONCAT(CONCAT('%', #{pfmoneywhere}), '%')
 			</if>
 			<if test="pftime != null and pftime != ''">
-			    and pf_time like CONCAT(CONCAT('%', #{pftime}), '%')
+				<![CDATA[ and pf_time like CONCAT(CONCAT('%', #{pftime}), '%')    ]]>
 			</if>
     	</where>
     </select>
+    <!-- 查找最近的一天时间 -->
+    <select id="seleProfitBytimeMax" resultType="java.lang.String">
+    	select pf_time from profit ORDER BY pf_time DESC limit 1
+    </select>
+    <!-- 查找最远的一天时间	 -->
+     <select id="seleProfitBytimemin" resultType="java.lang.String">
+     	select pf_time from profit ORDER BY pf_time ASC limit 1
+     </select>
 </mapper>

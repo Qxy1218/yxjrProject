@@ -89,14 +89,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 查询员工的总记录数 -->
     <select id="employeCount" resultType="java.lang.Integer">
-        select count(*) from employee;
+        select count(*) from employee 
+        	<where>
+        	    1=1
+        		<if test="emp.ename != null and emp.ename !='' ">
+			    and e_name like CONCAT(CONCAT('%', #{emp.ename}), '%')
+				</if>
+				<if test="emp.esex != null and emp.esex !=''">
+				     and e_sex like CONCAT(CONCAT('%', #{emp.esex}), '%')
+				</if>
+				<if test="emp.eenum != null and emp.eenum != ''">
+				    and e_enum like CONCAT(CONCAT('%', #{emp.eenum}), '%')
+				</if>
+        	</where>
     </select>
     
    	<!-- 查询所有员工 -->
     <select id="selectPage" resultMap="BaseResultMap">
 		select * from employee e ,role r 
 		<where>
-		    e.re_id = r.re_id;
+		    e.re_id = r.re_id
 			<if test="emp.ename != null and emp.ename !='' ">
 			    and e_name like CONCAT(CONCAT('%', #{emp.ename}), '%')
 			</if>

@@ -55,7 +55,8 @@ public class BeansBackController {
         Subject employee = SecurityUtils.getSubject();  
         String  empName= (String) employee.getPrincipal();  
         session.setAttribute("empName", empName);  
-		return "views/back/index";
+		return "redirect:/backindex/indexall";
+		
 	}
 	
 	

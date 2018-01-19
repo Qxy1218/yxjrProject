@@ -52,4 +52,14 @@ public class ProfitServiceImpl implements ProfitService{
 		return profitMapper.seleByProfit(profit);
 	}
 
+	@Override
+	public String seleProfitBytimeMax() {
+		return profitMapper.seleProfitBytimeMax();
+	}
+
+	@Override
+	public String seleProfitBytimemin() {
+		return profitMapper.seleProfitBytimemin();
+	}
+
 }

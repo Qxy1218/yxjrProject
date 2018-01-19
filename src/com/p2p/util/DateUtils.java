@@ -364,7 +364,86 @@ public class DateUtils {
 		}
 		return dates;
 	}
+	
+	/**
+	 * 获取时间段的每一个月
+	 * @throws ParseException 
+	 * */
+	public static List<Date> getEveryMouth(Date startDate, Date endDate) throws ParseException {
+		List<Date> data = new ArrayList<Date>();
+		/** Date类的格式: Sat Apr 16 13:17:29 CST 2016  
+		 * 	将Date类型转换成String 
+		 * */
+		String start =DateFormat.getDateInstance().format(startDate);
+		String end =DateFormat.getDateInstance().format(endDate);
+		
+		Date d1 = new SimpleDateFormat("yyyy-MM").parse(start);//定义起始日期
 
+		Date d2 = new SimpleDateFormat("yyyy-MM").parse(end);//定义结束日期
+
+		Calendar dd = Calendar.getInstance();//定义日期实例
+
+		dd.setTime(d1);//设置日期起始时间
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+		while(dd.getTime().before(d2)){//判断是否到结束日期
+		data.add(dd.getTime());
+		dd.add(Calendar.MONTH,1);//进行当前日期月份加1
+		}
+		data.add(dd.getTime());
+		return  data;
+	}
+	/*public static void main(String[] args) throws ParseException {
+		List<Date> data = new ArrayList<Date>();
+		*//** Date类的格式: Sat Apr 16 13:17:29 CST 2016  
+		 * 	将Date类型转换成String 
+		 * *//*
+		Date d1 = new SimpleDateFormat("yyyy-MM").parse("2017-12-25");//定义起始日期
+
+		Date d2 = new SimpleDateFormat("yyyy-MM").parse("2018-12-08");//定义结束日期
+
+		Calendar dd = Calendar.getInstance();//定义日期实例
+		
+	
+		dd.setTime(d1);//设置日期起始时间
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+		while(dd.getTime().before(d2)){//判断是否到结束日期
+			System.out.println(sdf.format(dd.getTime()));
+		dd.add(Calendar.MONTH, 1);//进行当前日期月份加1
+
+		}
+		System.out.println("sdfg"+sdf.format(dd.getTime()));
+		dd.add(Calendar.MONTH, 1);
+		
+	}*/
+		/*
+		* 获取两个日期相差的月数
+		* @param d1  较大的日期
+		* @param d2  较小的日期
+		* @return 如果d1>d2返回 月数差 否则返回0
+		*/
+		public static int getMonthDiff(Date d1, Date d2) {
+		    Calendar c1 = Calendar.getInstance();
+		    Calendar c2 = Calendar.getInstance();
+		    c1.setTime(d1);
+		    c2.setTime(d2);
+		    if(c1.getTimeInMillis() < c2.getTimeInMillis()) return 0;
+		    int year1 = c1.get(Calendar.YEAR);
+		    int year2 = c2.get(Calendar.YEAR);
+		    int month1 = c1.get(Calendar.MONTH);
+		    int month2 = c2.get(Calendar.MONTH);
+		    int day1 = c1.get(Calendar.DAY_OF_MONTH);
+		    int day2 = c2.get(Calendar.DAY_OF_MONTH);
+		    // 获取年的差值 假设 d1 = 2015-8-16 d2 = 2011-9-30
+		    int yearInterval = year1 - year2;
+		    // 如果 d1的 月-日 小于 d2的 月-日 那么 yearInterval-- 这样就得到了相差的年数
+		    if(month1 < month2 || month1 == month2 && day1 < day2) yearInterval --;
+		    // 获取月数差值
+		    int monthInterval = (month1 + 12) - month2 ;
+		    if(day1 < day2) monthInterval --;
+		    monthInterval %= 12;
+		    return yearInterval * 12 + monthInterval;
+		}
 	/**
 	 * 获取提前多少个月
 	 * 
@@ -425,7 +504,7 @@ public class DateUtils {
 		return days;
 	}
 	
-	public static void main(String[] args)  {
+	/*public static void main(String[] args)  {
 	 String dateStr = "2017-12-25";
 	 String dateStr2 = "2017-12-26";
 	 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -440,7 +519,7 @@ public class DateUtils {
 	  e.printStackTrace();
 	 }
 	 }
-	
+	*/
 	 public static String getLastYear() {
 		 Calendar c = Calendar.getInstance();
 		 	c.setTime(new Date());
@@ -449,5 +528,6 @@ public class DateUtils {
 	        String year = dateFormat.format(y);
 	        return year;
 	 }
+	 
 	
 }

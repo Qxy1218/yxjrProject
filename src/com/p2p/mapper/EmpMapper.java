@@ -21,7 +21,7 @@ public interface EmpMapper extends IBaseDao<Integer, Employe>{
 	List<Employe> selectPage(Pagination page,Map<String ,Object> params,@Param(value="emp") Employe emp);
 	
 	//查询总的记录数
-	abstract Integer employeCount();
+	abstract Integer employeCount(@Param(value="emp") Employe emp);
 	
 	
 }

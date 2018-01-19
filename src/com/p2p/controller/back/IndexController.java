@@ -112,7 +112,8 @@ public class IndexController {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/back/toindex";
+		return "views/back/index";
+	
 	}
 	
 }

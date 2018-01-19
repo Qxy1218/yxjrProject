@@ -71,8 +71,10 @@ public class EmpServiceImpl implements EmpService{
 	}
 
 	@Override
-	public Integer employeCount() {
-		return empMapper.employeCount();
+	public Integer employeCount(Employe emp) {
+		return empMapper.employeCount(emp);
 	}
+
+	
 
 }
