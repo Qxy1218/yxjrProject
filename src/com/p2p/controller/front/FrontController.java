@@ -30,6 +30,7 @@ import com.p2p.pojo.Area;
 import com.p2p.pojo.City;
 import com.p2p.pojo.Contact;
 import com.p2p.pojo.Fabiao;
+import com.p2p.pojo.Newsfocus;
 import com.p2p.pojo.Profit;
 import com.p2p.pojo.ProjectSelect;
 import com.p2p.pojo.Provice;
@@ -38,11 +39,14 @@ import com.p2p.pojo.Sing;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Userbackcard;
 import com.p2p.pojo.Userinfo;
+import com.p2p.pojo.Video;
 import com.p2p.service.back.AboutService;
 import com.p2p.service.back.ContactService;
+import com.p2p.service.back.VideoService;
 import com.p2p.service.front.AddressService;
 import com.p2p.service.front.FabiaoService;
 import com.p2p.service.front.IUserService;
+import com.p2p.service.front.NewsfocusService;
 import com.p2p.service.front.ProfitService;
 import com.p2p.service.front.SetupnaticeService;
 import com.p2p.service.front.SingService;
@@ -97,6 +101,14 @@ public class FrontController {
 	
 	@Resource(name="singServiceImpl")
 	private SingService singService;
+	
+	//视频
+	@Resource(name="videoServiceImpl")
+	private VideoService videoservices;
+	
+	//新闻聚焦
+	@Resource(name="newsfocusServiceImpl")
+	private NewsfocusService newsfocusService;
 	
 	/**
 	 * 头部的conteroller
@@ -879,7 +891,26 @@ public class FrontController {
 	 *媒体报道页面的conteroller
 	 * */
 	@RequestMapping(value="/tocover")
-	public String tocover() {
+	public String tocover(Model model,Integer pageNow) {
+		List<Video> listvideo = videoservices.getAllModel();
+		model.addAttribute("videosp", listvideo);
+		
+		//根据标类型获取总数
+		int totalCount =  (int) newsfocusService.getProductsCount();
+		//分页实现
+		Page page ;  
+		List<Newsfocus> listnews = new ArrayList<Newsfocus>();
+		 if (pageNow != null) {  
+	        page = new Page(totalCount,pageNow);  
+	        //现在模拟为两页
+	        listnews = this.newsfocusService.selectProductsByPage(page.getStartPos(), page.getPageSize());  
+	     } else {  
+	        page = new Page(totalCount, 1);  
+	        listnews = this.newsfocusService.selectProductsByPage(page.getStartPos(), page.getPageSize());  
+	     } 
+		 model.addAttribute("newsbl",listnews);
+			//把分页工具类添加进request
+		model.addAttribute("page",page);
 		return "views/front/aboutwe/coverage";
 	}
 	

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -463,126 +465,32 @@
 		        <div class="m2-reportVod-box">
 		            <h2><i></i>央媒报道</h2>
 		            <div class="m2-reportVod-main">
+		           
+		            <c:forEach items="${videosp}" var="ppfx" end="0">
 		                <div class="m2-reportVod-lef">
-		                    <img class="m2-reportVod-big" src="/Finances/statics/front/statics/home2/images/report/vedio1.jpg" alt="中国P2P网贷特点与风险控制">
+		                    <img class="m2-reportVod-big" src="${ppfx.vimgurl}" alt="${ppfx.vname}">
 		                    <i></i>
 		                    <div class="m2-reportVod-lefBg">
-		                        <p>中国P2P网贷特点与风险控制</p>
+		                        <p>${ppfx.vname}</p>
 		                    </div>
 		                </div>
+		            </c:forEach>
 		                <div class="m2-reportVod-rig">
 		                    <span class="m2-repVodlist-btnUp" style="display:none;"></span>
 		                    <span class="m2-repVodlist-btnDown" style="display:none;"></span>
 		                    <div class="m2-reportVod-rigCon">
 		                        <ul class="m2-repVodlist">
+		                          <c:forEach items="${videosp}" var="ymbd">
 		                            <li>
 		                                <div class="m2-repVodlist-main">
 		                                    <div class="m2-repVodlist-bg"><span></span></div>
-		                                    <img src="/Finances/statics/front/statics/home2/images/report/vedio1.jpg" alt="中国P2P网贷特点与风险控制">
+		                                    <img src="${ymbd.vimgurl}" alt="${ymbd.vname}">
 		                                </div>
 		                                <div class="m2-repVodlist-det">
-		                                    <p>中国P2P网贷特点与风险控制</p>
+		                                    <p>${ymbd.vname}</p>
 		                                </div>
 		                            </li>
-		                            <li>
-		                                <div class="m2-repVodlist-main">
-		                                    <div class="m2-repVodlist-bg"><span></span></div>
-		                                    <img src="/Finances/statics/front/statics/home2/images/report/vedio2.jpg" alt="中国P2P网贷监管与投资人利益保护">
-		                                </div>
-		                                <div class="m2-repVodlist-det">
-		                                    <p>P2P网贷监管与投资人利益保护“</p>
-		                                </div>
-		                            </li>
-		                            <li>
-		                                <div class="m2-repVodlist-main">
-		                                    <div class="m2-repVodlist-bg"><span></span></div>
-		                                    <img src="/Finances/statics/front/statics/home2/images/report/vedio3.jpg" alt="爱钱帮访谈之P2P">
-		                                </div>
-		                                <div class="m2-repVodlist-det">
-		                                    <p>爱钱帮访谈之P2P</p>
-		                                </div>
-		                            </li>
-		                            <li>
-		                                <div class="m2-repVodlist-main">
-		                                    <div class="m2-repVodlist-bg"><span></span></div>
-		                                    <img src="/Finances/statics/front/statics/home2/images/report/vedio4.jpg" alt="">
-		                                </div>
-		                                <div class="m2-repVodlist-det">
-		                                    <p>爱钱帮访谈之如何选择P2P平台</p>
-		                                </div>
-		                            </li>
-		                            <li>
-		                                <div class="m2-repVodlist-main">
-		                                    <div class="m2-repVodlist-bg"><span></span></div>
-		                                    <img src="/Finances/statics/front/statics/home2/images/report/vedio5.jpg" alt="">
-		                                </div>
-		                                <div class="m2-repVodlist-det">
-		                                    <p>CCTV2特别报道爱钱帮</p>
-		                                </div>
-		                            </li>
-		                            <li>
-		                                <div class="m2-repVodlist-main">
-		                                    <div class="m2-repVodlist-bg"><span></span></div>
-		                                    <img src="/Finances/statics/front/statics/home2/images/report/vedio6.jpg" alt="">
-		                                </div>
-		                                <div class="m2-repVodlist-det">
-		                                    <p>金融行业的新革命 P2P网贷</p>
-		                                </div>
-		                            </li>
-		                            <li>
-		                                <div class="m2-repVodlist-main">
-		                                    <div class="m2-repVodlist-bg"><span></span></div>
-		                                    <img src="/Finances/statics/front/statics/home2/images/report/vedio7.jpg" alt="">
-		                                </div>
-		                                <div class="m2-repVodlist-det">
-		                                    <p>cctv2特别报道爱钱帮</p>
-		                                </div>
-		                            </li>
-		                            <li>
-		                                <div class="m2-repVodlist-main">
-		                                    <div class="m2-repVodlist-bg"><span></span></div>
-		                                    <img src="/Finances/statics/front/statics/home2/images/report/vedio8.jpg" alt="">
-		                                </div>
-		                                <div class="m2-repVodlist-det">
-		                                    <p>如何成为专业网贷投资人</p>
-		                                </div>
-		                            </li>
-		                            <li>
-		                                <div class="m2-repVodlist-main">
-		                                    <div class="m2-repVodlist-bg"><span></span></div>
-		                                    <img src="/Finances/statics/front/statics/home2/images/report/vedio9.jpg" alt="">
-		                                </div>
-		                                <div class="m2-repVodlist-det">
-		                                    <p>P2P网贷 经济转型下的投资新契机</p>
-		                                </div>
-		                            </li>
-		                            <li>
-		                                <div class="m2-repVodlist-main">
-		                                    <div class="m2-repVodlist-bg"><span></span></div>
-		                                    <img src="/Finances/statics/front/statics/home2/images/report/vedio10.jpg" alt="">
-		                                </div>
-		                                <div class="m2-repVodlist-det">
-		                                    <p>金融革命的萌芽</p>
-		                                </div>
-		                            </li>
-		                            <li>
-		                                <div class="m2-repVodlist-main">
-		                                    <div class="m2-repVodlist-bg"><span></span></div>
-		                                    <img src="/Finances/statics/front/statics/home2/images/report/vedio11.jpg" alt="">
-		                                </div>
-		                                <div class="m2-repVodlist-det">
-		                                    <p>几招搞定P2P网贷投资</p>
-		                                </div>
-		                            </li>
-		                            <li>
-		                                <div class="m2-repVodlist-main">
-		                                    <div class="m2-repVodlist-bg"><span></span></div>
-		                                    <img src="/Finances/statics/front/statics/home2/images/report/vedio12.jpg" alt="">
-		                                </div>
-		                                <div class="m2-repVodlist-det">
-		                                    <p>舌尖上的金融</p>
-		                                </div>
-		                            </li>
+		                            </c:forEach>
 		                        </ul>
 		                    </div>
 		                </div>
@@ -591,197 +499,66 @@
 		        <div class="m2-reportNews-box">
 		            <h2><i></i>新闻聚焦</h2>
 		            <ul class="m2-reportNews-list">
+		            	<c:forEach items="${newsbl}" var="newsfbl">
 		                <li>
-		
 		                    <div class="m2-reportNews-listMain">
-		                        <img class="m2-reportLogo" src="/Finances/statics/front/uploadData/ad/20151229133918775.png" alt="没有信息共享机制，网贷凭什么限额？">					<a href="dashiji_show.html#16027.html" target="_blank" title="没有信息共享机制，网贷凭什么限额？">
-		                        <h3 style="color: #09c;font-size: 16px; line-height: 25px;" >没有信息共享机制，网贷凭什么限额？</h3></a>
-		                        <a href="dashiji_show.html#16027.html" target="_blank" title="没有信息共享机制，网贷凭什么限额？">
+		                        <img class="m2-reportLogo" src="${newsfbl.nfimage}" alt="${newsfbl.nftitle}">					
+		                        <a href="dashiji_show.html#16027.html" target="_blank" title="${newsfbl.nftitle}">
+		                        <h3 style="color: #09c;font-size: 16px; line-height: 25px;" >${newsfbl.nftitle}</h3></a>
+		                        <a href="dashiji_show.html#16027.html" target="_blank" title="${newsfbl.nftitle}">
 		                            <p class="m2-reportNews-listNor">
-		                                今天下午，银监会、工信部、公安部、网信办四部委联合发布《网络借贷信息中介机构业务活动管理暂行办法》。此前备受市场关注的借款设上限在发布会上被…</p></a>
-		                        <p class="m2-reportNews-listLink" ><a href="dashiji_show.html#16027.html" target="_blank" title="没有信息共享机制，网贷凭什么限额？">显示全部</a></p>
+		                                	 ${fn:substring(newsfbl.nfcontent,0,100)}...
+		                            </p></a>
+		                        <p class="m2-reportNews-listLink" ><a href="dashiji_show.html#16027.html" target="_blank" title="${newsfbl.nftitle}">显示全部</a></p>
 		                    </div>
 		                    <div class="m2-reportNews-listTime">
-		                        <p><i></i>2016年09月02日</p>
+		                        <p><i></i>${newsfbl.nftime}</p>
 		                    </div>
-		                </li><li>
-		
-		                <div class="m2-reportNews-listMain">
-		                    <img class="m2-reportLogo" src="/Finances/statics/front/uploadData/ad/20151130140815865.png" alt="网贷管理办法明确13项禁止性行为">					<a href="dashiji_show.html#16026.html" target="_blank" title="网贷管理办法明确13项禁止性行为">
-		                    <h3 style="color: #09c;font-size: 16px; line-height: 25px;" >网贷管理办法明确13项禁止性行为</h3></a>
-		                    <a href="dashiji_show.html#16026.html" target="_blank" title="网贷管理办法明确13项禁止性行为">
-		                        <p class="m2-reportNews-listNor">
-		                            �24日，银监会会同工信部、公安部、国家互联网信息办公室等部门研究起草的《网络借贷信息中介机构业务活动管理暂行办法》（简称《办法》）发布。《…</p></a>
-		                    <p class="m2-reportNews-listLink" ><a href="dashiji_show.html#16026.html" target="_blank" title="网贷管理办法明确13项禁止性行为">显示全部</a></p>
-		                </div>
-		                <div class="m2-reportNews-listTime">
-		                    <p><i></i>2016年09月02日</p>
-		                </div>
-		            </li><li>
-		
-		                <div class="m2-reportNews-listMain">
-		                    <img class="m2-reportLogo" src="/Finances/statics/front/uploadData/ad/20151209171757478.png" alt="网贷监管终落地  平台将现转型潮">					<a href="dashiji_show.html#16023.html" target="_blank" title="网贷监管终落地  平台将现转型潮">
-		                    <h3 style="color: #09c;font-size: 16px; line-height: 25px;" >网贷监管终落地  平台将现转型潮</h3></a>
-		                    <a href="dashiji_show.html#16023.html" target="_blank" title="网贷监管终落地  平台将现转型潮">
-		                        <p class="m2-reportNews-listNor">
-		                            �8月24日，银监会、工信部、公安部、国家互联网信息办公室联合发布了《网络借贷信息中介机构业务活动管理暂行办法》（下称《暂行办法》）。���…</p></a>
-		                    <p class="m2-reportNews-listLink" ><a href="dashiji_show.html#16023.html" target="_blank" title="网贷监管终落地  平台将现转型潮">显示全部</a></p>
-		                </div>
-		                <div class="m2-reportNews-listTime">
-		                    <p><i></i>2016年08月31日</p>
-		                </div>
-		            </li><li>
-		
-		                <div class="m2-reportNews-listMain">
-		                    <img class="m2-reportLogo" src="/Finances/statics/front/statics/home2/images/article/from_icon/iqb.png" alt="“家规”落地网贷行业走向成熟">
-		                    <a href="dashiji_show.html#16021.html" target="_blank" title="“家规”落地网贷行业走向成熟">
-		                        <h3 style="color: #09c;font-size: 16px; line-height: 25px;" >“家规”落地网贷行业走向成熟</h3></a>
-		                    <a href="dashiji_show.html#16021.html" target="_blank" title="“家规”落地网贷行业走向成熟">
-		                        <p class="m2-reportNews-listNor">
-		                            “靴子”终于落地。为加强对网络借贷信息中介机构业务活动的监督管理，促进网络借贷行业健康发展，8月24日，中国银监会、工业和信息化部、公安部、…</p></a>
-		                    <p class="m2-reportNews-listLink" ><a href="dashiji_show.html#16021.html" target="_blank" title="“家规”落地网贷行业走向成熟">显示全部</a></p>
-		                </div>
-		                <div class="m2-reportNews-listTime">
-		                    <p><i></i>2016年08月30日</p>
-		                </div>
-		            </li><li>
-		
-		                <div class="m2-reportNews-listMain">
-		                    <img class="m2-reportLogo" src="/Finances/statics/front/uploadData/ad/2015113014080319.png" alt="您属于P2P合格投资人吗？">					<a href="dashiji_show.html#16020.html" target="_blank" title="您属于P2P合格投资人吗？">
-		                    <h3 style="color: #09c;font-size: 16px; line-height: 25px;" >您属于P2P合格投资人吗？</h3></a>
-		                    <a href="dashiji_show.html#16020.html" target="_blank" title="您属于P2P合格投资人吗？">
-		                        <p class="m2-reportNews-listNor">
-		                            上周三，孕育了近三年的《网络借贷信息中介机构业务活动管理暂行办法》在广大网贷从业者和投资人的翘首企盼下，终于揭开神秘的面纱。长达47条的《暂…</p></a>
-		                    <p class="m2-reportNews-listLink" ><a href="dashiji_show.html#16020.html" target="_blank" title="您属于P2P合格投资人吗？">显示全部</a></p>
-		                </div>
-		                <div class="m2-reportNews-listTime">
-		                    <p><i></i>2016年08月30日</p>
-		                </div>
-		            </li><li>
-		
-		                <div class="m2-reportNews-listMain">
-		                    <img class="m2-reportLogo" src="/Finances/statics/front/uploadData/ad/20151130140806276.png" alt="8.24网贷监管细则 二十多位互金大咖解读">					<a href="dashiji_show.html#16016.html" target="_blank" title="8.24网贷监管细则 二十多位互金大咖解读">
-		                    <h3 style="color: #09c;font-size: 16px; line-height: 25px;" >8.24网贷监管细则 二十多位互金大咖解读</h3></a>
-		                    <a href="dashiji_show.html#16016.html" target="_blank" title="8.24网贷监管细则 二十多位互金大咖解读">
-		                        <p class="m2-reportNews-listNor">
-		                            8月24日下午，银监会就《网络借贷信息中介机构业务活动管理暂行办法》有关情况召开了新闻发布会。金评媒记者黄依凡、秦楠楠采访多位互金大咖，为您…</p></a>
-		                    <p class="m2-reportNews-listLink" ><a href="dashiji_show.html#16016.html" target="_blank" title="8.24网贷监管细则 二十多位互金大咖解读">显示全部</a></p>
-		                </div>
-		                <div class="m2-reportNews-listTime">
-		                    <p><i></i>2016年08月25日</p>
-		                </div>
-		            </li><li>
-		
-		                <div class="m2-reportNews-listMain">
-		                    <img class="m2-reportLogo" src="/Finances/statics/front/uploadData/ad/20151130140805550.png" alt="爱钱帮CEO王吉涛：网贷行业格局彻底改变">					<a href="dashiji_show.html#16015.html" target="_blank" title="爱钱帮CEO王吉涛：网贷行业格局彻底改变">
-		                    <h3 style="color: #09c;font-size: 16px; line-height: 25px;" >爱钱帮CEO王吉涛：网贷行业格局彻底改变</h3></a>
-		                    <a href="dashiji_show.html#16015.html" target="_blank" title="爱钱帮CEO王吉涛：网贷行业格局彻底改变">
-		                        <p class="m2-reportNews-listNor">
-		                            （8月24日），银监会联合工业和信息化部、公安部、国家互联网信息办公室等四部委制定的《网络借贷信息中介机构业务活动管理暂行办法》正式发布。爱…</p></a>
-		                    <p class="m2-reportNews-listLink" ><a href="dashiji_show.html#16015.html" target="_blank" title="爱钱帮CEO王吉涛：网贷行业格局彻底改变">显示全部</a></p>
-		                </div>
-		                <div class="m2-reportNews-listTime">
-		                    <p><i></i>2016年08月25日</p>
-		                </div>
-		            </li><li>
-		
-		                <div class="m2-reportNews-listMain">
-		                    <img class="m2-reportLogo" src="/Finances/statics/front/uploadData/ad/20160819160354185.png" alt="投资人保护再升级">					<a href="dashiji_show.html#16008.html" target="_blank" title="投资人保护再升级">
-		                    <h3 style="color: #09c;font-size: 16px; line-height: 25px;" >投资人保护再升级</h3></a>
-		                    <a href="dashiji_show.html#16008.html" target="_blank" title="投资人保护再升级">
-		                        <p class="m2-reportNews-listNor">
-		                            近日，中国互联网金融协会向会员公布了《互联网金融信息披露标准——P2P网贷（征求意见稿）》下称P2P网贷（征求意见稿），正式向其会员单位征求…</p></a>
-		                    <p class="m2-reportNews-listLink" ><a href="dashiji_show.html#16008.html" target="_blank" title="投资人保护再升级">显示全部</a></p>
-		                </div>
-		                <div class="m2-reportNews-listTime">
-		                    <p><i></i>2016年08月19日</p>
-		                </div>
-		            </li>		</ul>
+		                </li>
+		                </c:forEach>
+		             </ul>
+		             
 		        </div>
-		        <script >
-		            function pageclick(channel,index){
-		                var ajax_url='/ajaxreport-list-'+index;
-		                $.ajax({
-		                    type: "POST",
-		                    url: ajax_url,
-		                    dataType: 'text',
-		                    data:{
-		                        list:index
-		                    },
-		                    success: function(data) {
-		                        page = index;
-		                        pager();
-		                        $('.m2-reportNews-list li').remove();
-		                        $('.m2-reportNews-list').append(data);
-		                    }
-		                });
-		            }
-		        </script>
-		        <div class="m2-newListpage-con">
+		
+		<div class="m2-newListpage-con" style="padding-top:5px;">
 		            <div class="m2-newListpage">
-		                <div class="m2-news-pages" style="padding-right:40px;margin:12px auto;"></div>
+		                <div class="m2-news-pages" style="padding-right:40px;margin:12px auto;text-align: center;">
+		   
+		     <c:if test="${fn:length(newsbl) > 0}">
+		               <a href="javascript:void(0);" onclick="window.location.href='/Finances/tocover?pageNow=1'" class="m2-pages-num m2-page-prev">&lt;</a>					
+					<c:choose>
+						<c:when test="${page.pageNow - 1 > 0}">
+							<a href="javascript:void(0);" onclick="window.location.href='/Finances/tocover?pageNow=${page.pageNow - 1}'"  class="m2-pages-num m2-page-sel"> - </a>
+						</c:when>
+						<c:when test="${page.pageNow - 1 <= 0}">
+							<a href="javascript:void(0);" onclick="window.location.href='/Finances/tocover?pageNow=1'"  class="m2-pages-num m2-page-sel"> - </a>
+						</c:when>
+					</c:choose>
+					<c:choose>
+						<c:when test="${page.totalPageCount==0}">
+							<a href="javascript:void(0);" onclick="window.location.href='/Finances/tocover?pageNow=${page.pageNow}'"   class="m2-pages-num m2-page-sel"> + </a>
+						</c:when>
+						<c:when test="${page.pageNow + 1 < page.totalPageCount}">
+							<a href="javascript:void(0);" onclick="window.location.href='/Finances/tocover?pageNow=${page.pageNow+1}'"  class="m2-pages-num m2-page-sel"> + </a>
+						</c:when>
+						
+						<c:when test="${page.pageNow + 1 >= page.totalPageCount}">
+							<a href="javascript:void(0);" onclick="window.location.href='/Finances/tocover?pageNow=${page.totalPageCount}'"  class="m2-pages-num m2-page-sel"> + </a>
+						</c:when>
+					</c:choose>
+					<c:choose>
+						<c:when test="${page.totalPageCount==0}">
+							<a href="javascript:void(0);" onclick="window.location.href='/Finances/tocover?pageNow=${page.pageNow}'" title="尾页" class="m2-pages-num m2-page-next">&gt;</a>
+						</c:when>
+						<c:otherwise>
+							<a href="javascript:void(0);" onclick="window.location.href='/Finances/tocover?pageNow=${page.totalPageCount}'" title="尾页" class="m2-pages-num m2-page-next">&gt;</a>
+						</c:otherwise>
+					</c:choose>
+				</c:if>		
+		                </div>
 		            </div>
-		        </div>
-		        <script>
+       	</div>
 		
-		            var channel = 'meitibaodao_aiqianbang_licaiwang';
-		            var page = Number(1); 			//当前页
-		
-		            pager();
-		
-		            function pager() {
-		
-		                var totalpage = Number(22); 	//总页数
-		                var n1 = 3;								//前后保留n1项，均分剩余页码，保留最前最后页
-		                var n2 = 3;								//当前页两旁保留n2项
-		                var pages = '<a onclick="pageclick(\''+channel+'\','+(page-1>0?page-1:1)+')" class="m2-pages-num m2-page-prev">&lt;</a>';
-		
-		                if (totalpage <= 1 || page > totalpage) {
-		                    $('.m2-news-pages').hide();
-		                } else {
-		                    $('.m2-news-pages').show();
-		
-		                    if (page <= n1 + n2 + 1) {
-		                        for (var i = 1; i < page; i++) {
-		                            pages += addonepage(i, false);
-		                        }
-		                    } else {
-		                        for (var i = 0; i < n1; i++) {
-		                            var a = 1 + Math.floor((page-n2-1)*i/n1);
-		                            pages += addonepage(a, false);
-		                        }
-		                        for (var i = page - n2; i < page; i++) {
-		                            pages += addonepage(i, false);
-		                        }
-		                    }
-		                    pages += addonepage(page, true);
-		
-		                    if (totalpage - page <= n1 + n2) {
-		                        for (var i = page + 1; i <= totalpage; i++) {
-		                            pages += addonepage(i, false);
-		                        }
-		                    } else {
-		                        for (var i = page + 1; i <= page + n2; i++) {
-		                            pages += addonepage(i, false);
-		                        }
-		                        for (var i = 1; i <= n1; i++) {
-		                            var b = page + n2 + Math.ceil((totalpage-page-n2)*i/n1);
-		                            pages += addonepage(b, false);
-		                        }
-		                    }
-		                    pages += '<a onclick="pageclick(\''+channel+'\','+(page+1>totalpage?totalpage:page+1)+')" class="m2-pages-num m2-page-next">&gt;</a>';
-		                    $('.m2-news-pages').html(pages);
-		                }
-		            }
-		
-		            function addonepage(index, iscurrent) {
-		                var pageclass = 'm2-page-unsel';
-		                if (iscurrent) {
-		                    pageclass = 'm2-page-sel';
-		                }
-		                return '<a onclick="pageclick(\''+channel+'\','+index+')" class="m2-pages-num ' + pageclass + '">' + index + '</a>';
-		            }
-		        </script>
 		    </div>
 		    <script type="text/javascript">
 		        $(function(){
