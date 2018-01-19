@@ -5,13 +5,9 @@ import java.io.Serializable;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 
-/**
- * 收益表
- * 2018年1月18日10:53:49
- * 操作人：胡孝玉
- * */
+
 @SuppressWarnings("serial")
-public class Profit implements Serializable{
+public class ProfitP2p implements Serializable{
 
 	@TableId("pf_id")
 	private Integer pfid; //收益表id
@@ -27,26 +23,32 @@ public class Profit implements Serializable{
 	
 	@TableField("pf_time")
 	private String pftime; //收益时间
-	
-	public Profit() {
+	private User user;
+	public ProfitP2p() {
 	}
 
-
-	public Profit(Integer pfid, Integer uid, Double pfmoney, String pfmoneywhere, String pftime) {
+	public ProfitP2p(Integer pfid, Integer uid, Double pfmoney, String pfmoneywhere, String pftime, User user) {
 		super();
 		this.pfid = pfid;
 		this.uid = uid;
 		this.pfmoney = pfmoney;
 		this.pfmoneywhere = pfmoneywhere;
 		this.pftime = pftime;
+		this.user = user;
 	}
+
+
+
 
 
 	@Override
 	public String toString() {
-		return "Profit [pfid=" + pfid + ", uid=" + uid + ", pfmoney=" + pfmoney + ", pfmoneywhere=" + pfmoneywhere
-				+ ", pftime=" + pftime + "]";
+		return "ProfitP2p [pfid=" + pfid + ", uid=" + uid + ", pfmoney=" + pfmoney + ", pfmoneywhere=" + pfmoneywhere
+				+ ", pftime=" + pftime + ", user=" + user + "]";
 	}
+
+
+
 
 
 	public Integer getPfid() {
@@ -89,7 +91,12 @@ public class Profit implements Serializable{
 		this.pftime = pftime;
 	}
 
+	public User getUser() {
+		return user;
+	}
 
-	
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 }
