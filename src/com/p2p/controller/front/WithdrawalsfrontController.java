@@ -52,7 +52,7 @@ public class WithdrawalsfrontController {
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");
 		User user=(User)request.getSession().getAttribute("user");
 		String wtime=sdf.format(new Date());
-		withdrawals.setWstatus(1);
+		withdrawals.setWstatus(2);
 		withdrawals.setUid(user.getUid());
 		withdrawals.setWtime(wtime);
 		if(withdrawals.getWmoneytowhere()==null|withdrawals.getWmoneytowhere()=="") {
