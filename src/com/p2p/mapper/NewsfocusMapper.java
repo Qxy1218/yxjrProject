@@ -1,10 +1,13 @@
 package com.p2p.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.p2p.base.IBaseDao;
+import com.p2p.pojo.Employe;
 import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.Newsfocus;
 
@@ -25,5 +28,14 @@ public interface NewsfocusMapper extends IBaseDao<Integer, Newsfocus>{
 	 * 取得产品数量信息，
 	 * @return 
 	 */  
-	public long getProductsCount();  
+	public long getProductsCount();
+
+	
+	Newsfocus getBynewsfocusname(String nftitle);
+	
+	//实现分页查询
+	List<Newsfocus> selectPage(Pagination page,Map<String ,Object> params,@Param(value="newsfocus") Newsfocus newsfocus);
+	
+	//查询总的记录数
+	abstract Integer newsfocusCount(@Param(value="newsfocus") Newsfocus newsfocus); 
 }

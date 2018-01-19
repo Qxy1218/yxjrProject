@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.p2p.base.IBaseService;
+import com.p2p.pojo.Employe;
 import com.p2p.pojo.Newsfocus;
+import com.p2p.util.PageInfo;
 
 public interface NewsfocusService extends IBaseService<Integer, Newsfocus>{
 	/** 
@@ -19,5 +21,11 @@ public interface NewsfocusService extends IBaseService<Integer, Newsfocus>{
 	 * 取得产品数量信息，
 	 * @return 
 	 */  
-	public long getProductsCount();  
+	public long getProductsCount();
+	
+	//实现分页查询
+    abstract void selectPage(@Param(value="pageInfo")PageInfo pageInfo,@Param(value="newsfocus") Newsfocus newsfocus);//实现分页
+ 		
+ 	//查询总的记录数
+ 	abstract Integer newsfocusCount(@Param(value="newsfocus") Newsfocus newsfocus);
 }

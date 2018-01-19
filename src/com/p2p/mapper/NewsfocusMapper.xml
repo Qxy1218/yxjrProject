@@ -51,5 +51,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    <select id="getProductsCount" resultType="long">
 		    	 SELECT COUNT(*) FROM newsfocus
 		    </select>
+		    
+		    <select id="selectPage" resultMap="NfresultMap">
+		    	select * from newsfocus 
+		    	<where>
+		    		1=1 
+		    		<if test="newsfocus.nftitle!=null and newsfocus.nftitle !='' "> and nf_title like CONCAT(CONCAT('%', #{newsfocus.nftitle}), '%')</if>
+					<if test="newsfocus.nfcontent!=null and newsfocus.nftitle !=''"> and  nf_content like CONCAT(CONCAT('%', #{newsfocus.nfcontent}), '%')</if>
+					<if test="newsfocus.nfimage!=null and newsfocus.nftitle !=''">and nf_image like CONCAT(CONCAT('%', #{newsfocus.nfimage}), '%') </if>
+					<if test="newsfocus.nftime!=null and newsfocus.nftitle !=''">and  nf_time like CONCAT(CONCAT('%', #{newsfocus.nftime}), '%')</if>
+		    	</where>
+		    </select>
+		    
+		    <select id="newsfocusCount" resultType="java.lang.Integer">
+		    	select count(*) from newsfocus <where>
+		    		1=1 
+		    		<if test="newsfocus.nftitle!=null and newsfocus.nftitle !='' "> and nf_title like CONCAT(CONCAT('%', #{newsfocus.nftitle}), '%')</if>
+					<if test="newsfocus.nfcontent!=null and newsfocus.nftitle !=''"> and  nf_content like CONCAT(CONCAT('%', #{newsfocus.nfcontent}), '%')</if>
+					<if test="newsfocus.nfimage!=null and newsfocus.nftitle !=''">and nf_image like CONCAT(CONCAT('%', #{newsfocus.nfimage}), '%') </if>
+					<if test="newsfocus.nftime!=null and newsfocus.nftitle !=''">and  nf_time like CONCAT(CONCAT('%', #{newsfocus.nftime}), '%')</if>
+		    	</where>
+		    </select>
 		
 	</mapper>

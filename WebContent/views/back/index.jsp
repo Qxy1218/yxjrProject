@@ -286,6 +286,9 @@
                                 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/activity.jsp">活动专区</a>
                             </li>
                             <li>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/news.jsp">新闻管理</a>
+                            </li>
+                            <li>
                                 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/notice.jsp">公告管理</a>
                             </li>
                             <li>
