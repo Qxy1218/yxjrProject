@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%
+	String path = request.getContextPath();
+%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,13 +12,14 @@
 <link rel="stylesheet" href="/Finances/statics/front/statics/home/css/newPage.css" />
 <link type="text/css" rel="stylesheet" href="/Finances/statics/front/statics/common/tipBox/colorbox-master/css/colorbox.css">
 </head>
+
 <body>
 <div id="mainNewfoot">
     <div class="mainNewfocus" style ="width:740px;">
         <div class="mainNewblog">
             <ul>
-               <li class="joinWb"><span style="background: url(/Finances/${contact.cweboimgurl})"></span><p>官方微博</p></li>
-                <li class="joinWx"><span style="background: url(/Finances/${contact.cwechartimgurl})"></span><p>官方微信</p></li>
+               <li class="joinWb"><span id="cwb" style="background: url(/Finances/${contact.cweboimgurl})"></span><p>官方微博</p></li>
+                <li class="joinWx"><span id="cwc" style="background: url(/Finances/${contact.cwechartimgurl})"></span><p>官方微信</p></li>
             </ul>
         </div>
         <div class="mainNewcopy">
@@ -48,6 +52,7 @@
 
     </div>
 </div>
+
 <!--底部[end]-->
 <script type="text/javascript">
     //全局变量
@@ -66,12 +71,33 @@
  -->
 <script src="/Finances/statics/front/statics/common/tipBox/common.js"></script>
 <!--tipBOx-->
+
+<script type="text/javascript">
+$(function(){
+	 
+	 $.ajax({  
+		    url : "/Finances/ajaxgetwechart",  
+		    type: "post",
+		    success: function(data){  
+		    	 var dataObj=eval("("+data+")");
+				 alert(dataObj.cwechartimgurl);
+				 $("#cwc").css("background","url(" + "/Finances"+dataObj.cwechartimgurl + ")");
+				 $("#cwb").css("background","url(" + "/Finances"+dataObj.cweboimgurl + ")");
+		    },  
+		    error: function(XMLHttpRequest, textStatus, errorThrown){  
+		        alert(XMLHttpRequest.readyState + XMLHttpRequest.status + XMLHttpRequest.responseText);  
+		    }  
+		});  
+	 
+});
+</script>
+
 <script language=JavaScript type="text/javascript" src="/Finances/statics/front/statics/home/js/tab.js"></script>
 <script type="text/javascript">$(function () {
     if ($.browser && $.browser.msie && ($.browser.version == "6.0") && !$.support.style) {
         $('#fixed-services').css('display', 'none');
     }
-})
+});
 </script>
 </body>
 </html>
