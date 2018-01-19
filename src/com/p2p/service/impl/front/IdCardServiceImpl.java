@@ -61,7 +61,12 @@ public class IdCardServiceImpl implements IdCardService {
 		Page<IdCard> page = new Page(pageInfo.getNowpage(),pageInfo.getSize());
 		List<IdCard> list = idCardMapper.selectPage(page, pageInfo.getCondition(),idcard);
 		pageInfo.setRows(list);
-		pageInfo.setTotal(list.size());
+		pageInfo.setTotal(page.getTotal());
+	}
+
+	@Override
+	public Integer allConuntIdcard(IdCard idcard) {
+		return idCardMapper.allConuntIdcard(idcard);
 	}
 
 }

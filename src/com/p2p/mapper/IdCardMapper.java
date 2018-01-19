@@ -17,5 +17,7 @@ import com.p2p.pojo.IdCard;
 public interface IdCardMapper extends IBaseDao<Integer, IdCard> {
 	//实现后台分页查询
 	List<IdCard> selectPage(Pagination page,Map<String ,Object> params,@Param(value="idcard") IdCard idcard);
-		
+	
+	//查询所有的记录数(含模糊查询的总数)
+	abstract Integer allConuntIdcard(@Param(value="idcard") IdCard idcard);
 }

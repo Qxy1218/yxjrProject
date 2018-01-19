@@ -294,14 +294,15 @@ public class IdCardController {
 	@RequestMapping(value="selectiIdcardList")
 	@ResponseBody
 	public PageInfo selectiIdcardList(Integer page, Integer rows,IdCard idcard) {
-		Integer pageSize = 0;
+		Integer pageSize = (page /rows)+1;
 		//得到总的页数
 		PageInfo pageInfo = new PageInfo(pageSize,rows);
+		Integer count = idCardService.allConuntIdcard(idcard);
 		Map<String,Object> map = new HashMap<String,Object>();
 		pageInfo.setCondition(map);
 		
 		idCardService.selectPage(pageInfo,idcard);
-		pageInfo.setTotal(pageInfo.getTotal());
+		pageInfo.setTotal(count);
 		return pageInfo;
 	}
 	
@@ -321,7 +322,7 @@ public class IdCardController {
 		int conut = idCardService.update(idcard);
 		if(conut>0) {
 			userinfo.setUiid(idcard.getUiid());
-			userinfo.setUiopenstatus(2);
+			userinfo.setUiopenstatus(1);
 			userInfoService.update(userinfo);
 			Userinfo uinfo = userInfoService.getUserinfoByuiid(idcard.getUiid());
 			AuthebDetais authebDetais = new AuthebDetais();
