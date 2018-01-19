@@ -9,18 +9,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
-import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -954,6 +953,27 @@ public class FrontController {
 		}
 		
 	}
+	
+	@RequestMapping(value="/ajaxgetwechart")
+	@ResponseBody
+	public String ajaxgetwechart() throws Exception{
+		ObjectMapper ob = new ObjectMapper();
+		Contact contact = new Contact();
+		//查是否是一的结果
+		contact.setCxs(1);
+		contact = contactService.getModel(contact);
+		if(contact!=null) {
+			if(contact.getCwechartimgurl()==null) {
+				return null;
+			}
+			if(contact.getCweboimgurl()==null) {
+				return null;
+			}
+		}
+		String result = ob.writeValueAsString(contact);
+		return result;
+	}
+	
 	
 	/**
 	 *企业理财页面的conteroller 
