@@ -318,6 +318,41 @@
 		return temp;
 	};
 	</script>
+	<script type="text/javascript">
+	!function(){
+		laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
+		laydate({elem: '#demo'});//绑定元素
+	}();
+	
+	//日期范围限制
+	var start = {
+		elem: '#start',
+		format: 'YYYY-MM-DD',
+		min: laydate.now(), //设定最小日期为当前日期
+		max: '2099-06-16', //最大日期
+		istime: true,
+		istoday: false,
+		choose: function(datas){
+			 end.min = datas; //开始日选好后，重置结束日的最小日期
+			 end.start = datas //将结束日的初始值设定为开始日
+		}
+	};
+
+	var end = {
+		elem: '#end',
+		format: 'YYYY-MM-DD',
+		min: laydate.now(),
+		max: '2099-06-16',
+		istime: true,
+		istoday: false,
+		choose: function(datas){
+			start.max = datas; //结束日选好后，充值开始日的最大日期
+		}
+	};
+	laydate(start);
+	laydate(end);
+	
+	</script>
 </head>
 <body class="gray-bg">
    <body style="background-color:#F2F9FD">
@@ -403,8 +438,8 @@
 						<div class="form-group">
 							<label for="urlName" class="control-label col-sm-3">时间</label> 
 							<div class="col-sm-8">
-								<input type="text" name="nftime" class="form-control" id="nftime">
-							</div>
+								<input placeholder="请选择日期" name="nftime" id="nftime" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+	            			</div>
 						</div>
 				</div>
 				<div class="modal-footer">
