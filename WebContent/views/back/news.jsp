@@ -17,7 +17,13 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery.form.js"></script>
 		<script src="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/js/bootstrapValidator.min.js"></script>
 		<link href="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
-		        <script type="text/javascript">
+		
+		<!-- 导入在线编辑器 -->
+	<script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/statics/other/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/statics/other/ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/statics/other/ueditor/lang/zh-cn/zh-cn.js"></script>
+		
+		<script type="text/javascript">
 		$(document).ready(function() {
 		    $('#newsform')
 		        .bootstrapValidator({
@@ -103,6 +109,8 @@
 <script  type="text/javascript">
     var rows = null;
     
+    var ue = UE.getEditor('nfcontent');
+    
     function addNewsfocus(){
     	//清空editModel原来填写的内容
 		$("#aboutform #nftitle").val(''),
@@ -123,7 +131,8 @@
 		     
 		     var formobj =  document.getElementById("aboutform");
 				var formdata = new FormData(formobj);
-				
+				var count = UE.getEditor('nfcontent').getContent();
+				formdata.append('nfcontent',count);
 				$.ajax({
 					url:  "${pageContext.request.contextPath }/back/local/insertNewsfocus",
 				    type: 'POST',
@@ -166,6 +175,12 @@
  		$("#aboutform #nfid").val(athRole.nfid);
  		$("#aboutform #nftitle").val(athRole.nftitle);
  		
+ 		//给在线编辑器赋值
+ 		 var ue = UE.getEditor('nfcontent');
+        ue.addListener('ready', function (editor) {
+            ue.setContent(athRole.nfcontent);
+        });
+ 		
  		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
  		//$("#isave").attr("onclick","updateAbout()");
  		//显示新增窗口
@@ -177,7 +192,8 @@
 	    
 	     var formobj =  document.getElementById("aboutform");
 			var formdata = new FormData(formobj);
-			
+			var count = UE.getEditor('nfcontent').getContent();
+			formdata.append('nfcontent',count);
 			$.ajax({
 				url:  "${pageContext.request.contextPath }/back/local/updateNewsfocus",
 			    type: 'POST',
@@ -353,6 +369,13 @@
 	laydate(end);
 	
 	</script>
+	<!--
+		<script type="text/javascript">
+		 $(function () {
+	         $('#tb_role').bootstrapTable('hideColumn', 'nfcontent');
+	     }); 
+		</script>
+	  -->
 </head>
 <body class="gray-bg">
    <body style="background-color:#F2F9FD">
@@ -398,7 +421,7 @@
 	<!-- 新增弹窗 -->
 	<div class="modal fade" id="newsform" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog" role="document" style="width:800px">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
@@ -424,7 +447,7 @@
 						<div class="form-group">
 							<label for="urlName" class="control-label col-sm-3">内容</label> 
 							<div class="col-sm-8">
-								<input type="text" name="nfcontent" class="form-control" id="nfcontent">
+								 <script id="nfcontent" name="nfcontent" type="text/plain" style="width:500px;height:500px;"></script>
 							</div>
 						</div>
 						<div class="form-group">
