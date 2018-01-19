@@ -84,7 +84,7 @@ public class RechargeController {
 		Chongzhi  chongzhi = new Chongzhi();
 		chongzhi.setChsuid(recharge.getUid());
 		chongzhi.setChbankid(userbackcard.getUbbackcardnum());
-		chongzhi.setChstate(1);
+		chongzhi.setChstate(2);
 		chongzhi.setChmoney(Double.valueOf(recharge.getRemoney()));
 		chongzhi.setChtime(chtime);
 		chongzhi.setChorder(UUIDCode.produceUID(6));
@@ -114,7 +114,7 @@ public class RechargeController {
 		}
 		return count;
 	}
-	@RequestMapping("rechargereplay")
+	/*@RequestMapping("rechargereplay")
 	public void replay(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
 	    	//获取接收的报文
@@ -157,6 +157,6 @@ public class RechargeController {
 	       out.println(resultBuffer.toString());  
 	       out.flush();  
 	       out.close();  
-		}
+		}*/
 	
 }
