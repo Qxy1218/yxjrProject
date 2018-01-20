@@ -23,6 +23,7 @@ public class LoanController {
 	@ResponseBody
 	public PageInfo selectloanList(Integer page, Integer rows,Loan loan) {
 		Integer pageSize = (page /rows)+1;
+		//Integer count = loanService.Loancount();
 		Integer count = loanService.Loancount();
 		//得到总的页数
 		PageInfo pageInfo = new PageInfo(pageSize,rows);
