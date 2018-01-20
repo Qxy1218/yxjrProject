@@ -19,9 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.p2p.controller.back.UtilController;
+import com.p2p.pojo.AuthebDetais;
 import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.User;
+import com.p2p.pojo.Userinfo;
+import com.p2p.service.back.AuthebDetaisService;
 import com.p2p.service.back.FabiaobackService;
+import com.p2p.service.front.UserInfoService;
 import com.p2p.util.DateUtils;
 
 @Controller
@@ -30,6 +34,14 @@ public class UserFabioController {
 	
 	@Resource(name="fabiaobackServiceImpl")	
 	private FabiaobackService fabiaoService;
+	
+	//认证详情表
+	@Resource(name="authebDetaisServiceImpl")
+	private AuthebDetaisService authebDetaisService;  //消息
+	
+	@Resource(name="userInfoServiceImpl")
+	private UserInfoService userInfoService;  //用户基本信息
+	
 	
 	
 	@RequestMapping("/insertFabiao")
@@ -67,6 +79,16 @@ public class UserFabioController {
 		fabiao.setFstatus(6);
 		
 		int count = fabiaoService.addModel(fabiao);
+		if(count>0) {
+			Userinfo userinfo =userInfoService.seleUserinfoByuid(fabiao.getUid());
+			AuthebDetais authebDetais = new AuthebDetais();
+			authebDetais.setAdintroduct("用户: "+userinfo.getUiname()+",已申请发标,需后台管理员审核通过!");
+			authebDetais.setAdtime(DateUtils.getDateTimeFormat(new Date()));
+			authebDetais.setAdstype(2); //2代表用户发标审核
+			authebDetais.setAdstatus(0);
+			authebDetais.setUiid(userinfo.getUiid());
+			authebDetaisService.addModel(authebDetais);
+		}
 		return count;
 	}
 }

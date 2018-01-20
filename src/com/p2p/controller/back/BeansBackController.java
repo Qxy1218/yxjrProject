@@ -125,7 +125,7 @@ public class BeansBackController {
 		  if(adstype==1) {
 			  return "views/back/idcard";
 		  }else {
-			  return "view/back/AuthWithDrawls";
+			  return "view/back/views/back/shfabiao.jsp";
 		  }
 		  
 	  }

@@ -177,7 +177,7 @@
 	                                    		<u>去处理</u></a></small>
 	                                    </c:if>
 	                                    <c:if test="${adstype ==2}">
-	                                    	 <small class="pull-right text-navy"><a class="J_menuItem" href="${pageContext.request.contextPath}/back/toAuthIdCardStatus?adstype=${adstype}&adid=${authebDetais.adid}">提现认证
+	                                    	 <small class="pull-right text-navy"><a class="J_menuItem" href="${pageContext.request.contextPath}/back/toAuthIdCardStatus?adstype=${adstype}&adid=${authebDetais.adid}">用户发标申请审核
 	                                    		<u>去处理</u></a></small>
 	                                    </c:if>
 	                                </div>
