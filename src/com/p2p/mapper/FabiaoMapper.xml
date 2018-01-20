@@ -3,36 +3,39 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.p2p.mapper.FabiaoMapper">
-<resultMap type="com.p2p.pojo.Fabiao" id="BaseResultMap">
-	      <id column="f_id" property="fid"/>
- 		  <result column="f_title" property="ftitle"/>
- 		  <result column="u_id" property="uid"/>
- 		  <result column="f_code" property="fcode"/>
- 		  <result column="f_type" property="ftype"/>
- 		  <result column="f_part" property="fpart"/>
- 		  <result column="f_roe" property="froe"/>
- 		  <result column="f_increase" property="fincrease"/>
- 		  <result column="f_content" property="fcontent"/>
- 		  <result column="f_situation" property="fsituation"/>
- 		  <result column="f_opinion" property="fopinion"/>
- 		  <result column="f_money" property="fmoney"/>
- 		  <result column="f_endmoney" property="fendmoney"/>
- 		  <result column="f_endtime" property="fendtime"/>
- 		  <result column="f_minmoney" property="fminmoney"/>
- 		  <result column="f_maxmoney" property="fmaxmoney"/>
- 		  <result column="f_rate" property="frate"/>
- 		  <result column="f_image" property="fimage"/>
- 		  <result column="f_orderimg" property="forderimg"/>
- 		  <result column="f_contract" property="fcontract"/>
- 		  <result column="f_bidstatus" property="fbidstatus"/>
- 		  <result column="f_status" property="fstatus"/>
- 		  <result column="f_security" property="fsecurity"/>
- 		  <result column="f_procedures" property="fprocedures"/>
- 		  <result column="f_repayment" property="frepayment"/>
- 		  <result column="f_securitymea" property="fsecuritymea"/>
- 		  <result column="f_huanstat" property="fhuanstat"/>
- 		  <result column="f_huanend" property="fhuanend"/>
-</resultMap>
+	<resultMap type="com.p2p.pojo.Fabiao" id="BaseResultMap">
+		  <id column="f_id" property="fid"/>
+		<result column="f_title" property="ftitle"/>
+		<result column="u_id" property="uid"/>
+		<result column="f_code" property="fcode"/>
+		<result column="f_type" property="ftype"/>
+		<result column="f_part" property="fpart"/>
+		<result column="f_roe" property="froe"/>
+		<result column="f_increase" property="fincrease"/>
+		<result column="f_content" property="fcontent"/>
+		<result column="f_situation" property="fsituation"/>
+		<result column="f_opinion" property="fopinion"/>
+		<result column="f_money" property="fmoney"/>
+		<result column="f_endmoney" property="fendmoney"/>
+		<result column="f_endtime" property="fendtime"/>
+		<result column="f_minmoney" property="fminmoney"/>
+		<result column="f_maxmoney" property="fmaxmoney"/>
+		<result column="f_rate" property="frate"/>
+		<result column="f_image" property="fimage"/>
+		<result column="f_orderimg" property="forderimg"/>
+		<result column="f_contract" property="fcontract"/>
+		<result column="f_bidstatus" property="fbidstatus"/>
+		<result column="f_status" property="fstatus"/>
+		<result column="f_security" property="fsecurity"/>
+		<result column="f_procedures" property="fprocedures"/>
+		<result column="f_repayment" property="frepayment"/>
+		<result column="f_securitymea" property="fsecuritymea"/>
+		<result column="f_huanstat" property="fhuanstat"/>
+		<result column="f_huanend" property="fhuanend"/>
+		<result column="f_fqqx" property="ffqqx"/>
+		<result column="f_yhqx" property="fyhqx"/>
+		<result column="f_hkstype" property="fhkstype"/>
+	</resultMap>
 	<select id="getModel" parameterType="com.p2p.pojo.Fabiao" resultMap="BaseResultMap">
  		select * from fabiao 
  		 <where>
@@ -65,6 +68,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  				<if test="frepayment!=null">and f_repayment=#{frepayment}</if>
  				<if test="fhuanstat!=null">and f_huanstat=#{fhuanstat}</if>
  				<if test="fhuanend!=null">and f_huanend=#{fhuanend}</if>
+ 				<if test="ffqqx!=null">and f_fqqx=#{ffqqx}</if>
+ 				<if test="fyhqx!=null">and f_yhqx=#{fyhqx}</if>
+ 				<if test="fhkstype!=null">and f_hkstype=#{fhkstype}</if>
  		</where>
  	</select>
  	
@@ -110,6 +116,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  				<if test="fsecuritymea!=null">f_securitymea=#{fsecuritymea},</if>
  				<if test="fhuanstat!=null">f_huanstat=#{fhuanstat},</if>
  				<if test="fhuanend!=null">f_huanend=#{fhuanend},</if>
+ 				<if test="ffqqx!=null">f_fqqx=#{ffqqx},</if>
+ 				<if test="fyhqx!=null">f_yhqx=#{fyhqx},</if>
+ 				<if test="fhkstype!=null">f_hkstype=#{fhkstype},</if>
  		</trim>
 			
 		<where>
