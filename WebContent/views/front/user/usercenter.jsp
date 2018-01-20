@@ -18,16 +18,17 @@
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-common.css">
 	    <link rel="Shortcut  Icon" href="/Finances/statics/front/statics/newcommon/images/minilogo.png">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/userCenter.css">
+	    <script src="${pageContext.request.contextPath}/statics/front/js/echarts.js"></script>
 	    <script type="text/javascript" src="/Finances/statics/front/statics/newcommon/js/jquery.min.js"></script>
 	    <script type="text/javascript" src="/Finances/statics/front/statics/newcommon/js/common.js"></script>
 	    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/esl.js"></script>
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/jquery.datetimepicker.css" />
 	    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/jquery.datetimepicker.js"></script>
-	
-			<link rel="stylesheet" href="/Finances/statics/front/statics/company_finance/css/center_div.css">
-   
+ 		<script src="${pageContext.request.contextPath}/statics/back/static/js/jquery-3.2.1.min.js"></script> 
+		
+		<link rel="stylesheet" href="/Finances/statics/front/statics/company_finance/css/center_div.css">
 	</head>
-<body>
+<body style="background:url('/Finances/statics/front/images/two.jpg');background-size:100% 100%;">
 	<div class="m2-userCentercommon-bg" style="display:none;"></div>
 	<!-- 右侧边栏start -->
 	<jsp:include page="../include/userside.jsp"></jsp:include>
@@ -63,8 +64,6 @@
 	        window.location.reload();
 	    });
 	</script>
-	
-	
     <div class="m2-userCentercommon-confirm" style='display: none;' id='msgdialog2'>
         <span class="m2-userCentercommon-confirmClose"></span>
         <p class="m2-userCommon-confirmSuc"><i></i></p>
@@ -184,11 +183,11 @@
                                 <u style="width:100px;z-index: 10;">
                                     <em class="m2-userProfit-arr"></em>
                                     <em class="m2-userProfit-arrBg"></em>
-                                    到账收益：0.00<br>
+                                    到账收益:${allMoney}<br>
                                 </u>
                             </b>
                         </p>
-                        <span>0.00</span>
+                        <span>${allMoney}</span>
                     </div>
                     <div class="m2-wel-profit" style="width:142px;">
                         <p>
@@ -201,12 +200,14 @@
                                 </u>
                             </b>
                         </p>
-                        <span>0.00</span>
+                        <span>${dayMoney}</span>
                     </div>
                 </div>
+                <input type="hidden" value="${sessionScope.userinfo.uiopenstatus} " id="uiopenstatus" />
+                <input type="hidden" value="${sessionScope.userinfo.uiid }" id="uiid"/>
                 <div class="m2-wel-profitLink" style="padding-top:26px; margin-left:10px;">
-                    <a class="m2-profit-cha" href="home-register-openbankid.html">徽商充值</a>
-                    <a class="m2-profit-cha" href="home-register-openbankid.html" style="margin-left:54px;">徽商提现</a><!--                 -->
+                    <a class="m2-profit-cha" id="recharge">徽商充值</a>
+                    <a class="m2-profit-cha" id="withDrawls" style="margin-left:54px;">徽商提现</a><!--                 -->
                 </div>
             </div>
         </div>
@@ -247,10 +248,10 @@
                                 <em class="m2-detail-titHide-arr"></em>
                                 <em class="m2-detail-titHide-arrBg"></em>
                                 <!---->
-                                徽商账户余额：0.00                        </u>
+                                徽商账户余额:${sessionScope.user.ubalance}    </u>
                         </b>
                     </p>
-                    <span class="m2-detailNum-fal">0.00</span>
+                    <span class="m2-detailNum-fal">${sessionScope.user.ubalance} </span>
                 </li>
             </ul>
         </div>
@@ -262,12 +263,187 @@
                 <hr style="display:inline-block;width:682px;border:0;background-color:#dadada;height:1px;margin-left:-4px;"></h3>
             </div>
             <div class="m2-profitChart-tit">
-                <span class="m2-chartItemtit-day m2-chart-unsel">日收益</span>
-                <span class="m2-chartItemtit-mon m2-chart-sel">月收益</span>
+                <span class="m2-chartItemtit-day m2-chart-unsel" id="dayProFit">日收益</span>
+                <span class="m2-chartItemtit-mon m2-chart-sel" id="mouthProFit">月收益</span>
             </div>
-            <div class="m2-chart-con" style="background-color:white;">
-                <div class="m2-chartItemuser" id="m2-chartMonth"></div>
+            <div style="background-color:white;">
+            	<div id="main" style="width: 800px;height:400px;"></div>
             </div>
+             <script type="text/javascript">
+             var myChart = echarts.init(document.getElementById('main'));
+             var mouthTime = new Array();
+     			mouthTime = ${mouthList};
+     		var mouthmoneyprofit = new Array();
+     			mouthmoneyprofit = ${mouthProfits};
+             var option = {
+             	    title: {
+             	        text: '月收益',
+             	        subtext: '每天收益表'
+             	    },
+             	    tooltip: {
+             	        trigger: 'axis'
+             	    },
+             	    legend: {
+             	        data:['月收益']
+             	    },
+             	    toolbox: {
+             	        show: true,
+             	        feature: {
+             	            dataZoom: {
+             	                yAxisIndex: 'none'
+             	            },
+             	            dataView: {readOnly: false},
+             	            magicType: {type: ['line', 'bar']},
+             	            restore: {},
+             	            saveAsImage: {}
+             	        }
+             	    },
+             	    xAxis:  {
+             	        type: 'category',
+             	        boundaryGap: false,
+             	        data:mouthTime
+             	    },
+             	    yAxis: {
+             	        type: 'value',
+             	        axisLabel: {
+             	            formatter: '{value} 元'
+             	        }
+             	    },
+             	    series: [
+             	        {
+             	            name:'日收益',
+             	            type:'line',
+             	            data:mouthmoneyprofit,
+             	            markPoint: {
+             	                data: [
+             	                    {type: 'max', name: '日收益'}
+             	                ]
+             	            },
+             	           
+             	        },
+             	      
+             	    ]
+             	};
+             // 使用刚指定的配置项和数据显示图表。
+             myChart.setOption(option);
+        $('#dayProFit').click(function(){
+            var myChart = echarts.init(document.getElementById('main'));
+        	var dayTime = new Array();
+        	dayTime = ${dayList};
+        	var moneyprofit = new Array();
+        	moneyprofit = ${dayProfits};
+            var option = {
+            	    title: {
+            	        text: '日收益',
+            	        subtext: '每天收益表'
+            	    },
+            	    tooltip: {
+            	        trigger: 'axis'
+            	    },
+            	    legend: {
+            	        data:['日收益']
+            	    },
+            	    toolbox: {
+            	        show: true,
+            	        feature: {
+            	            dataZoom: {
+            	                yAxisIndex: 'none'
+            	            },
+            	            dataView: {readOnly: false},
+            	            magicType: {type: ['line', 'bar']},
+            	            restore: {},
+            	            saveAsImage: {}
+            	        }
+            	    },
+            	    xAxis:  {
+            	        type: 'category',
+            	        boundaryGap: false,
+            	        data:dayTime
+            	    },
+            	    yAxis: {
+            	        type: 'value',
+            	        axisLabel: {
+            	            formatter: '{value} 元'
+            	        }
+            	    },
+            	    series: [
+            	        {
+            	            name:'日收益',
+            	            type:'line',
+            	            data:moneyprofit,
+            	            markPoint: {
+            	                data: [
+            	                    {type: 'max', name: '日收益'}
+            	                ]
+            	            },
+            	           
+            	        },
+            	      
+            	    ]
+            	};
+            myChart.setOption(option);
+        });
+        $('#mouthProFit').click(function(){
+            var myChart = echarts.init(document.getElementById('main'));
+            var mouthTime = new Array();
+    		mouthTime = ${mouthList};
+    		var mouthmoneyprofit = new Array();
+    		mouthmoneyprofit = ${mouthProfits};
+            var option = {
+            	    title: {
+            	        text: '月收益',
+            	        subtext: '每天收益表'
+            	    },
+            	    tooltip: {
+            	        trigger: 'axis'
+            	    },
+            	    legend: {
+            	        data:['月收益']
+            	    },
+            	    toolbox: {
+            	        show: true,
+            	        feature: {
+            	            dataZoom: {
+            	                yAxisIndex: 'none'
+            	            },
+            	            dataView: {readOnly: false},
+            	            magicType: {type: ['line', 'bar']},
+            	            restore: {},
+            	            saveAsImage: {}
+            	        }
+            	    },
+            	    xAxis:  {
+            	        type: 'category',
+            	        boundaryGap: false,
+            	        data:mouthTime
+            	    },
+            	    yAxis: {
+            	        type: 'value',
+            	        axisLabel: {
+            	            formatter: '{value} 元'
+            	        }
+            	    },
+            	    series: [
+            	        {
+            	            name:'日收益',
+            	            type:'line',
+            	            data:mouthmoneyprofit,
+            	            markPoint: {
+            	                data: [
+            	                    {type: 'max', name: '日收益'}
+            	                ]
+            	            },
+            	           
+            	        },
+            	      
+            	    ]
+            	};
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        });
+    </script>
+    <input type="hidden" value="${mouthList}" id="mouthTime">
+     <input type="hidden" value="${mouthProfits}" id="mouthmoneyprofit">
         </div>
         <div class="m2-backCalendar">
             <div class="m2-backCalendar-head" style="margin-bottom:8px;">
@@ -275,8 +451,6 @@
                 <hr style="display:inline-block;width:110px;border:0;background-color:#0996cc;height:1px;margin-left:6px;"></h3>
                 <hr style="display:inline-block;width:682px;border:0;background-color:#dadada;height:1px;margin-left:-4px;"></h3>
             </div>
-            <style>
-            </style>
             <div class="m2-backCalendar-con">
                 <div class="m2-backCalendar-lef">
                     <div class="m2-calendarItemuser">
@@ -317,223 +491,6 @@
                 </div>
             </div>
             <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/jquery.datetimepicker.modified.js"></script>
-            <script>
-            <%--
-           
-            var now = new Date();
-            var year = now.getFullYear();       //年
-            var month = now.getMonth() + 1;     //月
-            var day = now.getDate();            //日
-            var date_current = year + "-";
-
-            if(month < 10){
-                date_current += "0";
-            }
-
-            date_current += month + "-";
-
-            if(day < 10){
-                date_current += "0";
-            }
-            date_current += day;
-
-            var calendarData = Array();
-            $(document).ready(function(){
-                //加载日历
-                loadDatepicker();
-                getIncomeStat();
-            });
-
-            function getIncomeStat(){
-
-                $.ajax({
-                    url:"usercenter-index-getIncomeStat",
-                    data:{},
-                    success:function(data){
-                        obj = eval('('+data+')');
-                        $('#next_pay_day').text(obj['nextday']);
-                        $('#next_pay_day_num').text(obj['num']);
-                        $('#next_pay_day_income').text(parseFloat(obj['income']).toLocaleString());
-                        var date = obj['nextday'];
-                        $("#paymentdetail-a").click(function(){getPaymentDetail(date);});
-                        if(typeof(afterInitNextPayday)=='function'){
-                            afterInitNextPayday(date);
-                        }
-                    }
-                });
-            }
-
-            function loadDatepicker(){
-                $.ajax({
-                    url:"usercenter-index-getServerTime",
-                    data:{},
-                    success:function(data){
-                        var obj = eval('('+data+')');
-                        $('#m2-user-datetimepicker').val(obj['date']);
-                        $('#m2-user-datetimepicker').datetimepicker_uc({
-                            lang:'ch',
-                            format:'Y-m-d',
-                            inline:true
-                        });
-                        $(".m2-calendarItemuser .xdsoft_datetimepicker").css({"zoom":"1.45","min-height":"204px","padding":"0","background-color":"#F5F5F5","-moz-transform":"scale(1.45)","-moz-transform-origin":"top left"});
-                        loadCalendarInfo(Number(obj['year']),Number(obj['month'])-1);
-                    }
-                });
-            };
-
-            function loadCalendarInfo(y,m){
-                //m:0-11
-                var y1 = m==0 ? y-1 : y;
-                var m1 = (m + 11) % 12 + 1;
-                var y3 = m==11 ? y+1 : y;
-                var m3 = (m + 1) % 12 + 1;
-                var t1 = '';
-                var t2 = '';
-                var t3 = '';
-
-                t2=( y + '-' + (m+1));
-
-                $.ajax({
-                    url:"usercenter-index-getPaymentList",
-                    data:{
-                        time2:t2,
-                    },
-                    success:function(data){
-                        var	obj = eval('('+data+')');
-                        var total=obj['total_real_pay'];
-                        var total_plan=obj['total_plan_pay'];
-                        $('#thismonthincome').text(parseFloat(total_plan).toLocaleString()+'元');
-                        $('#thismonthrealincome').text(parseFloat(total).toLocaleString()+'元');
-
-                        obj=obj['plan_income'];
-                        for(k in obj){
-                            var mth = obj[k]['month'];
-                            if(mth<10)
-                                mth = mth.substr(1);
-                            calendarData[obj[k]['year']] ? 1 : calendarData[obj[k]['year']] = Array();
-                            calendarData[obj[k]['year']][mth] ? 1 : calendarData[obj[k]['year']][mth] = Array();
-                            calendarData[obj[k]['year']][mth][obj[k]['day']] ? 1 : calendarData[obj[k]['year']][mth][obj[k]['day']] = Array();
-                            calendarData[obj[k]['year']][mth][obj[k]['day']][1] = obj[k]['income'];	 //正常还款
-                            calendarData[obj[k]['year']][mth][obj[k]['day']][2] = obj[k]['new_status_pay'];
-                            calendarData[obj[k]['year']][mth][obj[k]['day']][3] = obj[k]['new_status_no'];
-                            calendarData[obj[k]['year']][mth][obj[k]['day']][4] = obj[k]['new_status_get'];
-                            calendarData[obj[k]['year']][mth][obj[k]['day']][5] = obj[k]['new_status_normal'];
-                            calendarData[obj[k]['year']][mth][obj[k]['day']][6] = obj[k]['no_income'];		//未还款
-                            calendarData[obj[k]['year']][mth][obj[k]['day']][7] = obj[k]['ele_get_income'];//收到提前还款
-                            calendarData[obj[k]['year']][mth][obj[k]['day']][8] = obj[k]['ele_pay_income'];//提前还款
-                            calendarData[obj[k]['year']][mth][obj[k]['day']][9] = obj[k]['plan_date'];//日期
-                        }
-                        markCalendar(y,m+1);
-                    },
-                    fail:function(){
-                        markCalendar(y,m+1);
-                    }
-                });
-//		}
-            }
-
-            function markCalendar(y,m){
-                //m:1-12
-                var y1 = m==1 ? y-1 : y;
-                var m1 = m==1 ? 12 : m-1;
-                var y3 = m==12 ? y+1 : y;
-                var m3 = m==12 ? 1 : m+1;
-                var sum = 0;
-                var sum_real_receive = 0;
-                $('.xdsoft_calendar td:not(.xdsoft_other_month)').each(function(){
-                    if(calendarData[y]){
-                        for(var i in calendarData[y][m]){
-                            if(calendarData[y][m][i] && Number(i) == $(this).children('div').text()){
-                                setCalendarColorByMoney(calendarData[y][m][i],this);
-                                var n1 = calendarData[y][m][i][1] ? calendarData[y][m][i][1] : 0.00;  //正常还款
-                                var n2 = calendarData[y][m][i][2] ? calMinus(calendarData[y][m][i][2],n1) : 0.00; //
-                                var n3 = calendarData[y][m][i][6] ? calendarData[y][m][i][6] : 0.00;  //待还款
-                                var n4 = calendarData[y][m][i][7] ? calendarData[y][m][i][7] : 0.00;	//提前还款
-                                var n5 = calendarData[y][m][i][8] ? calendarData[y][m][i][8] : 0.00; //收到提前还款
-                                var n6 = calendarData[y][m][i][10]? calendarData[y][m][i][10] : 0.00;   //计划
-                                var n7 = calendarData[y][m][i][11]? calendarData[y][m][i][11] : 0.00; //实际
-                                sum_plan_receive=calPlus(sum,calendarData[y][m][i][10]);//本月计划回款金额
-                                sum_real_receive=calPlus(sum_real_receive,calendarData[y][m][i][11]);//本月实际回款金额
-                                n1 = n1==0 ? '0.00' : n1;
-                                n2 = n2==0 ? '0.00' : n2;
-                                if(date_current >= calendarData[y][m][i][9]){ // 显示title的时候，需要比对日期与实际日期，当前日期比返回日期大，则执行else部分
-                                    $(this).append('<div class="calenderdetail"><div class="calItem"><span class="lefItem">待还款</span><span class="rigItem">'+ parseFloat(n3).toLocaleString() +'元</span></div>'
-                                    +'<div class="calItem"><span class="lefItem">正常还款</span><span class="rigItem">'+ parseFloat(n1).toLocaleString() +'元</span></div>'
-                                    +'<div class="calItem"><span class="lefItem">收到提前还款</span><span class="rigItem">'+ parseFloat(n5).toLocaleString() +'元</span></div>'
-                                    +'<div class="calItem"><span class="lefItem">提前还款</span><span class="rigItem">'+parseFloat(n4).toLocaleString() +'元</span></div>'
-                                    +'<div class="calMore"><a class="link_more" onclick="getPaymentDetail(\''+y+'.'+m+'.'+i+'\')">更多详情&gt;&gt;</a></div></div>')
-                                }else{
-                                    $(this).append('<div class="calenderdetail"><div class="calItem"><span class="lefItem">待还款</span><span class="rigItem">'+ parseFloat(n3).toLocaleString() +'元</span></div>'
-                                    +'<div class="calItem"><span class="lefItem">提前还款</span><span class="rigItem">'+parseFloat(n4).toLocaleString() +'元</span></div>'
-                                    +'<div class="calMore"><a class="link_more" onclick="getPaymentDetail(\''+y+'.'+m+'.'+i+'\')">更多详情&gt;&gt;</a></div></div>')
-                                }
-
-                            }
-                        }
-                    }
-                });
-                $('.xdsoft_calendar td.xdsoft_other_month').each(function(){
-                    if(calendarData[y1]){
-                        for(var i in calendarData[y1][m1]){
-                            if(i>15 && calendarData[y1][m1][i] && Number(i) == $(this).children('div').text()){
-                                setCalendarColorByMoney(calendarData[y][m][i],this);
-                            }
-                        }
-                    }
-                    if(calendarData[y3]){
-                        for(var i in calendarData[y3][m3]){
-                            if(i<15 && calendarData[y3][m3][i] && Number(i) == $(this).children('div').text()){
-                                setCalendarColorByMoney(calendarData[y][m][i],this);
-                            }
-                        }
-                    }
-                });
-            }
-
-            function setCalendarColorByMoney(data,dom){
-                var color1 = '#fabaa2';//待
-                var color2 = '#d4d4d4';//正常还款
-//		if(!data[6]){
-//
-//		}else{
-                if(data[5]>0){
-                    $(dom).css('color','#fff');
-                    $(dom).css('background-color',color2);
-                    if(data[2]>0||data[4]>0){
-                        $(dom).append('<i class=advIcon><img src="statics/usercenter/images/advIcon.png" alt=""></i>');
-                    }
-                }
-                if(data[3]>0&&data[6]!=0.00){
-                    $(dom).css('color','#fff');
-                    $(dom).css('background-color',color1);
-                    if(data[2]>0||data[4]>0){
-                        $(dom).append('<i class=advIcon><img src="statics/usercenter/images/advIcon.png" alt=""></i>');
-                    }
-                }
-                if(data[2]>0||data[4]>0){
-                    $(dom).append('<i class=advIcon><img src="statics/usercenter/images/advIcon.png" alt=""></i>');
-                }
-//		}
-
-            }
-
-            function calPlus(num1,num2){
-                var sq1,sq2,m;
-                try{sq1=num1.toString().split(".")[1].length;} catch(e){sq1=0;}
-                try{sq2=num2.toString().split(".")[1].length;} catch(e){sq2=0;}
-                m=Math.pow(10,Math.max(sq1,sq2));
-               // return Math.round(( num1 * m + num2 * m ) / m * 100)/100;//
-            }
-
-            function calMinus(num1,num2){
-                var sq1,sq2,m;
-                try{sq1=num1.toString().split(".")[1].length;} catch(e){sq1=0;}
-                try{sq2=num2.toString().split(".")[1].length;} catch(e){sq2=0;}
-                m=Math.pow(10,Math.max(sq1,sq2));
-               // return Math.round(( num1 * m - num2 * m ) / m * 100)/100;
-            }
-         --%>
-       </script>
          </div>
      <div class="m2-user-invest">
           <div class="m2-user-invest-head">
@@ -559,6 +516,16 @@
         <span id='ntitle'></span>
         <span id='nmsg'></span>
     </div>
+    <!-- 实名认证提示框 -->
+		<div class="m2-userCentercommon-confirm" style="top:30%;padding-top:10px;display:none"  id='dialog-info-divs'>
+		    <span class="m2-userCentercommon-confirmClose"></span>
+		    <div style="text-align: center;padding: 20px 0 20px 0;">
+		        <h3 id='dialog-info-texts'></h3>
+		    </div>
+		    <p class="m2-userCommon-confirmBtn">
+		        <a class="m2-user-confirmBtn" target="_blank">确&nbsp;定</a>
+		    </p>
+		</div>
     <script>
     function qiandao(){
         $.ajax({
@@ -683,10 +650,53 @@
                 window.open("Member-Contract-createAndSendPdfbyid?id="+bid,"_blank");
             }
         }
+        
+        
     </script>
     
         <script>
-
+		$('#recharge').click(function(){
+			var uiopenstatus = $('#uiopenstatus').val();
+			var uiid = $('#uiid').val();
+			if(uiopenstatus==0){
+				$('#dialog-info-divs').show();
+	            $('#dialog-info-texts').text("请先实名认证!");
+	            
+	            $('.m2-user-confirmBtn').click(function () {
+	            	window.location="http://127.0.0.1:8080/Finances/userverify?uiid="+uiid+"&nameNumber="+1;
+	            })
+	            $('.m2-userCentercommon-confirmClose').click(function () {
+	                $('.m2-userCentercommon-confirm').hide();
+	            });
+			}else if(uiopenstatus==1){
+				location.href="/Finances/toopen";
+			}
+			else if(uiopenstatus==2){
+				location.href="/Finances/torecharge?uiid="+uiid;
+			}
+			
+		});
+		$('#withDrawls').click(function(){
+			var uiopenstatus = $('#uiopenstatus').val();
+			var uiid = $('#uiid').val();
+			if(uiopenstatus==0){
+				$('#dialog-info-divs').show();
+	            $('#dialog-info-texts').text("请先实名认证!");
+	            
+	            $('.m2-user-confirmBtn').click(function () {
+	            	window.location="http://127.0.0.1:8080/Finances/userverify?uiid="+uiid+"&nameNumber="+1;
+	            })
+	            $('.m2-userCentercommon-confirmClose').click(function () {
+	                $('.m2-userCentercommon-confirm').hide();
+	            });
+			}else if(uiopenstatus==1){
+				location.href="/Finances/toopen";
+			}
+			else if(uiopenstatus==2){
+				location.href="/Finances/towithdraw?uiid="+uiid;
+			}
+			
+		});
         $(document).ready(function () {
             //用户通知
             getMsg();
@@ -698,7 +708,6 @@
             //收益金颜色
             moneyColor();
             //异步加载月收益图
-            loadMonChart();
             fitBottom();
         });
 
@@ -725,11 +734,9 @@
         }
 		//根据当前时间分别做样式选择
         function getGreeting() {
-
             var date = new Date();
             var H = date.getHours();
             var day = '';
-            //alert(H);
             if (H <= 5) {
             	//晚上
                 icon = '<i class="m2-hello-nig">';
@@ -805,25 +812,7 @@
 // 			}
             });
         }
-
-        function loadMonChart() {
-			//先注释
-            $('.m2-chartLoading').show();
-          /*   $.ajax({
-                url: "usercenter-Index-getIncomeList",
-                data: {},
-                success: function (data) {
-                    $('.m2-chartLoading').hide();
-                    var obj = eval('(' + data + ')');
-                    monthData = getList(obj.monlist, 'income');
-                    monthCate = getList(obj.monlist, 'month');
-                    dailyData = getList(obj.daylist, 'income');
-                    dailyCate = getList(obj.daylist, 'day');
-                    loadChartmonth(monthData, monthCate);
-                }
-            }); */
-        }
-
+		
         function getList(data, key) {
             var l = Array();
             for (k in data) {
@@ -876,6 +865,6 @@
             }
         }
     </script>
-    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/m2-userCenter.js"></script>
+     <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/m2-userCenter.js"></script>
 </body>
 </html>

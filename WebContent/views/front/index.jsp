@@ -236,7 +236,7 @@
 	                		
 	                		<div class="mo2-indLogedmain">
 			                    <p class="mo2-indLoged-sma">今日赚取</p>
-			                    <p class="mo2-indLoged-big">&yen;<span>0.00</span></p>
+			                    <p class="mo2-indLoged-big">&yen;<span>${sessionScope.dayMoneyUser}</span></p>
 	                		</div>
 	                		
 			                <div class="mo2-indLog-btn" style="margin-top:18px;">
@@ -245,7 +245,6 @@
 	            		</div>
 	            		<!-- 已登录end -->
             		</c:if>
-            		
             	<c:if test="${sessionScope.user.uid  == null}">
             		<!-- 登录注册start -->
 	            	<div class="mo2-indLogreg">				

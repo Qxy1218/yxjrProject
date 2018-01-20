@@ -18,7 +18,7 @@
 			 	//激活弹框提示
 				$("[data-toggle='tooltip']").tooltip();
 				$('#tb_role').bootstrapTable({
-					url : '${pageContext.request.contextPath}/idcard/selectiIdcardList', //请求后台的URL（*）
+					//url : '${pageContext.request.contextPath}/idcard/selectiIdcardList', //请求后台的URL（*）
 					method : 'post', //请求方式（*）
 					contentType: "application/x-www-form-urlencoded",
 					toolbar : '#toolbar', //工具按钮用哪个容器

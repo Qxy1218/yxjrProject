@@ -24,7 +24,7 @@ public class Record implements Serializable{
 	private Integer reid; //操作员工id
 	
 	@TableField("rd_status")
-	private String rdstatus; //成功状态
+	private Integer rdstatus; //成功状态
 	
 	@TableField("rd_time")
 	private String rdtime; //操作时间
@@ -37,7 +37,7 @@ public class Record implements Serializable{
 	public Record() {
 	}
 
-	public Record(Integer rdid, String rdname, Integer reid, String rdstatus, String rdtime, String rdremark, Employe employe) {
+	public Record(Integer rdid, String rdname, Integer reid, Integer rdstatus, String rdtime, String rdremark, Employe employe) {
 		super();
 		this.rdid = rdid;
 		this.rdname = rdname;
@@ -72,11 +72,11 @@ public class Record implements Serializable{
 		this.reid = reid;
 	}
 
-	public String getRdstatus() {
+	public Integer getRdstatus() {
 		return rdstatus;
 	}
 
-	public void setRdstatus(String rdstatus) {
+	public void setRdstatus(Integer rdstatus) {
 		this.rdstatus = rdstatus;
 	}
 

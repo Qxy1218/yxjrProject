@@ -1,7 +1,6 @@
 package com.p2p.controller.back;
 
-import java.text.DateFormat;
-import java.text.ParseException;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,14 +11,23 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.pojo.AuthebDetais;
+import com.p2p.pojo.Fabiao;
+import com.p2p.pojo.User;
 import com.p2p.service.back.AuthebDetaisService;
 import com.p2p.service.back.BidService;
+import com.p2p.service.back.FabiaobackService;
 import com.p2p.service.back.LoanService;
+import com.p2p.service.front.IUserService;
 import com.p2p.util.DateUtils;
+
+/**
+ * 操作人:胡孝玉
+ * 操作类型:后台右部分的首页
+ *
+ */
 
 @RequestMapping(value="backindex")
 @Controller
@@ -30,6 +38,15 @@ public class IndexController {
 	private BidService bidService;    //投标
 	@Resource(name="loanServiceImpl")
 	private LoanService loanService;    //借款
+	
+	@Resource(name="fabiaobackServiceImpl")	
+	private FabiaobackService fabiaoService;
+	
+	//用户
+	@Resource(name="IUserServiceImpl")
+	private IUserService iUserService;
+	
+	
 	
 	/**
 	 *  消息,投标、借款金额
@@ -100,6 +117,26 @@ public class IndexController {
 				}
 			}
 			
+			/**
+			 * 统计
+			 */
+			//得到平台共注册人数
+			List<User> allUser =iUserService.getAllModel(); 
+			session.setAttribute("allUser",allUser.size());
+			
+			Fabiao fabiao = new Fabiao();
+			fabiao.setFstatus(2);
+			BigDecimal allMoneyYiXin = new BigDecimal("0.0");
+			BigDecimal MoneyYiXin = new BigDecimal("0.0");
+			List<Fabiao> fabiaoList = fabiaoService.getAllModel();
+			for (int i = 0; i < fabiaoList.size(); i++) {
+				if(fabiaoList.get(i).getFfqqx()!=null){
+					if(fabiaoList.get(i).getFfqqx()==1) {
+						allMoneyYiXin=allMoneyYiXin.add(MoneyYiXin);
+					}
+					
+				}
+			}
 			ObjectMapper om = new ObjectMapper();
 			//转换成json对象
 			String sdateList = om.writeValueAsString(dateTimeList);

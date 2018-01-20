@@ -25,7 +25,8 @@
     	<link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/jquery.datetimepicker.css" />
     	<script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/jquery.datetimepicker.js"></script>
 	</head>
-<body>
+<body style="background:url('/Finances/statics/front/images/two.jpg');background-size:100% 100%;">
+	
 	<div class="m2-userCentercommon-bg" style="display:none;"></div>
 	
 		<!-- 右侧边栏start -->

@@ -24,10 +24,8 @@ $(function () {
         } else {
             $('.iptChoose input').removeClass("choose");
         }
-    }
+    }    
 
- 
-  
     //大banner特效左右滚动控制显示或隐藏
     $(".index_focus").hover(function () {
         $(this).find(".index_focus_pre,.index_focus_next").stop(true, true).fadeTo("show", 1)

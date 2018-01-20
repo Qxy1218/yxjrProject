@@ -49,6 +49,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		 values(#{upassword},#{uphone},#{uloginTime},#{orderinvite},#{uinvite},#{uenable},#{uisAccountSum},#{qrcode},#{uaddress},#{uip},#{uregTime},#{ucredit},#{ubalance},#{ulid},#{vdid})
  	</insert>
  	
+ 	<!-- 查询总的用户 -->
+ 	<select id="getAllModel" resultMap="BaseResultMap">
+ 		select * from user;
+ 	</select>
  	<select id="getModel" parameterType="com.p2p.pojo.User" resultMap="BaseResultMap">
  		select * from user u,user_info ui 
  		 <where>

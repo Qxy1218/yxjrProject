@@ -32,7 +32,8 @@
 	<!-- 美化按钮  -->
 	<link href="/Finances/statics/front/css/beautify-bar.css" rel="stylesheet" />
 </head>
-<body>
+<body style="background:url('/Finances/statics/front/images/two.jpg');background-size:100% 100%;">
+	
 	<div class="m2-userCentercommon-bg" style='display: none'></div>
 	<div class="m2-userCentercommon-confirm" style='display: none'></div>
 	

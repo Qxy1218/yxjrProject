@@ -22,14 +22,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.p2p.pojo.Moneyrecord;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Userbackcard;
 import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Withdrawals;
 import com.p2p.pojo.WithdrawalsServiceP2p;
+import com.p2p.service.back.MoneyrecordServiece;
 import com.p2p.service.back.WithdrawalsService;
 import com.p2p.service.front.IUserService;
+import com.p2p.service.front.UserInfoService;
 import com.p2p.service.front.UserbackcardService;
+import com.p2p.util.DateUtils;
 import com.p2p.util.SendServiceUtil;
 
 @Controller
@@ -42,6 +46,14 @@ public class WithdrawalsfrontController {
 	private UserbackcardService userBankcardService;
 	@Resource(name="IUserServiceImpl")
 	private IUserService userService;
+	
+	//资金记录表
+	@Resource(name="moneyrecordServiceImpl")
+	private MoneyrecordServiece moneyrecordServiece;
+	
+	@Resource(name="userInfoServiceImpl")
+	private UserInfoService userInfoService;  //用户基本信息表
+
 	
 	
 	//实现新增
@@ -88,6 +100,15 @@ public class WithdrawalsfrontController {
 			user.setUbalance(user.getUbalance()-withdrawals.getWmoney());
 			userService.update(user);
 			
+			//添加资金记录表
+			Moneyrecord moneyrecord = new Moneyrecord();
+			moneyrecord.setUid(withdrawals.getUid());
+			Userinfo Userinfo =userInfoService.seleUserinfoByuid(withdrawals.getUid());
+			moneyrecord.setMrdetail(Userinfo.getUiname()+"在亿信平台充值了"+withdrawals.getWmoney()+"元");
+			moneyrecord.setMrwastemoney(Double.valueOf(withdrawals.getWmoney()));
+			moneyrecord.setMrwasttime(DateUtils.getDateFormat(new Date()));
+			moneyrecordServiece.addModel(moneyrecord);
+
 			request.getSession().setAttribute("user", user);
 			
 		}

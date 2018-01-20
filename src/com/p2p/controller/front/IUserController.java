@@ -1,8 +1,10 @@
 package com.p2p.controller.front;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -26,16 +28,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.controller.back.SendMailUtil;
 import com.p2p.controller.back.UtilController;
 import com.p2p.pojo.AuthebDetais;
+import com.p2p.pojo.Fabiao;
+import com.p2p.pojo.Profit;
 import com.p2p.pojo.Redmoney;
 import com.p2p.pojo.Setupnatice;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Uservouch;
 import com.p2p.service.back.AuthebDetaisService;
+import com.p2p.service.back.FabiaobackService;
 import com.p2p.service.back.RedmoneyService;
 import com.p2p.service.back.SendMailService;
 import com.p2p.service.back.UservouchService;
 import com.p2p.service.front.IUserService;
+import com.p2p.service.front.ProfitService;
 import com.p2p.service.front.SetupnaticeService;
 import com.p2p.service.front.UserInfoService;
 import com.p2p.util.AddressUtils;
@@ -77,6 +83,14 @@ public class IUserController {
 	//代金券
 	@Resource(name="uservouchServiceImpl")
 	private UservouchService uservouchService;
+	
+	//收益表service
+	@Resource(name="profitServiceImpl")
+	private ProfitService profitService;
+	
+	//发标表
+	@Resource(name="fabiaobackServiceImpl")	
+	private FabiaobackService fabiaoService;
 	
 	/**
 	 * 用户通知设置的方法
@@ -380,6 +394,38 @@ public class IUserController {
 		User u = new User();
 		u.setUinvite(uinvite);
 		User user =iUserService.getModel(u);
+		/**
+		 * 统计
+		 */
+		//得到平台共注册人数
+		List<User> allUser =iUserService.getAllModel(); 
+		mo.addObject("allUser",allUser.size());
+		
+		//得到所有用户所赚取的全部收益
+		List<Profit> allProfit = profitService.getAllModel();
+		Double allMoneyProfit = 0.0;
+		for (int i = 0; i < allProfit.size(); i++) {
+			allMoneyProfit+=allProfit.get(i).getPfmoney();
+		}
+		mo.addObject("allMoneyProfit",allMoneyProfit);
+		
+		//得到用户投资完成的所有金额
+		Fabiao fb = new Fabiao();
+		fb.setFstatus(7);
+		//BigDecimal是java.lang.Math不是基本数据类型 ,number1.add(number2)加
+		BigDecimal allMoneyFabiao = new BigDecimal("0.0");
+		List<Fabiao> allFabiao = fabiaoService.getAllModel();
+		for (int j = 0; j < allFabiao.size(); j++) {
+			BigDecimal allMoneyFa =allFabiao.get(j).getFmoney();
+			allMoneyFabiao=allMoneyFabiao.add(allMoneyFa);
+		}
+		mo.addObject("allMoneyFabiao",allMoneyFabiao);
+		//得到亿信金融平台运营时间天数
+		String date = "2017-12-15";
+		Date mindate = DateUtils.getDateFormat(date);
+		Date maxdate = new Date();
+		int day = DateUtils.getDay(mindate, maxdate);
+		mo.addObject("allDay",day);
 		mo.addObject("userUinvite",user);
 		mo.setViewName("views/front/weiboIndex");
 		return mo;
@@ -459,7 +505,7 @@ public class IUserController {
 			session.removeAttribute("user");
 		}
 		/**
-		 * 清空客户端cookies
+		 * 清空客户端cookies‘
 		 * */
 		Cookie cookies[] = request.getCookies();  
 	      if (cookies != null){  

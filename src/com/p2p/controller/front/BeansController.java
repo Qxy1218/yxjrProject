@@ -1,10 +1,7 @@
 package com.p2p.controller.front;
 
-import java.math.BigDecimal;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,9 +15,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cloopen.rest.sdk.utils.DateUtil;
 import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.Indexpic;
 import com.p2p.pojo.Notice;
+import com.p2p.pojo.Profit;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Video;
 import com.p2p.service.back.IndexpicService;
@@ -28,12 +27,11 @@ import com.p2p.service.back.VideoService;
 import com.p2p.service.front.FabiaoService;
 import com.p2p.service.front.IUserService;
 import com.p2p.service.front.NoticeFontSrvice;
+import com.p2p.service.front.ProfitService;
 import com.p2p.service.front.SetupnaticeService;
 import com.p2p.util.CodePassage;
-import com.p2p.util.ContextUtils;
 import com.p2p.util.DateUtils;
 import com.p2p.util.SetupnaticeUtil;
-import com.p2p.util.YieldUtil;
 /**
  * 开发人:汪栋才
  * 2017-11-13
@@ -59,6 +57,11 @@ public class BeansController {
 	
 	@Resource(name="noticeFontServiceImpl")
 	private NoticeFontSrvice noticeFontService;
+	
+	//收益表service
+	@Resource(name="profitServiceImpl")
+	private ProfitService profitService;
+	
 	/**
 	 * 进入首界面(index.jsp)
 	 * @throws ParseException 
@@ -97,6 +100,7 @@ public class BeansController {
 					User user3 = iUserService.getModel(user2);
 					session.setAttribute("user",user3);
 				}
+				
 			}
 		}
 		
@@ -107,6 +111,19 @@ public class BeansController {
 		if(us!=null && us.getUid()!=null) {
 			SetupnaticeUtil.initSetupnatice(us.getUid(), setupnaticeService);
 		}
+		
+		//获取用户得到当天的收益
+		Double dayMoney = 0.0;
+		Profit pf = new Profit();
+		pf.setUid(user.getUid());
+		SimpleDateFormat dataTime = new SimpleDateFormat("yyyy-MM-dd");
+		pf.setPftime(dataTime.format(new Date()));
+		List<Profit> pflist = profitService.seleByProfit(pf);
+		for (int i = 0; i < pflist.size(); i++) {
+			dayMoney+=pflist.get(i).getPfmoney();
+		}
+		
+		session.setAttribute("dayMoneyUser", dayMoney);
 		
 		//首页爱车贷遍历
 		List<Fabiao> acds = CodePassage.makeList(fabiaoService,"爱车贷");

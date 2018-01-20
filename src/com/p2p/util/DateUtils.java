@@ -384,7 +384,6 @@ public class DateUtils {
 		Calendar dd = Calendar.getInstance();//定义日期实例
 
 		dd.setTime(d1);//设置日期起始时间
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
 		while(dd.getTime().before(d2)){//判断是否到结束日期
 		data.add(dd.getTime());
 		dd.add(Calendar.MONTH,1);//进行当前日期月份加1
@@ -392,30 +391,6 @@ public class DateUtils {
 		data.add(dd.getTime());
 		return  data;
 	}
-	/*public static void main(String[] args) throws ParseException {
-		List<Date> data = new ArrayList<Date>();
-		*//** Date类的格式: Sat Apr 16 13:17:29 CST 2016  
-		 * 	将Date类型转换成String 
-		 * *//*
-		Date d1 = new SimpleDateFormat("yyyy-MM").parse("2017-12-25");//定义起始日期
-
-		Date d2 = new SimpleDateFormat("yyyy-MM").parse("2018-12-08");//定义结束日期
-
-		Calendar dd = Calendar.getInstance();//定义日期实例
-		
-	
-		dd.setTime(d1);//设置日期起始时间
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
-		while(dd.getTime().before(d2)){//判断是否到结束日期
-			System.out.println(sdf.format(dd.getTime()));
-		dd.add(Calendar.MONTH, 1);//进行当前日期月份加1
-
-		}
-		System.out.println("sdfg"+sdf.format(dd.getTime()));
-		dd.add(Calendar.MONTH, 1);
-		
-	}*/
 		/*
 		* 获取两个日期相差的月数
 		* @param d1  较大的日期
@@ -505,7 +480,7 @@ public class DateUtils {
 	}
 	
 	/*public static void main(String[] args)  {
-	 String dateStr = "2017-12-25";
+	 String dateStr = "2017-12-01";
 	 String dateStr2 = "2017-12-26";
 	 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 	 SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
@@ -518,8 +493,16 @@ public class DateUtils {
 	 } catch (ParseException e) {
 	  e.printStackTrace();
 	 }
-	 }
-	*/
+	 }*/
+	
+	/**
+	 * 获取时间段相差的天数
+	 * */
+	public static int getDay(Date startDate,Date endDate) {
+		int day =differentDays(startDate,endDate);
+		return day;
+	}
+	
 	 public static String getLastYear() {
 		 Calendar c = Calendar.getInstance();
 		 	c.setTime(new Date());

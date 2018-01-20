@@ -129,6 +129,7 @@
 	}
 	function AuthIcCard(uiid){
 		$("#idCardform").modal('hide');
+		var eid = $('#eid').val();
 		var form = new FormData(document.getElementById("idCard"));
 		//alert(form.icstatus);
 		var icstatus = $("input[name='icstatus']:checked").val();
@@ -231,6 +232,7 @@
 						</div>
 						<input type="hidden" name="icid" id="icid" />
 						<input type="hidden" name="uiid" id="uiid" />
+						<input type="hidden" name="eid" id="eid" value="${sessionScope.employee.eid}">
 						<div class="form-group">
 							<label for="urlName" class="control-label col-sm-3">姓名</label> 
 							<div class="col-sm-8">

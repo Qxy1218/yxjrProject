@@ -19,15 +19,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.controller.back.SendMsgUtil;
 import com.p2p.pojo.Chongzhi;
+import com.p2p.pojo.Moneyrecord;
 import com.p2p.pojo.Recharge;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Userbackcard;
 import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Users;
 import com.p2p.service.back.MessageUtilService;
+import com.p2p.service.back.MoneyrecordServiece;
 import com.p2p.service.back.SendMsgService;
 import com.p2p.service.front.IUserService;
 import com.p2p.service.front.RechargeService;
+import com.p2p.service.front.UserInfoService;
 import com.p2p.service.front.UserbackcardService;
 import com.p2p.util.DateUtils;
 import com.p2p.util.MessageBenas;
@@ -54,6 +57,13 @@ public class RechargeController {
 	
 	@Resource(name="messageUtilServiceImpl")
 	private MessageUtilService messageUtil;
+	
+	//资金记录表
+	@Resource(name="moneyrecordServiceImpl")
+	private MoneyrecordServiece moneyrecordServiece;
+	
+	@Resource(name="userInfoServiceImpl")
+	private UserInfoService userInfoService;  //用户基本信息表
 
 	/**
 	 * 判断交易密码是否正确
@@ -103,8 +113,14 @@ public class RechargeController {
 				userbackcardService.update(userbackcard);
 				count = rechargeService.addModel(recharge);
 				
-				
-				
+				Moneyrecord moneyrecord = new Moneyrecord();
+				moneyrecord.setUid(recharge.getUid());
+				Userinfo Userinfo =userInfoService.seleUserinfoByuid(recharge.getUid());
+				moneyrecord.setMrdetail(Userinfo.getUiname()+"在亿信平台充值了"+recharge.getRemoney()+"元");
+				moneyrecord.setMrwastemoney(Double.valueOf(recharge.getRemoney()));
+				moneyrecord.setMrwasttime(DateUtils.getDateFormat(new Date()));
+				moneyrecordServiece.addModel(moneyrecord);
+
 			}catch(Exception e) {
 				e.printStackTrace();
 			}

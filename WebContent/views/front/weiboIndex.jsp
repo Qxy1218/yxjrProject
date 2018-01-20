@@ -8,7 +8,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="keywords" content="投资理财平台，个人理财，新型投资理财，网上理财平台，理财产品P2P，正规理财产品">
-        <meta name="description" content="爱钱帮(iqianbang.com)阳光透明P2P投资理财平台,致力于为用户提供高效便捷的互联网金融理财、个人理财产品等服务。平台累计成交额已经超过100亿元,用户数超过41万人。">
+        <meta name="description" content="亿信金融平台(iqianbang.com)阳光透明P2P投资理财平台,致力于为用户提供高效便捷的互联网金融理财、个人理财产品等服务。平台累计成交额已经超过100亿元,用户数超过41万人。">
         <title>亿信金融平台_个人理财产品-亿信网</title>
         
         <meta property="og:type" content="image" />
@@ -105,8 +105,9 @@
                      </div>
                     <div class="iptChoose">
                         <label for="agree">
-                              <input id="agree" name="agree" checked="" type="checkbox"><i></i>&nbsp;我已阅读并同意<a href="javascript:void (0)" id="agreement" class="red">《爱钱帮注册服务协议》</a>
+                              <input id="agree" name="agree" checked="" type="checkbox"><i></i>&nbsp;我已阅读并同意<a href="javascript:void (0)" id="agreement" class="red">《亿信金融平台注册服务协议》</a>
                             <em class="error"></em>
+                            <font style="color:red"><span id="agreeConditon"></span></font>
                         </label>
                     </div>
                     <div class="btnGroup">
@@ -146,21 +147,21 @@
             <div class="dataGroup clearfix">
                 <div class="img img1"></div>
                 <div class="data">
-                    <h3 id='pf_money'>****</h3>
-                    <i>累计成交(元)</i>
+                    <h3 id='pf_money'>${allMoneyFabiao}</h3>
+                    <i>已完成投资额(元)</i>
                 </div>
             </div>
             <div class="dataGroup dataGroup2 clearfix">
                 <div class="img img2"></div>
                 <div class="data">
-                    <h3 id="pf_user">****</h3>
-                    <i>累计注册人数(人)</i>
+                    <h3 id="pf_user">${allUser}</h3>
+                    <i>累计服务人数(人)</i>
                 </div>
             </div>
-            <div class="dataGroup dataGroup3 clearfix">
+              <div class="dataGroup dataGroup3 clearfix">
                 <div class="img img3"></div>
                 <div class="data">
-                    <h3 id='pf_day'>****</h3>
+                    <h3 id='pf_day'>${allMoneyProfit}</h3>
                     <i>运营天数(天)</i>
                 </div>
             </div>
@@ -183,32 +184,32 @@
         <!-- financeGro start -->
         <div class="financeList_group clearfix">
             <!-- finance_gr start -->
-            <div class="finance_gr">
+           <div class="finance_gr">
                 <div class="fin-h2">
-                    <img src="/Finances/statics/front/images/weibojoin/predr_03_1.png" alt="">
-                    <span>1个月</span>
-                </div>
-                <img src="/Finances/statics/front/images/weibojoin/pred_03_1.png" alt="">
-                <div class="rate">
-                    9%
-                </div>
-                <p class="text">约定年化利率</p>
-                <p class="text extend"><img src="/Finances/statics/front/images/weibojoin/pred_07_1.png" alt="">银行资金存管</p>
-                <a href="javascript:;" class="btn btnError">马上投资</a>
-            </div>
-            <!-- finance_gr end -->
-            <!-- finance_gr start -->
-            <div class="finance_gr">
-                <div class="fin-h2">
-                    <img src="/Finances/statics/front/images/weibojoin/predr_03_1.png" alt="">
+                    <img src="picture/predr_03_1.png" alt="">
                     <span>3个月</span>
                 </div>
-                <img src="/Finances/statics/front/images/weibojoin/pred_03_1.png" alt="">
+                <img src="picture/pred_03_1.png" alt="">
                 <div class="rate">
                     9.5%
                 </div>
                 <p class="text">约定年化利率</p>
-                <p class="text extend"><img src="/Finances/statics/front/images/weibojoin/pred_07_1.png" alt="">银行资金存管</p>
+                <p class="text extend"><img src="picture/pred_07_1.png" alt="">银行资金存管</p>
+                <a href="javascript:;" class="btn btnError">马上投资</a>
+            </div>
+            <!-- finance_gr end -->
+            <!-- finance_gr start -->
+             <div class="finance_gr">
+                <div class="fin-h2">
+                    <img src="picture/predr_03_1.png" alt="">
+                    <span>3个月</span>
+                </div>
+                <img src="picture/pred_03_1.png" alt="">
+                <div class="rate">
+                    9.5%
+                </div>
+                <p class="text">约定年化利率</p>
+                <p class="text extend"><img src="picture/pred_07_1.png" alt="">银行资金存管</p>
                 <a href="javascript:;" class="btn btnError">马上投资</a>
             </div>
             <!-- finance_gr end -->
@@ -224,7 +225,7 @@
                 </div>
                 <p class="text">约定年化利率</p>
                 <p class="text extend"><img src="/Finances/statics/front/images/weibojoin/pred_07_1.png" alt="">银行资金存管</p>
-                <a href="javascript:;" class="btn btnError">马上投资</a>
+		        <a href="javascript:;" class="btn btnRed goRegister">马上投资</a>
             </div>
             <!-- finance_gr end -->
             <!-- finance_gr start -->
@@ -248,9 +249,9 @@
 </div>
 <!-- 理财产品 end -->
 
-<!-- 为何选择爱钱帮 start -->
+<!-- 为何选择亿信金融平台 start -->
 <div class="wrapper iconGroup dataCase">
-    <h2 class="title">为何选择爱钱帮</h2>
+    <h2 class="title">为何选择亿信金融平台</h2>
     <div class="iconContext clearfix">
         <div class="condi condi1">
             <span></span>
@@ -274,12 +275,12 @@
         </div>
     </div>
 </div>
-<!-- 为何选择爱钱帮 end -->
+<!-- 为何选择亿信金融平台 end -->
 
-<!-- 爱钱帮优势 start -->
+<!-- 亿信金融平台优势 start -->
 <div class="dataTotal iconGroup dataCase dataSuper">
     <div class="wrapper">
-        <h2 class="title">爱钱帮优势</h2>
+        <h2 class="title">亿信金融平台优势</h2>
         <div class="iconContext clearfix">
             <div class="condi condi1">
                 <span></span>
@@ -309,7 +310,7 @@
         </div>
     </div>
 </div>
-<!-- 爱钱帮优势 end -->
+<!-- 亿信金融平台优势 end -->
 <!-- 注册领取红包按钮 start -->
 <div class="btnContext wrapper">
     <div class="btnGroup">
@@ -341,11 +342,11 @@
 	        <div class="comregistbox_b">
 	            <p></p>
 	            <div>
-	                <img src="/Finances/statics/front/statics/home2/images/december-expermoney/regist.png" alt="恭喜您注册爱钱帮，20000元体验金已经发送您的账户">
-	                <span class="incentivebox_bp1">恭喜您注册爱钱帮，<span class="red">20000元</span>体验金已经发送您的账户</span>
+	                <img src="/Finances/statics/front/statics/home2/images/december-expermoney/regist.png" alt="恭喜您注册亿信金融平台，20000元体验金已经发送您的账户">
+	                <span class="incentivebox_bp1">恭喜您注册亿信金融平台，<span class="red">20000元</span>体验金已经发送您的账户</span>
 	                <p class="comregistbox_bp2">您可以去体验金项目进行投资</p>
 	            </div>
-	            <a href="/Finances/togold">去投资</a>
+	            <a href="/Finances/toopen">确定</a>
 	            <div class="close" id="newregister-close"><img src="/Finances/statics/front/statics/home2/images/december-expermoney/close.png" alt="点击取消"></div>
 	        </div>
 	    </div>
@@ -473,7 +474,7 @@
 	            	canSubmit = false;
 	            }
 	            if(!$("#agree").is(":checked")){
-	                showInfoDialog("必须先同意服务协议!",0);
+	                $('#agreeConditon').html("请勾选我同意并阅读《亿信金融平台注册服务协议》");
 	                canSubmit = false;
 	            }
 			}

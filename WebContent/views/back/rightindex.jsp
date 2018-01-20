@@ -65,7 +65,7 @@
                         <h5>平台累计访客</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">106,120</h1>
+                        <h1 class="no-margins">${sessionScope.allUser}</h1>
                         <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i>
                         </div>
                         <small>注册客户</small>

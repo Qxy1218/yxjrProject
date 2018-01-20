@@ -25,7 +25,8 @@
 		<title>投资记录 | 亿信金融</title>
 	</head>
 	
-<body>
+<body style="background:url('/Finances/statics/front/images/two.jpg');background-size:100% 100%;">
+	
 	<!-- 右侧边栏start -->
 	<jsp:include page="../include/userside.jsp"></jsp:include>		
 	<!-- 右侧边栏end -->

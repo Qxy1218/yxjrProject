@@ -27,6 +27,7 @@ import com.p2p.controller.back.SendMsgUtil;
 import com.p2p.pojo.AuthebDetais;
 import com.p2p.pojo.Bank;
 import com.p2p.pojo.IdCard;
+import com.p2p.pojo.Record;
 import com.p2p.pojo.Redmoney;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Userbackcard;
@@ -35,6 +36,7 @@ import com.p2p.pojo.Users;
 import com.p2p.pojo.Uservouch;
 import com.p2p.service.back.AuthebDetaisService;
 import com.p2p.service.back.MessageUtilService;
+import com.p2p.service.back.RecordService;
 import com.p2p.service.back.RedmoneyService;
 import com.p2p.service.back.SendMsgService;
 import com.p2p.service.back.UservouchService;
@@ -85,6 +87,10 @@ public class IdCardController {
 	//代金券
 	@Resource(name="uservouchServiceImpl")
 	private UservouchService uservouchService;
+	
+	//管理员操作记录表
+	@Resource(name="recordServiceImpl")	
+	private RecordService recordService;
 
 	/**
 	 * 添加(修改)身份证信息
@@ -311,7 +317,7 @@ public class IdCardController {
 	 * **/
 	@RequestMapping(value="AuthIdCard")
 	@ResponseBody
-	public int AuthIdCard(IdCard idcard ,HttpServletRequest request,MultipartFile[] upfile) {
+	public int AuthIdCard(IdCard idcard ,Integer eid,HttpServletRequest request,MultipartFile[] upfile) {
 		Userinfo userinfo = new Userinfo();
 		if(upfile.length!=0) {
 			String filepath = UtilController.uploadReNames(upfile,request.getSession());
@@ -332,7 +338,27 @@ public class IdCardController {
 			authebDetais.setAdstatus(0);
 			authebDetais.setAdstype(0);
 			authebDetaisService.addModel(authebDetais);
+			
+			//操作管理员操作表成功
+			Record record = new Record();
+			record.setReid(eid);
+			record.setRdname("实名认证");
+			record.setRdremark("对用户的实名认证操作管理");
+			record.setRdtime(DateUtils.getDateTimeFormat(new Date()));
+			record.setRdstatus(0);
+			recordService.addModel(record);
+		}else {
+			//操作管理员操作表失败
+			Record rd = new Record();
+			rd.setReid(eid);
+			rd.setRdname("实名认证");
+			rd.setRdremark("对用户的实名认证操作管理");
+			rd.setRdtime(DateUtils.getDateTimeFormat(new Date()));
+			rd.setRdstatus(1);
+			recordService.addModel(rd);
 		}
+		
+		
 		return conut;
 	}
 	/**
