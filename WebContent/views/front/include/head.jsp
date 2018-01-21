@@ -163,7 +163,7 @@
                 <li class="m2-commonNav-fir"><a onclick="myinfo();" id="myinfo">我的账户</a></li>
                 <li class="m2-commonNav-fir"><a href="/Finances/toguarantee" id="security">安全保障</a></li>
                 <li class="m2-commonNav-fir"><a href="/Finances/toabout" id="about">关于我们</a></li>
-                <li class="m2-commonNav-fir"><a href="/Finances/toactivity" id="activity">活动专区</a></li>
+                <li class="m2-commonNav-fir"><a href="${pageContext.request.contextPath }/listActivity" id="activity">活动专区</a></li>
             </ul>
         </div>
     </div>
