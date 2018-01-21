@@ -30,6 +30,7 @@ import com.p2p.pojo.City;
 import com.p2p.pojo.Contact;
 import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.Newsfocus;
+import com.p2p.pojo.Notice;
 import com.p2p.pojo.Profit;
 import com.p2p.pojo.ProjectSelect;
 import com.p2p.pojo.Provice;
@@ -46,6 +47,7 @@ import com.p2p.service.front.AddressService;
 import com.p2p.service.front.FabiaoService;
 import com.p2p.service.front.IUserService;
 import com.p2p.service.front.NewsfocusService;
+import com.p2p.service.front.NoticeFontSrvice;
 import com.p2p.service.front.ProfitService;
 import com.p2p.service.front.SetupnaticeService;
 import com.p2p.service.front.SingService;
@@ -108,6 +110,9 @@ public class FrontController {
 	//新闻聚焦
 	@Resource(name="newsfocusServiceImpl")
 	private NewsfocusService newsfocusService;
+	
+	@Resource(name="noticeFontServiceImpl")
+	private NoticeFontSrvice noticeFontSrvice;
 	
 	/**
 	 * 头部的conteroller
@@ -917,9 +922,21 @@ public class FrontController {
 	 *网站公告页面的conteroller
 	 * */
 	@RequestMapping(value="/tonot")
-	public String tonot() {
+	public String tonot(Model model) {
+		//网站公告
+		List<Notice> listwz = noticeFontSrvice.selectByType("网站公告");
+		//项目公告
+		List<Notice> listxm = noticeFontSrvice.selectByType("项目公告");
+		//还款公告
+		List<Notice> listhk = noticeFontSrvice.selectByType("还款公告");
+		//全部公告
+		List<Notice> listall = noticeFontSrvice.selectByType(null);
+		model.addAttribute("listwz", listwz);
+		model.addAttribute("listxm", listxm);
+		model.addAttribute("listhk", listhk);
+		model.addAttribute("listall", listall);
 		
-		return "views/front/aboutwe/notice";
+		return "views/front/aboutwetice";
 	}
 	
 	/**
