@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -36,43 +37,58 @@
         <div class="m2-actCen-con">
 			
             <h2><i></i>活动中心</h2>
-            <ul id='activityul'>
-            </ul>
-            <div class="m2-actMore" id='loadmore' style='cursor: pointer'>
-                <i class="m2-actItem-cornerMore"></i>
-                <i class="m2-actItem-circle"></i>
-                <span id='loadmoretext' style='color:#0996cc;'>加载更多</span>
-                
-            </div>
+         
         </div>
     </div>
-    <table border="1">
-    <c:forEach items="${listActivity}" var="activity">
-    	<tr>
-    		<td>${activity.atid}</td>
-    		<td>${activity.attitle}</td>
-    		<td>${activity.atintgard}</td>
-    		<td>${activity.atcontent}</td>
-    		<td>${activity.atimag}</td>
-    		<td>${activity.atstarttime}</td>
-    		<td>${activity.atendtime}</td>
-    		<td>${activity.atstatus}</td>
-    	</tr>
-    </c:forEach>
-    </table>
+    <div class="m2-reportNews-box">  
+		    <ul class="m2-reportNews-list">
+			   <c:forEach items="${listActivity}" var="activity">
+			    <li>
+			      <div class="m2-reportNews-listMain">
+			         <img class="m2-reportLogo" src="/Finances/statics/front/uploadData/ad/20151229133918775.png" alt="${activity.attitle}">					<a href="${pageContext.request.contextPath}/activityName?atid=${activity.atid}" target="_blank" title="${activity.attitle}">
+			             <h3 style="color: #09c;font-size: 16px; line-height: 25px;" >${activity.attitle}</h3></a>
+			                <a href="${pageContext.request.contextPath}/activityName?atid=${activity.atid}" target="_blank" title="${activity.attitle}">
+			                   <p class="m2-reportNews-listNor">${activity.atcontent}</p></a>
+			                  	<p class="m2-reportNews-listLink" ><a href="#" target="_blank" title="${activity.attitle}">显示全部</a></p>
+			       </div>
+			       <div class="m2-reportNews-listTime">
+			                    <p><i></i>${activity.atstarttime}</p>
+			       </div>
+			     </li>
+			    </c:forEach> 
+			</ul>
+		</div>
+		<div class="m2-reportNews-box">  
+		    <ul class="m2-reportNews-list">
+			   <c:forEach items="${activityName}" var="acname">
+			    <li>
+			      <div class="m2-reportNews-listMain">
+			         <img class="m2-reportLogo" src="/Finances/statics/front/uploadData/ad/20151229133918775.png" alt="${acname.attitle}">					<a href="${pageContext.request.contextPath}/activityName" target="_blank" title="${acname.attitle}">
+			             <h3 style="color: #09c;font-size: 16px; line-height: 25px;" >${acname.attitle}</h3></a>
+			                <a href="${pageContext.request.contextPath}/activityName" target="_blank" title="${acname.attitle}">
+			                   <p class="m2-reportNews-listNor">${acname.atcontent}</p></a>
+			                  	<p class="m2-reportNews-listLink" ><a href="dashiji_show.html#16027.html" target="_blank" title="${acname.attitle}">显示全部</a></p>
+			       </div>
+			       <div class="m2-reportNews-listTime">
+			                    <p><i></i>${activity.atstarttime}</p>
+			       </div>
+			     </li>
+			    </c:forEach> 
+			</ul>
+		</div>
     </body>
     <script>
         var index = 0;
         $('#loadmore').click(function () {
             $.ajax({
-                url: 'activity-getActivityListAjax',
+                url: '${pageContext.request.contextPath }/listActivity',
                 type: 'POST',
                 data: {
                     index: index
                 },
                 success: function (data) {
                     var obj = eval('(' + data + ')');
-                    for (var i in obj['list']) {
+                    for (var i in obj['listActivity']) {
                         var li = '<li class="m2-actItem"><i class="m2-actItem-corner"></i>';
                         li += '<i class="m2-actItem-circle"></i>';
                         li += '<h3>' + obj['list'][i]['cate'] + '</h3>';
