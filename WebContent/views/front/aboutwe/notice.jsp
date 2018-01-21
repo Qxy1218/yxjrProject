@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -460,12 +461,12 @@
 			<div class="newListheader-con">
         	<div class="newsListheader">
 		         <ul   id="ifremid">
-		                <li class="newsListtab-sel">
-		             	   	<span>全部公告</span>
-		             	 </li>
-		             	   <li class="newsListtab-unsel">
-								<span>网站公告</span>
-							</li>
+		            <li class="newsListtab-sel">
+		             	 <span>全部公告</span>
+		            </li>
+		            <li class="newsListtab-unsel">
+						<span>网站公告</span>
+					</li>
 					<li class="newsListtab-unsel">
 						<span>项目公告</span>
 					</li>
@@ -478,16 +479,21 @@
     	<div class="newListmain-con">
         <div class="newListmain">
             <h2 class="m2-noticeMain-tit"><i></i>
-                全部公告        </h2>
+                	全部公告       
+            </h2>
             <ul class="newList-ul" id="ul11">
+               <c:forEach items="${listall}" var="noticeall">
                 <li>
-                    <a href="/licai_gonggao-16028.html" target="_blank" title="【还款公告】2016年9月2日爱钱帮投资理财项目还本付息公告">
-                        <h3>【还款公告】2016年9月2日爱钱帮投资理财项目还本付息公告</h3> </a>
-                    <a href="/licai_gonggao-16028.html" target="_blank" title="【还款公告】2016年9月2日爱钱帮投资理财项目还本付息公告">
-                        <p class="newList-itemDet">​各位帮主们：2016年9月2日爱钱帮理财项目还款如下：=​​迎您的支持与建议，如有问题，请联系我们：电话客服：4006777518QQ客服：4006777518微信客服：iqianbanglove微信订阅号：iqianbangcom祝您投资愉快~爱钱帮2016年9月2日</p>
+                    <a href="${pageContext.request.contextPath}/font/selectType?nid=${noticeall.nid}" target="_blank" title="${noticeall.ntitle}">
+                        <h3>${noticeall.ntitle}</h3> </a>
+                    <a href="${pageContext.request.contextPath}/font/selectType?nid=${noticeall.nid}" target="_blank" title="${noticeall.ntitle}">
+                        <p class="newList-itemDet">${noticeall.ncontent}</p>
                     </a>
-                    <span class="newList-bot"><i></i>2016年09月02日</span>
-                </li><li>
+                    <span class="newList-bot"><i></i>${noticeall.ntime}</span>
+                </li>
+               </c:forEach>
+             
+                <!-- <li>
                 <a href="/licai_gonggao-16025.html" target="_blank" title="【还款公告】2016年9月1日爱钱帮投资理财项目还本付息公告">
                     <h3>【还款公告】2016年9月1日爱钱帮投资理财项目还本付息公告</h3> </a>
                 <a href="/licai_gonggao-16025.html" target="_blank" title="【还款公告】2016年9月1日爱钱帮投资理财项目还本付息公告">
@@ -668,11 +674,46 @@
                     </a>
                     <span class="newList-bot"><i></i>2016年09月02日</span>
                 </li>
-                
+                 -->
             </ul>
             
+            <ul class="newList-ul" id="ul33">
+               <c:forEach items="${listxm}" var="noticexm">
+                <li>
+                    <a href="${pageContext.request.contextPath}/font/selectType?nid=${noticexm.nid}" target="_blank" title="${noticexm.ntitle}">
+                        <h3>${noticexm.ntitle}</h3> </a>
+                    <a href="${pageContext.request.contextPath}/font/selectType?nid=${noticexm.nid}" target="_blank" title="${noticexm.ntitle}">
+                        <p class="newList-itemDet">${noticexm.ncontent}</p>
+                    </a>
+                    <span class="newList-bot"><i></i>${noticexm.ntime}</span>
+                </li>
+               </c:forEach>
+             </ul>
+            <ul class="newList-ul" id="ul22">
+               <c:forEach items="${listwz}" var="noticewz">
+                <li>
+                    <a href="${pageContext.request.contextPath}/font/selectType?nid=${noticewz.nid}" target="_blank" title="${noticewz.ntitle}">
+                        <h3>${noticewz.ntitle}</h3> </a>
+                    <a href="${pageContext.request.contextPath}/font/selectType?nid=${noticewz.nid}" target="_blank" title="${noticewz.ntitle}">
+                        <p class="newList-itemDet">${noticewz.ncontent}</p>
+                    </a>
+                    <span class="newList-bot"><i></i>${noticewz.ntime}</span>
+                </li>
+               </c:forEach>
+             </ul>
             
-            
+            <ul class="newList-ul" id="ul44">
+               <c:forEach items="${listhk}" var="noticehk">
+                <li>
+                    <a href="${pageContext.request.contextPath}/font/selectType?nid=${noticehk.nid}" target="_blank" title="${noticehk.ntitle}">
+                        <h3>${noticehk.ntitle}</h3> </a>
+                    <a href="${pageContext.request.contextPath}/font/selectType?nid=${noticehk.nid}" target="_blank" title="${noticehk.ntitle}">
+                        <p class="newList-itemDet">${noticehk.ncontent}</p>
+                    </a>
+                    <span class="newList-bot"><i></i>${noticehk.ntime}</span>
+                </li>
+               </c:forEach>
+             </ul>
         </div>
         
         
