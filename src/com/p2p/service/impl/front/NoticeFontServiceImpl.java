@@ -55,6 +55,9 @@ public class NoticeFontServiceImpl implements NoticeFontSrvice{
 		return noticeMapper.selectName(nid);
 	}
 
-	
+	@Override
+	public List<Notice> selectByType(String ntype) {
+		return noticeMapper.selectByType(ntype);
+	}
 	
 }
