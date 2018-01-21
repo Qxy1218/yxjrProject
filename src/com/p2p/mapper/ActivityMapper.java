@@ -19,4 +19,6 @@ public interface ActivityMapper extends IBaseDao<Integer, Activity>{
 	List<Activity> pageActivity(Pagination page,Map<String,Object> params,@Param(value="activity")Activity activity);
 	//查询总记录数
 	abstract Integer countActivity();
+	
+	List<Activity> activityName(Integer atid);
 }
