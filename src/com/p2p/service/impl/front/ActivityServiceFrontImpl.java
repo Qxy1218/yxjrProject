@@ -45,4 +45,9 @@ public class ActivityServiceFrontImpl implements ActivityFrontService{
 		return activityMapper.findModel(id);
 	}
 
+	@Override
+	public List<Activity> activityName(Integer atid) {
+		return activityMapper.activityName(atid);
+	}
+
 }
