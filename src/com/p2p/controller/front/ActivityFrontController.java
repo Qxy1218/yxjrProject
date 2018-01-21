@@ -27,4 +27,10 @@ public class ActivityFrontController {
 			model.addAttribute("listActivity", listActivity);
 			return "/views/front/activity";
 		}
+	@RequestMapping("activityName")
+	public String activityName(Model model,Integer atid) {
+		List<Activity> activityName = activityFrontService.activityName(atid);
+		model.addAttribute("activityName", activityName);
+		return "/views/front/activity";
+	}
 }
