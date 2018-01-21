@@ -34,7 +34,7 @@ public class Notice implements Serializable{
 
 	
 	@TableField("n_type")
-	private Integer ntype; //公告发布类型
+	private Integer ntype; //公告发布类型  1:网站公告 2:项目公告   3:还款公告
 	
 	private Noticetype noticetype;
 	public Notice() {
