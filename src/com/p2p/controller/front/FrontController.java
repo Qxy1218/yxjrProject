@@ -936,7 +936,7 @@ public class FrontController {
 		model.addAttribute("listhk", listhk);
 		model.addAttribute("listall", listall);
 		
-		return "views/front/aboutwetice";
+		return "views/front/aboutwe/notice";
 	}
 	
 	/**
