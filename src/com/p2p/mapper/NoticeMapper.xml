@@ -59,4 +59,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectName" resultMap="BaseResultMap">
 		select n.n_title,n.n_content from notice n where n_id = #{nid}
 	</select>
+	<select id="selectByType" resultMap="BaseResultMap">
+		select * from notice
+		<where>
+			<if test="ntype!=null">n_stype=#{ntype}</if> 
+		</where>
+		
+	</select>
 </mapper>
