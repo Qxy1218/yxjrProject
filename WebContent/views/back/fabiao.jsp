@@ -12,6 +12,124 @@
 <!-- 引用js文件 -->
 <jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
 <script type="text/javascript" src="/Finances/statics/back/static/js/laydate.js"></script>
+<script src="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<link href="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#editForm')
+        .bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+            	ftitle: {
+                    message: '标名验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '标名不能为空'
+                         }
+                        
+                    }
+                },
+                uid: {
+                    message: '用户id验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '用户id不能为空'
+                         }
+                        
+                    }
+                },
+                fmoney: {
+                    message: '投标金额验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '投标金额不能为空'
+                         }
+                        
+                    }
+                },
+                fendtime: {
+                    message: '投标截止时间验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '投标截止时间不能为空'
+                         }
+                        
+                    }
+                },
+                fminmoney: {
+                	message: '最小投标金额验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '最小投标金额不能为空,请选择'
+                        }
+                    }
+                },
+                fhuanstat: {
+                	message: '投标还款开始时间验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '投标还款开始时间不能为空,请选择'
+                        }
+                    }
+                },
+                fhuanend: {
+                	message: '投标还款结束时间验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '投标还款结束时间不能为空,请选择'
+                        }
+                    }
+                }
+            }
+        }).on('success.form.bv', function(e) {
+        	
+        	$("#editForm").modal('hide');
+        	$("#editImg").modal('hide');
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+            var form = new FormData(document.getElementById("editForm"));
+            var fid =$("#editForm #fid").val();
+            var uid =$("#editForm #uid").val();
+            if(fid==null || fid==""){
+            	$.ajax({
+            		url:  "${pageContext.request.contextPath }/back/insertfabiao",
+       	          type:"post",
+       	          data:form,
+       	          processData:false,
+       	          contentType:false,
+       	          success:function(data){
+       	        	//后台返回int类型的数据
+       					if(data>0){
+       						//新增成功，下面是后台框架的提示
+       						parent.layer.alert('增加成功');
+       					}else{
+       						//新增失败
+       						parent.layer.alert('增加失败');
+       					}
+       					$('#tb_role').bootstrapTable('refresh');
+       	          },
+       	          error:function(e){
+       	        	parent.layer.alert('错误');
+       	          }
+             });
+            	
+            }else{
+            	updateRole(fid,uid);
+            } 
+        });
+});
+</script>
 <script  type="text/javascript">
     var rows = null;
     
@@ -49,42 +167,7 @@
 		//显示新增窗口
 		$('#editRole').modal('show');
     }
-  //新增角色
-	function insertCooorganiz() {
-		//表单验证
-		//alert(123);
-		/* if (!validateForm($("#editForm"))) {
-			return;
-		} */
-		//用来关闭新增窗口***********
-		$("#editRole").modal('hide');
-	
-		var formobj =  document.getElementById("editForm");
-		var formdata = new FormData(formobj);
-		
-		$.ajax({
-			url:  "${pageContext.request.contextPath }/back/insertfabiao",
-		    type: 'POST',
-		    cache: false,
-		    data: formdata,
-		    processData: false,
-		    contentType: false
-		}).done(function(res) {
-			//后台返回int类型的数据
-			if(res>0){
-				//新增成功，下面是后台框架的提示
-				parent.layer.alert('增加成功');
-			}else{
-				//新增失败
-				parent.layer.alert('增加失败');
-			}
-			//新增完刷新表格数据
-			$('#tb_role').bootstrapTable('refresh');
-		}).fail(function(res) {
-			
-		});
-		
-	}
+  
 	//修改按钮事件
     function UpRole(){
    	//获取当前选中行的信息
@@ -482,13 +565,13 @@
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">年收益率</label>
 					<div class="col-sm-8">
-						<input type="text" name="froe" class="form-control" id="froe">
+						<input type="text" name="froe" class="form-control" id="froe" onkeyup="value=value.replace(/[^\d.]/g,'')">
            			</div>
 				</div>
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">活动加息</label>
 					<div class="col-sm-8">
-						<input type="text" name="fincrease" class="form-control" id="fincrease">
+						<input type="text" name="fincrease" class="form-control" id="fincrease" onkeyup="value=value.replace(/[^\d.]/g,'')">
            			</div>
 				</div>
 				<div class="form-group">
@@ -512,13 +595,13 @@
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">投标金额</label>
 					<div class="col-sm-8">
-						<input type="text" name="fmoney" class="form-control" id="fmoney">
+						<input type="text" name="fmoney" class="form-control" id="fmoney" onkeyup="value=value.replace(/[^\d]/g,'') " ng-pattern="/[^a-zA-Z]/">
            			</div>
 				</div>
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">已投金额</label>
 					<div class="col-sm-8">
-						<input type="text" name="fendmoney" class="form-control" id="fendmoney">
+						<input type="text" name="fendmoney" class="form-control" id="fendmoney" onkeyup="value=value.replace(/[^\d]/g,'') " ng-pattern="/[^a-zA-Z]/">
            			</div>
 				</div>
 				<div class="form-group">
@@ -532,19 +615,19 @@
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">最小投标金额</label>
 					<div class="col-sm-8">
-						<input type="text" name="fminmoney" class="form-control" id="fminmoney">
+						<input type="text" name="fminmoney" class="form-control" id="fminmoney" onkeyup="value=value.replace(/[^\d]/g,'') " ng-pattern="/[^a-zA-Z]/">
            			</div>
 				</div>
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">最大投标金额</label>
 					<div class="col-sm-8">
-						<input type="text" name="fmaxmoney" class="form-control" id="fmaxmoney">
+						<input type="text" name="fmaxmoney" class="form-control" id="fmaxmoney" onkeyup="value=value.replace(/[^\d]/g,'') " ng-pattern="/[^a-zA-Z]/">
            			</div>
 				</div>
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">收益率</label>
 					<div class="col-sm-8">
-						<input type="text" name="frate" class="form-control" id="frate">
+						<input type="text" name="frate" class="form-control" id="frate" onkeyup="value=value.replace(/[^\d.]/g,'')">
            			</div>
 				</div>
 				<div class="form-group">
@@ -622,16 +705,16 @@
 						<input type="text" name="fsecuritymea" class="form-control" id="fsecuritymea">
            			</div>
 				</div>
-			</form>
-		</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">
+					<button type="submit" class="btn btn-default" data-dismiss="modal">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
 					</button>
-					<button type="button" id="btn_submit" class="btn btn-primary" onclick="insertRole()">
+					<button type="submit" id="btn_submit" class="btn btn-primary" onclick="insertRole()">
 						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
 					</button>
 				</div>
+			</form>
+		</div>
 			</div>
 		</div>
 	</div>

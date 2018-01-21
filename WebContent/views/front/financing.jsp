@@ -312,9 +312,10 @@
 		            <p>定期产品：按月付息、到期还本，可选1~12个月的产品。</p>
 		        </div>
 		        <div class="lastbutton">
-		            <button class="financeclick" onclick="window.location.href='/Finances/views/front/financ.jsp' ">马上预约</button>
+		            <button class="financeclick" id="ljtz" >马上预约</button>
 		            <p>我们将在1日内与你联系</p>
 		        </div>
+		       
 		    </div>
 		</div>
 		<div id="finance_mask"></div>
@@ -369,19 +370,7 @@
 		        $(data).show();
 		    })
 		    // 点击马上预约的弹窗
-		    <!--$("#company_finance .financeclick").click(function(){
-		
-		        $("#finance_mask").show();
-		        $("#finance_mask_content").show();
-		    })
-		    $("#finance_mask_content .finance_chacha").click(function(){
-		        $("#finance_mask").hide();
-		        $("#finance_mask_content").hide();
-		    })
-		    $("#ajax_alert .confirm").click(function(){
-		        $("#ajax_alert").hide();
-		        $("#finance_mask").hide();
-		    })-->
+		   
 		    //点击选择不同的钱
 		    $("#finance_mask_content .checkmoney").click(function(){
 		        $("#finance_mask_content .checkmoney").removeClass("checked");
@@ -534,7 +523,25 @@
 		
 		    
 		</script>
-		
+		 <script type="text/javascript">
+		        $(document).ready(function() {
+		        $("#ljtz").click(function(){
+		        	$.ajax({
+		                type:"POST",
+		                url: "${pageContext.request.contextPath}/userFabiao/checkuserfabiao",
+		                success: function (data) {
+		                	if(data>0){
+		                		mizhu.toast('您已有正在处理的项目');
+		                	}else{
+		                		window.location.href='/Finances/views/front/financ.jsp'
+		                	}
+		                },error : function (XMLHttpRequest, textStatus, errorThrown){ 
+		                	mizhu.toast('请求服务器出错');
+		                } 
+		        	 })  
+		         }) 
+		      })
+		    </script>
 		<!-- 足部start -->
 			<jsp:include page="include/floot.jsp"></jsp:include>
 		<!-- 足部end -->

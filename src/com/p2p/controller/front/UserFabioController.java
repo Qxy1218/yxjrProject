@@ -91,4 +91,21 @@ public class UserFabioController {
 		}
 		return count;
 	}
+	
+	
+	@RequestMapping("/checkuserfabiao")
+	@ResponseBody
+	public int checkuserfabiao(HttpSession session) {
+		User user = (User)session.getAttribute("user");
+		Fabiao ff  = new Fabiao();
+		ff.setUid(user.getUid());
+		Fabiao fabiao = fabiaoService.getModel(ff);
+		if(fabiao!=null) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+	
+	
 }

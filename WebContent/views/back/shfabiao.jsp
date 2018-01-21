@@ -466,13 +466,13 @@
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">年收益率</label>
 					<div class="col-sm-8">
-						<input type="text" name="froe" class="form-control" id="froe">
+						<input type="text" name="froe" class="form-control" id="froe" onkeyup="value=value.replace(/[^\d.]/g,'')">
            			</div>
 				</div>
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">活动加息</label>
 					<div class="col-sm-8">
-						<input type="text" name="fincrease" class="form-control" id="fincrease">
+						<input type="text" name="fincrease" class="form-control" id="fincrease" onkeyup="value=value.replace(/[^\d.]/g,'')">
            			</div>
 				</div>
 				<div class="form-group">
@@ -496,7 +496,7 @@
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">投标金额</label>
 					<div class="col-sm-8">
-						<input type="text" name="fmoney" class="form-control" id="fmoney" readonly="readonly">
+						<input type="text" name="fmoney" class="form-control" id="fmoney" readonly="readonly" onkeyup="value=value.replace(/[^\d]/g,'') " ng-pattern="/[^a-zA-Z]/">
            			</div>
 				</div>
 				<div class="form-group">
@@ -516,19 +516,19 @@
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">最小投标金额</label>
 					<div class="col-sm-8">
-						<input type="text" name="fminmoney" class="form-control" id="fminmoney">
+						<input type="text" name="fminmoney" class="form-control" id="fminmoney" onkeyup="value=value.replace(/[^\d]/g,'') " ng-pattern="/[^a-zA-Z]/">
            			</div>
 				</div>
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">最大投标金额</label>
 					<div class="col-sm-8">
-						<input type="text" name="fmaxmoney" class="form-control" id="fmaxmoney">
+						<input type="text" name="fmaxmoney" class="form-control" id="fmaxmoney" onkeyup="value=value.replace(/[^\d]/g,'') " ng-pattern="/[^a-zA-Z]/">
            			</div>
 				</div>
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">收益率</label>
 					<div class="col-sm-8">
-						<input type="text" name="frate" class="form-control" id="frate">
+						<input type="text" name="frate" class="form-control" id="frate" onkeyup="value=value.replace(/[^\d.]/g,'')">
            			</div>
 				</div>
 				<div class="form-group">
