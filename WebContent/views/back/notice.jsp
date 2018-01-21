@@ -286,7 +286,19 @@ $(document).ready(function() {
  		$("#editActivity #nid").val(athRole.nid);
  		$("#editActivity #ntitle").val(athRole.ntitle);
  		$("#editActivity #ncontent").val(athRole.ncontent);
- 		$("#editActivity #nstype").val(athRole.nstype);
+ 		//$("#editActivity #nstype").val(athRole.nstype);
+ 		if(athRole.nstype=='网站公告'){
+ 			$("#nstype ").get(0).selectedIndex=0;
+ 			//$("#nstype").find("option[text='网站公告']").attr("selected",true); 
+ 		}
+ 		if(athRole.nstype=='项目公告'){
+ 			$("#nstype ").get(0).selectedIndex=1;
+ 			//$("#nstype").find("option[text='项目公告']").attr("selected",true); 
+ 		}
+ 		if(athRole.nstype=='还款公告'){
+ 			$("#nstype ").get(0).selectedIndex=2;
+ 			//$("#nstype").find("option[text='还款公告']").attr("selected",true); 
+ 		}
  		/* $("#editActivity #atimag").val(athRole.atimag); */
  		$("#editActivity #ntime").val(athRole.ntime),
         $("#editActivity #ntype").val(athRole.ntype),
@@ -544,7 +556,11 @@ $(document).ready(function() {
 						<div class="form-group">
 							<label for="url" class="control-label col-sm-3">类型</label>
 							<div class="col-sm-8">
-								<input type="text" name="nstype" class="form-control" id="nstype">
+								<select name="nstype" class="form-control" id="nstype">
+									<option value="网站公告" id="wzgg">网站公告</option>
+									<option value="项目公告" id="xmgg">项目公告</option>
+									<option value="项目公告" id="hkgg">还款公告</option>
+								</select>
 	            			</div>
 						</div>
 						<div class="form-group">
