@@ -60,4 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="countActivity" resultType="java.lang.Integer">
 		select count(*) from activity
 	</select>
+	<select id="activityName" resultMap="BaseResultMap">
+		select a.at_title,a.at_content,at_starttime from activity a where at_id=#{atid}
+	</select>
 </mapper>
