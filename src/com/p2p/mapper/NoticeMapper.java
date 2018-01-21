@@ -20,4 +20,6 @@ public interface NoticeMapper extends IBaseDao<Integer,Notice>{
 	abstract Integer countNotice(); 
 	//前台根据ID查询名字
 	abstract List<Notice> selectName(Integer nid);
+	
+	abstract List<Notice> selectByType(@Param("ntype")String ntype);
 }
