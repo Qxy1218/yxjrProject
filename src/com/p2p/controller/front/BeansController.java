@@ -43,6 +43,9 @@ public class BeansController {
 	@Resource(name="indexpicServiceImpl")
 	private IndexpicService indexpicService;
 	
+	@Resource(name="noticeFontServiceImpl")
+	private NoticeFontSrvice noticeFontSrvice;
+	
 	@Resource(name="IUserServiceImpl")
 	private IUserService iUserService;
 
@@ -148,6 +151,18 @@ public class BeansController {
 		//公告遍历
 		List<Notice> listNotice = noticeFontService.getAllModel();
 		model.addAttribute("listNotice", listNotice);
+		
+		List<Notice> listwz = noticeFontSrvice.selectByType("网站公告");
+		//项目公告
+		List<Notice> listxm = noticeFontSrvice.selectByType("项目公告");
+		//还款公告
+		List<Notice> listhk = noticeFontSrvice.selectByType("还款公告");
+		//全部公告
+		List<Notice> listall = noticeFontSrvice.selectByType(null);
+		model.addAttribute("listwz", listwz);
+		model.addAttribute("listxm", listxm);
+		model.addAttribute("listhk", listhk);
+		model.addAttribute("listall", listall);
 		
 		return "views/front/index";
 	}	
