@@ -455,14 +455,15 @@
         <div id="upRoll1" class="upRoll">
             <div id="holder1">
                 <ul class="list-ul1">
+                <c:forEach items="${listNotice}" var="notice">
                     <li>
-                        <a href="/Finances/tobilia">
-                            <span class="mo2-rollTit">【平台公告】关于部分银行升级“快捷充值”功能的公告<b>&nbsp;&nbsp;<font color="red">new</font></b></span>
-                            <span class="mo2-rollTiM">2016-08-24</span>
+                        <a href="${pageContext.request.contextPath}/font/selectType?nid=${notice.nid}">
+                            <span class="mo2-rollTit">${notice.ntitle }<b>&nbsp;&nbsp;<font color="red">new</font></b></span>
+                            <span class="mo2-rollTiM">${notice.ntime }</span>
                         </a>
                     </li>
-                    
-                    <li>
+                 </c:forEach>
+                    <!-- <li>
 	                    <a href="/Finances/tobilia">
 	                        <span class="mo2-rollTit">爱钱帮CEO王吉涛出席全球互联网创新金融峰会</span>
 	                        <span class="mo2-rollTiM">2016-08-19</span>
@@ -474,13 +475,13 @@
 	                        <span class="mo2-rollTit">【平台公告】关于网络优化的公告</span>
 	                        <span class="mo2-rollTiM">2016-08-18</span>
 	                    </a>
-	                </li>            
+	                </li>       -->      
 	             </ul>
             </div>
         </div>
         
         <div class="mo2-notMore">
-            <a href="/aiqianbang_licaiwang_gonggao">更多公告</a>
+            <a href="${pageContext.request.contextPath}/tonot">更多公告</a>
         </div>
     </div>
     <!-- 滚动公告end -->
@@ -953,9 +954,11 @@
                 <li class="m2-indNewtab-unsel">
                     <span>网站公告</span><i></i>
                 </li>
-                <li class="m2-indNewtab-unsel">
-                    <span>项目公告</span><i></i>
-                </li>
+               
+	                 <li class="m2-indNewtab-unsel">
+	                  <span>项目公告</span><i></i> 
+	                </li>
+                
                 <li class="m2-indNewtab-unsel">
                     <span>还款公告</span><i></i>
                 </li>
@@ -997,24 +1000,37 @@
                 <span class="m2-indNews-psgTim">2016-05-05</span></li><li><a href="dashiji_show.html#15851.html" target='_blank' class="m2-indNewslist-psgNew" title="从规范发展的角度看网络投资理财平台">5）从规范发展的角度看网络投资理财平台</a>
                 <span class="m2-indNews-psgTim">2016-05-05</span></li>            </ul>
             <ul class="indNewslist-psg newslist" style="display:none;" id="newslist3">
-                <li><a href="dashiji_show.html#16013.html" target='_blank' class="m2-indNewslist-psgNew" title="【平台公告】关于部分银行升级“快捷充值”功能的公告">1）【平台公告】关于部分银行升级“快捷充值”功能的公告</a>
-                    <b>new</b>                    <span class="m2-indNews-psgTim">2016-08-24</span></li><li><a href="dashiji_show.html#16009.html" target='_blank' class="m2-indNewslist-psgNew" title="爱钱帮CEO王吉涛出席全球互联网创新金融峰会">2）爱钱帮CEO王吉涛出席全球互联网创新金融峰会</a>
-                <b>new</b>                    <span class="m2-indNews-psgTim">2016-08-19</span></li><li><a href="dashiji_show.html#16005.html" target='_blank' class="m2-indNewslist-psgNew" title="【平台公告】关于网络优化的公告">3）【平台公告】关于网络优化的公告</a>
-                <b>new</b>                    <span class="m2-indNews-psgTim">2016-08-18</span></li><li><a href="dashiji_show.html#15987.html" target='_blank' class="m2-indNewslist-psgNew" title="【平台公告】爱钱帮会员商城试运营公告">4）【平台公告】爱钱帮会员商城试运营公告</a>
+               <c:forEach items="${listwz }" var="wz">
+                <li><a href="${pageContext.request.contextPath}/font/selectType?nid=${wz.nid}" target='_blank' class="m2-indNewslist-psgNew" title="">${wz.ntitle }</a>
+                	<b>new</b>  <span class="m2-indNews-psgTim">${ wz.ntime}</span>
+                </li>
+               </c:forEach>
+                <!-- <li><a href="dashiji_show.html#16005.html" target='_blank' class="m2-indNewslist-psgNew" title="【平台公告】关于网络优化的公告">3）【平台公告】关于网络优化的公告</a>
+                	<b>new</b>  <span class="m2-indNews-psgTim">2016-08-18</span></li>
+                <li><a href="dashiji_show.html#15987.html" target='_blank' class="m2-indNewslist-psgNew" title="【平台公告】爱钱帮会员商城试运营公告">4）【平台公告】爱钱帮会员商城试运营公告</a>
                 <span class="m2-indNews-psgTim">2016-08-05</span></li><li><a href="dashiji_show.html#15986.html" target='_blank' class="m2-indNewslist-psgNew" title="【平台公告】爱钱帮7月运营报告">5）【平台公告】爱钱帮7月运营报告</a>
-                <span class="m2-indNews-psgTim">2016-08-04</span></li>            </ul>
+                <span class="m2-indNews-psgTim">2016-08-04</span></li>  -->           
+            </ul>
             <ul class="indNewslist-psg newslist" style="display:none;" id="newslist4">
-                <li><a href="dashiji_show.html#15601.html" target='_blank' class="m2-indNewslist-psgNew" title="【项目公告】易安家长租公寓项目温馨继续">1）【项目公告】易安家长租公寓项目温馨继续</a>
-                    <b>new</b>                    <span class="m2-indNews-psgTim">2016-02-23</span></li><li><a href="dashiji_show.html#15599.html" target='_blank' class="m2-indNewslist-psgNew" title="【项目公告】娱乐帮-电影《你好，疯子！》投资项目">2）【项目公告】娱乐帮-电影《你好，疯子！》投资项目</a>
+            	<c:forEach items="${listxm }" var="txm">
+                <li><a href="${pageContext.request.contextPath}/font/selectType?nid=${txm.nid}" target='_blank' class="m2-indNewslist-psgNew" title="【项目公告】易安家长租公寓项目温馨继续">${txm.ntitle }</a>
+                    <b>new</b>                    <span class="m2-indNews-psgTim">${txm.ntime }</span></li>
+                    </c:forEach>
+                    
+                <!-- <li><a href="dashiji_show.html#15599.html" target='_blank' class="m2-indNewslist-psgNew" title="【项目公告】娱乐帮-电影《你好，疯子！》投资项目">2）【项目公告】娱乐帮-电影《你好，疯子！》投资项目</a>
                 <b>new</b>                    <span class="m2-indNews-psgTim">2016-02-20</span></li><li><a href="dashiji_show.html#15572.html" target='_blank' class="m2-indNewslist-psgNew" title="【项目公告】“世果汇”—越南青芒果直采【投资满额送青…">3）【项目公告】“世果汇”—越南青芒果直采【投资满额送青…</a>
-                <b>new</b>                    <span class="m2-indNews-psgTim">2016-02-01</span></li>            </ul>
+                <b>new</b>                    <span class="m2-indNews-psgTim">2016-02-01</span></li>  -->           </ul>
             <ul class="indNewslist-psg newslist" style="display:none;" id="newslist5">
-                <li><a href="dashiji_show.html#16028.html" target='_blank' class="m2-indNewslist-psgNew" title="【还款公告】2016年9月2日爱钱帮投资理财项目还本…">1）【还款公告】2016年9月2日爱钱帮投资理财项目还本…</a>
-                    <b>new</b>                    <span class="m2-indNews-psgTim">2016-09-02</span></li><li><a href="dashiji_show.html#16025.html" target='_blank' class="m2-indNewslist-psgNew" title="【还款公告】2016年9月1日爱钱帮投资理财项目还本…">2）【还款公告】2016年9月1日爱钱帮投资理财项目还本…</a>
+               <c:forEach items="${listhk }" var="hk">
+                <li><a href="${pageContext.request.contextPath}/font/selectType?nid=${hk.nid}" target='_blank' class="m2-indNewslist-psgNew" title="">${hk.ntitle }</a>
+                    <b>new</b>                    <span class="m2-indNews-psgTim">${hk.ntime }</span>
+                </li>
+               </c:forEach>
+                <!-- <li><a href="dashiji_show.html#16025.html" target='_blank' class="m2-indNewslist-psgNew" title="【还款公告】2016年9月1日爱钱帮投资理财项目还本…">2）【还款公告】2016年9月1日爱钱帮投资理财项目还本…</a>
                 <b>new</b>                    <span class="m2-indNews-psgTim">2016-09-01</span></li><li><a href="dashiji_show.html#16024.html" target='_blank' class="m2-indNewslist-psgNew" title="【还款公告】2016年8月31日爱钱帮投资理财项目还…">3）【还款公告】2016年8月31日爱钱帮投资理财项目还…</a>
                 <b>new</b>                    <span class="m2-indNews-psgTim">2016-08-31</span></li><li><a href="dashiji_show.html#16022.html" target='_blank' class="m2-indNewslist-psgNew" title="【还款公告】2016年8月30日爱钱帮投资理财项目还…">4）【还款公告】2016年8月30日爱钱帮投资理财项目还…</a>
                 <span class="m2-indNews-psgTim">2016-08-30</span></li><li><a href="dashiji_show.html#16019.html" target='_blank' class="m2-indNewslist-psgNew" title="【还款公告】2016年8月29日爱钱帮投资理财项目还…">5）【还款公告】2016年8月29日爱钱帮投资理财项目还…</a>
-                <span class="m2-indNews-psgTim">2016-08-29</span></li>            </ul>
+                <span class="m2-indNews-psgTim">2016-08-29</span></li>      -->       </ul>
             <ul class="indNewslist-psg newslist" style="display:none;" id="newslist6">
                 <li><a href="dashiji_show.html#15532.html" target='_blank' class="m2-indNewslist-psgNew" title="爱钱帮&amp;i烘焙之爱上CUP CAKE">1）爱钱帮&amp;i烘焙之爱上CUP CAKE</a>
                     <b>new</b>                    <span class="m2-indNews-psgTim">2016-01-18</span></li><li><a href="dashiji_show.html#15470.html" target='_blank' class="m2-indNewslist-psgNew" title="爱钱帮志愿者进社区普及防范非法集资知识">2）爱钱帮志愿者进社区普及防范非法集资知识</a>
