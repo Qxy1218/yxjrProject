@@ -27,6 +27,11 @@ public class MessageBenas {
 	public static final String MSG_UPDATEPHONE = "短信修改账号提示";
 	
 	/**
+	 * 尊敬的用户您好,您本次还款{*}元,如对此单有疑问,请及时联系我们客服,祝您生活愉快【忆信财富】
+	 * */
+	public static final String MSG_REPAYMENT = "还款详情提示";
+	
+	/**
 	 * 尊敬的用户您好,您的账号{*}需找回密码的验证码是{*},请尽快填写相关资料信息,祝您生活愉快【忆信财富】
 	 * */
 	public static final String MSG_UPDATEPWD = "短信找回密码提示";

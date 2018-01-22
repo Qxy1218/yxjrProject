@@ -173,6 +173,17 @@ public class SendMsgUtil {
 			message =  message.replaceFirst("a",""+phone+"");
 			message =  message.replaceFirst("b",""+orther.get("yzcode")+"");
 			System.out.println("短信找回密码提示......"+message);
+		}else if(msg.equals("还款详情提示")){
+			/**
+			 * 需要的第一个参数:还款金额
+			 * */
+			MessageUtil mess = new MessageUtil();
+			mess.setMsgkey(msg);
+			MessageUtil messa = messageUtil.getModel(mess);
+			message =  messa.getMsgvalue();
+			message =  message.replaceFirst("a",""+orther.get("repmoney")+"");
+			System.out.println("还款详情提示......"+message);
+
 		}else {
 			return;
 		}

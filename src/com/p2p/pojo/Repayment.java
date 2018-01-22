@@ -11,6 +11,10 @@ import java.math.BigDecimal;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 
+/**
+ * 还款
+ * */
+@SuppressWarnings("serial")
 public class Repayment implements Serializable{
 
 	@TableField("rm_id")
@@ -29,20 +33,25 @@ public class Repayment implements Serializable{
 	private Integer rmstate;	//还款状态
 	@TableField("rm_style")
 	private Integer rmstyle;	//还款类型
+	@TableField("f_code")
+	private String fcode;  //订单编号
+	
 	private Fabiao fabiao;
 	
 	public Repayment() {
 		super();
 	}
 	
+	
 	@Override
 	public String toString() {
 		return "Repayment [rmid=" + rmid + ", fid=" + fid + ", rmplan=" + rmplan + ", rmface=" + rmface + ", rmwait="
-				+ rmwait + ", rmall=" + rmall + ", rmstate=" + rmstate + ", rmstyle=" + rmstyle + ", fabiao=" + fabiao
-				+ "]";
+				+ rmwait + ", rmall=" + rmall + ", rmstate=" + rmstate + ", rmstyle=" + rmstyle + ", fcode=" + fcode
+				+ ", fabiao=" + fabiao + "]";
 	}
+
 	public Repayment(Integer rmid, Integer fid, BigDecimal rmplan, BigDecimal rmface, BigDecimal rmwait,
-			BigDecimal rmall, Integer rmstate, Integer rmstyle, Fabiao fabiao) {
+			BigDecimal rmall, Integer rmstate, Integer rmstyle,String fcode, Fabiao fabiao) {
 		super();
 		this.rmid = rmid;
 		this.fid = fid;
@@ -52,6 +61,7 @@ public class Repayment implements Serializable{
 		this.rmall = rmall;
 		this.rmstate = rmstate;
 		this.rmstyle = rmstyle;
+		this.fcode = fcode;
 		this.fabiao = fabiao;
 	}
 	public Integer getRmid() {
@@ -101,6 +111,12 @@ public class Repayment implements Serializable{
 	}
 	public void setRmstyle(Integer rmstyle) {
 		this.rmstyle = rmstyle;
+	}
+	public String getFcode() {
+		return fcode;
+	}
+	public void setFcode(String fcode) {
+		this.fcode = fcode;
 	}
 	public Fabiao getFabiao() {
 		return fabiao;

@@ -12,6 +12,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="rm_all" property="rmall"/>
 		<result column="rm_state" property="rmstate"/>
 		<result column="rm_style" property="rmstyle"/>
+		<result column="f_code" property="fcode"/>
+		
 		<association property="fabiao" javaType="com.p2p.pojo.Fabiao">
 			<id column="f_id" property="fid"/>
  		  <result column="f_title" property="ftitle"/>
@@ -41,6 +43,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		  <result column="f_securitymea" property="fsecuritymea"/>
  		  <result column="f_huanstat" property="fhuanstat"/>
  		  <result column="f_huanend" property="fhuanend"/>
+ 		  <result column="f_fqqx" property="ffqqx"/>
+ 		  <result column="f_yhqx" property="fyhqx"/>
+ 		  <result column="f_hkstype" property="fhkstype"/>
 		</association>
 	</resultMap>
 	<!-- 查询全部 -->
@@ -83,8 +88,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<!-- 增加 -->
 	<insert id="addModel" parameterType="com.p2p.pojo.Repayment">
-		insert into repayment(f_id,rm_plan,rm_face,rm_wait,rm_all,rm_state,rm_style)
-		values(#{fid},#{rmplan},#{rmface},#{rmwait},#{rmall},#{rmstate},#{rmstyle})
+		insert into repayment(f_id,rm_plan,rm_face,rm_wait,rm_all,rm_state,rm_style,f_code)
+		values(#{fid},#{rmplan},#{rmface},#{rmwait},#{rmall},#{rmstate},#{rmstyle},#{fcode})
 	</insert>
 	<!-- 删除 -->
 	<delete id="delete" parameterType="java.lang.Integer">

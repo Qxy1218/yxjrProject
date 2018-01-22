@@ -750,6 +750,11 @@ public class FrontController {
 		String dayProfits = om.writeValueAsString(dayProfit);
 		String mouthProfits = om.writeValueAsString(moneyProfit);
 		
+		//获取发标信息
+		Fabiao fabiao = new Fabiao();
+		fabiao.setUid(uid);
+		Fabiao fa = fabiaoService.getModel(fabiao);
+		
 		mo.addObject("dayList",dayList);
 		mo.addObject("mouthList",mouthList);
 		mo.addObject("dayProfits",dayProfits);
@@ -757,6 +762,7 @@ public class FrontController {
 		mo.addObject("allMoney",allMoney);
 		mo.addObject("dayMoney",dayMoney);
 		mo.addObject("singuser", sing);
+		mo.addObject("fabiao", fa);
 			
 		mo.setViewName("views/front/user/usercenter");	
 		//mo.setViewName("views/front/user/baobiao");

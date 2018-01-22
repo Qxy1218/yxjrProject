@@ -21,6 +21,7 @@ import com.p2p.controller.back.SendMsgUtil;
 import com.p2p.pojo.Bid;
 import com.p2p.pojo.BidServet;
 import com.p2p.pojo.Fabiao;
+import com.p2p.pojo.FabiaoP2p;
 import com.p2p.pojo.Redmoney;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Users;
@@ -66,7 +67,7 @@ public class BidProjectController {
 	
 	@RequestMapping("investproject")
 	@ResponseBody
-	public Integer investProject(HttpServletRequest request,HttpSession session) {
+	public Integer investProject(HttpServletRequest request,HttpSession session) throws Exception {
 		
 		
 		
@@ -215,6 +216,22 @@ public class BidProjectController {
 				fabiao.setFid(bid.getBfid());
 				fabiao.setFstatus(2);
 				fabiaoService.update(fabiao);
+				
+				Fabiao fabiao2 =  new Fabiao();
+				fabiao2.setFid(bid.getBfid());
+				fabiao2 = fabiaoService.getModel(fabiao2);
+				FabiaoP2p fabiaoP2p = new FabiaoP2p();
+				fabiaoP2p.setFssuid(fabiao2.getUid());
+				fabiaoP2p.setFstitle(fabiao2.getFtitle());
+				fabiaoP2p.setFsorder(fabiao2.getFcode());
+				fabiaoP2p.setFsmoney(fabiao2.getFmoney().doubleValue());
+				fabiaoP2p.setFstime(fabiao2.getFendtime());
+				fabiaoP2p.setFsstate(fabiao2.getFstatus());
+				BigDecimal decimal = fabiao2.getFroe();
+				BigDecimal dd = decimal.add(fabiao2.getFincrease());
+				fabiaoP2p.setFsroe(dd.doubleValue());
+				fabiaoP2p.setFshktime(fabiao2.getFendtime());
+				int repaycount = SendServiceUtil.list(fabiaoP2p, "192.168.90.47:8080/ServiceP2p/fabiao/success");
 			}
 			
 			
