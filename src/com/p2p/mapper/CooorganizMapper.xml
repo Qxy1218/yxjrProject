@@ -36,5 +36,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <!-- 查询角色的总记录数 -->
     <select id="CooorganizCount" resultType="java.lang.Integer">
         select count(*) from cooorganiz;
-    </select>																																 
+    </select>	
+    
+    <select id="getAllModel" resultMap="BaseResultMap">
+ 		select * from cooorganiz 
+ 	</select>																															 
 </mapper>

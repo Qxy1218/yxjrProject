@@ -1077,31 +1077,11 @@
                 <!--<a class="m2-indCoomore" href="#">更多&raquo;</a>-->
             </h2>
             <ul>
-                <li><a href=/home-aboutus-coorprate?id=58 target="_blank">
-                    <img src=/Finances/statics/front/uploadData/ad/20160512110603864.png alt=""></a>
-                </li><li><a href=http://www.hsbank.com.cn/ target="_blank">
-                <img src=/Finances/statics/front/uploadData/ad/20160512111038163.png alt=""></a>
-            </li><li><a href=http://www.jx-bank.com/nccbank/zh_CN/home/index.html target="_blank">
-                <img src=/Finances/statics/front/uploadData/ad/2016051211111329.png alt=""></a>
-            </li><li><a href=/home-aboutus-coorprate?id=62 target="_blank">
-                <img src=/Finances/statics/front/uploadData/ad/20160512111134837.png alt=""></a>
-            </li><li><a href=/home-aboutus-coorprate?id=59 target="_blank">
-                <img src=/Finances/statics/front/uploadData/ad/20160512111157415.png alt=""></a>
-            </li><li><a href=/home-aboutus-coorprate?id=72 target="_blank">
-                <img src=/Finances/statics/front/uploadData/ad/2016051211121652.png alt=""></a>
-            </li><li><a href=https://www.alipay.com/ target="_blank">
-                <img src=/Finances/statics/front/uploadData/ad/20160512111336923.png alt=""></a>
-            </li><li><a href=http://www.yeepay.com/ target="_blank">
-                <img src=/Finances/statics/front/uploadData/ad/20160512111356562.png alt=""></a>
-            </li><li><a href=https://www.aliyun.com/ target="_blank">
-                <img src=/Finances/statics/front/uploadData/ad/20160512111411694.png alt=""></a>
-            </li><li><a href=/home-aboutus-coorprate?id=76 target="_blank">
-                <img src=/Finances/statics/front/uploadData/ad/20160512111439851.png alt=""></a>
-            </li><li><a href=/home-aboutus-coorprate?id=61 target="_blank">
-                <img src=/Finances/statics/front/uploadData/ad/20160512111459408.png alt=""></a>
-            </li><li><a href=http://www.cecr.com.cn/bencandy.php?fid=79&amp;id=858 target="_blank">
-                <img src=/Finances/statics/front/uploadData/ad/20160616194004859.png alt=""></a>
-            </li>         
+            	<c:forEach items="${cooorgsp}" var="cooorging">
+	                <li><a href="${cooorging.colinkurl}" target="_blank">
+	                    <img src="${cooorging.coimgurl}" alt=""></a>
+	                </li>
+                </c:forEach>
           </ul>
         </div>
         

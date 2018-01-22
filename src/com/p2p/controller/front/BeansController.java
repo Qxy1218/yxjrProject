@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cloopen.rest.sdk.utils.DateUtil;
+import com.p2p.pojo.Cooorganiz;
 import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.Indexpic;
 import com.p2p.pojo.Notice;
 import com.p2p.pojo.Profit;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Video;
+import com.p2p.service.back.CooorganizService;
 import com.p2p.service.back.IndexpicService;
 import com.p2p.service.back.VideoService;
 import com.p2p.service.front.FabiaoService;
@@ -60,6 +62,9 @@ public class BeansController {
 	
 	@Resource(name="noticeFontServiceImpl")
 	private NoticeFontSrvice noticeFontService;
+	
+	@Resource(name="cooorganizServiceImpl")
+	private CooorganizService cooorganizService;
 	
 	//收益表service
 	@Resource(name="profitServiceImpl")
@@ -147,6 +152,9 @@ public class BeansController {
 		//视频遍历
 		List<Video> listvideo = videoservices.getAllModel();
 		model.addAttribute("videosp", listvideo);
+		
+		List<Cooorganiz> listcooo = cooorganizService.getAllModel();
+		model.addAttribute("cooorgsp", listcooo);
 		
 		//公告遍历
 		List<Notice> listNotice = noticeFontService.getAllModel();
