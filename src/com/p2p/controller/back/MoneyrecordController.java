@@ -96,6 +96,24 @@ public class MoneyrecordController {
 					allMoneyCode+=moneyrecordList.get(i).getMrwastemoney();
 				}
 				
+			}else if(mrstatus==30) {
+				moneyrecord.setMrwasttime((DateUtils.getDateFormat(DateUtils.getDayBefore(new Date(),30))));
+				moneyrecord.setMrendtime(DateUtils.getDateFormat(new Date()));
+				moneyrecord.setUid(uid);
+				moneyrecordList = moneyrecordServiece.seleMonreyReByTime(moneyrecord);
+				for (int i = 0; i < moneyrecordList.size(); i++) {
+					allMoneyCode+=moneyrecordList.get(i).getMrwastemoney();
+				}
+				
+			}else if(mrstatus==90) {
+				moneyrecord.setMrwasttime((DateUtils.getDateFormat(DateUtils.getDayBefore(new Date(),90))));
+				moneyrecord.setMrendtime(DateUtils.getDateFormat(new Date()));
+				moneyrecord.setUid(uid);
+				moneyrecordList = moneyrecordServiece.seleMonreyReByTime(moneyrecord);
+				for (int i = 0; i < moneyrecordList.size(); i++) {
+					allMoneyCode+=moneyrecordList.get(i).getMrwastemoney();
+				}
+				
 			}
 			map.put("data", moneyrecordList);
 			String obj = mapper.writeValueAsString(map);
