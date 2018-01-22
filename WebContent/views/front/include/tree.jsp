@@ -71,7 +71,7 @@
 	                <ul class="m2-aside-secItem" style="display:none">
 		                <li><a class="m2-aside-secLink-item" href="/Finances/torecharge?uiid=${sessionScope.userinfo.uiid }">充&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;值</a></li>
 		                <li><a class="m2-aside-secLink-item" href="/Finances/towithdraw?uiid=${sessionScope.userinfo.uiid }">提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现</a></li>
-		                <li><a class="m2-aside-secLink-item" href="#">资金流水</a></li>
+		                <li><a class="m2-aside-secLink-item" href="/Finances/tomoneyreward?uid=${sessionScope.user.uid }">资金流水</a></li>
 	            	</ul>
 	            </li>
 	            <li class="m2-asideListitem">
