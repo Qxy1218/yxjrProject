@@ -410,7 +410,7 @@ $(document).ready(function() {
 				title : 'qq号',
 			},{
 				field : 'caddress',
-				title : '地址',
+				title : '微博账号',
 			},{
 				field : 'cxs',
 				title : '是否显示',
@@ -564,7 +564,7 @@ $(document).ready(function() {
 	            			</div>
 						</div>
 						<div class="form-group">
-							<label for="url" class="control-label col-sm-3">地址</label>
+							<label for="url" class="control-label col-sm-3">微博账号</label>
 							<div class="col-sm-8">
 								<input type="text" name="caddress" class="form-control" id="caddress">
 	            			</div>

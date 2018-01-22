@@ -21,7 +21,7 @@ public class Contact {
 	@TableField("c_qqnum")
 	private String cqqnum;//qq号
 	@TableField("c_address")
-	private String caddress;//地址
+	private String caddress;//微博号
 	@TableField("c_xs")
 	private Integer cxs;//是否前台显示 0 不显示        1显示
 	public Contact(Integer cid, String cephone, String csphone, String cwechartimgurl, String cweboimgurl,

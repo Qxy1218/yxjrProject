@@ -136,6 +136,7 @@
                     <div></div>
                 </div>
                 </li>
+                <%--
                 <li class="m2-comRigli m2-comRigli-sug m2-comRigli_new" data="#fixnavbar_four">
                     <img src="/Finances/statics/front/statics/home2/images/fixed-r4.png" alt="站内信息">
                     <div></div>            	<div class="toAbs">
@@ -143,6 +144,7 @@
                     <div></div>
                 </div>
                 </li>
+                --%>
             </ul>
         </div>
         <!-- 右边侧栏顶部右边弹出 -->
@@ -151,10 +153,10 @@
                 <div class="sumtop">
                     <div class="top" style="margin: 18px;text-align: center;font-size: 20px;position: relative;"><span style="position: absolute;top: 0;left:-18px">&gt;&gt;</span>我的账户</div>
                     <div class="bottom">
-                        <img src="/Finances/statics/front/statics/home2/images/user-head.png" alt="我的账户">
+                        <img src="${pageContext.request.contextPath}${sessionScope.user.userinfo.uiheadImg}" alt="我的账户">
                         <div>
                             <p id ="right_name_info"></p>
-                            <button id="right_recharge">充值</button>
+                            <button id="right_recharge" onclick="window.open('http://127.0.0.1:8080/Finances/tousercenter?uid=${sessionScope.user.uid}')">充值</button>
                         </div>
                     </div>
                 </div>
@@ -162,35 +164,58 @@
                 <div class="summiddle">
                     <ul>
                         <li style="border-top-left-radius:10px;">
-                            <p><span id="right_account_money"></span>元</p>
+                            <p><span id="right_account_money">0.00</span>元</p>
                             <span>可用资金</span>
                         </li>
                         <li style="border-top-right-radius:10px;">
-                            <p><span id="right_reward_money"></span>元</p>
+                            <p><span id="right_reward_money">0.00</span>元</p>
                             <span>可用奖励金</span>
                         </li>
                     </ul>
                     <div class="content">
-                        <p>待收本金：<span id="right_total_capital"></span>元</p>
-                        <p>待收收益：<span id="right_total_wait_interest"></span>元</p>
+                        <p>待收本金：<span id="right_total_capital">0.00</span>元</p>
+                        <p>待收收益：<span id="right_total_wait_interest">0.00</span>元</p>
                     </div>
-                    <p class="lastcontent">资产总计：<span id="right_total_asset"></span>元</p>
+                    <p class="lastcontent">资产总计：<span id="right_total_asset">0.00</span>元</p>
                     <ul style="margin-top:30px;">
                         <li style="border-top-left-radius:10px;border-bottom-left-radius:10px;">
-                            <p><span id="right_today_earn"></span>元</p>
+                            <p><span id="right_today_earn">0.00</span>元</p>
                             <span>今日赚取</span>
                         </li>
                         <li style="border-top-right-radius:10px;border-bottom-right-radius:10px;">
-                            <p><span id="right_total_reward_normal_interest"></span>元</p>
+                            <p><span id="right_total_reward_normal_interest">0.00</span>元</p>
                             <span>累计收益</span>
                         </li>
                     </ul>
                 </div>
-                <div class="sumbottom" id ="accountCommon_right">查看更多>></div>
+                <div class="sumbottom" onclick="window.open('http://127.0.0.1:8080/Finances/tousercenter?uid=${sessionScope.user.uid}')" id ="accountCommon_right">查看更多>></div>
             </div>
-
-            <div class="fixnavbar common" id="fixnavbar_two"></div>
-            <div class="fixnavbar common" id="fixnavbar_three"></div>
+            <div class="fixnavbar common" id="fixnavbar_two">
+            	 <div class="sumtop">
+                    <div class="top" style="margin: 18px;text-align: center;font-size: 20px;position: relative;"><span style="position: absolute;top: 0;left:-18px">&gt;&gt;</span>我的账户</div>
+                    <div class="bottom">
+                        <img src="${pageContext.request.contextPath}${sessionScope.user.userinfo.uiheadImg}" alt="我的账户">
+                       
+                    </div>
+                </div>
+                <hr style="margin:0 10px;"/>
+                <div class="summiddle" onclick="window.open(http://127.0.0.1:8080/Finances/torecharge?uiid=${sessionScope.user.uid})" id="myredmoney">
+                  
+                </div>
+            </div>
+            <div class="fixnavbar common" id="fixnavbar_three">
+            	 <div class="sumtop">
+                    <div class="top" style="margin: 18px;text-align: center;font-size: 20px;position: relative;"><span style="position: absolute;top: 0;left:-18px">&gt;&gt;</span>我的账户</div>
+                    <div class="bottom">
+                        <img src="${pageContext.request.contextPath}${sessionScope.user.userinfo.uiheadImg}" alt="我的账户">
+                       
+                    </div>
+                </div>
+                <hr style="margin:0 10px;"/>
+                <div class="summiddle" id="myvouch">
+                   
+                </div>
+            </div>
             <div class="fixnavbar" id="fixnavbar_four"></div>
         </div>
 
@@ -198,9 +223,12 @@
         <div class="m2-commonRight">
             <ul class="m2-comRiglist">
                 <li class="m2-comRigli m2-comRigli-ewm"  style="border-top:1px solid #fff;">
-                    <i class="m2-comRigli-icon"></i>
+                    <i class="m2-comRigli-icon" id="cwc"></i>
                     <span class="m2-comRigli-hov">关注<br>微信</span>
-                    <div class="m2-comRighide m2-comRighide-ewm"><i></i></div>
+                    <div class="m2-comRighide m2-comRighide-ewm">
+                    <i id="maxcwc">
+                    </i>
+                    </div>
                 </li>
                 <li class="m2-comRigli m2-comRigli-tel">
                     <i class="m2-comRigli-icon"></i>
@@ -224,11 +252,15 @@
                 </li>
                 <li class="m2-comRigli m2-comRigli-qq" style="position:relative;">
                     <i class="m2-comRigli-icon" style="z-index:100;"></i>
-                    <span class="m2-comRigli-hov" style="z-index:100;">在线<br>客服</span>
+                    <span class="m2-comRigli-hov" style="z-index:100;">
+                    	<a target="_blank" id="zxkf">
+                    		 在线<br>客服
+                    	</a>
+                     </span>
                 </li>
                 <li class="m2-comRigli m2-comRigli-sug" style="border-bottom: 1px solid #fff;">
                     <i class="m2-comRigli-icon"></i>
-                    <span class="m2-comRigli-hov"><a href="/Finances/tohelp" style="color:#fff;">帮助<br>中心</a></span>
+                    <span class="m2-comRigli-hov"><a href="/Finances/tohelp" target="_blank" style="color:#fff;">帮助<br>中心</a></span>
                 </li>
 
                 <li class="m2-comRigli m2-comRigli-top">
@@ -295,6 +327,7 @@
 						// 阻止事件冒泡
 						event.stopPropagation();
 						if(select=="#fixnavbar_one"){
+							//获取用户信息
 							$.ajax({
 								type:'POST',
 		
@@ -313,21 +346,37 @@
 		
 							});
 						}else if(select=="#fixnavbar_two"){
+							//获取红包
 							$.ajax({
 								type: "POST",
-								url: '/Home-RightHomePage-hb_right_new',
+								url: '${pageContext.request.contextPath}/ajaxgetUserRedMoney',
 								success: function(data) {
-									$('#fixnavbar_two').empty();
-									$('#fixnavbar_two').append(data);
+									var dataObj=eval("("+data+")");
+									$('#myredmoney').html('');
+									var cc="";
+									if(dataObj.listniu.length==0){
+						        		cc = '<center><h1>没有数据</h1></center> ';
+						        	}else{
+						        	  cc =mackuserredmoeny(dataObj.listniu);
+						        	}
+									$('#myredmoney').append(cc);									
 								}
 							});
 						}else if(select=="#fixnavbar_three"){
+							//获取加息券
 							$.ajax({
 								type: "POST",
-								url: '/Home-RightHomePage-jxq_right_new',
+								url: '${pageContext.request.contextPath}/ajaxgetUservouch',
 								success: function(data) {
-									$('#fixnavbar_three').empty();
-									$('#fixnavbar_three').append(data);
+									var dataObj=eval("("+data+")");
+									$('#myvouch').html('');
+									var cc ="";
+									if(dataObj.listniu.length==0){
+						        		cc = '<center><h1>没有数据</h1></center> ';
+						        	}else{
+						        		cc =mackuservouch(dataObj.listniu);
+						        	}
+									$('#myvouch').append(cc);	
 								}
 							});
 						}else if(select=="#fixnavbar_four"){
@@ -349,6 +398,30 @@
 				})
 	    </script>
     </c:if>
+    <script>
+    	function mackuserredmoeny(list){
+    		var aa ='<ul>'
+    			$.each(list,function(i,item){  
+    				aa +=' <li style="border-top-left-radius:10px;background-color: #FF2D2D;width: 240px;" >'
+    				aa +='<p style="color: white;"><span id="right_account_money">'+item.rmoney+'</span>元可用红包</p>';
+    				aa +='  <span>还有'+item.expireday+'到期</span>';
+    				aa+='</li>'
+    			})
+    		aa+='</ul>' 
+    		return aa;
+    	}
+    	function mackuservouch(list){
+    		var aa ='<ul>'
+    			$.each(list,function(i,item){  
+    				aa +=' <li style="border-top-left-radius:10px;background-color: #FF2D2D;width: 240px;" >'
+    				aa +='<p style="color: white;"><span id="right_account_money">'+item.uvmoney+'</span>元可用红包</p>';
+    				aa +='  <span>还有'+item.uvday+'到期</span>';
+    				aa+='</li>'
+    			})
+    		aa+='</ul>' 
+    		return aa;
+    	}
+    </script>
     <script>
 		
         var flag="";
@@ -421,4 +494,20 @@
         }
     </script>
     <!-- 右侧边栏end -->
-   
+   <script type="text/javascript">
+$(function(){
+	 $.ajax({  
+		    url : "/Finances/ajaxgetwechart",  
+		    type: "post",
+		    success: function(data){  
+		    	 var dataObj=eval("("+data+")");
+				 $("#cwc").css("background","url(" + "/Finances"+dataObj.cwechartimgurl + ")");
+				 $("#maxcwc").css("background","url(" + "/Finances"+dataObj.cwechartimgurl + ")");
+		    	  $("#zxkf").attr("href","http://wpa.qq.com/msgrd?v=3&uin="+dataObj.cqqnum+"&site=qq&menu=yes");
+		    },  
+		    error: function(XMLHttpRequest, textStatus, errorThrown){  
+		        alert(XMLHttpRequest.readyState + XMLHttpRequest.status + XMLHttpRequest.responseText);  
+		    }  
+		})  
+});
+</script>

@@ -1,6 +1,8 @@
 package com.p2p.controller.front;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -8,7 +10,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.pojo.Redmoney;
 import com.p2p.pojo.User;
 import com.p2p.service.back.RedmoneyService;
@@ -48,6 +52,19 @@ public class RedmoneyFindController {
 		return "views/front/management/redpacket";
 	}
 	
-	
-	
+	@RequestMapping("ajaxgetUserRedMoney")
+	@ResponseBody
+	public String ajaxgetUserRedMoney(HttpSession session) throws Exception {
+		ObjectMapper ob = new ObjectMapper();
+		Map<String,Object> map = new HashMap<String,Object>();
+		String result = "";
+		User user = (User)session.getAttribute("user");
+		if(user!=null) {
+			List<Redmoney> listniu =  redmoneyservice.selectByNIU(user.getUid());
+			listniu = CodePassage.makeRedMoneyList(listniu);
+			map.put("listniu", listniu);
+			result = ob.writeValueAsString(map);
+		}
+		return result;
+	}
 }

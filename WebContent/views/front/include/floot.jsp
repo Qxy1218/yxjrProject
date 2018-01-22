@@ -18,23 +18,23 @@
     <div class="mainNewfocus" style ="width:740px;">
         <div class="mainNewblog">
             <ul>
-               <li class="joinWb"><span id="cwb" style="background: url(/Finances/${contact.cweboimgurl})"></span><p>官方微博</p></li>
-                <li class="joinWx"><span id="cwc" style="background: url(/Finances/${contact.cwechartimgurl})"></span><p>官方微信</p></li>
+               <li class="joinWb"><span id="cwb" ></span><p>官方微博</p></li>
+                <li class="joinWx"><span id="flootcwc" ></span><p>官方微信</p></li>
             </ul>
         </div>
         <div class="mainNewcopy">
             <div class="mainNewserve">
                 <h3>客服电话:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:12px;">投资有风险，请谨慎投资</span></h3>
-                <h3>${contact.csphone}&nbsp;&nbsp;&nbsp;http://www.iqianbang.com</h3>
+                <h3><a id="kfdh">182996719481</a>&nbsp;&nbsp;&nbsp;http://127.0.0.1:8080/Finances/toindex</h3>
                 <ul>
-                    <li><a href="/Finances/toinvest">我要投资</a></li>
+                    <li><a href="/Finances/toinvestzt">我要投资</a></li>
                     <li><a href="/Finances/tohelp">帮助中心</a></li>
                     <li><a href="/Finances/toabout">关于我们</a></li>
                     <li><a href="/Finances/tonot">新闻公告</a></li>
                 </ul>
             </div>
             <div class="mainNewown">
-                <p>页面版权所有：北京爱钱帮财富科技有限公司&nbsp;&nbsp;京ICP证150216号</p>
+                <p>页面版权所有：江西忆信金融有限公司&nbsp;&nbsp;京ICP证150216号</p>
                 <!--                <p>推荐使用IE7以上版本&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;法律顾问：<a href="http://www.iqianbang.com/ihzhb-527.shtml" target="_blank" style="color:#a4a3a3">国浩律师事务所</a></p>-->
                 <p>推荐使用IE7以上版本&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;法律顾问：国浩律师事务所（grandall.com.cn）</p>
             </div>
@@ -80,9 +80,9 @@ $(function(){
 		    type: "post",
 		    success: function(data){  
 		    	 var dataObj=eval("("+data+")");
-				 alert(dataObj.cwechartimgurl);
-				 $("#cwc").css("background","url(" + "/Finances"+dataObj.cwechartimgurl + ")");
+				 $("#flootcwc").css("background","url(" + "/Finances"+dataObj.cwechartimgurl + ")");
 				 $("#cwb").css("background","url(" + "/Finances"+dataObj.cweboimgurl + ")");
+		    	 $("#kfdh").html(dataObj.csphone);
 		    },  
 		    error: function(XMLHttpRequest, textStatus, errorThrown){  
 		        alert(XMLHttpRequest.readyState + XMLHttpRequest.status + XMLHttpRequest.responseText);  

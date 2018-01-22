@@ -19,7 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -200,9 +202,12 @@ public class UtilController {
 	/**
 	 * 文件下载
 	 * */
+	@RequestMapping("/downLoadFile")
+	@ResponseBody
 	public static void downLoadFile(String filePath,HttpServletRequest request,HttpServletResponse response) {
 		//文件下载
-		 File file = new File(filePath);
+		  String fileName = request.getSession().getServletContext().getRealPath("uploadFile")+filePath; 
+		 File file = new File(fileName);
 		 String filenames = file.getName();
 	     InputStream inputStream;
        try {

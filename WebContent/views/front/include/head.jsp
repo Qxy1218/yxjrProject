@@ -53,10 +53,10 @@
 <div class="m2-commonTop-con">
     <div class="m2-commonTop">
         <div class="m2-commonTop-left">
-            <div class="m2-commonTop-tel"><i></i>4006&nbsp;-&nbsp;777&nbsp;-&nbsp;518</div>
+            <div class="m2-commonTop-tel"><i></i><span id="dianhua"></span></div>
             <div class="m2-commonTop-service" style="padding-left:0;">
             	<span style="float:left;">客服：</span>
-                <div style="float:left;display:inline-block;width:92px;height:22px;padding:6px 0 13px 0;margin-top: -6px">8008860</div>
+                <div id="kfdian" style="float:left;display:inline-block;width:92px;height:22px;padding:6px 0 13px 0;margin-top: -6px"></div>
             </div>
             <div class="m2-commonEwm">
                 <span class="m2-commonEwm-tit">关注我们：</span>
@@ -65,12 +65,14 @@
                     <div class="m2-commonEwmhid">
                         <em class="m2-commonEwmhid-arr"></em>
                         <em class="m2-commonEwmhid-arrBg"></em>
-                        <b></b>
-                        <span>扫一扫<br>关注爱钱帮订阅号</span>
+                        <b id="wx"></b>
+                        <span>扫一扫<br>关注忆信金融订阅号</span>
                     </div>
                 </div>
                 <div class="m2-commonEwmwb">
-                    <i class="m2-commonEwmicon" onclick='window.open("http://weibo.com/iqianbang")'></i>
+                <a id="wbh" target="_blank">
+                    <i class="m2-commonEwmicon"></i>
+                 </a>
                 </div>
             </div>
         </div>
@@ -113,37 +115,7 @@
         </div>
     </div>
 </div>
-<!--  用户登陆后，（部分用户）导航栏显示论坛选项、现在全部关闭
-<script type="text/javascript">
-    $(function () {
-       $('#bbslogin').click(function(){
-    	   var w = window.open(); 
-			$.ajax({
-				type:"GET",
-				url :"/api-bbslogin",
-				success:function(msg){
-					var obj = eval('('+msg+')');
-		        	var obj = eval(obj);
-		        	if (obj.status == 1){
-		        		w.location = obj.message;
-					}
-				}
-			});
-       });
-       var _uid = Number();
-       var _all_uid = Array(5277,320,25893,77960,70760,4762,36256,59960,126250,75980,4039,68689,133118,185);
-       function in_array(uid,array){
-			for(var i in array){
-				if(array[i] == uid){
-					$("#bbs").attr("style","display:block");
-				}
-			}
-       }
-       in_array(_uid,_all_uid);
-    });
-</script>
--->
-</div>
+
 <div class="m2-commonNav-con">
     <div class="m2-commonNav-box">
         <div class="m2-commonLogo">
@@ -194,5 +166,25 @@
     }
 	</script>
 <!-- headerEnd -->
+ <script type="text/javascript">
+$(function(){
+	 
+	 $.ajax({  
+		    url : "/Finances/ajaxgetwechart",  
+		    type: "post",
+		    success: function(data){  
+		    	 var dataObj=eval("("+data+")");
+				 $("#dianhua").html(dataObj.cephone);
+		    	 $("#kfdian").html(dataObj.csphone);
+		    	 $("#wx").css("background","url(" + "/Finances"+dataObj.cwechartimgurl + ")");
+		    	 var cc ="http://weibo.com/"+dataObj.caddress;
+		    	 $("#wbh").attr("href",""+cc+"");
+		    },  
+		    error: function(XMLHttpRequest, textStatus, errorThrown){  
+		        alert(XMLHttpRequest.readyState + XMLHttpRequest.status + XMLHttpRequest.responseText);  
+		    }  
+		});  
+});
+</script>
 </body>
 </html>

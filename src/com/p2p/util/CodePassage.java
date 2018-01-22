@@ -109,6 +109,7 @@ public class CodePassage {
 			red.setRimage(list.get(i).getRimage());
 			red.setRmoney(list.get(i).getRmoney());
 			red.setRstart(list.get(i).getRstart());
+			red.setUiname("");
 			red.setUid(list.get(i).getUid());
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			Date date1=null;
@@ -142,7 +143,7 @@ public class CodePassage {
 			uvo.setUvid(list.get(i).getUvid());
 			uvo.setUvimage(list.get(i).getUvimage());
 			uvo.setUvmoney(list.get(i).getUvmoney());
-			
+			uvo.setUiname("");
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			Date date1=null;
 			Date date2=null;
