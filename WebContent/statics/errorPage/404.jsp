@@ -5,17 +5,17 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="shortcut icon" href="${pageContext.request.contextPath}/statics/other/lco/smalllog.png">
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/statics/ing/css/main.css" type="text/css" media="screen, projection" /> <!-- main stylesheet -->
-		<link rel="stylesheet" type="text/css" media="all" href="${pageContext.request.contextPath}/statics/ing/css/tipsy.css" /> <!-- Tipsy implementation -->
+		<link rel="shortcut icon" href="${pageContext.request.contextPath}/statics/other/lco/6.png">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/front/statics/ing/css/main.css" type="text/css" media="screen, projection" /> <!-- main stylesheet -->
+		<link rel="stylesheet" type="text/css" media="all" href="${pageContext.request.contextPath}/statics/front/ing/css/tipsy.css" /> <!-- Tipsy implementation -->
 		
 		<!--[if lt IE 9]>
 			<link rel="stylesheet" type="text/css" href="css/ie8.css" />
 		<![endif]-->
 		
-		<script type="text/javascript" src="${pageContext.request.contextPath}/statics/ing/scripts/jquery-1.7.2.min.js"></script> <!-- uiToTop implementation -->
-		<script type="text/javascript" src="${pageContext.request.contextPath}/statics/ing/scripts/custom-scripts.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/statics/ing/scripts/jquery.tipsy.js"></script> <!-- Tipsy -->
+		<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/ing/scripts/jquery-1.7.2.min.js"></script> <!-- uiToTop implementation -->
+		<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/ing/scripts/custom-scripts.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/ing/scripts/jquery.tipsy.js"></script> <!-- Tipsy -->
 		
 		<script type="text/javascript">
 		
@@ -82,7 +82,7 @@
 		<!-- Universal preloader -->
 		<div id="universal-preloader">
 		    <div class="preloader">
-		        <img src="${pageContext.request.contextPath}/statics/ing/images/universal-preloader.gif" alt="universal-preloader" class="universal-preloader-preloader" />
+		        <img src="${pageContext.request.contextPath}/statics/front/ing/images/universal-preloader.gif" alt="universal-preloader" class="universal-preloader-preloader" />
 		    </div>
 		</div>
 		<!-- Universal preloader -->
