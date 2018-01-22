@@ -11,6 +11,47 @@
 <title>Insert title here</title>
 <!-- 引用js文件 -->
 <jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
+<script type="text/javascript" src="/Finances/statics/back/static/js/laydate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery.form.js"></script>
+<script src="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<link href="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#editRole')
+		.bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+            	coname: {
+                    message: '机构名称验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '机构名称不能为空'
+                         }
+                    }
+                },
+             
+                colinkurl: {
+                	message: '机构链接验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '机构链接不能为空,请选择'
+                        }
+                    }
+                }
+           
+            }
+        })
+		
+	});		
+	</script>
+
+
 <script  type="text/javascript">
     var rows = null;
     
@@ -299,7 +340,6 @@
 						<div class="form-group">
 							<label for="url" class="control-label col-sm-3">机构图片</label>
 							<div class="col-sm-8">
-								<textarea name="coimgurl" rows="3" class="form-control" id="coimgurl"></textarea>
 	            				<input type="file" name="file" id="file">
 	            			</div>
 						</div>
@@ -318,16 +358,17 @@
 								</select>
 	            			</div>
 						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
+							</button>
+							<button type="submit" id="btn_submit" class="btn btn-primary" >
+								<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
+							</button>
+						</div>
 					</form>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
-					</button>
-					<button type="button" id="btn_submit" class="btn btn-primary" >
-						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
-					</button>
-				</div>
+				
 			</div>
 		</div>
 	</div>
