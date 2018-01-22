@@ -11,7 +11,7 @@
     <script src="statics/home2/js/excanvas.js" type="text/javascript"></script>
     <link rel="js/stylesheet" href="iefix.css">
     <![endif]-->
-    <link rel="Shortcut  Icon" href="${pageContext.request.contextPath}/statics/other/lco/smalllog.png">
+    <link rel="Shortcut  Icon" href="${pageContext.request.contextPath}/statics/other/lco/6.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/statics/newcommon/css/m2-commonNew.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/statics/home2/css/m2-main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/statics/newcommon/css/m2-common.css">

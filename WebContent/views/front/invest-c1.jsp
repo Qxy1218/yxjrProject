@@ -8,7 +8,7 @@
 	<head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 	<title>亿信金融-最安全的互联网金融综合服务平台</title>
-	<link  rel="Shortcut  Icon"  href="/Finances/statics/other/lco/smalllog.png"/>
+	<link  rel="Shortcut  Icon"  href="/Finances/statics/other/lco/6.png">
 	<style type="text/css">
 	body{background-color: #ccc;}
 	.main{

@@ -17,7 +17,7 @@
        <!--[if lt IE 9]>
         <script src="js/html5shiv_1.js"></script>
         <![endif]-->
-        <link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
+        <link  rel="Shortcut  Icon"  href="/Finances/statics/other/lco/6.png">
         <link rel="stylesheet" href="/Finances/statics/front/css/m2-commonnew_1.css">
 		<link rel="stylesheet" href="/Finances/statics/front/css/m2-main_1.css">
         <link rel="stylesheet" href="/Finances/statics/front/css/m2-common_1.css">

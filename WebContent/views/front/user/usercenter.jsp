@@ -13,7 +13,7 @@
 	    	<script src="<%=path%>/statics/front/statics/newcommon/js/html5shiv.js"></script>
 	    <![endif]-->
 		<title>我的账户 | 亿信金融</title>
-		<link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
+		<link  rel="Shortcut  Icon"  href="/Finances/statics/other/lco/6.png">
 		<link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-common.css">
 	    <link rel="Shortcut  Icon" href="/Finances/statics/front/statics/newcommon/images/minilogo.png">

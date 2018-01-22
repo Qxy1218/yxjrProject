@@ -10,7 +10,7 @@
         <!--[if lt IE 9]>
         <script src="https://www.iqianbang.com/statics/newcommon/js/html5shiv.js"></script>
         <![endif]-->
-        <link rel="shortcut icon" href="/Finances/statics/other/lco/smalllog.png"> 
+        <link  rel="Shortcut  Icon"  href="/Finances/statics/other/lco/6.png">
 		<meta charset="UTF-8">
 			    <!--[if lt IE 9]>
 		    	<script src="<%=path%>/statics/front/statics/newcommon/js/html5shiv.js"></script>

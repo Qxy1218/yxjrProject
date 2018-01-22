@@ -7,7 +7,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>二维码 | 亿信金融</title>
-		<link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
+		<link  rel="Shortcut  Icon"  href="/Finances/statics/other/lco/6.png">
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="keywords" content="">

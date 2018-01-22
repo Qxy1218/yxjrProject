@@ -15,7 +15,7 @@
 	    <meta name="keywords" content="网贷平台,网络借贷，网络赚钱项目,理财产品">
 	    <meta name="description" content="爱钱帮网贷平台为您提供网络赚钱项目；为此相继推出了许多新的理财产品，在为您创造高收益的同时也优化了理财产品模式。网络借贷，就选爱钱帮。">
 	    <meta charset="UTF-8">
-	    <link  rel="Shortcut  Icon"  href="/Finances/statics/other/lco/smalllog.png">
+	    <link  rel="Shortcut  Icon"  href="/Finances/statics/other/lco/6.png">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-common.css">
 	    <link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
