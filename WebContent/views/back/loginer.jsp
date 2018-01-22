@@ -4,18 +4,18 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
 %>
+<%-- <jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include> --%>
 <html>
 	<head>
 		<title>亿信金融后台登录</title>
-		<link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
+		<link rel="Shortcut  Icon" href="/Finances/statics/other/lco/6.png">
 		<link href="${pageContext.request.contextPath}/statics/back/backlogin/css/style.css" rel='stylesheet' type='text/css' />
+		<script src="${pageContext.request.contextPath}/statics/back/static/js/jquery.min.js"></script>
+    	<script src="${pageContext.request.contextPath}/statics/back/static/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/statics/back/static/js/jquery.form.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="Simple Login Form,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements"./>
-		<script src="${pageContext.request.contextPath}/statics/back/static/js/jquery.min.js"></script>
-	    <script src="${pageContext.request.contextPath}/statics/back/static/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/statics/back/static/js/jquery.form.js"></script>
-		<%-- <link href="${pageContext.request.contextPath}/statics/back/static/css/bootstrap.min.css" rel="stylesheet"> --%>
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 		</script>
 		<!--webfonts-->
@@ -109,14 +109,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<form>
 					<ul>
 						<li>
-							<!-- <input type="text" name="name" id="name" placeholder="请输入账号" onblur="empName()"/> -->
-							<input type="text" class="text" placeholder="请输入账号" onblur="empName()"><a href="#" class=" icon user"></a>
+							<input type="text" name="name" id="name" placeholder="请输入账号" onblur="empName()"/><a href="#" class=" icon user"></a>
 						</li>
 						<li id="nameNull" style="color: red;display:none">用户名不能为空!</li>
 						
 						 <li>
-							<!-- <input type="password" name="password" id="password" placeholder="请输入密码" onblur="empPassword()"/> -->
-							<input type="password" placeholder="请输入密码" onfocus="empPassword()"><a href="#" class=" icon lock"></a>
+							<input type="password" name="password" id="password" placeholder="请输入密码" onblur="empPassword()"/><a href="#" class=" icon lock"></a>
 						</li>
 						 <li id="passwordNull" style="color: red;display:none">密码不能为空!</li>
 						

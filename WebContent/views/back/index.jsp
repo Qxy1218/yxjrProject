@@ -32,7 +32,7 @@
     
 	
 
-	<link rel="Shortcut  Icon" href="${pageContext.request.contextPath}/statics/other/lco/smalllog.png">
+	<link rel="Shortcut  Icon" href="${pageContext.request.contextPath}/statics/other/lco/6.png">
     <link href="${pageContext.request.contextPath}/statics/back/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/statics/back/static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/statics/back/static/css/animate.css" rel="stylesheet">
