@@ -154,10 +154,14 @@
 	                        <td class="center">20</td>
 	                        <td class="center">20</td>
 	                        <td class="right">完成风险评测获得20个钱帮币</td>
-	                    </tr>            </table>
-	                <div style="text-align:center;margin-top:24px;">
+	                    </tr>            
+	                   </table>
+	                   <%--
+	                   <div style="text-align:center;margin-top:24px;">
 	                    <span class="click_more">点击加载更多>></span>
-	                </div>
+	               	 </div>
+	                    --%>
+	                
 	            </div>
 	        </div>
 	    </div>
@@ -182,7 +186,7 @@
 	                $('.click_more').hide();
 	            }
 	        }
-	        function loadMore(){
+	     /*    function loadMore(){
 	            $.ajax({
 	                url:"usercenter-Rewardcontrol-getMyCreditsLogAjax",
 	                type:"POST",
@@ -196,7 +200,7 @@
 	                    insertTr(obj);
 	                }
 	            });
-	        }
+	        } */
 	        function insertTr(obj){
 	            if(obj){
 	                for(var i in obj){

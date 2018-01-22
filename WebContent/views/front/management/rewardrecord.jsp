@@ -3,6 +3,7 @@
 <%
 	String path = request.getContextPath();
 %>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -180,21 +181,23 @@
 		
 		                <table class="m2-manageResult" cellpadding="0" cellspacing="0">
 		                    <tr class="m2-manageResult-head">
-		                        <th style="width:120px;">时间</th>
-		                        <th style="width:155px;">资金类型</th>
-		                        <th style="width:135px;">描述</th>
-		                        <th style="width:120px;">金额(元)</th>
-		                        <th style="width:100px;">激活余额(元)</th>
-		                        <th style="width:110px;">待激活余额(元)</th>
+		                        <th style="width:120px;">用户姓名</th>
+		                        <th style="width:155px;">消费余额</th>
+		                        <th style="width:135px;">使用奖励详情</th>
+		                        <th style="width:120px;">奖励金类型（1：红包，2：代金卷）</th>
+		                        <th style="width:100px;">使用时间</th>		                     
 		                    </tr>
 		
-		
-		                    <tr class="m2-manageResult-sum">
-		                        <td colspan="3"></td>
-		                        <td>总计:<span class="m2-manageResult-total" id='sum_reward'>0.00</span></td>
-		                        <td></td>
-		                        <td><span class="m2-manageResult-more">加载更多</span></td>
-		                    </tr>
+							<c:forEach items="${listMoney}" var="moneyDetail">
+			                    <tr class="m2-manageResult-sum">
+			                       <th style="width:120px;">${moneyDetail.uiname}</th>
+			                        <th style="width:155px;">${moneyDetail.mdmoney}</th>
+			                        <th style="width:135px;">${moneyDetail.mdintroduce}</th>
+			                        <th style="width:120px;">${moneyDetail.mdstype}</th>
+			                        <th style="width:100px;">${moneyDetail.mdtime}</th>
+	
+			                    </tr>
+			                </c:forEach>
 		                </table>
 		            </div>
 		        </div>

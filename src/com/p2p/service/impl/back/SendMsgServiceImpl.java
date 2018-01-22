@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -64,8 +65,8 @@ public class SendMsgServiceImpl implements SendMsgService{
 	}
 
 	@Override
-	public Integer sendMsgCount() {
-		return sendmsg.sendMsgCount();
+	public Integer sendMsgCount(SendMsg sendmsg) {
+		return sendmsg.sendMsgCount(sendmsg);
 	}
 
 	@Override

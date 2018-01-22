@@ -16,7 +16,7 @@ public interface SendMsgService  extends IBaseService<Integer,SendMsg>{
 	SendMsg findUserMsg(Integer isuser);
 	abstract void selectPage(@Param(value="pageInfo")PageInfo pageInfo,@Param(value="sendMsg") SendMsg sendMsg);//实现分页
 	//查询总的记录数
-	abstract Integer sendMsgCount();
+	abstract Integer sendMsgCount(@Param(value="sendMsg") SendMsg sendmsg);
 	
 	int updateIsUser();
 }

@@ -20,7 +20,7 @@ public interface SendMsgMapper extends IBaseDao<Integer,SendMsg>{
 	//实现分页查询
 	List<SendMsg> selectPage(Pagination page,Map<String ,Object> params,@Param(value="sendMsg") SendMsg sendmsg);
 	//查询总的记录数
-	abstract Integer sendMsgCount();
+	abstract Integer sendMsgCount(@Param(value="sendMsg") SendMsg sendmsg);
 	
 	int updateIsUser();
 }
