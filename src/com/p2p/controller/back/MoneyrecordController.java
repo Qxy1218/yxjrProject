@@ -1,17 +1,23 @@
 package com.p2p.controller.back;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.pojo.Moneyrecord;
 import com.p2p.service.back.MoneyrecordServiece;
+import com.p2p.util.DateUtils;
 import com.p2p.util.PageInfo;
 
 @Controller
@@ -65,4 +71,39 @@ public class MoneyrecordController {
 			}
 			return count;
 		}
+		
+		//前台模糊查询
+		@RequestMapping(value="toSeleByMoneyRecord")
+		@ResponseBody
+		public String toSeleByMoneyRecord(Integer uid,Integer mrstatus,HttpSession session) throws JsonProcessingException {
+			ObjectMapper mapper = new ObjectMapper(); //转换器  
+			Map<String, Object> map = new HashMap<String, Object>();
+			Moneyrecord  moneyrecord =new Moneyrecord();
+			List<Moneyrecord> moneyrecordList =new ArrayList<Moneyrecord>();
+			Double allMoneyCode = 0.0;
+			if(mrstatus==0) {
+				moneyrecordList = moneyrecordServiece.selectMoneyrecord(uid);
+				for (int i = 0; i < moneyrecordList.size(); i++) {
+					allMoneyCode+=moneyrecordList.get(i).getMrwastemoney();
+				}
+			}
+			else if(mrstatus==7) {
+				moneyrecord.setMrwasttime((DateUtils.getDateFormat(DateUtils.getDayBefore(new Date(),7))));
+				moneyrecord.setMrendtime(DateUtils.getDateFormat(new Date()));
+				moneyrecord.setUid(uid);
+				moneyrecordList = moneyrecordServiece.seleMonreyReByTime(moneyrecord);
+				for (int i = 0; i < moneyrecordList.size(); i++) {
+					allMoneyCode+=moneyrecordList.get(i).getMrwastemoney();
+				}
+				
+			}
+			map.put("data", moneyrecordList);
+			String obj = mapper.writeValueAsString(map);
+			/*session.setAttribute("listMoney",moneyrecordList);*/
+			session.setAttribute("allMoneyCode",allMoneyCode);
+			return obj;
+		}
+		
+	
+		
 }

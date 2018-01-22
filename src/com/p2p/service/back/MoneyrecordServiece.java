@@ -21,4 +21,7 @@ public interface MoneyrecordServiece extends IBaseService<Integer, Moneyrecord >
 	
 	//根据uid去查询奖励金流水记录
   	abstract List<Moneyrecord> selectMoneyrecord(Integer uid);
+  	
+  //前台模糊查询
+  	abstract List<Moneyrecord> seleMonreyReByTime(Moneyrecord moneyrecord);
 }

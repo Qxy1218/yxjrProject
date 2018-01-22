@@ -15,6 +15,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select * from moneyreccoord 
  	</select>
  	
+ 	<!-- 前台资金记录模糊查询 -->
+ 	<select id="seleMonreyReByTime" resultMap="BaseResultMap">
+ 		select mr.*,ui.ui_name as uiname from moneyreccoord mr ,user u ,user_info ui<where>
+ 		 1=1
+			<if test="mrwastemoney != null and mrwastemoney !='' ">
+			    and mr.mr_wastemoney like CONCAT(CONCAT('%', #{mrwastemoney}), '%')
+			</if>
+			<if test="mrwasttime !=null and mrwasttime != '' and mrendtime != null and mrendtime != ''">
+            	and mr.mr_wasttime between #{mrwasttime} and #{mrendtime}
+ 			</if>
+ 			and mr.u_id= u.u_id and ui.u_id = u.u_id and mr.u_id = #{uid} 
+ 		</where>
+ 	</select>
  	<!-- 员工添加 -->
 	<insert id="addModel" useGeneratedKeys="true" keyProperty="mrid">
  		 insert into moneyreccoord(u_id,mr_detail,mr_wastemonr,mr_wasttime) 

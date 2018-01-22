@@ -74,5 +74,10 @@ public class MoneyrecordServiceImpl implements MoneyrecordServiece{
 		
 		return moneyrecordmapper.selectMoneyrecord(uid);
 	}
+
+	@Override
+	public List<Moneyrecord> seleMonreyReByTime(Moneyrecord moneyrecord) {
+		return moneyrecordmapper.seleMonreyReByTime(moneyrecord);
+	}
 	
 }
