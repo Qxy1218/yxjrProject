@@ -14,13 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.pojo.AuthebDetais;
+import com.p2p.pojo.EmpTask;
 import com.p2p.pojo.Fabiao;
+import com.p2p.pojo.Profit;
 import com.p2p.pojo.User;
 import com.p2p.service.back.AuthebDetaisService;
 import com.p2p.service.back.BidService;
+import com.p2p.service.back.EmpTaskService;
 import com.p2p.service.back.FabiaobackService;
 import com.p2p.service.back.LoanService;
 import com.p2p.service.front.IUserService;
+import com.p2p.service.front.ProfitService;
+import com.p2p.util.ContextUtils;
 import com.p2p.util.DateUtils;
 
 /**
@@ -39,13 +44,22 @@ public class IndexController {
 	@Resource(name="loanServiceImpl")
 	private LoanService loanService;    //借款
 	
-	@Resource(name="fabiaobackServiceImpl")	
-	private FabiaobackService fabiaoService;
-	
 	//用户
 	@Resource(name="IUserServiceImpl")
 	private IUserService iUserService;
 	
+	//用户任务
+	@Resource(name="empTaskServiceImpl")
+	private EmpTaskService empTaskService;
+	
+	//收益表service
+	@Resource(name="profitServiceImpl")
+	private ProfitService profitService;
+	
+	//发标
+	@Resource(name="fabiaobackServiceImpl")	
+	private FabiaobackService fabiaoService;
+
 	
 	
 	/**
@@ -124,25 +138,66 @@ public class IndexController {
 			List<User> allUser =iUserService.getAllModel(); 
 			session.setAttribute("allUser",allUser.size());
 			
-			Fabiao fabiao = new Fabiao();
-			fabiao.setFstatus(2);
-			BigDecimal allMoneyYiXin = new BigDecimal("0.0");
-			BigDecimal MoneyYiXin = new BigDecimal("0.0");
-			List<Fabiao> fabiaoList = fabiaoService.getAllModel();
-			for (int i = 0; i < fabiaoList.size(); i++) {
-				if(fabiaoList.get(i).getFfqqx()!=null){
-					if(fabiaoList.get(i).getFfqqx()==1) {
-						allMoneyYiXin=allMoneyYiXin.add(MoneyYiXin);
-					}
-					
-				}
+			//得到当前平台的收益
+			User u = new User();
+			u.setUid(10);
+			User user = iUserService.getModel(u);
+			session.setAttribute("pintaiMoney", user.getUbalance());
+	
+			
+			//得到所有用户所赚取的全部收益
+			List<Profit> allProfit = profitService.getAllModel();
+			Double allMoneyProfit = 0.0;
+			for (int i = 0; i < allProfit.size(); i++) {
+				allMoneyProfit+=allProfit.get(i).getPfmoney();
 			}
+			session.setAttribute("allMoneyProfit",allMoneyProfit);
 			ObjectMapper om = new ObjectMapper();
 			//转换成json对象
 			String sdateList = om.writeValueAsString(dateTimeList);
 			String smoneyLoan = om.writeValueAsString(moneyLoan);
 			String smoneyBid = om.writeValueAsString(moneyBid);
 			
+			//修改任务列表状态
+			List<EmpTask> eTackList = empTaskService.getAllModel();
+			for (int i = 0; i < eTackList.size(); i++) {
+				String newDate = DateUtils.getDateFormat(new Date());
+				String empTaskTime = dataTime.format(DateUtils.getDateFormat(eTackList.get(i).getEtendtime()));
+				int result=newDate.compareTo(empTaskTime); //result是两个时间差多少天
+				if(result>0) {
+					EmpTask et = new EmpTask();
+					et.setEtstatus(0);
+					et.setEtid(eTackList.get(i).getEtid());
+					empTaskService.update(et);
+				}
+			}
+			//查询任务列表
+			EmpTask empTask = new EmpTask();
+			empTask.setEtendtime((DateUtils.getDateFormat(new Date())));
+			empTask.setEtstarttime(DateUtils.getDateFormat(DateUtils.getDayBefore(new Date(),7)));
+			
+ 			List<EmpTask> empTasskList = empTaskService.seleByEmpTask(empTask);
+			session.setAttribute("empTasskList", empTasskList);
+			
+			//查询用户发标情况
+			List<Fabiao> fabiaoList = new ArrayList<Fabiao>();
+			List<Fabiao> List = fabiaoService.getAllModel();
+			for (int i = 0; i < List.size(); i++) {
+				Fabiao fabiao = new Fabiao();
+				Date fendtime =DateUtils.getDateFormat(List.get(i).getFendtime());
+				fabiao.setFendtime(dataTime.format(fendtime));
+				fabiao.setUiname(List.get(i).getUiname());
+				fabiao.setFstatus(List.get(i).getFstatus());
+				fabiao.setFendmoney(List.get(i).getFendmoney());
+				fabiao.setFmoney(List.get(i).getFmoney());
+				//取完成率
+				 BigDecimal bigcompnrate = List.get(0).getFendmoney().divide(List.get(0).getFmoney(),10,BigDecimal.ROUND_HALF_DOWN);
+				 String compnrate =  ContextUtils.parsePercent(bigcompnrate.toString());
+				 fabiao.setCompnrate(compnrate);
+				fabiaoList.add(fabiao);
+			}
+			session.setAttribute("fabiaoList", fabiaoList);
+ 			
 			session.setAttribute("dateTime", sdateList);
 			session.setAttribute("moneyLoan", smoneyLoan);
 			session.setAttribute("moneyBid", smoneyBid);

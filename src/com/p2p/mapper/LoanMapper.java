@@ -19,7 +19,7 @@ public interface LoanMapper extends IBaseDao<Integer,Loan>{
 			//实现分页查询
 			List<Loan> selectPage(Pagination page,Map<String ,Object> params,@Param(value="loan") Loan loan);
 			//查询总的记录数
-			abstract Integer loancount();
+			abstract Integer loancount(@Param(value="loan") Loan loan);
 			
 			String getMaxStartTime();  //获取到最大的开始时间
 			String getMinStartTime();  //获取到最小的开始时间

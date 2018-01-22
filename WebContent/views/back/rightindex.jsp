@@ -34,13 +34,13 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <span class="label label-success pull-right">月</span>
-                        <h5>平台累计借款</h5>
+                        <h5>平台累计收益</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">40 886,200</h1>
+                        <h1 class="no-margins">${sessionScope.pintaiMoney}</h1>
                         <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i>
                         </div>
-                        <small>借款数</small>
+                        <small>平台收益(元)</small>
                     </div>
                 </div>
             </div>
@@ -48,13 +48,13 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <span class="label label-info pull-right">月</span>
-                        <h5>平台累计收益</h5>
+                        <h5>平台服务用户收益</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">275,800</h1>
+                        <h1 class="no-margins">${sessionScope.allMoneyProfit}</h1>
                         <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i>
                         </div>
-                        <small>收益数</small>
+                        <small>用户收益</small>
                     </div>
                 </div>
             </div>
@@ -213,55 +213,36 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><small>进行中...</small>
-                                            </td>
-                                            <td><i class="fa fa-clock-o"></i> 11:20</td>
-                                            <td>青衣5858</td>
-                                            <td class="text-navy"> <i class="fa fa-level-up"></i> 24%</td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="label label-warning">已取消</span>
-                                            </td>
-                                            <td><i class="fa fa-clock-o"></i> 10:40</td>
-                                            <td>徐子崴</td>
-                                            <td class="text-navy"> <i class="fa fa-level-up"></i> 66%</td>
-                                        </tr>
-                                        <tr>
-                                            <td><small>进行中...</small>
-                                            </td>
-                                            <td><i class="fa fa-clock-o"></i> 01:30</td>
-                                            <td>姜岚昕</td>
-                                            <td class="text-navy"> <i class="fa fa-level-up"></i> 54%</td>
-                                        </tr>
-                                        <tr>
-                                            <td><small>进行中...</small>
-                                            </td>
-                                            <td><i class="fa fa-clock-o"></i> 02:20</td>
-                                            <td>武汉大兵哥</td>
-                                            <td class="text-navy"> <i class="fa fa-level-up"></i> 12%</td>
-                                        </tr>
-                                        <tr>
-                                            <td><small>进行中...</small>
-                                            </td>
-                                            <td><i class="fa fa-clock-o"></i> 09:40</td>
-                                            <td>荆莹儿</td>
-                                            <td class="text-navy"> <i class="fa fa-level-up"></i> 22%</td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="label label-primary">已完成</span>
-                                            </td>
-                                            <td><i class="fa fa-clock-o"></i> 04:10</td>
-                                            <td>栾某某</td>
-                                            <td class="text-navy"> <i class="fa fa-level-up"></i> 66%</td>
-                                        </tr>
-                                        <tr>
-                                            <td><small>进行中...</small>
-                                            </td>
-                                            <td><i class="fa fa-clock-o"></i> 12:08</td>
-                                            <td>范范范二妮</td>
-                                            <td class="text-navy"> <i class="fa fa-level-up"></i> 23%</td>
-                                        </tr>
+                                        	<c:forEach items="${fabiaoList}" var="fabiao">
+                                        		<c:set var="fstatus" value="${fabiao.fstatus}" />
+                                        		<c:if test="${fstatus==1}">
+                                        			 <tr>
+                                        			 	<td><small>进行中...</small>
+			                                            </td>
+			                                            <td><i class="fa fa-clock-o"></i>${fabiao.fendtime}</td>
+			                                            <td>${fabiao.uiname}</td>
+			                                            <td class="text-navy"> <i class="fa fa-level-up"></i>${fabiao.compnrate}</td>
+                                        		  </tr>
+                                        		</c:if>
+                                        		<c:if test="${fstatus==2 || fstatus==3 || fstatus==7 }">
+                                        			 <tr>
+			                                            <td><span class="label label-primary">已完成</span>
+			                                            </td>
+			                                            <td><i class="fa fa-clock-o"></i>${fabiao.fendtime}</td>
+			                                            <td>${fabiao.uiname}</td>
+			                                            <td class="text-navy"> <i class="fa fa-level-up"></i> 100%</td>
+			                                        </tr>
+                                        		</c:if>
+                                        		<c:if test="${fstatus==5 || fstatus==6 || fstatus==4 }">
+                                        			<tr>
+			                                            <td><span class="label label-warning">已取消</span>
+			                                            </td>
+			                                            <td><i class="fa fa-clock-o"></i>${fabiao.fendtime}</td>
+			                                            <td>${fabiao.uiname}</td>
+			                                            <td class="text-navy"> <i class="fa fa-level-up"></i>0%</td>
+			                                        </tr>
+                                        		</c:if>
+                                        	</c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -282,41 +263,29 @@
                             </div>
                             <div class="ibox-content">
                                 <ul class="todo-list m-t small-list ui-sortable">
-                                    <li>
-                                        <a href="widgets.html#" class="check-link"><i class="fa fa-check-square"></i> </a>
-                                        <span class="m-l-xs todo-completed">开会</span>
-
-                                    </li>
-                                    <li>
-                                        <a href="widgets.html#" class="check-link"><i class="fa fa-check-square"></i> </a>
-                                        <span class="m-l-xs  todo-completed">项目开发</span>
-
-                                    </li>
-                                    <li>
-                                        <a href="widgets.html#" class="check-link"><i class="fa fa-square-o"></i> </a>
-                                        <span class="m-l-xs">修改bug</span>
-                                        <small class="label label-primary"><i class="fa fa-clock-o"></i> 1小时</small>
-                                    </li>
-                                    <li>
-                                        <a href="widgets.html#" class="check-link"><i class="fa fa-square-o"></i> </a>
-                                        <span class="m-l-xs">修改bug</span>
-                                        <small class="label label-primary"><i class="fa fa-clock-o"></i> 1小时</small>
-                                    </li>
-                                    <li>
-                                        <a href="widgets.html#" class="check-link"><i class="fa fa-square-o"></i> </a>
-                                        <span class="m-l-xs">修改bug</span>
-                                        <small class="label label-primary"><i class="fa fa-clock-o"></i> 1小时</small>
-                                    </li>
-                                    <li>
-                                        <a href="widgets.html#" class="check-link"><i class="fa fa-square-o"></i> </a>
-                                        <span class="m-l-xs">修改bug</span>
-                                        <small class="label label-primary"><i class="fa fa-clock-o"></i> 1小时</small>
-                                    </li>
-                                    <li>
-                                        <a href="widgets.html#" class="check-link"><i class="fa fa-square-o"></i> </a>
-                                        <span class="m-l-xs">修改bug</span>
-                                        <small class="label label-primary"><i class="fa fa-clock-o"></i> 1小时</small>
-                                    </li>
+                                    <c:forEach items="${empTasskList}" var="empTask">
+                                    	<c:set var="etstatus" value="${empTask.etstatus}" /><!-- 标签用于设置变量值和对象属性。 -->
+                                    	<c:if test="${etstatus ==0 }">
+                                    		 <li>
+		                                        <a href="widgets.html#" class="check-link"><i class="fa fa-check-square"></i> </a>
+		                                        <span class="m-l-xs todo-completed">${empTask.etname}</span>
+                                    		 </li>
+                                    	</c:if>
+                                    	<c:if test="${etstatus ==1 }">
+                                    		 <li>
+		                                        <a href="widgets.html#" class="check-link"><i class="fa fa-square-o"></i> </a>
+		                                        <span class="m-l-xs todo-completed">${empTask.etname}</span>
+		                                        <small class="label label-primary"><i class="fa fa-clock-o"></i>one day</small>
+		                                    </li>
+                                    	</c:if>
+                                    	<c:if test="${etstatus ==2 }">
+                                    		 <li>
+		                                        <a href="widgets.html#" class="check-link"><i class="fa fa-square-o"></i> </a>
+		                                        <span class="m-l-xs">${empTask.etname}</span>
+		                                        <small class="label label-primary"><i class="fa fa-clock-o"></i> 1小时</small>
+		                                    </li>
+                                    	</c:if>
+                                    </c:forEach>
                                 </ul>
                             </div>
                         </div>

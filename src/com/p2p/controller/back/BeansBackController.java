@@ -124,8 +124,11 @@ public class BeansBackController {
 		  authebDetaisService.update(authebDetais);
 		  if(adstype==1) {
 			  return "views/back/idcard";
-		  }else {
-			  return "view/back/views/back/shfabiao.jsp";
+		  }else if(adstype==2){
+			  return "views/back/shfabiao";
+		  }
+		  else{
+			  return "view/back/idcard";
 		  }
 		  
 	  }

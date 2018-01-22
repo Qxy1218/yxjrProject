@@ -121,19 +121,20 @@ public class Fabiao implements Serializable{
 	
 	private BigDecimal yield; //万元收益率
 	
+	private String uiname ; //用户昵称
+	
 	
 	
 	public Fabiao() {
 	}
 
-
-
-
 	public Fabiao(Integer fid, String ftitle, Integer uid, String fcode, String ftype, String fpart, BigDecimal froe,
 			BigDecimal fincrease, String fcontent, String fsituation, String fopinion, BigDecimal fmoney,
 			BigDecimal fendmoney, String fendtime, BigDecimal fminmoney, BigDecimal fmaxmoney, BigDecimal frate,
 			String fimage, String forderimg, String fcontract, Integer fbidstatus, Integer fstatus, String fsecurity,
-			String fprocedures, String frepayment, String fsecuritymea, Integer rematime, String compnrate) {
+			String fprocedures, String frepayment, String fsecuritymea, String fhuanstat, String fhuanend,
+			Integer ffqqx, Integer fyhqx, Integer fhkstype, Integer rematime, String compnrate, BigDecimal yield,
+			String uiname) {
 		super();
 		this.fid = fid;
 		this.ftitle = ftitle;
@@ -161,18 +162,20 @@ public class Fabiao implements Serializable{
 		this.fprocedures = fprocedures;
 		this.frepayment = frepayment;
 		this.fsecuritymea = fsecuritymea;
+		this.fhuanstat = fhuanstat;
+		this.fhuanend = fhuanend;
+		this.ffqqx = ffqqx;
+		this.fyhqx = fyhqx;
+		this.fhkstype = fhkstype;
 		this.rematime = rematime;
 		this.compnrate = compnrate;
+		this.yield = yield;
+		this.uiname = uiname;
 	}
-
-
-
 
 	public BigDecimal getYield() {
 		return yield;
 	}
-
-
 
 
 	public void setYield(BigDecimal yield) {
@@ -643,5 +646,28 @@ public class Fabiao implements Serializable{
 	public void setFhuanend(String fhuanend) {
 		this.fhuanend = fhuanend;
 	}
+
+	public String getUiname() {
+		return uiname;
+	}
+
+	public void setUiname(String uiname) {
+		this.uiname = uiname;
+	}
+
+	@Override
+	public String toString() {
+		return "Fabiao [fid=" + fid + ", ftitle=" + ftitle + ", uid=" + uid + ", fcode=" + fcode + ", ftype=" + ftype
+				+ ", fpart=" + fpart + ", froe=" + froe + ", fincrease=" + fincrease + ", fcontent=" + fcontent
+				+ ", fsituation=" + fsituation + ", fopinion=" + fopinion + ", fmoney=" + fmoney + ", fendmoney="
+				+ fendmoney + ", fendtime=" + fendtime + ", fminmoney=" + fminmoney + ", fmaxmoney=" + fmaxmoney
+				+ ", frate=" + frate + ", fimage=" + fimage + ", forderimg=" + forderimg + ", fcontract=" + fcontract
+				+ ", fbidstatus=" + fbidstatus + ", fstatus=" + fstatus + ", fsecurity=" + fsecurity + ", fprocedures="
+				+ fprocedures + ", frepayment=" + frepayment + ", fsecuritymea=" + fsecuritymea + ", fhuanstat="
+				+ fhuanstat + ", fhuanend=" + fhuanend + ", ffqqx=" + ffqqx + ", fyhqx=" + fyhqx + ", fhkstype="
+				+ fhkstype + ", rematime=" + rematime + ", compnrate=" + compnrate + ", yield=" + yield + ", uiname="
+				+ uiname + "]";
+	}
+	
 	
 }

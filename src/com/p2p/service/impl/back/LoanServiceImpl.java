@@ -13,6 +13,8 @@ import com.p2p.pojo.Loan;
 import com.p2p.service.back.LoanService;
 import com.p2p.util.PageInfo;
 
+import sun.util.resources.LocaleNames;
+
 /**
  * 借款ServiceImpl实现类
  * 
@@ -62,11 +64,7 @@ public class LoanServiceImpl implements LoanService{
 		pageInfo.setTotal(page.getTotal());
 	}
 
-	@Override
-	public Integer Loancount() {
-		return loanMapper.loancount();
-	}
-
+	
 	@Override
 	public Loan getByemployname(String ename) {
 		return loanMapper.getByemployname(ename);
@@ -85,6 +83,11 @@ public class LoanServiceImpl implements LoanService{
 	@Override
 	public List<String> getMoneyByTime(String time) {
 		return loanMapper.getMoneyByTime(time);
+	}
+
+	@Override
+	public Integer Loancount(Loan loan) {
+		return loanMapper.loancount(loan);
 	}
 
 }

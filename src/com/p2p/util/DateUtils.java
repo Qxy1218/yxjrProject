@@ -309,6 +309,19 @@ public class DateUtils {
 		gregorianCalendar.set(Calendar.DATE, day + addday);
 		return gregorianCalendar.getTime();
 	}
+	
+	/**
+	 * 获取日期前几天
+	 * 
+	 * @param date
+	 * @return
+	 */
+	public static Date getDayBefore(Date date,int addday) {
+		gregorianCalendar.setTime(date);
+		int day = gregorianCalendar.get(Calendar.DATE);
+		gregorianCalendar.set(Calendar.DATE, day - 7);
+		return gregorianCalendar.getTime();
+	}
 
 	/**
 	 * 获取当前年

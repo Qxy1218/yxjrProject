@@ -30,12 +30,6 @@
 							$('#import').modal('hide');
 							$('#tb_emp').bootstrapTable('refresh');
 						}
-						/* 
-						var json = $.parseJSON(data);
-						
-						$("#img1").attr("src", json.relativePath);
-						$("#imgPath").val(json.relativePath); */
-					}					
 				};
 				
 				// ajax表单提交

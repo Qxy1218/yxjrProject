@@ -18,7 +18,7 @@ public interface LoanService extends IBaseService<Integer, Loan> {
 	//实现分页查询
 	abstract void selectPage(@Param(value="pageInfo")PageInfo pageInfo,@Param(value="loan") Loan loan);//实现分页
 	//查询总的记录数
-	abstract Integer Loancount();
+	abstract Integer Loancount(@Param(value="loan") Loan loan);
 	
 	String getMaxStartTime();  //获取到最大的开始时间
 	String getMinStartTime();  //获取到最小的开始时间

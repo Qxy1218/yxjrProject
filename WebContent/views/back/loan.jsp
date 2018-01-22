@@ -13,210 +13,8 @@
 <jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
 <script type="text/javascript" src="${pageContext.request.contextPath}/statics/back/static/js/laydate.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery.form.js"></script>
-<script src="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/js/bootstrapValidator.min.js"></script>
-<link href="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#editRole')
-        .bootstrapValidator({
-            message: 'This value is not valid',
-            feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-            	uphone: {
-                    message: '用户验证失败',
-                    validators: {
-                    	 notEmpty: {
-                             message: '用户不能为空'
-                         },
-     		            stringLength: {
-     		                min: 1,
-     		                max: 11,
-     		                message: '请输入0-11位数字'
-     		            },
-     		            regexp: {
-     		                regexp: /^[0-9]*$/,
-     		                message: '只能输入数字'
-     		            }
-                    }
-                },
-                lmoney: {
-                    message: '员工电话验证失败',
-                    validators: {
-                    	 notEmpty: {
-                             message: '员工电话不能为空'
-                         },
-                         stringLength: {
-                             min: 0,
-                             max: 11,
-                             message: '请输入11位手机号码'
-                         },
-                       
-                    }
-                },
-                ename: {
-                    message: '员工姓名验证失败',
-                    validators: {
-                    	 notEmpty: {
-                             message: '员工姓名不能为空'
-                         },
-                         stringLength: {
-                             min: 6,
-                             max: 30,
-                             message: '员工姓名必须大于6，长度小于30个字符。'
-                         },
-                    }
-                },
-                esex: {
-                    message: '员工性别验证失败',
-                    validators: {
-                    	 notEmpty: {
-                             message: '员工性别不能为空,请选择'
-                         }
-                    }
-                },
-                eidcard: {
-                    message: '身份证验证失败',
-                    validators: {
-                    	 notEmpty: {
-                             message: '身份证不能为空'
-                         },
-                         regexp: {
-                             regexp:  /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/,
-                             message: '请输入正确的身份证'
-                         }
-                         
-                    }
-                },
-                eemail: {
-                	message: '员工邮箱验证失败',
-                    validators: {
-                        notEmpty: {
-                            message: '员工邮箱不能为空'
-                        },
-                        emailAddress: {
-                            message: '请输入正确的邮件地址如：123@qq.com'
-                        }
-                    }
-                },
-                eposition: {
-                    message: '员工职位验证失败',
-                    validators: {
-                    	 notEmpty: {
-                             message: '员工职位不能为空'
-                         }
-                         
-                    }
-                },
-                eretime: {
-                    message: '员工注册时间验证失败',
-                    validators: {
-                    	 notEmpty: {
-                             message: '员工注册时间不能为空'
-                         }
-                        
-                    }
-                },
-                estatus: {
-                	message: '员工状态验证失败',
-                    validators: {
-                        notEmpty: {
-                            message: '员工状态不能为空,请选择'
-                        }
-                    }
-                }
-            }
-        })
-        .on('success.form.bv', function(e) {
-        	
-        	$("#editForm").modal('hide');
-            // Prevent form submission
-            e.preventDefault();
-
-            // Get the form instance
-            var $form = $(e.target);
-
-            // Get the BootstrapValidator instance
-            var bv = $form.data('bootstrapValidator');
-            var form = new FormData(document.getElementById("editRole"));
-            var eid =$("#editRole #eid").val();
-            var eid =$("#editRole #eid").val();
-            alert(eid); 
-            if(eid==null || eid==""){
-            	$.ajax({
-       	          url:"${pageContext.request.contextPath}/back/insertEmp",
-       	          type:"post",
-       	          data:form,
-       	          processData:false,
-       	          contentType:false,
-       	          success:function(data){
-       	        	//后台返回int类型的数据
-       					if(data>0){
-       						//新增成功，下面是后台框架的提示
-       						parent.layer.alert('增加成功');
-       					}else{
-       						//新增失败
-       						parent.layer.alert('增加失败');
-       					}
-       					$('#tb_emp').bootstrapTable('refresh');
-       	          },
-       	          error:function(e){
-       	        	parent.layer.alert('错误');
-       	          }
-             });
-            	
-            }else{
-            	$("#editForm").modal('hide');
-        		var url = "${pageContext.request.contextPath }/back/updateEmp";
-        		$.post(
-        			url,
-        			{
-        				lid:lid,
-        				uid:$("#editRole #uid").val(),
-        				lmoney:$("#editRole #lmoney").val(),
-        				ltime:$("#editRole #ltime").val(),
-        				lendtime:$("#editRole #lendtime").val(),
-        				lstatus:$("#editRole #lstatus").val(),
-        				lway:$("#editRole #lway").val(),
-        				linterest:$("#editRole #linterest").val(),
-        			},
-        			function(data){
-        				//后台返回int类型的数据
-        				if(data>0){
-        					//新增成功，下面是后台框架的提示
-        					parent.layer.alert('修改成功');
-        				}else{
-        					//新增失败
-        					parent.layer.alert('修改失败');
-        				}
-        				//新增完刷新表格数据
-        				$('#tb_emp').bootstrapTable('refresh');
-        			},
-        			"text"
-        		);		
-            } 
-        });
-});
-</script>
+<script src="${pageContext.request.contextPath}/statics/back/static/js/excel.js"></script>
 <script  type="text/javascript" >
-    var rows = null;
-    function addRole(){
-    	//清空editModel原来填写的内容
-		$("#editRole #uid").val('');
-		$("#editRole #lmoney").val('');
-		$("#editRole #ltime").val('');
-		$("#editRole #lendtime").val('');
-		$("#editRole #lstatus").val('');
-		$("#editRole #lway").val('');
-		$("#editRole #linterest").val('');
-		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
-		$("#btn_submit").attr("onclick","insertEmploye()");
-		//显示新增窗口
-		$('#editForm').modal('show');
-    }
 	//修改按钮事件
     function UpRole(){
    	//获取当前选中行的信息
@@ -233,20 +31,50 @@ $(document).ready(function() {
 		}
 		var athRole = selectList[0];
 		//把选中行的数据放到弹窗的控件中
+		$("#editRole #linterest").html(athRole.linterest);
+		$("#editRole #uiname").html(athRole.uiname);
 		$("#editRole #uid").val(athRole.uid);
 		$("#editRole #lmoney").val(athRole.lmoney);
 		$("#editRole #ltime").val(athRole.ltime);
 		$("#editRole #lendtime").val(athRole.lendtime);
 		$("#editRole #lstatus").val(athRole.lstatus);
 		$("#editRole #lway").val(athRole.lway);
-		$("#editRole #linterest").val(athRole.linterest);
 		
 		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
 		$("#btn_submit").attr("onclick","updateEmploye("+athRole.lid+")");
 		//显示新增窗口
 		$('#editForm').modal('show');
     }
-	
+	function updateEmploye(lid){
+		$("#editForm").modal('hide');
+		var url = "${pageContext.request.contextPath }/back/updateEmp";
+		$.post(
+			url,
+			{
+				lid:lid,
+				uid:$("#editRole #uid").val(),
+				lmoney:$("#editRole #lmoney").val(),
+				ltime:$("#editRole #ltime").val(),
+				lendtime:$("#editRole #lendtime").val(),
+				lstatus:$("#editRole #lstatus").val(),
+				lway:$("#editRole #lway").val(),
+				linterest:$("#editRole #linterest").val(),
+			},
+			function(data){
+				//后台返回int类型的数据
+				if(data>0){
+					//新增成功，下面是后台框架的提示
+					parent.layer.alert('修改成功');
+				}else{
+					//新增失败
+					parent.layer.alert('修改失败');
+				}
+				//新增完刷新表格数据
+				$('#tb_emp').bootstrapTable('refresh');
+			},
+			"text"
+		);
+	}
 	//删除按钮事件
 	//*************************************************************************按钮事件
 	function btn_delete(){
@@ -314,8 +142,8 @@ $(document).ready(function() {
 			queryParams : queryParams,//传递参数（*）
 			sidePagination : "server", //分页方式：client客户端分页，server服务端分页（*）
 			pageNumber : 1, //初始化加载第一页，默认第一页
-			pageSize : 15, //每页的记录行数（*）
-			pageList : [ 15,20, 25, 30 ], //可供选择的每页的行数（*）
+			pageSize : 10, //每页的记录行数（*）
+			pageList : [ 10,15,20, 25], //可供选择的每页的行数（*）
 			search : true, //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
 			strictSearch : false,
 			searchOnEnterKey :true, //按回车搜索
@@ -329,12 +157,26 @@ $(document).ready(function() {
 			cardView : false, //是否显示详细视图
 			detailView : false, //是否显示父子表
 			singleSelect: false,  //设置为单选
+			clickToSelect:true,  
+		    exportDataType:'basic',   //导出当前页
+		    showExport: true,  //是否显示导出按钮  
+		       buttonsAlign:"right",  //按钮位置  
+		       exportTypes:['excel'],  //导出文件类型  
+		       Icons:'glyphicon-export',  
+		       exportOptions:{  
+		           ignoreColumn: [0,1],  //忽略某一列的索引  
+		           fileName: '用户借款报表',  //文件名称设置  
+		           worksheetName: 'sheet1',  //表格工作区名称  
+		           tableName: '用户借款报表',  
+		           excelstyles: ['background-color', 'color', 'font-size', 'font-weight'],  
+		           /* onMsoNumberFormat: DoOnMsoNumberFormat  */ 
+		       },  
 			columns : [ {
 				checkbox : true,
 			},
 			 {
-				field : 'user.uphone',
-				title : '借款'
+				field : 'uiname',
+				title : '借款人姓名'
 			},
 			 {
 				field : 'lmoney',
@@ -350,6 +192,17 @@ $(document).ready(function() {
 			},  {
 				field : 'lstatus',
 				title : '状态',
+				align : 'center',
+				formatter : function(value, row, index) {
+					var lstatus = row.lstatus;
+					if(lstatus==0){
+			            return '<i>未还款</i>'
+			        }else if(lstatus==1){
+			            return '<i>还款中</i>'
+			        }else{
+			            return '<i>已还款</i>'
+			        }
+				}
 			}, 
 			{
 				field : 'lway',
@@ -357,31 +210,36 @@ $(document).ready(function() {
 			}, 
 			{
 				field : 'linterest',
-				title : '还款时间'
+				title : '还款利息'
 			},
 			]
 		});
 		
 		
 });
+	function DoOnMsoNumberFormat(cell, row, col) {  
+	       var result = "";  
+	       if (row > 0 && col == 0)  
+	           result = "\\@";  
+	       return result;  
+	   }  
 	function queryParams(params) {
 		var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
 			//***这里的参数传到后台，用来进行分页处理*************************
 			rows: params.limit, //页面大小
 			page: params.offset, //页码
-			eenum : $("#eenum").val(),
-			esex : $("#esex").val(),
-			eidcard : $("#eidcard").val(), 
-			ephone : $("#ephone").val(),
-			eposition : $("#eposition").val(),
-			eemail : $("#eemail").val(), 
-			ename : $("#ename").val(),
-			estatus : $("#estatus").val(), 
-			eretime : $("#eretime").val(),
-			eremark : $("#eremark").val(),
+			ltime : $("#ltime").val(),
+			lendtime : $("#lendtime").val(),
+			lstatus : $("#lstatus").val(), 
+			
 		};
 		return temp;
 	};
+	
+	//导出
+	function exportExcel(){
+		 var form = new FormData(document.getElementById("editForm"));
+	}
 	</script>
 	<script type="text/javascript">
 		!function(){
@@ -416,7 +274,6 @@ $(document).ready(function() {
 		};
 		laydate(start);
 		laydate(end);
-
 	</script>
 </head>
 <body class="gray-bg">
@@ -433,33 +290,43 @@ $(document).ready(function() {
 						</div>
 					</div>
 					<div class="ibox-content">
-							<!-- <div class="form-group">
-		            			<label for="incomeTypes" class="control-label col-sm-1">员工姓名</label>
-								<div class="col-sm-2">
-									<input type="text" name="ename" class="form-control" id="ename">
-		            			</div>
-		            			
-	            				<label for="operateTime" class="control-label col-sm-1">员工编号</label>
+							 <div class="form-group">
+		            			<label for="operateTime" class="control-label col-sm-1">借款时间:</label>
 		            			<div class="col-sm-2">
-	            					<input type="text" name="eenum" class="form-control" id="eenum">
+	            					<input type="text" name="ltime" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" id="ltime">
 	            				</div>
+		            			<label for="incomeTypes" class="control-label col-sm-1">还款时间:</label>
+								<div class="col-sm-2">
+									<input type="text" name="lendtime" id="lendtime" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+		            			</div>
+	            				<label for="operateTime" class="control-label col-sm-1">还款状态:</label>
+		            			<div class="col-sm-2">
+									<select class="form-control m-b" id="lstatus" name="lstatus" style="margin-bottom: 0px;">
+		                        		<option value=-1>请选择</option>
+		                        		<option value=0>未还款</option>
+		                        		<option value=1>还款中</option>
+		                        		<option value=2>已还款</option>
+		                        	</select>
+		            			</div>
 				                <button type="button" id="searchForm" class="btn btn-primary" onclick="searchForm()">搜索</button>
-							</div> -->
+							</div> 
 						<div id="toolbar" class="btn-group">
-							<button id="btn_add" type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#addStudent" onclick="addRole()">
-								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
-							</button>
 							<button id="btn_edit" type="button" class="btn btn-w-m btn-success" onclick="UpRole()">
 								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 							</button>
 							<button id="btn_delete" type="button" class="btn btn-w-m btn-danger" onclick="btn_delete()">
 								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
 							</button>
+							<!-- 导出start -->
+							 <script src="${pageContext.request.contextPath}/statics/back/static/js/export.js"></script>
+							 <a id="dlink"  style="display:none;"></a>
+							 <button  type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#addStudent" onclick="tableToExcel('tb_emp','name','loan.xls')" value="Export to Excel">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>导出
+							</button> 
+							<!-- 导出end -->
 						</div>
 						<!-- table代码就这些，用js构建表格 -->
-						<table id="tb_emp" >
-							
-						</table>
+						<table id="tb_emp" ></table>
 					</div>
 				</div>
 			</div>
@@ -480,12 +347,17 @@ $(document).ready(function() {
 				<div class="modal-body">
 					<!-- 新增系别 -->
 					<form id="editRole" class="form-horizontal m-t" method="post" enctype="multipart/form-data">
-						<!-- <form id="editRole" method="post" class="form-horizontal m-t" action="ajaxSubmit.php"> -->
                 		<input type="hidden" name="eid" id="eid" />
                 		<div class="form-group">
-							<label for="url" class="control-label col-sm-3">员工编号</label>
+							<label for="url" class="control-label col-sm-3">用户昵称</label>
 							<div class="col-sm-8">
-								<input type="text" name="uid" rows="3" class="form-control" id="uid" />
+								<span id="uiname"></span>
+	            			</div>
+						</div>
+						<div class="form-group">
+							<label for="url" class="control-label col-sm-3">还款利息</label>
+							<div class="col-sm-8">
+								<span id="linterest"></span>
 	            			</div>
 						</div>
 						<div class="form-group">
@@ -507,19 +379,13 @@ $(document).ready(function() {
 	            			</div>
 						</div>
 						<div class="form-group">
-							<label for="url" class="control-label col-sm-3">状态</label>
-							<div class="col-sm-8">
-								<input type="text" name="lstatus" rows="3" class="form-control" id="lstatus" />
-	            			</div>
-						</div>
-						
-						<div class="form-group">
 							<label for="url" class="control-label col-sm-3">借款状态</label>
 							<div class="col-sm-8">
 								<select class="form-control m-b" id="lstatus" name="lstatus" style="margin-bottom: 0px;">
 		                        		<option value="-1">请选择</option>
-		                        		<option value="1">已还</option>
-		                        		<option value="0">未还</option>
+		                        		<option value="0">未还款</option>
+		                        		<option value="1">还款中</option>
+		                        		<option value="2">已还款</option>
 		                        </select>
 	            			</div>
 						</div>
@@ -527,37 +393,23 @@ $(document).ready(function() {
 							<label for="url" class="control-label col-sm-3">借款类型</label>
 							<div class="col-sm-8">
 								<select class="form-control m-b" id="lway" name="lway" style="margin-bottom: 0px;">
-		                        		<option value="-1">请选择</option>
-		                        		<option value="1">现金</option>
-		                        		<option value="2">转账</option>
+		                        		<option value="现金">现金</option>
+		                        		<option value="转账">转账</option>
 		                        </select>
 	            			</div>
 						</div>
-						<%-- <div class="form-group">
-							<label for="url" class="control-label col-sm-3">所属角色</label> 
-							<div class="col-sm-8">
-								<select class="form-control m-b" id="reid" name="reid" style="margin-bottom: 0px;">
-		                        	<c:forEach items="${rolelist}" var="role" >
-		                        		<option value="${role.reid}">${role.rename}</option>
-		                        	</c:forEach>
-		                        </select>
-	            			</div>
-						</div> --%>	
-						
-						
-                <div class="form-group">
-                   <div class="modal-footer">
-						<button type="submit" class="btn btn-default" data-dismiss="modal">
-							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
-						</button>
-						 <button type="submit" class="btn btn-primary">
-						 	<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
-						 </button>
-					</div>
-                </div>
-            
-        </div>
-		</form>
+		                <div class="form-group">
+		                   <div class="modal-footer">
+								<button type="submit" class="btn btn-default" data-dismiss="modal">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
+								</button>
+								 <button type="submit" class="btn btn-primary">
+								 	<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
+								 </button>
+							</div>
+		                </div>
+				</form>
+				</div>
 				</div>
 			</div>
 		</div>

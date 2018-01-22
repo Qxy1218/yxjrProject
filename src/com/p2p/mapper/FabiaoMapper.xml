@@ -129,7 +129,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <select id="getAllModel" resultMap="BaseResultMap">
     	<!-- 查已发布的项目 -->
-    	select * from fabiao
+    	select f.* ,ui.ui_name as uiname  from fabiao f ,user u ,user_info ui 
+    	<where>
+    		 f.u_id = u.u_id and ui.u_id = u.u_id
+    	</where>
     </select>
     
     <select id="selectByType" resultMap="BaseResultMap" parameterType="java.lang.String">
