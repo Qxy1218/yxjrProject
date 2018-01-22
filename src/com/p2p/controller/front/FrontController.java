@@ -29,6 +29,7 @@ import com.p2p.pojo.Area;
 import com.p2p.pojo.City;
 import com.p2p.pojo.Contact;
 import com.p2p.pojo.Fabiao;
+import com.p2p.pojo.Moneyrecord;
 import com.p2p.pojo.Newsfocus;
 import com.p2p.pojo.Notice;
 import com.p2p.pojo.Profit;
@@ -42,6 +43,7 @@ import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Video;
 import com.p2p.service.back.AboutService;
 import com.p2p.service.back.ContactService;
+import com.p2p.service.back.MoneyrecordServiece;
 import com.p2p.service.back.VideoService;
 import com.p2p.service.front.AddressService;
 import com.p2p.service.front.FabiaoService;
@@ -113,6 +115,9 @@ public class FrontController {
 	
 	@Resource(name="noticeFontServiceImpl")
 	private NoticeFontSrvice noticeFontSrvice;
+	//奖励金
+	@Resource(name="moneyrecordServiceImpl")
+	private MoneyrecordServiece moneyrecordServiece;
 	
 	/**
 	 * 头部的conteroller
@@ -820,6 +825,31 @@ public class FrontController {
 		List<User> listUser = iUserService.seleUserByUinvite(uinvite);
 		session.setAttribute("listUser",listUser);
 		return "views/front/inviting";
+	}
+	
+	/**
+	 *奖励金页面的conteroller
+	 *
+	 * */
+	@RequestMapping(value="/tomoneyreward")
+	public String torewardrecord(HttpSession session,Integer uid){
+		List<Moneyrecord> MoneyList = new ArrayList<Moneyrecord>();
+		List<Moneyrecord> listMoney = moneyrecordServiece.selectMoneyrecord(uid);
+		Double allMoneyCode = 0.0;
+		for (int i = 0; i < listMoney.size(); i++) {
+			allMoneyCode+=listMoney.get(i).getMrwastemoney();
+			Moneyrecord moneyrecord = new Moneyrecord();  
+			String moneytime=DateUtils.ChuSHDateFormat(listMoney.get(i).getMrwasttime());
+			moneyrecord.setMrwasttime(moneytime);
+			moneyrecord.setMrdetail(listMoney.get(i).getMrdetail());
+			moneyrecord.setMrid(listMoney.get(i).getMrid());
+			moneyrecord.setUiname(listMoney.get(i).getUiname());
+			moneyrecord.setMrwastemoney(listMoney.get(i).getMrwastemoney());
+			MoneyList.add(moneyrecord);
+		}
+		session.setAttribute("listMoney",MoneyList);
+		session.setAttribute("allMoneyCode",allMoneyCode);
+		return "views/front/management/moneyrecord";
 	}
 	
 	/**

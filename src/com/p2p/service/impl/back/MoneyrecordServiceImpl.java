@@ -68,5 +68,11 @@ public class MoneyrecordServiceImpl implements MoneyrecordServiece{
 	public Integer moneyrecordCount() {
 		return moneyrecordmapper.moneyrecordCount();
 	}
+
+	@Override
+	public List<Moneyrecord> selectMoneyrecord(Integer uid) {
+		
+		return moneyrecordmapper.selectMoneyrecord(uid);
+	}
 	
 }

@@ -1,5 +1,7 @@
 package com.p2p.service.back;
 
+import java.util.List;
+
 import com.p2p.base.IBaseService;
 import com.p2p.pojo.Moneyrecord;
 import com.p2p.util.PageInfo;
@@ -16,4 +18,7 @@ public interface MoneyrecordServiece extends IBaseService<Integer, Moneyrecord >
 		
 	//查询总的记录数
 	abstract Integer moneyrecordCount();
+	
+	//根据uid去查询奖励金流水记录
+  	abstract List<Moneyrecord> selectMoneyrecord(Integer uid);
 }

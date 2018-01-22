@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.p2p.base.IBaseDao;
 import com.p2p.pojo.Moneyrecord;
+import com.p2p.pojo.User;
 
 /**
  * 操作人:杨嘉辉
@@ -22,4 +23,7 @@ public interface MoneyrecordMapper extends IBaseDao<Integer, Moneyrecord>{
 	
 	//查询总的记录数
 	abstract Integer moneyrecordCount();
+	
+	//根据uid去查询奖励金流水记录
+  	abstract List<Moneyrecord> selectMoneyrecord(Integer uid);
 }
