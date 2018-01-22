@@ -161,14 +161,14 @@
 		                <h3><i></i>奖励金流水记录</h3>
 		            </div>
 		
-		
+					<input type="hidden" value="${sessionScope.user.uid}" id="uid" name="uid"/>
 		            <div class="m2-manage-search-selector">
 		                <ul class="m2-manageSearchsel-time">
 		                    <li>时间范围：</li>
-		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-sel" data-days='0'>全部</span></li>
-		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-days='7'>最近7天</span></li>
-		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-days='30'>一个月</span></li>
-		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-days='90'>三个月</span></li>
+		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-days='0' '>全部</span></li>
+		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-sel" data-days='7'  >最近7天</span></li>
+		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-days='30' >一个月</span></li>
+		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-days='90' '>三个月</span></li>
 		                    <li>从<input id="m2-manSeadate-start" type="text"></li>
 		                    <li>到<input id="m2-manSeadate-end" type="text"></li>
 		                </ul>
@@ -188,7 +188,7 @@
 		                     
 		                    </tr>
 							<c:forEach items="${listMoney}" var="moneyrecord">
-		                    	<tr>
+		                    	<tr class="mycount">
 		                    		<td>${moneyrecord.uiname}</td>
 		                    		<td>${moneyrecord.mrdetail }</td>
 		                    		<td>${moneyrecord.mrwastemoney}</td>
@@ -217,7 +217,7 @@
 		
 		    $(document).ready(function(){
 		        //加载初始数据
-		        getRewordRecord();
+		        //getRewordRecord();
 		        //加载日历
 		        ucDatepicker('#m2-manSeadate-start','usercenter-rewardcontrol-getRewardLogAjax',getSearchData,processData);
 		        ucDatepicker('#m2-manSeadate-end','usercenter-rewardcontrol-getRewardLogAjax',getSearchData,processData);
@@ -252,16 +252,13 @@
 		    });
 		
 		    function getRewordRecord(){
-		
+				var uid =$('#uid').val();
 		        $.ajax({
-		            url:"usercenter-Rewardcontrol-getRewardLogAjax",
+		            url:"/Finances/money/toSeleByMoneyRecord",
 		            type:"POST",
 		            data:{
-		                time1:time1,
-		                time2:time2,
-		                days:days,
-		                status:status,
-		                start:start
+		                mrstatus:days,
+		                uid:uid
 		            },
 		            success:function(data){
 		                processData(data);
@@ -270,40 +267,33 @@
 		    }
 		
 		    function processData(data){
-		        obj = eval('('+data+')');
+		        var obj = eval('('+data+')');
 		        start++;
-		        pages = obj['pages'];
+		        //pages = obj['pages'];
 		        checkBtn();
-		        showData(obj['data']);
+		        $('.mycount').html('');
+		        showData(obj.data);
 		    }
 		
 		    function showData(obj){
-		
 		        if(obj){
-		            var sum = Number($('#sum_reward').text());
-		            for(var i in obj){
+		        	var sum = Number($('#sum_reward').text());
+		        	$.each(obj,function(i,item){  
 		                var tr = '<tr class="m2-manageResult-item">';
-		                tr += '<td>'+obj[i]['date']+'</td>';
-		                tr += '<td>'+obj[i]['type_text']+'</td>';
-		                tr += '<td title="'+obj[i]['info']+'">'+obj[i]['info']+'</td>';
-		                if(obj[i]['affect_money']>=0){
-		                    tr += '<td class="m2-manageResultitem-up">';
-		                }else{
-		                    tr += '<td class="m2-manageResultitem-down">';
-		                }
-		                tr += +obj[i]['affect_money']+'</td>';
-		                tr += '<td>'+obj[i]['reward_money']+'</td>';
-		                tr += '<td>'+(obj[i]['sum_inactive']?obj[i]['sum_inactive']:0)+'</td>';
+		                tr += '<td>'+item.uiname+'</td>';
+		                tr += '<td>'+item.mrdetail+'</td>';
+		                tr += '<td>'+item.mrwastemoney+'</td>';
+		                tr += '<td>'+item.mrwasttime+'</td>';
 		                tr += '</tr>';
 		                $('.m2-manageResult-sum').before(tr);
-		                sum = calPlus(sum,obj[i]['affect_money']);
-		            }
-		            $('#sum_reward').text(sum);
+		                //sum = calPlus(sum,obj[i]['mrwastemoney']);
+		        	})
+		            /* $('#sum_reward').text(sum);
 		            if(sum < 0){
 		                $('#sum_reward').css('color','#E64648');
 		            }else{
 		                $('#sum_reward').css('color','#717171');
-		            }
+		            } */
 		        }
 		        if($('.m2-manageResult-item').size() == 0){
 		            $('.m2-manageResult-sum').before('<tr class="m2-manageResult-item"><td colspan="6">暂无数据</td></tr>');
@@ -336,6 +326,30 @@
 		            $('.m2-manageResult-more').hide();
 		        }
 		    }
+		    
+		     function change(a){
+		    	 var uid = $('#uid').val();
+		    	if(a==0){
+		    		/*  全部 */
+		    		 window.location="http://127.0.0.1:8080/Finances/money/toSeleByMoneyRecord?mrstatus="+a+"&uid="+uid;	
+		    	}
+		    	else  if(a==1){
+		    		/*  最近7天 */
+		    		 window.location="http://127.0.0.1:8080/Finances/money/toSeleByMoneyRecord?mrstatus="+a+"&uid="+uid;	
+				    			 
+		    	 }
+		    	 else if(a==2){
+		    		 /* 一个月 */
+		    		 window.location="http://127.0.0.1:8080/Finances/money/toSeleByMoneyRecord?mrstatus="+a+"&uid="+uid;	
+				    	
+		    	 }
+		    	 else if(a==3){
+		    		 /*  三个月 */
+		    		 window.location="http://127.0.0.1:8080/Finances/money/toSeleByMoneyRecord?mrstatus="+a+"&uid="+uid;	
+				    		
+		    	 }
+		    	
+		    } 
 		
 		    function clear(){
 		        start = 1;
