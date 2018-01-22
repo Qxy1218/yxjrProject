@@ -1079,7 +1079,7 @@
             <ul>
             	<c:forEach items="${cooorgsp}" var="cooorging">
 	                <li><a href="${cooorging.colinkurl}" target="_blank">
-	                    <img src="${cooorging.coimgurl}" alt=""></a>
+	                    <img src="/Finances${cooorging.coimgurl}" width="100" hight="50" alt=""></a>
 	                </li>
                 </c:forEach>
           </ul>
