@@ -9,7 +9,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -29,6 +32,7 @@ import com.p2p.pojo.Area;
 import com.p2p.pojo.City;
 import com.p2p.pojo.Contact;
 import com.p2p.pojo.Fabiao;
+import com.p2p.pojo.MoneyDetail;
 import com.p2p.pojo.Moneyrecord;
 import com.p2p.pojo.Newsfocus;
 import com.p2p.pojo.Notice;
@@ -48,6 +52,7 @@ import com.p2p.service.back.VideoService;
 import com.p2p.service.front.AddressService;
 import com.p2p.service.front.FabiaoService;
 import com.p2p.service.front.IUserService;
+import com.p2p.service.front.MoneyDetailService;
 import com.p2p.service.front.NewsfocusService;
 import com.p2p.service.front.NoticeFontSrvice;
 import com.p2p.service.front.ProfitService;
@@ -55,10 +60,12 @@ import com.p2p.service.front.SetupnaticeService;
 import com.p2p.service.front.SingService;
 import com.p2p.service.front.UserInfoService;
 import com.p2p.service.front.UserbackcardService;
+import com.p2p.service.impl.front.MoneyDetailServiceImpl;
 import com.p2p.util.AddressUtils;
 import com.p2p.util.ContextUtils;
 import com.p2p.util.DateUtils;
 import com.p2p.util.Page;
+import com.p2p.util.PageInfo;
 import com.p2p.util.YieldUtil;
 
 /**
@@ -119,6 +126,9 @@ public class FrontController {
 	@Resource(name="moneyrecordServiceImpl")
 	private MoneyrecordServiece moneyrecordServiece;
 	
+	//
+	@Resource(name="moneyDetailServiceImpl")
+	private MoneyDetailService moneyDetailService;
 	/**
 	 * 头部的conteroller
 	 * */
@@ -870,7 +880,27 @@ public class FrontController {
 	 *奖励金流水页面的conteroller
 	 * */
 	@RequestMapping(value="/toreward")
-	public String toreward() {
+	public String toreward(Model model,HttpSession session) {
+		
+		List<MoneyDetail> MoneyList = new ArrayList<MoneyDetail>();
+		User user = (User)session.getAttribute("user");
+		List<MoneyDetail> listMoney = moneyDetailService.selectMoney(user.getUid());
+		Double allMoneyDetail = 0.0;
+		for (int i = 0; i < listMoney.size(); i++) {
+			MoneyDetail moneyDetail = new MoneyDetail();  
+			String mdtime=DateUtils.ChuSHDateFormat(listMoney.get(i).getMdtime());
+			moneyDetail.setMdtime(mdtime);
+			moneyDetail.setMdid(listMoney.get(i).getMdid());;
+			moneyDetail.setUid(listMoney.get(i).getUid());
+			moneyDetail.setUiname(listMoney.get(i).getUiname());
+			moneyDetail.setMdintroduce(listMoney.get(i).getMdintroduce());
+			moneyDetail.setMdmoney(listMoney.get(i).getMdmoney());
+			moneyDetail.setMdstype(listMoney.get(i).getMdstype());
+			MoneyList.add(moneyDetail);
+		}
+		model.addAttribute("listMoney",MoneyList);
+		model.addAttribute("allMoneyDetail",allMoneyDetail);
+		
 		return "views/front/management/rewardrecord";
 	}
 	
