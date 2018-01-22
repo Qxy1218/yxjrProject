@@ -298,7 +298,7 @@ public class RepaymentController {
 			try {
 				RepayService reService = new RepayService();
 				reService.setRsuid(fabiao1.getUid());
-				reService.setRmoney(repmoney.doubleValue());
+				reService.setRmoeny(repmoney.doubleValue());
 				reService.setRtime(DateUtils.getDateTimeFormat(new Date()));
 				reService.setRorder(fabiao1.getFcode());
 				reService.setRstate(fabiao1.getFstatus());
