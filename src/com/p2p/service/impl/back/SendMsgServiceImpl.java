@@ -64,9 +64,8 @@ public class SendMsgServiceImpl implements SendMsgService{
 		pageInfo.setTotal(page.getTotal());
 	}
 
-	@Override
-	public Integer sendMsgCount(SendMsg sendmsg) {
-		return sendmsg.sendMsgCount(sendmsg);
+	public Integer sendMsgCount(SendMsg smsg) {
+		return sendmsg.sendMsgCount(smsg);
 	}
 
 	@Override
