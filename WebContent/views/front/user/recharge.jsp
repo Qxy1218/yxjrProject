@@ -379,7 +379,7 @@
 	            success: function (data) {
 	            	 if(data>0){
 	            		 $('#myModal').modal('hide');
-	            		 if(remoney>ubmoney){
+	            		 if(parseInt(remoney)>parseInt(ubmoney)){
 	            			 showMsg('金融不足,换取另外的支付方式!');
 	            		 }else{
 	            			 $.ajax({

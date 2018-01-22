@@ -52,18 +52,18 @@
 	            </li>
 	            <li class="m2-asideListitem">
 	            	<input type="hidden" id="vp_status" value="${sessionScope.userinfo.uiid }"/>
-	            	<c:set var="status" value="${sessionScope.userinfo.uiopenstatus }" />
-					<c:if test="${status == 0 }">
+	            	<c:set var="open_status" value="${sessionScope.userinfo.uiopenstatus }" />
+					<c:if test="${open_status == 0 }">
 						<a id="openstatus" class="m2-aside-item m2-aside-toggle" href="javascript:void(0);">
 							<i class="m2-asideIcon3"></i>徽商资金管理
 						</a>
 					</c:if>  
-					<c:if test="${status == 1 }">
+					<c:if test="${open_status == 1 }">
 						<a class="m2-aside-item m2-aside-toggle" href="/Finances/toopen">
 							<i class="m2-asideIcon3"></i>徽商资金管理
 						</a>
 					</c:if>
-	                <c:if test="${status == 2 }">
+	                <c:if test="${open_status == 2 }">
 						<a class="m2-aside-item m2-aside-toggle">
 							<i class="m2-asideIcon3"></i>徽商资金管理
 						</a>
@@ -103,11 +103,23 @@
 	                </ul>
 	            </li>
 	            <li class="m2-asideListitem">
+	            	<c:set var="fa_status" value="${fabiao.fstatus }" />
+	            	<c:set var="fas_status" value="${fabiaos.fstatus }" />
 	                <a class="m2-aside-item m2-aside-toggle" ><i class="m2-asideIcon6"></i>账户管理</a>
 	                <ul class="m2-aside-secItem" style="display:none" id='aaa'>
 	                    <li>
 	                        <a class="m2-aside-secLink-item" href="/Finances/userverify?uiid=${sessionScope.user.userinfo.uiid }">账户设置</a>
 	                    </li>
+	                    <c:if test="${fa_status==2 || fa_status==3 }">
+	                    	<li>
+		                        <a class="m2-aside-secLink-item" href="/Finances/repay/repayverify?uid=${sessionScope.user.uid }">还款设置</a>
+		                    </li>
+	                    </c:if>
+	                    <c:if test="${fas_status==2 || fas_status==3 }">
+	                    	<li>
+		                        <a class="m2-aside-secLink-item" href="/Finances/repay/repayverify?uid=${sessionScope.user.uid }">还款设置</a>
+		                    </li>
+	                    </c:if>
 	                </ul>
 	            </li>
 	        </ul>
