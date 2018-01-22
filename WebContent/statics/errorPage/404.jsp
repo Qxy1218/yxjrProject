@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<link rel="shortcut icon" href="${pageContext.request.contextPath}/statics/other/lco/6.png">
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/front/statics/ing/css/main.css" type="text/css" media="screen, projection" /> <!-- main stylesheet -->
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/ing/css/main.css" type="text/css" media="screen, projection" /> <!-- main stylesheet -->
 		<link rel="stylesheet" type="text/css" media="all" href="${pageContext.request.contextPath}/statics/front/ing/css/tipsy.css" /> <!-- Tipsy implementation -->
 		
 		<!--[if lt IE 9]>
