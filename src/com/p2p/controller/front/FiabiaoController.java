@@ -76,6 +76,7 @@ public class FiabiaoController {
 	@RequestMapping("toproject")
 	public String toProject(String pid,Model model,HttpSession session,ProjectSelect select,Integer pageNow) throws Exception{
 		model.addAttribute("pageName", "invset");
+		BidUtilController.setFabiao(fabiaoService);
 		//取当前时间	
 		Date date=new Date();
 		DateFormat format1 =new SimpleDateFormat("yyyy-MM-dd");
@@ -166,6 +167,7 @@ public class FiabiaoController {
 	@ResponseBody
 	public String toProjectlike(ProjectSelect select,Model model) throws Exception{
 		Map<String,Object> map = new HashMap<String,Object>();
+		BidUtilController.setFabiao(fabiaoService);
 		model.addAttribute("pageName", "invset");
 		//取当前时间	
 		Date date=new Date();

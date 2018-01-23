@@ -264,7 +264,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="fabiaoCount" resultType="java.lang.Integer">
 		select count(*) from fabiao
 	</select>
-	
+	<!-- 查询流标 -->
+	<select id="selectlb" resultMap="BaseResultMap">
+		<![CDATA[
+			select * from fabiao where f_endtime<=now();
+		]]>
+	</select>
+	<!-- 查询满标 -->
+	<select id="selectmb" resultMap="BaseResultMap">	
+		select * from fabiao where f_endmoney>=f_money;
+	</select>
+	<!-- 查询还款标 -->
+	<select id="selecthkb" resultMap="BaseResultMap">
+		select * from fabiao where f_huanstat>=now();
+	</select>
+	<!-- 修改流标 -->
+	<update id="updatelb" parameterType="com.p2p.pojo.Fabiao">
+		update  fabiao set f_status=#{start} where f_id=#{fid}
+	</update>
 	<select id="hotselect" resultMap="BaseResultMap">
 		
  	</select>

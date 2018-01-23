@@ -83,4 +83,27 @@ public class FabiaoServiceImpl implements FabiaoService{
 		return fabiaomapper.selectByStatus();
 	}
 
+	@Override
+	public List<Fabiao> selectlb() {
+		// TODO Auto-generated method stub
+		return fabiaomapper.selectlb();
+	}
+
+	@Override
+	public List<Fabiao> selectmb() {
+		// TODO Auto-generated method stub
+		return fabiaomapper.selectmb();
+	}
+
+	@Override
+	public List<Fabiao> selecthkb() {
+		// TODO Auto-generated method stub
+		return fabiaomapper.selecthkb();
+	}
+
+	@Override
+	public int updatelb(Integer start, Integer fid) {
+		return fabiaomapper.updatelb(start, fid);
+	}
+
 }

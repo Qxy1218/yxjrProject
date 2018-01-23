@@ -30,4 +30,12 @@ public interface FabiaoService extends IBaseService<Integer, Fabiao>{
 	
 	//查询成功发标数
 	List<Fabiao> selectByStatus();
+	//查询流标
+	List<Fabiao> selectlb();
+	//查询满标
+	List<Fabiao> selectmb();
+	//查询还款标
+	List<Fabiao> selecthkb();
+	
+	int updatelb(@Param("start")Integer start,@Param("fid")Integer fid);
 }
