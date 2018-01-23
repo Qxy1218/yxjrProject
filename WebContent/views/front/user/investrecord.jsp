@@ -95,7 +95,7 @@
                     	<th>${bid.bendtime}</th>
                     </c:forEach>
                     </tr>
-                    <tr class="m2-userTable-noData"><td>暂无数据</td><td colspan="5"></td></tr>					</table>
+                </table>
                 <input type="hidden" value=1 class="nowpages">
                 <input type="hidden" value= class="recordpages">
 	            </div>
