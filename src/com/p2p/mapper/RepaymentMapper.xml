@@ -48,6 +48,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		  <result column="f_yhqx" property="fyhqx"/>
  		  <result column="f_hkstype" property="fhkstype"/>
 		</association>
+		<association property="user" javaType="com.p2p.pojo.User">
+			<id column="u_id" property="uid"/>
+ 		  <result column="u_password" property="upassword"/>
+ 		  <result column="u_phone" property="uphone"/>
+ 		  <result column="u_loginTime" property="uloginTime"/>
+ 		   <result column="order_invite" property="orderinvite"/>
+ 		  <result column="u_invite" property="uinvite"/>
+ 		  <result column="u_enable" property="uenable"/>
+ 		  <result column="u_isAccountSum" property="uisAccountSum"/>
+ 		  <result column="qr_code" property="qrcode"/>
+ 		   <result column="u_address" property="uaddress"/>
+ 		  <result column="u_ip" property="uip"/>
+ 		  <result column="u_regTime" property="uregTime"/>
+ 		  <result column="u_credit" property="ucredit"/>
+ 		  <result column="u_balance" property="ubalance"/>
+ 		  <result column="ul_id" property="ulid"/>
+ 		  <result column="vd_id" property="vdid"/>
+		</association>
 	</resultMap>
 	<!-- 查询全部 -->
 	<select id="getAllModel">
@@ -98,6 +116,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="java.lang.Integer">
 		deletl from repayment where rm_id=#{rmid}
 	</delete>
+	
+	 <select id="selectPage" resultMap="repayMap">
+		select * from repayment r,fabiao f,user u 
+		<where>
+		1=1
+			<if test="repayment.rmplan != null and repayment.rmplan !='' ">
+			    and r.rm_plan like CONCAT(CONCAT('%', #{repayment.rmplan}), '%')
+			</if>
+			
+			<if test="repayment.rmface != null and repayment.rmface !='' ">
+			    and r.rm_face like CONCAT(CONCAT('%', #{repayment.rmface}), '%')
+			</if>
+			<if test="repayment.rmwait != null and repayment.rmwait !='' ">
+			    and r.rm_wait like CONCAT(CONCAT('%', #{repayment.rmwait}), '%')
+			</if>
+			<if test="repayment.rmall != null and repayment.rmall !='' ">
+			    and r.rm_wait like CONCAT(CONCAT('%', #{repayment.rmwait}), '%')
+			</if>
+			<if test="repayment.rmstate != null and repayment.rmstate !='' ">
+			    and r.rm_state like CONCAT(CONCAT('%', #{repayment.rmstate}), '%')
+			</if>
+			<if test="repayment.rmstyle != null and repayment.rmstyle !='' ">
+			    and r.rm_style like CONCAT(CONCAT('%', #{repayment.rmstyle}), '%')
+			</if>
+			<if test="repayment.fcode != null and repayment.fcode !='' ">
+			    and r.f_code like CONCAT(CONCAT('%', #{repayment.fcode}), '%')
+			</if>
+			and r.f_id = f.f_id and f.u_id = u.u_id
+		</where>
+    </select>
+    <select id="repaymentcount" resultType="java.lang.Integer">
+        select count(*) from repayment;
+    </select>
 	<!--前台查询 -->
 	<select id="selectMoney"  resultMap="repayMap" parameterType="java.lang.Integer">
 		select r.*,ui.ui_name as uiname from repayment r ,fabiao f,user_info ui 
