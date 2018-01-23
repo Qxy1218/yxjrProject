@@ -42,6 +42,11 @@ public class Bid implements Serializable{
 	
 	private String uphone; //用户电话号码
 	
+	private BigDecimal broe; //收益率
+	
+	private String ftit; //标名
+	
+	
 	public Bid() {
 		super();
 	}
@@ -129,6 +134,22 @@ public class Bid implements Serializable{
 
 	public void setUphone(String uphone) {
 		this.uphone = uphone;
+	}
+
+	public BigDecimal getBroe() {
+		return broe;
+	}
+
+	public void setBroe(BigDecimal broe) {
+		this.broe = broe;
+	}
+
+	public String getFtit() {
+		return ftit;
+	}
+
+	public void setFtit(String ftit) {
+		this.ftit = ftit;
 	}
 	
 }
