@@ -32,6 +32,7 @@
     
 	
 
+	<script type="text/javascript" src="${pageContext.request.contextPath}/statics/back/static/js/laydate.js"></script>
 	<link rel="Shortcut  Icon" href="${pageContext.request.contextPath}/statics/other/lco/6.png">
     <link href="${pageContext.request.contextPath}/statics/back/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/statics/back/static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
@@ -139,8 +140,6 @@
 		            var bv = $form.data('bootstrapValidator');
 		            var eid =$("#pwdForm #eid").val();
 		            var epassword = $("#pwdForm #SureEpassword").val();
-		            alert(eid);
-		            alert(epassword);
 		            if(epassword !="" || epassword !=null && eid !="" || eid!=null){
 		            	var url = "${pageContext.request.contextPath }/back/updatePwd";
 		        		$.post(
@@ -164,7 +163,78 @@
 		              	
 		            }
 		        });
+		    $('#worktime')
+	        .bootstrapValidator({
+	            message: '安全弹出框',
+	            feedbackIcons: {
+	                valid: 'glyphicon glyphicon-ok',
+	                invalid: 'glyphicon glyphicon-remove',
+	                validating: 'glyphicon glyphicon-refresh'
+	            },
+	            fields: {
+	            	etname: {
+	                     message:'任务名称',
+	                     validators: {
+	                         notEmpty: {
+	                             message: '任务名称不能为空'
+	                         },
+	                        
+	                     }
+	                 },
+	                 etcontent: {
+	                     message:'任务内容',
+	                     validators: {
+	                         notEmpty: {
+	                             message: '任务内容不能为空'
+	                         },
+	                        
+	                     }
+	                 },
+	                 etendtime: {
+	                     message: '发布任务结束时间',
+	                     validators: {
+	                         notEmpty: {
+	                             message: '发布任务结束时间不能为空'
+	                         },
+	                    
+	                     }
+	                 },
+	            }
+	        })
+	        .on('success.form.bv', function(e) {
+	        	$("#work").modal('hide');
+	            // Prevent form submission
+	            e.preventDefault();
+	            // Get the form instance
+	            var $form = $(e.target);
+	
+	            // Get the BootstrapValidator instance
+	            var bv = $form.data('bootstrapValidator');
+	            	var url = "${pageContext.request.contextPath }/backindex/addEmpTask";
+	        		$.post(
+	        			url,
+	        			{
+	        				etname:$('#worktime #etname').val(),
+	        			    etcontent:$('#worktime #etcontent').val(),
+	        				etendtime:$('#worktime #etendtime').val(),
+	        			},
+	        			function(data){
+	        				//后台返回int类型的数据
+	        				if(data>0){
+	        					//新增成功，下面是后台框架的提示
+	        					parent.layer.alert('任务安排成功');
+	        					window.location="${pageContext.request.contextPath }/back/toindex"
+	        				}else{
+	        					//新增失败
+	        					parent.layer.alert('任务安排失败');
+	        				}
+	        			},
+	        			"text"
+	        		);		
+	              	
+	        });
 		});
+		 
 </script>
 	<script  type="text/javascript">
 		//修改密码弹窗
@@ -175,6 +245,52 @@
 		
 		$("#upPwd").modal('show');
 	}
+	//工作任务安排框
+	function workTime(){
+		$('#work #etname').val('');
+		$('#work #etcontent').val('');
+		$('#work #etendtime').val('');
+		
+		$("#work").modal('show');
+	}
+	</script>
+	<script type="text/javascript">
+	<script type="text/javascript">
+	!function(){
+		laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
+		laydate({elem: '#demo'});//绑定元素
+	}();
+
+	//日期范围限制
+	var start = {
+		elem: '#start',
+		format: 'YYYY-MM-DD',
+		min: laydate.now(), //设定最小日期为当前日期
+		max: '2099-06-16', //最大日期
+		istime: true,
+		istoday: false,
+		choose: function(datas){
+			 end.min = datas; //开始日选好后，重置结束日的最小日期
+			 end.start = datas //将结束日的初始值设定为开始日
+		}
+	};
+
+	var end = {
+		elem: '#end',
+		format: 'YYYY-MM-DD',
+		min: laydate.now(),
+		max: '2099-06-16',
+		istime: true,
+		istoday: false,
+		choose: function(datas){
+			start.max = datas; //结束日选好后，充值开始日的最大日期
+		}
+	};
+	laydate(start);
+	laydate(end);
+	
+	
+	
 	</script>
 </head>
 
@@ -205,6 +321,9 @@
                                 <li class="divider"></li>
                                 <li><a href="${pageContext.request.contextPath}/back/adminlogout">安全退出</a>
                                 </li>
+                                <c:if test="${sessionScope.employee.eid == 1}">
+                                	<li><a  class="J_menuItem"  onclick="workTime()">安排工作</a>
+                                </c:if>
                             </ul>
                         </div>
                         <div class="logo-element">H+</div>
@@ -1047,6 +1166,58 @@
 								<div class="col-sm-6">
 									<input type="password" name="SureEpassword" class="form-control"
 										id="SureEpassword">
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-default" data-dismiss="modal">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
+								</button>
+								<button type="submit" id="btn_submit" class="btn btn-primary">
+									<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<!-- 安排任务窗口 -->
+		<div class="modal fade" id="work" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">发布工作任务安排</h4>
+					</div>
+					<div class="modal-body">
+						<!-- 新增系别 -->
+						<form id="worktime" class="form-horizontal m-t">
+							<div class="form-group">
+								<label for="urlName" class="control-label col-sm-3">任务名称</label>
+								<div class="col-sm-6">
+									<input type="hidden" id="eid" name="eid"
+										value="${sessionScope.employee.eid}"> 
+									<input name="etname" class="form-control" id="etname">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="urlName" class="control-label col-sm-3">任务内容</label>
+								<div class="col-sm-6">
+									<input type="text" name="etcontent" class="form-control"
+										id="etcontent">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="urlName" class="control-label col-sm-3" >任务结束时间</label>
+								<div class="col-sm-6">
+									<input type="text" name="etendtime" 
+										placeholder="请选择日期"id="etendtime" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
 								</div>
 							</div>
 							<div class="modal-footer">

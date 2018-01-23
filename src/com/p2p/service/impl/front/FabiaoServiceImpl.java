@@ -78,4 +78,9 @@ public class FabiaoServiceImpl implements FabiaoService{
 		return fabiaomapper.hotselect();
 	}
 
+	@Override
+	public List<Fabiao> selectByStatus() {
+		return fabiaomapper.selectByStatus();
+	}
+
 }

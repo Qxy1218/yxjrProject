@@ -51,10 +51,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</where>
 	</select>
 	
-	<select id="addModel" parameterType="com.p2p.pojo.EmpTask">
+	<insert id="addModel" parameterType="com.p2p.pojo.EmpTask" >
 		 insert into emp_task(et_name,et_content,et_starttime,et_status,et_endtime) 
  		 values(#{etname},#{etcontent},#{etstarttime},#{etstatus},#{etendtime})
-	</select>
+	</insert>
 	
 	<update id="update" parameterType="com.p2p.pojo.EmpTask">
 		  UPDATE emp_task  

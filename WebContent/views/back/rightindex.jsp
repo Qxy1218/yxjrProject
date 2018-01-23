@@ -16,16 +16,6 @@
     <link href="${pageContext.request.contextPath}/statics/back/static/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/statics/back/static/css/animate.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/statics/back/static/css/style.css?v=4.1.0" rel="stylesheet">
-    
-	<!-- 
-		<script type="text/javascript">
-			var adtime = $('#adtime').val();
-			SimpleDateFormat format2 = new SimpleDateFormat("MM");
-			String admm = format2.format(adtime);
-			String mon = format2.format(new Date());
-			request.setAttribute("month",mon);
-		</script> 
-	-->
 </head>
 <body class="gray-bg">
     <div class="wrapper wrapper-content">
@@ -75,14 +65,14 @@
             <div class="col-sm-3">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <span class="label label-danger pull-right">月</span>
+                        <span class="label label-danger pull-right">年</span>
                         <h5>平台累计发标</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">80,600</h1>
+                        <h1 class="no-margins">${sessionScope.fabiaoSuccess}</h1>
                         <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i>
                         </div>
-                        <small>发标数</small>
+                        <small>发标总数</small>
                     </div>
                 </div>
             </div>
@@ -111,8 +101,8 @@
                             <div class="col-sm-3">
                                 <ul class="stat-list">
                                     <li>
-                                        <h2 class="no-margins">2,346</h2>
-                                        <small>订单总数</small>
+                                        <h2 class="no-margins">${sessionScope.AllLoanMoney}</h2>
+                                        <small>借款总数</small>
                                         <div class="stat-percent">48% <i class="fa fa-level-up text-navy"></i>
                                         </div>
                                         <div class="progress progress-mini">
@@ -120,21 +110,12 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <h2 class="no-margins ">4,422</h2>
-                                        <small>最近一个月订单</small>
+                                        <h2 class="no-margins ">${sessionScope.AllBidMoney}</h2>
+                                        <small>最近一个月的发标数</small>
                                         <div class="stat-percent">60% <i class="fa fa-level-down text-navy"></i>
                                         </div>
                                         <div class="progress progress-mini">
                                             <div style="width: 60%;" class="progress-bar"></div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <h2 class="no-margins ">9,180</h2>
-                                        <small>最近一个月销售额</small>
-                                        <div class="stat-percent">22% <i class="fa fa-bolt text-navy"></i>
-                                        </div>
-                                        <div class="progress progress-mini">
-                                            <div style="width: 22%;" class="progress-bar"></div>
                                         </div>
                                     </li>
                             </div>

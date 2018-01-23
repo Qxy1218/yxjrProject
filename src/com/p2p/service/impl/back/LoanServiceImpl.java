@@ -90,4 +90,9 @@ public class LoanServiceImpl implements LoanService{
 		return loanMapper.loancount(loan);
 	}
 
+	@Override
+	public List<Loan> seleByLoan(Loan loan) {
+		return loanMapper.seleByLoan(loan);
+	}
+
 }

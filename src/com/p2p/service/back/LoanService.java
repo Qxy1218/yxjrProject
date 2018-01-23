@@ -24,4 +24,6 @@ public interface LoanService extends IBaseService<Integer, Loan> {
 	String getMinStartTime();  //获取到最小的开始时间
 	
 	List<String> getMoneyByTime(String time); //根据时间模糊查询  金额
+	
+	List<Loan> seleByLoan(Loan loan); //根据对象查询
 }

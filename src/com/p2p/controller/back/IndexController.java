@@ -11,18 +11,20 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.pojo.AuthebDetais;
 import com.p2p.pojo.EmpTask;
 import com.p2p.pojo.Fabiao;
+import com.p2p.pojo.Loan;
 import com.p2p.pojo.Profit;
 import com.p2p.pojo.User;
 import com.p2p.service.back.AuthebDetaisService;
 import com.p2p.service.back.BidService;
 import com.p2p.service.back.EmpTaskService;
-import com.p2p.service.back.FabiaobackService;
 import com.p2p.service.back.LoanService;
+import com.p2p.service.front.FabiaoService;
 import com.p2p.service.front.IUserService;
 import com.p2p.service.front.ProfitService;
 import com.p2p.util.ContextUtils;
@@ -57,8 +59,8 @@ public class IndexController {
 	private ProfitService profitService;
 	
 	//发标
-	@Resource(name="fabiaobackServiceImpl")	
-	private FabiaobackService fabiaoService;
+	@Resource(name="fabiaoServiceImpl")
+	private FabiaoService fabiaoService;
 
 	
 	
@@ -72,10 +74,13 @@ public class IndexController {
 		session.setAttribute("authebDetais", authebDetais);
 		
 		try {
-			String maxLoanTime = loanService.getMaxStartTime();  //最大借款时间
+			SimpleDateFormat dataTime = new SimpleDateFormat("yyyy-MM-dd");
+			/*String maxLoanTime = loanService.getMaxStartTime(); */	
+			String maxLoanTime = dataTime.format(new Date());//最大借款时间
 			String minLoanTime = loanService.getMinStartTime();  //最小借款时间
-			String maxBidTime = bidService.getMaxStartTime();  //最大投标时间
+			/*String maxBidTime = bidService.getMaxStartTime();  */
 			String minBidTime = bidService.getMinStartTime();  //最小投标时间
+			String maxBidTime = dataTime.format(new Date()); //最大投标时间
 			
 			Date maxLTime = DateUtils.ChuDate(maxLoanTime);
 			Date minLTime = DateUtils.ChuDate(minLoanTime);
@@ -95,7 +100,6 @@ public class IndexController {
 				minTime = minBTime;
 			}
 			
-			SimpleDateFormat dataTime = new SimpleDateFormat("yyyy-MM-dd");
 			//获取两个时间段的每一天
 			List<Date> dateList = DateUtils.getEveryDay(minTime, maxTime);
 			
@@ -104,7 +108,7 @@ public class IndexController {
 			List<Object> moneyBid = new ArrayList<>();
 			for(int i=0;i<dateList.size();i++) {
 				dateTimeList.add(dataTime.format(dateList.get(i)));
-				//根据每一天查询  投标金额
+				//根据每一天查询  借款金额
 				List<String> listLoanMoney = loanService.getMoneyByTime(dataTime.format(dateList.get(i)));
 				if(listLoanMoney.size()!=0) {
 					double loanmoney = 0.00;
@@ -117,7 +121,7 @@ public class IndexController {
 					moneyLoan.add(0);
 				}
 				
-				//根据每一天查询  借款金额
+				//根据每一天查询  投标金额
 				List<String> listBidMoney = bidService.getMoneyByTime(dataTime.format(dateList.get(i)));
 				if(listBidMoney.size()!=0) {
 					double bidmoney = 0.00;
@@ -127,13 +131,22 @@ public class IndexController {
 					}
 					moneyBid.add(bidmoney);
 				}else {
-					moneyBid.add(0);
+					moneyBid.add(0.00);
 				}
 			}
 			
 			/**
 			 * 统计
 			 */
+			//得到发标总数
+			double AllBidMoney = 0.00;
+			for (int i = 0; i < moneyBid.size(); i++) {
+				Object obj =moneyBid.get(i);
+				double str = (double) obj;
+				AllBidMoney+=str;
+			}
+			session.setAttribute("AllBidMoney", AllBidMoney);
+			
 			//得到平台共注册人数
 			List<User> allUser =iUserService.getAllModel(); 
 			session.setAttribute("allUser",allUser.size());
@@ -143,7 +156,10 @@ public class IndexController {
 			u.setUid(10);
 			User user = iUserService.getModel(u);
 			session.setAttribute("pintaiMoney", user.getUbalance());
-	
+			
+			//得到平台的成功的发标数
+			List<Fabiao> fabiaoSuccess = fabiaoService.selectByStatus();
+			session.setAttribute("fabiaoSuccess", fabiaoSuccess.size());
 			
 			//得到所有用户所赚取的全部收益
 			List<Profit> allProfit = profitService.getAllModel();
@@ -151,6 +167,21 @@ public class IndexController {
 			for (int i = 0; i < allProfit.size(); i++) {
 				allMoneyProfit+=allProfit.get(i).getPfmoney();
 			}
+			
+			
+			
+			//得到最近一个月的借款总数
+			SimpleDateFormat dateym = new SimpleDateFormat("yyyy-MM");
+			Loan loan = new Loan();
+			loan.setLtime(dateym.format(new Date()));
+			List<Loan> loanlist = loanService.seleByLoan(loan);
+			Double AllLoan = 0.0;
+			for (int i = 0; i < loanlist.size(); i++) {
+				AllLoan+=loanlist.get(i).getLmoney();
+			}
+			session.setAttribute("AllLoanMoney", AllLoan);
+			
+			
 			session.setAttribute("allMoneyProfit",allMoneyProfit);
 			ObjectMapper om = new ObjectMapper();
 			//转换成json对象
@@ -207,5 +238,17 @@ public class IndexController {
 		return "views/back/index";
 	
 	}
+	/**
+	 * 添加任务发布表
+	 * */
+	@RequestMapping(value="addEmpTask")
+	@ResponseBody
+	private int addEmpTask(EmpTask empTask) {
+		empTask.setEtstarttime(DateUtils.getDateFormat(new Date()));
+		empTask.setEtstatus(0);
+		int count = empTaskService.addModel(empTask);
+		return count;
+	}
+	
 	
 }

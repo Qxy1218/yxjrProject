@@ -30,6 +30,7 @@
 							$('#import').modal('hide');
 							$('#tb_emp').bootstrapTable('refresh');
 						}
+					}
 				};
 				
 				// ajax表单提交
@@ -743,8 +744,6 @@ $(document).ready(function() {
 							</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<a href="${pageContext.request.contextPath}/back/downloadEmploye" class="btn btn-w-m btn-danger">下载模板</a> <br>
-							
-							
 							
 						</form>
 					</center>
