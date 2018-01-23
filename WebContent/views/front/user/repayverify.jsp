@@ -127,11 +127,12 @@
                     </div>
                     <input type="hidden" id="fid" value="${fabiaos.fid }"/>
                     <c:set var="status" value="${fabiaos.fstatus }" />
+                    <c:set var="hkstype" value="${fabiaos.fhkstype }" />
 	                <div class="m2-cha2Confsubmit" style="margin-left:100px;">
 	                	<c:if test="${status!=3 }">
 		            		<span class="m2-cha2Confsub-sure" onclick="setRepayStyle()">确&nbsp;&nbsp;&nbsp;认</span>
 		            	</c:if>
-		            	<c:if test="${status==2 }">
+		            	<c:if test="${hkstype!=null }">
 		            		<span class="m2-cha2Confsub-sure-repay" id="repaymoneys">还&nbsp;&nbsp;&nbsp;款</span>
 		            	</c:if>
 		            	<c:if test="${status==3 }">
@@ -260,7 +261,19 @@
                             dataType: 'json',
                             success: function (data) {
                                if(data==1){
-                            	   alert("还款成功");
+                            	   $('#dialog-info-repay').show();
+	       	    		           $('#dialog-info-repaytext').text("恭喜您,还款成功,请在务必在规定时间内结清!");
+	       	    		            
+	       	    		           $('.m2-user-confirmBtn,.m2-userCentercommon-confirmClose').click(function () {
+	       	    		            	window.location.reload(true);
+	       	    		           })
+                               }else if(data==2){
+                            	   $('#dialog-info-repay').show();
+	       	    		           $('#dialog-info-repaytext').text("Soorry,未到还款期,请在在规定的时间期还款!");
+	       	    		            
+	       	    		           $('.m2-user-confirmBtn,.m2-userCentercommon-confirmClose').click(function () {
+	       	    		            	window.location.reload(true);
+	       	    		           })
                                }
                             }
                         });
@@ -404,7 +417,7 @@
 					raterm = $("input[name='paytime']:checked").val();
 				}
 				$.ajax({
-	                url: "/Finances/repay/updateAndadds",
+	                url: "/Finances/repay/updateAndadd",
 	                data:{
 	                	uid:uid,
 	                	allmongy:allmongy,
@@ -420,12 +433,9 @@
 	                		$('#dialog-info-repay').show();
 	    		            $('#dialog-info-repaytext').text("恭喜您,设置成功,请在务必在规定时间内还款!");
 	    		            
-	    		            $('.m2-user-confirmBtn').click(function () {
+	    		            $('.m2-user-confirmBtn,.m2-userCentercommon-confirmClose').click(function () {
 	    		            	window.location.reload(true);
 	    		            })
-	    		            $('.m2-userCentercommon-confirmClose').click(function () {
-	    		            	window.location.reload(true);
-	    		            });
 	                	}
 	               }
 	         	});
@@ -434,6 +444,7 @@
 	        function keyInput(){
 	        	$('.m2-cha2Confsub-sure').css('background-color','#f5944f');
 	            $('.m2-cha2Confsub-sure').css('cursor','pointer');
+	            $(".m2-cha2Confsub-sure").attr("onclick", "setRepayStyle();");
 	        }
 			//按钮置灰
 	        function btnGrey(){

@@ -285,4 +285,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="hotselect" resultMap="BaseResultMap">
 		
  	</select>
+ 	
+ 	<!-- 查询所有还款标 -->
+ 	<select id="getRepayByStatus" resultMap="BaseResultMap">
+ 		select *from fabiao where f_status=2
+ 	</select>
 </mapper>

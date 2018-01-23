@@ -46,6 +46,9 @@ public interface FabiaoMapper extends IBaseDao<Integer, Fabiao>{
 		
 		//首页热门查询
 		List<Fabiao> hotselect();
+		
+		//查询所有还款标
+		List<Fabiao> getRepayByStatus();
 		//查询成功发标数
 		List<Fabiao> selectByStatus();
 		//查询流标

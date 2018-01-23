@@ -26,7 +26,9 @@ public interface FabiaoService extends IBaseService<Integer, Fabiao>{
 	 * 取得产品数量信息，
 	 * @return 
 	 */  
-	public long getProductsCount(@Param(value="fpart")String fpart);  
+	public long getProductsCount(@Param(value="fpart")String fpart);
+	//查询所有还款标
+	List<Fabiao> getRepayByStatus();
 	
 	//查询成功发标数
 	List<Fabiao> selectByStatus();

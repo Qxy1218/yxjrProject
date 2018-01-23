@@ -33,9 +33,9 @@
 	                    <li>
 	                        <a class="m2-aside-secLink-item" href="/Finances/topayment">回款计划</a>
 	                    </li>
-	                    <li>
+	                    <!-- <li>
 	                        <a class="m2-aside-secLink-item" href="/Finances/totransfer">债权转让</a>
-	                    </li>
+	                    </li> -->
 	                    <li>
 	                        <a class="m2-aside-secLink-item" href="/Finances/toinvest" target="_blank">立即投资</a>
 	                    </li>
@@ -103,19 +103,13 @@
 	                </ul>
 	            </li>
 	            <li class="m2-asideListitem">
-	            	<c:set var="fa_status" value="${fabiao.fstatus }" />
-	            	<c:set var="fas_status" value="${fabiaos.fstatus }" />
+	            	<c:set var="fa_status" value="${sessionScope.fabiao.fstatus }" />
 	                <a class="m2-aside-item m2-aside-toggle" ><i class="m2-asideIcon6"></i>账户管理</a>
 	                <ul class="m2-aside-secItem" style="display:none" id='aaa'>
 	                    <li>
 	                        <a class="m2-aside-secLink-item" href="/Finances/userverify?uiid=${sessionScope.user.userinfo.uiid }">账户设置</a>
 	                    </li>
 	                    <c:if test="${fa_status==2 || fa_status==3 }">
-	                    	<li>
-		                        <a class="m2-aside-secLink-item" href="/Finances/repay/repayverify?uid=${sessionScope.user.uid }">还款设置</a>
-		                    </li>
-	                    </c:if>
-	                    <c:if test="${fas_status==2 || fas_status==3 }">
 	                    	<li>
 		                        <a class="m2-aside-secLink-item" href="/Finances/repay/repayverify?uid=${sessionScope.user.uid }">还款设置</a>
 		                    </li>

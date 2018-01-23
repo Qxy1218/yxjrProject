@@ -79,6 +79,11 @@ public class FabiaoServiceImpl implements FabiaoService{
 	}
 
 	@Override
+	public List<Fabiao> getRepayByStatus() {
+		return fabiaomapper.getRepayByStatus();
+	}
+
+	@Override
 	public List<Fabiao> selectByStatus() {
 		return fabiaomapper.selectByStatus();
 	}

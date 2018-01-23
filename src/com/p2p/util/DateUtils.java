@@ -492,22 +492,6 @@ public class DateUtils {
 		return days;
 	}
 	
-	/*public static void main(String[] args)  {
-	 String dateStr = "2017-12-01";
-	 String dateStr2 = "2017-12-26";
-	 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-	 SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
-	 try{
-		 Date date2 = format.parse(dateStr2);
-		 Date date = format.parse(dateStr);
-	   
-		 System.out.println("两个日期的差距：" + differentDays(date,date2));
-		 System.out.println("两个日期的差距：" + differentDaysByMillisecond(date,date2));
-	 } catch (ParseException e) {
-	  e.printStackTrace();
-	 }
-	 }*/
-	
 	/**
 	 * 获取时间段相差的天数
 	 * */
@@ -524,6 +508,5 @@ public class DateUtils {
 	        String year = dateFormat.format(y);
 	        return year;
 	 }
-	 
 	
 }

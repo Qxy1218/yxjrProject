@@ -770,6 +770,7 @@ public class FrontController {
 		Fabiao fabiao = new Fabiao();
 		fabiao.setUid(uid);
 		Fabiao fa = fabiaoService.getModel(fabiao);
+		session.setAttribute("fabiao", fa);
 		
 		mo.addObject("dayList",dayList);
 		mo.addObject("mouthList",mouthList);
@@ -778,7 +779,6 @@ public class FrontController {
 		mo.addObject("allMoney",allMoney);
 		mo.addObject("dayMoney",dayMoney);
 		mo.addObject("singuser", sing);
-		mo.addObject("fabiao", fa);
 			
 		mo.setViewName("views/front/user/usercenter");	
 		//mo.setViewName("views/front/user/baobiao");
