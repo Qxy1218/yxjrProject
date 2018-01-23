@@ -17,7 +17,7 @@ import com.p2p.pojo.Role;
  * */
 public interface ContactMapper extends IBaseDao<Integer,Contact>{
 	//实现分页查询
-		List<Contact> selectPage(Pagination page,Map<String ,Object> params,@Param(value="Contact") Contact contact);
+		List<Contact> selectPage(Pagination page,Map<String ,Object> params,@Param(value="contact") Contact contact);
 		//查询总的记录数
 		abstract Integer contactcount();
 		Integer cxslist(String cxs);
