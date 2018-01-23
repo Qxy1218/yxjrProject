@@ -27,7 +27,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="bendtime!=null">and b_endtime=#{bendtime}</if>
 		</where>
 	</select>
-	
+	<select id="getBidlist" parameterType="com.p2p.pojo.Bid" resultMap="BaseResultMap">
+		select * from bid
+		<where>
+			1=1
+			<if test="bid!=null">and b_id=#{bid}</if>
+			<if test="uid!=null">and u_id=#{uid}</if>
+			<if test="bfid!=null">and b_fid=#{bfid}</if>
+			<if test="bmoney!=null">and b_money=#{bmoney}</if>
+			<if test="btime!=null">and b_time=#{btime}</if>
+			<if test="bendtime!=null">and b_endtime=#{bendtime}</if>
+		</where>
+	</select>
 	<select id="selectCount" resultMap="BaseResultMap">
 		select * from bid where b_fid=#{fid}
 	</select>
