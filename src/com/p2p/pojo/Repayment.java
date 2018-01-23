@@ -46,18 +46,11 @@ public class Repayment implements Serializable{
 	
 	@TableField("rm_overdue")
 	private BigDecimal rmoverdue; //逾期还款总金额
-	
-	
-	private String uiname;
-	public String getUiname() {
-		return uiname;
-	}
+	private String uphone ; //用户名
+	private String uiname ; //用户的昵称
 
-	public void setUiname(String uiname) {
-		this.uiname = uiname;
-	}
 	private Fabiao fabiao;
-	
+	private User user;
 	public Repayment() {
 		super();
 	}
@@ -151,4 +144,29 @@ public class Repayment implements Serializable{
 	public void setFabiao(Fabiao fabiao) {
 		this.fabiao = fabiao;
 	}
+
+	public String getUphone() {
+		return uphone;
+	}
+
+	public void setUphone(String uphone) {
+		this.uphone = uphone;
+	}
+
+	public String getUiname() {
+		return uiname;
+	}
+
+	public void setUiname(String uiname) {
+		this.uiname = uiname;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 }
