@@ -19,25 +19,43 @@ public class Repayment implements Serializable{
 
 	@TableField("rm_id")
 	private Integer rmid;	//主键id
+	
 	@TableField("f_id")
 	private Integer fid;	//发标人id
+	
 	@TableField("rm_plan")
 	private BigDecimal rmplan;	//计划还款金额
+	
 	@TableField("rm_face")
 	private BigDecimal rmface;	//实际还款金额
+	
 	@TableField("rm_wait")
 	private BigDecimal rmwait;	//待还款金额
+	
 	@TableField("rm_all")
 	private BigDecimal rmall;	//还款总金额
+	
 	@TableField("rm_state")
 	private Integer rmstate;	//还款状态
+	
 	@TableField("rm_style")
 	private Integer rmstyle;	//还款类型
+	
 	@TableField("f_code")
 	private String fcode;  //订单编号
+	
 	@TableField("rm_overdue")
 	private BigDecimal rmoverdue; //逾期还款总金额
 	
+	
+	private String uiname;
+	public String getUiname() {
+		return uiname;
+	}
+
+	public void setUiname(String uiname) {
+		this.uiname = uiname;
+	}
 	private Fabiao fabiao;
 	
 	public Repayment() {

@@ -58,4 +58,16 @@ public class RepaymentServiceImpl implements RepaymentService {
 		return repaymentMapper.findModel(id);
 	}
 
+	@Override
+	public List<Repayment> selectMoney(Integer uid) {
+		// TODO Auto-generated method stub
+		return repaymentMapper.selectMoney(uid);
+	}
+
+	@Override
+	public Integer repaymentCount() {
+		// TODO Auto-generated method stub
+		return repaymentMapper.repaymentCount();
+	}
+
 }

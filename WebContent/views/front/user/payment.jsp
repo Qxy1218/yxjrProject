@@ -3,6 +3,7 @@
 <%
 	String path = request.getContextPath();
 %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -227,41 +228,39 @@
         <div class="m2-user-recharge">
             <h3><i class="m2-user-record"></i>回款计划</h3>
         </div>
-        <div class="m2-manage-search-selector">
-            <ul class="m2-manageSearchsel-time">
-                <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" href="#">2014年</span></li>
-                <li class="m2-manageSearchsel-link"><span class="m2-manSealink-sel" href="#">2015及以后</span></li>
-            </ul>
-        </div>
+      
         <div class="m2-recharge-mainbody">
-
             <div class="m2-user-newsmanage">
-                <table cellpadding="0" cellspacing="0" border="0" id='table2014'>
-                    <tr>
-                        <th>年月</th>
-                        <th>计划还款总额(元)</th>
-                        <th>实际还款总额(元)</th>
-                        <th>待还款(元)</th>
-                        <th></th>
-                    </tr>
-
-                </table>
-            </div>
-            <div class="m2-user-newsmanage">
-                <table cellpadding="0" cellspacing="0" border="0" id='table2015'>
-                    <tr>
-	                        <th>年月</th>
-	                        <th>计划还款总额(元)</th>
-	                        <th>实际还款总额(元)</th>
-	                        <th>待还款(元)</th>
-	                        <th></th>
-		                    </tr>
+                 <table class="m2-manageResult" cellpadding="0" cellspacing="0">
+		                    <tr class="m2-manageResult-head">
+		                        <th style="width:120px;">发标人姓名</th>
+		                        <th style="width:155px;">计划还款金额</th>
+		                        <th style="width:135px;">实际还款金额</th>
+		                        <th style="width:120px;">待还款金额</th>
+		                        <th style="width:100px;">还款总金额</th>		
+		                         <th style="width:155px;">还款状态</th>
+		                        <th style="width:135px;">还款类型</th>
+		                        <th style="width:120px;">订单编号</th>
+		                        <th style="width:100px;">逾期还款总金额</th>	                     
+		                    </tr>			                
+			                <c:forEach items="${listRepayment}" var="repayment">
+		                    	<tr>
+		                    		 <td style="width:120px;">${repayment.uiname}</td>
+			                        <td style="width:155px;">${repayment.rmplan}</td>
+			                        <td style="width:135px;">${repayment.rmface}</td>
+			                        <td style="width:120px;">${repayment.rmwait}</td>
+			                        <td style="width:100px;">${repayment.rmall}</td>
+			                        <td style="width:155px;">${repayment.rmstate}</td>
+			                        <td style="width:135px;">${repayment.rmstyle}</td>
+			                        <td style="width:120px;">${repayment.fcode}</td>
+			                        <td style="width:100px;">${repayment.rmoverdue}</td>
+		                    	</tr>
+		                    </c:forEach>
 		                </table>
 		            </div>
 		        </div>
 		    </div>
-		</div>
-		
+		<%--
 		<script>
 	    $(function(){
 	        var listYear = $(".m2-manage-search-selector ul li");
@@ -490,5 +489,6 @@
 	        return Math.round(( num1 * m + num2 * m ) / m * 100)/100;
 	    }
 	</script>
+	 --%>
 	</body>
 </html>

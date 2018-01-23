@@ -98,6 +98,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="java.lang.Integer">
 		deletl from repayment where rm_id=#{rmid}
 	</delete>
-	
-	
+	<!--前台查询 -->
+	<select id="selectMoney"  resultMap="repayMap" parameterType="java.lang.Integer">
+		select r.*,ui.ui_name as uiname from repayment r ,fabiao f,user_info ui 
+		<where> 
+			r.f_id= f.f_id and ui.u_id = f.u_id and ui.u_id = #{uid}
+		</where>
+	</select>
+	<select id="repaymentCount" resultType="java.lang.Integer">
+        select count(*) from repayment;
+    </select>
 </mapper>

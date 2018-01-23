@@ -39,6 +39,7 @@ import com.p2p.pojo.Notice;
 import com.p2p.pojo.Profit;
 import com.p2p.pojo.ProjectSelect;
 import com.p2p.pojo.Provice;
+import com.p2p.pojo.Repayment;
 import com.p2p.pojo.Setupnatice;
 import com.p2p.pojo.Sing;
 import com.p2p.pojo.User;
@@ -57,6 +58,7 @@ import com.p2p.service.front.MoneyDetailService;
 import com.p2p.service.front.NewsfocusService;
 import com.p2p.service.front.NoticeFontSrvice;
 import com.p2p.service.front.ProfitService;
+import com.p2p.service.front.RepaymentService;
 import com.p2p.service.front.SetupnaticeService;
 import com.p2p.service.front.SingService;
 import com.p2p.service.front.UserInfoService;
@@ -126,6 +128,9 @@ public class FrontController {
 	//奖励金
 	@Resource(name="moneyrecordServiceImpl")
 	private MoneyrecordServiece moneyrecordServiece;
+	
+	@Resource(name="repaymentServiceImpl")
+	private RepaymentService repaymentService;
 	
 	@Resource(name="moneyDetailServiceImpl")
 	private MoneyDetailService moneyDetailService;
@@ -845,7 +850,26 @@ public class FrontController {
 	 * 回款计划页面的conteroller
 	 * */
 	@RequestMapping(value="/topayment")
-	public String tofronpayment() {
+	public String tofronpayment(Model model,HttpSession session,Integer mrstatus) {
+		ObjectMapper mapper = new ObjectMapper(); //转换器  
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<Repayment> RepaymentList = new ArrayList<Repayment>();
+		User user = (User)session.getAttribute("user");
+		List<Repayment> listRepayment = repaymentService.selectMoney(user.getUid());
+		for (int i = 0; i < listRepayment.size(); i++) {
+			Repayment repayment = new Repayment();  
+			repayment.setUiname(listRepayment.get(i).getUiname());
+			repayment.setRmplan(listRepayment.get(i).getRmplan());
+			repayment.setRmface(listRepayment.get(i).getRmface());
+			repayment.setRmwait(listRepayment.get(i).getRmwait());
+			repayment.setRmall(listRepayment.get(i).getRmall());
+			repayment.setRmstate(listRepayment.get(i).getRmstate());
+			repayment.setRmstyle(listRepayment.get(i).getRmstyle());
+			repayment.setFcode(listRepayment.get(i).getFcode());
+			repayment.setRmoverdue(listRepayment.get(i).getRmoverdue());
+			RepaymentList.add(repayment);
+		}
+		model.addAttribute("listRepayment",RepaymentList);
 		return "views/front/user/payment";
 	}
 	
