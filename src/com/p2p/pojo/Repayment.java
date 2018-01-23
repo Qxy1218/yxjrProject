@@ -35,6 +35,8 @@ public class Repayment implements Serializable{
 	private Integer rmstyle;	//还款类型
 	@TableField("f_code")
 	private String fcode;  //订单编号
+	@TableField("rm_overdue")
+	private BigDecimal rmoverdue; //逾期还款总金额
 	
 	private Fabiao fabiao;
 	
@@ -42,16 +44,15 @@ public class Repayment implements Serializable{
 		super();
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "Repayment [rmid=" + rmid + ", fid=" + fid + ", rmplan=" + rmplan + ", rmface=" + rmface + ", rmwait="
 				+ rmwait + ", rmall=" + rmall + ", rmstate=" + rmstate + ", rmstyle=" + rmstyle + ", fcode=" + fcode
-				+ ", fabiao=" + fabiao + "]";
+				+ ", rmoverdue=" + rmoverdue + ", fabiao=" + fabiao + "]";
 	}
 
 	public Repayment(Integer rmid, Integer fid, BigDecimal rmplan, BigDecimal rmface, BigDecimal rmwait,
-			BigDecimal rmall, Integer rmstate, Integer rmstyle,String fcode, Fabiao fabiao) {
+			BigDecimal rmall, Integer rmstate, Integer rmstyle,String fcode, BigDecimal rmoverdue, Fabiao fabiao) {
 		super();
 		this.rmid = rmid;
 		this.fid = fid;
@@ -62,6 +63,7 @@ public class Repayment implements Serializable{
 		this.rmstate = rmstate;
 		this.rmstyle = rmstyle;
 		this.fcode = fcode;
+		this.rmoverdue = rmoverdue;
 		this.fabiao = fabiao;
 	}
 	public Integer getRmid() {
@@ -117,6 +119,13 @@ public class Repayment implements Serializable{
 	}
 	public void setFcode(String fcode) {
 		this.fcode = fcode;
+	}
+	
+	public BigDecimal getRmoverdue() {
+		return rmoverdue;
+	}
+	public void setRmoverdue(BigDecimal rmoverdue) {
+		this.rmoverdue = rmoverdue;
 	}
 	public Fabiao getFabiao() {
 		return fabiao;
