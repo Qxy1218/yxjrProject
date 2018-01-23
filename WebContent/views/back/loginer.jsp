@@ -17,7 +17,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="Simple Login Form,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements"./>
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-		</script>
 		<!--webfonts-->
 			<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet' type='text/css'>
 		<!--//webfonts-->
@@ -95,7 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	       }
     </script>
 	</head>
-	<body onLoad="sendRequest()">
+	<body >
 	<!--/start-login-one-->
 	<h1>亿信金融后台登录</h1>
 			<div class="login">	
@@ -109,17 +108,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<form>
 					<ul>
 						<li>
-							<input type="text" name="name" id="name" placeholder="请输入账号" onblur="empName()"/><a href="#" class=" icon user"></a>
+							<input type="text" name="name" id="name" placeholder="请输入账号" onblur="empName()" /><a href="#" class=" icon user"></a>
 						</li>
 						<li id="nameNull" style="color: red;display:none">用户名不能为空!</li>
-						
-						 <li>
-							<input type="password" name="password" id="password" placeholder="请输入密码" onblur="empPassword()"/><a href="#" class=" icon lock"></a>
+						 <li> 
+							<input type="password" name="password" id="password" placeholder="请输入密码" onblur="empPassword()" /><a href="#" class=" icon lock"></a>
 						</li>
 						 <li id="passwordNull" style="color: red;display:none">密码不能为空!</li>
-						
 						<li>
-							<input type="text" name="imgcode" id="imgcode" placeholder="请输入验证码" onblur="empImgcode()"/><a href="#" class=" icon lock"></a>
+							<input type="text" name="imgcode" id="imgcode" placeholder="请输入验证码" onblur="empImgcode()" class="image" /><a href="#" class=" icon lock"></a>
 							<span style="margin-left : 200px; display: block;width: 95px;height: 30px;">
 								<img id="validateCodeImg" src="<%=basePath%>/back/validateCode" onclick="reloadValidateCode()"/>
 							</span>
@@ -131,11 +128,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			            </li>
 						
 					</ul>
-	
 				</form>
-				
 				<div class="submit">
-					<input type="submit" onclick="login()" value="登录" >
+					<input type="submit" onclick="login()" value="登录">
 					<h4 style="color: red;">${sessionScope.message_login}</h4>
 	                  	  	<%
 		                    	if(session.getAttribute("message_login")!=null){
@@ -144,7 +139,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                    	}
 	                    	%>
 				</div>
-				
 			</div>
 	<!--start-copyright-->
 	   		<div class="copy-right">

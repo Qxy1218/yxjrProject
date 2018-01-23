@@ -164,17 +164,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="seleByLoan" resultMap="BaseResultMap">
 		select * from loan 
 			<where>
-				1=1
-			<if test="lid!=null">and l_id=#{lid}</if>
-			<if test="uid!=null">and u_id=#{uid}</if>
-			<if test="lmoney!=null">and l_money=#{lmoney}</if>
+			1 = 1
 			<if test="ltime!=null">
 				and l_time like CONCAT(CONCAT('%', #{ltime}), '%')
 			</if>
-			<if test="lendtime!=null">and l_endtime=#{lendtime}</if>
-			<if test="lstatus!=null">and l_status=#{lstatus}</if>
-			<if test="lway!=null">and l_way l_endtime=#{lway}</if>
-			<if test="linterest!=null">and l_interest=#{linterest}</if>
 			</where>
 	</select>
 </mapper>

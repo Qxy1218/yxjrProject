@@ -161,17 +161,32 @@ public class IndexController {
 			List<Fabiao> fabiaoSuccess = fabiaoService.selectByStatus();
 			session.setAttribute("fabiaoSuccess", fabiaoSuccess.size());
 			
-			//得到所有用户所赚取的全部收益
-			List<Profit> allProfit = profitService.getAllModel();
-			Double allMoneyProfit = 0.0;
+			SimpleDateFormat dateym = new SimpleDateFormat("yyyy-MM");
+			//得到所有用户当前月所赚取的全部收益
+			Profit profit = new Profit();
+			profit.setPftime(dateym.format(new Date()));
+			List<Profit> allProfit = profitService.seleByProfit(profit);
+			BigDecimal allMoneyProfit = new BigDecimal("0.0");
 			for (int i = 0; i < allProfit.size(); i++) {
-				allMoneyProfit+=allProfit.get(i).getPfmoney();
+				allMoneyProfit = allMoneyProfit.add(new BigDecimal(String.valueOf(allProfit.get(i).getPfmoney())));
 			}
 			
+			//得到上一个月所有用户的赚取的全部收益
+			Profit pt = new Profit();
+			pt.setPftime(dateym.format(DateUtils.getmouthBefore(new Date(),1)));
+			List<Profit> allProfitbefore = profitService.seleByProfit(pt);
+			BigDecimal  allMoneyProfitbefore = new BigDecimal("0.0");
+			for (int i = 0; i < allProfitbefore.size(); i++) {
+				//将Double转换成BigDecimal
+				allMoneyProfitbefore = allMoneyProfitbefore.add(new BigDecimal(String.valueOf(allProfitbefore.get(i).getPfmoney())));
 			
+			}
+			session.setAttribute("allMoneyProfitbefore", allMoneyProfitbefore);
+			//上个月与当前月的利率
+			BigDecimal bigcompnrateProfit = allMoneyProfitbefore.divide(allMoneyProfit, 10,BigDecimal.ROUND_HALF_DOWN);
+			String compnrateProfit =  ContextUtils.parsePercent(bigcompnrateProfit.toString());
+			session.setAttribute("compnrateProfit", compnrateProfit);
 			
-			//得到最近一个月的借款总数
-			SimpleDateFormat dateym = new SimpleDateFormat("yyyy-MM");
 			Loan loan = new Loan();
 			loan.setLtime(dateym.format(new Date()));
 			List<Loan> loanlist = loanService.seleByLoan(loan);

@@ -296,7 +296,21 @@ public class DateUtils {
 		gregorianCalendar.set(Calendar.DATE, day - 1);
 		return gregorianCalendar.getTime();
 	}
-
+	
+	/**
+	 * 获取日期前多少个月日期
+	 * 
+	 * @param date
+	 * @return
+	 */
+	public static Date getmouthBefore(Date date,int mouth) {
+		Calendar c = Calendar.getInstance();
+		c.setTime(new Date());
+        c.add(Calendar.MONTH, -mouth);
+        Date datemouth = c.getTime();
+       return datemouth;
+		
+	}
 	/**
 	 * 获取日期后几天
 	 * 

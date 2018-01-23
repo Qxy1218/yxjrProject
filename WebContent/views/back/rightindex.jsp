@@ -42,7 +42,13 @@
                     </div>
                     <div class="ibox-content">
                         <h1 class="no-margins">${sessionScope.allMoneyProfit}</h1>
-                        <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i>
+                        <div class="stat-percent font-bold text-info">
+						　　<c:if test="${sessionScope.allMoneyProfit>sessionScope.allMoneyProfitbefore}">
+								${sessionScope.compnrateProfit}<i class="fa fa-level-up"></i>
+							</c:if>
+						　　<c:if test="${sessionScope.allMoneyProfit<sessionScope.allMoneyProfitbefore}">
+								${sessionScope.compnrateProfit}<i class="fa fa-level-down"></i>
+							</c:if>
                         </div>
                         <small>用户收益</small>
                     </div>
