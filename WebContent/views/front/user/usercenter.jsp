@@ -26,7 +26,11 @@
 	    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/jquery.datetimepicker.js"></script>
  		<script src="${pageContext.request.contextPath}/statics/back/static/js/jquery-3.2.1.min.js"></script> 
 		
+		<!-- 日历导入 -->
+		<script type="text/javascript" src="/Finances/statics/front/Simple/js/simple-calendar.js"></script>
+		<link href="/Finances/statics/front/Simple/css/simple-calendar.css"  rel="stylesheet" type="text/css" >
 		<link rel="stylesheet" href="/Finances/statics/front/statics/company_finance/css/center_div.css">
+		
 	</head>
 <body style="background:url('/Finances/statics/front/images/two.jpg');background-size:100% 100%;">
 	<div class="m2-userCentercommon-bg" style="display:none;"></div>
@@ -449,13 +453,18 @@
             <div class="m2-backCalendar-head" style="margin-bottom:8px;">
                 <h3><i></i>回款日历</h3>
             </div>
-            <div class="m2-backCalendar-con">
+            <div class="m2-backCalendar-con" style="height: 500px;">
                 <div class="m2-backCalendar-lef">
                     <div class="m2-calendarItemuser">
-                        <input type="text" id="m2-user-datetimepicker"/>
+                        <div id='container' style="width: 400px;height: 330px;"></div>
                     </div>
+                    
+                      <script>
+    					var myCalendar = new SimpleCalendar('#container');
+    					
+ 					 </script>
                     <div class="b0-backDet">
-                        <div class="b0-backLef">
+                        <div class="b0-backLef" style="padding: 55px 0;">
                             <div class="b0-orange">
                                 <span class="b0-lefTit" style="color:black">本期计划回款：</span>
                                 <span class="b0-lefNum" id="thismonthincome" style="color:black" ></span>
@@ -465,7 +474,7 @@
                                 <span class="b0-lefNum" id="thismonthrealincome"></span>
                             </div>
                         </div>
-                        <div class="b0-backRig">
+                        <div class="b0-backRig" style="padding: 55px 0;">
                             <div class="b0-rigTop">
                                 <div class="b0-rigDis"><i style="background-color:#FBBBA3;"></i><span>待还款</span></div>
                                 <div class="b0-rigDis" style="margin-left:20px;"><i style="background-color:#D4D4D4;"></i><span>已结清</span></div>
