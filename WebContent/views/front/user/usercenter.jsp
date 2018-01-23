@@ -448,8 +448,6 @@
         <div class="m2-backCalendar">
             <div class="m2-backCalendar-head" style="margin-bottom:8px;">
                 <h3><i></i>回款日历</h3>
-                <hr style="display:inline-block;width:110px;border:0;background-color:#0996cc;height:1px;margin-left:6px;"></h3>
-                <hr style="display:inline-block;width:682px;border:0;background-color:#dadada;height:1px;margin-left:-4px;"></h3>
             </div>
             <div class="m2-backCalendar-con">
                 <div class="m2-backCalendar-lef">
@@ -459,11 +457,11 @@
                     <div class="b0-backDet">
                         <div class="b0-backLef">
                             <div class="b0-orange">
-                                <span class="b0-lefTit" style="color:black">本月计划回款：</span>
+                                <span class="b0-lefTit" style="color:black">本期计划回款：</span>
                                 <span class="b0-lefNum" id="thismonthincome" style="color:black" ></span>
                             </div>
                             <div class="b0-purple">
-                                <span class="b0-lefTit">本月实际回款：</span>
+                                <span class="b0-lefTit">本期实际回款：</span>
                                 <span class="b0-lefNum" id="thismonthrealincome"></span>
                             </div>
                         </div>
