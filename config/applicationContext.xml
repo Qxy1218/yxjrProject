@@ -104,7 +104,7 @@
 	     <bean id="cronTrigger2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
 	        <property name="jobDetail" ref="jobtask2"></property>  
 	        <property name="cronExpression">  
-	             <value>0/10 * * * * ?</value>
+	             <value>0 0 10 * * ?</value>
 	        </property>  
 	    </bean>
 	    <bean id="cronTrigger3" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
