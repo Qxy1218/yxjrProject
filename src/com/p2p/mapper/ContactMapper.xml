@@ -79,7 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectPage" resultMap="BaseResultMap">
 		select * from contact
     </select>
-      <select id="contactCount" resultType="java.lang.Integer">
+      <select id="contactcount" resultType="java.lang.Integer">
         select count(*) from contact;
     </select>
 </mapper>
