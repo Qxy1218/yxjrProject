@@ -169,6 +169,8 @@ public class FrontController {
 	        fabiaolist = this.fabiaoService.selectProductsByPage(page.getStartPos(), page.getPageSize(),null);  
 	     }  
 		
+		 
+		 
 		
 		List<Fabiao> fabiaolists = new ArrayList<Fabiao>(); 
 		for(int i=0;i<fabiaolist.size();i++) {
