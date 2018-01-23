@@ -42,5 +42,7 @@ public interface BidMapper extends IBaseDao<Integer, Bid>{
 			 * @return 
 			 */  
 			public long getProductsCount(@Param(value="fid")String fid);  
+			
+			List<Bid> selectBid(@Param("id")Integer id);
 		
 }
