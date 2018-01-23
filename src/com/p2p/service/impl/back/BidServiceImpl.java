@@ -93,4 +93,9 @@ public class BidServiceImpl implements BidService{
 		return bidmapper.getProductsCount(fid);
 	}
 
+	@Override
+	public List<Bid> getBidlist(Bid bid) {
+		return bidmapper.getBidlist(bid);
+	}
+
 }
