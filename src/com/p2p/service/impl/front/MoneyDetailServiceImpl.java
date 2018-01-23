@@ -79,4 +79,9 @@ public class MoneyDetailServiceImpl implements MoneyDetailService{
 		return moneyDetail.selectMoney(uid);
 	}
 
+	@Override
+	public List<MoneyDetail> seleMonreyReByTime(MoneyDetail moneydetail) {
+		return moneyDetail.seleMonreyReByTime(moneydetail);
+	}
+
 }

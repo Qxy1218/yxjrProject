@@ -27,6 +27,13 @@ public class MoneyDetail implements Serializable{
 	
 	@TableField("md_time")
 	private String mdtime; //使用时间
+	private String mrendtime;
+	public String getMrendtime() {
+		return mrendtime;
+	}
+	public void setMrendtime(String mrendtime) {
+		this.mrendtime = mrendtime;
+	}
 	private String uiname;
 	public MoneyDetail() {
 		super();

@@ -22,4 +22,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="moneyDetailCount" resultType="java.lang.Integer">
         select count(*) from moneydetail;
     </select>
+    <!-- 前台资金记录模糊查询 -->
+ 	<select id="seleMonreyReByTime" resultMap="BaseResultMap">
+ 		select md.*,ui.ui_name as uiname from moneydetail md ,user u ,user_info ui<where>
+ 		 1=1
+			<if test="mdmoney != null and mdmoney !='' ">
+			    and md.md_money like CONCAT(CONCAT('%', #{mdmoney}), '%')
+			</if>
+			<if test="mdtime !=null and mdtime != '' and mrendtime != null and mrendtime != ''">
+            	and md.md_time between #{mdtime} and #{mrendtime}
+ 			</if>
+ 			and md.u_id= u.u_id and ui.u_id = u.u_id and md.u_id = #{uid} 
+ 		</where>
+ 	</select>
 </mapper>
+

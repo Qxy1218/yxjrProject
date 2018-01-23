@@ -3,7 +3,7 @@
 <%
 	String path = request.getContextPath();
 %>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -14,7 +14,7 @@
 	    <meta name="keywords" content="网贷平台,网络借贷，网络赚钱项目,理财产品">
 	    <meta name="description" content="爱钱帮网贷平台为您提供网络赚钱项目；为此相继推出了许多新的理财产品，在为您创造高收益的同时也优化了理财产品模式。网络借贷，就选爱钱帮。">
 	    <meta charset="UTF-8">
-	    <link  rel="Shortcut  Icon"  href="/Finances/statics/other/lco/6.png">
+	    <link  rel="Shortcut  Icon"  href="/Finances/statics/other/lco/smalllog.png">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-common.css">
 	    <link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
@@ -26,7 +26,7 @@
 	    <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/jquery.datetimepicker.js"></script>
 		<title>奖励金流水 | 亿信金融</title>
 	</head>
-	<body>
+	<body style="background:url('/Finances/statics/front/images/two.jpg');background-size:100% 100%;">
 	<!-- 右侧边栏start -->
 		<div class="m2-commonRight">
 		    <ul class="m2-comRiglist">
@@ -161,24 +161,17 @@
 		                <h3><i></i>奖励金流水记录</h3>
 		            </div>
 		
-		
+					<input type="hidden" value="${sessionScope.user.uid}" id="uid" name="uid"/>
 		            <div class="m2-manage-search-selector">
 		                <ul class="m2-manageSearchsel-time">
 		                    <li>时间范围：</li>
-		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-sel" data-days='0'>全部</span></li>
-		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-days='7'>最近7天</span></li>
-		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-days='30'>一个月</span></li>
-		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-days='90'>三个月</span></li>
+		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-sel" data-days='0' >全部</span></li>
+		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-days='7'  >最近7天</span></li>
+		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-days='30' >一个月</span></li>
+		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-days='90' >三个月</span></li>
 		                    <li>从<input id="m2-manSeadate-start" type="text"></li>
 		                    <li>到<input id="m2-manSeadate-end" type="text"></li>
-		                </ul>
-		                <ul class="m2-manageSearchsel-type">
-		                    <li>资金类型：</li>
-		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-sel" data-status="3">全部</span></li>
-		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-status="1">未激活</span></li>
-		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-status="2">已激活</span></li>
-		                </ul>
-		
+		                </ul>	
 		                <table class="m2-manageResult" cellpadding="0" cellspacing="0">
 		                    <tr class="m2-manageResult-head">
 		                        <th style="width:120px;">用户姓名</th>
@@ -186,23 +179,21 @@
 		                        <th style="width:135px;">使用奖励详情</th>
 		                        <th style="width:120px;">奖励金类型（1：红包，2：代金卷）</th>
 		                        <th style="width:100px;">使用时间</th>		                     
-		                    </tr>
-		
-							<c:forEach items="${listMoney}" var="moneyDetail">
-			                    <tr class="m2-manageResult-sum">
-			                       <th style="width:120px;">${moneyDetail.uiname}</th>
+		                    </tr>			                
+			                <c:forEach items="${listMoney}" var="moneyDetail">
+		                    	<tr class="mycount">
+		                    		 <th style="width:120px;">${moneyDetail.uiname}</th>
 			                        <th style="width:155px;">${moneyDetail.mdmoney}</th>
 			                        <th style="width:135px;">${moneyDetail.mdintroduce}</th>
 			                        <th style="width:120px;">${moneyDetail.mdstype}</th>
 			                        <th style="width:100px;">${moneyDetail.mdtime}</th>
-	
-			                    </tr>
-			                </c:forEach>
+		                    	</tr>
+		                    </c:forEach>
 		                </table>
+		
 		            </div>
 		        </div>
 		    </div>
-		</div>
 		<script type="text/javascript">
 		    var start = 1;
 		    var status = 3;
@@ -213,7 +204,7 @@
 		
 		    $(document).ready(function(){
 		        //加载初始数据
-		        getRewordRecord();
+		        //getRewordRecord();
 		        //加载日历
 		        ucDatepicker('#m2-manSeadate-start','usercenter-rewardcontrol-getRewardLogAjax',getSearchData,processData);
 		        ucDatepicker('#m2-manSeadate-end','usercenter-rewardcontrol-getRewardLogAjax',getSearchData,processData);
@@ -248,16 +239,13 @@
 		    });
 		
 		    function getRewordRecord(){
-		
+				var uid =$('#uid').val();
 		        $.ajax({
-		            url:"usercenter-Rewardcontrol-getRewardLogAjax",
+		            url:"/Finances/toSeleByMoneyDetail",
 		            type:"POST",
 		            data:{
-		                time1:time1,
-		                time2:time2,
-		                days:days,
-		                status:status,
-		                start:start
+		                mrstatus:days,
+		                uid:uid
 		            },
 		            success:function(data){
 		                processData(data);
@@ -266,40 +254,34 @@
 		    }
 		
 		    function processData(data){
-		        obj = eval('('+data+')');
+		        var obj = eval('('+data+')');
 		        start++;
-		        pages = obj['pages'];
+		        //pages = obj['pages'];
 		        checkBtn();
-		        showData(obj['data']);
+		        $('.mycount').html('');
+		        showData(obj.data);
 		    }
 		
 		    function showData(obj){
-		
 		        if(obj){
-		            var sum = Number($('#sum_reward').text());
-		            for(var i in obj){
+		        	var sum = Number($('#sum_reward').text());
+		        	$.each(obj,function(i,item){  
 		                var tr = '<tr class="m2-manageResult-item">';
-		                tr += '<td>'+obj[i]['date']+'</td>';
-		                tr += '<td>'+obj[i]['type_text']+'</td>';
-		                tr += '<td title="'+obj[i]['info']+'">'+obj[i]['info']+'</td>';
-		                if(obj[i]['affect_money']>=0){
-		                    tr += '<td class="m2-manageResultitem-up">';
-		                }else{
-		                    tr += '<td class="m2-manageResultitem-down">';
-		                }
-		                tr += +obj[i]['affect_money']+'</td>';
-		                tr += '<td>'+obj[i]['reward_money']+'</td>';
-		                tr += '<td>'+(obj[i]['sum_inactive']?obj[i]['sum_inactive']:0)+'</td>';
+		                tr += '<td>'+item.uiname+'</td>';
+		                tr += '<td>'+item.mdmoney+'</td>';
+		                tr += '<td>'+item.mdintroduce+'</td>';
+		                tr += '<td>'+item.mdstype+'</td>';
+		                tr += '<td>'+item.mdtime+'</td>';
 		                tr += '</tr>';
-		                $('.m2-manageResult-sum').before(tr);
-		                sum = calPlus(sum,obj[i]['affect_money']);
-		            }
-		            $('#sum_reward').text(sum);
+		                $('.m2-manageResult').append(tr);
+		                //sum = calPlus(sum,obj[i]['mrwastemoney']);
+		        	})
+		            /* $('#sum_reward').text(sum);
 		            if(sum < 0){
 		                $('#sum_reward').css('color','#E64648');
 		            }else{
 		                $('#sum_reward').css('color','#717171');
-		            }
+		            } */
 		        }
 		        if($('.m2-manageResult-item').size() == 0){
 		            $('.m2-manageResult-sum').before('<tr class="m2-manageResult-item"><td colspan="6">暂无数据</td></tr>');
@@ -332,6 +314,30 @@
 		            $('.m2-manageResult-more').hide();
 		        }
 		    }
+		    
+		     function change(a){
+		    	 var uid = $('#uid').val();
+		    	if(a==0){
+		    		/*  全部 */
+		    		 window.location="http://127.0.0.1:8080/Finances/money/toSeleByMoneyRecord?mrstatus="+a+"&uid="+uid;	
+		    	}
+		    	else  if(a==1){
+		    		/*  最近7天 */
+		    		 window.location="http://127.0.0.1:8080/Finances/money/toSeleByMoneyRecord?mrstatus="+a+"&uid="+uid;	
+				    			 
+		    	 }
+		    	 else if(a==2){
+		    		 /* 一个月 */
+		    		 window.location="http://127.0.0.1:8080/Finances/money/toSeleByMoneyRecord?mrstatus="+a+"&uid="+uid;	
+				    	
+		    	 }
+		    	 else if(a==3){
+		    		 /*  三个月 */
+		    		 window.location="http://127.0.0.1:8080/Finances/money/toSeleByMoneyRecord?mrstatus="+a+"&uid="+uid;	
+				    		
+		    	 }
+		    	
+		    } 
 		
 		    function clear(){
 		        start = 1;

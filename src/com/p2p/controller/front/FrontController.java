@@ -60,12 +60,10 @@ import com.p2p.service.front.SetupnaticeService;
 import com.p2p.service.front.SingService;
 import com.p2p.service.front.UserInfoService;
 import com.p2p.service.front.UserbackcardService;
-import com.p2p.service.impl.front.MoneyDetailServiceImpl;
 import com.p2p.util.AddressUtils;
 import com.p2p.util.ContextUtils;
 import com.p2p.util.DateUtils;
 import com.p2p.util.Page;
-import com.p2p.util.PageInfo;
 import com.p2p.util.YieldUtil;
 
 /**
@@ -880,8 +878,9 @@ public class FrontController {
 	 *奖励金流水页面的conteroller
 	 * */
 	@RequestMapping(value="/toreward")
-	public String toreward(Model model,HttpSession session) {
-		
+	public String toreward(Model model,HttpSession session,Integer mrstatus) {
+		ObjectMapper mapper = new ObjectMapper(); //转换器  
+		Map<String, Object> map = new HashMap<String, Object>();
 		List<MoneyDetail> MoneyList = new ArrayList<MoneyDetail>();
 		User user = (User)session.getAttribute("user");
 		List<MoneyDetail> listMoney = moneyDetailService.selectMoney(user.getUid());
@@ -903,7 +902,53 @@ public class FrontController {
 		
 		return "views/front/management/rewardrecord";
 	}
-	
+	//前台模糊查询
+		@RequestMapping(value="toSeleByMoneyDetail")
+		@ResponseBody
+		public String toSeleByMoneyDetail(Integer uid,Integer mrstatus,HttpSession session) throws JsonProcessingException {
+			ObjectMapper mapper = new ObjectMapper(); //转换器  
+			Map<String, Object> map = new HashMap<String, Object>();
+			List<MoneyDetail> MoneyList = new ArrayList<MoneyDetail>();
+			User user = (User)session.getAttribute("user");
+			Double allMoneyDetail = 0.0;
+			if(mrstatus==0) {
+				MoneyList = moneyDetailService.selectMoney(user.getUid());
+				for (int i = 0; i < MoneyList.size(); i++) {
+					allMoneyDetail+=MoneyList.get(i).getMdmoney();
+				}
+			}
+			else if(mrstatus==7) {
+				MoneyDetail moneyDetail = new MoneyDetail();  
+				moneyDetail.setMdtime((DateUtils.getDateFormat(DateUtils.getDayBefore(new Date(),7))));
+				moneyDetail.setMrendtime(DateUtils.getDateFormat(new Date()));
+				moneyDetail.setUid(user.getUid());
+				MoneyList = moneyDetailService.seleMonreyReByTime(moneyDetail);
+				for (int i = 0; i < MoneyList.size(); i++) {
+					allMoneyDetail+=MoneyList.get(i).getMdmoney();
+				}
+			}else if(mrstatus==30) {
+				MoneyDetail moneyDetail = new MoneyDetail();  
+				moneyDetail.setMdtime((DateUtils.getDateFormat(DateUtils.getDayBefore(new Date(),30))));
+				moneyDetail.setMrendtime(DateUtils.getDateFormat(new Date()));
+				moneyDetail.setUid(user.getUid());
+				MoneyList = moneyDetailService.seleMonreyReByTime(moneyDetail);
+				for (int i = 0; i < MoneyList.size(); i++) {
+					allMoneyDetail+=MoneyList.get(i).getMdmoney();
+				}
+			}else if(mrstatus==90) {
+				MoneyDetail moneyDetail = new MoneyDetail();  
+				moneyDetail.setMdtime((DateUtils.getDateFormat(DateUtils.getDayBefore(new Date(),90))));
+				moneyDetail.setMrendtime(DateUtils.getDateFormat(new Date()));
+				moneyDetail.setUid(user.getUid());
+				MoneyList = moneyDetailService.seleMonreyReByTime(moneyDetail);
+				for (int i = 0; i < MoneyList.size(); i++) {
+					allMoneyDetail+=MoneyList.get(i).getMdmoney();
+				}
+			}
+			map.put("data", MoneyList);
+			String obj = mapper.writeValueAsString(map);
+			return obj;
+		}	
 	
 	/**
 	 *我的钱帮币页面的conteroller

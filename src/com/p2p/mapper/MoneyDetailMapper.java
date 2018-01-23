@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.p2p.base.IBaseDao;
 import com.p2p.pojo.MoneyDetail;
+import com.p2p.pojo.Moneyrecord;
 
 
 public interface MoneyDetailMapper extends IBaseDao<Integer,MoneyDetail>{
@@ -18,5 +19,7 @@ public interface MoneyDetailMapper extends IBaseDao<Integer,MoneyDetail>{
 	//查询总的记录数
 	abstract Integer moneyDetailCount();
 	abstract List<MoneyDetail> selectMoney(@Param("uid")Integer uid);
+	//前台模糊查询
+  	abstract List<MoneyDetail> seleMonreyReByTime(MoneyDetail moneydetail);
 
 }
