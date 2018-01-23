@@ -332,6 +332,26 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
+<<<<<<< .mine
+                           <li>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/back/toRole" data-index="0">权限管理</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="index_v2.jsp">会员账户管理</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/use.jsp">用户列表</a>
+                            </li>
+                            <li><a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/contact.jsp">联系我们</a></li>
+                             <li><a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/loan.jsp">借款</a></li>
+                          	 <li><a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/sendMail.jsp">邮箱</a></li>
+                           <li><a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/repayment.jsp">还款</a></li>
+                            <li>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/back/toEmploye">员工列表</a>
+                            </li><li>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/record.jsp">管理员操作列表</a>
+                            </li>
+=======
                         	<shiro:hasPermission name="权限管理">
                            		<li>
                                 	<a class="J_menuItem" href="${pageContext.request.contextPath}/back/toRole" data-index="0">权限管理</a>
@@ -347,6 +367,7 @@
                                 	<a class="J_menuItem" href="${pageContext.request.contextPath}/back/toEmploye">员工列表</a>
                             	</li>
                             </shiro:hasPermission>
+>>>>>>> .r693
                         </ul>
                     </li>   	
                      </shiro:hasPermission>
