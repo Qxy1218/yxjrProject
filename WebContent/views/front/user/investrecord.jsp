@@ -2,7 +2,8 @@
     pageEncoding="utf-8"%>
 <%
 	String path = request.getContextPath();
-%>  
+%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -13,7 +14,7 @@
 	    <meta name="keywords" content="网贷平台,网络借贷，网络赚钱项目,理财产品">
 	    <meta name="description" content="爱钱帮网贷平台为您提供网络赚钱项目；为此相继推出了许多新的理财产品，在为您创造高收益的同时也优化了理财产品模式。网络借贷，就选爱钱帮。">
 	    <meta charset="UTF-8">
-		<link rel="shortcut icon" href="/Finances/statics/other/lco/6.png"> 
+		<link rel="shortcut icon" href="/Finances/statics/other/lco/smalllog.png"> 
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-commonNew.css">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/newcommon/css/m2-common.css">
 	    <link rel="stylesheet" href="/Finances/statics/front/statics/usercenter/css/userCenter.css">
@@ -25,8 +26,7 @@
 		<title>投资记录 | 亿信金融</title>
 	</head>
 	
-<body style="background:url('/Finances/statics/front/images/two.jpg');background-size:100% 100%;">
-	
+<body>
 	<!-- 右侧边栏start -->
 	<jsp:include page="../include/userside.jsp"></jsp:include>		
 	<!-- 右侧边栏end -->
@@ -84,7 +84,16 @@
                         <th style="width:60px;">收益率</th>
                         <th style="width:120px;">计息日</th>
                         <th style="width:120px;">还款日</th>
-                        <th style="width:168px;"></th>
+                      
+                    </tr>
+                    <tr>
+                    <c:forEach items="${list}" var="bid" varStatus="vs">
+                    	<th>${bid.ftit}</th>
+                    	<th>${bid.bmoney}</th>
+                    	<th>${bid.broe}</th>
+                    	<th>${bid.btime}</th>
+                    	<th>${bid.bendtime}</th>
+                    </c:forEach>
                     </tr>
                     <tr class="m2-userTable-noData"><td>暂无数据</td><td colspan="5"></td></tr>					</table>
                 <input type="hidden" value=1 class="nowpages">
