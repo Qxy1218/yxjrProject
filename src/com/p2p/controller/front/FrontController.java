@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +28,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.pojo.About;
 import com.p2p.pojo.Area;
+import com.p2p.pojo.Bid;
 import com.p2p.pojo.City;
 import com.p2p.pojo.Contact;
 import com.p2p.pojo.Fabiao;
@@ -50,6 +50,7 @@ import com.p2p.service.back.ContactService;
 import com.p2p.service.back.MoneyrecordServiece;
 import com.p2p.service.back.VideoService;
 import com.p2p.service.front.AddressService;
+import com.p2p.service.front.BidfabiaoService;
 import com.p2p.service.front.FabiaoService;
 import com.p2p.service.front.IUserService;
 import com.p2p.service.front.MoneyDetailService;
@@ -106,6 +107,8 @@ public class FrontController {
 	@Resource(name="IUserServiceImpl")
 	private IUserService iUserService;
 	
+	@Resource(name="bidfabiaoServiceImpl")
+	private BidfabiaoService bidService;
 	
 	@Resource(name="singServiceImpl")
 	private SingService singService;
@@ -124,9 +127,9 @@ public class FrontController {
 	@Resource(name="moneyrecordServiceImpl")
 	private MoneyrecordServiece moneyrecordServiece;
 	
-	//
 	@Resource(name="moneyDetailServiceImpl")
 	private MoneyDetailService moneyDetailService;
+	
 	/**
 	 * 头部的conteroller
 	 * */
@@ -809,7 +812,29 @@ public class FrontController {
 	 * 投资记录页面的conteroller
 	 * */
 	@RequestMapping(value="/toinvestrecord")
-	public String tofroninvestrecord(){
+	public String tofroninvestrecord(HttpSession session,Model model){
+		 User user = (User)session.getAttribute("user");
+		 if(user.getUid()==null) {
+				return null;
+			}
+		 Integer id = Integer.parseInt(String.valueOf(user.getUid()));
+		 List<Bid> list = new ArrayList<Bid>();
+		 list = bidService.selectBid(id);
+		 List<Bid> mylist = new ArrayList<Bid>();
+		 for(int i=0;i<list.size();i++) {
+			 Bid bid = new Bid();
+			 bid.setBendtime(list.get(i).getBendtime());
+			 bid.setBmoney(list.get(i).getBmoney());
+			 bid.setBtime(list.get(i).getBtime());
+			 bid.setBfid(list.get(i).getBfid());
+			 Fabiao fff = new Fabiao();
+			 fff.setFid(list.get(i).getBfid());
+			 Fabiao fab = fabiaoService.getModel(fff);
+			 bid.setFtit(fab.getFtitle());
+			 bid.setBroe(fab.getFroe().add(fab.getFincrease()));
+			 mylist.add(bid);
+		 }
+		model.addAttribute("list",mylist);
 		return "views/front/user/investrecord";
 	}
 	
