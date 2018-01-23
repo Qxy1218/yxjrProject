@@ -1228,7 +1228,17 @@
             	mizhu.toast('投资钱数低于最小投资钱数');
             	return;
             }
-	        
+            if(money_need<=0){
+            	mizhu.toast('投资钱数已满');
+            	return;
+            }
+            var allmoeny = ${thisfb.fmoney};
+	        var aaaa = account_money + ${thisfb.fendmoney};
+            if(aaaa >= allmoeny){
+            	mizhu.toast('投资钱数过大');
+            	return;
+            }
+            
 	        //判断用户是否已投资
 	      	 	$.ajax({
 	           	          url:"${pageContext.request.contextPath}/checkUserByBid",
