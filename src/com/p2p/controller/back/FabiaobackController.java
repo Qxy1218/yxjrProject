@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -14,9 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.p2p.pojo.Bid;
 import com.p2p.pojo.Fabiao;
 import com.p2p.pojo.FabiaoP2p;
+import com.p2p.pojo.Moneyrecord;
+import com.p2p.pojo.User;
+import com.p2p.service.back.BidService;
 import com.p2p.service.back.FabiaobackService;
+import com.p2p.service.back.MoneyrecordServiece;
+import com.p2p.service.front.IUserService;
 import com.p2p.util.PageInfo;
 import com.p2p.util.SendServiceUtil;
 import com.p2p.util.UUIDCode;
@@ -33,7 +40,12 @@ public class FabiaobackController {
 
 	@Resource(name="fabiaobackServiceImpl")	
 	private FabiaobackService fabiaoService;
-	
+	@Resource(name="bidServiceImpl")
+	private BidService bidService;
+	@Resource(name="IUserServiceImpl")
+	private IUserService iUserService;
+	@Resource(name="moneyrecordServiceImpl")
+	private MoneyrecordServiece moneyrecordServiece;
 	
 	@RequestMapping("pagefabiao")
 	@ResponseBody
@@ -93,7 +105,7 @@ public class FabiaobackController {
 	
 	@RequestMapping("updatefabiao")
 	@ResponseBody
-	//发标表修改
+	//发标表修改为满标
 	public int updatefabiao(Fabiao fabiao,HttpServletRequest request,MultipartFile[] upfile,MultipartFile orderfile,MultipartFile secfile,MultipartFile repfile) throws Exception {
 		String filepath = "";
 		if(upfile.length!=0) {
@@ -148,5 +160,51 @@ public class FabiaobackController {
 		}
 		return count;
 	}
+	//流标
+	public void faileFabiao() throws Exception {
+		List<Fabiao> fabiaoList=fabiaoService.getAllModel();
+		for(Fabiao fabiao:fabiaoList) {
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date date1=new Date();
+			Date date2=sdf.parse(fabiao.getFendtime());
+			if(date1.getTime()>date2.getTime()|date1.getTime()==date2.getTime()) {
+				//如果投标截止时间过了，标的状态还是募集标的话就把钱退换给投标人
+				if(fabiao.getFstatus()==1) {
+					//查询出投该标的投标人
+					Bid bid=new Bid();
+					bid.setBfid(fabiao.getFid());
+					List<Bid> bidList=bidService.getBidlist(bid);
+					for(Bid bi:bidList) {
+						//获取到用户
+						User use=new User();
+						use.setUid(bi.getUid());
+						User user=iUserService.getModel(use);
+						user.setUbalance(user.getUbalance()+bi.getBmoney().doubleValue());
+						//对接对象
+						FabiaoP2p fa=new FabiaoP2p();
+						fa.setFsmoney(bi.getBmoney().doubleValue());
+						fa.setFsorder(fabiao.getFcode());
+						fa.setFssuid(fabiao.getUid());
+						fa.setFsstate(4);
+						fa.setFstitle(fabiao.getFpart());
+						fa.setUser(null);
+						
+						int count = SendServiceUtil.list(fa, "192.168.90.47:8080/ServiceP2p/fabiao/add");
+						if(count==1) {
+							Moneyrecord money=new Moneyrecord();
+							money.setUid(user.getUid());
+							money.setMrdetail("流标退款");
+							money.setMrwastemoney(bid.getBmoney().doubleValue());
+							money.setMrwasttime(sdf.format(new Date()));
+							moneyrecordServiece.addModel(money);
+							iUserService.update(user);
+						}
+					}
+				}
+			}
+		}
+	
+	}
+	
 	
 }

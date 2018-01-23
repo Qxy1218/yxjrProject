@@ -401,7 +401,7 @@ public class RepaymentController {
 	
 	//自动还款
 	@RequestMapping("automaticRepayment")
-	public void AutomaticRepayment() throws Exception {
+	public void automaticRepayment() throws Exception {
 		List<Fabiao> listfabiao=fabiaoService.getAllModel();
 		for(Fabiao fabiao:listfabiao) {
 			if(fabiao.getFstatus()==2) {
@@ -477,7 +477,7 @@ public class RepaymentController {
 								fp.setFsstate(3);
 								fp.setFsroe(fabiao.getFroe().doubleValue()+fabiao.getFincrease().doubleValue());
 								fp.setFstitle(fabiao.getFpart());
-								SendServiceUtil.list(fp, "192.168.90.47:8080/ServiceP2p/fabiao/backsuccess");
+								int con=SendServiceUtil.list(fp, "192.168.90.47:8080/ServiceP2p/fabiao/backsuccess");
 							}
 						//如果余额里面少于还款金额，那么设置还款逾期
 						}else if(user.getUbalance()<money) {

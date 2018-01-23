@@ -96,4 +96,53 @@
 		    	</list>
 	    	</property>
 	    </bean> -->
+	    
+	    
+	    <!-- 引入定时器 -->
+     <bean id="profit" class="com.p2p.controller.front.ProfitController"></bean>
+     <bean id="repayment" class="com.p2p.controller.front.RepaymentController"></bean>
+     <!--  任务配置列表  --> 
+	    <bean id="jobtask1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+	        <property name="targetObject">  
+	            <ref bean="profit" />  
+	        </property>  
+	        <property name="targetMethod"> 
+	            <value>addProfit</value>
+	        </property>  
+	         <property name="concurrent" value="false"/>  
+	    </bean>
+	    <bean id="jobtask2" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+	        <property name="targetObject">  
+	            <ref bean="repayment" />  
+	        </property>  
+	        <property name="targetMethod"> 
+	            <value>automaticRepayment</value>
+	        </property>  
+	         <property name="concurrent" value="false"/>  
+	    </bean>
+	    <bean id="cronTrigger1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
+	        <property name="jobDetail" ref="jobtask1"></property>  
+	        <property name="cronExpression">  
+	            <!-- 每隔10秒执行一次 <value>0/10 * * * * ?</value>  
+	            每天每隔5分钟执行一次 <value>0 0/5 * * * ?</value>  
+	             <value>0 0 6 * * ?</value>   -->
+	             <value>0 0 10 * * ?</value>
+	       <!--      每天上午8点执行一次 <value>0 0 8 * * ?</value>  
+	            在每天下午16点到下午16:59期间的每1分钟触发 <value>0 * 16 * * ?</value> -->  
+	        </property>  
+	    </bean>
+	     <bean id="cronTrigger2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
+	        <property name="jobDetail" ref="jobtask2"></property>  
+	        <property name="cronExpression">  
+	             <value>0/10 * * * * ?</value>
+	        </property>  
+	    </bean>
+	    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+	    	<property name="triggers">
+		    	<list>
+		    		<ref bean="cronTrigger1" />
+		    		<ref bean="cronTrigger2" />
+		    	</list>
+	    	</property>
+	    </bean>
 </beans>
