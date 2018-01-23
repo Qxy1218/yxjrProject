@@ -274,6 +274,13 @@
 	       	    		           $('.m2-user-confirmBtn,.m2-userCentercommon-confirmClose').click(function () {
 	       	    		            	window.location.reload(true);
 	       	    		           })
+                               }else{
+                            	   $('#dialog-info-repay').show();
+	       	    		           $('#dialog-info-repaytext').text("还款失败,请在在规定的时间期还款!");
+	       	    		            
+	       	    		           $('.m2-user-confirmBtn,.m2-userCentercommon-confirmClose').click(function () {
+	       	    		            	window.location.reload(true);
+	       	    		           })
                                }
                             }
                         });
