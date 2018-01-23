@@ -17,7 +17,7 @@ public class SetupnaticeUtil {
 	public static int initSetupnatice(Integer userid,SetupnaticeService setupnaticeService) {
 		int issave = 0;
 		List<Setupnatice> list = setupnaticeService.getUserSetup(userid);
-		if(list==null) {
+		if(list.size()==0) {
 			Setupnatice set1 = new Setupnatice();
 			set1.setUid(userid);
 			set1.setUsname("充值成功");

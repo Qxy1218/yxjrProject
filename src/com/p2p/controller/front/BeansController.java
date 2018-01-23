@@ -116,7 +116,7 @@ public class BeansController {
 		 * 初始化用户通知消息设置
 		 * */
 		User us = (User)session.getAttribute("user");
-		if(us!=null && us.getUid()!=null) {
+		if(us!=null) {
 			SetupnaticeUtil.initSetupnatice(us.getUid(), setupnaticeService);
 		}
 		
