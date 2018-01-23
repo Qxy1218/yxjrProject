@@ -10,6 +10,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath}/statics/back/static/js/jquery.min.js"></script>
 		<link href="${pageContext.request.contextPath}/statics/back/login/css/main.css" rel="stylesheet" type="text/css" />
 		<link rel="Shortcut  Icon" href="/Finances/statics/other/lco/6.png">
+		
+		
+		
 		<!-- 图形验证码 -->
 	<script src="/Finances/statics/front/js/gVerify.js"></script>
 		<script type="text/javascript">
@@ -87,9 +90,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input type="text" style="width: 120px;" onblur="checkimgcode();" class="text" id="value_3" placeholder="验证码" name="value_3" tabindex="2">
 					<span id="reverifyCode"></span>
 					<input type="button" class="submit" onclick="login();" tabindex="3" value="登录">
-					<div style="color: red;">
-						${sessionScope.message_login}
-					</div>
+					<script type="text/javascript">
+						if("${sessionScope.message_login}"!=""){
+							alert('${sessionScope.message_login}');
+						}
+					</script>
 					<%
 						session.removeAttribute("message_login");
 					%>
