@@ -1,8 +1,10 @@
 package com.p2p.controller.front;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -17,7 +19,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2p.controller.back.SendMsgUtil;
 import com.p2p.pojo.Fabiao;
+import com.p2p.pojo.FabiaoP2p;
 import com.p2p.pojo.Moneyrecord;
+import com.p2p.pojo.Profit;
 import com.p2p.pojo.RepayAllInfo;
 import com.p2p.pojo.RepayService;
 import com.p2p.pojo.Repayment;
@@ -28,8 +32,10 @@ import com.p2p.service.back.MoneyrecordServiece;
 import com.p2p.service.back.SendMsgService;
 import com.p2p.service.front.FabiaoService;
 import com.p2p.service.front.IUserService;
+import com.p2p.service.front.ProfitService;
 import com.p2p.service.front.RepaymentService;
 import com.p2p.service.front.UserInfoService;
+import com.p2p.service.front.UserbackcardService;
 import com.p2p.util.DateUtils;
 import com.p2p.util.MessageBenas;
 import com.p2p.util.SendServiceUtil;
@@ -52,6 +58,10 @@ public class RepaymentController {
 	private UserInfoService userInfoService;  //用户详情
 	@Resource(name="moneyrecordServiceImpl")
 	private MoneyrecordServiece moneyrecordServiece;  //资金详情记录
+	@Resource(name="userbackcardServiceImpl") 
+	private UserbackcardService userbackcardService;
+	@Resource(name="profitServiceImpl")
+	private ProfitService profitService;
 	
 	@Resource(name="sendMsgServiceImpl")
 	private SendMsgService sendmsg;
@@ -385,5 +395,107 @@ public class RepaymentController {
 			}
 		}
 		return result;
+	}
+	
+	
+	
+	//自动还款
+	@RequestMapping("automaticRepayment")
+	public void AutomaticRepayment() throws Exception {
+		List<Fabiao> listfabiao=fabiaoService.getAllModel();
+		for(Fabiao fabiao:listfabiao) {
+			if(fabiao.getFstatus()==2) {
+				if(fabiao.getFhkstype()==1) {
+					SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					Date date1=new Date();
+					Date date2=sdf.parse(fabiao.getFhuanend());
+					if(date1.getTime()>date2.getTime()) {
+						User u=new User();
+						u.setUid(fabiao.getUid());
+						User user=iUserService.getModel(u);
+						//计算发标人需要还款多少钱
+						double money=Math.round(fabiao.getFendmoney().doubleValue()*(1+fabiao.getFroe().doubleValue()+fabiao.getFincrease().doubleValue())*100)/100;
+						//平台应还回利息的百分之50
+						double moneyadmin=Math.round(fabiao.getFendmoney().doubleValue()*(fabiao.getFroe().doubleValue()+fabiao.getFincrease().doubleValue())*0.5*100)/100;
+						if(user.getUbalance()>money|user.getUbalance()==money) {
+							user.setUbalance(user.getUbalance()-money);
+							
+							User us=new User();
+							us.setUid(1);
+							User users=iUserService.getModel(us);
+							users.setUbalance(users.getUbalance()+moneyadmin);
+							//平台收益
+							Profit profit=new Profit();
+							profit.setPfmoney(moneyadmin);
+							profit.setPfmoneywhere("发标还款(自动还款)");
+							profit.setUid(1);
+							profit.setPftime(sdf.format(new Date()));
+							
+							//资金记录
+							Moneyrecord mon=new Moneyrecord();
+							mon.setMrdetail("发标还款(自动还款)");
+							mon.setMrwastemoney(money);
+							mon.setMrwasttime(sdf.format(new Date()));
+							mon.setUid(fabiao.getUid());
+							
+							Repayment repay=new Repayment();
+							repay.setFcode(fabiao.getFcode());
+							Repayment repayment=repaymentService.getModel(repay);
+							repayment.setRmstate(3);
+							BigDecimal moneys=new BigDecimal(money);
+							BigDecimal plan=new BigDecimal("0.00");
+							repayment.setRmface(moneys);
+							repayment.setRmplan(plan);
+							repayment.setRmwait(plan);
+							repayment.setRmall(moneys);
+							repayment.setRmoverdue(plan);
+							
+							RepayService rs=new RepayService();
+							rs.setRhandmoney(moneyadmin);
+							rs.setRmoeny(money);
+							rs.setRorder(fabiao.getFcode());
+							rs.setRstate(2);
+							rs.setRsuid(fabiao.getUid());
+							rs.setRtime(sdf.format(new Date()));
+							
+							int count=SendServiceUtil.list(rs, "192.168.90.47:8080/ServiceP2p/repayment/add");
+							if(count==1) {
+								iUserService.update(user);
+								iUserService.update(users);
+								moneyrecordServiece.addModel(mon);
+								repaymentService.update(repayment);
+								profitService.addModel(profit);
+								
+								fabiao.setFstatus(3);
+								fabiao.setFyhqx(1);
+								fabiaoService.update(fabiao);
+								
+								FabiaoP2p fp=new FabiaoP2p();
+								fp.setFsmoney(money);
+								fp.setFsorder(fabiao.getFcode());
+								fp.setFssuid(fabiao.getUid());
+								fp.setFsstate(3);
+								fp.setFsroe(fabiao.getFroe().doubleValue()+fabiao.getFincrease().doubleValue());
+								fp.setFstitle(fabiao.getFpart());
+								SendServiceUtil.list(fp, "192.168.90.47:8080/ServiceP2p/fabiao/backsuccess");
+							}
+						//如果余额里面少于还款金额，那么设置还款逾期
+						}else if(user.getUbalance()<money) {
+							fabiao.setFstatus(8);
+							
+							Repayment repay=new Repayment();
+							repay.setFcode(fabiao.getFcode());
+							Repayment repayment=repaymentService.getModel(repay);
+							repayment.setRmstate(8);
+							
+							fabiaoService.update(fabiao);
+							repaymentService.update(repayment);
+						}
+						
+					}
+				}
+			}
+		}
+		
 	}
 }
