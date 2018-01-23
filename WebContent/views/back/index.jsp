@@ -300,7 +300,7 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="${sessionScope.employee.eimage}" width='90px' height='80px'/></span>
+                            <span><img alt="image" class="img-circle" src="${pageContext.request.contextPath}${sessionScope.employee.eimage}" width='90px' height='80px'/></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold">欢迎您:${sessionScope.employee.ename}</strong></span>

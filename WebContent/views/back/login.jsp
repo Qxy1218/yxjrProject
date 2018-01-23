@@ -1,188 +1,138 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
 %>
-<jsp:include page="/statics/back/static/jsp/init.jsp"></jsp:include>
 <html>
 	<head>
-		<link rel="Shortcut  Icon" href="/Finances/statics/other/lco/smalllog.png">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-		<title>亿信金融</title>
-		<link href="${pageContext.request.contextPath}/statics/back/assets/css/style.css" rel="stylesheet" type="text/css" />
-		<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/statics/back/assets/js/jquery-1.8.3.min.js"></script> --%>
-		<!-- <title>Insert title here</title> -->
-		<script  type="text/javascript">
-	        function reloadValidateCode(){
-	            $("#validateCodeImg").attr("src","<%=basePath%>/back/validateCode?data=" + new Date() + Math.floor(Math.random()*24));
-	        }
-	        
+		<title>亿信金融后台登录</title>
+		<script src="${pageContext.request.contextPath}/statics/back/static/js/jquery.min.js"></script>
+		<link href="${pageContext.request.contextPath}/statics/back/login/css/main.css" rel="stylesheet" type="text/css" />
+		<link rel="Shortcut  Icon" href="/Finances/statics/other/lco/6.png">
+		<!-- 图形验证码 -->
+	<script src="/Finances/statics/front/js/gVerify.js"></script>
+		<script type="text/javascript">
+		var canSubmit=false;
 	        //判断用户名
 	        function empName(){
-	        	var name =$("#name").val();
+	        	var name =$("#value_1").val();
 	        	if(name==null || name==''){
-	        		$("#nameNull").show();
+	        		$("#value_1").shake(2, 10, 400);
+	        	   	$("#value_1").val("");
+	        	    $("#value_1").attr('placeholder',"用户名不能为空！");
+	        		canSubmit = false;
 	        	}
 	        	else{
-	        		$("#nameNull").hide();
+	        		canSubmit = true;
 	        	}
 	        }
 	        
 	       function empPassword(){
-	    	   var password =$("#password").val();
+	    	   var password =$("#value_2").val();
 	        	if(password==null || password==''){
-	        		$("#passwordNull").show();
+	        		$("#value_2").shake(2, 10, 400);
+	        	   	$("#value_2").val("");
+	        	    $("#value_2").attr('placeholder',"密码不能为空！");
+	        		canSubmit = false;
 	        	} 
 	        	else{
-	        		$("#passwordNull").hide();
+	        		canSubmit = true;
 	        	}
 	       } 
+	      function checkimgcode(){
+	    	 	 var cc = $("#value_3").val();
+	    		var res = verifyCode.validate(cc);
+	    		if(res){
+	    			canSubmit = true;
+	    		}else{
+	    			$("#value_3").shake(2, 10, 400);
+	        	   	$("#value_3").val("");
+	        	    $("#value_3").attr('placeholder',"验证码输入错误！");
+	    			canSubmit = false;
+	    		}
+	      }
 	       
-	       function empImgcode(){
-	    	   var imgcode =$("#imgcode").val();
-	    	   var url = "${pageContext.request.contextPath}/back/SureCode";
-	        	if(imgcode==null || imgcode==''){
-	        		$("#imgcodeNull").show();
-	        	}else{
-	        		$.post(
-			    			url,
-			    			{
-			    				imgcode:imgcode,
-			    			},
-			    			function(data){
-			    				//后台返回int类型的数据
-			    				if(data<0){
-			    					$("#imgcodeNull").hide();
-			    					$("#imgcodeError").show();
-			    				}else{
-			    					$("#imgcodeNull").hide();
-			    					$("#imgcodeError").hide();
-			    				}
-			    			},
-			    			"text"
-			    		);	
-	        	}
-	       } 
 	       function login(){
-	    	   var name =$("#name").val();
-	    	   var password =$("#password").val();
-	    	   var imgcode =$("#imgcode").val();
-	    	   if(name==null || name==''){
-	        		$("#nameNull").show();
-	        	}
-	        	else if(password==null || password==''){
-	        		$("#nameNull").hide();
-	        	}
-	        	else if(imgcode==null || imgcode==''){
-	        		$("#imgcodeNull").show();
-	        	}
-	    	   else{
-	    		   $("#nameNull").hide();
-	    		   $("#passwordNull").hide();
-	    		   $("#imgcodeNull").hide();
-	    		   location.href="<%=path%>/back/loginindex?name="+name+"&password="+password+"&imgcode="+imgcode;
+	    	   empName();
+	    	   empPassword();
+	    	   checkimgcode();
+	    	   if (canSubmit !== true) {
+	    		   return;
+	    	   }else{
+	    		   var name =$("#value_1").val();
+	    		   var pas =$("#value_2").val();
+	    		   window.location.href="${pageContext.request.contextPath}/back/loginindex?name="+name+"&password="+pas+""; 
 	    	   }
-	    	   
 	       }
     </script>
+   
 	</head>
-	<body onLoad="sendRequest()" >
-	<div class="videozz"></div>
-	<!--  
-		<video  autoplay muted loop poster="/Finances/statics/back/assets/images/fallba1ck.jpg">
-			<source src="/Finances/statics/back/assets/images/mov.mp4">		
-			你的游览器不支持video支持
-		</video>
-	-->
-		<div class="box">
-			<div class="box-a">
-			    <div class="m-2">
-			          <div class="m-2-1">
-			            <form  method="post">
-			                <div class="m-2-2">
-			                   <input type="text" name="name" id="name" placeholder="请输入账号" onblur="empName()"/>
-			                </div>
-			                <div id="nameNull" style="color: red;display:none">用户名不能为空!</div>
-			                <div class="m-2-2">
-			                   <input type="password" name="password" id="password" placeholder="请输入密码" onblur="empPassword()"/>
-			                </div>
-			                <div id="passwordNull" style="color: red;display:none">密码不能为空!</div>
-			                <div class="m-2-2-1">
-			                   <input type="text" name="imgcode" id="imgcode" placeholder="请输入验证码" onblur="empImgcode()"/>
-			                   <img id="validateCodeImg" src="<%=basePath%>/back/validateCode" onclick="reloadValidateCode()"/>&nbsp;&nbsp;
-			                </div>
-			                <div>
-			                	<span id="imgcodeNull" style="color: red;display:none">验证码不能为空!</span>
-			                	<span id="imgcodeError" style="color: red;display:none">验证码错误!</span>
-			                </div>
-			                <div class="m-2-2">
-			                   <button type="button" value="登录" onclick="login()"/> 登录
-			                   	   <h4 style="color: red;">${sessionScope.message_login}</h4>
-	                  	  	<%
-		                    	if(session.getAttribute("message_login")!=null){
-		                    		session.removeAttribute("message_login");
-		                            
-		                    	}
-	                    	%>
-			                </div>
-			            </form>
-			        </div>
-			    </div>
-			    <div class="m-5"> 
-				    <div id="m-5-id-1"> 
-					    <div id="m-5-2"> 
-					    	<div id="m-5-id-2"></div> 
-					    	<div id="m-5-id-3"></div> 
-					    </div> 
-				    </div> 
-			    </div>   
-			    <div class="m-10"></div>
-			    <div class="m-xz7"></div>
-			    <div class="m-xz8 xzleft"></div>
-			    <div class="m-xz9"></div>
-			    <div class="m-xz9-1"></div>
-			    <div class="m-x17 xzleft"></div>
-			    <div class="m-x18"></div>
-			    <div class="m-x19 xzleft"></div>
-			    <div class="m-x20"></div>  
-			    <div class="m-8"></div>
-			    <div class="m-9">
-			    	<div class="masked1" id="sx8">亿信金融</div>
-			    </div> 
-			    <div class="m-11">
-			    	<div class="m-k-1"><div class="t1"></div></div>
-			        <div class="m-k-2"><div class="t2"></div></div>
-			        <div class="m-k-3"><div class="t3"></div></div>
-			        <div class="m-k-4"><div class="t4"></div></div>
-			        <div class="m-k-5"><div class="t5"></div></div>
-			        <div class="m-k-6"><div class="t6"></div></div>
-			        <div class="m-k-7"><div class="t7"></div></div>
-			    </div>   
-			    <div class="m-14">
-			    	<div class="ss"></div>
-			    </div>
-			    <div class="m-15-a">
-				    <div class="m-15-k">
-				    	<div class="m-15xz1">
-				            <div class="m-15-dd2"></div>
-				        </div>
-				    </div>
-			    </div>
-			    <div class="m-16"></div>
-			    <div class="m-17"></div>
-			    <div class="m-18 xzleft"></div>
-			    <div class="m-19"></div>
-			    <div class="m-20 xzleft"></div>
-			    <div class="m-21"></div>
-			    <div class="m-22"></div>
-			    <div class="m-23 xzleft"></div>
-			    <div class="m-24" id="localtime"></div>
-		    </div>
+	<body>
+	<div class="login">
+    <div class="box png">
+		<div class="logo png"></div>
+		<div class="input">
+			<div class="log">
+				<div class="name">
+					<label>用户名</label>
+					<input type="text" onblur="empName();" class="text" id="value_1" placeholder="用户名" name="value_1" tabindex="1">
+				</div>
+				<div class="pwd">
+					<label>密　码</label>
+					<input type="password" onblur="empPassword();" class="text" id="value_2" placeholder="密码" name="value_2" tabindex="2">
+				</div>
+				<div class="pwd">
+					<label>验证码</label>
+					<input type="text" style="width: 120px;" onblur="checkimgcode();" class="text" id="value_3" placeholder="验证码" name="value_3" tabindex="2">
+					<span id="reverifyCode"></span>
+					<input type="button" class="submit" onclick="login();" tabindex="3" value="登录">
+					<div style="color: red;">
+						${sessionScope.message_login}
+					</div>
+					<%
+						session.removeAttribute("message_login");
+					%>
+					<div class="check"></div>
+				</div>
+				<div class="tip"></div>
+			</div>
 		</div>
-		<script src="/Finances/statics/back/assets/js/common.min.js"></script>
-		<div style="text-align:center;"></div>
-	</body>
+	</div>
+    <div class="air-balloon ab-1 png"></div>
+	<div class="air-balloon ab-2 png"></div>
+    <div class="footer"></div>
+</div>
+ <script type="text/javascript">
+	  //图形验证码
+	    if ( $("#reverifyCode").length > 0 ) { 
+	    	var verifyCode = new GVerify("reverifyCode");
+	    }
+    </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/statics/back/login/js/jQuery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/statics/back/login/js/fun.base.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/statics/back/login/js/script.js"></script>
+<script type="text/javascript">
+jQuery.fn.shake = function (intShakes /*Amount of shakes*/, intDistance /*Shake distance*/, intDuration /*Time duration*/) {
+    this.each(function () {
+        var jqNode = $(this);
+        jqNode.css({ position: 'relative' });
+        for (var x = 1; x <= intShakes; x++) {
+            jqNode.animate({ left: (intDistance * -1) }, (((intDuration / intShakes) / 4)))
+            .animate({ left: intDistance }, ((intDuration / intShakes) / 2))
+            .animate({ left: 0 }, (((intDuration / intShakes) / 4)));
+        }
+    });
+    return this;
+}
+</script>
+
+<!--[if IE 6]>
+<script src="${pageContext.request.contextPath}/statics/back/login/js/DD_belatedPNG.js" type="text/javascript"></script>
+<script>DD_belatedPNG.fix('.png')</script>
+<![endif]-->
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>版权 &copy; 2018 | 亿信金融 | 保留所有权利  | Template by &nbsp;<a href="/Finances/toindex">.亿信金融.</a></p>
+</div>
+</body>
 </html>

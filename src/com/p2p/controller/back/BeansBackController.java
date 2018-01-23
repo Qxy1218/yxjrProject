@@ -43,7 +43,7 @@ public class BeansBackController {
 	 * */
 	@RequestMapping(value="/tologin")
 	public String toBackLogin(HttpServletRequest request){
-		return "views/back/loginer";
+		return "views/back/login";
 	}
 	
 	/**
