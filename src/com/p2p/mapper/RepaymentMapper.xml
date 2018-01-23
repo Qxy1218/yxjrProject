@@ -13,6 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="rm_state" property="rmstate"/>
 		<result column="rm_style" property="rmstyle"/>
 		<result column="f_code" property="fcode"/>
+		<result column="rm_overdue" property="rmoverdue"/>
 		
 		<association property="fabiao" javaType="com.p2p.pojo.Fabiao">
 			<id column="f_id" property="fid"/>
@@ -68,6 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="rmall!=null">and r.rm_all=#{rmall}</if>
 			<if test="rmstate!=null">and r.rm_state=#{rmstate}</if>
 			<if test="rmstyle!=null">and r.rm_style=#{rmstyle}</if>
+			<if test="rmoverdue!=null">and rm_overdue =#{rmoverdue}</if>
 		</where>
 	</select>
 	<!-- 修改 -->
@@ -81,6 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="rmall!=null">rm_all =#{rmall},</if>
 			<if test="rmstate!=null">rm_state =#{rmstate},</if>
 			<if test="rmstyle!=null">rm_style =#{rmstyle},</if>
+			<if test="rmoverdue!=null">rm_overdue =#{rmoverdue},</if>
 		</trim>
 		<where>
 			rm_id=#{rmid}
@@ -88,8 +91,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<!-- 增加 -->
 	<insert id="addModel" parameterType="com.p2p.pojo.Repayment">
-		insert into repayment(f_id,rm_plan,rm_face,rm_wait,rm_all,rm_state,rm_style,f_code)
-		values(#{fid},#{rmplan},#{rmface},#{rmwait},#{rmall},#{rmstate},#{rmstyle},#{fcode})
+		insert into repayment(f_id,rm_plan,rm_face,rm_wait,rm_all,rm_state,rm_style,f_code,rm_overdue)
+		values(#{fid},#{rmplan},#{rmface},#{rmwait},#{rmall},#{rmstate},#{rmstyle},#{fcode},#{rmoverdue})
 	</insert>
 	<!-- 删除 -->
 	<delete id="delete" parameterType="java.lang.Integer">
