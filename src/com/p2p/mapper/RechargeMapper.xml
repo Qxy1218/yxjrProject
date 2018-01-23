@@ -58,7 +58,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="com.p2p.pojo.Recharge">
 		delete from recharge where  re_id=#{reid}
 	</delete>
-	
+	 <!-- 查询所有 -->
+    <select id="selectPage" resultMap="BaseResultMap">
+		select r.re_id,r.u_id,r.re_money,r.re_time,ui.ui_name as uiname,u.u_id  from  recharge r ,user u ,user_info ui 
+		<where>
+			 r.u_id = u.u_id and ui.u_id = u.u_id
+			 <if test="recharge.retime != null and recharge.retime !='' ">
+			    and r.re_time like CONCAT(CONCAT('%', #{recharge.retime}), '%')
+			</if>
+			 <if test="recharge.uiname != null and recharge.uiname !=''">
+			     and ui.ui_name like CONCAT(CONCAT('%', #{recharge.uiname}), '%')
+			</if> 
+		</where>      
+    </select>
+     <!-- 查询总记录数 -->
+    <select id="rechargeCount" resultType="java.lang.Integer">
+        select count(*) from  recharge r ,user u ,user_info ui 
+			<where>
+			 r.u_id = u.u_id and ui.u_id = u.u_id
+			 <if test="recharge.retime != null and recharge.retime !='' ">
+			    and r.re_time like CONCAT(CONCAT('%', #{recharge.retime}), '%')
+			</if>
+			 <if test="recharge.uiname != null and recharge.uiname !=''">
+			     and ui.ui_name like CONCAT(CONCAT('%', #{recharge.uiname}), '%')
+			</if> 
+		</where>      
+    </select>
 	<!-- 判断交易密码是否正确 -->
 	<select id="getUserinfo" resultMap="userInfoBaseResultMap">
 		select * from user_info ui <where>

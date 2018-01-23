@@ -29,7 +29,13 @@ public class Recharge implements Serializable{
 	
 	@TableField("re_time")
 	private String retime; //充值时间
-	
+	private String uiname;
+	public String getUiname() {
+		return uiname;
+	}
+	public void setUiname(String uiname) {
+		this.uiname = uiname;
+	}
 	public Recharge(Integer reid, Integer uid, double remoney, String retime) {
 		super();
 		this.reid = reid;

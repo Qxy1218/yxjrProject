@@ -380,6 +380,9 @@
                                 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/about.jsp">关于我们管理</a>
                             </li>
                             <li>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/Recharge.jsp">充值管理</a>
+                            </li>
+                            <li>
 
                                 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/video.jsp">视频管理</a>
                             </li>
