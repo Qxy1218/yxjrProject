@@ -190,7 +190,7 @@ public class IdCardController {
 				users.setSucredit(us.getUcredit());
 				
 				//向服务端传递对象(url是服务端地址)
-				int usercount = SendServiceUtil.list(users, "192.168.90.47:8080/ServiceP2p/user/add");
+				int usercount = SendServiceUtil.list(users, "119.23.55.22/ServiceP2p/user/add");
 				
 				//服务端银行卡设值
 				Bank banks = new Bank();
@@ -200,7 +200,7 @@ public class IdCardController {
 				banks.setBmoney(bank.getUbmoney());
 				banks.setBstate(bank.getUbstatus());
 				
-				int bankcount = SendServiceUtil.list(banks, "192.168.90.47:8080/ServiceP2p/bank/add");
+				int bankcount = SendServiceUtil.list(banks, "119.23.55.22/ServiceP2p/bank/add");
 				
 				//当服务端开通成功后才可以成功开户
 				if(usercount==1 && bankcount==1) {
@@ -271,7 +271,7 @@ public class IdCardController {
 			banks.setBtype(userbackcard.getUbplaceback());
 			banks.setBmoney(userbackcard.getUbmoney());
 			banks.setBstate(userbackcard.getUbstatus());
-			SendServiceUtil.list(banks, "192.168.90.47:8080/ServiceP2p/bank/add");
+			SendServiceUtil.list(banks, "119.23.55.22/ServiceP2p/bank/add");
 			
 			Userinfo uinfo = new Userinfo();
 			uinfo.setUiid(userbackcard.getUiid());
@@ -462,7 +462,7 @@ public class IdCardController {
 		banks.setBmoney(userbackcard.getUbmoney());
 		banks.setBstate(userbackcard.getUbstatus());
 		
-		int bankcount = SendServiceUtil.list(banks, "192.168.90.47:8080/ServiceP2p/bank/delete");
+		int bankcount = SendServiceUtil.list(banks, "119.23.55.22/ServiceP2p/bank/delete");
 		
 		//当服务端开通成功后才可以成功开户
 		if(bankcount==1) {

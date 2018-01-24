@@ -92,7 +92,7 @@ public class ProfitController {
 						detail.setMrdetail("资金明细");
 						
 						//发送收益请求
-						int count=SendServiceUtil.list(profit, "192.168.90.47:8080/ServiceP2p/profit/add");
+						int count=SendServiceUtil.list(profit, "119.23.55.22/ServiceP2p/profit/add");
 						if(count==1) {
 							//修改数据库
 							moneyrecordServiece.addModel(detail);

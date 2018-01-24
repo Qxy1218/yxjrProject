@@ -171,7 +171,7 @@ public class BidProjectController {
 		bs.setUser(new Users());
 		try {
 			//1成功   2失败
-			serviceIsOk = SendServiceUtil.list(bs, "192.168.90.47:8080/ServiceP2p/initiative/add");
+			serviceIsOk = SendServiceUtil.list(bs, "119.23.55.22/ServiceP2p/initiative/add");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -231,7 +231,7 @@ public class BidProjectController {
 				BigDecimal dd = decimal.add(fabiao2.getFincrease());
 				fabiaoP2p.setFsroe(dd.doubleValue());
 				fabiaoP2p.setFshktime(fabiao2.getFendtime());
-				int repaycount = SendServiceUtil.list(fabiaoP2p, "192.168.90.47:8080/ServiceP2p/fabiao/success");
+				int repaycount = SendServiceUtil.list(fabiaoP2p, "119.23.55.22/ServiceP2p/fabiao/success");
 			}
 			
 			

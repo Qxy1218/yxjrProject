@@ -28,7 +28,7 @@ public class BidUtilController {
 				fabiaoP2p.setFsroe(dd.doubleValue());
 				fabiaoP2p.setFshktime(lb.get(i).getFendtime());
 				try {
-					int repaycount = SendServiceUtil.list(fabiaoP2p, "192.168.90.47:8080/ServiceP2p/fabiao/success");
+					int repaycount = SendServiceUtil.list(fabiaoP2p, "119.23.55.22/ServiceP2p/fabiao/success");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,7 +53,7 @@ public class BidUtilController {
 				fabiaoP2p.setFsroe(dd.doubleValue());
 				fabiaoP2p.setFshktime(lb.get(i).getFendtime());
 				try {
-					int repaycount = SendServiceUtil.list(fabiaoP2p, "192.168.90.47:8080/ServiceP2p/fabiao/success");
+					int repaycount = SendServiceUtil.list(fabiaoP2p, "119.23.55.22/ServiceP2p/fabiao/success");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -77,7 +77,7 @@ public class BidUtilController {
 				fabiaoP2p.setFsroe(dd.doubleValue());
 				fabiaoP2p.setFshktime(lb.get(i).getFendtime());
 				try {
-					int repaycount = SendServiceUtil.list(fabiaoP2p, "192.168.90.47:8080/ServiceP2p/fabiao/success");
+					int repaycount = SendServiceUtil.list(fabiaoP2p, "119.23.55.22/ServiceP2p/fabiao/success");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

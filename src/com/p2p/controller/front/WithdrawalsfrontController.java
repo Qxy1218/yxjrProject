@@ -92,7 +92,7 @@ public class WithdrawalsfrontController {
 		ws.setCsuid(user.getUid());
 		ws.setCorder(orderNumber);
 		
-		int count=SendServiceUtil.list(ws, "192.168.90.47:8080/ServiceP2p/withdrawals/add");
+		int count=SendServiceUtil.list(ws, "119.23.55.22/ServiceP2p/withdrawals/add");
 		
 		if(count==1) {
 			withdrawals.setWorder(orderNumber);

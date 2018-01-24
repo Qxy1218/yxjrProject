@@ -509,7 +509,7 @@ public class RepaymentController {
 							rs.setRsuid(fabiao.getUid());
 							rs.setRtime(sdf.format(new Date()));
 							
-							int count=SendServiceUtil.list(rs, "192.168.90.47:8080/ServiceP2p/repayment/add");
+							int count=SendServiceUtil.list(rs, "119.23.55.22/ServiceP2p/repayment/add");
 							if(count==1) {
 								iUserService.update(user);
 								iUserService.update(users);
@@ -528,7 +528,7 @@ public class RepaymentController {
 								fp.setFsstate(3);
 								fp.setFsroe(fabiao.getFroe().doubleValue()+fabiao.getFincrease().doubleValue());
 								fp.setFstitle(fabiao.getFpart());
-								int con=SendServiceUtil.list(fp, "192.168.90.47:8080/ServiceP2p/fabiao/backsuccess");
+								int con=SendServiceUtil.list(fp, "119.23.55.22/ServiceP2p/fabiao/backsuccess");
 							}
 						//如果余额里面少于还款金额，那么设置还款逾期
 						}else if(user.getUbalance()<money) {
@@ -629,7 +629,7 @@ public class RepaymentController {
 			repService.setRsuid(fa1.getUid());
 			repService.setRmoeny(rmoverdue.doubleValue());
 			repService.setRorder(repay1.getFcode());
-			int count = SendServiceUtil.list(repService, "192.168.90.47:8080/ServiceP2p/repayment/resolveLater");
+			int count = SendServiceUtil.list(repService, "119.23.55.22/ServiceP2p/repayment/resolveLater");
 			if(count==1) {
 				repay1.setRmoverdue(new BigDecimal("0.00"));
 				repay1.setRmstate(3);
