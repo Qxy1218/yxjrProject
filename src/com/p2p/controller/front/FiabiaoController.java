@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +17,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -77,6 +77,7 @@ public class FiabiaoController {
 	public String toProject(String pid,Model model,HttpSession session,ProjectSelect select,Integer pageNow) throws Exception{
 		model.addAttribute("pageName", "invset");
 		BidUtilController.setFabiao(fabiaoService);
+		List<String> myimg = new ArrayList<String>();
 		//取当前时间	
 		Date date=new Date();
 		DateFormat format1 =new SimpleDateFormat("yyyy-MM-dd");
@@ -88,6 +89,10 @@ public class FiabiaoController {
 		fabiao.setFid(Integer.parseInt(pid));
 		
 		Fabiao thisfb =  fabiaoService.getModel(fabiao);
+		
+		//拼接list
+		myimg = Arrays.asList(thisfb.getForderimg().split(","));  
+		
 		//取完成率
 		 BigDecimal bigcompnrate = thisfb.getFendmoney().divide(thisfb.getFmoney(),10,BigDecimal.ROUND_HALF_DOWN);
 		 String compnrate =  ContextUtils.parsePercent(bigcompnrate.toString());
@@ -159,6 +164,7 @@ public class FiabiaoController {
 		model.addAttribute("thisfb", thisfb);
 		model.addAttribute("redlist", redlist);
 		model.addAttribute("voulist", voulist);
+		model.addAttribute("myimg",myimg);
 		return "views/front/product";
 	}
 	
