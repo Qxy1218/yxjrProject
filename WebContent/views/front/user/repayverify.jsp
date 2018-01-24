@@ -170,7 +170,7 @@
 	        <b class="m2-cha2Con-close"></b>
 	        <div class="m2-cha2Conf-bind">
 	        	<input type="hidden" id="user_phone" value="${sessionScope.user.uphone }"/>
-	        	<input type="hidden" id="user_balance" value="${sessionScope.user.ubalance }"/>
+	        	<input type="hidden" id="user_balance" value="${requestScope.usermoney.ubalance }"/>
 	        	<input type="hidden" id="user_paymoney_uiid" value="${sessionScope.userinfo.uiid }"/>
 	            <div class="m2-cha2Conf-tit">
 					<span>还款详情</span>

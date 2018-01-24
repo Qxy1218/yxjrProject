@@ -76,7 +76,7 @@ public class RepaymentController {
 	 * 根据用户id  修改  发标方式(手动(分期期限,已还多少期)、自动在(一次性还完))
 	 * */
 	@RequestMapping(value="/repayverify")
-	public ModelAndView getUserRepay(@RequestParam Integer uid) {
+	public ModelAndView getUserRepay(@RequestParam Integer uid,HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		
 		Fabiao fabiao = new Fabiao();
@@ -161,6 +161,13 @@ public class RepaymentController {
 			if(repay1!=null) {
 				mv.addObject("repays", repay1);
 			}
+		}
+		
+		User user = new User();
+		user.setUid(uid);
+		User us = iUserService.getModel(user);
+		if(us!=null) {
+			request.setAttribute("usermoney", us);
 		}
 		
 		mv.addObject("fabiaos", fa);
