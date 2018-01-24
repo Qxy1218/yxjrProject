@@ -174,7 +174,7 @@
                     <li><i></i>注册成功</li>
                 </ul>
                 <div class="m2-regist-inputarea">
-                    <h4><b>会员注册</b>已有爱钱帮账号？<a href="/login">登录</a></h4>
+                    <h4><b>会员注册</b>已有爱钱帮账号？<a href="/Finances/tologin">登录</a></h4>
                     <table cellpadding="0" cellspacing="0" border="0">
                         <tr>
                             <td><i class="m2-regist-mobicon"></i>手机号</td>
