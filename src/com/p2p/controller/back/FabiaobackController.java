@@ -138,7 +138,7 @@ public class FabiaobackController {
 		fp.setFsroe(fabiao.getFroe().doubleValue()+fabiao.getFincrease().doubleValue());
 		fp.setFshktime(fabiao.getFhuanend());
 		fp.setFsstyle(fabiao.getFhkstype());
-		int fb = SendServiceUtil.list(fp, "192.168.90.47:8080/ServiceP2p/fabiao/add");
+		int fb = SendServiceUtil.list(fp, "119.23.55.22/ServiceP2p/fabiao/add");
 		int count =0;
 		if(fb==1) {
 			count = fabiaoService.update(fabiao);

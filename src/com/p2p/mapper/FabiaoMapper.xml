@@ -262,7 +262,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 后台表总记录数查询 -->
 	<select id="fabiaoCount" resultType="java.lang.Integer">
-		select count(*) from fabiao
+		select count(*) from fabiao where f_status=6;
 	</select>
 	<!-- 查询流标 -->
 	<select id="selectlb" resultMap="BaseResultMap">

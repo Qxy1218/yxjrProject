@@ -102,6 +102,7 @@
 		var athRole = selectList[0];
 		//把选中行的数据放到弹窗的控件中
 		
+		$("#editRole #fid").val(athRole.fid);
 		$("#editRole #ftitle").val(athRole.ftitle);
 		$("#editRole #uid").val(athRole.uid);
 		$("#editRole #fcode").val(athRole.fcode);
@@ -136,7 +137,7 @@
 		//显示新增窗口
 		$('#editRole').modal('show');
     }
-    function updateRole(){
+    function updateRole(fid){
 		//用来关闭新增窗口***********
 		//用来关闭新增窗口***********
 		$("#editRole").modal('hide');
@@ -431,6 +432,7 @@
 						<input type="text" name="ftitle" class="form-control" id="ftitle" readonly="readonly">
 					</div>
 				</div>
+				<input type="hidden" name="fid" id="fid">
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">用户id</label>
 					<div class="col-sm-8">
