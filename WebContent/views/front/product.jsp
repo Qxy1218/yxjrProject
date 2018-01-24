@@ -598,29 +598,16 @@
 		
 		    <div class="m2-detImgbox m2-detSection">
 		        <h3>
-		            车辆照片            <i></i>
+		            额外照片            <i></i>
 		        </h3>
 		        <div class="m2-detImglist m2-det-togBox  img-view2">
 		            <ul>
+		            <c:forEach items="${myimg}" var="myimages">
 		                <li>
-		                    <img src="/Finances/statics/front/uploadData/UserBorrowData/182015-201609021324588831.jpg" alt="左前" data-fullpic="/Finances/statics/front/uploadData/UserBorrowData/182015-201609021324588831.jpg">
-		                    <p>左前</p>
-		                </li><li>
-		                <img src="/Finances/statics/front/uploadData/UserBorrowData/182015-201609021325192931.jpg" alt="右后" data-fullpic="/Finances/statics/front/uploadData/UserBorrowData/182015-201609021325192931.jpg">
-		                <p>右后</p>
-		            </li><li>
-		                <img src="/Finances/statics/front/uploadData/UserBorrowData/182015-201609021325049439.jpg" alt="公里数" data-fullpic="/Finances/statics/front/uploadData/UserBorrowData/182015-201609021325049439.jpg">
-		                <p>公里数</p>
-		            </li><li>
-		                <img src="/Finances/statics/front/uploadData/UserBorrowData/182015-201609021324505212.jpg" alt="中控" data-fullpic="/Finances/statics/front/uploadData/UserBorrowData/182015-201609021324505212.jpg">
-		                <p>中控</p>
-		            </li><li>
-		                <img src="/Finances/statics/front/uploadData/UserBorrowData/182015-201609021325134212.jpg" alt="前排" data-fullpic="/Finances/statics/front/uploadData/UserBorrowData/182015-201609021325134212.jpg">
-		                <p>前排</p>
-		            </li><li>
-		                <img src="/Finances/statics/front/uploadData/UserBorrowData/182015-20160902132509102.jpg" alt="后排" data-fullpic="/Finances/statics/front/uploadData/UserBorrowData/182015-20160902132509102.jpg">
-		                <p>后排</p>
-		            </li>            </ul>
+		                    <img src="${pageContext.request.contextPath}${myimages}" data-fullpic="${pageContext.request.contextPath}${myimages}">
+		                </li>   
+		             </c:forEach>
+		            </ul>
 		        </div>
 		        <div class="m2-detSec-toggle">
 		            <span class="m2-detSec-down">展开<i></i></span>
@@ -1220,21 +1207,29 @@
 	    $('#invest_now').click(function () {
 	        //判断uid是否为空
 	    	if(!uid){
-	            window.location.href = '${pageContext.request.contextPath }/tologin';
+	            window.location.href = '${pageContext.request.contextPath }/toindex';
 	            return;
 	        }
-	    	//var invest = $('#invest_money').val();
-            if(account_money < invest_limit){
+	    	var invest = $('#invest_money').val();
+            if(invest < invest_limit){
             	mizhu.toast('投资钱数低于最小投资钱数');
             	return;
             }
-            if(money_need<=0){
+            if(money_need<0){
             	mizhu.toast('投资钱数已满');
             	return;
             }
+            //取得总共得投的钱数
             var allmoeny = ${thisfb.fmoney};
-	        var aaaa = account_money + ${thisfb.fendmoney};
-            if(aaaa >= allmoeny){
+            //把可投数转成整数
+            invest = Number(invest);
+            //把用户投的钱数和已投钱数相加
+	        var aaaa = Number((invest + ${thisfb.fendmoney}).toFixed(2));
+	        //取得红包的钱数
+            reward_redpacket_money = Number(reward_redpacket_money);
+	        //取得用户共投的钱数
+	        aaaa = Number((reward_redpacket_money+aaaa).toFixed(2));
+            if(aaaa > allmoeny){
             	mizhu.toast('投资钱数过大');
             	return;
             }
