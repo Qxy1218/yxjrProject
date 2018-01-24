@@ -578,12 +578,16 @@ public class IUserController {
 	 * 邮箱点击验证的controller
 	 * */
 	@RequestMapping(value = "emailcheck")
-	public String emailCheck(Integer id,String email,Model model) {
+	public String emailCheck(Integer id,String email,Model model,HttpSession session) {
 		Userinfo userinfo = new Userinfo();
 		userinfo.setUiemail(email);
 		userinfo.setUiid(id);
 		userinfo.setUiemailstatus(1);
 		int  isok = userInfoService.update(userinfo);
+		
+		//重新加载userinfo中的值
+		Userinfo uinfo = userInfoService.getModel(userinfo);
+		session.setAttribute("userinfo", uinfo);
 		if(isok>0) {
 			model.addAttribute("isok",1);
 		}else {

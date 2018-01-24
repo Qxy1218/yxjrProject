@@ -135,7 +135,7 @@ public class IdCardController {
 		
 		Userbackcard ub = new Userbackcard();
 		ub.setUbbackcardnum(ubbackcardnum);
-		Userbackcard ubd = userbackcardService.getModel(ub);
+		Userbackcard ubd = userbackcardService.selectBackcard(ub);
 		if(ubd!=null){
 			map.put("status",0);
 		}else{
@@ -180,7 +180,7 @@ public class IdCardController {
 				
 				//服务端用户表设值
 				Users users = new Users();
-				users.setSuid(userinfos.getUiid());
+				users.setSuid(userinfos.getUid());
 				users.setSuusername(userinfos.getUiname());
 				users.setSuname(idcard.getIcname());
 				users.setSuphone(us.getUphone());
