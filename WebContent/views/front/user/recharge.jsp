@@ -134,7 +134,7 @@
                             <span class="m2-userBankitem-bind"> 添加银行卡</span>
 						</div>
                         <div class="m2-userBank-chose" style="padding-top:10px;">
-                           <a href="#"  class="m2-recharge-entChr"  id="changeBank"><span>添加银行卡&raquo;</span></a>
+                           <a href="#"  class="m2-recharge-entChr" onclick="addBackCards()"><span>添加银行卡&raquo;</span></a>
                             <a href="#"  class="m2-userBank-choWarn">存在换卡失败,请联系客服：4006-777-518</b></a>
                         </div>
                     </div>
@@ -513,8 +513,12 @@
 		  });
 		  $('#addBack').click(function(){
 			  $('#addBank').modal('show');
-		  })
+		  });
+		  
 		});
+	function addBackCards(){
+		 $('#addBank').modal('show');
+	}
 	$(function(){
 		$("#payPwd").payPwd({
 			max:6,

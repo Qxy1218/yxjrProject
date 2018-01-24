@@ -864,10 +864,10 @@ public class FrontController {
 		List<Repayment> RepaymentList = new ArrayList<Repayment>();
 		User user = (User)session.getAttribute("user");
 		List<Repayment> listRepayment = repaymentService.selectMoney(user.getUid());
+		BigDecimal allMoney = new BigDecimal("0.00");
 		for (int i = 0; i < listRepayment.size(); i++) {
 			Repayment repayment = new Repayment();  
 			repayment.setUiname(listRepayment.get(i).getUiname());
-			repayment.setRmplan(listRepayment.get(i).getRmplan());
 			repayment.setRmface(listRepayment.get(i).getRmface());
 			repayment.setRmwait(listRepayment.get(i).getRmwait());
 			repayment.setRmall(listRepayment.get(i).getRmall());
@@ -875,6 +875,8 @@ public class FrontController {
 			repayment.setRmstyle(listRepayment.get(i).getRmstyle());
 			repayment.setFcode(listRepayment.get(i).getFcode());
 			repayment.setRmoverdue(listRepayment.get(i).getRmoverdue());
+			allMoney = listRepayment.get(i).getRmwait().add(listRepayment.get(i).getRmface().add(listRepayment.get(i).getRmall()));
+			repayment.setRmplan(allMoney);
 			RepaymentList.add(repayment);
 		}
 		model.addAttribute("listRepayment",RepaymentList);

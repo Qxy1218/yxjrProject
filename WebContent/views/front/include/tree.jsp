@@ -33,11 +33,8 @@
 	                    <li>
 	                        <a class="m2-aside-secLink-item" href="/Finances/topayment">回款计划</a>
 	                    </li>
-	                    <!-- <li>
-	                        <a class="m2-aside-secLink-item" href="/Finances/totransfer">债权转让</a>
-	                    </li> -->
 	                    <li>
-	                        <a class="m2-aside-secLink-item" href="/Finances/toinvest" target="_blank">立即投资</a>
+	                        <a class="m2-aside-secLink-item" href="/Finances/toinvestzt" target="_blank">立即投资</a>
 	                    </li>
 	
 	                </ul>
