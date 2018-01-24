@@ -185,10 +185,10 @@ $(document).ready(function() {
 	        	//后台返回int类型的数据
 					if(data>0){
 						//新增成功，下面是后台框架的提示
-						parent.layer.alert('增加成功');
+						parent.layer.alert('修改成功');
 					}else{
 						//新增失败
-						parent.layer.alert('增加失败');
+						parent.layer.alert('修改失败');
 					}
 					//新增完刷新表格数据
 					$('#tb_idcard').bootstrapTable('refresh');
