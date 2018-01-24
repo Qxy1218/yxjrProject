@@ -100,7 +100,7 @@ public class RechargeController {
 		chongzhi.setChorder(UUIDCode.produceUID(6));
 		
 		//向服务端传递对象(url是服务端地址)
-		int chongzhicount = SendServiceUtil.list(chongzhi, "192.168.90.111:8080/ServiceP2p/recharge/add");
+		int chongzhicount = SendServiceUtil.list(chongzhi, "119.23.55.22/ServiceP2p/recharge/add");
 		if(chongzhicount==1) {
 			recharge.setRetime(chtime);
 			try {

@@ -371,7 +371,7 @@ public class RepaymentController {
 				reService.setRhandmoney(handmoney+cleanmoney);
 				
 				//向服务端传递对象(url是服务端地址)
-				int repaycount = SendServiceUtil.list(reService, "192.168.90.111:8080/ServiceP2p/repayment/add");
+				int repaycount = SendServiceUtil.list(reService, "119.23.55.22/ServiceP2p/repayment/add");
 				if(repaycount==1) {  //返回值为1时还款成功
 					//先将用户余额扣除
 					User nowuser = new User();
@@ -420,7 +420,7 @@ public class RepaymentController {
 								fp.setFsstate(3);
 								fp.setFsroe(fabiao1.getFroe().doubleValue()+fabiao1.getFincrease().doubleValue());
 								fp.setFstitle(fabiao1.getFpart());
-								SendServiceUtil.list(fp, "192.168.90.111:8080/ServiceP2p/fabiao/backsuccess");
+								SendServiceUtil.list(fp, "119.23.55.22/ServiceP2p/fabiao/backsuccess");
 							}
 							int updateFabiao = fabiaoService.update(fabiao2);
 							if(updateFabiao>0) {
