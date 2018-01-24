@@ -627,7 +627,6 @@
 	           
 	}
 	function changeCard(){
-		alert("abcd");
 		var backnum = $('#backnum').val();
 		var pattern = /^([1-9]{1})(\d{14}|\d{18})$/;
 		var ubbackcardnum = $('#ubbackcardnum').val();
@@ -644,16 +643,17 @@
 	    	 $('#bankstyles').html("借记卡格式输入有误,请输入正确的借记卡格式!!");
 	    }
 	    else{
-	    	alert("sdfghj");
 	    	$.ajax({
 	    		url:'${pageContext.request.contextPath}/idcard/seleBybanknum',
 	    		data:{'backnum':backnum,'bankicname':bankicname,'bankphone':bankphone},
 	    		  success: function (data) {
 	    			  if(data>0){
+	    				  $('#bankModal').modal('hide');
 	    				  showMsg('切换卡完成', true);	
 	    				  location.href="${pageContext.request.contextPath}/torecharge?uiid="+uiid;
 	    			  }
 	    			  else{
+	    				  $('#bankModal').modal('hide');
 	    				  showMsg('切换卡失败');  
 	    			  }
 	    		  }	
@@ -669,10 +669,12 @@
     		data:{'ubbackcardnum':ubbackcardnum,'uiid':uiid},
     		  success: function (data) {
     			  if(data>0){
+    				  $('#jiebangModal').modal('hide');
     				  showMsg('解绑完成', true);	
     				  location.href="${pageContext.request.contextPath}/torecharge?uiid="+uiid;
     			  }
     			  else{
+    				  $('#jiebangModal').modal('hide');
     				  showMsg('解绑失败!');  
     			  }
     		  }	

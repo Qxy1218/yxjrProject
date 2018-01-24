@@ -11,6 +11,47 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/jquery.form.js"></script>
 <script src="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/js/bootstrapValidator.min.js"></script>
 <link href="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+<script src="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<link href="${pageContext.request.contextPath}/statics/back/static/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#idCard')
+        .bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+            	upfile: {
+                    message: '员工编号验证失败',
+                    validators: {
+                    	 notEmpty: {
+                             message: '文件不能为空'
+                         },
+                    }
+                },
+            }
+        })
+        .on('success.form.bv', function(e) {
+        	
+        	$("#idCardform").modal('hide');
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+            var form = new FormData(document.getElementById("editRole"));
+            var uiid =$("#idCardform #uiid").val();
+            AuthIcCard(uiid);	
+           
+        });
+});
+</script>	
 <script  type="text/javascript" >
     var rows = null;
 	
@@ -123,7 +164,7 @@
  		}
  		
  		//更改弹窗中保存按钮的事件（新增和修改用用同一个弹窗）
- 		$("#btn_submit").attr("onclick","AuthIcCard("+athRole.uiid+")");
+ 		/* $("#btn_submit").attr("onclick","AuthIcCard("+athRole.uiid+")"); */
  		//显示新增窗口
  		$('#idCardform').modal('show');
 	}
@@ -258,20 +299,20 @@
 							</div>
 						</div>
 						<div class="form-group" id="icstatus">  
-						  <label for="leader" class="control-label col-sm-3">实名认证状态</label>  
-						   &nbsp;&nbsp;
-						  <input type="radio" name="icstatus"  value="1" />未认证 
-						  	&nbsp;&nbsp;&nbsp;&nbsp;	
-						  <input type="radio" name="icstatus"   value="2"   />认证通过 
-						</div> 
-					</div>
-					<div class="modal-footer">
-						<button type="submit" class="btn btn-default" data-dismiss="modal">
-							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
-						</button>
-						<button type="submit" id="btn_submit" class="btn btn-primary" >
-							<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
-						</button>
+							  <label for="leader" class="control-label col-sm-3">实名认证状态</label>  
+							   &nbsp;&nbsp;
+							  <input type="radio" name="icstatus"  value="1" />未认证 
+							  	&nbsp;&nbsp;&nbsp;&nbsp;	
+							  <input type="radio" name="icstatus"   value="2"   />认证通过 
+							</div> 
+							<div class="modal-footer">
+							<button type="submit" class="btn btn-default" data-dismiss="modal">
+								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
+							</button>
+							<button type="submit" id="btn_submit" class="btn btn-primary" >
+								<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
+							</button>
+						</div>
 					</div>
 				</form>
 			</div>
