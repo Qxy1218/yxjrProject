@@ -79,7 +79,7 @@ public class BeansController {
 		List<Indexpic> lists = indexpicService.getAllModel();
 		model.addAttribute("indexpicList", lists);
 		model.addAttribute("pageName","index");
-		
+		BidUtilController.setFabiao(fabiaoService);
 		
 		/**
 		 * 在访问index界面时获取客户端是否有cookies
