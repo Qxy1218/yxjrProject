@@ -227,26 +227,20 @@
                 <li class="m2-userIndnum-item">
                     <p class="m2-detail-tit">资产总计:
                     </p>
-                    <span class="m2-detailNum-tur" style="color:#f5944f">0.00</span>
+                    <span class="m2-detailNum-tur" style="color:#f5944f">${allMoneyUser}</span>
                     <i class="m2-userIndnum-equ" ></i>
                 </li>
                 <li class="m2-userIndnum-item">
                     <p class="m2-detail-tit">待收本金:
 
                     </p>
-                    <span class="m2-detailNum-fal">0.00</span>
+                    <span class="m2-detailNum-fal">${bidProfitMy}</span>
                     <i class="m2-userIndnum-add"></i>
                 </li>
                 <li class="m2-userIndnum-item">
                     <p class="m2-detail-tit">待收收益:
                     </p>
-                    <span class="m2-detailNum-fal">0.00</span>
-                    <i class="m2-userIndnum-add"></i>
-                </li>
-                <li class="m2-userIndnum-item">
-                    <p class="m2-detail-tit">可用奖励金:
-                    </p>
-                    <span class="m2-detailNum-fal">0.00</span>
+                    <span class="m2-detailNum-fal">${bidProfit}</span>
                     <i class="m2-userIndnum-add"></i>
                 </li>
                 <li class="m2-userIndnum-item">
@@ -256,7 +250,7 @@
                                 <em class="m2-detail-titHide-arr"></em>
                                 <em class="m2-detail-titHide-arrBg"></em>
                                 <!---->
-                                徽商账户余额:${sessionScope.user.ubalance}    </u>
+                                徽商账户余额:${myUbalence}  </u>
                         </b>
                     </p>
                     <span class="m2-detailNum-fal">${sessionScope.user.ubalance} </span>

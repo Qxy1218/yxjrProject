@@ -98,4 +98,9 @@ public class BidServiceImpl implements BidService{
 		return bidmapper.getBidlist(bid);
 	}
 
+	@Override
+	public List<Bid> seleBidByUid(Integer uid) {
+		return bidmapper.seleBidByUid(uid);
+	}
+
 }

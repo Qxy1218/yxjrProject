@@ -48,6 +48,7 @@ import com.p2p.pojo.Userbackcard;
 import com.p2p.pojo.Userinfo;
 import com.p2p.pojo.Video;
 import com.p2p.service.back.AboutService;
+import com.p2p.service.back.BidService;
 import com.p2p.service.back.ContactService;
 import com.p2p.service.back.MoneyrecordServiece;
 import com.p2p.service.back.VideoService;
@@ -116,6 +117,10 @@ public class FrontController {
 	@Resource(name="singServiceImpl")
 	private SingService singService;
 	
+	//投资
+	@Resource(name="bidServiceImpl")
+	private BidService bidServices;
+	
 	//视频
 	@Resource(name="videoServiceImpl")
 	private VideoService videoservices;
@@ -135,6 +140,7 @@ public class FrontController {
 	
 	@Resource(name="moneyDetailServiceImpl")
 	private MoneyDetailService moneyDetailService;
+	
 	
 	/**
 	 * 头部的conteroller
@@ -793,6 +799,39 @@ public class FrontController {
 				session.setAttribute("repayment", repay1);
 			}
 		}
+		
+		//得到代收收益
+		List<Bid> bidlist = bidServices.seleBidByUid(uid);
+		BigDecimal bidProfit = new BigDecimal("0.0");
+		BigDecimal bidProfitMy = new BigDecimal("0.0");
+		if(bidlist.size()>0) {
+			for (int i = 0; i < bidlist.size(); i++) {
+				Fabiao fo = new Fabiao();
+				fo.setFid(bidlist.get(i).getBfid());
+				Fabiao f = fabiaoService.getModel(fo);
+				bidProfit = bidProfit.add(bidlist.get(i).getBmoney().multiply(f.getFroe().add(f.getFincrease())));
+				bidProfitMy = bidProfitMy.add(bidlist.get(i).getBmoney());
+			}
+		}
+		else {
+			bidProfit = new BigDecimal("0.0");
+			bidProfitMy = new BigDecimal("0.0");
+		}
+		User u = new User();
+		u.setUid(uid);
+		User user = iUserService.getModel(u);
+		BigDecimal myUbalence = new BigDecimal("0.0");
+		BigDecimal bl = new BigDecimal(user.getUbalance());
+		//用户的余额
+		myUbalence = myUbalence.add(bl);
+		
+		//用户的总资产
+		BigDecimal allMoneyUser = new BigDecimal("0.0");
+		allMoneyUser =myUbalence.add(bidProfitMy.add(bidProfit)); 
+		mo.addObject("bidProfitMy",bidProfitMy);
+		mo.addObject("bidProfit",bidProfit);
+		mo.addObject("allMoneyUser",allMoneyUser);
+		mo.addObject("myUbalence",myUbalence);
 		
 		mo.addObject("dayList",dayList);
 		mo.addObject("mouthList",mouthList);

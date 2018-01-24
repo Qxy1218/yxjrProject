@@ -108,5 +108,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	 SELECT COUNT(*) FROM bid where 1=1
     	<if test="fid!=null">and b_fid=#{fid}</if>
     </select>
+    
+    <select id="seleBidByUid" resultMap="BaseResultMap">
+    	select * from bid where u_id=#{uid}
+    </select>
 	
 </mapper>

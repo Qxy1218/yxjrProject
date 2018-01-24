@@ -51,6 +51,9 @@ public interface BidMapper extends IBaseDao<Integer, Bid>{
 
 			
 			List<Bid> selectBid(@Param("id")Integer id);
+			
+			//根据uid查询出所有投标的对象
+			List<Bid> seleBidByUid(Integer uid);
 
 		
 }

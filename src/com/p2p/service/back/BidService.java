@@ -39,4 +39,7 @@ public interface BidService extends IBaseService<Integer, Bid>{
 			 * 根据对象查询出有关的对象
 			 * */
 			List<Bid> getBidlist(Bid bid);
+			
+			//根据uid查询出所有投标的对象
+			List<Bid> seleBidByUid(Integer uid);
 }
