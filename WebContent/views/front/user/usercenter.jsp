@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
-<%@ page import="java.util.*"%> 
-<%@ page import="java.text.*" %>
+<%@ page import="java.util.Date"%> 
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="com.p2p.pojo.Fabiao"%>
 
 <%
@@ -498,13 +498,18 @@
                 <div class="m2-backCalendar-rig">
                     <div class="m2-backRig-nextDate">
 						<%
-						  Fabiao fa =(Fabiao)session.getAttribute("fabiao");
-						  SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+						 String strTime =""; 
+						SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 						  Date dNow = new Date();
-						  if(fa!=null){
-							 dNow = ft.parse(fa.getFhuanstat());
+						  Fabiao fa =(Fabiao)session.getAttribute("fabiao");
+						  try{
+							  if(fa!=null){
+									 dNow = ft.parse(fa.getFhuanstat());
+							}
+							strTime = ft.format(dNow);
+						  }catch(Exception exception){
+							  
 						  }
-						  String strTime = ft.format(dNow);
 						%>
                         <span class="m2-nextDatetit">开始还款日期</span><a id="paymentdetail-a">回款细节</a>
                         <p class="m2-nextDatecon" id="next_pay_day" style="font-size:18px;"><%=strTime %></p>
