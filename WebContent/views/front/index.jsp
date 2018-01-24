@@ -394,7 +394,7 @@
 	                <span class="incentivebox_bp1">恭喜您注册爱钱帮，<span class="red">20000元</span>体验金已经发送您的账户</span>
 	                <p class="comregistbox_bp2">您可以去体验金项目进行投资</p>
 	            </div>
-	            <a href="/Finances/togold">去投资</a>
+	            <a href="/Finances/toinvestzt">去投资</a>
 	            <div class="close" id="newregister-close"><img src="/Finances/statics/front/statics/home2/images/december-expermoney/close.png" alt="点击取消"></div>
 	        </div>
 	    </div>
