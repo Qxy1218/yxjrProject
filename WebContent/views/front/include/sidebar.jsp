@@ -281,7 +281,7 @@
                 event.stopPropagation();
             });
             $('#accountCommon_right').click(function(){
-                window.location.href="/Finances/tousercenter";
+                window.location.href="/Finances/tousercenter?uid=${sessionScope.user.uid}";
             });
         })
 
