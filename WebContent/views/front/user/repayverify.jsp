@@ -485,7 +485,8 @@
 					var fid = $("#fid").val();
 					var phone = $("#user_phone").val();
 		           	var rmoverdue = $("#rmoverdue").val();
-		           	var user_balance = ("#user_balance").val();
+		           	var user_balance = $("#user_balance").val();
+		           	
 		           	if(parseInt(rmoverdue)>parseInt(user_balance)){
 		        		$('#dialog-info-repay').show();
 			            $('#dialog-info-repaytext').text("对不起,账户余额不足,是否去充值!");
@@ -497,7 +498,6 @@
 			            	$('.m2-userCentercommon-confirm').hide();
 			            });
 		        	}else{
-		        		
 		        		$.ajax({
 			                   url: "/Finances/repay/HandleRepayMoney",
 			                   data:{

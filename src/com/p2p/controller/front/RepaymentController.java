@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,15 +83,6 @@ public class RepaymentController {
 		fabiao.setUid(uid);
 		Fabiao fa = fabiaoService.getModel(fabiao);
 		
-		if(fa!=null) {
-			Repayment repay = new Repayment();
-			repay.setFid(fa.getFid());
-			Repayment repay1 = repaymentService.getModel(repay);
-			if(repay1!=null) {
-				mv.addObject("repays", repay);
-			}
-		}
-		
 		//保存页面需要获取的字段
 		RepayAllInfo getinfo = new RepayAllInfo();
 		BigDecimal hundred = new BigDecimal("100");
@@ -161,6 +153,15 @@ public class RepaymentController {
 			}
 		}
 		mv.addObject("getinfo", getinfo);
+		
+		if(fa!=null) {
+			Repayment repay = new Repayment();
+			repay.setFid(fa.getFid());
+			Repayment repay1 = repaymentService.getModel(repay);
+			if(repay1!=null) {
+				mv.addObject("repays", repay1);
+			}
+		}
 		
 		mv.addObject("fabiaos", fa);
 		mv.addObject("pageName", "myinfo");
@@ -362,7 +363,7 @@ public class RepaymentController {
 					handmoney = money.doubleValue();
 				}
 				//当下一期还款为最后一期还款时,计算平台收益金额
-				if(fabiao1.getFstatus()+1==3) {
+				if(fabiao1.getFfqqx()==fabiao1.getFyhqx()+1) {
 					BigDecimal extra = new BigDecimal("0.5");
 					BigDecimal money = bidMoney.multiply(extra).add(bidMoney).setScale(2);
 					cleanmoney = money.doubleValue();
@@ -370,7 +371,7 @@ public class RepaymentController {
 				reService.setRhandmoney(handmoney+cleanmoney);
 				
 				//向服务端传递对象(url是服务端地址)
-				int repaycount = SendServiceUtil.list(reService, "192.168.90.123:8080/ServiceP2p/repayment/add");
+				int repaycount = SendServiceUtil.list(reService, "192.168.90.47:8080/ServiceP2p/repayment/add");
 				if(repaycount==1) {  //返回值为1时还款成功
 					//先将用户余额扣除
 					User nowuser = new User();
@@ -385,7 +386,7 @@ public class RepaymentController {
 					if(updateUser>0) {
 						//平台获取本次还款的所有金额
 						User platform = new User();
-						platform.setUid(10);
+						platform.setUid(1);
 						User platform1 = iUserService.getModel(platform);
 						User platform2 = new User();
 						platform2.setUid(platform1.getUid());
@@ -419,7 +420,7 @@ public class RepaymentController {
 								fp.setFsstate(3);
 								fp.setFsroe(fabiao1.getFroe().doubleValue()+fabiao1.getFincrease().doubleValue());
 								fp.setFstitle(fabiao1.getFpart());
-								SendServiceUtil.list(fp, "192.168.90.123:8080/ServiceP2p/fabiao/backsuccess");
+								SendServiceUtil.list(fp, "192.168.90.47:8080/ServiceP2p/fabiao/backsuccess");
 							}
 							int updateFabiao = fabiaoService.update(fabiao2);
 							if(updateFabiao>0) {
@@ -628,7 +629,7 @@ public class RepaymentController {
 			repService.setRsuid(fa1.getUid());
 			repService.setRmoeny(rmoverdue.doubleValue());
 			repService.setRorder(repay1.getFcode());
-			int count = SendServiceUtil.list(repService, "192.168.90.123:8080/ServiceP2p/repayment/resolveLater");
+			int count = SendServiceUtil.list(repService, "192.168.90.47:8080/ServiceP2p/repayment/resolveLater");
 			if(count==1) {
 				repay1.setRmoverdue(new BigDecimal("0.00"));
 				repay1.setRmstate(3);
@@ -636,7 +637,7 @@ public class RepaymentController {
 				if(updateRepay>0) {
 					//平台获取本次还款的所有金额
 					User platform = new User();
-					platform.setUid(10);
+					platform.setUid(1);
 					User platform1 = iUserService.getModel(platform);
 					User platform2 = new User();
 					platform2.setUid(platform1.getUid());
