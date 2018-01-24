@@ -100,7 +100,7 @@
                        		 <a href="${pageContext.request.contextPath }/toregirset" style="border-right:none;" target="_blank">注册</a>
                        	</c:if>
                     </li>
-                  <c:if test="${sessionScope.user.uid  != null}">
+                  <c:if test="${sessionScope.user.ubalance  != 0.00}">
                     <li class="m2-commonTop-btn">
                     	<a href="/Finances/tofinan" id="cfpage" style="border-right:none;width: 50px;">预约理财</a>
                     </li> 

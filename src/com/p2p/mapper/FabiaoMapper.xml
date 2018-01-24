@@ -267,16 +267,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 查询流标 -->
 	<select id="selectlb" resultMap="BaseResultMap">
 		<![CDATA[
-			select * from fabiao where f_endtime<=now();
+			select * from fabiao where f_endtime<=now() and f_status !=6;
 		]]>
 	</select>
 	<!-- 查询满标 -->
 	<select id="selectmb" resultMap="BaseResultMap">	
-		select * from fabiao where f_endmoney>=f_money;
+		select * from fabiao where f_endmoney>=f_money  and f_status !=6;
 	</select>
 	<!-- 查询还款标 -->
 	<select id="selecthkb" resultMap="BaseResultMap">
-		select * from fabiao where f_huanstat>=now();
+		select * from fabiao where f_huanstat>=now()  and f_status !=6;
 	</select>
 	<!-- 修改流标 -->
 	<update id="updatelb" parameterType="com.p2p.pojo.Fabiao">
