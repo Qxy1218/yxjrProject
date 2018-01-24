@@ -48,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
    
     <!-- 红包添加 -->
-	<insert id="addModel" useGeneratedKeys="true" keyProperty="rid">
+	<insert id="addModel"  parameterType="com.p2p.pojo.Redmoney"  useGeneratedKeys="true" keyProperty="rid">
  		 insert into redmoney(u_id,r_image,r_endtime,r_stardtime,r_money,r_start,r_condition) 
  		 values(#{uid},#{rimage},#{rendtime},#{rstardtime},#{rmoney},#{rstart},#{rcondition})
  	</insert>
