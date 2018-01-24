@@ -25,7 +25,7 @@
         <div class="mainNewcopy">
             <div class="mainNewserve">
                 <h3>客服电话:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:12px;">投资有风险，请谨慎投资</span></h3>
-                <h3><a id="kfdh">182996719481</a>&nbsp;&nbsp;&nbsp;http://127.0.0.1:8080/Finances/toindex</h3>
+                <h3><a id="kfdh"></a>&nbsp;&nbsp;&nbsp;http://Finances/toindex</h3>
                 <ul>
                     <li><a href="/Finances/toinvestzt">我要投资</a></li>
                     <li><a href="/Finances/tohelp">帮助中心</a></li>

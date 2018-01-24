@@ -1233,7 +1233,12 @@
             	mizhu.toast('投资钱数过大');
             	return;
             }
-            
+            //判断用户是不是投自己的标
+            var isthisuser = ${thisfb.uid};
+            if(uid==isthisuser){
+            	mizhu.toast('不能投自己的标');
+            	return;
+            }
 	        //判断用户是否已投资
 	      	 	$.ajax({
 	           	          url:"${pageContext.request.contextPath}/checkUserByBid",
