@@ -306,7 +306,7 @@
 			                            <span>借记卡</span>
 			                        </td>
 			                        <td class="m2-chaConf-con">
-			                            <input type="text" style="width:265px;" placeholder="" id="backnum" maxlength="19" onblur="bannumBlur()">
+			                            <input type="text" style="width:265px;ime-mode:Disabled;" placeholder="借记卡卡号（必填）" id="backnum" maxlength="19" onblur="bannumBlur()">
 			                            <b id="bankstyles" class="m2-chaConf-warn" style='color:#999;'>该银行卡开户姓名必须为${sessionScope.userinfo.idCard.icname}，否则会提现失败！</b>
 			                        </td>
 			                        </tr>
@@ -361,13 +361,12 @@
 			                        </td>
 			                        <td class="m2-chaConf-con">
 			                        	<input type="hidden" id="placeback"/>
-			                        	<input type="text" class="m2-regist-username" onkeydown="onlyNum();" maxlength="19" style="ime-mode:Disabled" id="bankcardid" value="" />
+			                            <input type="text" class="m2-regist-username" style="width:265px;ime-mode:Disabled;" placeholder="借记卡卡号（必填）" id="bankcardid" maxlength="19">
 			                            <span class="m2-regist-errMsgcard"></span>
-		                            	<span class="m2-regist-errsMsgcard" style="font-size: 12px;position: absolute;left: 65px;top: 30px"></span>
-		                            	<input type="hidden" id="staticNumber"/>
-			                            <b id="bankstyles" class="m2-chaConf-warn" style='color:#999;'>该银行卡开户姓名必须为${sessionScope.userinfo.idCard.icname}，否则会提现失败！</b> 
+			                            <b id="bankstyles" class="m2-chaConf-warn" style='color:#999;'>该银行卡开户姓名必须为${sessionScope.userinfo.idCard.icname}，否则会提现失败！</b>
+			                            <input type="hidden" id="staticNumber"/>
 			                        </td>
-			                        </tr>
+			                    </tr>
 			                </tbody>
 			            </table>
 			            <div class="m2-cha2Confsubmit">
@@ -681,18 +680,18 @@
 	}
 	 $('#bankcardid').blur(function () {
          checkBankCard();
-         //getCardInfo();
      });
 	 function checkBankCard() {
+		 var name= $('#name').val();
          var bankcard = $('#bankcardid').val();
          var pattern = /^([1-9]{1})(\d{14}|\d{18})$/;
          if (bankcard == '') {
-         	$('.m2-regist-errMsgcard').next('.m2-regist-errsMsgcard').html("");
-             $('#bankcardid').next('.m2-regist-errMsgcard').html('银行卡不能为空!');
+        	 $(".m2-regist-errMsgcard").next(".m2-chaConf-warn").html("");
+             $('#bankcardid').next('.m2-regist-errMsgcard').css('color','red').html('银行卡不能为空!');
              return false;
          }else if(!pattern.test(bankcard)){
-         	$('.m2-regist-errMsgcard').next('.m2-regist-errsMsgcard').html("");
-         	$('#bankcardid').next('.m2-regist-errMsgcard').html("银行卡号输入有误!");
+        	$(".m2-regist-errMsgcard").next(".m2-chaConf-warn").html('');
+         	$('#bankcardid').next('.m2-regist-errMsgcard').css('color','red').html("银行卡号输入有误,请输入正确的银行卡号!");
              return false;
          }else{
          	$.ajax({
@@ -704,19 +703,20 @@
                  dataType: 'json',
                  success: function (data) {
                      if (data.status == 1) {
-                     	$('#bankcardid').next('.m2-regist-errMsgcard').html('');
-                     	$('.m2-regist-errMsgcard').next('.m2-regist-errsMsgcard').css('color','#33cc00').html(data.type);
-                     	$("#bankstyles").html('');
+                    	$(".m2-regist-errMsgcard").next(".m2-chaConf-warn").html("");
+                     	$('#bankcardid').next('.m2-regist-errMsgcard').css('color','#33cc00').html(data.type);
                      	$("#placeback").val(data.type);
                      	$("#staticNumber").val("1");
      		            return true;
                      }else if(data.status == 0){
-                     	$('.m2-regist-errMsgcard').next('.m2-regist-errsMsgcard').css('color','red').html("已存在此银行卡,请重新绑卡开户!");
-                     	$("#staticNumber").val("2");
+                    	 $(".m2-regist-errMsgcard").next(".m2-chaConf-warn").html('');
+                    	$('#bankcardid').next('.m2-regist-errMsgcard').css('color','red').html("已存在此银行卡,请重新绑卡开户!");
+                    	$("#staticNumber").val("2");
                      	return false;
                      } else {
-                     	$('.m2-regist-errMsgcard').next('.m2-regist-errsMsgcard').css('color','red').html("银行卡号输入有误,请输入正确的银行卡号!");
-                     	$("#staticNumber").val("2");
+                    	 $(".m2-regist-errMsgcard").next(".m2-chaConf-warn").html('');
+                    	$('#bankcardid').next('.m2-regist-errMsgcard').css('color','red').html("银行卡号输入有误,请输入正确的银行卡号!");
+                    	$("#staticNumber").val("2");
                      	return false;
                      }
                  }
@@ -725,30 +725,46 @@
      }
 	 //添加银行卡
 	 function addCard(){
-		 alert("sdfghj");
 		 var uiid = $("#uiid").val();
          var ubbackcardnum = $("#bankcardid").val();
          var ubplaceback = $("#placeback").val();
          var oppenstaus = 2; //设置开户 
-         $.ajax({
-             url: "/Finances/idcard/addbackcard",
-             data:{
-             	uiid:uiid,
-             	ubbackcardnum:ubbackcardnum,
-             	ubplaceback:ubplaceback,
-             	oppenstaus :oppenstaus
-             },
-             type: "POST",
-             dataType: 'json',
-             success: function (data) {
-                 if (data == 1) {
-                	 showMsg('添加银行卡完成', true);	
-                 	window.location.href="/Finances/torecharge?uiid="+uiid;
-                 } else {
-                	 showMsg('添加银行卡失败!');	
+         
+         if(ubbackcardnum=="" || ubbackcardnum==null){
+        	 $(".m2-regist-errMsgcard").next(".m2-chaConf-warn").html("");
+        	 $('#bankcardid').next('.m2-regist-errMsgcard').css('color','red').html('银行卡号不可为空!');
+         }else{
+        	 if(ubplaceback=="" || ubplaceback==null){
+        		 $(".m2-regist-errMsgcard").next(".m2-chaConf-warn").html('');
+            	 $('#bankcardid').next('.m2-regist-errMsgcard').css('color','red').html('银行卡号输入有误,请输入正确的银行卡号!');
+             }else{
+            	 if($("#staticNumber").val()==1){
+                	 $.ajax({
+                         url: "/Finances/idcard/addbackcard",
+                         data:{
+                         	uiid:uiid,
+                         	ubbackcardnum:ubbackcardnum,
+                         	ubplaceback:ubplaceback,
+                         	oppenstaus :oppenstaus
+                         },
+                         type: "POST",
+                         dataType: 'json',
+                         success: function (data) {
+                             if (data == 1) {
+                            	showMsg('添加银行卡完成', true);	
+                             	window.location.href="/Finances/torecharge?uiid="+uiid;
+                             } else {
+                            	 $('#addBank').modal('hide');
+                            	 showMsg('添加银行卡失败!');	
+                             }
+                         }
+                     }); 
+                 }else{
+                	 $('#addBank').modal('hide');
+                	 showMsg('填写信息有误!');	
                  }
              }
-         }); 
+         }
 	 }
 	function showMsg(msg, flag) {
         if (!flag) {
