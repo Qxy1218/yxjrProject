@@ -500,7 +500,10 @@
 						<%
 						  Fabiao fa =(Fabiao)session.getAttribute("fabiao");
 						  SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
-						  Date dNow = ft.parse(fa.getFhuanstat());
+						  Date dNow = new Date();
+						  if(fa!=null){
+							 dNow = ft.parse(fa.getFhuanstat());
+						  }
 						  String strTime = ft.format(dNow);
 						%>
                         <span class="m2-nextDatetit">开始还款日期</span><a id="paymentdetail-a">回款细节</a>
