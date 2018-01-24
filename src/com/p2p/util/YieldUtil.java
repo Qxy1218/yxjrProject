@@ -49,11 +49,7 @@ public class YieldUtil {
 	      double count;
 	      if(months>0) {
 	    	  //取投资万元收益
-	    	  if(type.equals("等额本金")) {
-	    		  count = Debjdemo.getInterestCount(money,syl,months);  
-	    	  }else {
-	    		  count = Description.getPrincipalInterestCount(money,syl,months);  
-	    	  }
+	    	  count = Description.getPrincipalInterestCount(money,syl,months);  
 	    	  //5舍6入,2.355变成2.35,如果是5则向下舍
 	    	  d1TobigDe = new BigDecimal(count).setScale(2,BigDecimal.ROUND_HALF_DOWN);  
 	      }else {

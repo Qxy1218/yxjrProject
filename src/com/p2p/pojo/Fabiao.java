@@ -89,7 +89,7 @@ public class Fabiao implements Serializable{
 	private Integer fstatus; //发布状态  1募集标  2还款标  3结清标 4流标  5废标  6待审核标  7满标
 
 	@TableField("f_security")
-	private String fsecurity; //担保措施(text)
+	private String fsecurity; //担保措施(varchar)文件
 	
 	@TableField("f_procedures")
 	private String fprocedures; //手续(,分开)
@@ -98,7 +98,7 @@ public class Fabiao implements Serializable{
 	private String frepayment; //还款方式
 	
 	@TableField("f_securitymea")
-	private String fsecuritymea; //风险措施(varchar)
+	private String fsecuritymea; //风险措施(text)字
 	
 	@TableField("f_huanstat")
 	private String fhuanstat; //还款开始时间

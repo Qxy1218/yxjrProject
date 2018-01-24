@@ -206,7 +206,7 @@ public class UtilController {
 	@ResponseBody
 	public static void downLoadFile(String filePath,HttpServletRequest request,HttpServletResponse response) {
 		//文件下载
-		  String fileName = request.getSession().getServletContext().getRealPath("uploadFile")+filePath; 
+		  String fileName = request.getSession().getServletContext().getRealPath("")+filePath; 
 		 File file = new File(fileName);
 		 String filenames = file.getName();
 	     InputStream inputStream;
@@ -224,8 +224,8 @@ public class UtilController {
            os.write(buffer);// 输出文件
            os.flush();
            os.close();
-	       boolean isdelete =  file.delete();
-	   	   System.out.println("删除文件是"+isdelete);
+	       //boolean isdelete =  file.delete();
+	   	   //System.out.println("删除文件是"+isdelete);
        } catch (Exception e) {
            e.printStackTrace();
        }	

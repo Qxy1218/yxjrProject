@@ -417,13 +417,13 @@
 	                    </div>
 	                    <div class="m2-detProdet">
 	                        <span class="m2-detProdet-lef">投资万元预期收益：<span>${thisfb.yield}元</span></span>
-	                        <a href="/member-contract-project-id-11606.shtml" class="m2-detProdet-rig" target='_blank'>项目合同范本<i></i></a>
+	                        <a href="/Finances/downLoadFile?filePath=${thisfb.fcontract}" class="m2-detProdet-rig" target='_blank'>项目合同范本<i></i></a>
 	                    </div>
 	                </div>
 	                <div class="m2-detItemlef-bot">
-	                    <a href="javascript:void(0)" class="m2-detIetmbot2" title='担保措施：${thisfb.fsecuritymea}' style='margin-right: 24px;'><i></i>担保措施</a>                    <a href="javascript:void(0)" class="m2-detIetmbot3" style='margin-right: 0px;' title='还款方式：${thisfb.frepayment}'>
-	                    <i></i>还款方式</a>
-	                </div>
+	                   	 <a href="/Finances/downLoadFile?filePath=${thisfb.fsecurity}" class="m2-detIetmbot2" style='margin-right: 24px;'><i></i>担保措施</a>     
+	                   	 <a href="/Finances/downLoadFile?filePath=${thisfb.frepayment}" class="m2-detIetmbot3" style='margin-right: 0px;' > <i></i>还款方式</a>
+	                  </div>
 	            </div>
 	        </div>
 	        <div class="m2-detItemrig"  style="display:none;">
@@ -627,7 +627,7 @@
 		    <div class="m2-detSit m2-detSection">
 		        <h3>风控措施<i></i></h3>
 		        <div class="m2-detSitbox m2-det-togBox">
-		            <p style='font-size: 14px;line-height: 26px;'>${thisfb.fsecurity}</p>
+		            <p style='font-size: 14px;line-height: 26px;'>${thisfb.fsecuritymea}</p>
 		        </div>
 		        <div class="m2-detSec-toggle">
 		            <span class="m2-detSec-down">展开<i></i></span>
