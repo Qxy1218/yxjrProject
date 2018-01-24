@@ -664,7 +664,7 @@
              return false;
          }else if(!pattern.test(bankcard)){
          	$('.m2-regist-errMsgcard').next('.m2-regist-errsMsgcard').html("");
-         	$('#bankcardid').next('.m2-regist-errMsgcard').html("银行卡号输入有误,请输入正确的银行卡号!");
+         	$('#bankcardid').next('.m2-regist-errMsgcard').html("银行卡号输入有误!");
              return false;
          }else{
          	$.ajax({
