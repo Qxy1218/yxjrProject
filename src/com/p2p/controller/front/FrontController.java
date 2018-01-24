@@ -780,11 +780,13 @@ public class FrontController {
 		Fabiao fa = fabiaoService.getModel(fabiao);
 		session.setAttribute("fabiao", fa);
 		
-		Repayment repay = new Repayment();
-		repay.setFid(fa.getFid());
-		Repayment repay1 = repaymentService.getModel(repay);
-		if(repay1!=null) {
-			session.setAttribute("repayment", repay1);
+		if(fa!=null) {
+			Repayment repay = new Repayment();
+			repay.setFid(fa.getFid());
+			Repayment repay1 = repaymentService.getModel(repay);
+			if(repay1!=null) {
+				session.setAttribute("repayment", repay1);
+			}
 		}
 		
 		mo.addObject("dayList",dayList);
