@@ -332,24 +332,6 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                           <li>
-                                <a class="J_menuItem" href="${pageContext.request.contextPath}/back/toRole" data-index="0">权限管理</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="index_v2.jsp">会员账户管理</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/use.jsp">用户列表</a>
-                            </li>
-                            <li><a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/contact.jsp">联系我们</a></li>
-                             <li><a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/loan.jsp">借款</a></li>
-                          	 <li><a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/sendMail.jsp">邮箱</a></li>
-                           <li><a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/repayment.jsp">还款</a></li>
-                            <li>
-                                <a class="J_menuItem" href="${pageContext.request.contextPath}/back/toEmploye">员工列表</a>
-                            </li><li>
-                                <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/record.jsp">管理员操作列表</a>
-                            </li>
                         	<shiro:hasPermission name="权限管理">
                            		<li>
                                 	<a class="J_menuItem" href="${pageContext.request.contextPath}/back/toRole" data-index="0">权限管理</a>
@@ -388,13 +370,13 @@
                             </shiro:hasPermission>
                             <shiro:hasPermission name="合作机构管理">
                             	<li>
-                                	<a class="J_menuItem" href="graph_morris.jsp">合作机构管理</a>
+                                	<a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/Cooorganiz.jsp">合作机构管理</a>
                             	</li>
                         	</shiro:hasPermission>
                         	<shiro:hasPermission name="联系我们管理">
-                        		<li>
-                               	 	<a class="J_menuItem" href="graph_flot.jsp">联系管理</a>
-                           		</li>
+                               	<li>
+                               	 	 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/contact.jsp">联系我们</a>
+                               	</li>
                         	</shiro:hasPermission>
                         	<shiro:hasPermission name="新闻信息管理">
                         		<li>
@@ -486,7 +468,6 @@
                         <a href="mailbox.jsp">
 	                        <i class="fa fa-envelope"></i> 
 	                        <span class="nav-label">贷借管理</span>
-	                        <span class="label label-warning pull-right">16</span>
                         </a>
                          <ul class="nav nav-second-level">
                          	<shiro:hasPermission name="投标管理">
@@ -577,9 +558,9 @@
                     <shiro:hasPermission name="认证审核管理">
                     	 <li>
                         <a href="#">
-                        	<i class="fa fa-flask"></i> 
-                        	<span class="nav-label">认证审核管理</span>
-                        	<span class="fa arrow"></span>
+	                        <i class="fa fa-envelope"></i> 
+	                        <span class="nav-label">认证审核管理</span>
+	                        <span class="label label-warning pull-right">${sessionScope.audetailsSize}</span>
                         </a>
                         <ul class="nav nav-second-level">
                         	<shiro:hasPermission name="实名认证">

@@ -89,11 +89,6 @@ $(document).ready(function() {
                     	 notEmpty: {
                              message: '员工姓名不能为空'
                          },
-                         stringLength: {
-                             min: 6,
-                             max: 30,
-                             message: '员工姓名必须大于6，长度小于30个字符。'
-                         },
                     }
                 },
                 esex: {

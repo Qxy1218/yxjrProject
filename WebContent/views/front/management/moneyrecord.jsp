@@ -169,8 +169,8 @@
 		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-sel" data-days='7'  >最近7天</span></li>
 		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-days='30' >一个月</span></li>
 		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-days='90' '>三个月</span></li>
-		                    <li>从<input id="m2-manSeadate-start" type="text"></li>
-		                    <li>到<input id="m2-manSeadate-end" type="text"></li>
+		                  	<li>从<input id="m2-manSeadate-start" type="text"></li>
+                   			<li>到<input id="m2-manSeadate-end" type="text"></li>
 		                </ul>
 		                <ul class="m2-manageSearchsel-type">
 		                    <li>资金类型：</li>
@@ -253,9 +253,13 @@
 		
 		    function getRewordRecord(){
 				var uid =$('#uid').val();
+				var  mrwasttime =$('#m2-manSeadate-start').val();
+				var  mrendtime =$('#m2-manSeadate-end').val();;
 		        $.ajax({
 		            url:"/Finances/money/toSeleByMoneyRecord",
 		            type:"POST",
+		            mrwasttime:mrwasttime,
+	                mrendtime:mrendtime,
 		            data:{
 		                mrstatus:days,
 		                uid:uid

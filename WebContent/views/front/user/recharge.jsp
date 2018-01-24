@@ -157,6 +157,7 @@
                     </div>       
                 	</c:if>
                     <div class="m2-recharge-ent">
+                    <input type="hidden" value="${sessionScope.userinfo.uidealpwd}" name="uipwd" id="uipwd">
                      <input type="hidden" value="${requestScope.uback.ubplaceback}" id="bankstyle">
                      <input type="hidden" value="${sessioonScope.user.uid}" name="uid" id="uid" />
                      <input type="hidden" value="${sessionScope.userinfo.uiid}" name="uiid" id="uiid" />
@@ -493,13 +494,18 @@
 	$('document').ready(function() {
 		  $('#btnTest').click(function() {
 			 var uiopenstatus =$('#uiopenstatus').val();
+			 var uipwd = $('#uipwd').val();
 			  var remoney = $('#remoney').val();
 			  if(uiopenstatus!=2){
 				  showMsg("请先开户亿信托户平台");
 			  }else{ 
 				  if (!remoney) {
 		              showMsg('请输入充值金额！');
-		          } else{
+		          } 
+				  else if(uipwd == null || uipwd ==''){
+					  SureDealPwd();
+				  }
+				  else{
 		        	  $("#inputmoney").html(remoney);
 		        	  $('#myModal').modal('show');
 		          }
@@ -536,45 +542,67 @@
 		var ubplaceback = $('#ubplaceback').val();
 		var ubid = $('#ubid').val();
 		var ubmoney = $('#ubmoney').val();
+		var uipwd = $('#uipwd').val();
 		var ubbackcardnum =$('#ubbackcardnum').val();
-		alert(ubbackcardnum);
-		alert(sdfghj);
-		 $.ajax({
-	            url: '/Finances/recharge/seleBydalePwd',
-	            data: {'uidealpwd':uidealpwd,'uiid':uiid},
-	            success: function (data) {
-	            	 if(data>0){
-	            		 $('#myModal').modal('hide');
-	            		 if(parseInt(remoney)>parseInt(ubmoney)){
-	            			 showMsg('金融不足,换取另外的支付方式!');
-	            		 }else{
-	            			 $.ajax({
-	 	         	            url: '/Finances/recharge/addRecharge',
-	 	         	            data: {
-	 	         	            	'uid': uid,
-	 	         	     	    	'remoney':remoney,
-	 	         	            	'ubplaceback':ubplaceback,
-	 	         	            	'ubid':ubid,
-	 	         	            	'ubbackcardnum':ubbackcardnum,
-	 	         	            	'ubmoney':ubmoney
-	 	         	            },
-	 	         	            success: function (data) {
-	 	         	            	 if(data>0){
-	 	         	            		 showMsg('充值完成!', true);
-	 	         	            	 }
-	 	         	            	 else{
-	 	         	            		 showMsg('充值失败!');
-	 	         	            	 }
-	 	         	            }
-	 	         	        });
-	            		 }
-	            	 }
-	            	 else{
-	            		 showMsg('交易密码不正确!');
-	            		 $('#myModal').modal('hide');
-	            	 }
-	            }
-	        });
+		if(uipwd==null || uipwd == ''){
+			 $.ajax({
+   	            url: '/Finances/recharge/addRecharge',
+   	            data: {
+   	            	'uid': uid,
+   	     	    	'remoney':remoney,
+   	            	'ubplaceback':ubplaceback,
+   	            	'ubid':ubid,
+   	            	'ubbackcardnum':ubbackcardnum,
+   	            	'ubmoney':ubmoney
+   	            },
+   	            success: function (data) {
+   	            	 if(data>0){
+   	            		 showMsg('充值完成!', true);
+   	            	 }
+   	            	 else{
+   	            		 showMsg('充值失败!');
+   	            	 }
+   	            }
+   	        });
+		}else{
+			 $.ajax({
+		            url: '/Finances/recharge/seleBydalePwd',
+		            data: {'uidealpwd':uidealpwd,'uiid':uiid},
+		            success: function (data) {
+		            	 if(data>0){
+		            		 $('#myModal').modal('hide');
+		            		 if(parseInt(remoney)>parseInt(ubmoney)){
+		            			 showMsg('金融不足,换取另外的支付方式!');
+		            		 }else{
+		            			 $.ajax({
+		 	         	            url: '/Finances/recharge/addRecharge',
+		 	         	            data: {
+		 	         	            	'uid': uid,
+		 	         	     	    	'remoney':remoney,
+		 	         	            	'ubplaceback':ubplaceback,
+		 	         	            	'ubid':ubid,
+		 	         	            	'ubbackcardnum':ubbackcardnum,
+		 	         	            	'ubmoney':ubmoney
+		 	         	            },
+		 	         	            success: function (data) {
+		 	         	            	 if(data>0){
+		 	         	            		 showMsg('充值完成!', true);
+		 	         	            	 }
+		 	         	            	 else{
+		 	         	            		 showMsg('充值失败!');
+		 	         	            	 }
+		 	         	            }
+		 	         	        });
+		            		 }
+		            	 }
+		            	 else{
+		            		 showMsg('交易密码不正确!');
+		            		 $('#myModal').modal('hide');
+		            	 }
+		            }
+		        });
+		}
+		
 	}
 	function remoneyBlur(){
 		var remoney = $('#remoney').val();

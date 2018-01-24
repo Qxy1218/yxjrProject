@@ -938,6 +938,65 @@ public class FrontController {
 		session.setAttribute("allMoneyCode",allMoneyCode);
 		return "views/front/management/moneyrecord";
 	}
+	//前台资金记录模糊查询
+	@RequestMapping(value="/toSeleByMoneyRecord")
+	@ResponseBody
+	public String torewardrecord(Moneyrecord mr,Integer mrstatus,HttpSession session) throws JsonProcessingException{
+		SimpleDateFormat dataTime = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat mouthTime = new SimpleDateFormat("yyyy-MM");
+		ObjectMapper mapper = new ObjectMapper(); //转换器  
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<Moneyrecord> MoneyList = new ArrayList<Moneyrecord>();
+		User user = (User)session.getAttribute("user");
+		Double allMoneyDetail = 0.0;
+		if(mrstatus==0) {
+			MoneyList = moneyrecordServiece.selectMoneyrecord(user.getUid());
+			for (int i = 0; i < MoneyList.size(); i++) {
+				allMoneyDetail+=MoneyList.get(i).getMrwastemoney();
+			}
+		}
+		else if(mrstatus==7) {
+			Moneyrecord moneyrecord = new Moneyrecord();  
+			moneyrecord.setMrwasttime((DateUtils.getDateFormat(DateUtils.getDayBefore(new Date(),7))));
+			moneyrecord.setMrendtime(DateUtils.getDateFormat(new Date()));
+			moneyrecord.setUid(user.getUid());
+			MoneyList = moneyrecordServiece.seleMonreyReByTime(moneyrecord);
+			for (int i = 0; i < MoneyList.size(); i++) {
+				allMoneyDetail+=MoneyList.get(i).getMrwastemoney();
+			}
+		}else if(mrstatus==30) {
+			Moneyrecord moneyrecord = new Moneyrecord();  
+			moneyrecord.setMrwasttime(mouthTime.format((DateUtils.getDateFormat(DateUtils.getDayBefore(new Date(),30)))));
+			moneyrecord.setMrendtime(mouthTime.format(DateUtils.getDateFormat(new Date())));
+			moneyrecord.setUid(user.getUid());
+			MoneyList = moneyrecordServiece.seleMonreyReByTime(moneyrecord);
+			for (int i = 0; i < MoneyList.size(); i++) {
+				allMoneyDetail+=MoneyList.get(i).getMrwastemoney();
+			}
+		}else if(mrstatus==90) {
+			Moneyrecord moneyrecord = new Moneyrecord();  
+			moneyrecord.setMrwasttime(mouthTime.format((DateUtils.getDateFormat(DateUtils.getDayBefore(new Date(),90)))));
+			moneyrecord.setMrendtime(mouthTime.format(DateUtils.getDateFormat(new Date())));
+			moneyrecord.setUid(user.getUid());
+			MoneyList = moneyrecordServiece.seleMonreyReByTime(moneyrecord);
+			for (int i = 0; i < MoneyList.size(); i++) {
+				allMoneyDetail+=MoneyList.get(i).getMrwastemoney();
+			}
+		}
+		else if(mr.getMrwasttime()!=null && mr.getMrwasttime()!="" && mr.getMrendtime()!=null && mr.getMrendtime()!="") {
+			Moneyrecord moneyrecord = new Moneyrecord();  
+			moneyrecord.setMrwasttime(dataTime.format(mr.getMrwasttime()));
+			moneyrecord.setMrendtime(dataTime.format(mr.getMrendtime()));
+			moneyrecord.setUid(user.getUid());
+			MoneyList = moneyrecordServiece.seleMonreyReByTime(moneyrecord);
+			for (int i = 0; i < MoneyList.size(); i++) {
+				allMoneyDetail+=MoneyList.get(i).getMrwastemoney();
+			}
+		}
+		map.put("data", MoneyList);
+		String obj = mapper.writeValueAsString(map);
+		return obj;
+	}
 	
 	/**
 	 *微商资金管理页面的conteroller
@@ -975,10 +1034,12 @@ public class FrontController {
 		
 		return "views/front/management/rewardrecord";
 	}
-	//前台模糊查询
-		@RequestMapping(value="toSeleByMoneyDetail")
+	//前台奖励金模糊查询
+		@RequestMapping(value="toselemoneyDetail")
 		@ResponseBody
-		public String toSeleByMoneyDetail(Integer uid,Integer mrstatus,HttpSession session) throws JsonProcessingException {
+		public String toSeleByMoneyDetail(MoneyDetail md,Integer mrstatus,HttpSession session) throws JsonProcessingException {
+			SimpleDateFormat dataTime = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat mouthTime = new SimpleDateFormat("yyyy-MM");
 			ObjectMapper mapper = new ObjectMapper(); //转换器  
 			Map<String, Object> map = new HashMap<String, Object>();
 			List<MoneyDetail> MoneyList = new ArrayList<MoneyDetail>();
@@ -1001,8 +1062,8 @@ public class FrontController {
 				}
 			}else if(mrstatus==30) {
 				MoneyDetail moneyDetail = new MoneyDetail();  
-				moneyDetail.setMdtime((DateUtils.getDateFormat(DateUtils.getDayBefore(new Date(),30))));
-				moneyDetail.setMrendtime(DateUtils.getDateFormat(new Date()));
+				moneyDetail.setMdtime(mouthTime.format((DateUtils.getDateFormat(DateUtils.getDayBefore(new Date(),30)))));
+				moneyDetail.setMrendtime(mouthTime.format(DateUtils.getDateFormat(new Date())));
 				moneyDetail.setUid(user.getUid());
 				MoneyList = moneyDetailService.seleMonreyReByTime(moneyDetail);
 				for (int i = 0; i < MoneyList.size(); i++) {
@@ -1010,8 +1071,18 @@ public class FrontController {
 				}
 			}else if(mrstatus==90) {
 				MoneyDetail moneyDetail = new MoneyDetail();  
-				moneyDetail.setMdtime((DateUtils.getDateFormat(DateUtils.getDayBefore(new Date(),90))));
-				moneyDetail.setMrendtime(DateUtils.getDateFormat(new Date()));
+				moneyDetail.setMdtime(mouthTime.format((DateUtils.getDateFormat(DateUtils.getDayBefore(new Date(),90)))));
+				moneyDetail.setMrendtime(mouthTime.format(DateUtils.getDateFormat(new Date())));
+				moneyDetail.setUid(user.getUid());
+				MoneyList = moneyDetailService.seleMonreyReByTime(moneyDetail);
+				for (int i = 0; i < MoneyList.size(); i++) {
+					allMoneyDetail+=MoneyList.get(i).getMdmoney();
+				}
+			}
+			else if(md.getMdtime()!=null &&md.getMdtime()!="" && md.getMrendtime()!=null && md.getMrendtime()!="") {
+				MoneyDetail moneyDetail = new MoneyDetail(); 
+				moneyDetail.setMdtime(dataTime.format(md.getMdtime()));
+				moneyDetail.setMrendtime(dataTime.format(md.getMdtime()));
 				moneyDetail.setUid(user.getUid());
 				MoneyList = moneyDetailService.seleMonreyReByTime(moneyDetail);
 				for (int i = 0; i < MoneyList.size(); i++) {
@@ -1313,5 +1384,8 @@ public class FrontController {
 		request.setAttribute("uback", uback);
 		return "views/front/user/withdrawals";
 	}
+	
+	
+	
 	
 }

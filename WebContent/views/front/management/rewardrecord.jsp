@@ -170,7 +170,7 @@
 		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-days='30' >一个月</span></li>
 		                    <li class="m2-manageSearchsel-link"><span class="m2-manSealink-unsel" data-days='90' >三个月</span></li>
 		                    <li>从<input id="m2-manSeadate-start" type="text"></li>
-		                    <li>到<input id="m2-manSeadate-end" type="text"></li>
+                    		<li>到<input id="m2-manSeadate-end" type="text"></li>
 		                </ul>	
 		                <table class="m2-manageResult" cellpadding="0" cellspacing="0">
 		                    <tr class="m2-manageResult-head">
@@ -240,12 +240,16 @@
 		
 		    function getRewordRecord(){
 				var uid =$('#uid').val();
+				var  mdtime =$('#m2-manSeadate-start').val();
+				var  mrendtime =$('#m2-manSeadate-end').val();
 		        $.ajax({
-		            url:"/Finances/toSeleByMoneyDetail",
+		            url:"/Finances/toselemoneyDetail",
 		            type:"POST",
 		            data:{
 		                mrstatus:days,
-		                uid:uid
+		                uid:uid,
+		                mdtime:mdtime,
+		                mrendtime:mrendtime
 		            },
 		            success:function(data){
 		                processData(data);
