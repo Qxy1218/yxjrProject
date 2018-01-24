@@ -21,7 +21,12 @@ public class SendMailUtil {
         String title = map.get("title").toString();
     
         SendMail sendMail =  service.findUserMail(1);
-        
+        if(sendMail==null) {
+        	sendMail = new SendMail();
+        	sendMail.setFormName("httpwmm@163.com");
+        	sendMail.setHost("smtp.163.com");
+        	sendMail.setPassword("A123456");
+        }
         MailInfo info = new MailInfo(sendMail.getHost(),sendMail.getFormName(),sendMail.getPassword(),sendMail.getFormName());
         info.setToAddress(mail);
         info.setSubject(title);
@@ -131,7 +136,12 @@ public class SendMailUtil {
         String title = map.get("title").toString();
     
         SendMail sendMail =  service.findUserMail(1);
-        
+        if(sendMail==null) {
+        	sendMail = new SendMail();
+        	sendMail.setFormName("httpwmm@163.com");
+        	sendMail.setHost("smtp.163.com");
+        	sendMail.setPassword("A123456");
+        }
         MailInfo info = new MailInfo(sendMail.getHost(),sendMail.getFormName(),sendMail.getPassword(),sendMail.getFormName());
         info.setToAddress(mail);
         info.setSubject(title);

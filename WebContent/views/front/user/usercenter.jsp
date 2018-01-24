@@ -541,7 +541,6 @@
             url: "${pageContext.request.contextPath}/user/usersing",
             success: function (data) {
             	data = eval('(' + data+ ')');  
-               alert(data.isupdate);
                 if(data.isupdate==1){
                     if(data.sing.siglevel==4 ||data.sing.siglevel==5){
                     	//4级或者5级不添加积分
@@ -766,7 +765,6 @@
                 icon = '<i class="m2-hello-nig">';
                 day ='晚上好'
             }
-            //alert(icon);
             $('#thistime').html('');
             $('#thistime').html(day);
             $('#greeting').prepend(icon);

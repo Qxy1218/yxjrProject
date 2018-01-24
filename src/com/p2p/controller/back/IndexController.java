@@ -81,6 +81,12 @@ public class IndexController {
 			/*String maxBidTime = bidService.getMaxStartTime();  */
 			String minBidTime = bidService.getMinStartTime();  //最小投标时间
 			String maxBidTime = dataTime.format(new Date()); //最大投标时间
+			if(minBidTime==null) {
+				minBidTime = dataTime.format(new Date());;
+			}
+			if(minLoanTime==null) {
+				minLoanTime = dataTime.format(new Date());;
+			}
 			
 			Date maxLTime = DateUtils.ChuDate(maxLoanTime);
 			Date minLTime = DateUtils.ChuDate(minLoanTime);
@@ -176,14 +182,23 @@ public class IndexController {
 			pt.setPftime(dateym.format(DateUtils.getmouthBefore(new Date(),1)));
 			List<Profit> allProfitbefore = profitService.seleByProfit(pt);
 			BigDecimal  allMoneyProfitbefore = new BigDecimal("0.0");
+			BigDecimal bigcompnrateProfit = new BigDecimal("0.0");
 			for (int i = 0; i < allProfitbefore.size(); i++) {
 				//将Double转换成BigDecimal
 				allMoneyProfitbefore = allMoneyProfitbefore.add(new BigDecimal(String.valueOf(allProfitbefore.get(i).getPfmoney())));
 			
 			}
 			session.setAttribute("allMoneyProfitbefore", allMoneyProfitbefore);
+			//判断除数不能作为0
+			int chushu = allMoneyProfitbefore.compareTo(allMoneyProfit);
 			//上个月与当前月的利率
-			BigDecimal bigcompnrateProfit = allMoneyProfitbefore.divide(allMoneyProfit, 10,BigDecimal.ROUND_HALF_DOWN);
+			if(chushu==0) {
+				 bigcompnrateProfit = new BigDecimal("0.0");
+			}
+			else {
+				 bigcompnrateProfit = allMoneyProfitbefore.divide(allMoneyProfit, 10,BigDecimal.ROUND_HALF_DOWN);
+				
+			}
 			String compnrateProfit =  ContextUtils.parsePercent(bigcompnrateProfit.toString());
 			session.setAttribute("compnrateProfit", compnrateProfit);
 			
