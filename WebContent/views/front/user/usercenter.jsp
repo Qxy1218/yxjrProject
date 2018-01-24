@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@ page import="java.util.*"%> 
+<%@ page import="java.text.*" %>
+<%@ page import="com.p2p.pojo.Fabiao"%>
+
 <%
 	String path = request.getContextPath();
 %>
@@ -461,23 +465,29 @@
                     
                       <script>
     					var myCalendar = new SimpleCalendar('#container');
-    					
  					 </script>
                     <div class="b0-backDet">
                         <div class="b0-backLef" style="padding: 55px 0;">
                             <div class="b0-orange">
-                                <span class="b0-lefTit" style="color:black">本期计划回款：</span>
-                                <span class="b0-lefNum" id="thismonthincome" style="color:black" ></span>
+                                <span class="b0-lefTit" style="color:black">本期计划回款：${sessionScope.repayment.rmplan }&nbsp;&nbsp;元</span>
                             </div>
                             <div class="b0-purple">
-                                <span class="b0-lefTit">本期实际回款：</span>
-                                <span class="b0-lefNum" id="thismonthrealincome"></span>
+                                <span class="b0-lefTit">本期实际回款：${sessionScope.repayment.rmface }&nbsp;&nbsp;元</span>
                             </div>
                         </div>
+                        <c:set var="re_status" value="${sessionScope.repayment.rmstate }"/>
                         <div class="b0-backRig" style="padding: 55px 0;">
                             <div class="b0-rigTop">
-                                <div class="b0-rigDis"><i style="background-color:#FBBBA3;"></i><span>待还款</span></div>
-                                <div class="b0-rigDis" style="margin-left:20px;"><i style="background-color:#D4D4D4;"></i><span>已结清</span></div>
+                                <div class="b0-rigDis">
+                                	<c:if test="${re_status==2 }"><i style="background-color:#FBBBA3;"></i></c:if>
+                                	<c:if test="${re_status!=2 }"><i style="background-color:#D4D4D4;"></i></c:if>
+                                	<span>待还款</span>
+                                </div>
+                                <div class="b0-rigDis" style="margin-left:20px;">
+                                	<c:if test="${re_status==3 }"><i style="background-color:#FBBBA3;"></i></c:if>
+                                	<c:if test="${re_status!=3 }"><i style="background-color:#D4D4D4;"></i></c:if>
+                                	<span>已结清</span>
+                                </div>
                             </div>
                             <div class="b0-rigBot">
                                 <i class="b0-iconAdv"></i><span class="b0-botDet">提前还款</span><span class="b0-backMore"><span><i></i>借款人在有能力且有意愿提前归还本金的时候，提前清偿了所有剩余本金及实际借款期间所产生的利息，则投资者的本金及实际借款期间所产生的利息会即时返还至投资者的账户；<br><b>收到提前还款：当日有提前清偿的本息到账；<br>提前还款：当日有计划还款的资金已于日前清偿本息；</b></span></span>
@@ -487,37 +497,25 @@
                 </div>
                 <div class="m2-backCalendar-rig">
                     <div class="m2-backRig-nextDate">
-                        <span class="m2-nextDatetit">下个回款日期</span><a id="paymentdetail-a">回款细节</a>
-                        <p class="m2-nextDatecon" id="next_pay_day">---- . -- . --</p>
+						<%
+						  Fabiao fa =(Fabiao)session.getAttribute("fabiao");
+						  SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+						  Date dNow = ft.parse(fa.getFhuanstat());
+						  String strTime = ft.format(dNow);
+						%>
+                        <span class="m2-nextDatetit">开始还款日期</span><a id="paymentdetail-a">回款细节</a>
+                        <p class="m2-nextDatecon" id="next_pay_day" style="font-size:18px;"><%=strTime %></p>
                     </div>
                     <div class="m2-backRiginfo">
-                        <p class="m2-backRiginfo-amo">回款交易：<span id="next_pay_day_num"></span>个</p>
-                        <p class="m2-backRiginfo-tit">收回本息(元)</p>
+                        <p class="m2-backRiginfo-amo">还款总期限：<span id="next_pay_day_num">${sessionScope.fabiao.ffqqx }</span>个</p>
+                        <p class="m2-backRiginfo-tit">已还款期限:<span id="next_pay_day_num">${sessionScope.fabiao.fyhqx }</span>个</p>
                         <p class="m2-backRiginfo-num"><span id="next_pay_day_income"></span></p>
                     </div>
                 </div>
             </div>
             <script type="text/javascript" src="/Finances/statics/front/statics/usercenter/js/jquery.datetimepicker.modified.js"></script>
          </div>
-     <div class="m2-user-invest">
-          <div class="m2-user-invest-head">
-              <h3><i></i>最近投资记录<a href="usercenter-investcontrol-investrecord.html">更多</a></h3>
-              <hr style="display:inline-block;width:148px;border:0;background-color:#0996cc;height:1px;margin-left:6px;"></h3>
-              <hr style="display:inline-block;width:642px;border:0;background-color:#dadada;height:1px;margin-left:-4px;"></h3>
-          </div>
-          <div class="m2-user-invest-list">
-              <table class="m2-userInvest-table"  cellpadding="0" cellspacing="0" >
-                  <tr class="m2-userInevst-head" >
-                      <th style="width:150px;">项目名称</th>
-                      <th style="width:130px;">投资金额</th>
-                      <th style="width:110px;">收益率</th>
-                      <th style="width:120px;">计息日</th>
-                      <th style="width:120px;">还款日</th>
-                      <th style="width:148px;"></th>
-                  </tr>
-              </table>
-          </div>
-        </div>
+     
     </div>
     <div style="display:none;">
         <span id='ntitle'></span>

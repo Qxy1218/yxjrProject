@@ -126,17 +126,21 @@
                     	</ul>
                     </div>
                     <input type="hidden" id="fid" value="${fabiaos.fid }"/>
+                    <input type="hidden" id="rmoverdue" value="${repays.rmoverdue }"/>
                     <c:set var="status" value="${fabiaos.fstatus }" />
                     <c:set var="hkstype" value="${fabiaos.fhkstype }" />
 	                <div class="m2-cha2Confsubmit" style="margin-left:100px;">
 	                	<c:if test="${status!=3 }">
 		            		<span class="m2-cha2Confsub-sure" onclick="setRepayStyle()">确&nbsp;&nbsp;&nbsp;认</span>
 		            	</c:if>
-		            	<c:if test="${hkstype!=null }">
+		            	<c:if test="${hkstype != null && status==2 }">
 		            		<span class="m2-cha2Confsub-sure-repay" id="repaymoneys">还&nbsp;&nbsp;&nbsp;款</span>
 		            	</c:if>
 		            	<c:if test="${status==3 }">
 		            		<span style="background-color:#ccc;cursor:default;">已&nbsp;&nbsp;&nbsp;还&nbsp;&nbsp;&nbsp;清</span>
+		            	</c:if>
+		            	<c:if test="${status==8 }">
+		            		<span  class="m2-cha2Confsub-sure-outmoney" id="outmoney">还&nbsp;&nbsp;&nbsp;逾&nbsp;&nbsp;&nbsp;期</span>
 		            	</c:if>
 		        	</div>
 		        	<div class="m2-recharge-tips">
@@ -214,8 +218,29 @@
 	        // 点击还款弹出弹窗
 	        $(function () {
 	            $('#repaymoneys').click(function () {
-	                $('.m2-charge2Confirm').show();
-	                chaContop();
+	            	var fid = $("#fid").val();
+	            	$.ajax({
+                        url: "/Finances/repay/getRepayTime",
+                        data:{
+                        	fid:fid
+                        },
+                        type: "POST",
+                        dataType: 'json',
+                        success: function (data) {
+                           if(data==1){
+                        	   $('#dialog-info-repay').show();
+       	    		           $('#dialog-info-repaytext').text("Soorry,未到还款期,请在在规定的时间期还款!");
+       	    		            
+       	    		           $('.m2-user-confirmBtn,.m2-userCentercommon-confirmClose').click(function () {
+       	    		            	window.location.reload(true);
+       	    		           })
+                           }else{
+                        		$('.m2-charge2Confirm').show();
+           	               		chaContop();
+                           }
+                        }
+                    });
+	                
 	            });
 	        })
 	        
@@ -263,13 +288,6 @@
                                if(data==1){
                             	   $('#dialog-info-repay').show();
 	       	    		           $('#dialog-info-repaytext').text("恭喜您,还款成功,请在务必在规定时间内结清!");
-	       	    		            
-	       	    		           $('.m2-user-confirmBtn,.m2-userCentercommon-confirmClose').click(function () {
-	       	    		            	window.location.reload(true);
-	       	    		           })
-                               }else if(data==2){
-                            	   $('#dialog-info-repay').show();
-	       	    		           $('#dialog-info-repaytext').text("Soorry,未到还款期,请在在规定的时间期还款!");
 	       	    		            
 	       	    		           $('.m2-user-confirmBtn,.m2-userCentercommon-confirmClose').click(function () {
 	       	    		            	window.location.reload(true);
@@ -341,7 +359,6 @@
 	   	         	$('.abc').show();
 	   	         	btnGrey();
 	       		}
-	       		
 		    });
 		</script>
 		<!-- 设置单选框样式 -->
@@ -460,6 +477,58 @@
 	            $(".m2-cha2Confsub-sure").attr("onclick", "null");
 	        }
 		</script>
+		
+		<!-- 处理逾期金额 -->
+		<script type="text/javascript">
+			$(function (){
+				$('#outmoney').click(function () {
+					var fid = $("#fid").val();
+					var phone = $("#user_phone").val();
+		           	var rmoverdue = $("#rmoverdue").val();
+		           	var user_balance = ("#user_balance").val();
+		           	if(parseInt(rmoverdue)>parseInt(user_balance)){
+		        		$('#dialog-info-repay').show();
+			            $('#dialog-info-repaytext').text("对不起,账户余额不足,是否去充值!");
+			            
+			            $('.m2-user-confirmBtn').click(function () {
+			            	window.location="http://127.0.0.1:8080/Finances/torecharge?uiid="+uiid;
+			            })
+			            $('.m2-userCentercommon-confirmClose').click(function () {
+			            	$('.m2-userCentercommon-confirm').hide();
+			            });
+		        	}else{
+		        		
+		        		$.ajax({
+			                   url: "/Finances/repay/HandleRepayMoney",
+			                   data:{
+			                   	fid:fid,
+			                   	rmoverdue:rmoverdue,
+			                   	phone:phone
+			                   },
+			                   type: "POST",
+			                   dataType: 'json',
+			                   success: function (data) {
+			                      if(data==1){
+			                   	   $('#dialog-info-repay').show();
+			  	    		           $('#dialog-info-repaytext').text("恭喜你,已结清所有投资项目!");
+			  	    		            
+			  	    		           $('.m2-user-confirmBtn,.m2-userCentercommon-confirmClose').click(function () {
+			  	    		            	window.location.reload(true);
+			  	    		           })
+			                      }else{
+			                    	  $('#dialog-info-repaytext').text("Sorry,逾期还款失败!");
+			  	    		            
+			  	    		           $('.m2-user-confirmBtn,.m2-userCentercommon-confirmClose').click(function () {
+			  	    		            	window.location.reload(true);
+			  	    		           })
+			                      }
+			                   }
+			             });
+		        	}
+		        });
+			});
+		</script>
+		
 	</body>
 </html>
 
