@@ -173,7 +173,7 @@
                         <li class="m2-userSettingshide-tit">请填写您的电子邮箱，点击下面的按钮发送激活邮件，登陆您的电子邮箱，完成验证。</li>
                         <li>
                             <span class="m2-userSettingshide-nor"><u>*</u>邮箱：</span>
-	                        <input type="text" placeholder="请输入邮箱地址" type="text" value="${sessionScope.user.userinfo.uiemail}" id="verifyemail">
+	                        <input type="text" placeholder="请输入邮箱地址" type="text" value="${sessionScope.userinfo.uiemail}" id="verifyemail">
                             <span class="m2-userSettingshide-warning"></span>
                         </li>
                         <li class="m2-userSettingshide-btn"><a href="javascript:void(0)" id='verifyemail-btn'>发送验证邮件</a></li>
