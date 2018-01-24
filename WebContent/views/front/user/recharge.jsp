@@ -3,6 +3,7 @@
     <%
 	String path = request.getContextPath();
 	%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,7 +31,7 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/statics/front/js/payPwd.js"></script> 
 		<title>投资记录 | 亿信金融</title>
 </head>
-<body style="background:url('/Finances/statics/front/images/two.jpg');background-size:100% 100%;">
+<body >
 	<!-- 引用js文件 -->
 	<!-- 右侧边栏start -->
 	<jsp:include page="../include/userside.jsp"></jsp:include>		
@@ -112,7 +113,7 @@
                             <div class="m2-useCardbox-tit"><span>电子交易账户</span><a href="/register-banklist#a003"></a></div>
                         </div>
                         <div class="m2-useCardbox-mid">
-                        	${sessionScope.userbackcard.ubbackcardnum}
+                        	${requestScope.uback.ubbackcardnum}
                         </div>
                         <div class="m2-useCardbox-bot">
                             <p>开户人:<span>${sessionScope.userinfo.idCard.icname}</span></p>
@@ -126,30 +127,44 @@
             </div>
             <div class="m2-usercha2-contain">
                 <div class="m2-recharge-mainbody">
-                    <div class="m2-user-bankSelbox"  id='carddiv2'>
+                	<c:if test="${requestScope.uback.ubid == null}">
+                		<div class="m2-user-bankSelbox"  id='carddiv1'>
+                        <div class="m2-userBankitem m2-userBank-unsel m2-userBankitem-add" style="width:255px;height:64px;" id="addBack">
+                            <i class="mo2-userChabank-add"></i>
+                            <span class="m2-userBankitem-bind"> 添加银行卡</span>
+						</div>
+                        <div class="m2-userBank-chose" style="padding-top:10px;">
+                           <a href="#"  class="m2-recharge-entChr"  id="changeBank"><span>添加银行卡&raquo;</span></a>
+                            <a href="#"  class="m2-userBank-choWarn">存在换卡失败,请联系客服：4006-777-518</b></a>
+                        </div>
+                    </div>
+                	</c:if>
+                	<c:if test="${requestScope.uback.ubid != null}">
+                		 <div class="m2-user-bankSelbox"  id='carddiv2'>
                         <div class="m2-userBankitem m2-userBank-sel" style="width:255px;height:64px;">
                              <i class="mo2-userChabank-common " id="bankimg"></i>
                             <span class="m2-userBankitem-det">
-                                <span id="inst_name" style="font-size:15px;">${sessionScope.userbackcard.ubplaceback}</span><br>
-                                <span id="cardshow">${sessionScope.backnum}</span>
+                                <span id="inst_name" style="font-size:15px;">${requestScope.uback.ubplaceback}</span><br>
+                                <span id="cardshow">${requestScope.backnum}</span>
                             </span>
                             <b class="mo2-user-bank-corner"></b>
                         </div>
                         <div class="m2-userBank-chose" style="padding-top:10px;">
                             <a href="#"  class="m2-recharge-entChr"  id="changeBank"><span>选择其他银行卡&raquo;</span></a>
-                            <!-- <a href="#">查看充值限额&raquo;</a> -->
-                            <b class="m2-userBank-choWarn">存在换卡失败,请联系客服：4006-777-518</b>
+                            <a href="#"  class="m2-recharge-entChr"  id="deleteBank"><span>解绑银行卡&raquo;<span></a>
+                            <a href="#"  class="m2-userBank-choWarn">存在换卡失败,请联系客服：4006-777-518</b></a>
                         </div>
-                    </div>             
+                    </div>       
+                	</c:if>
                     <div class="m2-recharge-ent">
-                     <input type="hidden" value="${sessionScope.userbackcard.ubplaceback}" id="bankstyle">
+                     <input type="hidden" value="${requestScope.uback.ubplaceback}" id="bankstyle">
                      <input type="hidden" value="${sessioonScope.user.uid}" name="uid" id="uid" />
                      <input type="hidden" value="${sessionScope.userinfo.uiid}" name="uiid" id="uiid" />
                      <input type="hidden" value="${sessionScope.userinfo.uiopenstatus}" name="uiopenstatus" id="uiopenstatus" />
-                     <input type="hidden" value="${sessionScope.userbackcard.ubid}" name="ubid" id="ubid"> 
-                     <input type="hidden" value="${sessionScope.userbackcard.ubplaceback}" name="ubplaceback" id="ubplaceback">     
-                     <input type="hidden" value="${sessionScope.userbackcard.ubmoney}" name="ubmoney" id="ubmoney" />    
-                     <input type="hidden" value="${sessionScope.userbackcard.ubbackcardnum}" name="ubbackcardnum" id="ubbackcardnum">
+                     <input type="hidden" value="${requestScope.uback.ubid}" name="ubid" id="ubid"> 
+                     <input type="hidden" value="${requestScope.uback.ubplaceback}" name="ubplaceback" id="ubplaceback">     
+                     <input type="hidden" value="${requestScope.uback.ubmoney}" name="ubmoney" id="ubmoney" />    
+                     <input type="hidden" value="${requestScope.uback.ubbackcardnum}" name="ubbackcardnum" id="ubbackcardnum">
                       <input type="hidden" value="${sessionScope.userinfo.idCard.icname}" id="name">
                       <table cellpadding="0" cellspacing="0" border="0" style="width:600px">
                             <tr>
@@ -303,6 +318,145 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal -->
 </div>
+<!-- 添加银行卡弹出框 -->
+		<div class="modal fade" id="addBank" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" style="width:500px">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+					 </div>
+					<div class="m2-cha2Conf-bind">
+			            <div class="m2-cha2Conf-tit">
+			                <span>绑定银行卡</span>
+			            </div>
+			            <table cellpadding="0" cellspacing="0">
+			                <tbody>
+			                    <tr>
+			                        <td class="m2-chaConf-tit">
+			                            <i class="m2-chaConf-user"></i>
+			                            <span>真实姓名</span>
+			                        </td>
+			                        <td class="m2-chaConf-con">
+			                            <span id="bankicname">${sessionScope.userinfo.idCard.icname}</span>
+			                        </td>
+			                    </tr>
+			                    <tr>
+			                        <td class="m2-chaConf-tit">
+			                            <i class="m2-chaConf-tel"></i>
+			                            <span>手机号</span>
+			                        </td>
+			                        <td class="m2-chaConf-con">
+			                            <span id="bankuphone">${sessionScope.user.uphone}</span>
+			                            <a href="/usercenter-accountcontrol-userverify?phone=1">修改</a>
+			                            <b class="m2-chaConf-warn" style='color:#999;'>认证手机号须与银行卡预留手机号一致 否则无法绑卡</b>
+			                        </td>
+			                    </tr>
+			                    <tr>
+			                        <td class="m2-chaConf-tit">
+			                            <i class="m2-chaConf-card"></i>
+			                            <span>借记卡</span>
+			                        </td>
+			                        <td class="m2-chaConf-con">
+			                        	<input type="hidden" id="placeback"/>
+			                        	<input type="text" class="m2-regist-username" onkeydown="onlyNum();" maxlength="19" style="ime-mode:Disabled" id="bankcardid" value="" />
+			                            <span class="m2-regist-errMsgcard"></span>
+		                            	<span class="m2-regist-errsMsgcard" style="font-size: 12px;position: absolute;left: 65px;top: 30px"></span>
+		                            	<input type="hidden" id="staticNumber"/>
+			                            <b id="bankstyles" class="m2-chaConf-warn" style='color:#999;'>该银行卡开户姓名必须为${sessionScope.userinfo.idCard.icname}，否则会提现失败！</b> 
+			                        </td>
+			                        </tr>
+			                </tbody>
+			            </table>
+			            <div class="m2-cha2Confsubmit">
+			            	<span class="m2-cha2Confsub-sure " onclick="addCard()">确&nbsp;&nbsp;&nbsp;认</span>
+			        	</div>
+	        </div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+<!-- 解绑银行卡弹出框 -->
+		<div class="modal fade" id="jiebangModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" style="width:600px">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+					 </div>
+					<div class="m2-cha2Conf-bind">
+			            <div class="m2-cha2Conf-tit">
+			                <span>解绑银行卡</span>
+			            </div>
+			            <table cellpadding="0" cellspacing="0">
+			                <tbody>
+			                    <tr>
+			                        <td class="m2-chaConf-tit">
+			                            <i class="m2-chaConf-user"></i>
+			                            <span>真实姓名</span>
+			                        </td>
+			                        <td class="m2-chaConf-con">
+			                            <span id="bankicname">${sessionScope.userinfo.idCard.icname}</span>
+			                        </td>
+			                    </tr>
+			                    <tr>
+			                        <td class="m2-chaConf-tit">
+			                            <i class="m2-chaConf-tel"></i>
+			                            <span>手机号</span>
+			                        </td>
+			                        <td class="m2-chaConf-con">
+			                            <span id="bankuphone">${sessionScope.user.uphone}</span>
+			                            <b class="m2-chaConf-warn" style='color:#999;'>认证手机号须与银行卡预留手机号一致 否则无法绑卡</b>
+			                        </td>
+			                    </tr>
+			                    <tr>
+			                        <td class="m2-chaConf-tit">
+			                            <i class="m2-chaConf-card"></i>
+			                            <span>解绑原因</span>
+			                        </td>
+			                        <td class="m2-chaConf-con">
+			                       		<div class="radio">
+											   <label>
+											      <input type="radio" name="optionsRadios" id="optionsRadios1" 
+											         value="option1" checked> 银行卡遗失
+											   </label>
+											    <label>
+											      <input type="radio" name="optionsRadios" id="optionsRadios2" 
+											         value="option1" checked> 银行卡遗失
+											   </label>
+											</div>
+											<div class="radio">
+											   <label>
+											      <input type="radio" name="optionsRadios" id="optionsRadios3" 
+											         value="option2">
+											         银行卡废弃
+											   </label>
+											    <label>
+											      <input type="radio" name="optionsRadios" id="optionsRadios4" 
+											         value="option1" checked> 其他
+											   </label>
+											</div>
+									 </td>
+			                        </tr>
+			                    <tr>
+			                        <td class="m2-chaConf-tit">
+			                            <i class="m2-chaConf-card"></i>
+			                            <span>借记卡</span>
+			                        </td>
+			                        <td class="m2-chaConf-con">
+			                             <input type="text" style="width:265px;" placeholder="" id="backnum" maxlength="19" value="${requestScope.backnum}" disabled="disabled"/>
+			                        </td>
+			                     </tr>
+			                </tbody>
+			            </table>
+			            <div class="m2-cha2Confsubmit">
+			            	<span class="m2-cha2Confsub-sure " onclick="jieBangCard()">确&nbsp;&nbsp;&nbsp;认</span>
+			        	</div>
+	        </div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
 <script type="text/javascript">
 	var bankstyle = $('#bankstyle').val();
 	var bankcss = bankstyle.split('·');
@@ -354,6 +508,12 @@
 		  $('#changeBank').click(function() {
 			  $('#bankModal').modal('show');
 		  });
+		  $('#deleteBank').click(function() {
+			  $('#jiebangModal').modal('show');
+		  });
+		  $('#addBack').click(function(){
+			  $('#addBank').modal('show');
+		  })
 		});
 	$(function(){
 		$("#payPwd").payPwd({
@@ -373,6 +533,8 @@
 		var ubid = $('#ubid').val();
 		var ubmoney = $('#ubmoney').val();
 		var ubbackcardnum =$('#ubbackcardnum').val();
+		alert(ubbackcardnum);
+		alert(sdfghj);
 		 $.ajax({
 	            url: '/Finances/recharge/seleBydalePwd',
 	            data: {'uidealpwd':uidealpwd,'uiid':uiid},
@@ -465,6 +627,95 @@
 	    	});
 	    }
 	    }
+	//解绑银行卡
+	function  jieBangCard(){
+		var ubbackcardnum = $('#ubbackcardnum').val();
+		var uiid = $('#uiid').val();
+		$.ajax({
+    		url:'${pageContext.request.contextPath}/idcard/deleBybanknum',
+    		data:{'ubbackcardnum':ubbackcardnum,'uiid':uiid},
+    		  success: function (data) {
+    			  if(data>0){
+    				  showMsg('解绑完成', true);	
+    				  location.href="${pageContext.request.contextPath}/torecharge?uiid="+uiid;
+    			  }
+    			  else{
+    				  showMsg('解绑失败!');  
+    			  }
+    		  }	
+    	});
+	}
+	 $('#bankcardid').blur(function () {
+         checkBankCard();
+         //getCardInfo();
+     });
+	 function checkBankCard() {
+         var bankcard = $('#bankcardid').val();
+         var pattern = /^([1-9]{1})(\d{14}|\d{18})$/;
+         if (bankcard == '') {
+         	$('.m2-regist-errMsgcard').next('.m2-regist-errsMsgcard').html("");
+             $('#bankcardid').next('.m2-regist-errMsgcard').html('银行卡不能为空!');
+             return false;
+         }else if(!pattern.test(bankcard)){
+         	$('.m2-regist-errMsgcard').next('.m2-regist-errsMsgcard').html("");
+         	$('#bankcardid').next('.m2-regist-errMsgcard').html("银行卡号输入有误,请输入正确的银行卡号!");
+             return false;
+         }else{
+         	$.ajax({
+                 url: "/Finances/idcard/getCardType",
+                 data:{
+                 	ubbackcardnum:bankcard
+                 },
+                 type: "POST",
+                 dataType: 'json',
+                 success: function (data) {
+                     if (data.status == 1) {
+                     	$('#bankcardid').next('.m2-regist-errMsgcard').html('');
+                     	$('.m2-regist-errMsgcard').next('.m2-regist-errsMsgcard').css('color','#33cc00').html(data.type);
+                     	$("#bankstyles").html('');
+                     	$("#placeback").val(data.type);
+                     	$("#staticNumber").val("1");
+     		            return true;
+                     }else if(data.status == 0){
+                     	$('.m2-regist-errMsgcard').next('.m2-regist-errsMsgcard').css('color','red').html("已存在此银行卡,请重新绑卡开户!");
+                     	$("#staticNumber").val("2");
+                     	return false;
+                     } else {
+                     	$('.m2-regist-errMsgcard').next('.m2-regist-errsMsgcard').css('color','red').html("银行卡号输入有误,请输入正确的银行卡号!");
+                     	$("#staticNumber").val("2");
+                     	return false;
+                     }
+                 }
+             });
+         }
+     }
+	 //添加银行卡
+	 function addCard(){
+		 alert("sdfghj");
+		 var uiid = $("#uiid").val();
+         var ubbackcardnum = $("#bankcardid").val();
+         var ubplaceback = $("#placeback").val();
+         var oppenstaus = 2; //设置开户 
+         $.ajax({
+             url: "/Finances/idcard/addbackcard",
+             data:{
+             	uiid:uiid,
+             	ubbackcardnum:ubbackcardnum,
+             	ubplaceback:ubplaceback,
+             	oppenstaus :oppenstaus
+             },
+             type: "POST",
+             dataType: 'json',
+             success: function (data) {
+                 if (data == 1) {
+                	 showMsg('添加银行卡完成', true);	
+                 	window.location.href="/Finances/torecharge?uiid="+uiid;
+                 } else {
+                	 showMsg('添加银行卡失败!');	
+                 }
+             }
+         }); 
+	 }
 	function showMsg(msg, flag) {
         if (!flag) {
             $('.m2-userCommon-confirmWar').html('<i></i>' + msg);

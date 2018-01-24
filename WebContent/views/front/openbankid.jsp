@@ -316,6 +316,7 @@
 	                    var uiid = $("#ui_id").val();
 	                    var ubbackcardnum = $("#bankcardid").val();
 	                    var ubplaceback = $("#placeback").val();
+	                    var oppenstaus = 1; //设置开户
 	                    
 	                    if (($('#realname').val() == '') || ($('#bankcardid').val() == '') || ($('#idcard').val() == '')) {
 	                        showInfoDialog("请将必填信息填写完整!", 0);
@@ -348,7 +349,8 @@
 	                            data:{
 	                            	uiid:uiid,
 	                            	ubbackcardnum:ubbackcardnum,
-	                            	ubplaceback:ubplaceback
+	                            	ubplaceback:ubplaceback,
+	                            	oppenstaus :oppenstaus
 	                            },
 	                            type: "POST",
 	                            dataType: 'json',

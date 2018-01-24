@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
@@ -1251,14 +1252,19 @@ public class FrontController {
 	 *充值页面的contorller
 	 * */
 	@RequestMapping(value="/torecharge")
-	public String torecharge(Integer uiid,HttpSession session) {
+	public String torecharge(Integer uiid,HttpServletRequest request) {
 		Userbackcard userbackcard = new Userbackcard();
+		Userbackcard uback = null;
 		userbackcard.setUiid(uiid);
-		Userbackcard uback = userbackcardService.getModel(userbackcard);
+		try {
+		 uback = userbackcardService.getModel(userbackcard);
 		String kahao = uback.getUbbackcardnum();
 		String xianshi=kahao.substring(0,4)+"********"+kahao.substring(kahao.length()-4);
-		session.setAttribute("userbackcard", uback);
-		session.setAttribute("backnum", xianshi);
+		request.setAttribute("backnum",xianshi);
+		}catch(Exception e){
+			uback = null; 
+		}
+		request.setAttribute("uback", uback);
 		return "views/front/user/recharge";
 	}
 	
@@ -1266,14 +1272,19 @@ public class FrontController {
 	 *提现页面的contorller
 	 * */
 	@RequestMapping(value="/towithdraw")
-	public String towithdraw(Integer uiid,HttpSession session) {
+	public String towithdraw(Integer uiid,HttpServletRequest  request) {
 		Userbackcard userbackcard = new Userbackcard();
 		userbackcard.setUiid(uiid);
-		Userbackcard uback = userbackcardService.getModel(userbackcard);
+		Userbackcard uback = null;
+		try {
+		 uback = userbackcardService.getModel(userbackcard);
 		String kahao = uback.getUbbackcardnum();
 		String xianshi=kahao.substring(0,4)+"********"+kahao.substring(kahao.length()-4);
-		session.setAttribute("userbackcards", uback);
-		session.setAttribute("backnums", xianshi);
+		request.setAttribute("backnums", xianshi);
+		}catch(Exception e) {
+			uback = null; 
+		}
+		request.setAttribute("uback", uback);
 		return "views/front/user/withdrawals";
 	}
 	

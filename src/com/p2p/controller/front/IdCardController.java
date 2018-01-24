@@ -154,7 +154,7 @@ public class IdCardController {
 	 * */
 	@RequestMapping("/addbackcard")
 	@ResponseBody
-	public int addBankCard(Userbackcard userback,HttpSession session) {
+	public int addBankCard(Userbackcard userback,Integer oppenstaus,HttpSession session) {
 		int addCard = 0;
 		Integer uiid = userback.getUiid();
 		try {
@@ -203,41 +203,47 @@ public class IdCardController {
 				
 				//当服务端开通成功后才可以成功开户
 				if(usercount==1 && bankcount==1) {
-					addCard = userbackcardService.addModel(bank);
-					
-					Userinfo userinfo1 = new Userinfo();
-					userinfo1.setUiid(uiid);
-					userinfo1.setUiopenstatus(2);
-					userInfoService.update(userinfo1);
-					
-					//用户开户成功，给与奖励红包和代金券
-					Redmoney redmoney = new Redmoney();
-					redmoney.setRmoney(30.0);
-					redmoney.setRimage("/uploadFile/redmoney/redmoney1.jpg");
-					redmoney.setRstardtime(DateUtils.getDateTimeFormat(new Date()));
-					//获取当前时间的后几天
-					Date date = new Date();  
-					SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
-					date = DateUtils.getDayAfter(date,15);
-					redmoney.setRendtime(formatDate.format(date));
-					redmoney.setUid(uiid);
-					redmoneyservice.addModel(redmoney);
-					
-					//获得代金券
-					Uservouch uservouch = new Uservouch();
-					uservouch.setUid(uiid);
-					uservouch.setUvday(30);
-					uservouch.setUvstartDate(DateUtils.getDateTimeFormat(new Date()));
-					//获取当前时间的后几天
-					Date d = new Date();  
-					SimpleDateFormat fDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
-					date = DateUtils.getDayAfter(d, 30);
-					uservouch.setUvendDate(fDate.format(d));
-					uservouch.setUvimage("/uploadFile/redmoney/dai.jpg");
-					uservouch.setUvmoney(2000.0);
-					uservouchService.addModel(uservouch);
-					
-					addCard = 1;
+					if(oppenstaus==1) {
+						addCard = userbackcardService.addModel(bank);
+						Userinfo userinfo1 = new Userinfo();
+						userinfo1.setUiid(uiid);
+						userinfo1.setUiopenstatus(2);
+						userInfoService.update(userinfo1);
+						
+						//用户开户成功，给与奖励红包和代金券
+						Redmoney redmoney = new Redmoney();
+						redmoney.setRmoney(30.0);
+						redmoney.setRimage("/uploadFile/redmoney/redmoney1.jpg");
+						redmoney.setRstardtime(DateUtils.getDateTimeFormat(new Date()));
+						//获取当前时间的后几天
+						Date date = new Date();  
+						SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+						date = DateUtils.getDayAfter(date,15);
+						redmoney.setRendtime(formatDate.format(date));
+						redmoney.setUid(uiid);
+						redmoneyservice.addModel(redmoney);
+						
+						//获得代金券
+						Uservouch uservouch = new Uservouch();
+						uservouch.setUid(uiid);
+						uservouch.setUvday(30);
+						uservouch.setUvstartDate(DateUtils.getDateTimeFormat(new Date()));
+						//获取当前时间的后几天
+						Date d = new Date();  
+						SimpleDateFormat fDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+						date = DateUtils.getDayAfter(d, 30);
+						uservouch.setUvendDate(fDate.format(d));
+						uservouch.setUvimage("/uploadFile/redmoney/dai.jpg");
+						uservouch.setUvmoney(2000.0);
+						uservouchService.addModel(uservouch);
+						
+						addCard = 1;
+						
+					}
+					else if(oppenstaus==2){
+						addCard = userbackcardService.addModel(bank);
+						addCard = 1;
+					}
 					
 				}
 			}
@@ -436,6 +442,35 @@ public class IdCardController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * 解绑银行卡
+	 * @throws Exception 
+	 * */
+	@RequestMapping(value="deleBybanknum")
+	@ResponseBody
+	public int deleBybanknum(Userbackcard userback) throws Exception {
+		int count = 0;
+		Userbackcard userbackcard = userbackcardService.seleBybanknum(userback);
+		//服务端银行卡设值
+		Bank banks = new Bank();
+		banks.setBsuid(userbackcard.getUiid());
+		banks.setBcode(userbackcard.getUbbackcardnum());
+		banks.setBtype(userbackcard.getUbplaceback());
+		banks.setBmoney(userbackcard.getUbmoney());
+		banks.setBstate(userbackcard.getUbstatus());
+		
+		int bankcount = SendServiceUtil.list(banks, "192.168.90.47:8080/ServiceP2p/bank/delete");
+		
+		//当服务端开通成功后才可以成功开户
+		if(bankcount==1) {
+			count = userbackcardService.delete(userbackcard);
+		}
+		else {
+			count = 0;
+		}
+		return count ;
 	}
 
 }

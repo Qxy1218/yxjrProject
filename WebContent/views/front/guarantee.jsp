@@ -3,6 +3,7 @@
 <%
 	String path = request.getContextPath();
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -143,13 +144,19 @@
     </div>
     <div class="security_ensure_five">
         <p>用户信息和资金全部在徽商银行存管，马上开启您的赚钱之旅吧！</p>
-        <button class="success_btn" onclick='window.location.href="touzi_licai_chanpin.html"'>立即投资</button>
+       	<%-- <c:if test="${sessionScope.user.uid !=null }"> --%>
+       		<button class="success_btn" onclick='window.location.href="/Finances/toinvestzt"'>立即投资</button>
+       	<%-- </c:if> --%>
+       <%-- 	<c:if test="${sessionScope.user.uid ==null }">
+       		<button class="success_btn" onclick='touzi()'>立即投资</button>
+       	</c:if> --%>
     </div>
     <!-- 内容end-->
     
     <!-- 足部start -->
     	<jsp:include page="include/floot.jsp"></jsp:include>
     <!-- 足部end -->
-    
+	
 	</body>
+	
 </html>

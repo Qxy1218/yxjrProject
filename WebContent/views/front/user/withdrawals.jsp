@@ -238,14 +238,14 @@
 	                    <div class="m2-userCentermanage-drawBox-cardTit m2-txtRig">
 	                        <span>提现银行卡：</span>
 	                    </div>
-	                     <input type="hidden" value="${sessionScope.userbackcards.ubplaceback}" id="bankimages">
+	                     <input type="hidden" value="${requestScope.uback.ubplaceback}" id="bankimages">
 	                     <input type="hidden" value="${sessioonScope.user.uid}" name="uid" id="uid" />
 	                     <input type="hidden" value="${sessionScope.userinfo.uiid}" name="uiid" id="uiid" />
 	                     <input type="hidden" value="${sessionScope.userinfo.uiopenstatus}" name="uiopenstatus" id="uiopenstatus" />
-	                     <input type="hidden" value="${sessionScope.userbackcards.ubid}" name="ubid" id="ubid"> 
-	                     <input type="hidden" value="${sessionScope.userbackcards.ubplaceback}" name="ubplaceback" id="ubplaceback">     
-	                     <input type="hidden" value="${sessionScope.userbackcards.ubmoney}" name="ubmoney" id="ubmoney" />    
-	                     <input type="hidden" value="${sessionScope.userbackcards.ubbackcardnum}" name="ubbackcardnum" id="ubbackcardnum">
+	                     <input type="hidden" value="${requestScope.uback.ubid}" name="ubid" id="ubid"> 
+	                     <input type="hidden" value="${requestScope.uback.ubplaceback}" name="ubplaceback" id="ubplaceback">     
+	                     <input type="hidden" value="${requestScope.uback.ubmoney}" name="ubmoney" id="ubmoney" />    
+	                     <input type="hidden" value="${requestScope.uback.ubbackcardnum}" name="ubbackcardnum" id="ubbackcardnum">
 	                      <input type="hidden" value="${sessionScope.userinfo.idCard.icname}" id="name">
 	                    <input type="hidden" value="${sessioonScope.user.ucredit}" name="ucredit" id="ucredit">
 	                    <ul class="m2-userCentermanage-drawBox-cardSel" style="position:relative;">
@@ -256,8 +256,8 @@
 	                          <div class="m2-userBankitem m2-userBank-sel" style="width:255px;height:64px;">
 	                             <i class="mo2-userChabank-common " id="bankimg"></i>
 	                            <span class="m2-userBankitem-det">
-	                                <span id="inst_name" style="font-size:15px;">${sessionScope.userbackcards.ubplaceback}</span><br>
-	                                <span id="cardshow">${sessionScope.backnums}</span>
+	                                <span id="inst_name" style="font-size:15px;">${requestScope.uback.ubplaceback}</span><br>
+	                                <span id="cardshow">${requestScope.backnums}</span>
 	                            </span>
 	                            <b class="mo2-user-bank-corner"></b>
 	                        </div>
