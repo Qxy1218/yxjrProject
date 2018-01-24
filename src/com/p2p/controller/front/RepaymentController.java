@@ -2,6 +2,7 @@ package com.p2p.controller.front;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -322,8 +323,11 @@ public class RepaymentController {
 			int days = (int)((endTime.getTime()-startTime.getTime())/86400000);  //还款开始时间以及结束时间相隔天数
 			
 			//计算当前这期的还款开始时间
-			Date nowStartTime = new Date(startTime.getTime() + (days * 24 * 60 * 60 * 1000)*fabiao1.getFyhqx());
-			//当今天的还款期限小于还款表每期的开始时间  未到还款期
+			Calendar ca = Calendar.getInstance();
+			ca.add(Calendar.DATE, days*fabiao1.getFyhqx());// days为增加的天数，可以改变的
+			
+			Date nowStartTime = ca.getTime();
+			
 			if(new Date().getTime()<nowStartTime.getTime()) {
 				result = 1;
 			}
@@ -589,7 +593,11 @@ public class RepaymentController {
 					//发标的已还期限与每次循环的期限(虚拟)做比较
 					if(fabiao.getFyhqx()<everycount) {
 						
-						Date everyEndTime = new Date(repayStartTime.getTime() + (days * 24 * 60 * 60 * 1000)*everycount);  //具体那期的结束时间
+						//计算当前这期的还款开始时间
+						Calendar ca = Calendar.getInstance();
+						ca.add(Calendar.DATE, days*everycount);// days为增加的天数，可以改变的
+						
+						Date everyEndTime = ca.getTime();  //具体那期的结束时间
 						
 						//如果当前时间大于下一次还款结束时间  则逾期
 						if(date.getTime()>everyEndTime.getTime()) {
