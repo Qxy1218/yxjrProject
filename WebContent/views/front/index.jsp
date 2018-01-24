@@ -930,12 +930,8 @@
                         <a class="m2-indItembtn-ing" href="/Finances/toproject?pid=${xmztlist.fid}" target="_blank">立即投资</a> </div>
                 </li>    
                 </c:forEach>                    
-                	
             </ul>
-			<div style="text-align: center;">    
-            <img src="/Finances/statics/front/images/nodata.png">	
-			<h1>没有数据</h1>
-			</div>
+           
         </div>
     </div>
 
