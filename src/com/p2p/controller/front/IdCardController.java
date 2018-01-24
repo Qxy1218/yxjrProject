@@ -194,7 +194,7 @@ public class IdCardController {
 				
 				//服务端银行卡设值
 				Bank banks = new Bank();
-				banks.setBsuid(bank.getUiid());
+				banks.setBsuid(userinfos.getUid());
 				banks.setBcode(bank.getUbbackcardnum());
 				banks.setBtype(bank.getUbplaceback());
 				banks.setBmoney(bank.getUbmoney());
@@ -216,14 +216,14 @@ public class IdCardController {
 						redmoney.setRmoney(30.0);
 						redmoney.setRimage("/uploadFile/redmoney/redmoney1.jpg");
 						redmoney.setRstardtime(DateUtils.getDateTimeFormat(new Date()));
+						redmoney.setRstart(0);
 						//获取当前时间的后几天
 						Date date = new Date();  
 						SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
 						date = DateUtils.getDayAfter(date,15);
 						redmoney.setRendtime(formatDate.format(date));
-						redmoney.setUid(uiid);
-						redmoneyservice.addModel(redmoney);
-						
+						redmoney.setUid(userinfos.getUid());
+
 						//获得代金券
 						Uservouch uservouch = new Uservouch();
 						uservouch.setUid(uiid);
@@ -236,6 +236,7 @@ public class IdCardController {
 						uservouch.setUvendDate(fDate.format(d));
 						uservouch.setUvimage("/uploadFile/redmoney/dai.jpg");
 						uservouch.setUvmoney(2000.0);
+						uservouch.setUstrat(0);
 						uservouchService.addModel(uservouch);
 						
 						addCard = 1;
