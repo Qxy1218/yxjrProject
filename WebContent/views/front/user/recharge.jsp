@@ -349,7 +349,7 @@
 			                        </td>
 			                        <td class="m2-chaConf-con">
 			                            <span id="bankuphone">${sessionScope.user.uphone}</span>
-			                            <a href="/usercenter-accountcontrol-userverify?phone=1">修改</a>
+			                            <a href="/Finances/userverify?uiid=${sessionScope.userinfo.uiid }&phone=1">修改</a>
 			                            <b class="m2-chaConf-warn" style='color:#999;'>认证手机号须与银行卡预留手机号一致 否则无法绑卡</b>
 			                        </td>
 			                    </tr>
