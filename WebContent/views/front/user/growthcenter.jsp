@@ -104,7 +104,7 @@
 	                </div>
 	                <p class="p-fi">成长值越高，帮主等级越高。当成长值满足升级条件时，系统自动给予升级。</p>
 	                <p class="p-se">“特邀帮主”目前采取邀请制，接到平台邀请开通的用户可享有。</p>
-	                <a href="/usercenter-Growth-growth_log" class="query">成长值查询>></a>
+	                <a href="#" class="query">成长值查询>></a>
 	            </div>
 	            <div class="mygrow" style="height:450px;">
 	                <div class="grow"><span class="title">帮主权益</span><span class="text">会员商城等更多精彩权益正在路上...</span></div>
