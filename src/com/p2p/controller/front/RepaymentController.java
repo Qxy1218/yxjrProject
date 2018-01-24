@@ -577,7 +577,7 @@ public class RepaymentController {
 		
 		//获取每个标开始时间(计算每期什么时候还款以及逾期时间)
 		for(Fabiao fabiao:fabiaoList) {
-			Date repayStartTime = df.parse(fabiao.getFhuanend());  //还款开始时间
+			Date repayStartTime = df.parse(fabiao.getFhuanstat());  //还款开始时间
 			Date repayEndTime = df.parse(fabiao.getFhuanend());  //还款结束时间
 			int days = (int)((repayEndTime.getTime()-repayStartTime.getTime())/86400000);
 			
@@ -597,11 +597,11 @@ public class RepaymentController {
 						Calendar ca = Calendar.getInstance();
 						ca.add(Calendar.DATE, days*everycount);// days为增加的天数，可以改变的
 						
-						Date everyEndTime = ca.getTime();  //具体那期的结束时间
+						repayEndTime = ca.getTime();  //具体那期的结束时间
 						
 						//如果当前时间大于下一次还款结束时间  则逾期
-						if(date.getTime()>everyEndTime.getTime()) {
-							int overDays = (int)((date.getTime()-everyEndTime.getTime())/(1* 24 * 60 * 60 * 1000));
+						if(date.getTime()<repayEndTime.getTime()) {
+							int overDays = (int)((repayEndTime.getTime()-date.getTime())/(1* 24 * 60 * 60 * 1000));
 							
 							//根据超过的天数计算逾期金额(利率不一样)
 							if(overDays<=180) {
@@ -611,15 +611,17 @@ public class RepaymentController {
 							}else if(overDays>=360) {
 								overmoney = overmoney.add(repayment1.getRmplan().add(repayment1.getRmplan().multiply(new BigDecimal("0.003")).multiply(new BigDecimal(overDays))));
 							}
+							
+							repayment1.setRmstate(8);  //将此标标记为逾期标
+							repayment1.setRmoverdue(overmoney);
+							repaymentService.update(repayment1);
+							
+							fabiao.setFstatus(repayment1.getRmstate());
+							fabiaoService.update(fabiao);
 						}
 					}
 				}
-				repayment1.setRmstate(8);  //将此标标记为逾期标
-				repayment1.setRmoverdue(overmoney);
-				repaymentService.update(repayment1);
 				
-				fabiao.setFstatus(repayment1.getRmstate());
-				fabiaoService.update(fabiao);
 			}
 		}
 	}

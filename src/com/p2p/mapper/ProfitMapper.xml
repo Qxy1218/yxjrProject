@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<insert id="addModel" parameterType="com.p2p.pojo.Profit">
-		insert into profit(u_id,pf_money,pf_moneywhere,pf_time) values(#{uid},#{pfmoney},#{pf_moneywhere},#{pftime})
+		insert into profit(u_id,pf_money,pf_moneywhere,pf_time) values(#{uid},#{pfmoney},#{pfmoneywhere},#{pftime})
 	</insert>
 	
 	<select id="getAllModel" resultMap="BaseResultMap">
