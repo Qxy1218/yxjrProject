@@ -895,13 +895,13 @@
 				</c:if>
 				<c:forEach items="${fabiaoxmzt}" var="xmztlist">
                 <li class="m2-indexItem m2-indexItem-ing borrow-cate-5 borrow">
-                    <h3 class="m2-indexItem-head"><a href="/Finances/topro" target="_blank" title="${xmztlist.ftitle}">${xmztlist.ftitle}</a></h3>
+                    <h3 class="m2-indexItem-head"><a href="/Finances/toproject?pid=${xmztlist.fid}" target="_blank" title="${xmztlist.ftitle}">${xmztlist.ftitle}</a></h3>
 
                     <div class="m2-indItemdetials">
                         <h4><i></i>项目详情</h4>
                         <div class="m2-indItemdet" style="height: 99px;">
                             <span>“${xmztlist.ftitle}”${fn:substring(xmztlist.fsituation,0,38)}...</span>
-                            <a href="/Finances/topro" target="_blank">详情</a>
+                            <a href="/Finances/toproject?pid=${xmztlist.fid}" target="_blank">详情</a>
                         </div>
                     </div>
                     <div class="m2-indItemnum">
@@ -912,18 +912,18 @@
 										活动加息${xmztlist.fincrease*100}%	
 								</span>
 							</p>
-                            <p class="m2-indItemnum-nor">预期年化收益率</p>
+                            <p class="m2-indItemnum-nor">收益率</p>
                             <b></b>
                         </div>
                         <div class="m2-indItemnum-time">
-                            <p class="m2-indItemnum-big">1个月</p>
+                            <p class="m2-indItemnum-big">${xmztlist.rematime}天</p>
                             <p class="m2-indItemnum-nor">项目期限</p>
                         </div>
                     </div>
                     <div class="m2-indItemprogress">
                         <span class="m2-indItemprogress-tit">正在募集：</span>
-                        <b><i style="width: 42.11%;"></i></b>
-                        <span class="m2-indItemprogress-num">42.11%</span>
+                        <b><i style="width: ${xmztlist.compnrate};"></i></b>
+                        <span class="m2-indItemprogress-num">${xmztlist.compnrate}</span>
                     </div>
 
                     <div class="m2-indItembtn">
