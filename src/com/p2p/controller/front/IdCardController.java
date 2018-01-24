@@ -157,8 +157,9 @@ public class IdCardController {
 	public int addBankCard(Userbackcard userback,Integer oppenstaus,HttpSession session) {
 		int addCard = 0;
 		Integer uiid = userback.getUiid();
+		Userbackcard userbackcard = userbackcardService.seleBybanknum(userback);
 		try {
-			if(uiid!=null) {
+			if(uiid!=null && userbackcard==null) {
 				//客服端银行卡设值
 				Userbackcard bank = new Userbackcard();
 				bank.setUiid(uiid);
