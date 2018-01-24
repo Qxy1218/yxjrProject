@@ -153,7 +153,7 @@ public class IndexController {
 			
 			//得到当前平台的收益
 			User u = new User();
-			u.setUid(10);
+			u.setUid(1);
 			User user = iUserService.getModel(u);
 			session.setAttribute("pintaiMoney", user.getUbalance());
 			

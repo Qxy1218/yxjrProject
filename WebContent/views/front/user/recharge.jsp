@@ -306,7 +306,7 @@
 			                        </td>
 			                        <td class="m2-chaConf-con">
 			                            <input type="text" style="width:265px;" placeholder="" id="backnum" maxlength="19" onblur="bannumBlur()">
-			                            <b id="bankstyle" class="m2-chaConf-warn" style='color:#999;'>该银行卡开户姓名必须为${sessionScope.userinfo.idCard.icname}，否则会提现失败！</b>
+			                            <b id="bankstyles" class="m2-chaConf-warn" style='color:#999;'>该银行卡开户姓名必须为${sessionScope.userinfo.idCard.icname}，否则会提现失败！</b>
 			                        </td>
 			                        </tr>
 			                </tbody>
@@ -589,17 +589,18 @@
 			 $('#bankstyle').html("借记卡不能为空");
 			 btnGrey();
 	     } else if (backnum == ubbackcardnum) {
-	        	 $('#bankstyle').html("借记卡不能与原借记卡相同!");
+	        	 $('#bankstyles').html("借记卡不能与原借记卡相同!");
 	     }
 	     else if(!pattern.test(backnum)){
-	    	 $('#bankstyle').html("借记卡格式输入有误,请输入正确的借记卡格式!!");
+	    	 $('#bankstyles').html("借记卡格式输入有误,请输入正确的借记卡格式!!");
 	    }
 	     else{
-	    	 $('#bankstyle').html("该银行卡开户姓名必须"+name+"，否则会提现失败!")
+	    	 $('#bankstyles').html("该银行卡开户姓名必须"+name+"，否则会提现失败!")
 	     }
 	           
 	}
 	function changeCard(){
+		alert("abcd");
 		var backnum = $('#backnum').val();
 		var pattern = /^([1-9]{1})(\d{14}|\d{18})$/;
 		var ubbackcardnum = $('#ubbackcardnum').val();
@@ -607,15 +608,16 @@
 		var bankphone =$("#bankuphone").html();
 		var uiid = $('#uiid').val();
 		if (backnum == '') {
-			$('#bankstyle').html("借记卡不能为空");
+			$('#bankstyles').html("借记卡不能为空");
            
         } else if (backnum == ubbackcardnum) {
-        	 $('#bankstyle').html("借记卡不能与原借记卡相同!");
+        	 $('#bankstyles').html("借记卡不能与原借记卡相同!");
             
 	    }else if(!pattern.test(backnum)){
-	    	 $('#bankstyle').html("借记卡格式输入有误,请输入正确的借记卡格式!!");
+	    	 $('#bankstyles').html("借记卡格式输入有误,请输入正确的借记卡格式!!");
 	    }
 	    else{
+	    	alert("sdfghj");
 	    	$.ajax({
 	    		url:'${pageContext.request.contextPath}/idcard/seleBybanknum',
 	    		data:{'backnum':backnum,'bankicname':bankicname,'bankphone':bankphone},
