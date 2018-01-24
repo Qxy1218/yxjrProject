@@ -1,14 +1,9 @@
 package com.p2p.controller.front;
 
-import java.io.BufferedReader;
-import java.io.PrintWriter;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
@@ -16,15 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.p2p.controller.back.SendMsgUtil;
 import com.p2p.pojo.Chongzhi;
 import com.p2p.pojo.Moneyrecord;
 import com.p2p.pojo.Recharge;
 import com.p2p.pojo.User;
 import com.p2p.pojo.Userbackcard;
 import com.p2p.pojo.Userinfo;
-import com.p2p.pojo.Users;
 import com.p2p.service.back.MessageUtilService;
 import com.p2p.service.back.MoneyrecordServiece;
 import com.p2p.service.back.SendMsgService;
@@ -33,7 +25,6 @@ import com.p2p.service.front.RechargeService;
 import com.p2p.service.front.UserInfoService;
 import com.p2p.service.front.UserbackcardService;
 import com.p2p.util.DateUtils;
-import com.p2p.util.MessageBenas;
 import com.p2p.util.SendServiceUtil;
 import com.p2p.util.UUIDCode;
 
@@ -86,7 +77,7 @@ public class RechargeController {
 	}
 	@RequestMapping(value="addRecharge")
 	@ResponseBody
-	public int addRecharge(Recharge recharge,Userbackcard userbackcard) throws Exception {
+	public int addRecharge(Recharge recharge,Userbackcard userbackcard,HttpSession session) throws Exception {
 		int count = 0;
 		String chtime =DateUtils.getDateTimeFormat(new Date());
 		
@@ -109,6 +100,11 @@ public class RechargeController {
 				User user =iUserService.getModel(u);
 				user.setUbalance(user.getUbalance()+Double.valueOf(recharge.getRemoney()));
 				iUserService.update(user);
+				
+				//重新加载user
+				User user2 = iUserService.getModel(user);
+				session.setAttribute("user", user2);
+				
 				userbackcard.setUbmoney(userbackcard.getUbmoney()-Double.valueOf(recharge.getRemoney()));
 				userbackcardService.update(userbackcard);
 				count = rechargeService.addModel(recharge);
