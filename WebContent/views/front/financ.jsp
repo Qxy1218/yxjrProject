@@ -65,7 +65,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="w3_agileits_main_grid w3l_main_grid">
 						<span class="agileits_grid">
 							<label>发标概要： </label>
-							<input type="text" name="fcontent">
+							<textarea rows="4" cols="20" type="text" name="fcontent">
+							</textarea>
 						</span>
 					</div>
 					<div class="w3_agileits_main_grid w3l_main_grid">

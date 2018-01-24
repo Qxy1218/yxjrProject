@@ -555,7 +555,8 @@ $(document).ready(function() {
 				<div class="form-group">
 					<label for="url" class="control-label col-sm-3">产品概要</label>
 					<div class="col-sm-8">
-						<input type="text" name="fcontent" class="form-control" id="fcontent">
+						<textarea rows="4" cols="20" type="text" name="fcontent">
+						</textarea>
            			</div>
 				</div>
 				<div class="form-group">
