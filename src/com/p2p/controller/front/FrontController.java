@@ -713,7 +713,9 @@ public class FrontController {
 		//收益报表
 		String maxProfitTime = dataTime.format(new Date()) ; //得到最近的一天收益的时间
 		String minProfitTime = profitService.seleProfitBytimemin(); //得到最远的一天收益的时间
-		
+		if(minProfitTime == null || minProfitTime.equals("")) {
+			minProfitTime = dataTime.format(new Date());
+		}
 		
 		Date maxTime =DateUtils.ChuDate(maxProfitTime) ;
 		Date minTime =DateUtils.ChuDate(minProfitTime) ;
