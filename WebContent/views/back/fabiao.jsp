@@ -661,11 +661,12 @@ $(document).ready(function() {
 					<label for="url" class="control-label col-sm-3">发布状态</label>
 					<div class="col-sm-8">
 						<select name="fstatus"  class="form-control" id="fstatus">
-							<option value="0">募集标</option>
-							<option value="1">还款标</option>
-							<option value="2">结清标</option>
-							<option value="3">流标</option>
-							<option value="4">废标</option>
+							<option value="1">募集标</option>
+							<option value="2">还款标</option>
+							<option value="3">结清标</option>
+							<option value="4">流标</option>
+							<option value="5">废标</option>
+							
 						</select>
            			</div>
 				</div>
