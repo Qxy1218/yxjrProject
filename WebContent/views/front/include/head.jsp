@@ -105,6 +105,11 @@
                     	<a href="/Finances/tofinan" id="cfpage" style="border-right:none;width: 50px;">预约理财</a>
                     </li> 
            		 </c:if>
+           		  <c:if test="${sessionScope.user.ubalance  == 0.00}">
+                    <li class="m2-commonTop-btn">
+                    	<a onclick="openmsage();" id="cfpage" style="border-right:none;width: 50px;">预约理财</a>
+                    </li> 
+           		 </c:if>
                 </ul>
             </div>
             <div class="m2-commonTop-app" onclick='window.open("appdownload.html")' style="cursor:pointer;">
@@ -185,6 +190,18 @@ $(function(){
 		    }  
 		});  
 });
+</script>
+<script type="text/javascript">
+	 function openmsage(){
+		 $('#dialog-info-divs1').show();
+	        $('#dialog-info-texts1').text("您未实名充值");
+	        $('.m2-user-confirmBtn').click(function () {
+	        	window.location="${pageContext.request.contextPath }/tousercenter?uid=${sessionScope.user.uid}";
+	        })
+	        $('.m2-userCentercommon-confirmClose,.m2-user-confirmBtns').click(function () {
+	            $('.m2-userCentercommon-confirm').hide();
+	        });
+	}
 </script>
 </body>
 </html>
