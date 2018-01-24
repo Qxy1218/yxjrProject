@@ -72,5 +72,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					<if test="newsfocus.nftime!=null and newsfocus.nftitle !=''">and  nf_time like CONCAT(CONCAT('%', #{newsfocus.nftime}), '%')</if>
 		    	</where>
 		    </select>
-		
+			
+			
+			<select id="selectNewsfocus" resultMap="NfresultMap">
+				select * from newsfocus where nf_id=#{nfid} 
+			</select>
 	</mapper>

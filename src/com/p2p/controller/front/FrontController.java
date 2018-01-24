@@ -1093,6 +1093,14 @@ public class FrontController {
 		return "views/front/aboutwe/coverage";
 	}
 	
+	//详情页
+	@RequestMapping(value ="selectNF")
+	public String selectnewsfocus(Integer id,Model model) {
+		List<Newsfocus> listnf = newsfocusService.selectNewsfocus(id);
+		model.addAttribute("listnf", listnf);
+		return "views/front/newsfocus";
+	}
+	
 	/**
 	 *网站公告页面的conteroller
 	 * */

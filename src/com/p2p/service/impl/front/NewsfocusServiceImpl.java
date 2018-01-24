@@ -75,5 +75,10 @@ public class NewsfocusServiceImpl implements NewsfocusService{
 	public Integer newsfocusCount(Newsfocus newsfocus) {
 		return newsfocusMapper.newsfocusCount(newsfocus);
 	}
+
+	@Override
+	public List<Newsfocus> selectNewsfocus(Integer id) {
+		return newsfocusMapper.selectNewsfocus(id);
+	}
 	
 }

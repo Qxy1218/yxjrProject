@@ -28,4 +28,8 @@ public interface NewsfocusService extends IBaseService<Integer, Newsfocus>{
  		
  	//查询总的记录数
  	abstract Integer newsfocusCount(@Param(value="newsfocus") Newsfocus newsfocus);
+
+ 	//查单个数据
+ 	abstract List<Newsfocus> selectNewsfocus(Integer id);
+
 }
