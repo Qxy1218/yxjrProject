@@ -394,29 +394,7 @@ $(document).ready(function() {
 				field : 'compnrate',
 				title : '完成率',
 				align : 'center',
-				/* formatter : function(value, row, index) {
-					var status = row.restatus; */
-					/* if(status==0){
-						return "<span class='label label-primary'>å¯ç¨</span>";
-					}else{
-						return "<span class='label label-danger'>ç¦ç¨</span>";
-					} */
-					/* if(status==1){
-			            return '<i class="fa fa-lock" style="color:red"></i>'
-			        }else if(status==0){
-			            return '<i class="fa fa-unlock" style="color:green"></i>'
-			        }else{
-			            return 'æ°æ®éè¯¯'
-			        }
-				} */
-			},/* {
-				field : 'ptid',
-				title : 'è§è²æé',
-				formatter : function(value, row, index) {
-					//var id = row.id;
-					return "<a  onclick='rolist("+row.nid+");' data-toggle='modal' data-target='#tb_model'><span class='glyphicon glyphicon-new-window'></span>æéè®¾ç½®</a>";
-				}
-			}, */]
+			},]
 		});
 		
 		
