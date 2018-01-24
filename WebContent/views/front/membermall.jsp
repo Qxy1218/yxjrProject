@@ -95,7 +95,7 @@
 	                <p>项目期限</p>
 	            </div>
 	
-	            <button class="money_btn" onclick='window.location.href="chanpin.html#-zNVKfzsUZ!aw8Tc7+A.html"'>立即赚取</button>    	</div>
+	            <button class="money_btn" onclick='window.location.href="/Finances/toinvestzt"'>立即赚取</button>    	</div>
 	
 		        <div class="container goods_detailed_news" data="58">
 		            <div class="pic_contain">
