@@ -332,7 +332,6 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-<<<<<<< .mine
                            <li>
                                 <a class="J_menuItem" href="${pageContext.request.contextPath}/back/toRole" data-index="0">权限管理</a>
                             </li>
@@ -351,7 +350,6 @@
                             </li><li>
                                 <a class="J_menuItem" href="${pageContext.request.contextPath}/views/back/record.jsp">管理员操作列表</a>
                             </li>
-=======
                         	<shiro:hasPermission name="权限管理">
                            		<li>
                                 	<a class="J_menuItem" href="${pageContext.request.contextPath}/back/toRole" data-index="0">权限管理</a>
@@ -367,7 +365,6 @@
                                 	<a class="J_menuItem" href="${pageContext.request.contextPath}/back/toEmploye">员工列表</a>
                             	</li>
                             </shiro:hasPermission>
->>>>>>> .r693
                         </ul>
                     </li>   	
                      </shiro:hasPermission>

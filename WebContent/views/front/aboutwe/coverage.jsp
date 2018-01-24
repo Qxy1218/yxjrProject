@@ -502,13 +502,9 @@
 		            	<c:forEach items="${newsbl}" var="newsfbl">
 		                <li>
 		                    <div class="m2-reportNews-listMain">
-		                        <img class="m2-reportLogo" src="${newsfbl.nfimage}" alt="${newsfbl.nftitle}">					
+		                        <img class="m2-reportLogo" src="${pageContext.request.contextPath}${newsfbl.nfimage}" alt="${newsfbl.nftitle}">					
 		                        <a href="${pageContext.request.contextPath}/selectNF?id=${newsfbl.nfid}" target="_blank" title="${newsfbl.nftitle}">
-		                        <h3 style="color: #09c;font-size: 16px; line-height: 25px;" >${newsfbl.nftitle}</h3></a>
-		                        <a href="${pageContext.request.contextPath}/selectNF?id=${newsfbl.nfid}" target="_blank" title="${newsfbl.nftitle}">
-		                            <p class="m2-reportNews-listNor">
-		                                	 ${fn:substring(newsfbl.nfcontent,0,100)}...
-		                            </p>
+		                        	<h3 style="color: #09c;font-size: 16px; line-height: 25px;" >${newsfbl.nftitle}</h3>
 		                        </a>
 		                        <p class="m2-reportNews-listLink" ><a href="${pageContext.request.contextPath}/selectNF?id=${newsfbl.nfid}" target="_blank" title="${newsfbl.nftitle}">显示全部</a></p>
 		                    </div>

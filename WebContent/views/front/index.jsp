@@ -490,11 +490,11 @@
     <!-- 新手项目start -->
     <div class="mo2-indexSingle">
         <div class="mo2-indWbq">
-            <h2><i class="mo2-indProtop-sma tobig">新手项目</i><a href="/Finances/togold" target="_blank"></a><span>新手体验金</span></h2>
+            <h2><i class="mo2-indProtop-sma tobig">新手项目</i><a href="javascript:void(0)" target="_blank"></a><span>新手体验金</span></h2>
             <div class="mo2-indWbqmain">
                 <div class="mo2-indWbqmain-lef"></div>
                 <div class="mo2-indWbqmain-rig">
-                    <h4><a href="/Finances/togold" target="_blank" title="爱钱帮理财新手体验金项目">爱钱帮理财新手体验金项目</a></h4>
+                    <h4><a href="javascript:void(0)" target="_blank" title="爱钱帮理财新手体验金项目">爱钱帮理财新手体验金项目</a></h4>
                     <div class="mo2-indWbqdet">
                         <p>
                             <span class="mo2-indWbqdet-tit">预期年化收益率：</span>
@@ -536,7 +536,7 @@
                         </span>
                         </div>
                         <div class="mo2-wbqBtn">
-                            <a href="/Finances/togold" target="_blank">即将开始</a>
+                            <a href="javascript:void(0)" target="_blank">即将开始</a>
                         </div>
                     </div>
                 </div>
@@ -547,19 +547,19 @@
         <!-- 私人定期start -->
         <div class="mo2-indPri">
             <h2><i class="mo2-indProtop-sma tobig">新手项目</i>
-                <a href="#"></a>
+                <a href="javascript:void(0)"></a>
                 <span>新手专享标</span></h2>
             <div class="mo2-indPrimain">
                 <div class="mo2-indPrimain-lef">
 
                 </div>
                 <div class="mo2-indPrimain-rig">
-                    <h4><a href="/Finances/topro" target="_blank" title="爱车贷-雪佛兰迈锐宝-XAA067">爱车贷-雪佛兰迈锐宝-XA…</a></h4>
+                    <h4><a href="javascript:void(0)" target="_blank" title="爱车贷-雪佛兰迈锐宝-XAA067">爱车贷-雪佛兰迈锐宝-XA…</a></h4>
                     <div class="mo2-indPridet">
                         <p style="margin-bottom:10px;">
                             <span class="mo2-indPridet-tit">预期年化收益率：</span>
                                 <span class="mo2-indPridet-big huodongjiaxi">
-                              																				8%<span style="font-size:20px;">+1%</span>								</span>
+                              	8%<span style="font-size:20px;">+1%</span>								</span>
                               	<span style="margin-top:-20px;margin-left:120px;" class="jiaxishow">
 									活动加息1%																		</span>
                         </p>
@@ -593,7 +593,7 @@
                         </span>
                         </div>
                         <div class="mo2-priBtn">
-                            <a href="/Finances/topro" target="_blank">即将开始</a>
+                            <a href="javascript:void(0)" target="_blank">即将开始</a>
                         </div>
                     </div>
                 </div>
@@ -613,13 +613,13 @@
         <div class="mo2-indCarlist-prev"></div>
         <div class="mo2-indCarlist-next"></div>
         <div class="mo2-indCarbox">
-            <ul class="mo2-indCar">
-            	<c:if test="${fabiaolistsafd==null || fn:length(fabiaolistsafd) == 0}">
+        	<c:if test="${fn:length(fabiaolistsafd)==0}">
 					<center>
 						<img src="/Finances/statics/front/images/nodata.png">	
 						<h1>没有数据</h1>
 					</center>
 				</c:if>
+            <ul class="mo2-indCar">
             <c:forEach items="${fabiaolistsafd}" var="fbindexlist">
                 <li class="mo2-indCarlist mo2-indCarlist-ing">
 					<div class="mo2-indCartop">
@@ -709,13 +709,13 @@
         <div class="mo2-indHoulist-prev"></div>
         <div class="mo2-indHoulist-next"></div>
         <div class="mo2-indHoubox">
-            <ul class="mo2-indHou">
-            	<c:if test="${fabiaofdas==null || fn:length(fabiaofdas) == 0}">
+       	 		<c:if test="${fabiaofdas==null || fn:length(fabiaofdas) == 0}">
 					<center>
 						<img src="/Finances/statics/front/images/nodata.png">	
 						<h1>没有数据</h1>
 					</center>
 				</c:if>
+            <ul class="mo2-indHou">
             	<c:forEach items="${fabiaofdas}" var="afdfabiao">
                 <li class="mo2-indCarlist mo2-indCarlist-ing">
 					<div class="mo2-indCartop">
@@ -792,13 +792,13 @@
         <div class="mo2-indFinlist-prev"></div>
         <div class="mo2-indFinlist-next"></div>
         <div class="mo2-indHoubox">
-            <ul class="mo2-indFin">
-	            <c:if test="${fabiaoxfjr==null || fn:length(fabiaoxfjr) == 0}">
+        		<c:if test="${fabiaoxfjr==null || fn:length(fabiaoxfjr) == 0}">
 					<center>
 						<img src="/Finances/statics/front/images/nodata.png">	
 						<h1>没有数据</h1>
 					</center>
 				</c:if>
+            <ul class="mo2-indFin">
             	<c:forEach items="${fabiaoxfjr}" var="xfjrlist">
                 <li class="mo2-indFinlist mo2-indHoulist-ing">
                     <div class="mo2-indFintop">
@@ -1052,10 +1052,16 @@
         <h2 class="m2-indVodhead"><i></i><span>精彩尽在爱钱帮</span><a href="meitibaodao_aiqianbang_licaiwang.html" target="_blank">查看全部</a></h2>
         <div class="m2-indexVod-border">
             <div class="m2-indexVod-con">
-
+				
                 <div class="m2-indexVodbtn-prev"></div>
                 <div class="m2-indexVodbtn-next"></div>
                 <div class="m2-indVodmain">
+                <c:if test="${fn:length(videosp)==0}">
+					<center>
+						<h1>没有数据</h1>
+						<img src="/Finances/statics/front/images/nodata.png">	
+					</center>
+				</c:if>
                     <ul class="m2-indVodlist">
                     	<c:forEach items="${videosp}" var="listvideos">
                         <li videvalue='${pageContext.request.contextPath}${listvideos.vvurl}'>
@@ -1077,6 +1083,12 @@
                 <!--<a class="m2-indCoomore" href="#">更多&raquo;</a>-->
             </h2>
             <ul>
+            	<c:if test="${fn:length(cooorgsp)==0}">
+					<center>
+						<h1>没有数据</h1>
+						<img src="/Finances/statics/front/images/nodata.png">	
+					</center>
+				</c:if>
             	<c:forEach items="${cooorgsp}" var="cooorging">
 	                <li><a href="${cooorging.colinkurl}" target="_blank">
 	                    <img src="/Finances${cooorging.coimgurl}" width="100" hight="50" alt=""></a>

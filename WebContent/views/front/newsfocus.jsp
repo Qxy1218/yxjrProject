@@ -55,7 +55,7 @@
 		    		</li>
 		    		<li>
 		    			<div style="color: black" style="font-size:8px" align="left">
-		    				${newsfocus.nfimage }
+		    			  
 		    			</div>
 		    		</li>
 		    	</c:forEach>
@@ -63,36 +63,11 @@
 	    	<div class="right solid"></div></div>
 	        	
 	    	</div>
-        <div style="margin:20px auto;width:840px;">
-            <a href="/home-aboutus-coorprate?id=58" target="_blank">
-            <img src="/Finances/statics/front/uploadData/ad/20160512110603864.png" alt=""></a>
-            	<a href="http://www.hsbank.com.cn/" target="_blank">
-            <img src="/Finances/statics/front/uploadData/ad/20160512111038163.png" alt=""></a>
-            	<a href="http://www.jx-bank.com/nccbank/zh_CN/home/index.html" target="_blank">
-            <img src="/Finances/statics/front/uploadData/ad/2016051211111329.png" alt=""></a>
-            	<a href="/home-aboutus-coorprate?id=62" target="_blank">
-            <img src="/Finances/statics/front/uploadData/ad/20160512111134837.png" alt=""></a>
-            	<a href="/home-aboutus-coorprate?id=59" target="_blank">
-            <img src="/Finances/statics/front/uploadData/ad/20160512111157415.png" alt=""></a>
-            	<a href="/home-aboutus-coorprate?id=72" target="_blank">
-            <img src="/Finances/statics/front/uploadData/ad/2016051211121652.png" alt=""></a>
-            	<a href="https://www.alipay.com/" target="_blank">
-            <img src="/Finances/statics/front/uploadData/ad/20160512111336923.png" alt=""></a>
-            	<a href="http://www.yeepay.com/" target="_blank">
-            <img src="/Finances/statics/front/uploadData/ad/20160512111356562.png" alt=""></a>
-            	<a href="https://www.aliyun.com/" target="_blank">
-            <img src="/Finances/statics/front/uploadData/ad/20160512111411694.png" alt=""></a>
-            	<a href="/home-aboutus-coorprate?id=76" target="_blank">
-            <img src="/Finances/statics/front/uploadData/ad/20160512111439851.png" alt=""></a>
-            	<a href="/home-aboutus-coorprate?id=61" target="_blank">
-            <img src="/Finances/statics/front/uploadData/ad/20160512111459408.png" alt=""></a>
-            	<a href="http://www.cecr.com.cn/bencandy.php?fid=79&amp;id=858" target="_blank">
-            <img src="/Finances/statics/front/uploadData/ad/20160616194004859.png" alt=""></a>
-        </div>
+   
     </div>
     <div class="security_ensure_five">
         <p>用户信息和资金全部在徽商银行存管，马上开启您的赚钱之旅吧！</p>
-        <button class="success_btn" onclick='window.location.href="touzi_licai_chanpin.html"'>立即投资</button>
+        <button class="success_btn" onclick='window.location.href="/Finances/toindex"'>立即投资</button>
     </div>
     <!-- 内容end-->
     

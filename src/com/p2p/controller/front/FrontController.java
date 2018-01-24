@@ -611,8 +611,13 @@ public class FrontController {
 	@RequestMapping(value="/toabout")
 	public String tofronabout(Model model) {
 	
-		About a = aboutService.getAllModel().get(0);
-		List<String> result = Arrays.asList(StringUtils.split(a.getAbimage(),","));
+		List<About> abs = aboutService.getAllModel();
+		List<String> result = new ArrayList<>();
+		About a = new About();
+		if(abs.size()!=0) {
+			a = abs.get(0);
+			result = Arrays.asList(StringUtils.split(a.getAbimage(),","));
+		}		
 		model.addAttribute("aboutimg",result);
 		model.addAttribute("about", a);
 		return "views/front/about";
