@@ -52,11 +52,11 @@ public interface FabiaoMapper extends IBaseDao<Integer, Fabiao>{
 		//查询成功发标数
 		List<Fabiao> selectByStatus();
 		//查询流标
-		List<Fabiao> selectlb();
+		List<Fabiao> selectlb(@Param("time")String time);
 		//查询满标
-		List<Fabiao> selectmb();
+		List<Fabiao> selectmb(@Param("time")String time);
 		//查询还款标
-		List<Fabiao> selecthkb();
+		List<Fabiao> selecthkb(@Param("time")String time);
 		
 		int updatelb(@Param("start")Integer start,@Param("fid")Integer fid);
 }

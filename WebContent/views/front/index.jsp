@@ -240,7 +240,7 @@
 	                		</div>
 	                		
 			                <div class="mo2-indLog-btn" style="margin-top:18px;">
-			                    <a href="/Finances/tousercenter">我的账户<i></i></a>
+			                    <a href="/Finances/tousercenter?uid=${sessionScope.user.uid }">我的账户<i></i></a>
 			                </div>
 	            		</div>
 	            		<!-- 已登录end -->

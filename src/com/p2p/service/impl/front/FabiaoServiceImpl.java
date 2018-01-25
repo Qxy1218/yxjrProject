@@ -89,21 +89,21 @@ public class FabiaoServiceImpl implements FabiaoService{
 	}
 
 	@Override
-	public List<Fabiao> selectlb() {
+	public List<Fabiao> selectlb(String time) {
 		// TODO Auto-generated method stub
-		return fabiaomapper.selectlb();
+		return fabiaomapper.selectlb(time);
 	}
 
 	@Override
-	public List<Fabiao> selectmb() {
+	public List<Fabiao> selectmb(String time) {
 		// TODO Auto-generated method stub
-		return fabiaomapper.selectmb();
+		return fabiaomapper.selectmb(time);
 	}
 
 	@Override
-	public List<Fabiao> selecthkb() {
+	public List<Fabiao> selecthkb(String time) {
 		// TODO Auto-generated method stub
-		return fabiaomapper.selecthkb();
+		return fabiaomapper.selecthkb(time);
 	}
 
 	@Override

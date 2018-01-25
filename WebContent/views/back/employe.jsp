@@ -165,7 +165,6 @@ $(document).ready(function() {
             var form = new FormData(document.getElementById("editRole"));
             var eid =$("#editRole #eid").val();
             var eid =$("#editRole #eid").val();
-            alert(eid); 
             if(eid==null || eid==""){
             	$.ajax({
        	          url:"${pageContext.request.contextPath}/back/insertEmp",
@@ -380,9 +379,8 @@ $(document).ready(function() {
 				align : 'center',
 				formatter : function(value,row,index) {
 					var image = row.eimage;
-					//alert(image);
 					if(image!=null){
-						return "<img src="+row.eimage+" width='35px' height='40px' />"
+						return "<img src=${pageContext.request.contextPath}"+row.eimage+" width='35px' height='40px' />"
 					}
 				}
 			},

@@ -404,7 +404,7 @@
     			$.each(list,function(i,item){  
     				aa +=' <li style="border-top-left-radius:10px;background-color: #FF2D2D;width: 240px;" >'
     				aa +='<p style="color: white;"><span id="right_account_money">'+item.rmoney+'</span>元可用红包</p>';
-    				aa +='  <span>还有'+item.expireday+'到期</span>';
+    				aa +='  <span>还有'+item.expireday+'天到期</span>';
     				aa+='</li>'
     			})
     		aa+='</ul>' 
@@ -415,7 +415,7 @@
     			$.each(list,function(i,item){  
     				aa +=' <li style="border-top-left-radius:10px;background-color: #FF2D2D;width: 240px;" >'
     				aa +='<p style="color: white;"><span id="right_account_money">'+item.uvmoney+'</span>元可用红包</p>';
-    				aa +='  <span>还有'+item.uvday+'到期</span>';
+    				aa +='  <span>还有'+item.uvday+'天到期</span>';
     				aa+='</li>'
     			})
     		aa+='</ul>' 
@@ -501,7 +501,7 @@ $(function(){
 		    type: "post",
 		    success: function(data){  
 		    	 var dataObj=eval("("+data+")");
-				 $("#cwc").css("background","url(" + "/Finances"+dataObj.cwechartimgurl + ")");
+				 //$("#cwc").css("background","url(" + "/Finances"+dataObj.cwechartimgurl + ")");
 				 $("#maxcwc").css("background","url(" + "/Finances"+dataObj.cwechartimgurl + ")");
 		    	  $("#zxkf").attr("href","http://wpa.qq.com/msgrd?v=3&uin="+dataObj.cqqnum+"&site=qq&menu=yes");
 		    },  

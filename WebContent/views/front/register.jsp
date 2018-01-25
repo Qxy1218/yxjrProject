@@ -503,7 +503,7 @@
                     postData("/Finances/front/getregsendphone",p,function(d){
                         if(d.status==1){
                         	//给验证码赋值
-                        	alert(d.ranks);
+                        	//alert(d.ranks);
                         	$("#yzm").attr("value",'');//清空内容 
                         	$("#yzm").attr("value",d.ranks);//填充内容 
                         	

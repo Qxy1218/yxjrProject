@@ -267,7 +267,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 查询流标 -->
 	<select id="selectlb" resultMap="BaseResultMap">
 		<![CDATA[
-			select * from fabiao where f_endtime<=now() and f_status !=6;
+			select * from fabiao where f_endtime<=#{time} and f_status !=6 and f_endmoney<f_money;
 		]]>
 	</select>
 	<!-- 查询满标 -->
@@ -277,7 +277,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 查询还款标 -->
 	<select id="selecthkb" resultMap="BaseResultMap">
 		<![CDATA[
-			select * from fabiao where f_huanstat<=now()  and f_status !=6;
+			select * from fabiao where f_huanstat<=#{time}  and f_status !=6;
 		]]>
 	</select>
 	<!-- 修改流标 -->
